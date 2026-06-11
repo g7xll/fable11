@@ -14,4 +14,4 @@ npm run build    # type-check + production build
 npm run preview  # serve the production build
 ```
 
-See `PROMPT.txt` for the original experiment prompt.
+See `prompt.md` for the original experiment prompt.

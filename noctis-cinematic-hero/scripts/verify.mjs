@@ -2,7 +2,7 @@
  * Headless verification for the NOCTIS cinematic hero.
  *
  * Boots `vite preview` against the production build, then drives headless
- * Chromium through every requirement in PROMPT.txt: the exact background
+ * Chromium through every requirement in prompt.md: the exact background
  * video element (autoPlay/loop/muted/playsInline + classes + source), the
  * full-screen dark frame, typography, entrance choreography, the ticking
  * 24fps timecode, and mobile-responsiveness.
@@ -66,7 +66,7 @@ try {
   await page.goto(URL, { waitUntil: "networkidle" });
   await page.waitForTimeout(2600); // let the entrance choreography finish
 
-  console.log("— Background video (exact spec from PROMPT.txt) —");
+  console.log("— Background video (exact spec from prompt.md) —");
   const video = page.locator("video");
   check("exactly one <video> element", (await video.count()) === 1);
   check(

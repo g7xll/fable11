@@ -22,4 +22,4 @@ npm run preview   # serve the production build
 npm test          # vitest spec-compliance suite
 ```
 
-See `PROMPT.txt` for the original experiment prompt.
+See `prompt.md` for the original experiment prompt.

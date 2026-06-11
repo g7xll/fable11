@@ -2,7 +2,7 @@
  * Headless verification for the Aethera cinematic hero.
  *
  * Boots `vite preview` against the production build, then drives headless
- * Chromium through every requirement in PROMPT.txt: fonts, colors, layout,
+ * Chromium through every requirement in prompt.md: fonts, colors, layout,
  * entrance animations, video positioning, and the custom fade-in/fade-out
  * manual loop (including the ended -> 100ms -> rewind -> replay path).
  *

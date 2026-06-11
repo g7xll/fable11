@@ -2,7 +2,7 @@
 
 Fullscreen hero section for a fictional password manager, **VaultShield** — built with React 18, TypeScript, Tailwind CSS, Framer Motion, and Lucide React icons.
 
-The originating prompt is preserved verbatim (uppercased) in [`PROMPT.txt`](./PROMPT.txt).
+The originating prompt is preserved verbatim (uppercased) in [`prompt.md`](./prompt.md).
 
 ## Highlights
 

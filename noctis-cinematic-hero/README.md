@@ -27,7 +27,7 @@ npm run build
 npm run verify   # headless Chromium checks + screenshots
 ```
 
-`scripts/verify.mjs` asserts the exact `<video>` element from PROMPT.txt
+`scripts/verify.mjs` asserts the exact `<video>` element from `prompt.md`
 (attributes, classes, source URL/type), full-viewport coverage, the dark
 cinematic frame (vignette, grain, letterbox), typography, the ticking
 timecode, mobile responsiveness, and console health.

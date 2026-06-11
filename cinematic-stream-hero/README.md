@@ -18,7 +18,7 @@ npm run verify   # headless Chromium spec verification (Playwright)
 ```
 
 `npm run verify` builds nothing itself — run `npm run build` first. It boots
-`vite preview`, then asserts every PROMPT.txt requirement: video attributes
+`vite preview`, then asserts every `prompt.md` requirement: video attributes
 and layering, mask gradients, liquid-glass computed styles (including the
 `::before` rim), animation stagger timing, hero copy, responsive visibility
 at 1440/768/375px, and the mobile menu open/close interaction. Screenshots

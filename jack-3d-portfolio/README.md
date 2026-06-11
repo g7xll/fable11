@@ -9,7 +9,7 @@ marquee → about with character-by-character text reveal → white services
 list → sticky-stacking project cards.
 
 The originating prompt for this experiment is preserved in
-[`prompt.txt`](./prompt.txt).
+[`prompt.md`](./prompt.md).
 
 ## Commands
 

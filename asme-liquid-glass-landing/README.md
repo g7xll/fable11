@@ -3,7 +3,7 @@
 A pixel-spec recreation of a dark, cinematic single-page landing site ("Asme") built with
 **React + TypeScript + Vite + Tailwind CSS + framer-motion + lucide-react**.
 
-The full originating prompt is preserved verbatim in [`PROMPT.txt`](./PROMPT.txt).
+The full originating prompt is preserved verbatim in [`prompt.md`](./prompt.md).
 
 ## Highlights
 

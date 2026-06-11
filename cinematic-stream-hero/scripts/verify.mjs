@@ -2,7 +2,7 @@
  * Headless verification for the LUMIÈRE cinematic streaming hero.
  *
  * Boots `vite preview` against the production build, then drives headless
- * Chromium through every requirement in PROMPT.txt: background video, masked
+ * Chromium through every requirement in prompt.md: background video, masked
  * bottom blur veil, Inter font, liquid-glass styling, blurFadeUp staggering,
  * hero copy, z-index layering, no-scroll layout, and responsive behaviour
  * (mobile menu open/close, hamburger icon swap, sm/lg visibility rules).

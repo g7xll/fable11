@@ -2,7 +2,7 @@
  * Headless verification of the built page (CLI only).
  *
  * Serves dist/ via `vite preview`, drives headless Chromium with Playwright,
- * and asserts every requirement from PROMPT.txt that is machine-checkable.
+ * and asserts every requirement from prompt.md that is machine-checkable.
  *
  * Run: npm run build && node scripts/verify.mjs
  */
