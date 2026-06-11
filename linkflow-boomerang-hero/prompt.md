@@ -40,16 +40,16 @@ HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_2026051
 
 ### COLOR PALETTE
 
-| TOKEN | HEX |
-|-------|-----|
-| DARK GREEN (TEXT, BUTTONS) | `#1F2A1D` |
-| MEDIUM DARK GREEN | `#2D3A2A` |
-| BUTTON HOVER | `#2A3827` |
-| BODY TEXT GREEN | `#4B5B47` |
-| HEADING PRIMARY | `#336443` |
-| HEADING ACCENT | `#85AB8B` |
-| BOTTOM-LEFT TEXT | `#3D5638` |
-| BOTTOM-LEFT BUTTON BG | `#3D5638`, HOVER `#2D4228` |
+| TOKEN                      | HEX                        |
+| -------------------------- | -------------------------- |
+| DARK GREEN (TEXT, BUTTONS) | `#1F2A1D`                  |
+| MEDIUM DARK GREEN          | `#2D3A2A`                  |
+| BUTTON HOVER               | `#2A3827`                  |
+| BODY TEXT GREEN            | `#4B5B47`                  |
+| HEADING PRIMARY            | `#336443`                  |
+| HEADING ACCENT             | `#85AB8B`                  |
+| BOTTOM-LEFT TEXT           | `#3D5638`                  |
+| BOTTOM-LEFT BUTTON BG      | `#3D5638`, HOVER `#2D4228` |
 
 ---
 
@@ -416,15 +416,15 @@ EXPORT DEFAULT APP;
 
 ### ANIMATION DETAILS (ALL CSS, NO FRAMER MOTION)
 
-| ELEMENT | PROPERTY | VALUES |
-|---------|----------|--------|
-| HAMBURGER MENU/X ICON SWAP | `TRANSITION-ALL DURATION-300` | OPEN: MENU GETS `OPACITY-0 ROTATE-90 SCALE-50`, X GETS `OPACITY-100 ROTATE-0 SCALE-100`. CLOSED: REVERSE. |
-| MOBILE OVERLAY BACKDROP | `TRANSITION-OPACITY DURATION-300` | OPEN: `OPACITY-100 POINTER-EVENTS-AUTO`. CLOSED: `OPACITY-0 POINTER-EVENTS-NONE`. |
-| MOBILE DRAWER SLIDE | `TRANSITION-TRANSFORM DURATION-500 EASE-[CUBIC-BEZIER(0.22,1,0.36,1)]` | OPEN: `TRANSLATE-X-0`. CLOSED: `TRANSLATE-X-FULL`. |
-| MOBILE NAV LINKS STAGGER | `TRANSITION-ALL DURATION-500` | OPEN: `TRANSLATE-X-0 OPACITY-100`, DELAY PER ITEM: `150MS + I * 70MS`. CLOSED: `TRANSLATE-X-8 OPACITY-0`, DELAY `0MS`. |
-| MOBILE CTA GROUP | `TRANSITION-ALL DURATION-500` | OPEN: `TRANSLATE-X-0 OPACITY-100`, DELAY `400MS`. CLOSED: `TRANSLATE-X-8 OPACITY-0`, DELAY `0MS`. |
-| NAV BUTTONS | `TRANSITION-COLORS` | DEFAULT TAILWIND DURATION (150MS). |
-| OPACITY LINKS | `TRANSITION-OPACITY` | `HOVER:OPACITY-80`. |
+| ELEMENT                    | PROPERTY                                                               | VALUES                                                                                                                 |
+| -------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| HAMBURGER MENU/X ICON SWAP | `TRANSITION-ALL DURATION-300`                                          | OPEN: MENU GETS `OPACITY-0 ROTATE-90 SCALE-50`, X GETS `OPACITY-100 ROTATE-0 SCALE-100`. CLOSED: REVERSE.              |
+| MOBILE OVERLAY BACKDROP    | `TRANSITION-OPACITY DURATION-300`                                      | OPEN: `OPACITY-100 POINTER-EVENTS-AUTO`. CLOSED: `OPACITY-0 POINTER-EVENTS-NONE`.                                      |
+| MOBILE DRAWER SLIDE        | `TRANSITION-TRANSFORM DURATION-500 EASE-[CUBIC-BEZIER(0.22,1,0.36,1)]` | OPEN: `TRANSLATE-X-0`. CLOSED: `TRANSLATE-X-FULL`.                                                                     |
+| MOBILE NAV LINKS STAGGER   | `TRANSITION-ALL DURATION-500`                                          | OPEN: `TRANSLATE-X-0 OPACITY-100`, DELAY PER ITEM: `150MS + I * 70MS`. CLOSED: `TRANSLATE-X-8 OPACITY-0`, DELAY `0MS`. |
+| MOBILE CTA GROUP           | `TRANSITION-ALL DURATION-500`                                          | OPEN: `TRANSLATE-X-0 OPACITY-100`, DELAY `400MS`. CLOSED: `TRANSLATE-X-8 OPACITY-0`, DELAY `0MS`.                      |
+| NAV BUTTONS                | `TRANSITION-COLORS`                                                    | DEFAULT TAILWIND DURATION (150MS).                                                                                     |
+| OPACITY LINKS              | `TRANSITION-OPACITY`                                                   | `HOVER:OPACITY-80`.                                                                                                    |
 
 ---
 
