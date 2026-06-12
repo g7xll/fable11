@@ -2,7 +2,7 @@ import { render, screen, within } from '@testing-library/react';
 import App from './App';
 
 const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4';
+  '/assets/hf_20260418_063509_7d167302-4fd4-480b-8260-18ab572333d4.mp4';
 
 describe('securify hero', () => {
   it('renders the section container with fullscreen classes', () => {
