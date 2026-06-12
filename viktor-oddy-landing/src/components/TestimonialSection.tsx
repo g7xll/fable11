@@ -5,7 +5,7 @@ import { useInViewAnimation } from '../hooks/useInViewAnimation';
 const PARALLAX_MAX_OFFSET = 200;
 
 const PARALLAX_IMAGE =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260330_103804_7aa5494f-4d5b-432e-9dc7-20715275f143.png&w=1280&q=85';
+  '/assets/hf_20260330_103804_7aa5494f-4d5b-432e-9dc7-20715275f143.webp';
 
 const COMPANY_LOGOS = [
   { name: 'Apple', width: 80 },
