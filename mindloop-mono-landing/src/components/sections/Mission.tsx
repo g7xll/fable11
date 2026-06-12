@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { fadeUp } from "@/lib/motion";
 
 const MISSION_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_132944_a0d124bb-eaa1-4082-aa30-2310efb42b4b.mp4";
+  "/assets/hf_20260325_132944_a0d124bb-eaa1-4082-aa30-2310efb42b4b.mp4";
 
 const PARAGRAPH_ONE =
   "We're building a space where curiosity meets clarity — where readers find depth, writers find reach, and every newsletter becomes a conversation worth having.";

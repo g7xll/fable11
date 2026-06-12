@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input";
 import { fadeUp } from "@/lib/motion";
 
 const HERO_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f.mp4";
+  "/assets/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f.mp4";
 
 const AVATARS = [
   { src: avatar1, alt: "Subscriber avatar" },

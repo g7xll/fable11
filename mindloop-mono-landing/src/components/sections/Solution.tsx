@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { fadeUp } from "@/lib/motion";
 
 const SOLUTION_VIDEO =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_125119_8e5ae31c-0021-4396-bc08-f7aebeb877a2.mp4";
+  "/assets/hf_20260325_125119_8e5ae31c-0021-4396-bc08-f7aebeb877a2.mp4";
 
 const FEATURES = [
   {
