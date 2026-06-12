@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4";
+  "/assets/hf_20260328_083109_283f3553-e28f-428b-a723-d639c617eb2b.mp4";
 
 /** Fade window, in seconds, applied at both ends of each playthrough. */
 const FADE_SECONDS = 0.5;
