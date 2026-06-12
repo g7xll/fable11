@@ -3,7 +3,7 @@ import { ChevronRight } from 'lucide-react'
 import { cn } from '../lib/utils'
 
 const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa.mp4'
+  '/assets/hf_20260505_101331_74f9b798-3f00-4e86-8a01-377aa16ffeaa.mp4'
 
 const NAV_LINKS = ['Products', 'Docs'] as const
 
