@@ -5,7 +5,7 @@
   const { FadingVideo, MaterialIcon } = window;
 
   const CAPABILITIES_VIDEO =
-    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4';
+    'assets/hf_20260418_094631_d30ab262-45ee-4b7d-99f3-5d5848c8ef13.mp4';
 
   const ICON_PATHS = {
     image:

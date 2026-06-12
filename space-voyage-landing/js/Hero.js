@@ -5,7 +5,7 @@
   const { FadingVideo, BlurText, Navbar, ArrowUpRight, PlayIcon, ClockIcon, GlobeIcon } = window;
 
   const HERO_VIDEO =
-    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4';
+    'assets/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4';
 
   const HIDDEN = { filter: 'blur(10px)', opacity: 0, y: 20 };
   const VISIBLE = { filter: 'blur(0px)', opacity: 1, y: 0 };
