@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen, within } from '@testing-library/rea
 import App from './App'
 
 const VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4'
+  '/assets/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4'
 
 afterEach(cleanup)
 
