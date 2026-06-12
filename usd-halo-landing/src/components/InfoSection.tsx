@@ -1,7 +1,7 @@
 import PillButton from './PillButton'
 
 const CARD_IMAGE =
-  'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260423_164207_f243351d-ed59-48ec-83a0-a5e996bdbe3c.png&w=1280&q=85'
+  '/assets/hf_20260423_164207_f243351d-ed59-48ec-83a0-a5e996bdbe3c.webp'
 
 export default function InfoSection() {
   return (

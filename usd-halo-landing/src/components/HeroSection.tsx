@@ -2,7 +2,7 @@ import Marquee, { type MarqueeBrand } from './Marquee'
 import PillButton from './PillButton'
 
 const HERO_VIDEO =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4'
+  '/assets/hf_20260423_161253_c72b1869-400f-45ed-ac0c-52f68c2ed5bd.mp4'
 
 const BRANDS: MarqueeBrand[] = [
   {
