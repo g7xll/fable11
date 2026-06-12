@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import ShinyText from './components/ShinyText';
 
 const VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4';
+  '/assets/hf_20260328_105406_16f4600d-7a92-4292-b96e-b19156c7830a.mp4';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
