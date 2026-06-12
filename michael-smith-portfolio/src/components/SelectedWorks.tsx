@@ -14,7 +14,7 @@ const PROJECTS: Project[] = [
     title: "Automotive Motion",
     category: "Art Direction",
     image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1600&auto=format&fit=crop",
+      "/assets/unsplash-photo-1503376780353-7e6692767b70.jpg",
     span: "md:col-span-7",
     aspect: "aspect-[4/3] md:aspect-[7/5]",
   },
@@ -22,7 +22,7 @@ const PROJECTS: Project[] = [
     title: "Urban Architecture",
     category: "Photography",
     image:
-      "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1600&auto=format&fit=crop",
+      "/assets/unsplash-photo-1487958449943-2429e8be8625.jpg",
     span: "md:col-span-5",
     aspect: "aspect-[4/3] md:aspect-square",
   },
@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
     title: "Human Perspective",
     category: "Editorial",
     image:
-      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1600&auto=format&fit=crop",
+      "/assets/unsplash-photo-1500648767791-00dcc994a43e.jpg",
     span: "md:col-span-5",
     aspect: "aspect-[4/3] md:aspect-square",
   },
@@ -38,7 +38,7 @@ const PROJECTS: Project[] = [
     title: "Brand Identity",
     category: "Identity",
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=1600&auto=format&fit=crop",
+      "/assets/unsplash-photo-1561070791-2526d30994b5.jpg",
     span: "md:col-span-7",
     aspect: "aspect-[4/3] md:aspect-[7/5]",
   },

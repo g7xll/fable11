@@ -14,28 +14,28 @@ const ENTRIES: Entry[] = [
     readTime: "6 min read",
     date: "May 28, 2026",
     image:
-      "https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=400&auto=format&fit=crop",
+      "/assets/unsplash-photo-1558655146-d09347e92766.jpg",
   },
   {
     title: "The quiet power of micro-interactions",
     readTime: "4 min read",
     date: "Apr 14, 2026",
     image:
-      "https://images.unsplash.com/photo-1545235617-9465d2a55698?q=80&w=400&auto=format&fit=crop",
+      "/assets/unsplash-photo-1545235617-9465d2a55698.jpg",
   },
   {
     title: "From Figma to production without losing the soul",
     readTime: "8 min read",
     date: "Mar 02, 2026",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=400&auto=format&fit=crop",
+      "/assets/unsplash-photo-1498050108023-c5249f4df085.jpg",
   },
   {
     title: "Notes on building in public",
     readTime: "5 min read",
     date: "Jan 19, 2026",
     image:
-      "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=400&auto=format&fit=crop",
+      "/assets/unsplash-photo-1499951360447-b19be8fe80f5.jpg",
   },
 ];
 
