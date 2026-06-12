@@ -11,12 +11,15 @@ import { fileURLToPath } from "node:url";
 import sharp from "sharp";
 import { siGoogle, siOpenai, siPerplexity } from "simple-icons";
 
-const outDir = path.join(path.dirname(fileURLToPath(import.meta.url)), "../src/assets");
+const outDir = path.join(
+	path.dirname(fileURLToPath(import.meta.url)),
+	"../src/assets",
+);
 
 /** Abstract monochrome avatar art — each a distinct generative composition. */
 const avatarSvgs = [
-  // 1: concentric ripples
-  `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+	// 1: concentric ripples
+	`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
     <defs>
       <radialGradient id="g" cx="35%" cy="30%" r="90%">
         <stop offset="0%" stop-color="#3d3d3d"/><stop offset="100%" stop-color="#121212"/>
@@ -31,8 +34,8 @@ const avatarSvgs = [
       <circle cx="88" cy="44" r="68" fill="none" stroke="#fff" stroke-opacity="0.08" stroke-width="2"/>
     </g>
   </svg>`,
-  // 2: diagonal strata
-  `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+	// 2: diagonal strata
+	`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
     <defs>
       <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
         <stop offset="0%" stop-color="#2b2b2b"/><stop offset="100%" stop-color="#0a0a0a"/>
@@ -49,8 +52,8 @@ const avatarSvgs = [
       </g>
     </g>
   </svg>`,
-  // 3: crescent eclipse
-  `<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
+	// 3: crescent eclipse
+	`<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128">
     <defs>
       <radialGradient id="g" cx="70%" cy="75%" r="95%">
         <stop offset="0%" stop-color="#383838"/><stop offset="100%" stop-color="#0e0e0e"/>
@@ -68,10 +71,10 @@ const avatarSvgs = [
 
 /** Platform icon: white brand mark centered in a faint glass squircle. */
 function iconSvg(iconPath, scale = 0.46) {
-  const size = 400;
-  const markSize = size * scale;
-  const offset = (size - markSize) / 2;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
+	const size = 400;
+	const markSize = size * scale;
+	const offset = (size - markSize) / 2;
+	return `<svg xmlns="http://www.w3.org/2000/svg" width="${size}" height="${size}">
     <rect x="6" y="6" width="${size - 12}" height="${size - 12}" rx="92"
       fill="#ffffff" fill-opacity="0.04" stroke="#ffffff" stroke-opacity="0.14" stroke-width="2"/>
     <g transform="translate(${offset} ${offset}) scale(${markSize / 24})">
@@ -81,15 +84,15 @@ function iconSvg(iconPath, scale = 0.46) {
 }
 
 const jobs = [
-  ...avatarSvgs.map((svg, i) => ({ name: `avatar-${i + 1}.png`, svg })),
-  { name: "icon-chatgpt.png", svg: iconSvg(siOpenai.path) },
-  { name: "icon-perplexity.png", svg: iconSvg(siPerplexity.path) },
-  { name: "icon-google.png", svg: iconSvg(siGoogle.path) },
+	...avatarSvgs.map((svg, i) => ({ name: `avatar-${i + 1}.png`, svg })),
+	{ name: "icon-chatgpt.png", svg: iconSvg(siOpenai.path) },
+	{ name: "icon-perplexity.png", svg: iconSvg(siPerplexity.path) },
+	{ name: "icon-google.png", svg: iconSvg(siGoogle.path) },
 ];
 
 await mkdir(outDir, { recursive: true });
 for (const { name, svg } of jobs) {
-  const png = await sharp(Buffer.from(svg)).png().toBuffer();
-  await writeFile(path.join(outDir, name), png);
-  console.log(`wrote ${name} (${png.length} bytes)`);
+	const png = await sharp(Buffer.from(svg)).png().toBuffer();
+	await writeFile(path.join(outDir, name), png);
+	console.log(`wrote ${name} (${png.length} bytes)`);
 }

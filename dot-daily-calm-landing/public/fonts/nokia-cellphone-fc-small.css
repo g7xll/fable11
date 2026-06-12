@@ -11,15 +11,18 @@
 
 */
 
-@font-face{
-    font-family: "Nokia Cellphone FC Small";
-    src: url("/fonts/440b53b1a1c65037f944ff19259d8014.eot");
-    src: url("/fonts/440b53b1a1c65037f944ff19259d8014.eot?#iefix")format("embedded-opentype"),
-        url("/fonts/440b53b1a1c65037f944ff19259d8014.woff")format("woff"),
-        url("/fonts/440b53b1a1c65037f944ff19259d8014.woff2")format("woff2"),
-        url("/fonts/440b53b1a1c65037f944ff19259d8014.ttf")format("truetype"),
-        url("/fonts/440b53b1a1c65037f944ff19259d8014.svg#Nokia Cellphone FC Small")format("svg");
-    font-weight:normal;
-    font-style:normal;
-    font-display:swap;
+@font-face {
+	font-family: "Nokia Cellphone FC Small";
+	src: url("/fonts/440b53b1a1c65037f944ff19259d8014.eot");
+	src:
+		url("/fonts/440b53b1a1c65037f944ff19259d8014.eot?#iefix")
+		format("embedded-opentype"),
+		url("/fonts/440b53b1a1c65037f944ff19259d8014.woff") format("woff"),
+		url("/fonts/440b53b1a1c65037f944ff19259d8014.woff2") format("woff2"),
+		url("/fonts/440b53b1a1c65037f944ff19259d8014.ttf") format("truetype"),
+		url("/fonts/440b53b1a1c65037f944ff19259d8014.svg#Nokia Cellphone FC Small")
+		format("svg");
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
 }

@@ -18,13 +18,19 @@ const tmpDir = path.join(root, "scripts", ".tmp-assets");
 mkdirSync(outDir, { recursive: true });
 mkdirSync(tmpDir, { recursive: true });
 
-const interFiles = path.join(root, "node_modules", "@fontsource", "inter", "files");
+const interFiles = path.join(
+	root,
+	"node_modules",
+	"@fontsource",
+	"inter",
+	"files",
+);
 const serifFiles = path.join(
-  root,
-  "node_modules",
-  "@fontsource",
-  "instrument-serif",
-  "files",
+	root,
+	"node_modules",
+	"@fontsource",
+	"instrument-serif",
+	"files",
 );
 
 const fontFaces = `
@@ -334,52 +340,50 @@ const dashboardHtml = `<!doctype html><html><head><style>
 /* --------------------------------- run ----------------------------------- */
 
 const jobs = [
-  { name: "logo.png", html: logoHtml, viewport: { width: 300, height: 300 } },
-  {
-    name: "quote-symbol.png",
-    html: quoteHtml,
-    viewport: { width: 600, height: 450 },
-    waitTitle: "done",
-  },
-  {
-    name: "testimonial-avatar.png",
-    html: avatarHtml,
-    viewport: { width: 560, height: 560 },
-  },
-  {
-    name: "hero-dashboard.png",
-    html: dashboardHtml,
-    viewport: { width: 1480, height: 940 },
-    scale: 2,
-  },
+	{ name: "logo.png", html: logoHtml, viewport: { width: 300, height: 300 } },
+	{
+		name: "quote-symbol.png",
+		html: quoteHtml,
+		viewport: { width: 600, height: 450 },
+		waitTitle: "done",
+	},
+	{
+		name: "testimonial-avatar.png",
+		html: avatarHtml,
+		viewport: { width: 560, height: 560 },
+	},
+	{
+		name: "hero-dashboard.png",
+		html: dashboardHtml,
+		viewport: { width: 1480, height: 940 },
+		scale: 2,
+	},
 ];
 
 const browser = await chromium.launch();
 try {
-  for (const job of jobs) {
-    const file = path.join(tmpDir, job.name.replace(".png", ".html"));
-    writeFileSync(file, job.html);
-    const page = await browser.newPage({
-      viewport: job.viewport,
-      deviceScaleFactor: job.scale ?? 1,
-    });
-    await page.goto(pathToFileURL(file).href);
-    await page.evaluate(() => document.fonts.ready);
-    if (job.waitTitle) {
-      await page.waitForFunction(
-        (t) => document.title === t,
-        job.waitTitle,
-        { timeout: 10_000 },
-      );
-    }
-    await page
-      .locator("#shot")
-      .screenshot({ path: path.join(outDir, job.name), omitBackground: true });
-    await page.close();
-    console.log(`generated ${job.name}`);
-  }
+	for (const job of jobs) {
+		const file = path.join(tmpDir, job.name.replace(".png", ".html"));
+		writeFileSync(file, job.html);
+		const page = await browser.newPage({
+			viewport: job.viewport,
+			deviceScaleFactor: job.scale ?? 1,
+		});
+		await page.goto(pathToFileURL(file).href);
+		await page.evaluate(() => document.fonts.ready);
+		if (job.waitTitle) {
+			await page.waitForFunction((t) => document.title === t, job.waitTitle, {
+				timeout: 10_000,
+			});
+		}
+		await page
+			.locator("#shot")
+			.screenshot({ path: path.join(outDir, job.name), omitBackground: true });
+		await page.close();
+		console.log(`generated ${job.name}`);
+	}
 } finally {
-  await browser.close();
-  rmSync(tmpDir, { recursive: true, force: true });
+	await browser.close();
+	rmSync(tmpDir, { recursive: true, force: true });
 }
 console.log("all assets written to src/assets/");

@@ -7,17 +7,17 @@ import { SearchChanged } from "@/components/sections/SearchChanged";
 import { Solution } from "@/components/sections/Solution";
 
 export default function App() {
-  return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Navbar />
-      <main>
-        <Hero />
-        <SearchChanged />
-        <Mission />
-        <Solution />
-        <CtaSection />
-      </main>
-      <Footer />
-    </div>
-  );
+	return (
+		<div className="min-h-screen bg-background text-foreground">
+			<Navbar />
+			<main>
+				<Hero />
+				<SearchChanged />
+				<Mission />
+				<Solution />
+				<CtaSection />
+			</main>
+			<Footer />
+		</div>
+	);
 }
