@@ -3,7 +3,7 @@ import { gsap } from 'gsap'
 
 const NAV_LINKS = ['Gallery', 'Styles', 'API', 'Pricing', 'Blog']
 const VIDEO_SRC =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_080827_a9e5ad52-b6ee-4e79-b393-d936f179cfd7.mp4'
+  '/assets/hf_20260511_080827_a9e5ad52-b6ee-4e79-b393-d936f179cfd7.mp4'
 
 /**
  * `requestVideoFrameCallback` is not yet in every TS DOM lib, so widen the
