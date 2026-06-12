@@ -1,90 +1,360 @@
-BUILD A HERO SECTION FOR A DEFI DASHBOARD NAMED RIVR SHOWCASING A SLEEK, GLASSMORPHISM AESTHETIC. PLEASE MIMIC THESE EXACT SPECIFICATIONS TO ENSURE A PREMIUM UI.
+# RIVR — DeFi Dashboard Hero Section
 
-DEPENDENCIES:
+## Overview
 
-- USE `LUCIDE-REACT` FOR ICONS.
-- USE `MOTION` (IMPORTED FROM `'MOTION/REACT'`) FOR ANIMATIONS.
+Build a hero section for a DeFi dashboard named RIVR that showcases a sleek, glassmorphism aesthetic. A single full-screen rounded card holds a looping video background, a centered navbar, a centered headline block, a floating stats card in one corner, and a faux-cutout "Documentation" panel in the opposite corner. Follow the exact specifications below to ensure a premium UI.
 
-1. GLOBAL STYLES (`SRC/INDEX.CSS`)
-   IMPORT THE CUSTOM 'HELVETICA REGULAR' FONT, SET THE TAILWIND THEME PROPERLY, AND RESET THE BODY. EXACT CSS TO INCLUDE:
+## Dependencies
 
-```CSS
-   @IMPORT "TAILWINDCSS";
+- **Icons:** Use `lucide-react` for icons — `ArrowUpRight`, `ChevronRight`, `Sparkles`.
+- **Animation:** Use `motion` (imported from `'motion/react'`) for animations.
+- **Font:** A custom "Helvetica Regular" web font, loaded via `@font-face`.
+- **Notable techniques:** Glassmorphism (`backdrop-blur`, translucent white backgrounds), an autoplaying muted looped background video, and an SVG faux-cutout corner mask to make a solid panel appear to be carved out of the rounded card.
 
-@FONT-FACE {
-FONT-FAMILY: "HELVETICA REGULAR";
-SRC: URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.EOT");
-SRC: URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.EOT?#IEFIX")FORMAT("EMBEDDED-OPENTYPE"),
-URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.WOFF2")FORMAT("WOFF2"),
-URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.WOFF")FORMAT("WOFF"),
-URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.TTF")FORMAT("TRUETYPE"),
-URL("HTTPS://DB.ONLINEWEBFONTS.COM/T/A64FF11D2C24584C767F6257E880DC65.SVG#HELVETICA REGULAR")FORMAT("SVG");
+## Global styles (`src/index.css`)
+
+Import Tailwind, register the custom "Helvetica Regular" font, set the Tailwind theme, and reset the body. Exact CSS to include:
+
+```css
+@import "tailwindcss";
+
+@font-face {
+    font-family: "Helvetica Regular";
+    src: url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.eot");
+    src: url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/a64ff11d2c24584c767f6257e880dc65.svg#Helvetica Regular")format("svg");
 }
 
-@THEME {
---FONT-HELVETICA: "HELVETICA REGULAR", UI-SANS-SERIF, SYSTEM-UI, SANS-SERIF;
+@theme {
+  --font-helvetica: "Helvetica Regular", ui-sans-serif, system-ui, sans-serif;
 }
 
-:ROOT {
-FONT-FAMILY: VAR(--FONT-HELVETICA);
+:root {
+  font-family: var(--font-helvetica);
 }
 
-BODY {
-MARGIN: 0;
-OVERFLOW-X: HIDDEN;
-BACKGROUND-COLOR: #F0F0F0;
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background-color: #f0f0f0;
 }
 ```
 
-2. APP STRUCTURE (`SRC/APP.TSX`)
-   CREATE A SINGLE `<MAIN CLASSNAME="MIN-H-SCREEN BG-[#F0F0F0]">` INSTANCE THAT RETURNS THE `<HERO />` COMPONENT.
+## App Structure (`src/App.tsx`)
 
-3. HERO COMPONENT (`SRC/COMPONENTS/HERO.TSX`)
-   OUTER WRAPPER: `<DIV CLASSNAME="W-FULL H-SCREEN FLEX ITEMS-CENTER JUSTIFY-CENTER P-3 MD:P-5 BG-[#F0F0F0]">`.
-   INNER CONTAINER: `<SECTION CLASSNAME="RELATIVE W-FULL MAX-W-[1536PX] H-FULL ROUNDED-[1.5REM] MD:ROUNDED-[3REM] OVERFLOW-HIDDEN SHADOW-NONE FLEX FLEX-COL ITEMS-CENTER BG-WHITE/10 GROUP">`
-   INSIDE THE `<SECTION>`:
+Render a single `<main className="min-h-screen bg-[#f0f0f0]">` that returns the `<Hero />` component.
 
-- THE VIDEO BACKGROUND:
-  A `<VIDEO>` ELEMENT WITH `AUTOPLAY MUTED LOOP PLAYSINLINE`.
-  CLASSES: `ABSOLUTE INSET-0 W-FULL H-FULL OBJECT-COVER OBJECT-[65%] LG:OBJECT-CENTER Z-0`.
-  SOURCE URL: `HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260428_193507_4286C423-2FD9-4EFD-92BD-91A939453FC1.MP4` (MUST USE EXACTLY THIS URL).
-- THE CONTENT LAYER:
-  A `<DIV CLASSNAME="RELATIVE Z-10 W-FULL H-FULL FLEX FLEX-COL ITEMS-CENTER">`.
-  INSIDE IT, PLACE: `<NAVBAR />`, THE TEXT CONTAINER, `<BOTTOMLEFTCARD />`, AND `<BOTTOMRIGHTCORNER />`.
-- TEXT CONTAINER:
-  `<DIV CLASSNAME="W-FULL FLEX FLEX-COL ITEMS-CENTER PT-8 PX-6 TEXT-CENTER MAX-W-4XL">`. INSIDE IT:
-  - `<HEROBADGE />`
-  - A `<MOTION.H1>` WITH CLASS: `TEXT-4XL SM:TEXT-5XL MD:TEXT-6XL LG:TEXT-[80PX] FONT-NORMAL TEXT-[#5E6470] MB-2 TRACKING-TIGHT LEADING-[1.05]`. TEXT: "FLUID ASSET STREAMS". ANIMATION: INITIAL={{ OPACITY: 0, SCALE: 0.98 }}, ANIMATE={{ OPACITY: 1, SCALE: 1 }}, TRANSITION={{ DURATION: 0.8, DELAY: 0.2 }}.
-  - A `<MOTION.P>` WITH CLASS: `TEXT-SM SM:TEXT-BASE MD:TEXT-LG TEXT-[#5E6470] OPACITY-80 LEADING-RELAXED MAX-W-XL FONT-NORMAL`. TEXT: "ACCESS SMART VAULTS, STAKE RIVR, NFTS, TRANSFORM RIGID HOLDINGS INTO LIQUID CASH INSTANTLY.". ANIMATION: INITIAL={{ OPACITY: 0 }}, ANIMATE={{ OPACITY: 1 }}, TRANSITION={{ DURATION: 0.8, DELAY: 0.4 }}.
+```tsx
+import Hero from './components/Hero';
 
-4. NAVBAR COMPONENT (`SRC/COMPONENTS/NAVBAR.TSX`)
-   WRAPPER: `<NAV CLASSNAME="FLEX ITEMS-CENTER JUSTIFY-BETWEEN PY-6 PX-6 MD:PX-10 W-FULL RELATIVE Z-10">`.
+export default function App() {
+  return (
+    <main className="min-h-screen bg-[#f0f0f0]">
+      <Hero />
+    </main>
+  );
+}
+```
 
-- LEFT SIDE (HIDDEN SPACER FOR CENTERING): `<DIV CLASSNAME="FLEX-1 HIDDEN MD:BLOCK" />`
-- CENTER MENU: `<UL CLASSNAME="HIDDEN MD:FLEX ITEMS-CENTER GAP-8 TEXT-[RGB(45,45,45)] FONT-NORMAL TEXT-SM">`. INCLUDE ITEMS: ECOSYSTEM, ECONOMICS (HASDROPDOWN), DEVELOPERS, GOVERNANCE (HASDROPDOWN). LIST ITEMS NEED: `CURSOR-POINTER HOVER:OPACITY-70 TRANSITION-OPACITY FLEX ITEMS-CENTER GAP-1 GROUP`. APPEND A `CHEVRONRIGHT` ICON (CLASSES: `W-4 H-4 TRANSITION-TRANSFORM GROUP-HOVER:TRANSLATE-X-0.5`) IF HASDROPDOWN IS TRUE.
-- MOBILE LOGO: `<DIV CLASSNAME="MD:HIDDEN"><SPAN CLASSNAME="FONT-REGULAR TRACKING-TIGHTER TEXT-XL TEXT-[RGBA(30,50,90,0.9)]">RIVR</SPAN></DIV>`
-- RIGHT BUTTON: `<DIV CLASSNAME="FLEX-1 FLEX JUSTIFY-END">` WRAPPING A `<MOTION.BUTTON>` (WHILEHOVER={{ SCALE: 1.02 }} WHILETAP={{ SCALE: 0.98 }}).
-  BUTTON CLASSES: `FLEX ITEMS-CENTER BG-[RGBA(30,50,90,0.8)] TEXT-WHITE ROUNDED-FULL PL-2 PR-4 MD:PR-6 PY-1.5 MD:PY-2 GAP-2 MD:GAP-3 HOVER:BG-[RGBA(30,50,90,1)] TRANSITION-COLORS GROUP`. INSIDE BUTTON: ADD AN ICON WRAPPER `<DIV CLASSNAME="BG-WHITE/20 P-1 MD:P-1.5 ROUNDED-FULL FLEX ITEMS-CENTER JUSTIFY-CENTER">` CONTAINING `ARROWUPRIGHT` (W-4 H-4 MD:W-5 MD:H-5 TEXT-WHITE), AND A TEXT NODE "BOOK DEMO" (`TEXT-XS MD:TEXT-SM FONT-NORMAL`).
+## Hero Component (`src/components/Hero.tsx`)
 
-5. HEROBADGE COMPONENT (`SRC/COMPONENTS/HEROBADGE.TSX`)
-   RETURNS A `<MOTION.DIV>` (INITIAL OPACITY 0, Y 20; ANIMATE OPACITY 1, Y 0; TRANSITION DURATION 0.6, EASE "EASEOUT").
-   CLASSES: `FLEX ITEMS-CENTER GAP-2 PX-4 PY-2 ROUNDED-FULL BG-WHITE/60 BACKDROP-BLUR-MD BORDER BORDER-WHITE/20 MX-AUTO MB-3 W-FIT`.
-   CONTENTS: `<SPARKLES CLASSNAME="W-4 H-4 TEXT-[RGBA(30,50,90,0.8)]" />` AND TEXT `<SPAN CLASSNAME="TEXT-[14PX] FONT-NORMAL TEXT-[RGBA(30,50,90,0.9)]">FLUID STAKING</SPAN>`.
+- **Outer wrapper:** `<div className="w-full h-screen flex items-center justify-center p-3 md:p-5 bg-[#f0f0f0]">`.
+- **Inner container:** `<section className="relative w-full max-w-[1536px] h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden shadow-none flex flex-col items-center bg-white/10 group">`.
 
-6. BOTTOMLEFTCARD COMPONENT (`SRC/COMPONENTS/BOTTOMLEFTCARD.TSX`)
-   RETURNS A `<MOTION.DIV>` (INITIAL X: -20, OPACITY: 0; ANIMATE X: 0, OPACITY: 1; TRANSITION: DURATION 0.8, DELAY 0.2).
-   POSITION/STYLING: `ABSOLUTE BOTTOM-28 RIGHT-4 LEFT-AUTO MD:LEFT-6 MD:RIGHT-AUTO MD:BOTTOM-6 LG:BOTTOM-10 LG:LEFT-10 P-3 MD:P-4 LG:P-5 ROUNDED-[1.2REM] MD:ROUNDED-[1.5REM] LG:ROUNDED-[2.2REM] BG-WHITE/30 BACKDROP-BLUR-XL FLEX FLEX-COL GAP-2 LG:GAP-3 MIN-W-[140PX] MD:MIN-W-[150PX] LG:MIN-W-[180PX] W-FIT`.
+Inside the `<section>`:
 
-- TOP TEXT BLOCK: COLUMN WITH "5.2K" (CLASSES: `TEXT-2XL MD:TEXT-3XL FONT-NORMAL TEXT-[RGBA(30,50,90,0.9)] TRACKING-TIGHT`) AND "ACTIVE YIELDERS" (CLASSES: `TEXT-[10PX] MD:TEXT-[12PX] FONT-NORMAL TEXT-[RGBA(30,50,90,0.6)] UPPERCASE TRACKING-WIDER`).
-- JOIN DISCORD `<MOTION.BUTTON>` (HOVER/TAP SCALE 1.02/0.98). CLASSES: `FLEX ITEMS-CENTER BG-WHITE ROUNDED-FULL PL-1.5 PR-5 PY-1.5 GAP-2 HOVER:BG-WHITE/90 TRANSITION-COLORS SELF-START GROUP`. INSIDE: WRAP `ARROWUPRIGHT` IN `<DIV CLASSNAME="BG-[RGBA(30,50,90,0.1)] P-1 ROUNDED-FULL ...">` (USING `TEXT-[RGBA(30,50,90,0.9)]` FOR ICON) AND APPEND "JOIN DISCORD" TEXT (`TEXT-[14PX] FONT-NORMAL TEXT-[RGBA(30,50,90,0.9)]`).
+### Video background
 
-7. BOTTOMRIGHTCORNER COMPONENT (`SRC/COMPONENTS/BOTTOMRIGHTCORNER.TSX`)
-   THIS REQUIRES A COMPLEX FAUX-CUTOUT LAYOUT. USE A `<MOTION.DIV>` (INITIAL Y: 20, OPACITY: 0; ANIMATE Y: 0, OPACITY: 1; DURATION: 0.8, DELAY: 0.4).
-   CLASSES: `ABSOLUTE BOTTOM-0 RIGHT-0 P-3 PT-5 PL-8 SM:P-4 SM:PT-6 SM:PL-10 MD:P-6 MD:PT-8 MD:PL-14 BG-[#F0F0F0] ROUNDED-TL-[1.5REM] SM:ROUNDED-TL-[2REM] MD:ROUNDED-TL-[3.5REM] FLEX ITEMS-CENTER GAP-3 SM:GAP-4 MD:GAP-6`.
-   CRITICAL CORNER MASKS TO INCLUDE INSIDE THIS CONTAINER:
+A `<video>` element with `autoPlay muted loop playsInline`.
 
-- TOP INTERSECTION MASK: `<DIV CLASSNAME="ABSOLUTE -TOP-[1.5REM] SM:-TOP-[2REM] MD:-TOP-[3.5REM] RIGHT-0 W-[1.5REM] SM:W-[2REM] MD:W-[3.5REM] H-[1.5REM] SM:H-[2REM] MD:H-[3.5REM] POINTER-EVENTS-NONE"><SVG WIDTH="100%" HEIGHT="100%" VIEWBOX="0 0 56 56" FILL="NONE" XMLNS="HTTP://WWW.W3.ORG/2000/SVG"><PATH D="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" FILL="#F0F0F0"/></SVG></DIV>`
-- LEFT INTERSECTION MASK: `<DIV CLASSNAME="ABSOLUTE BOTTOM-0 -LEFT-[1.5REM] SM:-LEFT-[2REM] MD:-LEFT-[3.5REM] W-[1.5REM] SM:W-[2REM] MD:W-[3.5REM] H-[1.5REM] SM:H-[2REM] MD:H-[3.5REM] POINTER-EVENTS-NONE"><SVG WIDTH="100%" HEIGHT="100%" VIEWBOX="0 0 56 56" FILL="NONE" XMLNS="HTTP://WWW.W3.ORG/2000/SVG"><PATH D="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" FILL="#F0F0F0"/></SVG></DIV>`
-  CONTENT:
-- CIRCLE ICON: A DIV WITH `BG-[RGBA(30,50,90,0.05)] W-10 H-10 MD:W-14 MD:H-14 ROUNDED-FULL FLEX ITEMS-CENTER JUSTIFY-CENTER BORDER BORDER-[RGBA(30,50,90,0.1)]` USING `ARROWUPRIGHT` (`TEXT-[RGBA(30,50,90,0.8)]`).
-- INFO COLUMN CONTAINING TITLE "DOCUMENTATION" (`TEXT-[16PX] MD:TEXT-[20PX] FONT-NORMAL TEXT-[RGBA(30,50,90,0.95)]`). BELOW IT, A LINE CONTAINING TEXT "LIBRARY" AND A `CHEVRONRIGHT` ICON WRAPPED IN `<DIV CLASSNAME="FLEX ITEMS-CENTER GAP-1 TEXT-[RGBA(30,50,90,0.6)] CURSOR-POINTER HOVER:TEXT-[RGBA(30,50,90,0.8)] TRANSITION-COLORS"><SPAN CLASSNAME="TEXT-[12PX] MD:TEXT-[15PX] FONT-NORMAL">...`
+- Classes: `absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0`.
+- Source URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4` (must use exactly this URL).
+
+### Content layer
+
+A `<div className="relative z-10 w-full h-full flex flex-col items-center">`. Inside it, place: `<Navbar />`, the text container, `<BottomLeftCard />`, and `<BottomRightCorner />`.
+
+### Text container
+
+`<div className="w-full flex flex-col items-center pt-8 px-6 text-center max-w-4xl">`. Inside it:
+
+- `<HeroBadge />`
+- A `<motion.h1>` with class `text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-normal text-[#5E6470] mb-2 tracking-tight leading-[1.05]`. Text: `Fluid Asset Streams`. Animation: `initial={{ opacity: 0, scale: 0.98 }}`, `animate={{ opacity: 1, scale: 1 }}`, `transition={{ duration: 0.8, delay: 0.2 }}`.
+- A `<motion.p>` with class `text-sm sm:text-base md:text-lg text-[#5E6470] opacity-80 leading-relaxed max-w-xl font-normal`. Text: `Access Smart Vaults, stake RIVR, NFTs, transform rigid holdings into liquid cash instantly.` Animation: `initial={{ opacity: 0 }}`, `animate={{ opacity: 1 }}`, `transition={{ duration: 0.8, delay: 0.4 }}`.
+
+Reference implementation:
+
+```tsx
+import { motion } from 'motion/react';
+import Navbar from './Navbar';
+import HeroBadge from './HeroBadge';
+import BottomLeftCard from './BottomLeftCard';
+import BottomRightCorner from './BottomRightCorner';
+
+const VIDEO_URL =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260428_193507_4286c423-2fd9-4efd-92bd-91a939453fc1.mp4';
+
+export default function Hero() {
+  return (
+    <div className="w-full h-screen flex items-center justify-center p-3 md:p-5 bg-[#f0f0f0]">
+      <section className="relative w-full max-w-[1536px] h-full rounded-[1.5rem] md:rounded-[3rem] overflow-hidden shadow-none flex flex-col items-center bg-white/10 group">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          src={VIDEO_URL}
+          className="absolute inset-0 w-full h-full object-cover object-[65%] lg:object-center z-0"
+        />
+
+        <div className="relative z-10 w-full h-full flex flex-col items-center">
+          <Navbar />
+
+          <div className="w-full flex flex-col items-center pt-8 px-6 text-center max-w-4xl">
+            <HeroBadge />
+
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-normal text-[#5E6470] mb-2 tracking-tight leading-[1.05]"
+            >
+              Fluid Asset Streams
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-sm sm:text-base md:text-lg text-[#5E6470] opacity-80 leading-relaxed max-w-xl font-normal"
+            >
+              Access Smart Vaults, stake RIVR, NFTs, transform rigid holdings
+              into liquid cash instantly.
+            </motion.p>
+          </div>
+
+          <BottomLeftCard />
+          <BottomRightCorner />
+        </div>
+      </section>
+    </div>
+  );
+}
+```
+
+## Navbar Component (`src/components/Navbar.tsx`)
+
+- **Wrapper:** `<nav className="flex items-center justify-between py-6 px-6 md:px-10 w-full relative z-10">`.
+- **Left side (hidden spacer for centering):** `<div className="flex-1 hidden md:block" />`.
+- **Center menu:** `<ul className="hidden md:flex items-center gap-8 text-[rgb(45,45,45)] font-normal text-sm">`. Menu items (with `hasDropdown` flag): `Ecosystem`, `Economics` (`hasDropdown`), `Developers`, `Governance` (`hasDropdown`). Each `<li>` gets `cursor-pointer hover:opacity-70 transition-opacity flex items-center gap-1 group`. Append a `ChevronRight` icon (classes `w-4 h-4 transition-transform group-hover:translate-x-0.5`) when `hasDropdown` is `true`.
+- **Mobile logo:** `<div className="md:hidden"><span className="font-regular tracking-tighter text-xl text-[rgba(30,50,90,0.9)]">RIVR</span></div>`.
+- **Right button:** `<div className="flex-1 flex justify-end">` wrapping a `<motion.button>` with `whileHover={{ scale: 1.02 }}` and `whileTap={{ scale: 0.98 }}`. Button classes: `flex items-center bg-[rgba(30,50,90,0.8)] text-white rounded-full pl-2 pr-4 md:pr-6 py-1.5 md:py-2 gap-2 md:gap-3 hover:bg-[rgba(30,50,90,1)] transition-colors group`. Inside the button, an icon wrapper `<div className="bg-white/20 p-1 md:p-1.5 rounded-full flex items-center justify-center">` containing `ArrowUpRight` (`w-4 h-4 md:w-5 md:h-5 text-white`), followed by a text node `Book Demo` (`text-xs md:text-sm font-normal`).
+
+```tsx
+import { motion } from 'motion/react';
+import { ArrowUpRight, ChevronRight } from 'lucide-react';
+
+interface MenuItem {
+  label: string;
+  hasDropdown?: boolean;
+}
+
+const MENU_ITEMS: MenuItem[] = [
+  { label: 'Ecosystem' },
+  { label: 'Economics', hasDropdown: true },
+  { label: 'Developers' },
+  { label: 'Governance', hasDropdown: true },
+];
+
+export default function Navbar() {
+  return (
+    <nav className="flex items-center justify-between py-6 px-6 md:px-10 w-full relative z-10">
+      <div className="flex-1 hidden md:block" />
+
+      <ul className="hidden md:flex items-center gap-8 text-[rgb(45,45,45)] font-normal text-sm">
+        {MENU_ITEMS.map((item) => (
+          <li
+            key={item.label}
+            className="cursor-pointer hover:opacity-70 transition-opacity flex items-center gap-1 group"
+          >
+            {item.label}
+            {item.hasDropdown && (
+              <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <div className="md:hidden">
+        <span className="font-regular tracking-tighter text-xl text-[rgba(30,50,90,0.9)]">
+          RIVR
+        </span>
+      </div>
+
+      <div className="flex-1 flex justify-end">
+        <motion.button
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          className="flex items-center bg-[rgba(30,50,90,0.8)] text-white rounded-full pl-2 pr-4 md:pr-6 py-1.5 md:py-2 gap-2 md:gap-3 hover:bg-[rgba(30,50,90,1)] transition-colors group"
+        >
+          <div className="bg-white/20 p-1 md:p-1.5 rounded-full flex items-center justify-center">
+            <ArrowUpRight className="w-4 h-4 md:w-5 md:h-5 text-white" />
+          </div>
+          <span className="text-xs md:text-sm font-normal">Book Demo</span>
+        </motion.button>
+      </div>
+    </nav>
+  );
+}
+```
+
+## HeroBadge Component (`src/components/HeroBadge.tsx`)
+
+Returns a `<motion.div>` (`initial={{ opacity: 0, y: 20 }}`, `animate={{ opacity: 1, y: 0 }}`, `transition={{ duration: 0.6, ease: 'easeOut' }}`).
+
+- Classes: `flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/20 mx-auto mb-3 w-fit`.
+- Contents: `<Sparkles className="w-4 h-4 text-[rgba(30,50,90,0.8)]" />` and the text `<span className="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">Fluid Staking</span>`.
+
+```tsx
+import { motion } from 'motion/react';
+import { Sparkles } from 'lucide-react';
+
+export default function HeroBadge() {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: 'easeOut' }}
+      className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-white/20 mx-auto mb-3 w-fit"
+    >
+      <Sparkles className="w-4 h-4 text-[rgba(30,50,90,0.8)]" />
+      <span className="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">
+        Fluid Staking
+      </span>
+    </motion.div>
+  );
+}
+```
+
+## BottomLeftCard Component (`src/components/BottomLeftCard.tsx`)
+
+Returns a `<motion.div>` (`initial={{ x: -20, opacity: 0 }}`, `animate={{ x: 0, opacity: 1 }}`, `transition={{ duration: 0.8, delay: 0.2 }}`).
+
+- **Position / styling:** `absolute bottom-28 right-4 left-auto md:left-6 md:right-auto md:bottom-6 lg:bottom-10 lg:left-10 p-3 md:p-4 lg:p-5 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex flex-col gap-2 lg:gap-3 min-w-[140px] md:min-w-[150px] lg:min-w-[180px] w-fit`.
+- **Top text block:** a column with `5.2K` (classes `text-2xl md:text-3xl font-normal text-[rgba(30,50,90,0.9)] tracking-tight`) and `Active Yielders` (classes `text-[10px] md:text-[12px] font-normal text-[rgba(30,50,90,0.6)] uppercase tracking-wider`).
+- **Join Discord `<motion.button>`** (`whileHover={{ scale: 1.02 }}`, `whileTap={{ scale: 0.98 }}`). Classes: `flex items-center bg-white rounded-full pl-1.5 pr-5 py-1.5 gap-2 hover:bg-white/90 transition-colors self-start group`. Inside: wrap `ArrowUpRight` (`w-4 h-4 text-[rgba(30,50,90,0.9)]`) in `<div className="bg-[rgba(30,50,90,0.1)] p-1 rounded-full flex items-center justify-center">`, and append the text `Join Discord` (`text-[14px] font-normal text-[rgba(30,50,90,0.9)]`).
+
+```tsx
+import { motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
+
+export default function BottomLeftCard() {
+  return (
+    <motion.div
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.2 }}
+      className="absolute bottom-28 right-4 left-auto md:left-6 md:right-auto md:bottom-6 lg:bottom-10 lg:left-10 p-3 md:p-4 lg:p-5 rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[2.2rem] bg-white/30 backdrop-blur-xl flex flex-col gap-2 lg:gap-3 min-w-[140px] md:min-w-[150px] lg:min-w-[180px] w-fit"
+    >
+      <div className="flex flex-col">
+        <span className="text-2xl md:text-3xl font-normal text-[rgba(30,50,90,0.9)] tracking-tight">
+          5.2K
+        </span>
+        <span className="text-[10px] md:text-[12px] font-normal text-[rgba(30,50,90,0.6)] uppercase tracking-wider">
+          Active Yielders
+        </span>
+      </div>
+
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className="flex items-center bg-white rounded-full pl-1.5 pr-5 py-1.5 gap-2 hover:bg-white/90 transition-colors self-start group"
+      >
+        <div className="bg-[rgba(30,50,90,0.1)] p-1 rounded-full flex items-center justify-center">
+          <ArrowUpRight className="w-4 h-4 text-[rgba(30,50,90,0.9)]" />
+        </div>
+        <span className="text-[14px] font-normal text-[rgba(30,50,90,0.9)]">
+          Join Discord
+        </span>
+      </motion.button>
+    </motion.div>
+  );
+}
+```
+
+## BottomRightCorner Component (`src/components/BottomRightCorner.tsx`)
+
+This requires a complex faux-cutout layout. Use a `<motion.div>` (`initial={{ y: 20, opacity: 0 }}`, `animate={{ y: 0, opacity: 1 }}`, `transition={{ duration: 0.8, delay: 0.4 }}`).
+
+- **Classes:** `absolute bottom-0 right-0 p-3 pt-5 pl-8 sm:p-4 sm:pt-6 sm:pl-10 md:p-6 md:pt-8 md:pl-14 bg-[#f0f0f0] rounded-tl-[1.5rem] sm:rounded-tl-[2rem] md:rounded-tl-[3.5rem] flex items-center gap-3 sm:gap-4 md:gap-6`.
+
+### Critical corner masks (inside this container)
+
+These two SVG masks make the solid `#f0f0f0` panel read as a cutout carved into the rounded card.
+
+- **Top intersection mask:** `<div className="absolute -top-[1.5rem] sm:-top-[2rem] md:-top-[3.5rem] right-0 w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">` containing an SVG (`width="100%" height="100%" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"`) with `<path d="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" fill="#f0f0f0" />`.
+- **Left intersection mask:** `<div className="absolute bottom-0 -left-[1.5rem] sm:-left-[2rem] md:-left-[3.5rem] w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">` containing an SVG (`width="100%" height="100%" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg"`) with `<path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" fill="#f0f0f0" />`.
+
+### Content
+
+- **Circle icon:** a `<div className="bg-[rgba(30,50,90,0.05)] w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border border-[rgba(30,50,90,0.1)]">` containing `ArrowUpRight` (`w-5 h-5 md:w-6 md:h-6 text-[rgba(30,50,90,0.8)]`).
+- **Info column:** a title `Documentation` (`text-[16px] md:text-[20px] font-normal text-[rgba(30,50,90,0.95)]`). Below it, a line containing the text `Library` and a `ChevronRight` icon (`w-3 h-3 md:w-4 md:h-4`), wrapped in `<div className="flex items-center gap-1 text-[rgba(30,50,90,0.6)] cursor-pointer hover:text-[rgba(30,50,90,0.8)] transition-colors">` with the label `<span className="text-[12px] md:text-[15px] font-normal">Library</span>`.
+
+```tsx
+import { motion } from 'motion/react';
+import { ArrowUpRight, ChevronRight } from 'lucide-react';
+
+export default function BottomRightCorner() {
+  return (
+    <motion.div
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+      className="absolute bottom-0 right-0 p-3 pt-5 pl-8 sm:p-4 sm:pt-6 sm:pl-10 md:p-6 md:pt-8 md:pl-14 bg-[#f0f0f0] rounded-tl-[1.5rem] sm:rounded-tl-[2rem] md:rounded-tl-[3.5rem] flex items-center gap-3 sm:gap-4 md:gap-6"
+    >
+      {/* Top intersection mask */}
+      <div className="absolute -top-[1.5rem] sm:-top-[2rem] md:-top-[3.5rem] right-0 w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 56 56"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M56 56V0C56 30.9279 30.9279 56 0 56H56Z" fill="#f0f0f0" />
+        </svg>
+      </div>
+
+      {/* Left intersection mask */}
+      <div className="absolute bottom-0 -left-[1.5rem] sm:-left-[2rem] md:-left-[3.5rem] w-[1.5rem] sm:w-[2rem] md:w-[3.5rem] h-[1.5rem] sm:h-[2rem] md:h-[3.5rem] pointer-events-none">
+        <svg
+          width="100%"
+          height="100%"
+          viewBox="0 0 56 56"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M56 56H0C30.9279 56 56 30.9279 56 0V56Z" fill="#f0f0f0" />
+        </svg>
+      </div>
+
+      <div className="bg-[rgba(30,50,90,0.05)] w-10 h-10 md:w-14 md:h-14 rounded-full flex items-center justify-center border border-[rgba(30,50,90,0.1)]">
+        <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-[rgba(30,50,90,0.8)]" />
+      </div>
+
+      <div className="flex flex-col">
+        <span className="text-[16px] md:text-[20px] font-normal text-[rgba(30,50,90,0.95)]">
+          Documentation
+        </span>
+        <div className="flex items-center gap-1 text-[rgba(30,50,90,0.6)] cursor-pointer hover:text-[rgba(30,50,90,0.8)] transition-colors">
+          <span className="text-[12px] md:text-[15px] font-normal">Library</span>
+          <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+```

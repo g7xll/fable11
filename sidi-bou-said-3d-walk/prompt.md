@@ -1,36 +1,60 @@
-WRITE A COMPLETE, PRODUCTION-READY, SINGLE-FILE HTML/JAVASCRIPT APPLICATION THAT RENDERS A HIGHLY DETAILED, PHOTO-REALISTIC, NAVIGABLE 3D SCENE OF THE ICONIC CLIFFSIDE VILLAGE OF **SIDI BOU SAID, TUNISIA** USING THREE.JS.
+# Sidi Bou Said — A Procedural 3D Walk Above the Gulf of Tunis
 
-### CRITICAL INSTRUCTIONS — NO LAZY CODE
+## Overview
 
-- DO NOT USE ANY EXTERNAL ASSET URLS (NO EXTERNAL .GLTF, .OBJ, .JPG, OR .PNG FILES) AS THEY CAN BREAK OR FAIL CORS. ALL TEXTURES, HEIGHTS, AND MODELS MUST BE GENERATED DYNAMICALLY AND PROCEDURALLY WITHIN THE SCRIPT (E.G., USING HTML CANVAS TO DRAW TEXTURES, PROCEDURAL NOISE ALGORITHMS FOR PLASTER AND STONE, OR MATHEMATICAL STRUCTURES FOR 3D MESHES).
-- DO NOT WRITE PLACEHOLDER COMMENTS, TRUNCATED CODE BLOCKS, "// TODO" MARKERS, OR "LEFT AS AN EXERCISE" SHORTHAND. EVERY SINGLE FUNCTION, SHADER, LOOP, AND VARIABLE MUST BE WRITTEN OUT IN ITS ENTIRETY.
-- THE OUTPUT MUST BE A SINGLE, COPY-PASTEABLE HTML FILE THAT RUNS PERFECTLY IMMEDIATELY WHEN OPENED IN A BROWSER.
+Write a complete, production-ready, single-file HTML/JavaScript application that renders a highly detailed, photo-realistic, navigable 3D scene of the iconic cliffside village of **Sidi Bou Said, Tunisia** using Three.js.
 
-### TECHNICAL REQUIREMENTS & FEATURES
+## Critical Instructions — No Lazy Code
 
-1. **LIBRARIES**: LOAD THREE.JS AND ORBITCONTROLS VIA A RELIABLE CDN (CDNJS OR UNPKG).
-2. **ICONIC ARCHITECTURE (SIDI BOU SAID STYLE)**:
-   - **WHITE-WASHED PLASTER WALLS**: BUILDINGS WITH FLAT ROOFS, ROUNDED CORNERS, AND A COUPLE OF TRADITIONAL DOMES (_KOUBBA_). IMPLEMENT A PROCEDURAL STUCCO TEXTURE (LOW-FREQUENCY NOISE BUMP MAP) APPLIED TO A CLEAN MATTE-WHITE MATERIAL TO MIMIC HAND-PLASTERED WALLS.
-   - **SIDI BOU SAID BLUE ACCENTS**: DISTINCTIVE VIBRANT BLUE DOORS, ARCHED FRAMES, AND WINDOW GRATES.
-   - **ORNAMENTAL WINDOWS & DOORS**: PROCEDURALLY GENERATE ARCHED WOODEN DOORS FEATURING DETAILED BLACK ORNAMENTAL STUD PATTERNS (DRAWN USING CANVAS COORDINATES). CREATE BLUE WOODEN WINDOW SCREENS (_MUSHRABIYA_) OR CURVED WROUGHT-IRON PROTECTIVE GRILLES USING NESTED GEOMETRIES.
-3. **CLIFFSIDE TERRAIN & COBBLESTONE ALLEYWAY**:
-   - ESTABLISH A WINDING, SLOPED PEDESTRIAN ALLEYWAY REPRESENTING THE STEEP STREETS OF THE VILLAGE, ENDING AT A VIEWPOINT OVERLOOK.
-   - THE STREET MUST USE A PROCEDURAL COBBLESTONE TEXTURE (CANVAS-GENERATED NOISE REPRESENTING INDIVIDUAL ROUNDED STONES WITH GREY GROUT) APPLIED AS A DISPLACEMENT AND ROUGHNESS MAP.
-   - ADD A RUSTIC STONE RETAINING WALL/BARRIER AT THE EDGE OF THE CLIFF.
-4. **THE MEDITERRANEAN OVERLOOK (BACKGROUND SEA & SKY)**:
-   - PROVIDE A DRAMATIC VIEW OF THE GULF OF TUNIS BELOW THE CLIFF.
-   - WATER: USE A CUSTOM SHADER OR A DEEP-BLUE MESHSTANDARDMATERIAL WITH LAYERED SCROLLING NORMAL MAPS TO SIMULATE CALM, GLITTERING SEA WATER REFLECTING THE AFTERNOON SUN.
-   - SKY: A WARM, BRIGHT MEDITERRANEAN SKY WITH SUBTLE ATMOSPHERIC SCATTERING AND A POWERFUL SUN SOURCE.
-5. **PROCEDURAL FLORA (VIBRANT BOUGAINVILLEA & OLIVE TREES)**:
-   - **BOUGAINVILLEA**: CREATE CLIMBING VINES DRAPED OVER THE WHITE WALLS. USE INSTANCED MESHES FOR THOUSANDS OF TINY, VIBRANT MAGENTA/PINK PETALS (PROCEDURAL ALPHA-MASKED SHAPES) CLUSTERED TOGETHER.
-   - **POTTED PLANTS**: PLACE TERRACOTTA POTS ALONG THE ALLEYWAY CONTAINING SMALL GREEN PLANTS AND FLOWERS.
-6. **MEDITERRANEAN LIGHTING & SHADOWS**:
-   - SETUP A HIGH-INTENSITY DIRECTIONALLIGHT REPRESENTING THE INTENSE TUNISIAN SUN, CASTING SHARP BUT SOFT-EDGED SHADOWS (`THREE.PCFSOFTSHADOWMAP`).
-   - USE A HEMISPHERELIGHT WITH A SKY-BLUE HEMISPHERE COLOR AND A WARM SANDY GROUND COLOR TO EMULATE REALISTIC BOUNCE LIGHT BOUNCING OFF THE WHITE WALLS.
-   - CONFIGURE ACESFILMICTONEMAPPING TO HANDLE THE HIGH CONTRAST BETWEEN THE BRIGHT WHITE-WASHED WALLS AND DEEP BLUE SHADOWS WITHOUT BLOWING OUT THE HIGHLIGHTS.
-7. **NAVIGATION & EXPLORATION**:
-   - IMPLEMENT ORBITCONTROLS OR A FIRST-PERSON WASD/POINTERLOCK SETUP. RESTRICT THE CAMERA HEIGHT AND BOUNDARY LIMITS TO KEEP THE USER AT HUMAN SCALE (EYE-LEVEL) AS THEY NAVIGATE UP AND DOWN THE WINDING BLUE-AND-WHITE ALLEYWAY.
-8. **OPTIMIZATION**:
-   - MAINTAIN 60 FPS ON STANDARD DESKTOP GPUS BY EMPLOYING INSTANCED GEOMETRY FOR REPEATING ARCHITECTURAL ELEMENTS (STAIRS, WINDOW FRAMES, FLOWERS) AND HANDLING WINDOW RESIZING FLAWLESSLY.
+- **No external asset URLs.** Do not use any external asset URLs (no external `.gltf`, `.obj`, `.jpg`, or `.png` files) as they can break or fail CORS. All textures, heights, and models must be generated dynamically and procedurally within the script — for example, using an HTML canvas to draw textures, procedural noise algorithms for plaster and stone, or mathematical structures for 3D meshes.
+- **No placeholders.** Do not write placeholder comments, truncated code blocks, `// TODO` markers, or "left as an exercise" shorthand. Every single function, shader, loop, and variable must be written out in its entirety.
+- **Single file.** The output must be a single, copy-pasteable HTML file that runs perfectly immediately when opened in a browser.
 
-GENERATE THE FULL, UN-TRUNCATED, SINGLE-FILE HTML CODE NOW.
+## Technical Requirements & Features
+
+### 1. Libraries
+
+- Load Three.js and `OrbitControls` via a reliable CDN (cdnjs or unpkg).
+
+### 2. Iconic Architecture (Sidi Bou Said style)
+
+- **White-washed plaster walls**: Buildings with flat roofs, rounded corners, and a couple of traditional domes (*koubba*). Implement a procedural stucco texture (low-frequency noise bump map) applied to a clean matte-white material to mimic hand-plastered walls.
+- **Sidi Bou Said blue accents**: Distinctive vibrant blue doors, arched frames, and window grates.
+- **Ornamental windows & doors**: Procedurally generate arched wooden doors featuring detailed black ornamental stud patterns (drawn using canvas coordinates). Create blue wooden window screens (*mushrabiya*) or curved wrought-iron protective grilles using nested geometries.
+
+### 3. Cliffside Terrain & Cobblestone Alleyway
+
+- Establish a winding, sloped pedestrian alleyway representing the steep streets of the village, ending at a viewpoint overlook.
+- The street must use a procedural cobblestone texture (canvas-generated noise representing individual rounded stones with grey grout) applied as a displacement and roughness map.
+- Add a rustic stone retaining wall / barrier at the edge of the cliff.
+
+### 4. The Mediterranean Overlook (background sea & sky)
+
+- Provide a dramatic view of the Gulf of Tunis below the cliff.
+- **Water**: Use a custom shader (or a deep-blue `MeshStandardMaterial` with layered scrolling normal maps) to simulate calm, glittering sea water reflecting the afternoon sun.
+- **Sky**: A warm, bright Mediterranean sky with subtle atmospheric scattering and a powerful sun source.
+
+### 5. Procedural Flora (vibrant bougainvillea & olive trees)
+
+- **Bougainvillea**: Create climbing vines draped over the white walls. Use instanced meshes for thousands of tiny, vibrant magenta/pink petals (procedural alpha-masked shapes) clustered together.
+- **Potted plants**: Place terracotta pots along the alleyway containing small green plants and flowers.
+
+### 6. Mediterranean Lighting & Shadows
+
+- Set up a high-intensity `DirectionalLight` representing the intense Tunisian sun, casting sharp but soft-edged shadows (`THREE.PCFSoftShadowMap`).
+- Use a `HemisphereLight` with a sky-blue hemisphere color and a warm sandy ground color to emulate realistic bounce light bouncing off the white walls.
+- Configure `ACESFilmicToneMapping` to handle the high contrast between the bright white-washed walls and deep blue shadows without blowing out the highlights.
+
+### 7. Navigation & Exploration
+
+- Implement `OrbitControls` or a first-person WASD / pointer-lock setup. Restrict the camera height and boundary limits to keep the user at human scale (eye level) as they navigate up and down the winding blue-and-white alleyway.
+
+### 8. Optimization
+
+- Maintain 60 fps on standard desktop GPUs by employing instanced geometry for repeating architectural elements (stairs, window frames, flowers) and handling window resizing flawlessly.
+
+---
+
+Generate the full, un-truncated, single-file HTML code now.
+</content>
+</invoke>

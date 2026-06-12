@@ -1,119 +1,441 @@
-BUILD A REACT + VITE + TAILWIND CSS LANDING PAGE FOR "AXION STUDIO" - A DESIGN AGENCY SITE. USE THE `SHADERS` PACKAGE (NPM: `SHADERS`) FOR THE HERO BACKGROUND, `LUCIDE-REACT` FOR ICONS. THE PAGE HAS 3 SECTIONS. MATCH EVERY DETAIL EXACTLY:
+# Axion Studio — Design Agency Landing Page
 
----
+## Overview
 
-## SECTION 1: HERO (FULL VIEWPORT HEIGHT)
+Build a single-page landing site for "Axion Studio", a strategy-led design agency. The page is composed of three stacked sections — a full-viewport animated-shader hero, an introductory "about" section, and a featured case-studies section — rendered as a React + Vite + TypeScript app styled with Tailwind CSS. Match every concrete detail below exactly.
 
-**BACKGROUND:** LIGHT GRAY `#EFEFEF` WITH A FULL-SCREEN ANIMATED SHADER OVERLAY (POSITIONED ABSOLUTE, INSET-0, Z-10, POINTER-EVENTS-NONE). THE SHADER STACK USES COMPONENTS FROM `SHADERS/REACT`:
+## Tech Stack
 
-- `SWIRL` - COLORA: `#FFFFFF`, COLORB: `#F0F0F0`, DETAIL: 1.7
-- `CHROMAFLOW` - BASECOLOR: `#FFFFFF`, DOWNCOLOR/LEFTCOLOR/RIGHTCOLOR/UPCOLOR: `#FF5F03`, MOMENTUM: 13, RADIUS: 3.5
-- `FLUTEDGLASS` - ABERRATION: 0.61, ANGLE: 31, FREQUENCY: 8, HIGHLIGHT: 0.12, HIGHLIGHTSOFTNESS: 0, LIGHTANGLE: -90, REFRACTION: 4, SHAPE: "ROUNDED", SOFTNESS: 1, SPEED: 0.15
-- `FILMGRAIN` - STRENGTH: 0.05
+- **Framework:** React 18 (`react` `^18.3.1`, `react-dom` `^18.3.1`) + TypeScript (`~5.6.3`) + Vite (`^5.4.11`, via `@vitejs/plugin-react` `^4.3.4`)
+- **Styling:** Tailwind CSS `^3.4.17` (default config, no custom theme extensions), with `postcss` `^8.4.49` and `autoprefixer` `^10.4.20`
+- **Shaders:** `shaders` `^2.5.129` — the hero background uses `Shader`, `Swirl`, `ChromaFlow`, `FlutedGlass`, and `FilmGrain` imported from `shaders/react`. (`pixi.js` `^8.0.0` is a required peer dependency of `shaders`.)
+- **Icons:** `lucide-react` `^0.515.0` — `ArrowRight`, `Clock`, `Menu`, `X`
+- **Font:** system default (no custom font loaded)
+- **Notable techniques:** animated WebGL shader stack, a hover "text-roll" CTA interaction, a live London wall-clock, a slide-up mobile bottom-sheet menu, and CSS hover-expanding pill buttons over autoplaying video
+- **Testing:** `playwright` `^1.60.0`; a `verify` script (`node scripts/verify.mjs`)
 
-**NAVIGATION (Z-20, RELATIVE):** A PILL-SHAPED WHITE NAVBAR (`BG-WHITE ROUNDED-FULL`) WITH 5PX PADDING, INSIDE A MAX-W-[1440PX] CONTAINER WITH P-2 SM:P-3.
+## Global Setup
 
-- LEFT: DARK CIRCLE LOGO (W-9 H-9 SM:W-10 SM:H-10, BG-GRAY-900, ROUNDED-FULL) WITH WHITE TEXT "AX" (10PX/11PX, FONT-BOLD, TRACKING-TIGHT). NEXT TO IT (HIDDEN ON MOBILE, SHOWN MD+): NAV LINKS "PROJECTS", "STUDIO", "JOURNAL", "CONNECT" - 14PX, TEXT-GRAY-900, HOVER:TEXT-GRAY-500, TRANSITION-COLORS DURATION-300, GAP-6.
+### `index.html`
 
-- RIGHT (HIDDEN ON MOBILE, SHOWN MD+):
-  - TEXT "TAKING ON PROJECTS FOR Q1 2026" (13PX, TEXT-GRAY-600, HIDDEN BELOW LG)
-  - CLOCK ICON (LUCIDE, SIZE 14) + LIVE LONDON TIME "{HH:MM} IN LONDON" (13PX, TEXT-GRAY-600)
-  - CTA BUTTON: BG-GRAY-900, TEXT-WHITE, 13PX FONT-MEDIUM, ROUNDED-FULL, PL-5 PR-2 PY-2. TEXT "BOOK A STRATEGY CALL" WITH A HOVER TEXT ROLL ANIMATION: THE TEXT IS DUPLICATED INSIDE A FLEX-COL CONTAINER WITH OVERFLOW-HIDDEN H-[20PX], ON GROUP-HOVER IT TRANSLATES -50% VERTICALLY (DURATION-500, EASE CUBIC-BEZIER(0.25,0.1,0.25,1)). ARROW ICON IN A WHITE CIRCLE (W-6 H-6) THAT ROTATES -45DEG ON HOVER (SAME EASING).
+- `lang="en"`, charset `UTF-8`, viewport `width=device-width, initial-scale=1.0`.
+- `<title>`: `Axion Studio — We craft digital experiences`
+- Meta description: `Axion Studio is a strategy-led design agency crafting digital experiences for brands ready to dominate their category online.`
+- Root `<div id="root">` plus `<script type="module" src="/src/main.tsx">`.
 
-- MOBILE: A "MENU"/"CLOSE" TOGGLE BUTTON (MD:HIDDEN), BG-GRAY-900, ROUNDED-FULL, WITH MENU/X ICONS FROM LUCIDE-REACT.
+### Entry (`src/main.tsx`)
 
-**MOBILE MENU OVERLAY:** FIXED INSET-0, Z-50. BLACK/60 BACKDROP. A WHITE BOTTOM SHEET (ROUNDED-2XL, MX-3 MB-3) THAT SLIDES UP (TRANSLATE-Y-FULL TO TRANSLATE-Y-0, DURATION-500, EASE CUBIC-BEZIER(0.32,0.72,0,1)). CONTAINS: TIME BADGE, NAV LINKS (28PX/32PX FONT-MEDIUM), AND A "START A PROJECT" BUTTON WITH ARROW.
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import App from "./App";
+import "./index.css";
 
-**HERO CONTENT (Z-20):** POSITIONED AT THE BOTTOM OF THE VIEWPORT USING FLEXBOX (FLEX-1 SPACER ABOVE). MAX-W-[1440PX], PX-5 SM:PX-8 LG:PX-12, PB-14 SM:PB-16 LG:PB-20.
-
-- SMALL LABEL: "AXION STUDIO" (13PX/14PX, TEXT-GRAY-900, TRACKING-WIDE, MB-5 SM:MB-8)
-- HEADLINE H1: "WE CRAFT DIGITAL EXPERIENCES / FOR BRANDS READY TO DOMINATE / THEIR CATEGORY ONLINE." - CLAMP(1.75REM,7VW,4.2REM) ON MOBILE, CLAMP(2.5REM,5VW,4.2REM) ON SM+. FONT-MEDIUM, LEADING-[1.08], TRACKING-[-0.03EM], TEXT-GRAY-900. LINE BREAKS HIDDEN ON MOBILE (USES `<BR CLASSNAME="HIDDEN SM:BLOCK" />` WITH `<SPAN CLASSNAME="SM:HIDDEN"> </SPAN>` FALLBACK SPACES).
-- CTA ROW (MT-8 SM:MT-12, FLEX-COL SM:FLEX-ROW, GAP-4 SM:GAP-5):
-  - ORANGE BUTTON: BG-[#F26522], HOVER:BG-[#E05A1A], TEXT-WHITE, 13PX/14PX, ROUNDED-FULL, PL-5 SM:PL-6 PR-2 PY-2. SAME TEXT-ROLL HOVER ANIMATION FOR "START A PROJECT". WHITE CIRCLE (W-7 H-7 SM:W-8 SM:H-8) WITH ORANGE ARROWRIGHT THAT ROTATES -45DEG ON HOVER.
-  - PARTNER BADGE: WHITE PILL WITH SUBTLE SHADOW (0_2PX_8PX_RGBA(0,0,0,0.08)), HOVER SHADOW (0_4PX_16PX_RGBA(0,0,0,0.12)), ROUNDED-[4PX]. CONTAINS AN INLINE SVG ICON (THE STARBURST/COMPASS SHAPE BELOW, W-5 H-5 SM:W-6 SM:H-6, FILL-CURRENT TEXT-[#E8704E]), TEXT "CERTIFIED PARTNER" (13PX/14PX FONT-MEDIUM), AND A DARK BADGE "FEATURED" (10PX/11PX, BG-GRAY-900, TEXT-WHITE, PX-1.5 SM:PX-2 PY-0.5, ROUNDED).
-
-**SVG ICON FOR PARTNER BADGE:**
-
-```SVG
-<SVG XMLNS="HTTP://WWW.W3.ORG/2000/SVG" VIEWBOX="0 0 100 100"><PATH D="M19.6 66.5 19.7-11 .3-1-.3-.5H-1L-3.3-.2-11.2-.3L14 53L-9.5-.5-2.4-.5L0 49L.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1H1.6L.2-.7-.5-.4-.4-.4L29 41L-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36L1.5 1.2.6-.4.1-.3-.7-1.1L33 25L-6-10.4-2.7-4.3-.7-2.6C-.3-1-.4-2-.4-3L3-4.2L28 0L4.2.6L33.8 2L2.6 6 4.1 9.3L47 29.9L2 3.8 1 3.4.3 1H.7V-.5L.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6L2 2.9-.3 1.8-1.1 7.7L59 27.1L-1.5 8.2H.9L1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13L2.3-1.8H4.3L3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4H.7L12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2H6.8L12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3H-.8V.4L4.6 4.5 8.3 7.5L89 80.1L.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8H-.5V.7L1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6V-.2H49L43 72L-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86L10-12.8 6-7.9 4-4.6-.1-.5H-.3L17.2 77.4L-4.7.6-2-2 .2-3 1-1 8-5.5Z"/></SVG>
+createRoot(document.getElementById("root")!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
 ```
 
----
+### Root component (`src/App.tsx`)
 
-## SECTION 2: ABOUT (WHITE BACKGROUND)
+A single `<main>` rendering `<Hero />`, `<About />`, `<CaseStudies />` in order.
 
-`BG-WHITE`, PT-16 SM:PT-20 LG:PT-32, PB-12 SM:PB-16 LG:PB-24, OVERFLOW-HIDDEN. MAX-W-[1440PX] CONTAINER.
+### Global styles (`src/index.css`)
 
-**BADGE ROW:** PX-5 SM:PX-8 LG:PX-12, FLEX ITEMS-CENTER GAP-3, MB-6 SM:MB-8.
+Standard Tailwind directives plus two utility classes (defined but not actively used in the current layout):
 
-- NUMBERED CIRCLE: W-6 H-6 SM:W-7 SM:H-7, ROUNDED-FULL, BG-GRAY-900, TEXT-WHITE, 11PX/12PX FONT-SEMIBOLD. SHOWS "1".
-- PILL LABEL: "INTRODUCING AXION" - 12PX/13PX, FONT-MEDIUM, BORDER BORDER-GRAY-200, ROUNDED-FULL, PX-3 SM:PX-4 PY-1 SM:PY-1.5.
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-**HEADING H2:** "STRATEGY-LED CREATIVES, DELIVERING / RESULTS IN DIGITAL AND BEYOND." - CLAMP(1.5REM,4VW,3.2REM), FONT-MEDIUM, LEADING-[1.12], TRACKING-[-0.02EM], TEXT-GRAY-900, MB-12 SM:MB-16 LG:MB-28.
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.25);
+}
 
-**CONTENT AREA (RESPONSIVE):**
+.liquid-glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.6),
+    rgba(255, 255, 255, 0.08)
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+}
 
-- MOBILE/TABLET (LG:HIDDEN): STACKED - PARAGRAPH + BUTTON, THEN IMAGES.
-  - PARAGRAPH: "THROUGH RESEARCH, CREATIVE THINKING AND ITERATION WE HELP GROWING BRANDS REALIZE THEIR DIGITAL FULL POTENTIAL." - 15PX/17PX, LEADING-[1.6], FONT-MEDIUM, TEXT-GRAY-900.
-  - BUTTON: "ABOUT OUR STUDIO" - ORANGE (#F26522), SAME TEXT-ROLL ANIMATION, WHITE ARROW CIRCLE ROTATES -45DEG.
-  - TWO IMAGES: FLEX-COL SM:FLEX-ROW, GAP-4 SM:GAP-5. FIRST: SM:W-[45%] ASPECT-[438/346]. SECOND: SM:W-[55%] ASPECT-[900/600]. BOTH ROUNDED-XL SM:ROUNDED-2XL, OBJECT-COVER.
+.liquid-glass-strong {
+  background: rgba(255, 255, 255, 0.01);
+  backdrop-filter: blur(50px);
+  -webkit-backdrop-filter: blur(50px);
+  box-shadow: inset 0 0 12px rgba(255, 255, 255, 0.25);
+}
+```
 
-- DESKTOP (HIDDEN LG:GRID): `GRID-COLS-[26%_1FR_48%] ITEMS-END GAP-6 XL:GAP-8`.
-  - LEFT COLUMN (SELF-END): SMALL IMAGE, ASPECT-[438/346], ROUNDED-2XL.
-  - CENTER COLUMN (SELF-START, FLEX JUSTIFY-END): PARAGRAPH (16PX/18PX, LEADING-[1.65], WHITESPACE-NOWRAP, WITH `<BR/>` BETWEEN LINES) + ORANGE BUTTON.
-  - RIGHT COLUMN (SELF-END): LARGE IMAGE, ASPECT-[3/2], ROUNDED-2XL.
+### Shared conventions
 
-**IMAGE URLS:**
+- **Max content width:** `1440px`, centered with `mx-auto` (`max-w-[1440px]`).
+- **Responsive breakpoints:** default Tailwind (`sm:` 640px, `md:` 768px, `lg:` 1024px, `xl:` 1280px).
+- **Signature easing token** (reused across components): `ease-[cubic-bezier(0.25,0.1,0.25,1)]` with `duration-500` unless noted otherwise.
 
-- SMALL IMAGE: `HTTPS://IMAGES.HIGGS.AI/?DEFAULT=1&OUTPUT=WEBP&URL=HTTPS%3A%2F%2FD8J0NTLCM91Z4.CLOUDFRONT.NET%2FUSER_38XZZBOKVIGWJOTTWIXH07LWA1P%2FHF_20260516_090123_74BE96D4-9C1B-40CF-932A-96F4F4BABED3.PNG&W=1280&Q=85`
-- LARGE IMAGE: `HTTPS://IMAGES.HIGGS.AI/?DEFAULT=1&OUTPUT=WEBP&URL=HTTPS%3A%2F%2FD8J0NTLCM91Z4.CLOUDFRONT.NET%2FUSER_38XZZBOKVIGWJOTTWIXH07LWA1P%2FHF_20260516_090133_C157D30B-A99A-4477-BEC1-A446149EC3F2.PNG&W=1280&Q=85`
+## Shared Components
 
----
+### `RollButton` (`src/components/RollButton.tsx`)
 
-## SECTION 3: CASE STUDIES (LIGHT GRAY BACKGROUND)
+A pill CTA with the signature hover interactions: the label "rolls up" (a duplicated copy slides into view) while the arrow rotates `-45deg`.
 
-`BG-[#F5F5F5]`, PT-16 SM:PT-20 LG:PT-28, PB-16 SM:PB-20 LG:PB-28. MAX-W-[1440PX] CONTAINER.
+**Props:**
 
-**BADGE ROW:** SAME PATTERN AS SECTION 2, BUT NUMBER IS "2", LABEL IS "FEATURED CLIENT WORK", BORDER-GRAY-300.
+| Prop | Type | Purpose |
+| --- | --- | --- |
+| `label` | `string` | Button text |
+| `className` | `string` | Background, text size, and padding of the pill |
+| `circleClassName` | `string` | Sizing of the circle holding the arrow |
+| `arrowClassName` | `string` | Color of the arrow inside the circle |
+| `arrowSize?` | `number` | Defaults to `14` |
+| `onClick?` | `() => void` | Optional click handler |
 
-**HEADING H2:** "OUR PROJECTS" - SAME CLAMP SIZING AS HERO HEADLINE (CLAMP(1.75REM,7VW,4.2REM) / CLAMP(2.5REM,5VW,4.2REM)), FONT-MEDIUM, LEADING-[1.08], TRACKING-[-0.03EM], MB-10 SM:MB-14 LG:MB-16.
+**Structure:**
 
-**CARDS GRID:** `GRID GRID-COLS-1 MD:GRID-COLS-2 GAP-5 SM:GAP-6 LG:GAP-7`, PX-5 SM:PX-8 LG:PX-12.
+- Outer `<button type="button">`: `group flex items-center gap-3 rounded-full font-medium transition-colors duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]` plus the passed `className`.
+- Label wrapper: `flex h-[20px] flex-col overflow-hidden`. Inside, an inner column `flex flex-col transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-translate-y-1/2` containing the label **twice** (second copy `aria-hidden="true"`), each in `flex h-[20px] items-center whitespace-nowrap`.
+- Arrow circle: `flex items-center justify-center rounded-full bg-white` plus `circleClassName`. Inside, a Lucide `ArrowRight` (`size={arrowSize}`) with `transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] group-hover:-rotate-45` plus `arrowClassName`.
 
-**CARD 1 (NARRATIV):**
+### `PartnerIcon` (`src/components/PartnerIcon.tsx`)
 
-- VIDEO CONTAINER: ASPECT-[329/246], ROUNDED-2XL, OVERFLOW-HIDDEN, BG-[#1A1D2E], GROUP, CURSOR-POINTER.
-- VIDEO: `SRC="HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260516_122702_390F5305-8719-41D5-AE80-D23AB3796C28.MP4"`, AUTOPLAY, MUTED, LOOP, PLAYSINLINE, W-FULL H-FULL OBJECT-COVER.
-- HOVER BUTTON (ABSOLUTE BOTTOM-4 LEFT-4): A WHITE CIRCLE (H-9 W-9) THAT EXPANDS TO W-[148PX] ON GROUP-HOVER (TRANSITION-ALL DURATION-300 EASE-IN-OUT). CONTAINS "LEARN MORE" TEXT (13PX, FONT-MEDIUM, OPACITY-0 TO OPACITY-100 ON HOVER WITH DELAY-100) AND A LINK/CHAIN SVG ICON (14X14, -ROTATE-45 TO ROTATE-0 ON HOVER). THE SVG IS THE LUCIDE "LINK" ICON DRAWN MANUALLY WITH TWO ARC PATHS.
-- DESCRIPTION: "WINNER OF SITE OF THE MONTH 2025 - AN INTERACTIVE 3D SHOWCASE DRIVING RECORD ENGAGEMENT" - 13PX/14PX, TEXT-GRAY-600, MT-4, LEADING-RELAXED.
-- TITLE: "NARRATIV" - 14PX/15PX, FONT-SEMIBOLD, TEXT-GRAY-900, MT-1.
+A starburst/compass mark shown inside the certified-partner badge. Accepts an optional `className`. Renders an inline `<svg>` (`xmlns="http://www.w3.org/2000/svg"`, `viewBox="0 0 100 100"`, `aria-hidden="true"`) with a single `<path>`:
 
-**CARD 2 (LUMINAR):**
+```tsx
+<path d="m19.6 66.5 19.7-11 .3-1-.3-.5h-1l-3.3-.2-11.2-.3L14 53l-9.5-.5-2.4-.5L0 49l.2-1.5 2-1.3 2.9.2 6.3.5 9.5.6 6.9.4L38 49.1h1.6l.2-.7-.5-.4-.4-.4L29 41l-10.6-7-5.6-4.1-3-2-1.5-2-.6-4.2 2.7-3 3.7.3.9.2 3.7 2.9 8 6.1L37 36l1.5 1.2.6-.4.1-.3-.7-1.1L33 25l-6-10.4-2.7-4.3-.7-2.6c-.3-1-.4-2-.4-3l3-4.2L28 0l4.2.6L33.8 2l2.6 6 4.1 9.3L47 29.9l2 3.8 1 3.4.3 1h.7v-.5l.5-7.2 1-8.7 1-11.2.3-3.2 1.6-3.8 3-2L61 2.6l2 2.9-.3 1.8-1.1 7.7L59 27.1l-1.5 8.2h.9l1-1.1 4.1-5.4 6.9-8.6 3-3.5L77 13l2.3-1.8h4.3l3.1 4.7-1.4 4.9-4.4 5.6-3.7 4.7-5.3 7.1-3.2 5.7.3.4h.7l12-2.6 6.4-1.1 7.6-1.3 3.5 1.6.4 1.6-1.4 3.4-8.2 2-9.6 2-14.3 3.3-.2.1.2.3 6.4.6 2.8.2h6.8l12.6 1 3.3 2 1.9 2.7-.3 2-5.1 2.6-6.8-1.6-16-3.8-5.4-1.3h-.8v.4l4.6 4.5 8.3 7.5L89 80.1l.5 2.4-1.3 2-1.4-.2-9.2-7-3.6-3-8-6.8h-.5v.7l1.8 2.7 9.8 14.7.5 4.5-.7 1.4-2.6 1-2.7-.6-5.8-8-6-9-4.7-8.2-.5.4-2.9 30.2-1.3 1.5-3 1.2-2.5-2-1.4-3 1.4-6.2 1.6-8 1.3-6.4 1.2-7.9.7-2.6v-.2H49L43 72l-9 12.3-7.2 7.6-1.7.7-3-1.5.3-2.8L24 86l10-12.8 6-7.9 4-4.6-.1-.5h-.3L17.2 77.4l-4.7.6-2-2 .2-3 1-1 8-5.5Z" />
+```
 
-- VIDEO CONTAINER: ASPECT-SQUARE, ROUNDED-2XL, OVERFLOW-HIDDEN, BG-[#6B6B6B], GROUP, CURSOR-POINTER.
-- VIDEO: `SRC="HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260516_123323_F909C2B8-FF6C-4EDF-882B-8EBCDBE389B5.MP4"`, AUTOPLAY, MUTED, LOOP, PLAYSINLINE, W-FULL H-FULL OBJECT-COVER.
-- HOVER BUTTON (ABSOLUTE BOTTOM-4 LEFT-4): A DARK CIRCLE (BG-GRAY-900, H-9 W-9) THAT EXPANDS TO W-[168PX] ON GROUP-HOVER. CONTAINS "VIEW CASE STUDY" TEXT (13PX, FONT-MEDIUM, TEXT-WHITE) AND A WHITE ARROWRIGHT ICON (SIZE 14) THAT TRANSITIONS FROM -ROTATE-45 TO ROTATE-0 ON HOVER.
-- DESCRIPTION: "TRANSFORMING A DATED PLATFORM INTO A CONVERSION-FOCUSED BRAND EXPERIENCE" - 13PX/14PX, TEXT-GRAY-600, MT-4, LEADING-RELAXED.
-- TITLE: "LUMINAR" - 14PX/15PX, FONT-SEMIBOLD, TEXT-GRAY-900, MT-1.
+### `useLondonTime` hook (`src/hooks/useLondonTime.ts`)
 
----
+Returns the live London wall-clock time in `HH:MM`, updated every second.
 
-## GLOBAL STYLES (INDEX.CSS):
+```ts
+import { useEffect, useState } from "react";
 
-STANDARD TAILWIND DIRECTIVES PLUS TWO UTILITY CLASSES (NOT ACTIVELY USED IN CURRENT LAYOUT BUT DEFINED):
+const formatter = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Europe/London",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
 
-- `.LIQUID-GLASS`: RGBA(255,255,255,0.01) BG, BACKDROP-FILTER BLUR(4PX), INSET BOX-SHADOW, PSEUDO-ELEMENT GRADIENT BORDER USING MASK-COMPOSITE.
-- `.LIQUID-GLASS-STRONG`: SAME BUT BLUR(50PX), NO PSEUDO-ELEMENT.
+function londonTime(): string {
+  return formatter.format(new Date());
+}
 
----
+export default function useLondonTime(): string {
+  const [time, setTime] = useState(londonTime);
 
-## TECHNICAL DETAILS:
+  useEffect(() => {
+    const id = window.setInterval(() => setTime(londonTime()), 1000);
+    return () => window.clearInterval(id);
+  }, []);
 
-- **FRAMEWORK:** REACT 18 + TYPESCRIPT + VITE
-- **STYLING:** TAILWIND CSS 3.4 (DEFAULT CONFIG, NO CUSTOM THEME EXTENSIONS)
-- **PACKAGES:** `SHADERS` (FOR SHADER, CHROMAFLOW, FILMGRAIN, FLUTEDGLASS, SWIRL FROM `SHADERS/REACT`), `LUCIDE-REACT` (ARROWRIGHT, CLOCK, MENU, X)
-- **FONT:** SYSTEM DEFAULT (NO CUSTOM FONT LOADED)
-- **ALL ANIMATIONS USE:** `DURATION-500 EASE-[CUBIC-BEZIER(0.25,0.1,0.25,1)]` UNLESS NOTED OTHERWISE
-- **MAX CONTENT WIDTH:** 1440PX, CENTERED WITH MX-AUTO
-- **RESPONSIVE BREAKPOINTS:** DEFAULT TAILWIND (SM: 640PX, MD: 768PX, LG: 1024PX, XL: 1280PX)
-- **LIVE CLOCK:** UPDATES EVERY SECOND, SHOWS LONDON TIMEZONE IN HH:MM FORMAT
+  return time;
+}
+```
+
+## Section 1: Hero (`src/components/Hero.tsx`)
+
+Full viewport height: `<section className="relative flex min-h-screen flex-col overflow-hidden bg-[#EFEFEF]">`.
+
+### Shader background
+
+A full-screen animated shader overlay: `<Shader className="pointer-events-none absolute inset-0 z-10">` containing this exact stack (imported from `shaders/react`):
+
+```tsx
+import { ChromaFlow, FilmGrain, FlutedGlass, Shader, Swirl } from "shaders/react";
+
+<Shader className="pointer-events-none absolute inset-0 z-10">
+  <Swirl colorA="#ffffff" colorB="#f0f0f0" detail={1.7} />
+  <ChromaFlow
+    baseColor="#ffffff"
+    downColor="#ff5f03"
+    leftColor="#ff5f03"
+    rightColor="#ff5f03"
+    upColor="#ff5f03"
+    momentum={13}
+    radius={3.5}
+  />
+  <FlutedGlass
+    aberration={0.61}
+    angle={31}
+    frequency={8}
+    highlight={0.12}
+    highlightSoftness={0}
+    lightAngle={-90}
+    refraction={4}
+    shape="rounded"
+    softness={1}
+    speed={0.15}
+  />
+  <FilmGrain strength={0.05} />
+</Shader>
+```
+
+### Layout
+
+After the shader, render `<Navbar />`, then a flexible spacer `<div className="flex-1" />`, then the hero content — this pins the content to the bottom of the viewport.
+
+### Hero content
+
+Container: `relative z-20 mx-auto w-full max-w-[1440px] px-5 pb-14 sm:px-8 sm:pb-16 lg:px-12 lg:pb-20`.
+
+- **Small label** `<p>`: text `Axion Studio` — `mb-5 text-[13px] tracking-wide text-gray-900 sm:mb-8 sm:text-[14px]`.
+- **Headline** `<h1>`: `text-[length:clamp(1.75rem,7vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 sm:text-[length:clamp(2.5rem,5vw,4.2rem)]`. Copy with line breaks hidden on mobile (each `<br className="hidden sm:block" />` paired with a `<span className="sm:hidden"> </span>` fallback space):
+  - `We craft digital experiences`
+  - `for brands ready to dominate`
+  - `their category online.`
+- **CTA row** `<div className="mt-8 flex flex-col items-start gap-4 sm:mt-12 sm:flex-row sm:items-center sm:gap-5">`:
+  - **Orange `RollButton`** — `label="Start a project"`, `className="bg-[#F26522] py-2 pl-5 pr-2 text-[13px] text-white hover:bg-[#e05a1a] sm:pl-6 sm:text-[14px]"`, `circleClassName="h-7 w-7 sm:h-8 sm:w-8"`, `arrowClassName="text-[#F26522]"`.
+  - **Partner badge** — an `<a href="#">`: `flex items-center gap-2 rounded-[4px] bg-white px-3 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-shadow duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.12)] sm:gap-2.5 sm:px-4 sm:py-2.5`. Contains:
+    - `<PartnerIcon className="h-5 w-5 fill-current text-[#E8704E] sm:h-6 sm:w-6" />`
+    - `<span>` `Certified Partner` — `text-[13px] font-medium text-gray-900 sm:text-[14px]`
+    - `<span>` `Featured` — `rounded bg-gray-900 px-1.5 py-0.5 text-[10px] text-white sm:px-2 sm:text-[11px]`
+
+## Navbar (`src/components/Navbar.tsx`)
+
+State: `menuOpen` (`useState(false)`); the live time comes from `useLondonTime()`. A `useEffect` locks `document.body.style.overflow` to `"hidden"` while the menu is open and restores it on cleanup. Nav-link list constant: `["Projects", "Studio", "Journal", "Connect"]`.
+
+Header: `<header className={`relative ${menuOpen ? "z-[60]" : "z-20"}`}>`.
+
+### Pill navbar
+
+Outer container: `relative z-[70] mx-auto max-w-[1440px] p-2 sm:p-3`. Inside, a `<nav>`: `flex items-center justify-between rounded-full bg-white p-[5px]`.
+
+**Left group** (`flex items-center gap-6 pl-0 md:pr-2`):
+
+- **Logo** — `<a href="#" aria-label="Axion Studio home">` styled `flex h-9 w-9 items-center justify-center rounded-full bg-gray-900 sm:h-10 sm:w-10`, containing a `<span>` with text `AX` (`text-[10px] font-bold tracking-tight text-white sm:text-[11px]`).
+- **Nav links** (`hidden items-center gap-6 md:flex`) — map over `NAV_LINKS`, each an `<a href="#">` with `text-[14px] text-gray-900 transition-colors duration-300 hover:text-gray-500`.
+
+**Right group** (`hidden items-center gap-5 md:flex`):
+
+- `<span>` `Taking on projects for Q1 2026` — `hidden text-[13px] text-gray-600 lg:block`.
+- Time `<span>` `flex items-center gap-1.5 text-[13px] text-gray-600` containing `<Clock size={14} />` followed by `{time} in London`.
+- **`RollButton`** — `label="Book a strategy call"`, `className="bg-gray-900 py-2 pl-5 pr-2 text-[13px] text-white"`, `circleClassName="h-6 w-6"`, `arrowClassName="text-gray-900"`, `arrowSize={12}`.
+
+**Mobile toggle** `<button type="button">` (`md:hidden`): `flex items-center gap-2 rounded-full bg-gray-900 px-4 py-2.5 text-[13px] font-medium text-white`, with `aria-expanded={menuOpen}` and `aria-label` of `"Close menu"`/`"Open menu"`. Shows `<X size={15} />` + `Close` when open, else `<Menu size={15} />` + `Menu`.
+
+### Mobile menu overlay
+
+Wrapper: `fixed inset-0 z-50 md:hidden`. When closed it is `pointer-events-none invisible [transition:visibility_0s_0.5s]`; when open, `visible`. `aria-hidden={!menuOpen}`.
+
+- **Backdrop** `<div>` (click closes): `absolute inset-0 bg-black/60 transition-opacity duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]` toggling `opacity-100` / `opacity-0`.
+- **Bottom sheet** `<div>`: `absolute inset-x-0 bottom-0 mx-3 mb-3 rounded-2xl bg-white p-5 transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]` toggling `translate-y-0` (open) / `translate-y-[calc(100%+0.75rem)]` (closed). Contains:
+  - **Time badge** `<span>`: `inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1.5 text-[13px] text-gray-600` with `<Clock size={14} />` + `{time} in London`.
+  - **Nav** (`mt-6 flex flex-col gap-2`): each link an `<a href="#">` (closes the menu on click) styled `text-[28px] font-medium text-gray-900 sm:text-[32px]`.
+  - **`RollButton`** in `<div className="mt-8 flex">` — `label="Start a project"`, `onClick` closes the menu, `className="bg-[#F26522] py-2 pl-5 text-[13px] text-white hover:bg-[#e05a1a] sm:pl-6 sm:text-[14px] pr-2"`, `circleClassName="h-7 w-7 sm:h-8 sm:w-8"`, `arrowClassName="text-[#F26522]"`.
+
+## Section 2: About (`src/components/About.tsx`)
+
+`<section className="overflow-hidden bg-white pb-12 pt-16 sm:pb-16 sm:pt-20 lg:pb-24 lg:pt-32">` wrapping a `mx-auto max-w-[1440px]` container.
+
+A small inner `AboutButton` component renders a `RollButton`: `label="About our studio"`, `className="bg-[#F26522] py-2 pl-5 pr-2 text-[13px] text-white hover:bg-[#e05a1a] sm:pl-6 sm:text-[14px]"`, `circleClassName="h-7 w-7 sm:h-8 sm:w-8"`, `arrowClassName="text-[#F26522]"`.
+
+### Badge row
+
+`mb-6 flex items-center gap-3 px-5 sm:mb-8 sm:px-8 lg:px-12`:
+
+- **Numbered circle** `<span>`: text `1` — `flex h-6 w-6 items-center justify-center rounded-full bg-gray-900 text-[11px] font-semibold text-white sm:h-7 sm:w-7 sm:text-[12px]`.
+- **Pill label** `<span>`: text `Introducing Axion` — `rounded-full border border-gray-200 px-3 py-1 text-[12px] font-medium text-gray-900 sm:px-4 sm:py-1.5 sm:text-[13px]`.
+
+### Heading
+
+In a `px-5 sm:px-8 lg:px-12` wrapper, `<h2 className="mb-12 text-[length:clamp(1.5rem,4vw,3.2rem)] font-medium leading-[1.12] tracking-[-0.02em] text-gray-900 sm:mb-16 lg:mb-28">`. Copy (with `<br className="hidden sm:block" />` + `<span className="sm:hidden"> </span>` fallback):
+
+- `Strategy-led creatives, delivering`
+- `results in digital and beyond.`
+
+### Content area (responsive)
+
+**Mobile / tablet layout** (`px-5 sm:px-8 lg:hidden`):
+
+- **Paragraph** `<p className="text-[15px] font-medium leading-[1.6] text-gray-900 sm:text-[17px]">`: `Through research, creative thinking and iteration we help growing brands realize their digital full potential.`
+- **Button** in `<div className="mt-6 flex">`: `<AboutButton />`.
+- **Two images** in `<div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">`:
+  - First `<img>` — `aspect-[438/346] w-full rounded-xl object-cover sm:w-[45%] sm:rounded-2xl`, `loading="lazy"`, `alt="Axion Studio team collaborating in the studio"`.
+  - Second `<img>` — `aspect-[900/600] w-full rounded-xl object-cover sm:w-[55%] sm:rounded-2xl`, `loading="lazy"`, `alt="Design work in progress at Axion Studio"`.
+
+**Desktop layout** (`hidden grid-cols-[26%_1fr_48%] items-end gap-6 px-12 lg:grid xl:gap-8`):
+
+- **Left column** `<div className="self-end">`: small `<img>` — `aspect-[438/346] w-full rounded-2xl object-cover`, `loading="lazy"`, same alt as above.
+- **Center column** `<div className="flex justify-end self-start">` wrapping a `<div>` with:
+  - `<p className="whitespace-nowrap text-[16px] font-medium leading-[1.65] text-gray-900 xl:text-[18px]">` using literal `<br/>` between the three lines:
+    - `Through research, creative thinking and`
+    - `iteration we help growing brands realize`
+    - `their digital full potential.`
+  - `<div className="mt-8">` with `<AboutButton />`.
+- **Right column** `<div className="self-end">`: large `<img>` — `aspect-[3/2] w-full rounded-2xl object-cover`, `loading="lazy"`, same alt as the second mobile image.
+
+### Image sources
+
+The original design brief specifies these source URLs (served through the `images.higgs.ai` proxy, `output=webp`, `w=1280&q=85`, wrapping the underlying CloudFront `.PNG` originals):
+
+- **Small image:** `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzzbokvigwjottwixh07lwa1p%2Fhf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.PNG&w=1280&q=85`
+- **Large image:** `https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzzbokvigwjottwixh07lwa1p%2Fhf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.PNG&w=1280&q=85`
+
+In this implementation these assets were vendored locally as `.webp` and are served from the local `public/assets/` directory, so the module constants reference the local paths instead. Defined as module constants and reused in both layouts:
+
+```ts
+const SMALL_IMAGE =
+  "/assets/hf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.webp";
+const LARGE_IMAGE =
+  "/assets/hf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.webp";
+```
+
+> Note: these assets are served from the local `public/assets/` directory (the original CDN images referenced above were vendored locally as `.webp`). Keep the lowercase file paths exactly as shown — paths are case-sensitive.
+
+## Section 3: Case Studies (`src/components/CaseStudies.tsx`)
+
+`<section className="bg-[#F5F5F5] pb-16 pt-16 sm:pb-20 sm:pt-20 lg:pb-28 lg:pt-28">` wrapping a `mx-auto max-w-[1440px]` container.
+
+### Badge row
+
+Same pattern as the About badge row (`mb-6 flex items-center gap-3 px-5 sm:mb-8 sm:px-8 lg:px-12`), but:
+
+- **Numbered circle**: text `2` (same classes as section 2).
+- **Pill label**: text `Featured client work` — note `border-gray-300` instead of `border-gray-200`: `rounded-full border border-gray-300 px-3 py-1 text-[12px] font-medium text-gray-900 sm:px-4 sm:py-1.5 sm:text-[13px]`.
+
+### Heading
+
+In a `px-5 sm:px-8 lg:px-12` wrapper, `<h2 className="mb-10 text-[length:clamp(1.75rem,7vw,4.2rem)] font-medium leading-[1.08] tracking-[-0.03em] text-gray-900 sm:mb-14 sm:text-[length:clamp(2.5rem,5vw,4.2rem)] lg:mb-16">` with text `Our projects` (same clamp sizing as the hero headline).
+
+### Link icon helper
+
+A `LinkIcon` component renders the Lucide "link" icon manually with its two arc paths:
+
+```tsx
+function LinkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="14"
+      height="14"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+    </svg>
+  );
+}
+```
+
+### Cards grid
+
+`grid grid-cols-1 gap-5 px-5 sm:gap-6 sm:px-8 md:grid-cols-2 lg:gap-7 lg:px-12`. Each card is an `<article>`.
+
+**Card 1 (Narrativ):**
+
+- **Video container** `<div className="group relative aspect-[329/246] cursor-pointer overflow-hidden rounded-2xl bg-[#1a1d2e]">`.
+- **Video** — `src={NARRATIV_VIDEO}`, `autoPlay`, `muted`, `loop`, `playsInline`, `className="h-full w-full object-cover"`.
+- **Hover button** `<div className="absolute bottom-4 left-4 flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white transition-all duration-300 ease-in-out group-hover:w-[148px]">` containing:
+  - `<span>` `Learn more` — `max-w-0 overflow-hidden whitespace-nowrap text-[13px] font-medium text-gray-900 opacity-0 transition-all delay-100 duration-300 ease-in-out group-hover:mr-2 group-hover:max-w-[110px] group-hover:opacity-100`.
+  - `<LinkIcon className="shrink-0 -rotate-45 text-gray-900 transition-transform duration-300 ease-in-out group-hover:rotate-0" />`.
+- **Description** `<p className="mt-4 text-[13px] leading-relaxed text-gray-600 sm:text-[14px]">`: `Winner of Site of the Month 2025 - an interactive 3D showcase driving record engagement`.
+- **Title** `<h3 className="mt-1 text-[14px] font-semibold text-gray-900 sm:text-[15px]">`: `Narrativ`.
+
+**Card 2 (Luminar):**
+
+- **Video container** `<div className="group relative aspect-square cursor-pointer overflow-hidden rounded-2xl bg-[#6b6b6b]">`.
+- **Video** — `src={LUMINAR_VIDEO}`, `autoPlay`, `muted`, `loop`, `playsInline`, `className="h-full w-full object-cover"`.
+- **Hover button** `<div className="absolute bottom-4 left-4 flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-gray-900 transition-all duration-300 ease-in-out group-hover:w-[168px]">` containing:
+  - `<span>` `View case study` — `max-w-0 overflow-hidden whitespace-nowrap text-[13px] font-medium text-white opacity-0 transition-all delay-100 duration-300 ease-in-out group-hover:mr-2 group-hover:max-w-[120px] group-hover:opacity-100`.
+  - `<ArrowRight size={14} className="shrink-0 -rotate-45 text-white transition-transform duration-300 ease-in-out group-hover:rotate-0" />`.
+- **Description** `<p className="mt-4 text-[13px] leading-relaxed text-gray-600 sm:text-[14px]">`: `Transforming a dated platform into a conversion-focused brand experience`.
+- **Title** `<h3 className="mt-1 text-[14px] font-semibold text-gray-900 sm:text-[15px]">`: `Luminar`.
+
+### Video sources
+
+The original design brief specifies these CloudFront source URLs:
+
+- **Narrativ (Card 1):** `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.MP4`
+- **Luminar (Card 2):** `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.MP4`
+
+In this implementation these CDN `.mp4` files were vendored locally and are served from the local `public/assets/` directory, so the module constants reference the local paths instead:
+
+```ts
+const NARRATIV_VIDEO =
+  "/assets/hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.mp4";
+const LUMINAR_VIDEO =
+  "/assets/hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.mp4";
+```
+
+> Note: the case-study videos are served from local `public/assets/` (the original CDN `.mp4` files referenced above were vendored locally). Keep the lowercase paths exactly as shown.
+
+## Animations Summary
+
+- **Text-roll CTA** (`RollButton`): on `group-hover`, the duplicated-label column translates `-translate-y-1/2` and the `ArrowRight` rotates `group-hover:-rotate-45`, both `duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]`.
+- **Nav links**: `transition-colors duration-300 hover:text-gray-500`.
+- **Partner badge**: `transition-shadow duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]`, shadow `0_2px_8px_rgba(0,0,0,0.08)` → `0_4px_16px_rgba(0,0,0,0.12)` on hover.
+- **Mobile menu**: backdrop `transition-opacity duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]`; bottom sheet `transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]` sliding from `translate-y-[calc(100%+0.75rem)]` to `translate-y-0`; visibility delayed via `[transition:visibility_0s_0.5s]` when closing.
+- **Case-study hover buttons**: pill expands width (`group-hover:w-[148px]` / `group-hover:w-[168px]`) with `transition-all duration-300 ease-in-out`; label fades/grows in (`opacity-0` → `group-hover:opacity-100`, `max-w-0` → `group-hover:max-w-[110px]`/`[120px]`, `delay-100`); icon rotates `-rotate-45` → `group-hover:rotate-0`.
+- **Live clock**: `useLondonTime` updates every second via `setInterval`, formatting `Europe/London` time as `HH:MM`.
+
+## Color Palette
+
+- **Hero background:** `#EFEFEF`
+- **Orange accent (buttons):** `#F26522`, hover `#e05a1a`
+- **Partner icon fill:** `#E8704E`
+- **Shader orange (ChromaFlow up/down/left/right):** `#ff5f03`
+- **Shader whites:** `#ffffff`, `#f0f0f0`
+- **Case-studies section background:** `#F5F5F5`
+- **Narrativ card background:** `#1a1d2e`
+- **Luminar card background:** `#6b6b6b`
+- **Dark UI elements (logo, CTAs, badges):** `bg-gray-900`
+- **Muted text:** `text-gray-600`; **primary text:** `text-gray-900`
+
+## File Structure
+
+```text
+axion-studio-landing/
+├── index.html
+├── package.json
+├── public/
+│   └── assets/
+│       ├── hf_20260516_090123_74be96d4-9c1b-40cf-932a-96f4f4babed3.webp
+│       ├── hf_20260516_090133_c157d30b-a99a-4477-bec1-a446149ec3f2.webp
+│       ├── hf_20260516_122702_390f5305-8719-41d5-ae80-d23ab3796c28.mp4
+│       └── hf_20260516_123323_f909c2b8-ff6c-4edf-882b-8ebcdbe389b5.mp4
+└── src/
+    ├── main.tsx
+    ├── App.tsx
+    ├── index.css
+    ├── vite-env.d.ts
+    ├── hooks/
+    │   └── useLondonTime.ts
+    └── components/
+        ├── Hero.tsx
+        ├── Navbar.tsx
+        ├── About.tsx
+        ├── CaseStudies.tsx
+        ├── RollButton.tsx
+        └── PartnerIcon.tsx
+```

@@ -1,45 +1,69 @@
-CREATE A PREMIUM PRIVATE JET LANDING PAGE HERO SECTION WITH THE FOLLOWING SPECIFICATIONS:
+# SkyElite — Premium. Accessible. (Private Jet Hero Section)
 
-VIDEO BACKGROUND:
-USE THIS EXACT CLOUDFRONT VIDEO URL: HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260328_091828_E240EB17-6EDC-4129-AD9D-98678E3FD238.MP4
-VIDEO SHOULD AUTOPLAY, BE MUTED, LOOP CONTINUOUSLY, AND INCLUDE PLAYSINLINE ATTRIBUTE
-VIDEO COVERS ENTIRE VIEWPORT (100VH) USING OBJECT-COVER
+## Overview
 
-NAVIGATION BAR:
-BRAND NAME "SKYELITE" ON THE LEFT (TEXT-2XL, FONT-SEMIBOLD, TEXT-GRAY-900)
-DESKTOP MENU ITEMS (HIDDEN ON MOBILE, VISIBLE MD:FLEX): START, STORY, RATES, BENEFITS, FAQ
-NAVIGATION LINKS IN GRAY-900 WITH HOVER:TEXT-GRAY-700 TRANSITION
-MOBILE HAMBURGER MENU BUTTON USING LUCIDE REACT ICONS (MENU/X)
-MOBILE MENU APPEARS AS DROPDOWN WITH WHITE/95 OPACITY BACKGROUND, BACKDROP BLUR, ROUNDED CORNERS, SHADOW
-MAX WIDTH 7XL, CENTERED WITH PX-8 PY-6
+Build a premium private-jet landing page hero section: a full-viewport looping video background with a clean, modern navigation bar and centered hero content. The page leans on a calm, light aesthetic, with smooth interactions and hover transitions kept to color changes only.
 
-HERO CONTENT (CENTERED, -MT-80 TO PULL UP):
-SMALL UPPERCASE LABEL: "PRIVATE JETS" (TEXT-SM, FONT-SEMIBOLD, GRAY-600, TRACKING-WIDER, MB-4)
-LARGE TWO-LINE HEADING WITH OVERLAPPING EFFECT:
-LINE 1: "PREMIUM." (TEXT-6XL MD:TEXT-7XL LG:TEXT-8XL, FONT-NORMAL, TEXT-GRAY-500, LEADING-NONE, TRACKING-TIGHTER)
-LINE 2: "ACCESSIBLE." (SAME SIZE, COLOR: #202A36, NEGATIVE MARGIN-TOP: -12PX FOR OVERLAP)
-SUBTITLE: "YOUR DEDICATION DESERVES RECOGNITION." (TEXT-LG MD:TEXT-XL, GRAY-600, MB-6, MAX-W-2XL)
-TWO CALL-TO-ACTION BUTTONS (GAP-4, CENTERED):
-"DISCOVER" BUTTON: PX-4 PY-2, ROUNDED-FULL, BG-GRAY-300, TEXT-GRAY-800, FONT-MEDIUM, HOVER:BG-GRAY-400
-"BOOK NOW" BUTTON: PX-4 PY-2, ROUNDED-FULL, WHITE TEXT, BG-COLOR #202A36, HOVER COLOR #1A2229 WITH SMOOTH TRANSITIONS
+## Tech Stack
 
-TYPOGRAPHY:
-USE INTER FONT (IMPORT FROM GOOGLE FONTS: 400, 500, 600, 700 WEIGHTS)
-APPLY TO ENTIRE BODY VIA CSS
+- **Framework:** React with TypeScript
+- **Styling:** Tailwind CSS
+- **Icons:** Lucide React — `Menu` and `X` icons
+- **Font:** Inter (Google Fonts; weights 400, 500, 600, 700), applied to the entire body via CSS
+- **State:** React `useState` hook for the mobile menu toggle
+- **Notable techniques:** full-viewport `object-cover` video background, responsive mobile-first layout
 
-TECHNICAL SETUP:
-REACT WITH TYPESCRIPT
-TAILWIND CSS FOR STYLING
-LUCIDE REACT FOR ICONS
-USESTATE HOOK FOR MOBILE MENU TOGGLE
-FULL SCREEN HEIGHT CONTAINER (H-SCREEN)
-RESPONSIVE BREAKPOINTS: MOBILE-FIRST, MD, LG
-ALL TRANSITIONS USE TRANSITION-COLORS CLASS
+## Layout Structure
 
-LAYOUT STRUCTURE:
-OUTER CONTAINER: MIN-H-SCREEN, BG-GRAY-50
-HERO SECTION: RELATIVE, H-SCREEN, OVERFLOW-HIDDEN
-CONTENT WRAPPER: RELATIVE, H-FULL, FLEX FLEX-COL
-MAIN CONTENT AREA: FLEX-1, FLEX ITEMS-CENTER JUSTIFY-CENTER
+- **Outer container:** `min-h-screen bg-gray-50`.
+- **Hero section:** `relative h-screen overflow-hidden`.
+- **Content wrapper:** `relative flex h-full flex-col` (full-height flex column).
+- **Main content area:** `flex flex-1 items-center justify-center`.
 
-MAKE IT CLEAN, MODERN, AND PREMIUM-LOOKING WITH SMOOTH INTERACTIONS.
+Use a full-screen height container (`h-screen`).
+
+## Video Background
+
+- Use this exact CloudFront video URL: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/HF_20260328_091828_E240EB17-6EDC-4129-AD9D-98678E3FD238.MP4`.
+- The video should autoplay, be muted, loop continuously, and include the `playsInline` attribute.
+- It covers the entire viewport (`100vh`) using `object-cover`.
+
+## Navigation Bar
+
+- **Nav container:** max width `7xl`, centered, with `px-8 py-6`.
+- **Brand:** brand name `SkyElite` on the left, classes `text-2xl font-semibold text-gray-900`.
+- **Desktop menu:** menu items hidden on mobile and visible at `md:flex`. Menu items, in order: `Start`, `Story`, `Rates`, `Benefits`, `FAQ`.
+  - Navigation links are in `gray-900` with a `hover:text-gray-700` transition.
+- **Mobile hamburger:** a hamburger menu button using Lucide React icons (`Menu` / `X`), toggling the mobile menu open state.
+- **Mobile dropdown:** appears as a dropdown with `white/95` opacity background, backdrop blur, rounded corners, and shadow.
+
+## Hero Content
+
+Centered, pulled upward with `-mt-80`:
+
+- **Eyebrow label:** small uppercase label `Private Jets` — classes `text-sm font-semibold` in `gray-600` with `tracking-wider` and `mb-4`.
+- **Heading:** a large two-line heading with an overlapping effect.
+  - **Line 1:** `Premium.` — `text-6xl md:text-7xl lg:text-8xl`, `font-normal`, `text-gray-500`, `leading-none`, `tracking-tighter`.
+  - **Line 2:** `Accessible.` — same size, color `#202A36`, negative margin-top of `-12px` for overlap.
+- **Subtitle:** `Your dedication deserves recognition.` — classes `text-lg md:text-xl`, `gray-600`, `mb-6`, `max-w-2xl`.
+- **Call-to-action buttons:** two buttons in a centered row with `gap-4`:
+  - **Discover:** `px-4 py-2`, `rounded-full`, `bg-gray-300`, `text-gray-800`, `font-medium`, `hover:bg-gray-400`.
+  - **Book Now:** `px-4 py-2`, `rounded-full`, white text, background color `#202A36`, hover color `#1a2229` with smooth transitions.
+
+## Color Palette
+
+- **Page background:** `bg-gray-50`
+- **Brand / nav text:** `text-gray-900`, hover `text-gray-700`
+- **Eyebrow & subtitle text:** `text-gray-600`
+- **Heading line 1:** `text-gray-500`
+- **Heading line 2 & "Book Now" button:** `#202A36` (hover `#1a2229`)
+- **"Discover" button:** `bg-gray-300` / `text-gray-800`, hover `bg-gray-400`
+- **Mobile dropdown surface:** `bg-white/95` with backdrop blur
+
+## Responsiveness & Interaction
+
+- Mobile-first with `md` and `lg` breakpoints.
+- Full-screen height container (`h-screen`).
+- Desktop menu hidden below `md`; hamburger hidden at `md` and up.
+- All interactive transitions use the `transition-colors` class.
+- Keep it clean, modern, and premium-looking with smooth interactions.

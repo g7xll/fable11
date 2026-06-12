@@ -1,65 +1,156 @@
-# BUILD A REACT LANDING PAGE EXACTLY AS SPECIFIED BELOW. USE REACT 19, TAILWIND CSS V4, AND MOTION/REACT FOR ANIMATIONS.
+# dot. — Nokia Typing Hero Landing Page
 
-## 1. FONTS & GLOBAL CSS SETUP:
+## Overview
 
-IN INDEX.HTML, IMPORT THESE GOOGLE FONTS:
+Build a single-screen React landing page for "dot.", a calm-messaging product. The hero features a full-bleed background video of a Nokia-style phone, with a live typing/deleting animation rendered in a Nokia cellphone font overlaid precisely on the phone screen. A floating pill navbar sits at the top. Build the page exactly as specified below.
 
-- INSTRUMENT SERIF (WEIGHTS 400, ITALIC 400)
-- INTER (WEIGHTS 100 TO 900)
+## Tech Stack
 
-IN SRC/INDEX.CSS, IMPORT THIS CUSTOM FONT FOR THE NOKIA TEXT:
+- **Framework:** React 19.
+- **Styling:** Tailwind CSS v4. Single `@import "tailwindcss";` entry in `src/index.css`.
+- **Animation:** Motion, imported as `motion/react`.
+- **Fonts:** Instrument Serif (display/headlines), Inter (body/UI), and a custom Nokia Cellphone FC Small font (typing animation).
+- **Notable techniques:** Typewriter effect with `useState` + `useEffect` + `setTimeout`; HTML5 background `<video>`; backdrop-blur glass navbar; layered absolute positioning to place text on the in-video phone screen.
+
+## Global Setup
+
+### Fonts (`index.html`)
+
+Import these Google Fonts:
+
+- **Instrument Serif** — weights 400 + italic 400.
+- **Inter** — weights 100 to 900.
+
+### Custom Nokia font (`src/index.css`)
+
+Import the custom Nokia text font via a remote `@import`:
 
 ```css
-@IMPORT URL('HTTPS://DB.ONLINEWEBFONTS.COM/C/440B53B1A1C65037F944FF19259D8014?FAMILY=NOKIA+CELLPHONE+FC+SMALL');
+@import url('https://db.onlinewebfonts.com/c/440b53b1a1c65037f944ff19259d8014?family=Nokia+Cellphone+FC+Small');
 ```
 
-CONFIGURE THE TAILWIND THEME VARIABLES IN INDEX.CSS:
+### Tailwind theme variables (`src/index.css`)
+
+Start the file with `@import "tailwindcss";`, then configure the theme:
 
 ```css
---FONT-INSTRUMENT: "INSTRUMENT SERIF", SERIF;
---FONT-SERIF: "INSTRUMENT SERIF", SERIF;
---FONT-SANS: "INTER", SANS-SERIF;
---FONT-NOKIA: "NOKIA CELLPHONE FC SMALL", MONOSPACE;
+@theme {
+  --font-instrument: "Instrument Serif", serif;
+  --font-serif: "Instrument Serif", serif;
+  --font-sans: "Inter", sans-serif;
+  --font-nokia: "Nokia Cellphone FC Small", monospace;
+}
 ```
 
-CREATE A `@UTILITY FONT-INSTRUMENT { FONT-FAMILY: "INSTRUMENT SERIF", SERIF; }`
+Create a custom utility for the instrument font:
 
-SET THE ROOT FONT-FAMILY TO `VAR(--FONT-SANS)` AND APPLY ANTI-ALIASING.
+```css
+@utility font-instrument {
+  font-family: "Instrument Serif", serif;
+}
+```
 
-## 2. COMPONENT STRUCTURE:
+Set the root font-family to `var(--font-sans)` and apply anti-aliasing:
 
-CREATE ONE MAIN APP.TSX FILE CONTAINING 4 COMPONENTS: TYPINGMESSAGES, NAVBAR, HERO, AND APP.
+```css
+:root {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+```
 
-## 3. NAVBAR COMPONENT:
+## Component Structure
 
-- CONTAINER: FIXED TO THE TOP `TOP-6`, CENTERED HORIZONTALLY `LEFT-1/2 -TRANSLATE-X-1/2`, WIDTH 95% `W-[95%]` `MAX-W-5XL`. `Z-50`, `POINTER-EVENTS-NONE`.
-- NAV TAG: `POINTER-EVENTS-AUTO`, BACKDROP BLUR, ROUNDED FULL PILL SHAPE, TRANSPARENT BACKGROUND WITH BORDER `BORDER-BLACK/10`. FLEX BETWEEN ITEMS.
-- LOGO: TEXT "DOT." USING `FONT-INSTRUMENT TEXT-[28PX] TRACKING-TIGHT TEXT-[#1A1A1A]`.
-- LINKS: "PHILOSOPHY", "TRUST", "ACCESS", "TRIBE". HIDDEN ON MOBILE, FLEX ON DESKTOP (`GAP-10`). `FONT-SANS TEXT-[14PX] TEXT-[#1A1A1A]` WITH HOVER OPACITY FADING.
-- CTA BUTTON ("LINK UP"):
-  - BACKGROUND `#0871E7`, ROUNDED FULL, WHITE TEXT `FONT-SANS TEXT-[14PX]`.
-  - SHADOW: `SHADOW-[INSET_0_-4PX_4PX_RGBA(255,255,255,0.39)] OUTLINE-1 OUTLINE-[#0871E7] -OUTLINE-OFFSET-1`.
-  - ADD A SUBTLE TOP GLINT EFFECT USING AN ABSOLUTELY POSITIONED RECTANGLE INSIDE THE BUTTON: `W-[80%] H-4 LEFT-[10%] TOP-[1PX] BG-GRADIENT-TO-B FROM-[#DEF0FC] TO-TRANSPARENT ROUNDED-[12PX]`. MAKE IT SCALE WIDER ON GROUP HOVER (`GROUP-HOVER:SCALE-X-105`).
+Create one main `src/App.tsx` file containing four components: `TypingMessages`, `Navbar`, `Hero`, and `App`.
 
-## 4. HERO COMPONENT:
+## `App` Component
 
-- CONTAINER: `MIN-H-SCREEN BG-[#F3F4ED] PT-24 MD:PT-32` FLEX COLUMN CENTERED.
-- VIDEO BACKGROUND: ABSOLUTE POSITIONING `INSET-0 Z-0`. USE AN HTML5 `<VIDEO>` SET TO AUTOPLAY, LOOP, MUTED, PLAYSINLINE, SCALING WITH `OBJECT-COVER`.
-- VIDEO SOURCE: EXACTLY `HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260427_054418_A6D194F0-AC86-4DF9-ABE5-DED73E596D7C.MP4`. ADD AN OVERLAID EMPTY DIV WITH `BG-WHITE/5` FOR A SLIGHT TINT.
-- HERO TEXT CONTAINER: RELATIVE `Z-20`, `POINTER-EVENTS-NONE`, TEXT-CENTERED LAYOUT.
-- MAIN HEADLINE: "SHORT NOTES. `<BR />` DAILY CALM."
-  - ANIMATE USING MOTION.DIV (FROM `OPACITY: 0, SCALE: 0.95` TO `OPACITY: 1, SCALE: 1` OVER 1.5S WITH EASE `[0.16, 1, 0.3, 1]`).
-  - STYLE: `FONT-INSTRUMENT TEXT-[38PX] MD:TEXT-[56PX] LG:TEXT-[72PX] LEADING-[0.85] TRACKING-TIGHT TEXT-[#1A1A1A] MB-6`.
-- SUB-HEADLINE: "LINKED WITH A SINGLE ANONYMOUS PEER. ONE MESSAGE EVERY DAY. A QUIET RHYTHM IN THE DIGITAL NOISE."
-  - ANIMATE USING MOTION.DIV (FROM `OPACITY: 0, Y: 20` TO `OPACITY: 1, Y: 0` OVER 1.2S, DELAY: 0.3, EASE `[0.16, 1, 0.3, 1]`).
-  - STYLE: `FONT-SANS TEXT-[16PX] MD:TEXT-[18PX] TEXT-[#1A1A1A]/70 LEADING-RELAXED FONT-NORMAL MAX-W-XL MX-AUTO`.
-- INCLUDE THE TYPINGMESSAGES COMPONENT INSIDE THE HERO TO OVERLAP ON THE PHONE SCREEN IN THE VIDEO.
+Renders the page wrapper, then the navbar and hero:
 
-## 5. TYPINGMESSAGES COMPONENT:
+```tsx
+export default function App() {
+  return (
+    <div className="min-h-screen bg-[#F3F4ED]">
+      <Navbar />
+      <Hero />
+    </div>
+  );
+}
+```
 
-- LOGIC: CYCLE THROUGH AN ARRAY OF MESSAGES: `["ARE YOU HERE?", "YES, I AM.", "SPEAK SOON."]`.
-- TYPING SPEED: 100MS. DELETING SPEED: 50MS. PAUSE BEFORE DELETING: 2000MS.
-- POSITIONING: ABSOLUTE POSITION IT TO SIT PERFECTLY ON THE PHONE SCREEN INSIDE THE VIDEO:
-  - `ABSOLUTE LEFT-[48.5%] MD:LEFT-[47.5%] LG:LEFT-[48.5%] -TRANSLATE-X-1/2 BOTTOM-[32%] Z-30 W-[110PX] SM:W-[130PX] FLEX JUSTIFY-START TEXT-LEFT`.
-- TEXT STYLE: `FONT-NOKIA TEXT-[#2A3616] TEXT-[10PX] SM:TEXT-[14PX] LEADING-TIGHT BREAK-WORDS MIN-H-[1.5EM]`.
-- CURSOR: ADD A BLINKING FRAMER MOTION CURSOR MOTION.SPAN (`W-1.5 H-3 BG-[#2A3616] ML-1 ALIGN-MIDDLE`) ANIMATING OPACITY FROM 0 TO 1 TO 0 OVER 0.8S, REPEATING INFINITELY, LINEARLY.
+## `Navbar` Component
+
+- **Container** (`<header>`): fixed to the top `top-6`, centered horizontally `left-1/2 -translate-x-1/2`, width 95% `w-[95%]` `max-w-5xl`, `z-50`, `pointer-events-none`.
+- **Nav** (`<nav>`): `pointer-events-auto`, backdrop blur (`backdrop-blur-md`), rounded full pill shape (`rounded-full`), transparent background (`bg-transparent`) with border `border border-black/10`. Flex with items spaced between: `flex items-center justify-between`. Padding `pl-7 pr-2.5 py-2.5`.
+- **Logo:** text `dot.` styled `font-instrument text-[28px] tracking-tight text-[#1a1a1a]`.
+- **Links:** `Philosophy`, `Trust`, `Access`, `Tribe`. Hidden on mobile, flex on desktop (`gap-10`). Styled `font-sans text-[14px] text-[#1a1a1a]` with hover opacity fading.
+- **CTA button** (`Link up`):
+  - Background `#0871E7`, rounded full, white text `font-sans text-[14px]`.
+  - Shadow: `shadow-[inset_0_-4px_4px_rgba(255,255,255,0.39)] outline-1 outline-[#0871E7] -outline-offset-1`.
+  - **Top glint:** an absolutely positioned rectangle inside the button: `w-[80%] h-4 left-[10%] top-[1px] bg-gradient-to-b from-[#DEF0FC] to-transparent rounded-[12px]` — it scales wider on group hover (`group-hover:scale-x-105`).
+
+Define the links as:
+
+```tsx
+const NAV_LINKS = ["Philosophy", "Trust", "Access", "Tribe"];
+```
+
+## `Hero` Component
+
+- **Container** (`<section>`): `relative min-h-screen bg-[#F3F4ED] pt-24 md:pt-32 flex flex-col items-center overflow-hidden`.
+- **Video background:** an HTML5 `<video>` with `absolute inset-0 z-0 w-full h-full object-cover`, set to `autoPlay`, `loop`, `muted`, `playsInline`.
+  - Video source, exactly (case-preserved):
+    `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260427_054418_a6d194f0-ac86-4df9-abe5-ded73e596d7c.mp4`
+- **Tint overlay:** an empty `<div aria-hidden="true">` with `absolute inset-0 z-10 bg-white/5` for a slight tint.
+- **Hero text container:** `relative z-20 pointer-events-none text-center px-6`.
+- **Main headline:** `Short notes. <br /> Daily calm.`
+  - Wrapped in a `motion.div` animating from `{ opacity: 0, scale: 0.95 }` to `{ opacity: 1, scale: 1 }` over `duration: 1.5` with `ease: [0.16, 1, 0.3, 1]`.
+  - Heading (`<h1>`) style: `font-instrument text-[38px] md:text-[56px] lg:text-[72px] leading-[0.85] tracking-tight text-[#1a1a1a] mb-6`.
+- **Sub-headline:** `Linked with a single anonymous peer. One message every day. A quiet rhythm in the digital noise.`
+  - Wrapped in a `motion.div` animating from `{ opacity: 0, y: 20 }` to `{ opacity: 1, y: 0 }` over `duration: 1.2`, `delay: 0.3`, `ease: [0.16, 1, 0.3, 1]`.
+  - Paragraph (`<p>`) style: `font-sans text-[16px] md:text-[18px] text-[#1a1a1a]/70 leading-relaxed font-normal max-w-xl mx-auto`.
+- Render the `TypingMessages` component last, inside the hero, so it overlaps the phone screen in the video.
+
+## `TypingMessages` Component
+
+A typewriter effect that types and deletes a cycle of short messages on the Nokia phone screen visible in the hero video.
+
+- **Messages & timing constants:**
+  ```ts
+  const MESSAGES = ["Are you here?", "Yes, I am.", "Speak soon."];
+  const TYPING_SPEED_MS = 100;
+  const DELETING_SPEED_MS = 50;
+  const PAUSE_BEFORE_DELETE_MS = 2000;
+  ```
+- **State:** `messageIndex` (current message, starts `0`), `text` (currently displayed substring, starts `""`), `isDeleting` (boolean, starts `false`).
+- **Logic** (`useEffect` keyed on `[text, isDeleting, messageIndex]`):
+  - If not deleting and `text.length < message.length`: after `TYPING_SPEED_MS`, append the next character (`message.slice(0, text.length + 1)`).
+  - If not deleting and the full message is shown: after `PAUSE_BEFORE_DELETE_MS`, set `isDeleting` to `true`.
+  - If deleting and `text.length > 0`: after `DELETING_SPEED_MS`, remove the last character (`message.slice(0, text.length - 1)`).
+  - If deleting and text is empty: immediately (`0` ms) set `isDeleting` to `false` and advance to the next message with `(i + 1) % MESSAGES.length`.
+  - Always `clearTimeout(timeout)` in the effect cleanup.
+- **Positioning** (wrapper `<div>`): absolutely positioned to sit on the phone screen — `absolute left-[48.5%] md:left-[47.5%] lg:left-[48.5%] -translate-x-1/2 bottom-[32%] z-30 w-[110px] sm:w-[130px] flex justify-start text-left`.
+- **Text style** (`<p>`): `font-nokia text-[#2A3616] text-[10px] sm:text-[14px] leading-tight break-words min-h-[1.5em]`. Renders `{text}` followed by the cursor.
+- **Cursor:** a blinking `motion.span` styled `inline-block w-1.5 h-3 bg-[#2A3616] ml-1 align-middle`, with `animate={{ opacity: [0, 1, 0] }}` and `transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}`.
+
+## Color Palette
+
+- **Page / hero background:** `#F3F4ED`
+- **Primary text (ink):** `#1a1a1a` (sub-headline uses 70% opacity via `text-[#1a1a1a]/70`)
+- **CTA blue:** `#0871E7`
+- **CTA glint gradient start:** `#DEF0FC` (to transparent)
+- **CTA inner shadow highlight:** `rgba(255,255,255,0.39)`
+- **Nav border:** `black/10`
+- **Tint overlay:** `white/5`
+- **Nokia typing text & cursor:** `#2A3616`
+
+## Animations
+
+- **Headline:** opacity `0 → 1`, scale `0.95 → 1`, `duration: 1.5`, `ease: [0.16, 1, 0.3, 1]`.
+- **Sub-headline:** opacity `0 → 1`, `y: 20 → 0`, `duration: 1.2`, `delay: 0.3`, `ease: [0.16, 1, 0.3, 1]`.
+- **Typing cursor:** opacity `[0, 1, 0]`, `duration: 0.8`, `repeat: Infinity`, `ease: "linear"`.
+- **CTA glint:** `scale-x-105` on group hover.
+- **Nav links:** hover opacity fading.
+- **Typewriter:** type at 100 ms/char, pause 2000 ms when complete, delete at 50 ms/char, then advance to the next message.

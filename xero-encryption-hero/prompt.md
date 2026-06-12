@@ -1,249 +1,432 @@
-BUILD A **SINGLE-PAGE REACT + TYPESCRIPT (VITE)** LANDING HERO FOR A PRODUCT CALLED **"XERO"** THAT RECREATES THE FOLLOWING SECTION EXACTLY. USE THE **INTER** GOOGLE FONT (WEIGHTS 300, 400, 500, 600, 700, 800). DO NOT USE TAILWIND UTILITY CLASSES FOR THE HERO — WRITE PLAIN CSS IN A GLOBAL STYLESHEET. NO PURPLE/INDIGO BRANDING OUTSIDE THE SPECIFIED PINK-MAGENTA GRADIENT ARC.
+# Xero — Encryption Hero Section
 
-## LAYOUT & STRUCTURE
+## Overview
 
-RENDER THREE TOP-LEVEL BLOCKS CENTERED ON A BLACK PAGE (`#0A0A0F`), EACH CONSTRAINED TO `MAX-WIDTH: 1600PX`, IN THIS VERTICAL ORDER:
+Build a single-page React + TypeScript (Vite) landing hero for a product called **Xero**. The page recreates one section exactly: a navbar, a rounded dark hero card featuring an animated icon pipeline (a beam of light that travels between three neumorphic nodes, splashing as it passes through the central Xero "X" logo), and a row of five monochrome brand logos. Styling is plain global CSS — do **not** use Tailwind utility classes for the hero. There is no purple/indigo branding outside the specified pink-magenta gradient arc.
 
-1. **`<NAV>`** — STICKY-STYLE TOP BAR (NOT ACTUALLY STICKY, JUST AT TOP)
-2. **`<SECTION CLASS="HERO-CARD">`** — THE ROUNDED DARK HERO CARD WITH THE ANIMATED ICON PIPELINE
-3. **`<DIV CLASS="BRANDS">`** — A ROW OF 5 MONOCHROME BRAND LOGOS
+## Tech Stack
 
-THE BODY USES `DISPLAY: FLEX; FLEX-DIRECTION: COLUMN; ALIGN-ITEMS: CENTER; PADDING: 14PX;` AND `FONT-FAMILY: 'INTER', SANS-SERIF;`.
+- **Framework:** React + TypeScript, built with Vite.
+- **Styling:** Plain CSS in a global stylesheet (CSS variables, neumorphic box-shadows, radial/linear gradients, CSS mask, keyframe animation). No CSS framework — do **not** use Tailwind utility classes for the hero.
+- **Font:** Inter from Google Fonts, weights 300, 400, 500, 600, 700, 800.
+- **Notable techniques:** SVG `linearGradient` in `userSpaceOnUse` mode whose bright window is slid along a stroked path; a `requestAnimationFrame` state machine driving the beam; `getBoundingClientRect()` math to recompute the beam path on mount and resize; CSS `mask-image` to clip the grid to the arc; neumorphic (soft-UI) shadows.
 
-### CSS VARIABLES (ON `:ROOT`)
+## Global Setup
 
-```
---BG: #0A0A0F;
---SURFACE: #111118;
---TEXT: #F0F0F5;
---TEXT-MUTED: #8888A8;
---ACCENT: #C8A0E0;
---ACCENT-PINK: #B04090;
---BORDER: RGBA(255, 255, 255, 0.08);
-```
+### Body & base
 
-## NAVBAR
+- The body uses `display: flex; flex-direction: column; align-items: center; padding: 14px;` and `font-family: 'Inter', sans-serif;`.
 
-- GRID LAYOUT: `GRID-TEMPLATE-COLUMNS: 1FR AUTO 1FR; PADDING: 12PX 24PX; MARGIN-BOTTOM: 14PX;`
-- **LEFT**: `<SPAN CLASS="NAV-LOGO">XERO</SPAN>` — `FONT-SIZE: 1.05REM; FONT-WEIGHT: 700; LETTER-SPACING: -0.01EM;`
-- **CENTER**: `<UL CLASS="NAV-LINKS">` WITH THREE `<A>` ITEMS: **METHOD**, **PRICING**, **DOCS**. COLOR `--TEXT-MUTED`, `FONT-SIZE: 0.85REM`, GAP 32PX, HOVER TRANSITIONS TO `--TEXT` OVER 0.2S.
-- **RIGHT**: `<DIV CLASS="NAV-ACTIONS">` CONTAINING TWO PILL BUTTONS:
-  - `.BTN-LOGIN` — `RGBA(255,255,255,0.06)` BG, 1PX BORDER `--BORDER`, WHITE TEXT, PADDING `7PX 18PX`, `BORDER-RADIUS: 999PX`, `FONT-SIZE: 0.82REM`, `FONT-WEIGHT: 500`. HOVER: BG `RGBA(255,255,255,0.12)`.
-  - `.BTN-SIGNUP` — SOLID WHITE BG, BLACK `#0A0A0F` TEXT, SAME DIMENSIONS, `FONT-WEIGHT: 600`. HOVER: `OPACITY: 0.88`.
-- THE `.NAV-MENU` WRAPPER USES `DISPLAY: CONTENTS` ON DESKTOP SO THE `UL` AND ACTIONS BECOME DIRECT GRID CHILDREN.
+### CSS variables (on `:root`)
 
-### MOBILE (≤ 768PX)
-
-- NAV BECOMES FLEX WITH SPACE-BETWEEN.
-- A `.MENU-TOGGLE` HAMBURGER APPEARS: 24×14 BUTTON WITH TWO 2PX-TALL WHITE SPANS. WHEN `.ACTIVE`, SPAN 1 ROTATES `TRANSLATEY(6PX) ROTATE(45DEG)` AND SPAN 2 ROTATES `TRANSLATEY(-6PX) ROTATE(-45DEG)` TO FORM AN X.
-- `.NAV-MENU.ACTIVE` SLIDES IN FROM `RIGHT: -100%` TO `RIGHT: 0` OVER 0.4S `CUBIC-BEZIER(0.4, 0, 0.2, 1)` AS A FULL-SCREEN `VAR(--BG)` OVERLAY WITH COLUMN-STACKED LINKS AND FULL-WIDTH BUTTONS.
-- TOGGLING SETS `DOCUMENT.BODY.STYLE.OVERFLOW = 'HIDDEN'`.
-
-## HERO CARD
-
-OUTER `.HERO-CARD` STYLES:
-
-- `WIDTH: 100%; MAX-WIDTH: 1600PX; BORDER-RADIUS: 20PX; BORDER: 1PX SOLID RGBA(255,255,255,0.07); OVERFLOW: HIDDEN; POSITION: RELATIVE; BACKGROUND: #0D0B12; PADDING: 80PX 40PX 70PX; MIN-HEIGHT: 640PX;`
-- `DISPLAY: FLEX; FLEX-DIRECTION: COLUMN; ALIGN-ITEMS: CENTER; TEXT-ALIGN: CENTER;`
-
-### `::BEFORE` GRADIENT ARC (THE SIGNATURE VISUAL)
-
-A RADIAL GRADIENT POSITIONED AT `50% -70%` WITH **MANY MANUALLY-TUNED STOPS** PRODUCING A SMOOTH DARK→PINK→WHITE ARC NEAR THE TOP:
-
-```
-BACKGROUND:
-  RADIAL-GRADIENT(CIRCLE AT 50% -70%,
-    TRANSPARENT 60%,
-    RGBA(176,48,136,0.03) 63%,
-    RGBA(176,48,136,0.08) 65%,
-    RGBA(176,48,136,0.16) 67%,
-    RGBA(176,48,136,0.28) 69%,
-    RGBA(176,48,136,0.40) 71%,
-    RGBA(176,48,136,0.52) 73%,
-    RGBA(176,48,136,0.64) 75%,
-    RGBA(176,48,136,0.74) 77%,
-    RGBA(176,48,136,0.82) 79%,
-    RGBA(210,70,175,0.92) 85%,
-    RGBA(240,110,210,0.88) 87%,
-    RGBA(255,205,250,0.92) 91%,
-    RGBA(255,240,255,0.98) 93%,
-    #FFFFFF 95%),
-  RADIAL-GRADIENT(CIRCLE AT 50% 35%, RGBA(120,40,180,0.08) 0%, TRANSPARENT 50%);
-Z-INDEX: 0; POINTER-EVENTS: NONE;
-```
-
-### `.HERO-GRID` OVERLAY
-
-A SEPARATE ABSOLUTELY-POSITIONED DIV WITH CROSSHATCH GRID:
-
-```
-BACKGROUND-IMAGE:
-  LINEAR-GRADIENT(RGBA(255,255,255,0.07) 1PX, TRANSPARENT 1PX),
-  LINEAR-GRADIENT(90DEG, RGBA(255,255,255,0.07) 1PX, TRANSPARENT 1PX);
-BACKGROUND-SIZE: 40PX 40PX;
-MASK-IMAGE: RADIAL-GRADIENT(CIRCLE AT 50% -70%, TRANSPARENT 60%, BLACK 78%);
-```
-
-THIS MAKES THE GRID ONLY VISIBLE INSIDE THE ARC AREA.
-
-## ICON PIPELINE (THE ANIMATED CENTERPIECE)
-
-CONTAINER `.ICON-PIPELINE`: `POSITION: RELATIVE; DISPLAY: FLEX; ALIGN-ITEMS: CENTER; JUSTIFY-CONTENT: CENTER; MAX-WIDTH: 700PX; MARGIN-BOTTOM: 52PX; Z-INDEX: 1;`
-
-CHILDREN IN THIS EXACT ORDER:
-
-1. **`<SVG CLASS="BEAM-SVG">`** — ABSOLUTELY-POSITIONED OVER THE WHOLE PIPELINE (`OVERFLOW: VISIBLE`), CONTAINING:
-   - A `<FILTER ID="GLOW">` WITH `FEGAUSSIANBLUR STDDEVIATION="2"` THEN `FECOMPOSITE ... OPERATOR="OVER"`.
-   - A `<LINEARGRADIENT ID="BEAM-GRADIENT" GRADIENTUNITS="USERSPACEONUSE">` WITH STOPS:
-     - `0%` `#B04090` OPACITY 0
-     - `20%` `#B04090` OPACITY 0.8
-     - `50%` `#FFF` OPACITY 1
-     - `80%` `#C8A0E0` OPACITY 0.8
-     - `100%` `#C8A0E0` OPACITY 0
-   - TWO `<PATH>` ELEMENTS BOTH STROKED WITH `URL(#BEAM-GRADIENT)`:
-     - GLOW PATH: `STROKE-WIDTH="2"`, `FILTER="URL(#GLOW)"`, `OPACITY: 0.6`.
-     - CORE PATH: `STROKE-WIDTH="0.8"`.
-
-2. **LEFT NODE** `.ICON-NODE.NODE-LIGHT-RIGHT` (ID `NODE-STACK`) — LUCIDE-STYLE **LAYERS** SVG (3 STACKED DIAMONDS): `<POLYGON POINTS="12 2 2 7 12 12 22 7 12 2"/><POLYLINE POINTS="2 17 12 22 22 17"/><POLYLINE POINTS="2 12 12 17 22 12"/>`.
-
-3. **`.PIPELINE-LINE`** — `WIDTH: 160PX; HEIGHT: 1PX;` LINEAR GRADIENT `90DEG, RGBA(255,255,255,0.15), RGBA(255,255,255,0.07)`.
-
-4. **CENTER WRAPPER** WITH `POSITION: RELATIVE;` CONTAINING:
-   - **`.SPLASH`** — 100×100 ABSOLUTELY CENTERED, `BORDER-RADIUS: 50%`, `BACKGROUND: RADIAL-GRADIENT(CIRCLE, RGBA(255,77,200,0.6) 0%, TRANSPARENT 70%)`, INITIAL `OPACITY: 0; TRANSFORM: SCALE(0.4); Z-INDEX: 2;`
-   - **`.ICON-NODE-CENTER`** (ID `NODE-X`) — 64×64 ROUND, `BACKGROUND: #1E1E2C`, NEUMORPHIC SHADOW (SEE BELOW), CONTAINING THE **XERO "X" LOGOIPSUM** SVG (`VIEWBOX="0 0 40 40"`) — THE MULTI-CUT PATH PROVIDED IN THE SOURCE.
-
-5. **`.PIPELINE-LINE.RIGHT`** — SAME 160×1 LINE, GRADIENT REVERSED.
-
-6. **RIGHT NODE** `.ICON-NODE.NODE-LIGHT-LEFT` (ID `NODE-SHIELD`) — LUCIDE-STYLE **SHIELD-CHECK** SVG: `<PATH D="M12 22S8-4 8-10V5L-8-3-8 3V7C0 6 8 10 8 10Z"/><POLYLINE POINTS="9 12 11 14 15 10"/>`.
-
-### SIDE NODE STYLING
-
-`.ICON-NODE`: 46×46 ROUND, `BACKGROUND: #1A1A24`, `CURSOR: POINTER`, `Z-INDEX: 3`, WITH **NEUMORPHIC** SHADOW STACK:
-
-```
-BOX-SHADOW:
-  6PX 6PX 12PX RGBA(0,0,0,0.4),
-  -4PX -4PX 10PX RGBA(255,255,255,0.03),
-  INSET 1PX 1PX 1PX RGBA(255,255,255,0.05),
-  INSET 4PX 4PX 8PX RGBA(0,0,0,0.4);
-```
-
-PLUS AN `::AFTER` DOTTED OUTER RING AT `INSET: -7PX` (`BORDER: 1PX DOTTED #1A1A24`).
-HOVER: `TRANSLATEY(-1PX)` AND STRONGER SHADOWS. ACTIVE: INSET-ONLY SHADOWS.
-INNER SVG: 20×20, STROKE `RGBA(255,255,255,0.7)`, `STROKE-WIDTH: 1.5`, FILL NONE, ROUND CAPS.
-
-### CENTER NODE STYLING
-
-`.ICON-NODE-CENTER`: 64×64, `BACKGROUND: #1E1E2C`, SIMILAR BUT STRONGER NEUMORPHIC SHADOW:
-
-```
-8PX 8PX 16PX RGBA(0,0,0,0.5),
--6PX -6PX 14PX RGBA(255,255,255,0.04),
-INSET 1PX 1PX 2PX RGBA(255,255,255,0.06),
-INSET 6PX 6PX 12PX RGBA(0,0,0,0.5);
-```
-
-INNER XERO SVG: 28×28, `FILL: WHITE`.
-
-### SIDE-LIGHT GLOWS
-
-- `.NODE-LIGHT-RIGHT::BEFORE` — HALF-CIRCLE RADIAL GLOW ON THE RIGHT SIDE: `RADIAL-GRADIENT(CIRCLE AT RIGHT, RGBA(200,200,200,0.45) 0%, TRANSPARENT 70%)`, `OPACITY: 0` DEFAULT, `OPACITY: 1` WHEN `.ACTIVE` (300MS TRANSITION).
-- `.NODE-LIGHT-LEFT::BEFORE` — SAME BUT ON LEFT, COLOR `RGBA(200,100,255,0.5)`.
-
-### SPLASH KEYFRAME
-
-```
-@KEYFRAMES SPLASH-ANIM {
-  0%   { TRANSFORM: SCALE(0.4); OPACITY: 0.8; }
-  40%  { OPACITY: 0.6; }
-  100% { TRANSFORM: SCALE(1.4); OPACITY: 0; }
+```css
+:root {
+  --bg: #0a0a0f;
+  --surface: #111118;
+  --text: #f0f0f5;
+  --text-muted: #8888a8;
+  --accent: #c8a0e0;
+  --accent-pink: #b04090;
+  --border: rgba(255, 255, 255, 0.08);
 }
 ```
 
-TRIGGERED BY ADDING `.ANIMATE` (0.8S EASE-OUT FORWARDS).
+## Layout & Structure
 
-## BEAM ANIMATION (JAVASCRIPT / REQUESTANIMATIONFRAME)
+`App` renders three top-level blocks (no wrapping element — a React fragment), centered on the black page, each constrained to `max-width: 1600px`, in this vertical order:
 
-IMPLEMENT A STATE MACHINE WITH FOUR PHASES. ON MOUNT AND ON EVERY WINDOW `RESIZE`, RECOMPUTE THE SVG PATH:
+1. `<nav>` — top bar (visually at the top; not actually `position: sticky`).
+2. `<section class="hero-card">` — the rounded dark hero card with the animated icon pipeline.
+3. `<div class="brands">` — a row of five monochrome brand logos.
 
+## Navbar
+
+`nav`: `width: 100%; max-width: 1600px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 12px 24px; margin-bottom: 14px;`.
+
+- **Left** — `<span class="nav-logo">Xero</span>`: `font-size: 1.05rem; font-weight: 700; letter-spacing: -0.01em; justify-self: start;`.
+- **Center** — `<ul class="nav-links">` with three `<a href="#">` items, labels: **Method**, **Pricing**, **Docs** (in that order).
+  - `.nav-links`: `list-style: none; display: flex; align-items: center; gap: 32px;`.
+  - `.nav-links a`: color `var(--text-muted)`, `text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: color 0.2s ease;`. Hover: color `var(--text)`.
+- **Right** — `<div class="nav-actions">` (`display: flex; align-items: center; gap: 10px; justify-self: end;`) containing two pill buttons:
+  - `.btn-login` — text **Log in**. `background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border); color: var(--text); font-weight: 500;`. Hover: `background: rgba(255, 255, 255, 0.12);`.
+  - `.btn-signup` — text **Sign up**. `background: #ffffff; border: 1px solid #ffffff; color: #0a0a0f; font-weight: 600;`. Hover: `opacity: 0.88;`.
+  - Shared button styles (`.btn-login, .btn-signup`): `font-family: inherit; padding: 7px 18px; border-radius: 999px; font-size: 0.82rem; cursor: pointer; transition: background 0.2s ease, opacity 0.2s ease;`.
+- **`.nav-menu` wrapper** uses `display: contents` on desktop so the `<ul>` and `.nav-actions` become direct grid children of `<nav>`.
+
+### Mobile (≤ 768px)
+
+- `nav` becomes `display: flex; justify-content: space-between; align-items: center;`.
+- A `.menu-toggle` hamburger button appears (`display: block`). Markup: a `<button type="button">` with two `<span />` children, `aria-label="Toggle navigation menu"`, `aria-expanded` bound to the open state, and class `menu-toggle active` when open.
+  - `.menu-toggle`: `position: relative; width: 24px; height: 14px; background: none; border: none; cursor: pointer; z-index: 1001;`.
+  - `.menu-toggle span`: `position: absolute; left: 0; width: 100%; height: 2px; background: #ffffff; border-radius: 2px; transition: transform 0.3s ease;`. First span `top: 0`, last span `bottom: 0`.
+  - When `.active`: first span `transform: translateY(6px) rotate(45deg)`, last span `transform: translateY(-6px) rotate(-45deg)` to form an X.
+- `.nav-menu` becomes a full-screen overlay: `display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 44px; position: fixed; top: 0; right: -100%; width: 100%; height: 100vh; background: var(--bg); transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1000;`. `.nav-menu.active { right: 0; }` slides it in.
+  - `.nav-links` stack: `flex-direction: column; gap: 28px;`; links grow to `font-size: 1.1rem;`.
+  - `.nav-actions` stack: `flex-direction: column; width: min(320px, 78vw); gap: 12px;`; buttons become full width: `width: 100%; text-align: center; padding: 12px 18px; font-size: 0.95rem;`.
+- Toggling the menu sets `document.body.style.overflow = 'hidden'`.
+
+## Hero Card
+
+`.hero-card`: `width: 100%; max-width: 1600px; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.07); overflow: hidden; position: relative; background: #0d0b12; padding: 80px 40px 70px; min-height: 640px; display: flex; flex-direction: column; align-items: center; text-align: center;`.
+
+### `::before` gradient arc (the signature visual)
+
+An absolutely-positioned (`inset: 0`) pseudo-element with many manually-tuned radial stops producing a smooth dark → pink → white arc near the top, plus a faint purple lift below:
+
+```css
+.hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 50% -70%,
+      transparent 60%,
+      rgba(176, 48, 136, 0.03) 63%,
+      rgba(176, 48, 136, 0.08) 65%,
+      rgba(176, 48, 136, 0.16) 67%,
+      rgba(176, 48, 136, 0.28) 69%,
+      rgba(176, 48, 136, 0.4) 71%,
+      rgba(176, 48, 136, 0.52) 73%,
+      rgba(176, 48, 136, 0.64) 75%,
+      rgba(176, 48, 136, 0.74) 77%,
+      rgba(176, 48, 136, 0.82) 79%,
+      rgba(210, 70, 175, 0.92) 85%,
+      rgba(240, 110, 210, 0.88) 87%,
+      rgba(255, 205, 250, 0.92) 91%,
+      rgba(255, 240, 255, 0.98) 93%,
+      #ffffff 95%),
+    radial-gradient(circle at 50% 35%, rgba(120, 40, 180, 0.08) 0%, transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+}
 ```
-CONST PRECT = PIPELINE.GETBOUNDINGCLIENTRECT();
-CONST SRECT = NODESTACK.GETBOUNDINGCLIENTRECT();
-CONST XRECT = NODEX.GETBOUNDINGCLIENTRECT();
-CONST SHRECT = NODESHIELD.GETBOUNDINGCLIENTRECT();
-CONST STARTX = SRECT.LEFT + SRECT.WIDTH/2 - PRECT.LEFT;
-CONST STARTY = SRECT.TOP  + SRECT.HEIGHT/2 - PRECT.TOP;
-// MIDX/MIDY FROM NODEX, ENDX/ENDY FROM NODESHIELD
-CONST D = `M ${STARTX},${STARTY} L ${MIDX},${MIDY} L ${ENDX},${ENDY}`;
+
+### `.hero-grid` overlay
+
+A separate absolutely-positioned `<div class="hero-grid" aria-hidden="true" />` rendering a crosshatch grid, masked so it only shows inside the arc area:
+
+```css
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  -webkit-mask-image: radial-gradient(circle at 50% -70%, transparent 60%, black 78%);
+  mask-image: radial-gradient(circle at 50% -70%, transparent 60%, black 78%);
+  z-index: 0;
+  pointer-events: none;
+}
 ```
 
-SET THIS `D` ON **BOTH** BEAM PATHS.
+## Icon Pipeline (the animated centerpiece)
 
-THE GRADIENT IS ANIMATED BY MUTATING `X1` / `X2` OF `#BEAM-GRADIENT` (IN `USERSPACEONUSE`) SO THE BRIGHT WINDOW SLIDES ALONG. USE `HALFWIDTH = 5` (PERCENTAGE UNITS), `CENTER = PERCENTAGE * 100`:
+Container `<div class="icon-pipeline" ref={pipelineRef}>`: `position: relative; display: flex; align-items: center; justify-content: center; max-width: 700px; margin-bottom: 52px; z-index: 1;`.
 
+Children in this exact order:
+
+### 1. Beam SVG
+
+`<svg class="beam-svg" aria-hidden="true">` — absolutely positioned over the whole pipeline: `position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 2; pointer-events: none;`. It contains:
+
+- `<defs>` with:
+  - `<filter id="glow" x="-50%" y="-50%" width="200%" height="200%">` → `<feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur" />` then `<feComposite in="SourceGraphic" in2="blur" operator="over" />`.
+  - `<linearGradient id="beam-gradient" gradientUnits="userSpaceOnUse" x1="-5%" y1="0%" x2="5%" y2="0%" ref={gradientRef}>` with five stops:
+    - `0%` → `stopColor="#b04090" stopOpacity="0"`
+    - `20%` → `stopColor="#b04090" stopOpacity="0.8"`
+    - `50%` → `stopColor="#fff" stopOpacity="1"`
+    - `80%` → `stopColor="#c8a0e0" stopOpacity="0.8"`
+    - `100%` → `stopColor="#c8a0e0" stopOpacity="0"`
+- A `<g class="beam-glow">` (`opacity: 0.6`) wrapping the **glow path**: `<path ref={beamGlowRef} stroke="url(#beam-gradient)" strokeWidth="2" fill="none" filter="url(#glow)" />`.
+- The **core path**: `<path ref={beamCoreRef} stroke="url(#beam-gradient)" strokeWidth="0.8" fill="none" />`.
+
+Both paths get the same computed `d` (see Beam Animation).
+
+### 2. Left node (stack / layers icon)
+
+`<div class="icon-node node-light-right" id="node-stack" ref={nodeStackRef}>` — a Lucide-style **Layers** SVG (`viewBox="0 0 24 24"`, three stacked diamonds):
+
+```html
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <polygon points="12 2 2 7 12 12 22 7 12 2" />
+  <polyline points="2 17 12 22 22 17" />
+  <polyline points="2 12 12 17 22 12" />
+</svg>
 ```
-GRADIENT.X1 = (CENTER - 5) + '%'
-GRADIENT.X2 = (CENTER + 5) + '%'
-Y1 = Y2 = '0%'
+
+### 3. Left pipeline line
+
+`<div class="pipeline-line" />` — `width: 160px; height: 1px; flex-shrink: 0; background: linear-gradient(90deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.07));`.
+
+### 4. Center wrapper
+
+`<div class="pipeline-center">` (`position: relative; display: flex; align-items: center; justify-content: center; flex-shrink: 0;`) containing, in order:
+
+- **`.splash`** — `<div class="splash" ref={splashRef} />`: `position: absolute; top: 50%; left: 50%; width: 100px; height: 100px; margin: -50px 0 0 -50px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 77, 200, 0.6) 0%, transparent 70%); opacity: 0; transform: scale(0.4); z-index: 2; pointer-events: none;`.
+- **`.icon-node-center`** — `<div class="icon-node-center" id="node-x" ref={nodeXRef}>` containing the Xero "X" logoipsum SVG (`viewBox="0 0 40 40"`):
+
+  ```html
+  <svg viewBox="0 0 40 40" aria-hidden="true">
+    <path d="M5 4H13L21.2 15.9L17.2 21.7ZM27 4H35L25 18.5L21 12.7ZM22.9 18.3L35 36H27L18.9 24.2ZM13 36H5L15 21.5L19 27.3Z" />
+  </svg>
+  ```
+
+### 5. Right pipeline line
+
+`<div class="pipeline-line right" />` — same `160px × 1px` line with the gradient reversed: `.pipeline-line.right { background: linear-gradient(90deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.15)); }`.
+
+### 6. Right node (shield-check icon)
+
+`<div class="icon-node node-light-left" id="node-shield" ref={nodeShieldRef}>` — a Lucide-style **Shield-Check** SVG (`viewBox="0 0 24 24"`):
+
+```html
+<svg viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  <polyline points="9 12 11 14 15 10" />
+</svg>
 ```
 
-STATE MACHINE IN A `REQUESTANIMATIONFRAME` LOOP, TRACKING `LASTSTATECHANGE` TIMESTAMP:
+### Side node styling
 
-| STATE | DURATION | BEHAVIOR |
+`.icon-node`: `position: relative; width: 46px; height: 46px; border-radius: 50%; background: #1a1a24; display: flex; align-items: center; justify-content: center; flex-shrink: 0; cursor: pointer; z-index: 3; transition: transform 0.2s ease, box-shadow 0.2s ease;` with a neumorphic shadow stack:
+
+```css
+box-shadow:
+  6px 6px 12px rgba(0, 0, 0, 0.4),
+  -4px -4px 10px rgba(255, 255, 255, 0.03),
+  inset 1px 1px 1px rgba(255, 255, 255, 0.05),
+  inset 4px 4px 8px rgba(0, 0, 0, 0.4);
+```
+
+- `.icon-node::after` — dotted outer ring: `content: ''; position: absolute; inset: -7px; border-radius: 50%; border: 1px dotted #1a1a24; pointer-events: none;`.
+- Hover: `transform: translateY(-1px);` with stronger shadows.
+- Active: inset-only shadows.
+- `.icon-node svg`: `width: 20px; height: 20px; stroke: rgba(255, 255, 255, 0.7); stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round;`.
+
+### Center node styling
+
+`.icon-node-center`: `position: relative; width: 64px; height: 64px; border-radius: 50%; background: #1e1e2c; display: flex; align-items: center; justify-content: center; flex-shrink: 0; z-index: 3;` with a stronger neumorphic shadow:
+
+```css
+box-shadow:
+  8px 8px 16px rgba(0, 0, 0, 0.5),
+  -6px -6px 14px rgba(255, 255, 255, 0.04),
+  inset 1px 1px 2px rgba(255, 255, 255, 0.06),
+  inset 6px 6px 12px rgba(0, 0, 0, 0.5);
+```
+
+- `.icon-node-center svg`: `width: 28px; height: 28px; fill: #ffffff;`.
+
+### Side-light glows
+
+Shared base (`.node-light-right::before, .node-light-left::before`): `content: ''; position: absolute; inset: -8px; border-radius: 50%; opacity: 0; transition: opacity 300ms ease; z-index: 4; pointer-events: none;`.
+
+- `.node-light-right::before` — `background: radial-gradient(circle at right, rgba(200, 200, 200, 0.45) 0%, transparent 70%);`.
+- `.node-light-left::before` — `background: radial-gradient(circle at left, rgba(200, 100, 255, 0.5) 0%, transparent 70%);`.
+- When the node has `.active`, the glow becomes `opacity: 1` (`.node-light-right.active::before, .node-light-left.active::before { opacity: 1; }`).
+
+### Splash keyframe
+
+```css
+.splash.animate {
+  animation: splash-anim 0.8s ease-out forwards;
+}
+
+@keyframes splash-anim {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.8;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+```
+
+Triggered by adding the `.animate` class to `.splash`.
+
+## Beam Animation (JavaScript / requestAnimationFrame)
+
+Use `useRef` for the pipeline, the three nodes (`nodeStackRef`, `nodeXRef`, `nodeShieldRef`), both beam paths (`beamGlowRef`, `beamCoreRef`), the gradient (`gradientRef`), and the splash (`splashRef`). Use one `useEffect` (empty dependency array) to set up the resize listener and the `requestAnimationFrame` loop, and clean both up on unmount.
+
+Declare these constants:
+
+```ts
+type BeamState = 'p1' | 'splash' | 'p2' | 'idle';
+
+const P1_DURATION = 800;
+const SPLASH_DURATION = 800;
+const P2_DURATION = 800;
+const IDLE_DURATION = 1000;
+const HALF_WIDTH = 5; // gradient window half-width, percentage units
+```
+
+### Recompute the beam path
+
+On mount and on every window `resize`, recompute the SVG path from the live node positions (relative to the pipeline's rect), then set the same `d` on both beam paths:
+
+```ts
+const computePath = () => {
+  const pRect = pipeline.getBoundingClientRect();
+  const sRect = nodeStack.getBoundingClientRect();
+  const xRect = nodeX.getBoundingClientRect();
+  const shRect = nodeShield.getBoundingClientRect();
+  const startX = sRect.left + sRect.width / 2 - pRect.left;
+  const startY = sRect.top + sRect.height / 2 - pRect.top;
+  const midX = xRect.left + xRect.width / 2 - pRect.left;
+  const midY = xRect.top + xRect.height / 2 - pRect.top;
+  const endX = shRect.left + shRect.width / 2 - pRect.left;
+  const endY = shRect.top + shRect.height / 2 - pRect.top;
+  const d = `M ${startX},${startY} L ${midX},${midY} L ${endX},${endY}`;
+  beamGlow.setAttribute('d', d);
+  beamCore.setAttribute('d', d);
+};
+
+computePath();
+window.addEventListener('resize', computePath);
+```
+
+### Slide the gradient window
+
+Animate the gradient by mutating `x1` / `x2` of `#beam-gradient` (which is in `userSpaceOnUse`) so the bright window slides along the path. `center = percentage * 100`, `HALF_WIDTH = 5`, with `y1` / `y2` fixed at `0%`:
+
+```ts
+const setGradientWindow = (percentage: number) => {
+  const center = percentage * 100;
+  gradient.setAttribute('x1', `${center - HALF_WIDTH}%`);
+  gradient.setAttribute('y1', '0%');
+  gradient.setAttribute('x2', `${center + HALF_WIDTH}%`);
+  gradient.setAttribute('y2', '0%');
+};
+```
+
+### State machine
+
+Run a `requestAnimationFrame` loop tracking a `lastStateChange` timestamp (initialized from `performance.now()`), starting in state `p1`. On each `tick(now)` compute `elapsed = now - lastStateChange` and switch on state:
+
+| State | Duration | Behavior |
 |---|---|---|
-| **`P1`** | 800 MS | `PERCENTAGE` INTERPOLATES `0 → 0.5`. WHILE `P < 0.4`, ADD `.ACTIVE` TO `NODE-STACK`; REMOVE AFTER. AT END: SWITCH TO `SPLASH`, HIDE BOTH BEAM PATHS (`OPACITY: 0`), ADD `.ANIMATE` TO SPLASH. |
-| **`SPLASH`** | 800 MS | WAIT. AFTER ELAPSED: SWITCH TO `P2`, REMOVE `.ANIMATE`, RESTORE `OPACITY: 1` ON BOTH BEAM PATHS. |
-| **`P2`** | 800 MS | `PERCENTAGE` INTERPOLATES `0.5 → 1.0`. WHILE `P > 0.6`, ADD `.ACTIVE` TO `NODE-SHIELD`. AT END: REMOVE `.ACTIVE`, SWITCH TO `IDLE`. |
-| **`IDLE`** | 1000 MS | WAIT, THEN LOOP BACK TO `P1`. |
+| **`p1`** | 800 ms | `p = Math.min(elapsed / P1_DURATION, 1)`. `setGradientWindow(p * 0.5)` (beam travels from the stack node toward the X node). Toggle `.active` on `node-stack` while `p < 0.4`. At end (`elapsed >= P1_DURATION`): remove `.active` from `node-stack`, switch to `splash`, set `beamGlow.style.opacity = '0'` and `beamCore.style.opacity = '0'`, add `.animate` to the splash. |
+| **`splash`** | 800 ms | Wait while the impact splash plays and the beam is hidden. At end: switch to `p2`, remove `.animate` from the splash, restore `beamGlow`/`beamCore` opacity to `'1'`, and call `setGradientWindow(0.5)`. |
+| **`p2`** | 800 ms | `p = Math.min(elapsed / P2_DURATION, 1)`. `setGradientWindow(0.5 + p * 0.5)` (beam travels from the X node toward the shield node). Toggle `.active` on `node-shield` while `p > 0.6`. At end: remove `.active` from `node-shield`, switch to `idle`. |
+| **`idle`** | 1000 ms | Wait, then switch back to `p1`. |
 
-TOTAL CYCLE ≈ 3.4 SECONDS, INFINITE.
+Each branch that changes state sets `lastStateChange = now`. The loop re-arms via `rafId = requestAnimationFrame(tick)`. Total cycle is ≈ 3.4 seconds, looping infinitely. Cleanup removes the resize listener and calls `cancelAnimationFrame(rafId)`.
 
-## HERO TEXT
+## Hero Text
 
-`.HERO-CONTENT` `MAX-WIDTH: 620PX; Z-INDEX: 1;`
+`<div class="hero-content">` — `position: relative; max-width: 620px; z-index: 1;`.
 
-```HTML
-<H1 CLASS="HERO-HEADING">
-  THE SIMPLE WAY
-  <STRONG>ENCRYPTION YOUR DATA</STRONG>
-</H1>
-<P CLASS="HERO-SUB">
-  FULLY MANAGED DATA ENCRYPTING SERVICE AND ANNOTATION<BR>
-  PLATFORM FOR TEAMS OF ALL INDUSTRIES.
-</P>
-<A HREF="#" CLASS="BTN-CTA">GET STARTED</A>
+```html
+<h1 class="hero-heading">
+  The simple way
+  <strong>encryption your data</strong>
+</h1>
+<p class="hero-sub">
+  Fully managed data encrypting service and annotation
+  <br />
+  platform for teams of all industries.
+</p>
+<a href="#" class="btn-cta">Get Started</a>
 ```
 
-- `.HERO-HEADING`: `FONT-SIZE: CLAMP(2.4REM, 5.5VW, 4REM); FONT-WEIGHT: 300; LINE-HEIGHT: 1.1; LETTER-SPACING: -0.02EM;`
-- `.HERO-HEADING STRONG`: `DISPLAY: BLOCK; FONT-WEIGHT: 400; MARGIN-TOP: 4PX;` WITH `BACKGROUND: LINEAR-GRADIENT(TO RIGHT, #FFFFFF, #A98597); -WEBKIT-BACKGROUND-CLIP: TEXT; -WEBKIT-TEXT-FILL-COLOR: TRANSPARENT;`
-- `.HERO-SUB`: 0.9REM, `RGBA(255,255,255,0.4)`, `MAX-WIDTH: 440PX`, `MARGIN: 0 AUTO 36PX`.
-- `.BTN-CTA`: WHITE PILL, BLACK TEXT, `PADDING: 12PX 32PX; BORDER-RADIUS: 999PX; FONT-WEIGHT: 600;`. HOVER: `OPACITY: 0.9; TRANSLATEY(-1PX)`.
+- `.hero-heading`: `font-size: clamp(2.4rem, 5.5vw, 4rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 22px;`.
+- `.hero-heading strong`: `display: block; font-weight: 400; margin-top: 4px; background: linear-gradient(to right, #ffffff, #a98597); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;`.
+- `.hero-sub`: `font-size: 0.9rem; font-weight: 400; line-height: 1.65; color: rgba(255, 255, 255, 0.4); max-width: 440px; margin: 0 auto 36px;`.
+- `.btn-cta`: `display: inline-block; background: #ffffff; color: #0a0a0f; padding: 12px 32px; border-radius: 999px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: opacity 0.2s ease, transform 0.2s ease;`. Hover: `opacity: 0.9; transform: translateY(-1px);`.
 
-## BRANDS ROW
+## Brands Row
 
-`.BRANDS`: FLEX ROW, `GAP: 64PX; PADDING: 32PX 24PX 10PX; FLEX-WRAP: WRAP; JUSTIFY-CONTENT: CENTER;`
+`.brands`: `width: 100%; max-width: 1600px; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 64px; padding: 32px 24px 10px;`.
 
-FIVE `.BRAND-ITEM` BLOCKS (EACH: FLEX, GAP 10, COLOR `RGBA(255,255,255,0.35)`, FONT-SIZE 1.1REM, FONT-WEIGHT 500, WHITE-SPACE NOWRAP, WITH A 22×22 SVG):
+Each `.brand-item`: `display: flex; align-items: center; gap: 10px; color: rgba(255, 255, 255, 0.35); font-size: 1.1rem; font-weight: 500; white-space: nowrap;`. Each leading SVG is `width: 22px; height: 22px; flex-shrink: 0;` (`.brand-item svg`).
 
-1. **EXPEDIA** — `<CIRCLE CX=12 CY=12 R=10 FILL=CURRENT /><PATH FILL="VAR(--BG)" D="M8 9H8V2H8ZM0 4H6V2H8Z"/>` THEN TEXT `EXPEDIA`.
-2. **ASANA** — THREE FILLED CIRCLES: `(12,7,R=4)`, `(5,16,R=3.5)`, `(19,16,R=3.5)`, TEXT `ASANA`.
-3. **ZENEFITS** — THREE STROKED HORIZONTAL POLYLINES (LENGTHS 16/8/16) AT Y=8/12/16, TEXT `ZENEFITS`.
-4. **HUBSPOT** — SMALL FILLED CIRCLE `(15.5,8.5,R=2.5)`, STROKED CIRCLE `(8.5,8.5,R=2)`, PATHS CONNECTING THEM; TEXT `HUBSP<SPAN CLASS="HUBSPOT-DOT"></SPAN>T` WHERE `.HUBSPOT-DOT` IS A 6×6 ROUND SUPERSCRIPT DOT.
-5. **LOOM** — CIRCLE `(12,12,R=9)` PLUS VERTICAL/HORIZONTAL/DIAGONAL STROKE LINES FORMING A GLOBE-WITH-X, TEXT `LOOM`.
+Five items, in order:
 
-## RESPONSIVE BREAKPOINTS
+1. **Expedia** — circle + bars, then the text `Expedia`:
+   ```html
+   <svg viewBox="0 0 24 24" aria-hidden="true">
+     <circle cx="12" cy="12" r="10" fill="currentColor" />
+     <path fill="var(--bg)" d="M8 9h8v2H8zm0 4h6v2H8z" />
+   </svg>
+   ```
+2. **asana** — three filled circles, then the text `asana`:
+   ```html
+   <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+     <circle cx="12" cy="7" r="4" />
+     <circle cx="5" cy="16" r="3.5" />
+     <circle cx="19" cy="16" r="3.5" />
+   </svg>
+   ```
+3. **zenefits** — three stroked horizontal polylines, then the text `zenefits`:
+   ```html
+   <svg
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="2"
+     stroke-linecap="round"
+     aria-hidden="true"
+   >
+     <polyline points="4 8 20 8" />
+     <polyline points="4 12 12 12" />
+     <polyline points="4 16 20 16" />
+   </svg>
+   ```
+4. **HubSpot** — small filled circle, stroked circle, and connecting paths, then the text `HubSp` + a superscript dot + `t`:
+   ```html
+   <svg viewBox="0 0 24 24" aria-hidden="true">
+     <circle cx="15.5" cy="8.5" r="2.5" fill="currentColor" />
+     <circle cx="8.5" cy="8.5" r="2" fill="none" stroke="currentColor" stroke-width="1.5" />
+     <path d="M10.5 8.5h2.5" stroke="currentColor" stroke-width="1.5" fill="none" />
+     <path
+       d="M15.5 11v3.5M15.5 14.5l-2.5 3M15.5 14.5l2.5 3"
+       stroke="currentColor"
+       stroke-width="1.5"
+       fill="none"
+       stroke-linecap="round"
+     />
+   </svg>
+   <span>HubSp<span class="hubspot-dot" />t</span>
+   ```
+   - `.hubspot-dot`: `display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: currentColor; margin: 0 1px; transform: translateY(-7px);` (a small round superscript dot).
+5. **loom** — globe-with-X, then the text `loom`:
+   ```html
+   <svg
+     viewBox="0 0 24 24"
+     fill="none"
+     stroke="currentColor"
+     stroke-width="1.5"
+     aria-hidden="true"
+   >
+     <circle cx="12" cy="12" r="9" />
+     <line x1="12" y1="3" x2="12" y2="21" />
+     <line x1="3" y1="12" x2="21" y2="12" />
+     <line x1="5.6" y1="5.6" x2="18.4" y2="18.4" />
+     <line x1="18.4" y1="5.6" x2="5.6" y2="18.4" />
+   </svg>
+   ```
 
-- `≤ 860PX`: PIPELINE `GAP: 0; MARGIN-BOTTOM: 40PX;` `.PIPELINE-LINE { WIDTH: 80PX }`.
-- `≤ 768PX`: ENABLE MOBILE HAMBURGER MENU, `.ICON-NODE` SHRINKS TO 38×38, `.ICON-NODE-CENTER` TO 52×52, `.HERO-CARD { PADDING: 60PX 20PX 60PX; MIN-HEIGHT: AUTO }`, `.BRANDS { GAP: 32PX }`.
-- `≤ 480PX`: `.HERO-CARD { BORDER-RADIUS: 16PX }`, `.BRANDS { GAP: 24PX }`.
+## Responsive Breakpoints
 
-## Z-INDEX STACK (CRITICAL FOR SPLASH/BEAM LAYERING)
+- **≤ 860px:** `.icon-pipeline { gap: 0; margin-bottom: 40px; }` and `.pipeline-line { width: 80px; }`.
+- **≤ 768px:** enable the mobile hamburger menu (see Navbar → Mobile); `.icon-node` shrinks to `38px × 38px`; `.icon-node-center` shrinks to `52px × 52px`; `.hero-card { padding: 60px 20px 60px; min-height: auto; }`; `.brands { gap: 32px; }`.
+- **≤ 480px:** `.hero-card { border-radius: 16px; }`; `.brands { gap: 24px; }`.
 
-- `0` — GRADIENT ARC + GRID OVERLAY
-- `1` — PIPELINE CONTAINER, HERO TEXT
-- `2` — BEAM SVG, SPLASH
-- `3` — ALL ICON NODES
-- `4` — NODE SIDE-LIGHT GLOWS
-- `1000-1001` — MOBILE NAV OVERLAY AND TOGGLE
+## Z-Index Stack (critical for splash/beam layering)
 
-IMPLEMENT ALL OF THE ABOVE EXACTLY. USE `USEREF` FOR THE PIPELINE, THE THREE NODES, BOTH BEAM PATHS, THE GRADIENT, AND THE SPLASH. USE ONE `USEEFFECT` TO SET UP THE RESIZE LISTENER AND THE `REQUESTANIMATIONFRAME` LOOP, AND CLEAN BOTH UP ON UNMOUNT.
+- `0` — gradient arc (`.hero-card::before`) + grid overlay (`.hero-grid`).
+- `1` — pipeline container (`.icon-pipeline`), hero text (`.hero-content`).
+- `2` — beam SVG (`.beam-svg`), splash (`.splash`).
+- `3` — all icon nodes (`.icon-node`, `.icon-node-center`).
+- `4` — node side-light glows (`.node-light-right::before`, `.node-light-left::before`).
+- `1000` / `1001` — mobile nav overlay (`.nav-menu`) and toggle (`.menu-toggle`).
+
+## Implementation Notes
+
+Implement all of the above exactly. Use `useRef` for the pipeline, the three nodes, both beam paths, the gradient, and the splash. Use one `useEffect` to set up the resize listener and the `requestAnimationFrame` loop, and clean both up on unmount.

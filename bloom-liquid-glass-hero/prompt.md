@@ -1,63 +1,119 @@
-CREATE A FULL-SCREEN HERO LANDING PAGE FOR "BLOOM" — AN AI-POWERED PLANT/FLORAL DESIGN PLATFORM. THE DESIGN USES A LIQUID GLASS MORPHISM AESTHETIC OVER A LOOPING VIDEO BACKGROUND.
+# Bloom — Liquid Glass Hero
 
-BACKGROUND
-FULL-SCREEN AUTOPLAYING, LOOPING, MUTED VIDEO BACKGROUND: HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260315_073750_51473149-4350-4920-AE24-C8214286F323.MP4
-VIDEO COVERS ENTIRE VIEWPORT WITH OBJECT-COVER, SITS AT Z-0. ALL CONTENT FLOATS ABOVE AT Z-10.
+## Overview
 
-FONTS
-DISPLAY/BODY: POPPINS (GOOGLE FONTS) — USED FOR HEADINGS AND BODY TEXT
-SERIF ACCENT: SOURCE SERIF 4 (GOOGLE FONTS) — USED ONLY FOR ITALIC/EMPHASIS TEXT INSIDE HEADINGS (E.G., <EM>, <I>, .ITALIC INSIDE H1-H3)
-HEADINGS USE FONT-WEIGHT: 500
+Build a full-screen hero landing page for **Bloom**, an AI-powered plant/floral design platform. The design layers a liquid glass-morphism UI over a looping, muted video background, using a strict grayscale palette and a two-panel split layout (a glass content slab on the left, floating glass widgets on the right).
 
-COLOR PALETTE
-STRICT GRAYSCALE ONLY — ALL CSS VARIABLES ARE 0 0% X% HSL VALUES
-TEXT IS TEXT-WHITE, TEXT-WHITE/80, TEXT-WHITE/60, TEXT-WHITE/50 FOR HIERARCHY
-NO COLORED ACCENTS WHATSOEVER
+## Tech Stack
 
-LIQUID GLASS CSS (TWO TIERS)
-DEFINE UNDER @LAYER COMPONENTS:
+- **Framework:** React with TypeScript.
+- **Styling:** Tailwind CSS.
+- **Icons:** Lucide (`lucide-react`).
+- **Fonts (Google Fonts):** Poppins (display/body) and Source Serif 4 (serif accent).
+- **Notable techniques:** Two-tier CSS glass-morphism via `@layer components` (gradient borders drawn with a masked `::before` using `mask-composite: exclude`), and HSL grayscale CSS variables.
 
-.LIQUID-GLASS (LIGHT)
-BACKGROUND: RGBA(255,255,255,0.01);
-BACKGROUND-BLEND-MODE: LUMINOSITY;
-BACKDROP-FILTER: BLUR(4PX);
-BORDER: NONE;
-BOX-SHADOW: INSET 0 1PX 1PX RGBA(255,255,255,0.1);
-POSITION: RELATIVE; OVERFLOW: HIDDEN;
-::BEFORE PSEUDO-ELEMENT: GRADIENT BORDER USING LINEAR-GRADIENT(180DEG, RGBA(255,255,255,0.45) 0%, RGBA(255,255,255,0.15) 20%, TRANSPARENT 40%, TRANSPARENT 60%, RGBA(255,255,255,0.15) 80%, RGBA(255,255,255,0.45) 100%) WITH PADDING: 1.4PX, MASKED VIA -WEBKIT-MASK-COMPOSITE: XOR; MASK-COMPOSITE: EXCLUDE;
+## Background
 
-.LIQUID-GLASS-STRONG (HEAVY, FOR CTA/PANELS)
-SAME STRUCTURE BUT BACKDROP-FILTER: BLUR(50PX), BOX-SHADOW: 4PX 4PX 4PX RGBA(0,0,0,0.05), INSET 0 1PX 1PX RGBA(255,255,255,0.15), AND ::BEFORE USES 0.5/0.2 ALPHA INSTEAD OF 0.45/0.15.
+- Full-screen autoplaying, looping, muted video background.
+- Video source: `https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260315_073750_51473149-4350-4920-ae24-c8214286f323.mp4`.
+- The video covers the entire viewport with `object-cover` and sits at `z-0`. All content floats above at `z-10`.
 
-LAYOUT — TWO-PANEL SPLIT
-FLEX ROW, MIN-H-SCREEN. LEFT PANEL W-[52%], RIGHT PANEL W-[48%] (HIDDEN ON MOBILE LG:FLEX).
+## Fonts
 
-LEFT PANEL
-HAS A LIQUID-GLASS-STRONG OVERLAY (ABSOLUTE INSET-4 LG:INSET-6 ROUNDED-3XL)
-NAV: LOGO IMAGE (/LOGO.PNG, 32×32) + "BLOOM" TEXT (SEMIBOLD, 2XL, TRACKING-TIGHTER, WHITE) ON LEFT. "MENU" BUTTON WITH MENU ICON ON RIGHT, LIQUID-GLASS PILL.
-HERO CENTER (FLEX-1, CENTERED):
-LOGO IMAGE AGAIN (80×80)
-H1: "INNOVATING THE / SPIRIT OF BLOOM AI" — TEXT-6XL LG:TEXT-7XL, TRACKING-[-0.05EM], WHITE. THE ITALIC PART USES FONT-SERIF TEXT-WHITE/80
-CTA BUTTON: "EXPLORE NOW" WITH DOWNLOAD ICON IN A W-7 H-7 ROUNDED-FULL BG-WHITE/15 CIRCLE. BUTTON IS LIQUID-GLASS-STRONG, ROUNDED-FULL, HOVER:SCALE-105 ACTIVE:SCALE-95
-THREE PILLS: "ARTISTIC GALLERY", "AI GENERATION", "3D STRUCTURES" — LIQUID-GLASS, ROUNDED-FULL, TEXT-XS TEXT-WHITE/80
-BOTTOM QUOTE:
-"VISIONARY DESIGN" LABEL (TEXT-XS TRACKING-WIDEST UPPERCASE TEXT-WHITE/50)
-QUOTE: "WE IMAGINED A REALM WITH NO ENDING." — MIXED FONT-DISPLAY/FONT-SERIF ITALIC SPANS
-AUTHOR: "MARCUS AURELIO" WITH HORIZONTAL LINES ON EACH SIDE
+- **Display/body:** Poppins (Google Fonts) — used for headings and body text.
+- **Serif accent:** Source Serif 4 (Google Fonts) — used **only** for italic/emphasis text inside headings (e.g., `<em>`, `<i>`, `.italic` inside `h1`–`h3`).
+- Headings use `font-weight: 500`.
 
-RIGHT PANEL (DESKTOP ONLY)
-TOP BAR: SOCIAL ICONS (TWITTER, LINKEDIN, INSTAGRAM) IN A LIQUID-GLASS PILL WITH ARROWRIGHT. ACCOUNT BUTTON WITH SPARKLES ICON BUTTON, BOTH LIQUID-GLASS.
-COMMUNITY CARD: SMALL LIQUID-GLASS CARD (W-56), "ENTER OUR ECOSYSTEM" TITLE + DESCRIPTION
-BOTTOM FEATURE SECTION (MT-AUTO): OUTER LIQUID-GLASS CONTAINER WITH ROUNDED-[2.5REM]
-TWO SIDE-BY-SIDE CARDS: "PROCESSING" (WAND2 ICON) AND "GROWTH ARCHIVE" (BOOKOPEN ICON), EACH LIQUID-GLASS ROUNDED-3XL
-BOTTOM CARD: FLOWER IMAGE THUMBNAIL (FROM @/ASSETS/HERO-FLOWERS.PNG, 96×64), "ADVANCED PLANT SCULPTING" TITLE + DESCRIPTION, AND A "+" BUTTON. ALL LIQUID-GLASS.
+## Color Palette
 
-ICONS
-ALL FROM LUCIDE-REACT: SPARKLES, DOWNLOAD, WAND2, BOOKOPEN, ARROWRIGHT, TWITTER, LINKEDIN, INSTAGRAM, MENU
+- **Strict grayscale only** — every CSS variable is an `0 0% X%` HSL value. No colored accents whatsoever.
+- Text hierarchy uses `text-white`, `text-white/80`, `text-white/60`, `text-white/50`.
 
-KEY DETAILS
-ALL INTERACTIVE ELEMENTS: HOVER:SCALE-105 TRANSITION-TRANSFORM
-SOCIAL ICON LINKS: TEXT-WHITE HOVER:TEXT-WHITE/80 TRANSITION-COLORS
-ICON CONTAINERS: W-8 H-8 ROUNDED-FULL BG-WHITE/10 FLEX ITEMS-CENTER JUSTIFY-CENTER
-NO BORDER CLASSES ANYWHERE — GLASS EFFECT HANDLES ALL BORDERS VIA ::BEFORE
-BORDER-RADIUS TOKEN: --RADIUS: 1REM
+## Liquid Glass CSS (Two Tiers)
+
+Define both tiers under `@layer components`. No `border` classes anywhere — the glass effect handles all borders via the masked `::before` gradient.
+
+### `.liquid-glass` (light tier)
+
+- `background: rgba(255, 255, 255, 0.01);`
+- `background-blend-mode: luminosity;`
+- `backdrop-filter: blur(4px);` (with `-webkit-` prefix)
+- `border: none;`
+- `box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);`
+- `position: relative;` and `overflow: hidden;`
+- `::before` pseudo-element draws the gradient border: a `linear-gradient(180deg, rgba(255, 255, 255, 0.45) 0%, rgba(255, 255, 255, 0.15) 20%, transparent 40%, transparent 60%, rgba(255, 255, 255, 0.15) 80%, rgba(255, 255, 255, 0.45) 100%)` with `padding: 1.4px`, masked via `-webkit-mask-composite: xor;` / `mask-composite: exclude;`.
+
+### `.liquid-glass-strong` (heavy tier — for CTA / panels)
+
+Same structure as the light tier, but with a stronger blur, an outer drop shadow, and brighter gradient-border alpha stops (`0.5`/`0.2` instead of `0.45`/`0.15`):
+
+- `backdrop-filter: blur(50px);` (with `-webkit-` prefix)
+- `box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.15);`
+- `::before` gradient uses `rgba(255, 255, 255, 0.5)` and `rgba(255, 255, 255, 0.2)` alpha stops in place of `0.45`/`0.15`.
+
+## Layout — Two-Panel Split
+
+- Flex row, `min-h-screen`. Left panel takes `w-[52%]`, right panel `w-[48%]`.
+- The right panel is hidden on mobile and shown only at the `lg` breakpoint (`hidden ... lg:flex`).
+
+## Left Panel
+
+- **Frosted slab behind the whole panel:** a `liquid-glass-strong` overlay, `absolute inset-4 rounded-3xl lg:inset-6`.
+
+### Nav (header)
+
+- **Left — logo:** logo image (`/logo.png`, `32×32`) followed by the wordmark text `bloom` (lowercase, semibold, `text-2xl`, `tracking-tighter`, white).
+- **Right — Menu button:** a `liquid-glass` pill with the label `Menu` followed by a `Menu` icon.
+
+### Hero Center
+
+Centered, `flex-1` column.
+
+- **Logo image again:** `/logo.png`, `80×80`.
+- **H1:** "Innovating the / spirit of bloom AI" — `text-6xl lg:text-7xl`, `tracking-[-0.05em]`, white. The italic word `spirit` uses `font-serif text-white/80`.
+- **CTA button** "Explore Now": a `liquid-glass-strong` `rounded-full` button with `hover:scale-105 active:scale-95`. Label `Explore Now` followed by a `Download` icon inside a `w-7 h-7 rounded-full bg-white/15` circle.
+- **Three pills:** `Artistic Gallery`, `AI Generation`, `3D Structures` — each `liquid-glass`, `rounded-full`, `text-xs text-white/80`.
+
+### Bottom Quote (footer)
+
+- **Label:** text `Visionary Design`, `text-xs uppercase tracking-widest text-white/50`.
+- **Quote:** "We imagined a realm with no ending." — built from mixed `font-display` / `font-serif italic` spans (`realm` and `no ending` are the serif italic emphasis).
+- **Author:** `MARCUS AURELIO` with a horizontal hairline on each side.
+
+## Right Panel (desktop only)
+
+### Top Bar
+
+- **Social pill:** a `liquid-glass` pill rendering three social links (Twitter, LinkedIn, Instagram), followed by an `ArrowRight` icon.
+- **Right cluster:** an `Account` button (`liquid-glass`) and an AI assistant icon button (`liquid-glass`) with a `Sparkles` icon.
+
+### Community Card
+
+A small `liquid-glass` card (`w-56`).
+
+- **Title:** `Enter our ecosystem`.
+- **Description.**
+
+### Bottom Feature Section (`mt-auto`)
+
+Outer `liquid-glass` container with `rounded-[2.5rem]`.
+
+- **Two side-by-side feature cards**, each `liquid-glass rounded-3xl`:
+  - **Processing** — `Wand2` icon.
+  - **Growth Archive** — `BookOpen` icon.
+- **Bottom card:** `liquid-glass`, containing:
+  - **Thumbnail:** flower image from `@/assets/hero-flowers.png`, `96×64`.
+  - **Title:** `Advanced Plant Sculpting`, plus a description.
+  - **"+" button:** a `liquid-glass` round button with content `+`.
+
+## Icons
+
+All from `lucide-react`: `Sparkles`, `Download`, `Wand2`, `BookOpen`, `ArrowRight`, `Twitter`, `Linkedin`, `Instagram`, `Menu`.
+
+## Key Details
+
+- All interactive elements use `transition-transform hover:scale-105` (the CTA button additionally uses `active:scale-95`).
+- Social icon links: `text-white hover:text-white/80 transition-colors`.
+- Icon containers: `w-8 h-8 rounded-full bg-white/10 flex items-center justify-center`.
+- **No `border` classes anywhere** — the glass effect handles all borders via the `::before` gradient.
+- Border-radius token: `--radius: 1rem`.

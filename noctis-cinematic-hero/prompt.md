@@ -1,3 +1,19 @@
-CREATE A FULL-SCREEN DARK HERO SECTION WITH A CINEMATIC, PREMIUM AESTHETIC.BACKGROUND VIDEO:
-HTTPS://RES.CLOUDINARY.COM/DFONOTYFB/VIDEO/UPLOAD/V1775585556/DDS3_1_RQHG7X.MP4
-IMPLEMENT AS: <VIDEO AUTOPLAY LOOP MUTED PLAYSINLINE CLASSNAME="ABSOLUTE INSET-0 W-FULL H-FULL OBJECT-COVER Z-0"><SOURCE SRC="HTTPS://RES.CLOUDINARY.COM/DFONOTYFB/VIDEO/UPLOAD/V1775585556/DDS3_1_RQHG7X.MP4" TYPE="VIDEO/MP4" /> </VIDEO>
+# Noctis — Cinematic Hero Section
+
+## Overview
+
+Create a full-screen, dark hero section with a cinematic, premium aesthetic.
+
+## Background Video
+
+The hero uses a single background video:
+
+`https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/DDS3_1_RQHG7X.MP4`
+
+Implement it exactly as specified:
+
+```tsx
+<video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0">
+  <source src="https://res.cloudinary.com/dfonotyfb/video/upload/v1775585556/DDS3_1_RQHG7X.MP4" type="video/mp4" />{" "}
+</video>
+```

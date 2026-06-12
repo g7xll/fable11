@@ -1,53 +1,231 @@
-BUILD A FULL-SCREEN, SINGLE-PAGE REACT + TYPESCRIPT + VITE + TAILWIND CSS HERO SECTION WITH A "LIQUID GLASS" AESTHETIC ON TOP OF A LOOPING BACKGROUND VIDEO. USE `LUCIDE-REACT` FOR ICONS. NO OTHER UI LIBRARIES.
+# Equilibrium — Liquid Glass Hero Section
 
-**FONT & GLOBAL CSS (`SRC/INDEX.CSS`):**
+## Overview
 
-- IMPORT GEIST FROM GOOGLE FONTS: `HTTPS://FONTS.GOOGLEAPIS.COM/CSS2?FAMILY=GEIST:WGHT@300;400;500;600;700&DISPLAY=SWAP`
-- APPLY `GEIST` GLOBALLY VIA `* { FONT-FAMILY: 'GEIST', -APPLE-SYSTEM, BLINKMACSYSTEMFONT, 'SEGOE UI', SANS-SERIF; }`
-- INCLUDE `@TAILWIND BASE; @TAILWIND COMPONENTS; @TAILWIND UTILITIES;`
-- DEFINE A `.LIQUID-GLASS` CLASS:
-  - `BACKGROUND: RGBA(255,255,255,0.01);`
-  - `BACKGROUND-BLEND-MODE: LUMINOSITY;`
-  - `BACKDROP-FILTER: BLUR(4PX);` PLUS `-WEBKIT-BACKDROP-FILTER`
-  - `BORDER: NONE;`
-  - `BOX-SHADOW: INSET 0 1PX 1PX RGBA(255,255,255,0.1);`
-  - `POSITION: RELATIVE; OVERFLOW: HIDDEN;`
-- ADD A `.LIQUID-GLASS::BEFORE` PSEUDO-ELEMENT CREATING A GRADIENT BORDER VIA MASK COMPOSITING:
-  - `CONTENT:''; POSITION:ABSOLUTE; INSET:0; BORDER-RADIUS:INHERIT; PADDING:1.4PX;`
-  - `BACKGROUND: LINEAR-GRADIENT(180DEG, RGBA(255,255,255,0.45) 0%, RGBA(255,255,255,0.15) 20%, RGBA(255,255,255,0) 40%, RGBA(255,255,255,0) 60%, RGBA(255,255,255,0.15) 80%, RGBA(255,255,255,0.45) 100%);`
-  - `-WEBKIT-MASK: LINEAR-GRADIENT(#FFF 0 0) CONTENT-BOX, LINEAR-GRADIENT(#FFF 0 0); -WEBKIT-MASK-COMPOSITE: XOR; MASK-COMPOSITE: EXCLUDE; POINTER-EVENTS:NONE;`
+Build a full-screen, single-page hero section for a wellness brand called **Equilibrium**. The hero sits on top of a looping background video and overlays a "liquid glass" UI: a frosted, blurred navbar pill, glassy CTA buttons, and a bottom-left headline block. The entire experience is one screen tall with no scrolling.
 
-**COMPONENT (`SRC/APP.TSX`):**
+## Tech Stack
 
-- IMPORT FROM `LUCIDE-REACT`: `CHEVRONDOWN`, `INFINITY`, `MENU`, `X`. IMPORT `USESTATE` FROM REACT.
-- CONSTANT `BG_VIDEO = 'HTTPS://D8J0NTLCM91Z4.CLOUDFRONT.NET/USER_38XZZBOKVIGWJOTTWIXH07LWA1P/HF_20260511_230229_7C9BC431-46CF-489A-948D-E8144D8EB5D4.MP4'`
-- `NAVLINKS` ARRAY: `{ LABEL: 'HOME', ACTIVE: TRUE }`, `{ LABEL: 'WELLNESS', DROPDOWN: TRUE }`, `{ LABEL: 'ROUTINE' }`, `{ LABEL: 'OUR TEAM' }`.
-- `MENUOPEN` STATE VIA `USESTATE(FALSE)`.
+- **Framework:** React 18 (`react` ^18.3.1, `react-dom` ^18.3.1) with TypeScript (~5.6.3)
+- **Build tool:** Vite ^5.4.11 with `@vitejs/plugin-react` ^4.3.4
+- **Styling:** Tailwind CSS ^3.4.16 (with `postcss` ^8.4.49 and `autoprefixer` ^10.4.20)
+- **Icons:** `lucide-react` ^0.468.0 (no other UI libraries)
+- **Font:** Geist (loaded from Google Fonts)
+- **Notable techniques:** CSS `backdrop-filter` blur plus a gradient-border pseudo-element via mask compositing; looping muted autoplay `<video>` background
 
-**LAYOUT:**
+## Global Setup
 
-- ROOT: `<DIV CLASS="RELATIVE W-FULL H-SCREEN OVERFLOW-HIDDEN">`.
-- BACKGROUND `<VIDEO>` ABSOLUTELY POSITIONED, `W-FULL H-FULL OBJECT-COVER`, `AUTOPLAY MUTED LOOP PLAYSINLINE`, `SRC={BG_VIDEO}`.
+### Fonts and global CSS (`src/index.css`)
 
-**NAVBAR** (`ABSOLUTE TOP-0 LEFT-0 RIGHT-0 Z-20 FLEX ITEMS-CENTER JUSTIFY-BETWEEN PX-5 SM:PX-8 PY-5`):
+- Import Geist from Google Fonts at the top of the file:
 
-- LOGO (LEFT): FLEX WITH `GAP-2 TEXT-WHITE FONT-MEDIUM TEXT-BASE`. `<INFINITY SIZE={22} STROKEWIDTH={1.5} />` FOLLOWED BY `<SPAN>EQUILIBRIUM</SPAN>`.
-- NAV PILL (CENTER, `HIDDEN MD:FLEX`): `LIQUID-GLASS ITEMS-CENTER GAP-1 ROUNDED-XL PX-2 PY-2`. MAP `NAVLINKS`. EACH BUTTON: `FLEX ITEMS-CENTER GAP-0.5 PX-3 PY-1.5 ROUNDED-MD TEXT-SM TRANSITION-COLORS`; ACTIVE GETS `BG-WHITE/15 TEXT-WHITE`, OTHERS `TEXT-WHITE/70 HOVER:TEXT-WHITE`. DROPDOWN ITEMS RENDER A `<CHEVRONDOWN SIZE={13} CLASS="MT-PX" />`.
-- CTAS (RIGHT, `HIDDEN MD:FLEX ITEMS-CENTER GAP-3`):
-  - "LOG IN": `LIQUID-GLASS TEXT-WHITE TEXT-SM FONT-MEDIUM PX-4 PY-2.5 ROUNDED-FULL HOVER:BG-WHITE/5 TRANSITION-COLORS`
-  - "BEGIN NOW": `BG-WHITE TEXT-BLACK TEXT-SM FONT-MEDIUM PX-4 PY-2.5 ROUNDED-FULL HOVER:BG-WHITE/90 TRANSITION-COLORS`
-- MOBILE TOGGLE (`MD:HIDDEN`): `LIQUID-GLASS TEXT-WHITE P-2 ROUNDED-LG`; SHOWS `X` WHEN OPEN ELSE `MENU` (SIZE 18).
+  ```css
+  @import url('https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap');
+  ```
 
-**MOBILE MENU** (WHEN `MENUOPEN`): `ABSOLUTE TOP-[72PX] LEFT-4 RIGHT-4 Z-30 MD:HIDDEN LIQUID-GLASS ROUNDED-2XL P-4 FLEX FLEX-COL GAP-1`. SAME NAV LINKS AS BUTTONS `FLEX ITEMS-CENTER JUSTIFY-BETWEEN W-FULL PX-4 PY-3 ROUNDED-LG TEXT-SM`. BOTTOM CTA ROW: `FLEX GAP-2 MT-2 PT-3 BORDER-T BORDER-WHITE/10` WITH TWO `FLEX-1` BUTTONS ("LOG IN", "BEGIN NOW") MATCHING DESKTOP STYLES.
+- Include the Tailwind layer directives:
 
-**HERO CONTENT (BOTTOM-LEFT)** `ABSOLUTE BOTTOM-0 LEFT-0 Z-20 PX-6 SM:PX-12 PB-10 SM:PB-16 MAX-W-2XL`:
+  ```css
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+  ```
 
-- `<H1>`: `TEXT-WHITE TEXT-4XL SM:TEXT-5XL LG:TEXT-6XL FONT-MEDIUM LEADING-TIGHT TRACKING-TIGHT MB-4` — TEXT: `LIVE BETTER, FEEL WHOLE EVERY DAY`.
-- `<P>`: `TEXT-WHITE/60 TEXT-SM LEADING-RELAXED MB-7 MAX-W-MD` — TEXT: `TAKE CHARGE OF HOW YOU FEEL WITH A COMPANION BUILT FOR YOUR JOURNEY—BUILD ROUTINES, FOLLOW YOUR GROWTH, AND UNLOCK TAILORED INSIGHTS FOR A STEADIER, MORE VIBRANT LIFE EACH DAY.`
-- BUTTONS ROW `FLEX FLEX-WRAP ITEMS-CENTER GAP-3`:
-  - "START TODAY": `BG-WHITE TEXT-BLACK TEXT-SM SM:TEXT-BASE FONT-MEDIUM PX-6 SM:PX-7 PY-3 ROUNDED-FULL HOVER:BG-WHITE/90 TRANSITION-COLORS`
-  - "DISCOVER HOW": `LIQUID-GLASS TEXT-WHITE TEXT-SM SM:TEXT-BASE FONT-MEDIUM PX-6 SM:PX-7 PY-3 ROUNDED-FULL HOVER:BG-WHITE/5 TRANSITION-COLORS`
+- Apply Geist globally:
 
-**ANIMATIONS/INTERACTIONS:** ALL BUTTONS USE TAILWIND `TRANSITION-COLORS`; LIQUID-GLASS EFFECT USES `BACKDROP-FILTER: BLUR(4PX)` PLUS THE ANIMATED-LOOKING GRADIENT BORDER PSEUDO. NO ADDITIONAL KEYFRAME ANIMATIONS. THE BACKGROUND VIDEO ITSELF PROVIDES MOTION.
+  ```css
+  * {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  ```
 
-**DEPENDENCIES:** `REACT`, `REACT-DOM`, `LUCIDE-REACT`, `TAILWINDCSS`, `VITE`, `@VITEJS/PLUGIN-REACT`, TYPESCRIPT. TAILWIND CONFIGURED WITH DEFAULT CONTENT GLOBS FOR `./INDEX.HTML` AND `./SRC/**/*.{TS,TSX}`.
+- Define the `.liquid-glass` class and its `::before` gradient-border pseudo-element:
+
+  ```css
+  .liquid-glass {
+    background: rgba(255, 255, 255, 0.01);
+    background-blend-mode: luminosity;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    border: none;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .liquid-glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.4px;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.45) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0) 60%,
+      rgba(255, 255, 255, 0.15) 80%,
+      rgba(255, 255, 255, 0.45) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  ```
+
+### Tailwind configuration (`tailwind.config.js`)
+
+Default config with content globs for the index HTML and source files:
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+### HTML (`index.html`)
+
+- `<html lang="en">`, `<meta charset="UTF-8" />`, viewport meta `width=device-width, initial-scale=1.0`.
+- `<title>`: `Equilibrium — Live Better, Feel Whole Every Day`
+- Body contains `<div id="root"></div>` and `<script type="module" src="/src/main.tsx"></script>`.
+
+### Entry point (`src/main.tsx`)
+
+```tsx
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import App from './App'
+import './index.css'
+
+createRoot(document.getElementById('root')!).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
+```
+
+## Component (`src/App.tsx`)
+
+- Import `useState` from React and `ChevronDown`, `Infinity`, `Menu`, `X` from `lucide-react`.
+- Background video constant points to a remote CloudFront URL:
+
+  ```ts
+  const BG_VIDEO =
+    'https://d8j0ntlcm91z4.cloudfront.net/user_38xzzbokvigwjottwixh07lwa1p/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4.mp4'
+  ```
+
+- Define a `NavLink` interface and a `navLinks` array:
+
+  ```ts
+  interface NavLink {
+    label: string
+    active?: boolean
+    dropdown?: boolean
+  }
+
+  const navLinks: NavLink[] = [
+    { label: 'Home', active: true },
+    { label: 'Wellness', dropdown: true },
+    { label: 'Routine' },
+    { label: 'Our Team' },
+  ]
+  ```
+
+- `menuOpen` state via `useState(false)`, toggled by the mobile menu button.
+
+## Layout
+
+- **Root:** `<div className="relative w-full h-screen overflow-hidden">`.
+- **Background `<video>`:** absolutely positioned `absolute inset-0 w-full h-full object-cover`, with attributes `autoPlay`, `muted`, `loop`, `playsInline`, and `src={BG_VIDEO}`.
+
+## Navbar
+
+Container: `absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-5 sm:px-8 py-5`.
+
+- **Logo (left):** `flex items-center gap-2 text-white font-medium text-base`, containing `<Infinity size={22} strokeWidth={1.5} />` followed by `<span>Equilibrium</span>`.
+- **Nav pill (center, `hidden md:flex`):** `liquid-glass hidden md:flex items-center gap-1 rounded-xl px-2 py-2`. Map over `navLinks`. Each button: `flex items-center gap-0.5 px-3 py-1.5 rounded-md text-sm transition-colors`. The active link gets `bg-white/15 text-white`; others get `text-white/70 hover:text-white`. Dropdown links additionally render `<ChevronDown size={13} className="mt-px" />`.
+- **Desktop CTAs (right, `hidden md:flex items-center gap-3`):**
+  - "Log in": `liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors`
+  - "Begin Now": `bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors`
+- **Mobile toggle (`md:hidden`):** `md:hidden liquid-glass text-white p-2 rounded-lg`, with `aria-label` of `Close menu` when open or `Open menu` when closed. Renders `<X size={18} />` when `menuOpen` is true, otherwise `<Menu size={18} />`. `onClick` toggles `menuOpen`.
+
+## Mobile Menu
+
+Rendered only when `menuOpen` is true: `absolute top-[72px] left-4 right-4 z-30 md:hidden liquid-glass rounded-2xl p-4 flex flex-col gap-1`.
+
+- Same `navLinks` rendered as buttons: `flex items-center justify-between w-full px-4 py-3 rounded-lg text-sm transition-colors`. Active gets `bg-white/15 text-white`; others `text-white/70 hover:text-white`. Dropdown links render `<ChevronDown size={13} className="mt-px" />`.
+- Bottom CTA row: `flex gap-2 mt-2 pt-3 border-t border-white/10` containing two `flex-1` buttons matching the desktop styles:
+  - "Log in": `flex-1 liquid-glass text-white text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/5 transition-colors`
+  - "Begin Now": `flex-1 bg-white text-black text-sm font-medium px-4 py-2.5 rounded-full hover:bg-white/90 transition-colors`
+
+## Hero Content (Bottom-Left)
+
+Container: `absolute bottom-0 left-0 z-20 px-6 sm:px-12 pb-10 sm:pb-16 max-w-2xl`.
+
+- **Heading `<h1>`:** `text-white text-4xl sm:text-5xl lg:text-6xl font-medium leading-tight tracking-tight mb-4`
+  - Text: `Live Better, Feel Whole Every Day`
+- **Paragraph `<p>`:** `text-white/60 text-sm leading-relaxed mb-7 max-w-md`
+  - Text: `Take charge of how you feel with a companion built for your journey—build routines, follow your growth, and unlock tailored insights for a steadier, more vibrant life each day.` (the em dash is written as `&mdash;` in the source).
+- **Buttons row:** `flex flex-wrap items-center gap-3`
+  - "Start Today": `bg-white text-black text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/90 transition-colors`
+  - "Discover How": `liquid-glass text-white text-sm sm:text-base font-medium px-6 sm:px-7 py-3 rounded-full hover:bg-white/5 transition-colors`
+
+## Animations / Interactions
+
+- All buttons use the Tailwind `transition-colors` utility for hover state changes.
+- The liquid-glass effect relies on `backdrop-filter: blur(4px)` plus the animated-looking gradient-border `::before` pseudo-element.
+- No additional keyframe animations. The looping background video itself provides all the motion on the page.
+
+## File Structure
+
+```
+equilibrium-liquid-glass-hero/
+├── index.html
+├── package.json
+├── postcss.config.js
+├── tailwind.config.js
+├── tsconfig.json
+├── vite.config.ts
+└── src/
+    ├── App.tsx
+    ├── index.css
+    ├── main.tsx
+    └── vite-env.d.ts
+```
+
+### Supporting config files
+
+**`postcss.config.js`:**
+
+```js
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+}
+```
+
+**`vite.config.ts`:**
+
+```ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+})
+```
+
+## Dependencies
+
+- **dependencies:** `react` (^18.3.1), `react-dom` (^18.3.1), `lucide-react` (^0.468.0)
+- **devDependencies:** `@types/react` (^18.3.12), `@types/react-dom` (^18.3.1), `@vitejs/plugin-react` (^4.3.4), `autoprefixer` (^10.4.20), `postcss` (^8.4.49), `tailwindcss` (^3.4.16), `typescript` (~5.6.3), `vite` (^5.4.11)
+- **scripts:** `dev` → `vite`, `build` → `tsc && vite build`, `preview` → `vite preview`
