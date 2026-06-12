@@ -11,33 +11,33 @@ import SelectedWorks from "../components/SelectedWorks";
 import Stats from "../components/Stats";
 
 const Index = () => {
-  const [isLoading, setIsLoading] = useState(true);
+	const [isLoading, setIsLoading] = useState(true);
 
-  // Lock scrolling while the loading screen is up.
-  useEffect(() => {
-    document.body.style.overflow = isLoading ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isLoading]);
+	// Lock scrolling while the loading screen is up.
+	useEffect(() => {
+		document.body.style.overflow = isLoading ? "hidden" : "";
+		return () => {
+			document.body.style.overflow = "";
+		};
+	}, [isLoading]);
 
-  return (
-    <PageTransition>
-      <AnimatePresence>
-        {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      </AnimatePresence>
+	return (
+		<PageTransition>
+			<AnimatePresence>
+				{isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+			</AnimatePresence>
 
-      <Navbar />
-      <main>
-        <Hero active={!isLoading} />
-        <SelectedWorks />
-        <Journal />
-        <Explorations />
-        <Stats />
-      </main>
-      <Footer />
-    </PageTransition>
-  );
+			<Navbar />
+			<main>
+				<Hero active={!isLoading} />
+				<SelectedWorks />
+				<Journal />
+				<Explorations />
+				<Stats />
+			</main>
+			<Footer />
+		</PageTransition>
+	);
 };
 
 export default Index;

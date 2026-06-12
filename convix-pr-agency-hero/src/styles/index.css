@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-[#ededed] text-neutral-900 antialiased;
-  }
+	body {
+		@apply bg-[#ededed] text-neutral-900 antialiased;
+	}
 }

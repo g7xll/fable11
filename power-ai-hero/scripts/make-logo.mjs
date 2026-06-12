@@ -1,15 +1,15 @@
 /* Renders src/assets/logo.png — the Power AI navbar logo — as a transparent
    PNG at 3x scale (rendered 288x96, displayed at 32px tall) using headless
    Chromium. Usage: node scripts/make-logo.mjs */
-import { mkdir } from "node:fs/promises"
-import path from "node:path"
-import { fileURLToPath } from "node:url"
+import { mkdir } from "node:fs/promises";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-import { chromium } from "playwright"
+import { chromium } from "playwright";
 
-const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)))
-const outDir = path.join(root, "src", "assets")
-const outFile = path.join(outDir, "logo.png")
+const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const outDir = path.join(root, "src", "assets");
+const outFile = path.join(outDir, "logo.png");
 
 /* A spark/bolt mark in the headline gradient (amber → purple → indigo)
    inside a liquid-glass rounded square, plus a "Power AI" General Sans
@@ -91,15 +91,15 @@ const html = `<!doctype html>
     <div class="word">Power&nbsp;<span class="ai">AI</span></div>
   </div>
 </body>
-</html>`
+</html>`;
 
-await mkdir(outDir, { recursive: true })
+await mkdir(outDir, { recursive: true });
 
-const browser = await chromium.launch()
-const page = await browser.newPage({ deviceScaleFactor: 1 })
-await page.setContent(html, { waitUntil: "networkidle" })
-await page.evaluate(() => document.fonts.ready)
-await page.locator("#logo").screenshot({ path: outFile, omitBackground: true })
-await browser.close()
+const browser = await chromium.launch();
+const page = await browser.newPage({ deviceScaleFactor: 1 });
+await page.setContent(html, { waitUntil: "networkidle" });
+await page.evaluate(() => document.fonts.ready);
+await page.locator("#logo").screenshot({ path: outFile, omitBackground: true });
+await browser.close();
 
-console.log(`Wrote ${outFile}`)
+console.log(`Wrote ${outFile}`);

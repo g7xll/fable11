@@ -7,38 +7,38 @@ import type Hls from "hls.js";
  * falling back to native HLS support (Safari) otherwise.
  */
 export function useHlsVideo(src: string) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+	const videoRef = useRef<HTMLVideoElement>(null);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+	useEffect(() => {
+		const video = videoRef.current;
+		if (!video) return;
 
-    let hls: Hls | null = null;
-    let cancelled = false;
+		let hls: Hls | null = null;
+		let cancelled = false;
 
-    const setup = async () => {
-      const { default: HlsLib } = await import("hls.js");
-      if (cancelled) return;
+		const setup = async () => {
+			const { default: HlsLib } = await import("hls.js");
+			if (cancelled) return;
 
-      if (HlsLib.isSupported()) {
-        hls = new HlsLib({ enableWorker: true });
-        hls.loadSource(src);
-        hls.attachMedia(video);
-      } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
-      }
-    };
+			if (HlsLib.isSupported()) {
+				hls = new HlsLib({ enableWorker: true });
+				hls.loadSource(src);
+				hls.attachMedia(video);
+			} else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+				video.src = src;
+			}
+		};
 
-    void setup();
+		void setup();
 
-    return () => {
-      cancelled = true;
-      hls?.destroy();
-    };
-  }, [src]);
+		return () => {
+			cancelled = true;
+			hls?.destroy();
+		};
+	}, [src]);
 
-  return videoRef;
+	return videoRef;
 }
 
 export const HERO_STREAM =
-  "https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
+	"https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8";
