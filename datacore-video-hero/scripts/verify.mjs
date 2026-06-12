@@ -29,9 +29,9 @@ check('No uncaught page errors', pageErrors.length === 0, pageErrors.join('; '))
 const video = desktop.locator('video')
 check('Video element present', (await video.count()) === 1)
 check(
-  'Video src is the CloudFront mp4',
+  'Video src is the local mp4',
   (await video.getAttribute('src'))?.includes(
-    'd8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260210_031346',
+    '/assets/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f.mp4',
   ),
 )
 check(
