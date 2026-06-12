@@ -7,7 +7,7 @@ const SPAWN_INTERVAL_MS = 80;
 const TRAIL_LIFETIME_MS = 1000;
 
 const AVATAR =
-  'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=80&h=80&fit=crop&dpr=2';
+  '/assets/pexels-415829.jpg';
 
 interface TrailItem {
   id: number;

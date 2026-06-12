@@ -34,7 +34,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* Layered background: spaceship PNG over a soft gradient */
   background-image:
-    url('https://pub-e68758f43067417dba612b2371819aa1.r2.dev/viktor-components/alien-spaceship.png'),
+    url('/assets/alien-spaceship.png'),
     linear-gradient(to top left, #F5F5F5, #F7F7F7);
   background-position: center 40%, center;
   background-size: contain, cover;

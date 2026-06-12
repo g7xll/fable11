@@ -6,42 +6,42 @@ interface Logo {
 
 const LOGOS: Logo[] = [
   {
-    src: 'https://svgl.app/library/procure.svg',
+    src: '/assets/procure.svg',
     alt: 'Procure',
     gradient: { from: '#1d4ed8', to: '#60a5fa' },
   },
   {
-    src: 'https://svgl.app/library/shopify.svg',
+    src: '/assets/shopify.svg',
     alt: 'Shopify',
     gradient: { from: '#facc15', to: '#fde047' },
   },
   {
-    src: 'https://svgl.app/library/blender.svg',
+    src: '/assets/blender.svg',
     alt: 'Blender',
     gradient: { from: '#2563eb', to: '#93c5fd' },
   },
   {
-    src: 'https://svgl.app/library/figma.svg',
+    src: '/assets/figma.svg',
     alt: 'Figma',
     gradient: { from: '#7c3aed', to: '#c4b5fd' },
   },
   {
-    src: 'https://svgl.app/library/spotify.svg',
+    src: '/assets/spotify.svg',
     alt: 'Spotify',
     gradient: { from: '#ec4899', to: '#ef4444' },
   },
   {
-    src: 'https://svgl.app/library/lottielab.svg',
+    src: '/assets/lottielab.svg',
     alt: 'Lottielab',
     gradient: { from: '#facc15', to: '#84cc16' },
   },
   {
-    src: 'https://svgl.app/library/google-cloud.svg',
+    src: '/assets/google-cloud.svg',
     alt: 'Google Cloud',
     gradient: { from: '#7dd3fc', to: '#bae6fd' },
   },
   {
-    src: 'https://svgl.app/library/bing.svg',
+    src: '/assets/bing.svg',
     alt: 'Bing',
     gradient: { from: '#06b6d4', to: '#2dd4bf' },
   },

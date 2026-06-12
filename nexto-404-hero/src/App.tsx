@@ -1,7 +1,7 @@
 import { useState, type ReactNode } from 'react'
 
 const LOGO_URL =
-  'https://pub-f170a2592d2c4a1485466404c36807be.r2.dev/Tests/logoipsum-415.svg'
+  '/assets/logoipsum-415.svg'
 
 const NAV_LINKS = ['Our Team', 'Solutions', 'Showcase', 'News']
 

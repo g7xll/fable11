@@ -3,7 +3,7 @@ import { LogIn, UserPlus, Play, Sparkles, Menu, X } from 'lucide-react';
 import BoomerangVideoBg from './BoomerangVideoBg';
 
 const BG_VIDEO =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260511_131941_d136af49-e243-493a-be14-6ff3f24e09e6.mp4';
+  '/assets/hf_20260511_131941_d136af49-e243-493a-be14-6ff3f24e09e6.mp4';
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);

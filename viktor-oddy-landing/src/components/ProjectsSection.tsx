@@ -11,18 +11,18 @@ const PROJECTS: Project[] = [
     name: 'evr',
     description: 'From idea to millions raised for a web3 AI product',
     image:
-      'https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
+      '/assets/hero-evr-ventures-preview-DZxeVFEX.gif',
   },
   {
     name: 'Automation Machines',
     description: 'Streamlining industrial automation processes',
     image:
-      'https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif',
+      '/assets/hero-automation-machines-preview-DlTveRIN.gif',
   },
   {
     name: 'xPortfolio',
     description: 'Modern portfolio management platform',
-    image: 'https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif',
+    image: '/assets/hero-xportfolio-preview-D4A8maiC.gif',
   },
 ];
 

@@ -22,7 +22,7 @@ const server = createServer((req, res) => {
 await new Promise((r) => server.listen(4173, r))
 
 const VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4'
+  '/assets/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4'
 
 let failures = 0
 const check = (name, ok, detail = '') => {

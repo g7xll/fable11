@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion } from "motion/react";
 
 const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260603_132049_036591b8-6e92-4760-b94c-a7ea6eef315c.mp4";
+  "/assets/hf_20260603_132049_036591b8-6e92-4760-b94c-a7ea6eef315c.mp4";
 
 /** Inline pill-shaped "pupil" element nested in the headline. */
 function EyePill() {

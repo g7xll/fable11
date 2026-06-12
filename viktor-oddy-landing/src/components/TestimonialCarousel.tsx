@@ -18,7 +18,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'CEO',
     company: 'Data.storage',
     avatar:
-      'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2',
+      '/assets/pexels-2379004.jpg',
   },
   {
     quote:
@@ -27,7 +27,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'Founder',
     company: 'Nexgate',
     avatar:
-      'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2',
+      '/assets/pexels-220453.jpg',
   },
   {
     quote:
@@ -36,7 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'VP Product',
     company: 'LaunchPad',
     avatar:
-      'https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2',
+      '/assets/pexels-614810.jpg',
   },
   {
     quote:
@@ -45,7 +45,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'Co-founder',
     company: 'Nexus Labs',
     avatar:
-      'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2',
+      '/assets/pexels-774909.jpg',
   },
   {
     quote:
@@ -54,7 +54,7 @@ const TESTIMONIALS: Testimonial[] = [
     role: 'Head of Design',
     company: 'Paradigm Labs',
     avatar:
-      'https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=96&h=96&fit=crop&dpr=2',
+      '/assets/pexels-1222271.jpg',
   },
 ];
 

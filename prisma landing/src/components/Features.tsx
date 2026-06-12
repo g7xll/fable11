@@ -4,7 +4,7 @@ import { ArrowRight, Check } from 'lucide-react';
 import WordsPullUpMultiStyle from './WordsPullUpMultiStyle';
 
 const FEATURES_VIDEO_URL =
-  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4';
+  '/assets/hf_20260406_133058_0504132a-0cf3-4450-a370-8ea3b05c95d4.mp4';
 
 const CARD_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -12,7 +12,7 @@ const CARDS = [
   {
     number: '01',
     title: 'Project Storyboard.',
-    icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.png&w=1280&q=85',
+    icon: '/assets/hf_20260405_171918_4a5edc79-d78f-4637-ac8b-53c43c220606.webp',
     items: [
       'Scene-by-scene visual planning',
       'Drag-and-drop shot sequencing',
@@ -23,7 +23,7 @@ const CARDS = [
   {
     number: '02',
     title: 'Smart Critiques.',
-    icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.png&w=1280&q=85',
+    icon: '/assets/hf_20260405_171741_ed9845ab-f5b2-4018-8ce7-07cc01823522.webp',
     items: [
       'AI-powered analysis of pacing and tone',
       'Creative notes pinned to the exact frame',
@@ -33,7 +33,7 @@ const CARDS = [
   {
     number: '03',
     title: 'Immersion Capsule.',
-    icon: 'https://images.higgs.ai/?default=1&output=webp&url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.png&w=1280&q=85',
+    icon: '/assets/hf_20260405_171809_f56666dc-c099-4778-ad82-9ad4f209567b.webp',
     items: [
       'Silences notifications during deep work',
       'Ambient soundscapes tuned to your scene',

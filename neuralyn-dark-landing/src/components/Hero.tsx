@@ -6,7 +6,7 @@ import logo from "@/assets/logo.png";
 import heroDashboard from "@/assets/hero-dashboard.png";
 
 const VIDEO_URL =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
+  "/assets/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";
 
 const NAV_LINKS = ["Home", "Services", "Reviews", "Contact us"];
 

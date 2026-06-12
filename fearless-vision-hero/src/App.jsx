@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
 
 const VIDEO_URL =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260517_222138_3e3205be-3364-417b-a64a-bfe087acbec4.mp4";
+  "/assets/hf_20260517_222138_3e3205be-3364-417b-a64a-bfe087acbec4.mp4";
 
 const EASE = [0.22, 1, 0.36, 1];
 

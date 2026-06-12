@@ -16,37 +16,37 @@ const ITEMS: Exploration[] = [
   {
     title: "Chromatic study 01",
     image:
-      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1541701494587-cb58502866ab.jpg",
     rotate: "rotate-3",
   },
   {
     title: "Dark matter",
     image:
-      "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1550684376-efcbd6e3f031.jpg",
     rotate: "-rotate-2",
   },
   {
     title: "Glass refraction",
     image:
-      "https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1557672172-298e090bd0f1.jpg",
     rotate: "rotate-1",
   },
   {
     title: "Soft geometry",
     image:
-      "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1618005182384-a83a8bd57fbe.jpg",
     rotate: "-rotate-3",
   },
   {
     title: "Field lines",
     image:
-      "https://images.unsplash.com/photo-1620121692029-d088224ddc74?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1620121692029-d088224ddc74.jpg",
     rotate: "rotate-2",
   },
   {
     title: "Liquid light",
     image:
-      "https://images.unsplash.com/photo-1604076913837-52ab5629fba9?q=80&w=900&auto=format&fit=crop",
+      "/assets/unsplash-photo-1604076913837-52ab5629fba9.jpg",
     rotate: "-rotate-1",
   },
 ];

@@ -10,14 +10,14 @@ import BottomNav from './components/BottomNav';
 import { useInViewAnimation } from './hooks/useInViewAnimation';
 
 const MARQUEE_IMAGES = [
-  'https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif',
-  'https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif',
-  'https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif',
-  'https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif',
-  'https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif',
-  'https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif',
-  'https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif',
-  'https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif',
+  '/assets/hero-space-voyage-preview-eECLH3Yc.gif',
+  '/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif',
+  '/assets/hero-velorah-preview-CJNTtbpd.gif',
+  '/assets/hero-asme-preview-B_nGDnTP.gif',
+  '/assets/hero-transform-data-preview-Cx5OU29N.gif',
+  '/assets/hero-aethera-preview-DknSlcTa.gif',
+  '/assets/hero-orbit-web3-preview-BXt4OttD.gif',
+  '/assets/hero-nexora-preview-cx5HmUgo.gif',
 ];
 
 const BOOK_URL = 'https://halaskastudio.com/./book';
