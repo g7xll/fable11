@@ -3,7 +3,7 @@ import { motion, type Variants } from "motion/react";
 import { Chrome, Circle, Eye, EyeOff, Github, type LucideIcon } from "lucide-react";
 
 const VIDEO_SRC =
-  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260506_081238_406ed0e3-5d83-436e-a512-0bbff7ec5b95.mp4";
+  "/assets/hf_20260506_081238_406ed0e3-5d83-436e-a512-0bbff7ec5b95.mp4";
 
 const heroContainer: Variants = {
   hidden: { opacity: 0 },
