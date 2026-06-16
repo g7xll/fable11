@@ -1,0 +1,70 @@
+/*
+ * Aethera theme — monochrome editorial palette, type tokens,
+ * and the fade-rise entrance choreography.
+ */
+
+@theme {
+	--color-background: #ffffff;
+	--color-ink: #000000;
+	--color-muted: #6f6f6f;
+
+	--font-display: "Instrument Serif", "Georgia", "Times New Roman", serif;
+	--font-body:
+		"Inter", -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ---- Entrance choreography ------------------------------------- */
+
+@keyframes fade-rise {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate-fade-rise {
+	animation: fade-rise 0.8s ease-out both;
+}
+
+.animate-fade-rise-delay {
+	animation: fade-rise 0.8s ease-out 0.2s both;
+}
+
+.animate-fade-rise-delay-2 {
+	animation: fade-rise 0.8s ease-out 0.4s both;
+}
+
+/* Respect reduced-motion preferences: settle instantly, no rise. */
+@media (prefers-reduced-motion: reduce) {
+	.animate-fade-rise,
+	.animate-fade-rise-delay,
+	.animate-fade-rise-delay-2 {
+		animation-duration: 0.01ms;
+		animation-delay: 0ms;
+	}
+}
+
+/* ---- Base ------------------------------------------------------- */
+
+::selection {
+	background: #000000;
+	color: #ffffff;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	margin: 0;
+	background-color: var(--color-background);
+	color: var(--color-ink);
+	font-family: var(--font-body);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
