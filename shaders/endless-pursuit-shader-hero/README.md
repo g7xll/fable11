@@ -94,7 +94,9 @@ is the only external dependency in the project; everything else is local.
 
 ## Demo
 
-Record `demo.mp4` with the repo recorder from a browser-capable environment:
+![demo](./demo.mp4)
+
+Recorded with the repo recorder:
 
 ```bash
 cd scripts/record-demos && npm install

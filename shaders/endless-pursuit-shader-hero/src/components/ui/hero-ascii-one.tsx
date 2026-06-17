@@ -68,7 +68,7 @@ const FRAG = `
   }
 
   void main() {
-    vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / iResolution.y;
+    vec2 uv = (gl_FragCoord.xy - 0.5 * iResolution.xy) / max(iResolution.y, 1.0);
     float t = iTime * 0.02;
     float rad = length(uv);
 
@@ -158,37 +158,59 @@ function ShaderBackdrop({ dimmed }: { dimmed: boolean }) {
 
     const resize = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const w = Math.floor(canvas.clientWidth * dpr);
-      const h = Math.floor(canvas.clientHeight * dpr);
+      const w = Math.max(1, Math.floor(canvas.clientWidth * dpr));
+      const h = Math.max(1, Math.floor(canvas.clientHeight * dpr));
       if (canvas.width !== w || canvas.height !== h) {
         canvas.width = w;
         canvas.height = h;
       }
       gl.viewport(0, 0, canvas.width, canvas.height);
     };
-    resize();
-    window.addEventListener("resize", resize);
 
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-    let raf = 0;
-    const start = performance.now();
-    const render = (now: number) => {
+    // Worst-case backdrop is opaque black, never a flash of white.
+    gl.clearColor(0, 0, 0, 1);
+
+    // Draw one frame at virtual time `t`. Returns false (and draws nothing) until
+    // the canvas has a real laid-out size — guarding against a 0x0 first frame
+    // feeding iResolution=(0,0) into the shader (which would divide to NaN and
+    // paint the whole canvas white).
+    const draw = (t: number) => {
       resize();
-      const t = reduce ? 8 : (now - start) / 1000;
+      if (canvas.clientWidth === 0 || canvas.clientHeight === 0) return false;
       gl.uniform1f(uTime, t);
       gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.clear(gl.COLOR_BUFFER_BIT);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
-      // When reduced motion is requested, paint a single representative frame.
-      if (!reduce) raf = requestAnimationFrame(render);
+      return true;
     };
-    raf = requestAnimationFrame(render);
+
+    let raf = 0;
+    let painted = false;
+    const start = performance.now();
+    const loop = (now: number) => {
+      if (reduce) {
+        // Static: paint one good frame as soon as the canvas is sized, then idle.
+        painted = painted || draw(6.0);
+        if (!painted) raf = requestAnimationFrame(loop);
+        return;
+      }
+      draw((now - start) / 1000);
+      raf = requestAnimationFrame(loop);
+    };
+    raf = requestAnimationFrame(loop);
+
+    const onResize = () => {
+      if (reduce) draw(6.0);
+    };
+    window.addEventListener("resize", onResize);
 
     return () => {
       cancelAnimationFrame(raf);
-      window.removeEventListener("resize", resize);
+      window.removeEventListener("resize", onResize);
       gl.deleteBuffer(buf);
       gl.deleteProgram(program);
       gl.deleteShader(vs);
