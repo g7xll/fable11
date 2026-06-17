@@ -1,13 +1,16 @@
-# dithering-swirl-shader — DITHER/LAB
+# dithering-swirl-shader — HALFTONE ENGINE
 
 A self-contained shader experiment that integrates the **`DitheringShader`**
 React component (a procedural WebGL2 field quantised to **two colours** through
-an ordered **Bayer** dither matrix) into a polished vintage-monitor instrument.
+an ordered **Bayer** dither matrix) into a polished **halftone press** — a
+visualization-first companion to the repo's `dithering-shader-lab` take, built
+around a panel that renders the _exact_ threshold matrix the GPU samples.
 
-> **DITHER/LAB** — _One field, two colours, decided on the GPU._ The prompt ships
-> a `swirl` shape dithered 1-bit cyan-on-magenta; here it becomes a live console:
-> swap the shape, swap the dither matrix, re-skin the phosphor, and watch a
-> telemetry panel read real lit-pixel coverage straight off the framebuffer.
+> **HALFTONE ENGINE** — _One field, two colours, decided on the GPU._ The prompt
+> ships a `swirl` shape dithered 1-bit cyan-on-magenta; here it becomes a live
+> press: swap the shape, swap the screen matrix, re-skin the phosphor, watch the
+> active Bayer matrix light up cell-by-cell, and read real ink coverage straight
+> off the framebuffer.
 
 ## What's here
 
@@ -22,8 +25,8 @@ an ordered **Bayer** dither matrix) into a polished vintage-monitor instrument.
 - `src/components/bayer-matrix.tsx` — renders the exact `bayer2x2/4x4/8x8`
   threshold tables the fragment shader indexes, so the panel always shows the
   math driving the field above it.
-- `src/App.tsx` — the full instrument (field + wordmark + control deck +
-  telemetry + matrix panel).
+- `src/App.tsx` — the full instrument (field + wordmark + press controls +
+  ink telemetry + threshold-matrix panel).
 - `src/lib/utils.ts` — shadcn's `cn()` helper (clsx + tailwind-merge).
 
 ## Run it

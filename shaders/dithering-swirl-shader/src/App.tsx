@@ -117,10 +117,10 @@ export default function App() {
           </span>
           <div className="leading-none">
             <p className="font-display text-sm font-semibold tracking-[0.22em] text-cyan-50">
-              DITHER<span className="text-cyan-400">/</span>LAB
+              HALFTONE<span className="text-cyan-400">·</span>ENGINE
             </p>
             <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.3em] text-cyan-400/60">
-              Ordered Dithering · WebGL2
+              Ordered-Dither Press · WebGL2
             </p>
           </div>
         </div>
@@ -193,7 +193,7 @@ function Wordmark({ shape, type }: { shape: DitheringShape; type: DitheringType 
   return (
     <div className="animate-fade-in select-none">
       <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.42em] text-cyan-300/80">
-        Ordered Dithering · 1-Bit Field
+        Threshold Screen · 1-Bit Press
       </p>
       <h1 className="phosphor font-display text-[clamp(3.2rem,13vw,9.5rem)] font-semibold uppercase leading-[0.82] tracking-tighter text-white">
         {shape}
@@ -227,7 +227,7 @@ function ControlDeck(props: ControlDeckProps) {
     <section className="panel animate-rise rounded-md p-4">
       <div className="flex items-center justify-between">
         <h2 className="font-mono text-[10px] uppercase tracking-[0.28em] text-cyan-300">
-          Control Deck
+          Press Controls
         </h2>
         <button
           type="button"

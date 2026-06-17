@@ -64,7 +64,7 @@ export function SignalTelemetry({
       <div className="flex items-center justify-between">
         <span className="flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-cyan-300">
           <Radio className="h-3.5 w-3.5" />
-          Beam Telemetry
+          Ink Telemetry
         </span>
         <span className="flex items-center gap-1.5 text-[9px] uppercase tracking-[0.2em] text-cyan-500">
           <span className="h-1.5 w-1.5 animate-pulse-dot rounded-full bg-cyan-400 shadow-[0_0_8px_#00ffff]" />
@@ -112,8 +112,8 @@ export function SignalTelemetry({
         />
         <Stat
           icon={<Activity className="h-3 w-3" />}
-          label="Beam"
-          value={`${beam} mA`}
+          label="Ink"
+          value={`${beam} pt`}
         />
         <Stat label="Render" value={`${Math.round(fps)} fps`} />
         <Stat label="Uptime" value={clock} />
