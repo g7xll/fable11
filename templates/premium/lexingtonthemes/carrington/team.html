@@ -415,23 +415,82 @@
        JAVASCRIPT
        ============================================================ -->
   <script>
-    (function() {
+    var searchItems = [
+      { title: 'Understanding Corporate Mergers', desc: 'Key legal considerations in M&A transactions', url: 'blog/posts/1.html' },
+      { title: 'Employment Law Update', desc: 'Recent changes in employment regulations', url: 'blog/posts/2.html' },
+      { title: 'Carrington Law Expands Practice Areas', desc: 'New capabilities in intellectual property law', url: 'blog/posts/3.html' },
+      { title: 'Acme Corp Acquires Beta Industries', desc: 'Complex cross-border merger cleared by regulators', url: 'cases/acme-acquires-beta.html' },
+      { title: 'Garcia Wrongful Termination', desc: 'Landmark employment discrimination verdict', url: 'cases/garcia-wrongful-termination.html' },
+      { title: 'GlobalTech Merger Clearance', desc: 'Antitrust approval for major tech consolidation', url: 'cases/globaltech-merger-clearance.html' },
+      { title: 'David Kim', desc: 'Managing Partner — Corporate Law & M&A', url: 'team.html' },
+      { title: 'Emily Johnson', desc: 'Senior Partner — Employment & Labor Law', url: 'team.html' },
+      { title: 'John Sullivan', desc: 'Partner — Litigation & Dispute Resolution', url: 'team.html' },
+      { title: 'Sarah Chen', desc: 'Partner — Intellectual Property', url: 'team.html' },
+      { title: 'Corporate Law', desc: 'Strategic counsel for businesses of all sizes', url: 'practice-areas.html' },
+      { title: 'Adoption Law', desc: 'Compassionate guidance through the adoption process', url: 'practice-areas.html' },
+      { title: 'Child Custody', desc: 'Protecting your family\'s best interests', url: 'practice-areas.html' },
+      { title: 'Civil Litigation', desc: 'Aggressive representation in complex disputes', url: 'practice-areas.html' }
+    ];
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Nav scroll behavior
+      var navEl = document.querySelector('[data-nav]');
+      var logoEl = document.querySelector('[data-logo]');
+      var exploreEl = document.getElementById('exploreBtn');
+      var primaryLinks = document.querySelectorAll('[data-primary-link]');
+      var menuButton = document.querySelector('.nav-burger');
+
+      var enableScrollSwap = navEl && navEl.dataset.swap === 'true';
+
+      function handleScroll() {
+        var scrolled = window.scrollY > 10;
+        if (navEl) navEl.classList.toggle('scrolled', scrolled);
+        var color = scrolled ? 'var(--color-base-800)' : 'var(--color-white)';
+        if (logoEl) logoEl.style.color = color;
+        if (exploreEl) exploreEl.style.color = color;
+        primaryLinks.forEach(function(el) { el.style.color = color; });
+        if (menuButton) menuButton.style.color = color;
+      }
+
+      if (enableScrollSwap) {
+        window.addEventListener('scroll', handleScroll);
+        handleScroll();
+      } else {
+        if (navEl) navEl.classList.add('scrolled');
+        if (logoEl) logoEl.style.color = 'var(--color-base-800)';
+        if (exploreEl) exploreEl.style.color = 'var(--color-base-800)';
+        primaryLinks.forEach(function(el) { el.style.color = 'var(--color-base-800)'; });
+        if (menuButton) menuButton.style.color = 'var(--color-base-800)';
+      }
+
       // Mobile menu
-      const burger = document.getElementById('nav-burger');
-      const mobileMenu = document.getElementById('mobile-menu');
+      var burger = document.getElementById('nav-burger');
+      var mobileMenu = document.getElementById('mobile-menu');
       if (burger && mobileMenu) {
         burger.addEventListener('click', function() {
-          const exp = burger.getAttribute('aria-expanded') === 'true';
+          var exp = burger.getAttribute('aria-expanded') === 'true';
           burger.setAttribute('aria-expanded', String(!exp));
           mobileMenu.classList.toggle('open');
         });
       }
+
       // Mega menu
-      const megaTrigger = document.getElementById('exploreBtn');
-      const megaDesktop = document.getElementById('mega-desktop');
+      var megaTrigger = document.getElementById('exploreBtn');
+      var megaDesktop = document.getElementById('mega-desktop');
       if (megaTrigger && megaDesktop) {
+        megaTrigger.addEventListener('mouseenter', function() {
+          megaTrigger.setAttribute('aria-expanded', 'true');
+          megaDesktop.classList.add('visible');
+        });
+        var megaWrap = megaTrigger.closest('[style*="position:relative"]') || megaTrigger.parentElement;
+        if (megaWrap) {
+          megaWrap.addEventListener('mouseleave', function() {
+            megaTrigger.setAttribute('aria-expanded', 'false');
+            megaDesktop.classList.remove('visible');
+          });
+        }
         megaTrigger.addEventListener('click', function() {
-          const exp = megaTrigger.getAttribute('aria-expanded') === 'true';
+          var exp = megaTrigger.getAttribute('aria-expanded') === 'true';
           megaTrigger.setAttribute('aria-expanded', String(!exp));
           megaDesktop.classList.toggle('visible');
         });
@@ -442,27 +501,64 @@
           }
         });
       }
-      // Search
-      const searchBtn = document.getElementById('searchButton');
-      const searchModal = document.getElementById('searchModal');
-      const searchInput = document.getElementById('searchInput');
+
+      // Search modal
+      var searchBtn = document.getElementById('searchButton');
+      var searchModal = document.getElementById('searchModal');
+      var searchInput = document.getElementById('searchInput');
+      var searchResults = document.getElementById('searchResults');
+      var clearBtn = document.getElementById('clearSearch');
+
+      var fuse = new Fuse(searchItems, { keys: ['title', 'desc'], threshold: 0.4 });
+
       if (searchBtn && searchModal) {
         searchBtn.addEventListener('click', function() {
           searchModal.classList.add('open');
+          searchModal.setAttribute('aria-hidden', 'false');
           document.body.style.overflow = 'hidden';
-          setTimeout(() => searchInput && searchInput.focus(), 100);
+          setTimeout(function() { if (searchInput) searchInput.focus(); }, 100);
         });
         searchModal.addEventListener('click', function(e) {
           if (e.target === searchModal) {
             searchModal.classList.remove('open');
+            searchModal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
           }
         });
         document.addEventListener('keydown', function(e) {
-          if (e.key === 'Escape') { searchModal.classList.remove('open'); document.body.style.overflow = ''; }
+          if (e.key === 'Escape') {
+            searchModal.classList.remove('open');
+            searchModal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+          }
         });
       }
-    })();
+
+      if (searchInput && searchResults) {
+        searchInput.addEventListener('input', function() {
+          var q = searchInput.value.trim();
+          if (!q) { searchResults.innerHTML = ''; return; }
+          var results = fuse.search(q).slice(0, 6);
+          if (!results.length) {
+            searchResults.innerHTML = '<p style="padding:1rem;color:var(--color-base-600)">No results found.</p>';
+            return;
+          }
+          searchResults.innerHTML = results.map(function(r) {
+            return '<a href="' + r.item.url + '" role="option" style="display:block;padding:0.75rem 1rem;border-bottom:1px solid var(--color-base-100);text-decoration:none;color:inherit">' +
+              '<strong style="display:block;font-size:0.9rem">' + r.item.title + '</strong>' +
+              '<span style="font-size:0.8rem;color:var(--color-base-600)">' + r.item.desc + '</span></a>';
+          }).join('');
+        });
+      }
+
+      if (clearBtn && searchInput && searchResults) {
+        clearBtn.addEventListener('click', function() {
+          searchInput.value = '';
+          searchResults.innerHTML = '';
+          searchInput.focus();
+        });
+      }
+    });
   </script>
 
 </body>
