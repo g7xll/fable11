@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Practice Areas — Carrington Law</title>
-  <meta name="description" content="Explore our comprehensive range of legal services designed to meet the diverse needs of our clients. From corporate law and litigation to family matters and intellectual property.">
+  <title>Practice Areas — Carrington Law Firm</title>
+  <meta name="description" content="Explore Carrington Law's comprehensive practice areas including corporate law, family law, criminal defense, and more.">
   <meta name="theme-color" content="#ffffff">
 
   <!-- Inter Font -->
@@ -41,7 +41,7 @@
       <!-- Desktop left: Explore + Mega Menu -->
       <div class="nav-left">
         <div style="position:relative" id="mega-wrap">
-          <button type="button" class="nav-explore-btn" aria-expanded="false" aria-controls="mega-desktop" id="exploreBtn" data-explore-trigger>
+          <button type="button" class="nav-explore-btn" aria-expanded="false" aria-controls="mega-desktop" id="exploreBtn" data-explore-trigger style="color:var(--color-base-800)">
             <span>Explore</span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -221,126 +221,138 @@
      ============================================================ -->
 <main class="grow">
 
-  <div style="max-width:120rem;margin:0 auto;padding:3rem 2rem 3rem;padding-top:12rem">
-    <div style="max-width:36rem">
-      <h1 style="font-family:'Newsreader',serif;font-size:clamp(2rem,4vw,3rem);color:#0f292c;line-height:1.2">Practice Areas</h1>
-      <p style="font-size:0.875rem;color:#57534e;line-height:1.6;margin-top:0.5rem">Explore our comprehensive range of legal services designed to meet the diverse needs of our clients. From corporate law and litigation to family matters and intellectual property, our experienced attorneys deliver strategic solutions and dedicated advocacy across every practice area.</p>
+  <!-- PAGE HEADER -->
+  <section style="background:var(--color-base-50)">
+    <div class="container py-section-lg">
+      <p class="section-label section-label-secondary">Areas of Expertise</p>
+      <h1 class="section-heading">Practice Areas</h1>
+      <p class="section-desc-muted">Our experienced attorneys provide comprehensive legal services across a wide range of practice areas, delivering strategic solutions tailored to your unique needs and goals.</p>
     </div>
+  </section>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,28rem),1fr));gap:2rem;margin-top:6rem">
+  <!-- PRACTICE AREA CARDS -->
+  <section>
+    <div class="container py-section-lg">
 
-      <!-- Adoption and Guardianship -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/adoption-and-guardianship" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Adoption and Guardianship"></a>
-        <img src="assets/images/adoption.webp" alt="Adoption and Guardianship" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Adoption and Guardianship</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Assistance in navigating adoption and guardianship processes.</p>
+      <div class="practice-grid">
+
+        <article class="practice-card">
+          <a href="/practice-areas/adoption-and-guardianship" class="card-link" title="Learn more: Adoption and Guardianship" aria-label="Learn more about Adoption and Guardianship"></a>
+          <img src="assets/images/adoption.webp" alt="Adoption and Guardianship" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Adoption and Guardianship</h3>
+            <p class="practice-card-desc">Assistance in navigating adoption and guardianship processes.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/assault-and-violent-crimes" class="card-link" title="Learn more: Assault and Violent Crimes" aria-label="Learn more about Assault and Violent Crimes"></a>
+          <img src="assets/images/assault.webp" alt="Assault and Violent Crimes" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Assault and Violent Crimes</h3>
+            <p class="practice-card-desc">Defense for clients accused of assault or violent offenses.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/child-custody" class="card-link" title="Learn more: Child Custody" aria-label="Learn more about Child Custody"></a>
+          <img src="assets/images/custody.webp" alt="Child Custody" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Child Custody</h3>
+            <p class="practice-card-desc">Guiding families through custody decisions for stable arrangements.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/corporate-law" class="card-link" title="Learn more: Corporate Law" aria-label="Learn more about Corporate Law"></a>
+          <img src="assets/images/corporate.webp" alt="Corporate Law" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Corporate Law</h3>
+            <p class="practice-card-desc">Expert legal advice for companies of all sizes.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/divorce-and-separation" class="card-link" title="Learn more: Divorce and Separation" aria-label="Learn more about Divorce and Separation"></a>
+          <img src="assets/images/divorce.DilSEQUT_2teLPV.webp" alt="Divorce and Separation" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Divorce and Separation</h3>
+            <p class="practice-card-desc">Compassionate guidance through divorce and separation proceedings.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/dui-and-traffic-violations" class="card-link" title="Learn more: DUI and Traffic Violations" aria-label="Learn more about DUI and Traffic Violations"></a>
+          <img src="assets/images/dui.BzIR-Wi-_Z1quGTA.webp" alt="DUI and Traffic Violations" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">DUI and Traffic Violations</h3>
+            <p class="practice-card-desc">Aggressive defense for DUI charges and traffic violation cases.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/employment-law" class="card-link" title="Learn more: Employment Law" aria-label="Learn more about Employment Law"></a>
+          <img src="assets/images/employment.DGFT8qid_Z2vhSeY.webp" alt="Employment Law" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Employment Law</h3>
+            <p class="practice-card-desc">Protecting employee and employer rights in the workplace.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/intellectual-property" class="card-link" title="Learn more: Intellectual Property" aria-label="Learn more about Intellectual Property"></a>
+          <img src="assets/images/intellectual.DYNvpIWa_ZK3Rv.webp" alt="Intellectual Property" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Intellectual Property</h3>
+            <p class="practice-card-desc">Protecting your innovations, trademarks, and creative works.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/litigation" class="card-link" title="Learn more: Litigation" aria-label="Learn more about Litigation"></a>
+          <img src="assets/images/litigation.PdaJ8fTI_yF1hu.webp" alt="Litigation" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Litigation</h3>
+            <p class="practice-card-desc">Aggressive representation in civil and commercial disputes.</p>
+          </div>
+        </article>
+
+        <article class="practice-card">
+          <a href="/practice-areas/theft-and-property-crimes" class="card-link" title="Learn more: Theft and Property Crimes" aria-label="Learn more about Theft and Property Crimes"></a>
+          <img src="assets/images/theft.BbwnSe1Y_2x17nh.webp" alt="Theft and Property Crimes" loading="lazy" width="1000" height="1000">
+          <div class="practice-card-overlay"></div>
+          <div class="practice-card-content">
+            <h3 class="practice-card-title">Theft and Property Crimes</h3>
+            <p class="practice-card-desc">Defense strategies for theft, burglary, and property crime charges.</p>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="cta-block">
+        <div class="cta-block-inner">
+          <div>
+            <h3 class="cta-block-title">Schedule a free consultation</h3>
+            <p class="cta-block-sub">Our attorneys are ready to help. Talk to us about your legal needs today.</p>
+          </div>
+          <div class="cta-block-btns">
+            <a href="/contact" class="btn btn-dark btn-lg">Contact Us</a>
+            <a href="/free-consultation" class="btn btn-light btn-lg">Free Consultation</a>
+          </div>
         </div>
-      </article>
-
-      <!-- Assault and Violent Crimes -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/assault-and-violent-crimes" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Assault and Violent Crimes"></a>
-        <img src="assets/images/assault.webp" alt="Assault and Violent Crimes" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Assault and Violent Crimes</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Defense for clients accused of assault or violent offenses.</p>
-        </div>
-      </article>
-
-      <!-- Child Custody -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/child-custody" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Child Custody"></a>
-        <img src="assets/images/custody.webp" alt="Child Custody" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Child Custody</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Guiding families through custody decisions for stable arrangements.</p>
-        </div>
-      </article>
-
-      <!-- Corporate Law -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/corporate-law" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Corporate Law"></a>
-        <img src="assets/images/corporate.webp" alt="Corporate Law" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Corporate Law</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Expert legal advice for companies of all sizes.</p>
-        </div>
-      </article>
-
-      <!-- Divorce and Separation -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/divorce-and-separation" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Divorce and Separation"></a>
-        <img src="assets/images/divorce.DilSEQUT_2teLPV.webp" alt="Divorce and Separation" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Divorce and Separation</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Guidance and representation through the divorce process for fair outcomes.</p>
-        </div>
-      </article>
-
-      <!-- DUI and Traffic Violations -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/dui-and-traffic-violations" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about DUI and Traffic Violations"></a>
-        <img src="assets/images/dui.BzIR-Wi-_Z1quGTA.webp" alt="DUI and Traffic Violations" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">DUI and Traffic Violations</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Aggressive representation in DUI and traffic cases to minimize penalties.</p>
-        </div>
-      </article>
-
-      <!-- Employment Law -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/employment-law" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Employment Law"></a>
-        <img src="assets/images/employment.DGFT8qid_Z2vhSeY.webp" alt="Employment Law" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Employment Law</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Comprehensive employment law solutions for employers and employees.</p>
-        </div>
-      </article>
-
-      <!-- Intellectual Property -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/intellectual-property" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Intellectual Property"></a>
-        <img src="assets/images/intellectual.DYNvpIWa_ZK3Rv.webp" alt="Intellectual Property" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Intellectual Property</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Protecting and enforcing intellectual property rights.</p>
-        </div>
-      </article>
-
-      <!-- Litigation -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/litigation" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Litigation"></a>
-        <img src="assets/images/litigation.PdaJ8fTI_yF1hu.webp" alt="Litigation" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Litigation</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Aggressive representation in civil and commercial disputes.</p>
-        </div>
-      </article>
-
-      <!-- Theft and Property Crimes -->
-      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
-        <a href="/practice-areas/theft-and-property-crimes" style="position:absolute;inset:0;z-index:2" aria-label="Learn more about Theft and Property Crimes"></a>
-        <img src="assets/images/theft.BbwnSe1Y_2x17nh.webp" alt="Theft and Property Crimes" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
-        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
-        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
-          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Theft and Property Crimes</h3>
-          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Advocacy for clients facing theft, burglary, or property damage charges.</p>
-        </div>
-      </article>
+      </div>
 
     </div>
-  </div>
+  </section>
 
 </main>
 
@@ -488,6 +500,13 @@
     if (enableScrollSwap) {
       window.addEventListener('scroll', handleScroll);
       handleScroll();
+    } else {
+      // data-swap="false": nav stays white always, set base-800 colors immediately
+      if (navEl) navEl.classList.add('scrolled');
+      if (logoEl) logoEl.style.color = 'var(--color-base-800)';
+      if (exploreEl) exploreEl.style.color = 'var(--color-base-800)';
+      primaryLinks.forEach(function(el) { el.style.color = 'var(--color-base-800)'; });
+      if (menuButton) menuButton.style.color = 'var(--color-base-800)';
     }
 
     // ---- MOBILE MENU ----

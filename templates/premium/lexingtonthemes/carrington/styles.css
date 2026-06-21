@@ -1660,3 +1660,39 @@ ol, ul { list-style: none; }
 /* Divider bullet */
 .sep { display: none; }
 @media (min-width: 48rem) { .sep { display: inline; } }
+
+/* ============================================================
+   ABS-LINK OVERLAY (clickable card pattern)
+   ============================================================ */
+.relative { position: relative; }
+.abs-link {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.relative > *:not(.abs-link) { position: relative; z-index: 2; }
+
+/* ============================================================
+   BLOG GRID
+   ============================================================ */
+.blog-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 40rem) {
+  .blog-posts-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 64rem) {
+  .blog-posts-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* Featured post 2-col on large screens */
+.blog-featured-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+@media (min-width: 64rem) {
+  .blog-featured-inner { grid-template-columns: 1fr 1fr; }
+}
