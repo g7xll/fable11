@@ -1,15 +1,15 @@
 "use client";
 
+import { motion } from "framer-motion";
 import {
+	type ReactNode,
+	type TouchEvent,
 	useEffect,
 	useRef,
 	useState,
-	ReactNode,
-	TouchEvent,
-	WheelEvent,
+	type WheelEvent,
 } from "react";
 import Image from "@/components/ui/image";
-import { motion } from "framer-motion";
 
 interface ScrollExpandMediaProps {
 	mediaType?: "video" | "image";
@@ -46,7 +46,7 @@ const ScrollExpandMedia = ({
 		setScrollProgress(0);
 		setShowContent(false);
 		setMediaFullyExpanded(false);
-	}, [mediaType]);
+	}, []);
 
 	// Allow a parent demo to reset the section back to its collapsed state.
 	useEffect(() => {

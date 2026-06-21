@@ -72,7 +72,7 @@ export default function BoomerangVideoBg({ src, className }: Props) {
 		const onLoaded = () => {
 			video.play().catch(() => {});
 			if (hasVFC) {
-				vfcVideo.requestVideoFrameCallback!(vfcLoop);
+				vfcVideo.requestVideoFrameCallback?.(vfcLoop);
 			} else {
 				rafId = requestAnimationFrame(rafLoop);
 			}
@@ -88,7 +88,7 @@ export default function BoomerangVideoBg({ src, className }: Props) {
 			video.removeEventListener("loadedmetadata", onLoaded);
 			video.removeEventListener("ended", onEnded);
 		};
-	}, [src]);
+	}, []);
 
 	useEffect(() => {
 		if (!framesReady) return;

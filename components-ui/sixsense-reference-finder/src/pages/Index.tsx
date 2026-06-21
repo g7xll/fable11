@@ -137,7 +137,7 @@ function PixelGrid({ side }: { side: "left" | "right" }) {
 				);
 			}
 		}
-	}, []);
+	}, [idx]);
 
 	// Single rAF render loop — repaints whenever marked dirty.
 	useEffect(() => {
@@ -324,7 +324,7 @@ function PixelGrid({ side }: { side: "left" | "right" }) {
 			cancelAnimationFrame(raf);
 			clearTimeout(flickerTimer);
 		};
-	}, []);
+	}, [idx]);
 
 	const widthPx = COLS * CELL;
 	const heightPx = ROWS * CELL;

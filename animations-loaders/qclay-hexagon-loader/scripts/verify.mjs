@@ -226,9 +226,7 @@ try {
 		`${iconInfo.settled}`,
 	);
 	// Center (middle) slot uses white icons, the two side slots use dark icons.
-	const whiteCount = iconInfo.srcs.filter(
-		(s) => s && s.includes("icon-w-"),
-	).length;
+	const whiteCount = iconInfo.srcs.filter((s) => s?.includes("icon-w-")).length;
 	const darkCount = iconInfo.srcs.filter(
 		(s) => s && /icon-\d/.test(s) && !s.includes("icon-w-"),
 	).length;

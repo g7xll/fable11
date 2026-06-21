@@ -128,8 +128,7 @@ try {
 	check(
 		"Video element configured (autoplay/loop/muted/playsinline/object-cover)",
 		Boolean(
-			video &&
-				video.autoplay &&
+			video?.autoplay &&
 				video.loop &&
 				video.muted &&
 				video.playsInline &&

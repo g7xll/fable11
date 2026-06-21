@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * A color stop for the rain. The first item is the RGB channel whose value is

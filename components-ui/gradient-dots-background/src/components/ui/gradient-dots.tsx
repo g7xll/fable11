@@ -1,7 +1,7 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
+import type React from "react";
 
 type GradientDotsProps = React.ComponentProps<typeof motion.div> & {
 	/** Dot size (default: 8) */

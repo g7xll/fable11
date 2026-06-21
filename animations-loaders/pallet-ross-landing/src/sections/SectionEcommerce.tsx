@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { PrimaryPill, SecondaryPill } from "../components/Pills";
 
 const HEADING_LINES: { words: string[]; color: string }[] = [

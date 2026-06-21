@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const A = "/vendor";
 

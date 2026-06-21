@@ -2,6 +2,7 @@
 // to initialize, and asserts the spec's content + a live WebGL canvas with no
 // console errors. Run against an already-running dev/preview server URL.
 import playwright from "/Volumes/Sandisk SSD/codingAndFun/samaan/fable/scripts/record-demos/node_modules/playwright/index.js";
+
 const { chromium } = playwright;
 
 const URL = process.env.VERIFY_URL || "http://localhost:3111/";
@@ -26,7 +27,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 page.on("console", (msg) => {
 	if (msg.type() === "error") errors.push(msg.text());
 });
-page.on("pageerror", (err) => errors.push("pageerror: " + err.message));
+page.on("pageerror", (err) => errors.push(`pageerror: ${err.message}`));
 
 await page.goto(URL, { waitUntil: "networkidle", timeout: 60000 });
 
@@ -79,7 +80,7 @@ check("CoreRenderer created a <canvas> inside #hero-canvas", canvasCount > 0);
 // Confirm a real WebGL context exists on that canvas.
 const webglInfo = await page.evaluate(() => {
 	const host = document.querySelector("#hero-canvas");
-	const canvas = host && host.querySelector("canvas");
+	const canvas = host?.querySelector("canvas");
 	if (!canvas) return { hasCanvas: false };
 	const gl =
 		canvas.getContext("webgl2") ||
@@ -159,10 +160,10 @@ const assetStatuses = await page.evaluate(async () => {
 	const out = {};
 	for (const f of files) {
 		try {
-			const r = await fetch("/vendor/" + f, { method: "GET" });
+			const r = await fetch(`/vendor/${f}`, { method: "GET" });
 			out[f] = r.status;
 		} catch (e) {
-			out[f] = "ERR " + e.message;
+			out[f] = `ERR ${e.message}`;
 		}
 	}
 	return out;
@@ -174,7 +175,7 @@ if (bad.length) console.log("    bad assets:", JSON.stringify(bad));
 // 8. No console errors
 check("No console errors", errors.length === 0);
 if (errors.length)
-	console.log("    console errors:\n    - " + errors.join("\n    - "));
+	console.log(`    console errors:\n    - ${errors.join("\n    - ")}`);
 
 await browser.close();
 

@@ -223,13 +223,13 @@
  */
 @media (max-height: 820px) {
 	.trusted-by-section {
-		padding-top: 22px !important;
-		padding-bottom: 22px !important;
+		padding-top: 22px;
+		padding-bottom: 22px;
 	}
 	.trusted-by-section > div {
-		gap: 18px !important;
+		gap: 18px;
 	}
 	.trusted-by-section .trusted-by-track {
-		height: 96px !important;
+		height: 96px;
 	}
 }

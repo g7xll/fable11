@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LOGO_BASE = "/vendor/";
 const LOGOS = [
@@ -68,7 +68,7 @@ const SectionTrustedBy = () => {
 		window.addEventListener("resize", onResize);
 		return () => window.removeEventListener("resize", onResize);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [isMobile]);
+	}, [measure]);
 
 	useEffect(() => {
 		let raf = 0;
@@ -116,7 +116,7 @@ const SectionTrustedBy = () => {
 				const yArc = (1 - bulge) * -8; // lift edges slightly
 				const tz = bulge * 140;
 				const scale = 0.72 + bulge * 0.5; // 0.72 .. 1.22
-				const edge = Math.max(0, 1 - Math.pow(Math.abs(ct), 1.5));
+				const edge = Math.max(0, 1 - Math.abs(ct) ** 1.5);
 				const opacity = edge * (0.5 + bulge * 0.5);
 				const blur = (1 - bulge) * 1.4;
 

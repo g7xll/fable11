@@ -1,5 +1,5 @@
+import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
-import { ChevronUp, ChevronDown } from "lucide-react";
 
 function IndicatorButton({
 	dir,

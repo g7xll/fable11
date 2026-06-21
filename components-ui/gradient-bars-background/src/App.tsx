@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	AudioLines,
 	Boxes,
@@ -10,12 +9,9 @@ import {
 	Sparkles,
 	Zap,
 } from "lucide-react";
-import {
-	Component,
-	GradientBars,
-} from "@/components/ui/gradient-bars-background";
-import { Fader, SwatchRow } from "@/components/lab/Fader";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CodeBlock } from "@/components/lab/CodeBlock";
+import { Fader, SwatchRow } from "@/components/lab/Fader";
 import {
 	Card,
 	CheckPill,
@@ -25,6 +21,10 @@ import {
 	SectionTitle,
 	StepNum,
 } from "@/components/lab/Primitives";
+import {
+	Component,
+	GradientBars,
+} from "@/components/ui/gradient-bars-background";
 import {
 	COMPONENT_SOURCE,
 	DEP_INSTALL,

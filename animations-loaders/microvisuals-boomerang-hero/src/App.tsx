@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = ["Gallery", "Styles", "API", "Pricing", "Blog"];
 const VIDEO_SRC =
@@ -80,7 +80,7 @@ export default function App() {
 		const scheduleCapture = () => {
 			if (!capturing) return;
 			if (supportsVFC) {
-				vfcId = video.requestVideoFrameCallback!(captureFrame);
+				vfcId = video.requestVideoFrameCallback?.(captureFrame);
 			} else {
 				rafId = requestAnimationFrame(captureFrame);
 			}

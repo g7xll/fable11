@@ -362,166 +362,163 @@ const HeroNavbar = () => {
 					style={{ maxWidth: 1100, margin: "0 auto", padding: "0 32px" }}
 				>
 					{currentDropdownLink && (
-						<>
-							<div
-								style={{
-									display: "grid",
-									gridTemplateColumns: "2fr 1fr",
-									gap: 64,
-								}}
-							>
-								{currentDropdownLink.columns.map((col) => (
-									<div
-										key={col.heading}
-										style={{
-											display: "flex",
-											flexDirection: "column",
-											borderRight: "1px solid rgba(255,255,255,0.08)",
-											paddingRight: 32,
-										}}
-									>
-										<div className="about-heading">{col.heading}</div>
-										{col.groups ? (
-											<div
-												style={{
-													display: "grid",
-													gridTemplateColumns: "1fr 1fr",
-													gap: 48,
-												}}
-											>
-												{col.groups.map((group, gi) => (
-													<div
-														key={gi}
-														style={{ display: "flex", flexDirection: "column" }}
-													>
-														{group.map((it) => (
-															<button
-																key={it.label}
-																className="about-item"
-																style={{ width: "100%" }}
-															>
-																<span>{it.label}</span>
-																{it.description && (
-																	<span className="about-item-desc">
-																		{it.description}
-																	</span>
-																)}
-															</button>
-														))}
-													</div>
-												))}
-											</div>
-										) : (
-											<div style={{ columnCount: 2, columnGap: 48 }}>
-												{col.items.map((it) => (
-													<button
-														key={it.label}
-														className="about-item"
-														style={{ width: "100%" }}
-													>
-														<span>{it.label}</span>
-														{it.description && (
-															<span className="about-item-desc">
-																{it.description}
-															</span>
-														)}
-													</button>
-												))}
-											</div>
-										)}
-									</div>
-								))}
-								{currentDropdownLink.announcement ? (
-									<div style={{ display: "flex", flexDirection: "column" }}>
-										<div className="about-heading">
-											{currentDropdownLink.announcement.eyebrow}
-										</div>
-										<button
-											className="about-item"
-											style={{ padding: 0, gap: 14, alignItems: "stretch" }}
+						<div
+							style={{
+								display: "grid",
+								gridTemplateColumns: "2fr 1fr",
+								gap: 64,
+							}}
+						>
+							{currentDropdownLink.columns.map((col) => (
+								<div
+									key={col.heading}
+									style={{
+										display: "flex",
+										flexDirection: "column",
+										borderRight: "1px solid rgba(255,255,255,0.08)",
+										paddingRight: 32,
+									}}
+								>
+									<div className="about-heading">{col.heading}</div>
+									{col.groups ? (
+										<div
+											style={{
+												display: "grid",
+												gridTemplateColumns: "1fr 1fr",
+												gap: 48,
+											}}
 										>
-											<div
+											{col.groups.map((group, gi) => (
+												<div
+													key={gi}
+													style={{ display: "flex", flexDirection: "column" }}
+												>
+													{group.map((it) => (
+														<button
+															key={it.label}
+															className="about-item"
+															style={{ width: "100%" }}
+														>
+															<span>{it.label}</span>
+															{it.description && (
+																<span className="about-item-desc">
+																	{it.description}
+																</span>
+															)}
+														</button>
+													))}
+												</div>
+											))}
+										</div>
+									) : (
+										<div style={{ columnCount: 2, columnGap: 48 }}>
+											{col.items.map((it) => (
+												<button
+													key={it.label}
+													className="about-item"
+													style={{ width: "100%" }}
+												>
+													<span>{it.label}</span>
+													{it.description && (
+														<span className="about-item-desc">
+															{it.description}
+														</span>
+													)}
+												</button>
+											))}
+										</div>
+									)}
+								</div>
+							))}
+							{currentDropdownLink.announcement ? (
+								<div style={{ display: "flex", flexDirection: "column" }}>
+									<div className="about-heading">
+										{currentDropdownLink.announcement.eyebrow}
+									</div>
+									<button
+										className="about-item"
+										style={{ padding: 0, gap: 14, alignItems: "stretch" }}
+									>
+										<div
+											style={{
+												width: "100%",
+												aspectRatio: "16 / 9",
+												borderRadius: 10,
+												overflow: "hidden",
+												background:
+													"linear-gradient(135deg, #2a1530 0%, #1a1a1a 60%, #2a1a2a 100%)",
+											}}
+										>
+											<img
+												src={currentDropdownLink.announcement.image}
+												alt=""
+												onError={(e) => {
+													(e.currentTarget as HTMLImageElement).style.display =
+														"none";
+												}}
 												style={{
 													width: "100%",
-													aspectRatio: "16 / 9",
-													borderRadius: 10,
-													overflow: "hidden",
-													background:
-														"linear-gradient(135deg, #2a1530 0%, #1a1a1a 60%, #2a1a2a 100%)",
+													height: "100%",
+													objectFit: "cover",
+													display: "block",
 												}}
-											>
-												<img
-													src={currentDropdownLink.announcement.image}
-													alt=""
-													onError={(e) => {
-														(
-															e.currentTarget as HTMLImageElement
-														).style.display = "none";
-													}}
-													style={{
-														width: "100%",
-														height: "100%",
-														objectFit: "cover",
-														display: "block",
-													}}
-												/>
-											</div>
-											<span
-												style={{
-													fontSize: 15,
-													fontWeight: 600,
-													lineHeight: 1.35,
-												}}
-											>
-												{currentDropdownLink.announcement.title}
-											</span>
+											/>
+										</div>
+										<span
+											style={{
+												fontSize: 15,
+												fontWeight: 600,
+												lineHeight: 1.35,
+											}}
+										>
+											{currentDropdownLink.announcement.title}
+										</span>
+										<span
+											style={{
+												display: "inline-flex",
+												alignItems: "center",
+												gap: 6,
+												color: "rgba(255,255,255,0.85)",
+												fontSize: 13,
+												fontWeight: 500,
+											}}
+										>
+											{currentDropdownLink.announcement.ctaLabel}
+											<span style={{ transform: "translateY(-1px)" }}>›</span>
+										</span>
+									</button>
+								</div>
+							) : currentDropdownLink.extra ? (
+								<div style={{ display: "flex", flexDirection: "column" }}>
+									<div className="about-heading">
+										{currentDropdownLink.extra.heading}
+									</div>
+									{currentDropdownLink.extra.items.map((it) => (
+										<button key={it.label} className="about-item">
 											<span
 												style={{
 													display: "inline-flex",
 													alignItems: "center",
 													gap: 6,
-													color: "rgba(255,255,255,0.85)",
-													fontSize: 13,
-													fontWeight: 500,
 												}}
 											>
-												{currentDropdownLink.announcement.ctaLabel}
-												<span style={{ transform: "translateY(-1px)" }}>›</span>
-											</span>
-										</button>
-									</div>
-								) : currentDropdownLink.extra ? (
-									<div style={{ display: "flex", flexDirection: "column" }}>
-										<div className="about-heading">
-											{currentDropdownLink.extra.heading}
-										</div>
-										{currentDropdownLink.extra.items.map((it) => (
-											<button key={it.label} className="about-item">
-												<span
-													style={{
-														display: "inline-flex",
-														alignItems: "center",
-														gap: 6,
-													}}
-												>
-													{it.label}
-													{it.external && (
-														<span style={{ transform: "translateY(-1px)" }}>
-															↗
-														</span>
-													)}
-												</span>
-												{it.description && (
-													<span className="about-item-desc">
-														{it.description}
+												{it.label}
+												{it.external && (
+													<span style={{ transform: "translateY(-1px)" }}>
+														↗
 													</span>
 												)}
-											</button>
-										))}
-									</div>
-								) : null}
-							</div>
-						</>
+											</span>
+											{it.description && (
+												<span className="about-item-desc">
+													{it.description}
+												</span>
+											)}
+										</button>
+									))}
+								</div>
+							) : null}
+						</div>
 					)}
 				</div>
 			</div>
