@@ -3,34 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cases — Carrington Law Firm</title>
-  <meta name="description" content="Explore notable case outcomes at Carrington Law Firm. Corporate acquisitions, wrongful termination, antitrust mergers, and more.">
+  <title>Our Cases — Carrington Law</title>
+  <meta name="description" content="Explore Carrington Law's track record of successful case outcomes. From landmark acquisitions to class action settlements, our results speak for themselves.">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- Inter Font -->
   <link rel="preconnect" href="https://rsms.me/">
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-  <!-- Newsreader Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
 
-  <!-- Fuse.js for search -->
   <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
 
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<!-- ============================================================
-     NAVIGATION
-     ============================================================ -->
 <nav class="site-nav" data-nav data-swap="false">
   <div class="container">
     <div class="nav-inner">
 
-      <!-- Logo -->
       <a href="/" aria-label="Home" class="nav-logo focus:outline-none">
         <span class="sr-only">Home</span>
         <svg class="h-4" data-logo viewBox="0 0 652 93" fill="none" xmlns="http://www.w3.org/2000/svg" style="height:1rem;color:var(--color-base-800);transition:color .3s">
@@ -38,22 +31,18 @@
         </svg>
       </a>
 
-      <!-- Desktop left: Explore + Mega Menu -->
       <div class="nav-left">
         <div style="position:relative" id="mega-wrap">
-          <button type="button" class="nav-explore-btn" aria-expanded="false" aria-controls="mega-desktop" id="exploreBtn" data-explore-trigger style="color:var(--color-base-800)">
+          <button type="button" class="nav-explore-btn" aria-expanded="false" aria-controls="mega-desktop" id="exploreBtn" data-explore-trigger>
             <span>Explore</span>
             <svg class="chevron" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
 
-          <!-- Mega Menu Panel -->
           <div id="mega-desktop" style="position:absolute;left:-6rem;right:-6rem;top:calc(100% + 0.5rem);width:calc(100vw - 4rem);max-width:80rem;">
             <div class="mega-panel">
               <div class="mega-grid">
-
-                <!-- Col 1: About -->
                 <div class="mega-col mega-col-about">
                   <div style="display:flex;flex-direction:column;height:100%;align-items:flex-start">
                     <img src="assets/images/heroImage.webp" alt="Carrington Law - Professional Legal Services" loading="eager" width="600" height="600">
@@ -66,8 +55,6 @@
                     </div>
                   </div>
                 </div>
-
-                <!-- Col 2: Explore Links -->
                 <div class="mega-col">
                   <span class="mega-label">Explore</span>
                   <ul class="mega-links mega-divider">
@@ -81,8 +68,6 @@
                     <li><a href="/contact"><h4 style="font-size:var(--text-sm);color:var(--color-base-200)">Contact</h4></a></li>
                   </ul>
                 </div>
-
-                <!-- Col 3: Insights -->
                 <div class="mega-col" style="display:flex;flex-direction:column;justify-content:space-between">
                   <div>
                     <span class="mega-label">Insights</span>
@@ -103,8 +88,6 @@
                   </div>
                   <a href="/blog" class="mega-explore-all">Explore all insights</a>
                 </div>
-
-                <!-- Col 4: Featured Case -->
                 <div class="mega-col" style="display:flex;flex-direction:column;justify-content:space-between">
                   <div>
                     <span class="mega-label">Featured Case</span>
@@ -120,13 +103,11 @@
                   </div>
                   <a href="/cases" class="mega-explore-all">View all cases</a>
                 </div>
-
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Right nav links -->
         <div class="nav-right">
           <a href="/system/overview" data-primary-link style="font-size:var(--text-sm);color:var(--color-base-800);transition:color .3s;white-space:nowrap">Overview</a>
           <a href="/cases" data-primary-link style="font-size:var(--text-sm);color:var(--color-base-800);transition:color .3s;white-space:nowrap">Results</a>
@@ -137,7 +118,6 @@
         </div>
       </div>
 
-      <!-- Nav Actions -->
       <div class="nav-actions">
         <button class="btn btn-icon" type="button" id="searchButton" aria-label="Search site">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -149,7 +129,6 @@
         <a href="https://lexingtonthemes.com/templates/carrington" class="btn btn-dark" style="height:2.5rem;padding-inline:.875rem;font-size:var(--text-xs)">Buy Carrington</a>
       </div>
 
-      <!-- Mobile Hamburger -->
       <button class="nav-burger" aria-controls="mobile-menu" aria-expanded="false" id="menuButton">
         <span class="sr-only">Open main menu</span>
         <span class="icon-burger">
@@ -168,9 +147,8 @@
         </span>
       </button>
 
-    </div><!-- /nav-inner -->
+    </div>
 
-    <!-- Mobile Menu -->
     <div id="mobile-menu">
       <div class="mobile-menu-inner">
         <div class="mobile-menu-links">
@@ -195,12 +173,9 @@
       </div>
     </div>
 
-  </div><!-- /container -->
+  </div>
 </nav>
 
-<!-- ============================================================
-     SEARCH MODAL
-     ============================================================ -->
 <div id="searchModal" role="dialog" aria-modal="true">
   <div class="search-modal-wrap">
     <div class="search-modal-panel" id="searchPanel">
@@ -216,102 +191,66 @@
   </div>
 </div>
 
-<!-- ============================================================
-     MAIN
-     ============================================================ -->
-<main class="grow">
-
-  <!-- PAGE HEADER -->
-  <section style="background:var(--color-base-50)">
-    <div class="container py-section-lg">
-      <p class="section-label section-label-secondary">Our Work</p>
-      <h1 class="section-heading">Case Studies</h1>
-      <p class="section-desc-muted">Explore our track record of success. Each case represents our commitment to achieving the best possible outcomes for our clients.</p>
+<main>
+  <div style="max-width:120rem;margin:0 auto;padding:3rem 2rem 3rem;padding-top:12rem">
+    <div style="max-width:36rem">
+      <h1 style="font-family:'Newsreader',serif;font-size:clamp(2rem,4vw,3rem);color:#0f292c;line-height:1.2">Cases</h1>
+      <p style="font-size:0.875rem;color:#57534e;line-height:1.6;margin-top:0.5rem">Explore a selection of our recent cases to see how Carrington Law delivers results for clients facing complex legal challenges. Each case reflects our commitment to strategic advocacy, thorough preparation, and achieving outcomes that matter. Discover the stories behind our work and the impact we make across industries.</p>
     </div>
-  </section>
 
-  <!-- CASE CARDS -->
-  <section>
-    <div class="container py-section-lg">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,28rem),1fr));gap:2rem;margin-top:6rem">
 
-      <div class="cases-grid">
-
-        <article class="case-card">
-          <a href="/cases/acme-acquires-beta" class="card-link" title="Read case study: Acme Corp acquires Beta Ltd." aria-label="Read case study for Acme Corp acquires Beta Ltd."></a>
-          <img src="assets/images/acme.webp" alt="Acme Corp acquires Beta Ltd." loading="lazy" width="1000" height="1000">
-          <div class="case-card-overlay"></div>
-          <div class="case-card-content">
-            <h3 class="case-card-title">Acme Corp acquires Beta Ltd.</h3>
-            <p class="case-card-sub">Acme Corp</p>
-            <p class="case-card-category">Corporate Law</p>
-            <p class="case-card-desc">Led counsel for Acme in a $250M cross-border acquisition of Beta Ltd., navigating complex regulatory requirements across three jurisdictions.</p>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <a href="/cases/garcia-wrongful-termination" class="card-link" title="Read case study: Garcia v. TechStart Inc. - Wrongful Termination Settlement" aria-label="Read case study for Garcia v. TechStart Inc. - Wrongful Termination Settlement"></a>
-          <img src="assets/images/garcia.webp" alt="Garcia v. TechStart Inc. - Wrongful Termination Settlement" loading="lazy" width="1000" height="1000">
-          <div class="case-card-overlay"></div>
-          <div class="case-card-content">
-            <h3 class="case-card-title">Garcia v. TechStart Inc. - Wrongful Termination Settlement</h3>
-            <p class="case-card-sub">Maria Garcia (Plaintiff)</p>
-            <p class="case-card-category">Employment Law</p>
-            <p class="case-card-desc">Secured $2.8M settlement for executive wrongfully terminated after whistleblower complaint about financial irregularities.</p>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <a href="/cases/globaltech-merger-clearance" class="card-link" title="Read case study: GlobalTech Merger Clearance" aria-label="Read case study for GlobalTech Merger Clearance"></a>
-          <img src="assets/images/globaltech.BuDVyNnV_2tbPC.webp" alt="GlobalTech Merger Clearance" loading="lazy" width="1000" height="1000">
-          <div class="case-card-overlay"></div>
-          <div class="case-card-content">
-            <h3 class="case-card-title">GlobalTech Merger Clearance</h3>
-            <p class="case-card-sub">GlobalTech Industries</p>
-            <p class="case-card-category">Antitrust Law</p>
-            <p class="case-card-desc">Successfully obtained antitrust clearance for $1.2B merger, working through complex regulatory hurdles with the FTC.</p>
-          </div>
-        </article>
-
-        <article class="case-card">
-          <a href="/cases/megacorp-restructuring" class="card-link" title="Read case study: MegaCorp Restructuring" aria-label="Read case study for MegaCorp Restructuring"></a>
-          <img src="assets/images/megacorp.DMFnpkDU_Z1s8tbw.webp" alt="MegaCorp Restructuring" loading="lazy" width="1000" height="1000">
-          <div class="case-card-overlay"></div>
-          <div class="case-card-content">
-            <h3 class="case-card-title">MegaCorp Restructuring</h3>
-            <p class="case-card-sub">MegaCorp Holdings</p>
-            <p class="case-card-category">Corporate Law</p>
-            <p class="case-card-desc">Advised MegaCorp on a comprehensive corporate restructuring involving multiple subsidiaries and cross-border asset transfers.</p>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="cta-block">
-        <div class="cta-block-inner">
-          <div>
-            <h3 class="cta-block-title">Ready to discuss your legal matter?</h3>
-            <p class="cta-block-sub">Contact us to schedule a confidential consultation with one of our attorneys.</p>
-          </div>
-          <div class="cta-block-btns">
-            <a href="/contact" class="btn btn-dark btn-lg">Contact Us</a>
-            <a href="/free-consultation" class="btn btn-light btn-lg">Free Consultation</a>
-          </div>
+      <!-- Card 1: Johnson & Associates v. MegaCorp -->
+      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
+        <a href="/cases/johnson-v-megacorp" style="position:absolute;inset:0;z-index:2" aria-label="View case: Johnson &amp; Associates v. MegaCorp"></a>
+        <img src="assets/images/megacorp.DMFnpkDU_Z1s8tbw.webp" alt="Johnson &amp; Associates v. MegaCorp" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
+        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
+        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
+          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Johnson &amp; Associates v. MegaCorp</h3>
+          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Johnson &amp; Associates (Class Counsel)</p>
         </div>
-      </div>
+      </article>
+
+      <!-- Card 2: Garcia v. TechStart Inc. -->
+      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
+        <a href="/cases/garcia-wrongful-termination" style="position:absolute;inset:0;z-index:2" aria-label="View case: Garcia v. TechStart Inc."></a>
+        <img src="assets/images/garcia.webp" alt="Garcia v. TechStart Inc." style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
+        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
+        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
+          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Garcia v. TechStart Inc.</h3>
+          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Maria Garcia (Plaintiff)</p>
+        </div>
+      </article>
+
+      <!-- Card 3: GlobalTech Merger Clearance -->
+      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
+        <a href="/cases/globaltech-merger-clearance" style="position:absolute;inset:0;z-index:2" aria-label="View case: GlobalTech Merger Clearance"></a>
+        <img src="assets/images/globaltech.BuDVyNnV_2tbPC.webp" alt="GlobalTech Merger Clearance" style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
+        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
+        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
+          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">GlobalTech Merger Clearance</h3>
+          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">GlobalTech Industries</p>
+        </div>
+      </article>
+
+      <!-- Card 4: Acme Corp acquires Beta Ltd. -->
+      <article style="position:relative;overflow:hidden;aspect-ratio:1;display:flex">
+        <a href="/cases/acme-acquires-beta" style="position:absolute;inset:0;z-index:2" aria-label="View case: Acme Corp acquires Beta Ltd."></a>
+        <img src="assets/images/acme.webp" alt="Acme Corp acquires Beta Ltd." style="width:100%;height:100%;object-fit:cover;object-position:center;transition:transform 0.3s" loading="lazy">
+        <div style="position:absolute;inset:0;background:rgba(10,26,28,0.7)"></div>
+        <div style="position:absolute;inset:0;padding:1.25rem;display:flex;flex-direction:column;justify-content:flex-end">
+          <h3 style="font-family:'Newsreader',serif;font-size:clamp(1.25rem,2.5vw,1.75rem);color:#fff">Acme Corp acquires Beta Ltd.</h3>
+          <p style="font-size:1rem;color:#e7e5e4;margin-top:0.25rem">Acme Corp</p>
+        </div>
+      </article>
 
     </div>
-  </section>
-
+  </div>
 </main>
 
-<!-- ============================================================
-     FOOTER
-     ============================================================ -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
-
-      <!-- Brand -->
       <div class="footer-brand">
         <svg class="footer-logo" viewBox="0 0 652 93" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M49.5015 24.6135C48.7695 19.3065 46.97 15.2805 44.103 12.5355C41.236 9.72948 37.515 8.32648 32.94 8.32648C29.707 8.32648 26.8095 9.05848 24.2475 10.5225C21.7465 11.9255 19.6115 13.8775 17.8425 16.3785C16.1345 18.8185 14.823 21.6855 13.908 24.9795C12.993 28.2125 12.5355 31.6895 12.5355 35.4105C12.5355 40.8395 13.3895 45.628 15.0975 49.776C16.8665 53.924 19.3065 57.1875 22.4175 59.5665C25.5895 61.9455 29.28 63.135 33.489 63.135C37.393 63.135 41.236 62.1895 45.018 60.2985C48.861 58.3465 52.033 55.6015 54.534 52.0635L58.2855 55.449C55.4185 59.353 52.3685 62.342 49.1355 64.416C45.9025 66.429 42.7305 67.8015 39.6195 68.5335C36.5695 69.2655 33.794 69.6315 31.293 69.6315C26.596 69.6315 22.326 68.808 18.483 67.161C14.701 65.453 11.407 63.135 8.60102 60.207C5.85602 57.218 3.72102 53.7715 2.19602 49.8675C0.732019 45.9025 1.86283e-05 41.6325 1.86283e-05 37.0575C1.86283e-05 32.8485 0.640519 28.7005 1.92152 24.6135C3.26352 20.5265 5.24602 16.836 7.86902 13.542C10.553 10.248 13.908 7.62498 17.934 5.67298C21.96 3.65998 26.6265 2.65348 31.9335 2.65348C34.6175 2.65348 37.4235 3.08048 40.3515 3.93448C43.2795 4.72748 46.0245 5.91698 48.5865 7.50298L48.2205 3.29398H54.534V24.6135H49.5015ZM393.698 69.6315C389.367 69.6315 385.433 68.686 381.895 66.795C378.357 64.843 375.551 62.1285 373.477 58.6515C371.464 55.1135 370.457 50.996 370.457 46.299C370.457 41.358 371.494 36.966 373.568 33.123C375.642 29.28 378.418 26.291 381.895 24.156C385.433 22.021 389.306 20.9535 393.515 20.9535C397.846 20.9535 401.75 21.9295 405.227 23.8815C408.704 25.8335 411.449 28.548 413.462 32.025C415.536 35.502 416.573 39.6195 416.573 44.3775C416.573 49.3795 415.567 53.802 413.554 57.645C411.602 61.427 408.887 64.3855 405.41 66.5205C401.994 68.5945 398.09 69.6315 393.698 69.6315ZM628.882 69.6315C624.551 69.6315 620.616 68.686 617.078 66.795C613.54 64.843 610.734 62.1285 608.66 58.6515C606.647 55.1135 605.641 50.996 605.641 46.299C605.641 41.358 606.678 36.966 608.752 33.123C610.826 29.28 613.601 26.291 617.078 24.156C620.616 22.021 624.49 20.9535 628.699 20.9535C633.03 20.9535 636.934 21.9295 640.411 23.8815C643.888 25.8335 646.633 28.548 648.646 32.025C650.72 35.502 651.757 39.6195 651.757 44.3775C651.757 49.3795 650.75 53.802 648.737 57.645C646.785 61.427 644.071 64.3855 640.594 66.5205C637.178 68.5945 633.274 69.6315 628.882 69.6315Z" fill="currentColor"/>
@@ -323,8 +262,6 @@
           <a href="#" aria-label="Facebook">Facebook</a>
         </div>
       </div>
-
-      <!-- Quick Links -->
       <div class="footer-col">
         <h3>Quick Links</h3>
         <ul>
@@ -337,8 +274,6 @@
           <li><a href="/free-consultation">Free Consultation</a></li>
         </ul>
       </div>
-
-      <!-- Practice Areas -->
       <div class="footer-col">
         <h3>Practice Areas</h3>
         <ul>
@@ -350,8 +285,6 @@
           <li><a href="/practice-areas/dui-and-traffic-violations">DUI and Traffic Violations</a></li>
         </ul>
       </div>
-
-      <!-- Contact -->
       <div class="footer-col" style="grid-column:span 2">
         <h3>Contact Us</h3>
         <div class="footer-offices">
@@ -370,8 +303,7 @@
         </div>
         <a href="mailto:carrington@example.com" class="footer-email">carrington@example.com</a>
       </div>
-
-    </div><!-- /footer-grid -->
+    </div>
 
     <div class="footer-bottom">
       <div class="footer-bottom-row">
@@ -384,23 +316,17 @@
           <a href="/infopages/terms">Terms of Service</a>
         </div>
       </div>
-
       <div class="footer-disclaimer">
         <p>The information provided on this website is for general informational purposes only and does not constitute legal advice, nor does it create an attorney-client relationship. You should not act or rely on any information on this site without seeking the advice of a qualified attorney who is familiar with your specific circumstances. Communications through this website do not establish an attorney-client relationship and are not privileged or confidential. Any testimonials or past results described on this site are not a guarantee of future outcomes, and each case is unique. Carrington Law makes no representations or warranties regarding the accuracy, completeness, or adequacy of the information contained herein. For legal advice tailored to your situation, please contact a licensed attorney directly. By using this site, you acknowledge and accept these terms.</p>
       </div>
     </div>
-
-  </div><!-- /container -->
+  </div>
 </footer>
 
-<!-- ============================================================
-     SCRIPTS
-     ============================================================ -->
 <script>
 (function () {
   'use strict';
 
-  // ---- Search data ----
   const searchItems = [
     {"title":"Carrington law firm secures landmark victory in corporate litigation","description":"Carrington Law Firm wins a precedent-setting corporate litigation case, strengthening business law standards in New York.","date":"2025-11-01T00:00:00.000Z","url":"/blog/posts/1","section":"Blog"},
     {"title":"Carrington Attorneys Featured in National Law Review","description":"Carrington Law Firm's attorneys are recognized for their expertise in the National Law Review's annual spotlight.","date":"2025-10-15T00:00:00.000Z","url":"/blog/posts/2","section":"Blog"},
@@ -418,10 +344,8 @@
     {"title":"Litigation","description":"Aggressive representation in civil and commercial disputes.","date":null,"url":"/practice-areas/litigation","section":"Practice Area"},
   ];
 
-  // ---- DOM Ready ----
   document.addEventListener('DOMContentLoaded', function () {
 
-    // ---- NAV SCROLL BEHAVIOR ----
     const navEl = document.querySelector('[data-nav]');
     const logoEl = document.querySelector('[data-logo]');
     const exploreEl = document.querySelector('[data-explore-trigger]');
@@ -457,7 +381,6 @@
       if (menuButton) menuButton.style.color = 'var(--color-base-800)';
     }
 
-    // ---- MOBILE MENU ----
     const mobileMenu = document.getElementById('mobile-menu');
 
     function openMenu() {
@@ -486,7 +409,6 @@
       if (e.key === 'Escape' && menuButton && menuButton.getAttribute('aria-expanded') === 'true') closeMenu();
     });
 
-    // ---- MEGA MENU ----
     const megaTrigger = document.getElementById('exploreBtn');
     const megaPanel = document.getElementById('mega-desktop');
 
@@ -528,7 +450,6 @@
       });
     }
 
-    // ---- SEARCH MODAL ----
     const searchModal = document.getElementById('searchModal');
     const searchPanel = document.getElementById('searchPanel');
     const searchButton = document.getElementById('searchButton');
@@ -615,21 +536,18 @@
       });
     }
 
-    // Close on Escape
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape' && searchModal && !searchModal.classList.contains('hidden') && searchModal.classList.contains('open')) {
         closeSearchModal();
       }
     });
 
-    // Click outside panel
     if (searchModal) {
       searchModal.addEventListener('click', function(e) {
         if (searchPanel && !searchPanel.contains(e.target)) closeSearchModal(e);
       });
     }
 
-    // Keyboard shortcuts to open: Cmd+K, Ctrl+K, /
     document.addEventListener('keydown', function(e) {
       var tag = (e.target && e.target.tagName) || '';
       var isTyping = /INPUT|TEXTAREA|SELECT/.test(tag) || (e.target && e.target.isContentEditable);
@@ -643,39 +561,7 @@
       }
     });
 
-    // ---- COUNT UP ANIMATION ----
-    var countupItems = document.querySelectorAll('.countup');
-    if ('IntersectionObserver' in window && countupItems.length > 0) {
-      function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
-      function animateCount(el) {
-        var target = Number(el.dataset.target || '0');
-        var suffix = el.dataset.suffix || '';
-        var decimals = Number(el.dataset.decimals || '0');
-        var duration = 1000;
-        var startTime = performance.now();
-        el.textContent = (0).toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
-        function step(now) {
-          var t = Math.min((now - startTime) / duration, 1);
-          var raw = target * easeOutCubic(t);
-          var value = decimals ? Number(raw.toFixed(decimals)) : Math.round(raw);
-          el.textContent = value.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) + suffix;
-          if (t < 1) requestAnimationFrame(step);
-        }
-        requestAnimationFrame(step);
-      }
-      var io = new IntersectionObserver(function(entries) {
-        entries.forEach(function(e) {
-          if (e.isIntersecting && !e.target.dataset.animated) {
-            e.target.dataset.animated = 'true';
-            io.unobserve(e.target);
-            animateCount(e.target);
-          }
-        });
-      }, { threshold: 0.35 });
-      countupItems.forEach(function(el) { io.observe(el); });
-    }
-
-  }); // end DOMContentLoaded
+  });
 })();
 </script>
 
