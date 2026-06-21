@@ -6,5 +6,5 @@ import DemoOne from "@/components/ui/demo";
  * "best place to use this component" being a full-viewport landing hero.
  */
 export default function App() {
-  return <DemoOne />;
+	return <DemoOne />;
 }

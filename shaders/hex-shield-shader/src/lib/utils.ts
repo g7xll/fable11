@@ -4,6 +4,8 @@
  * honoring the convention so `@/lib/utils` resolves exactly where the pasted
  * `shield-shader.tsx` imports `cn` from.
  */
-export function cn(...classes: Array<string | false | null | undefined>): string {
-  return classes.filter(Boolean).join(" ");
+export function cn(
+	...classes: Array<string | false | null | undefined>
+): string {
+	return classes.filter(Boolean).join(" ");
 }

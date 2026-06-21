@@ -7,13 +7,13 @@ import AuroraBorealisShader from "@/components/ui/aurora-borealis-shader";
  * kept so the canonical drop-in example from the prompt stays runnable on its own.
  */
 export default function DemoOne() {
-  return (
-    <div className="app-container">
-      <AuroraBorealisShader />
-      <div className="overlay-content">
-        <h1 className="title">Aurora Borealis</h1>
-        <p className="description">An Interactive WebGL Shader</p>
-      </div>
-    </div>
-  );
+	return (
+		<div className="app-container">
+			<AuroraBorealisShader />
+			<div className="overlay-content">
+				<h1 className="title">Aurora Borealis</h1>
+				<p className="description">An Interactive WebGL Shader</p>
+			</div>
+		</div>
+	);
 }

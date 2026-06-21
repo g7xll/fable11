@@ -95,7 +95,9 @@ try {
 			"--ignore-gpu-blocklist",
 		],
 	});
-	const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+	const ctx = await browser.newContext({
+		viewport: { width: 1280, height: 800 },
+	});
 	const page = await ctx.newPage();
 
 	const pageErrors = [];
@@ -109,7 +111,8 @@ try {
 	await sleep(1200);
 
 	// Deck header renders
-	const h1 = (await page.locator("header h1").first().textContent())?.trim() ?? "";
+	const h1 =
+		(await page.locator("header h1").first().textContent())?.trim() ?? "";
 	if (/Paper\s*Warp/i.test(h1)) ok(`deck header renders ("${h1}")`);
 	else bad(`deck header missing (got "${h1}")`);
 
@@ -137,7 +140,9 @@ try {
 		const c = document.querySelector("canvas");
 		if (!c) return false;
 		const gl =
-			c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+			c.getContext("webgl2") ||
+			c.getContext("webgl") ||
+			c.getContext("experimental-webgl");
 		return !!gl;
 	});
 	if (hasGL) ok("WebGL context is live");
@@ -149,14 +154,17 @@ try {
 	await speed.press("Home");
 	await sleep(250);
 	const minTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
 	);
 	await speed.press("End");
 	await sleep(250);
 	const maxTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
 	);
-	if (/0\.00/.test(minTxt) && /3\.00/.test(maxTxt)) ok("speed fader sweeps 0.00 → 3.00");
+	if (/0\.00/.test(minTxt) && /3\.00/.test(maxTxt))
+		ok("speed fader sweeps 0.00 → 3.00");
 	else bad(`speed fader did not sweep (min="${minTxt}" max="${maxTxt}")`);
 
 	// Switching a preset re-labels the scope

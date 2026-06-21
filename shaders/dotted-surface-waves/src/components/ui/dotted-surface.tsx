@@ -1,10 +1,10 @@
-'use client';
-import { cn } from '@/lib/utils';
-import { useTheme } from 'next-themes';
-import React, { useEffect, useRef } from 'react';
-import * as THREE from 'three';
+"use client";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import React, { useEffect, useRef } from "react";
+import * as THREE from "three";
 
-type DottedSurfaceProps = Omit<React.ComponentProps<'div'>, 'ref'>;
+type DottedSurfaceProps = Omit<React.ComponentProps<"div">, "ref">;
 
 export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 	const { theme } = useTheme();
@@ -62,7 +62,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 				const z = iy * SEPARATION - (AMOUNTY * SEPARATION) / 2;
 
 				positions.push(x, y, z);
-				if (theme === 'dark') {
+				if (theme === "dark") {
 					colors.push(200, 200, 200);
 				} else {
 					colors.push(0, 0, 0);
@@ -71,10 +71,10 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 		}
 
 		geometry.setAttribute(
-			'position',
+			"position",
 			new THREE.Float32BufferAttribute(positions, 3),
 		);
-		geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+		geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
 
 		// Create material
 		const material = new THREE.PointsMaterial({
@@ -135,7 +135,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 			renderer.setSize(window.innerWidth, window.innerHeight);
 		};
 
-		window.addEventListener('resize', handleResize);
+		window.addEventListener("resize", handleResize);
 
 		// Start animation
 		animate();
@@ -152,7 +152,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 
 		// Cleanup function
 		return () => {
-			window.removeEventListener('resize', handleResize);
+			window.removeEventListener("resize", handleResize);
 
 			if (sceneRef.current) {
 				cancelAnimationFrame(sceneRef.current.animationId);
@@ -183,7 +183,7 @@ export function DottedSurface({ className, ...props }: DottedSurfaceProps) {
 	return (
 		<div
 			ref={containerRef}
-			className={cn('pointer-events-none fixed inset-0 -z-1', className)}
+			className={cn("pointer-events-none fixed inset-0 -z-1", className)}
 			{...props}
 		/>
 	);

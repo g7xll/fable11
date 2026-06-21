@@ -9,7 +9,12 @@ interface CounterProps {
 }
 
 /** A tabular-nums readout that eases toward its target value (no layout shift). */
-export function Counter({ value, decimals = 0, ease = 0.45, className }: CounterProps) {
+export function Counter({
+	value,
+	decimals = 0,
+	ease = 0.45,
+	className,
+}: CounterProps) {
 	const [display, setDisplay] = useState(value);
 	const fromRef = useRef(value);
 	const startRef = useRef(0);
@@ -33,6 +38,8 @@ export function Counter({ value, decimals = 0, ease = 0.45, className }: Counter
 	}, [value, ease]);
 
 	return (
-		<span className={`tnum ${className ?? ""}`}>{display.toFixed(decimals)}</span>
+		<span className={`tnum ${className ?? ""}`}>
+			{display.toFixed(decimals)}
+		</span>
 	);
 }

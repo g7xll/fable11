@@ -66,7 +66,11 @@ body {
 		radial-gradient(1px 1px at 58% 18%, rgba(186, 215, 247, 0.4), transparent),
 		radial-gradient(1px 1px at 71% 78%, rgba(186, 215, 247, 0.3), transparent),
 		radial-gradient(1px 1px at 88% 42%, rgba(186, 215, 247, 0.45), transparent),
-		radial-gradient(1.5px 1.5px at 22% 88%, rgba(157, 195, 247, 0.3), transparent),
+		radial-gradient(
+			1.5px 1.5px at 22% 88%,
+			rgba(157, 195, 247, 0.3),
+			transparent
+		),
 		radial-gradient(1px 1px at 46% 36%, rgba(186, 215, 247, 0.3), transparent);
 	background-size: 720px 720px;
 	background-repeat: repeat;

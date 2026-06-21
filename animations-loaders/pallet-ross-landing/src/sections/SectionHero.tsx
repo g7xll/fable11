@@ -27,7 +27,9 @@ function HeadlineWord({ word, index }: { word: string; index: number }) {
 /** Section 1 — the hero. */
 export default function SectionHero() {
 	return (
-		<section style={{ minHeight: "100vh", overflow: "hidden", position: "relative" }}>
+		<section
+			style={{ minHeight: "100vh", overflow: "hidden", position: "relative" }}
+		>
 			<main
 				style={{
 					paddingTop: 140,

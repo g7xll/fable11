@@ -23,34 +23,34 @@ import * as THREE from "three";
 
 /** One reading lifted from the render loop, in shader space. */
 export interface MatrixSample {
-  /** Elapsed feed time in seconds (respects `timeScale` / `frozen`). */
-  time: number;
-  /** Warp center, normalized 0..1 across the canvas (origin bottom-left). */
-  warp: { x: number; y: number };
-  /** Smoothed frames per second. */
-  fps: number;
+	/** Elapsed feed time in seconds (respects `timeScale` / `frozen`). */
+	time: number;
+	/** Warp center, normalized 0..1 across the canvas (origin bottom-left). */
+	warp: { x: number; y: number };
+	/** Smoothed frames per second. */
+	fps: number;
 }
 
 export interface CelestialMatrixShaderProps {
-  /** Extra classes merged onto the container (layout/positioning overrides). */
-  className?: string;
-  /** Inline style overrides merged onto the brief's defaults. */
-  style?: React.CSSProperties;
-  /** Multiplier on the feed clock. 1 = brief default. */
-  timeScale?: number;
-  /** Pause the feed clock without tearing down the GL context. */
-  frozen?: boolean;
-  /** Per-frame telemetry callback (throttled to ~10 Hz). */
-  onSample?: (sample: MatrixSample) => void;
-  /** ARIA label for the background region. */
-  ariaLabel?: string;
+	/** Extra classes merged onto the container (layout/positioning overrides). */
+	className?: string;
+	/** Inline style overrides merged onto the brief's defaults. */
+	style?: React.CSSProperties;
+	/** Multiplier on the feed clock. 1 = brief default. */
+	timeScale?: number;
+	/** Pause the feed clock without tearing down the GL context. */
+	frozen?: boolean;
+	/** Per-frame telemetry callback (throttled to ~10 Hz). */
+	onSample?: (sample: MatrixSample) => void;
+	/** ARIA label for the background region. */
+	ariaLabel?: string;
 }
 
 interface MatrixUniforms {
-  iTime: { value: number };
-  iResolution: { value: THREE.Vector2 };
-  iMouse: { value: THREE.Vector2 };
-  [uniform: string]: THREE.IUniform;
+	iTime: { value: number };
+	iResolution: { value: THREE.Vector2 };
+	iMouse: { value: THREE.Vector2 };
+	[uniform: string]: THREE.IUniform;
 }
 
 const vertexShader = /* glsl */ `
@@ -102,154 +102,161 @@ const fragmentShader = /* glsl */ `
 `;
 
 export default function CelestialMatrixShader({
-  className,
-  style,
-  timeScale = 1,
-  frozen = false,
-  onSample,
-  ariaLabel = "Celestial Matrix animated background",
+	className,
+	style,
+	timeScale = 1,
+	frozen = false,
+	onSample,
+	ariaLabel = "Celestial Matrix animated background",
 }: CelestialMatrixShaderProps) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Live mirrors so the loop sees the latest prop values without re-subscribing.
-  const timeScaleRef = useRef(timeScale);
-  const frozenRef = useRef(frozen);
-  const onSampleRef = useRef(onSample);
-  timeScaleRef.current = timeScale;
-  frozenRef.current = frozen;
-  onSampleRef.current = onSample;
+	// Live mirrors so the loop sees the latest prop values without re-subscribing.
+	const timeScaleRef = useRef(timeScale);
+	const frozenRef = useRef(frozen);
+	const onSampleRef = useRef(onSample);
+	timeScaleRef.current = timeScale;
+	frozenRef.current = frozen;
+	onSampleRef.current = onSample;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-    // 1) Scene, camera, clock
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const clock = new THREE.Clock();
+		// 1) Scene, camera, clock
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		const clock = new THREE.Clock();
 
-    // 2) Renderer
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      container.appendChild(renderer.domElement);
-    } catch (err) {
-      console.error("WebGL not supported:", err);
-      container.innerHTML =
-        '<p style="color:#9fb0cf;font-family:monospace;text-align:center;padding:2rem;">' +
-        "FEED OFFLINE — this browser does not support WebGL." +
-        "</p>";
-      return;
-    }
+		// 2) Renderer
+		let renderer: THREE.WebGLRenderer;
+		try {
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+			container.appendChild(renderer.domElement);
+		} catch (err) {
+			console.error("WebGL not supported:", err);
+			container.innerHTML =
+				'<p style="color:#9fb0cf;font-family:monospace;text-align:center;padding:2rem;">' +
+				"FEED OFFLINE — this browser does not support WebGL." +
+				"</p>";
+			return;
+		}
 
-    // 3) Uniforms, material, mesh
-    const uniforms: MatrixUniforms = {
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector2() },
-      iMouse: { value: new THREE.Vector2() },
-    };
-    const material = new THREE.ShaderMaterial({ vertexShader, fragmentShader, uniforms });
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		// 3) Uniforms, material, mesh
+		const uniforms: MatrixUniforms = {
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector2() },
+			iMouse: { value: new THREE.Vector2() },
+		};
+		const material = new THREE.ShaderMaterial({
+			vertexShader,
+			fragmentShader,
+			uniforms,
+		});
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    // 4) Resize handler
-    const onResize = () => {
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      renderer.setSize(w, h);
-      uniforms.iResolution.value.set(w, h);
-      // Re-center the warp if the cursor hasn't placed it yet.
-      if (uniforms.iMouse.value.lengthSq() === 0) {
-        uniforms.iMouse.value.set(w / 2, h / 2);
-      }
-    };
-    window.addEventListener("resize", onResize);
-    onResize();
+		// 4) Resize handler
+		const onResize = () => {
+			const w = container.clientWidth;
+			const h = container.clientHeight;
+			renderer.setSize(w, h);
+			uniforms.iResolution.value.set(w, h);
+			// Re-center the warp if the cursor hasn't placed it yet.
+			if (uniforms.iMouse.value.lengthSq() === 0) {
+				uniforms.iMouse.value.set(w / 2, h / 2);
+			}
+		};
+		window.addEventListener("resize", onResize);
+		onResize();
 
-    // 5) Pointer handler — warp follows the cursor. Tracked on window because
-    // the brief's container is pointer-transparent (pointerEvents: none).
-    const onPointerMove = (e: PointerEvent | MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      // flip Y so (0,0) is bottom-left, matching the shader's coordinate space
-      uniforms.iMouse.value.set(e.clientX - rect.left, rect.height - (e.clientY - rect.top));
-    };
-    window.addEventListener("pointermove", onPointerMove);
+		// 5) Pointer handler — warp follows the cursor. Tracked on window because
+		// the brief's container is pointer-transparent (pointerEvents: none).
+		const onPointerMove = (e: PointerEvent | MouseEvent) => {
+			const rect = container.getBoundingClientRect();
+			// flip Y so (0,0) is bottom-left, matching the shader's coordinate space
+			uniforms.iMouse.value.set(
+				e.clientX - rect.left,
+				rect.height - (e.clientY - rect.top),
+			);
+		};
+		window.addEventListener("pointermove", onPointerMove);
 
-    // 6) Feed clock decoupled from wall time so the parent can freeze / scale it.
-    let feedTime = 0;
-    let lastWall = clock.getElapsedTime();
+		// 6) Feed clock decoupled from wall time so the parent can freeze / scale it.
+		let feedTime = 0;
+		let lastWall = clock.getElapsedTime();
 
-    // Telemetry throttling + smoothed FPS.
-    let smoothedFps = 60;
-    let lastSampleAt = 0;
-    let lastFrameWall = lastWall;
+		// Telemetry throttling + smoothed FPS.
+		let smoothedFps = 60;
+		let lastSampleAt = 0;
+		let lastFrameWall = lastWall;
 
-    // 7) Animation loop
-    renderer.setAnimationLoop(() => {
-      const wall = clock.getElapsedTime();
-      const dt = wall - lastWall;
-      lastWall = wall;
+		// 7) Animation loop
+		renderer.setAnimationLoop(() => {
+			const wall = clock.getElapsedTime();
+			const dt = wall - lastWall;
+			lastWall = wall;
 
-      if (!frozenRef.current) feedTime += dt * timeScaleRef.current;
-      uniforms.iTime.value = feedTime;
-      renderer.render(scene, camera);
+			if (!frozenRef.current) feedTime += dt * timeScaleRef.current;
+			uniforms.iTime.value = feedTime;
+			renderer.render(scene, camera);
 
-      // FPS (exponential moving average over instantaneous frame delta)
-      const frameDt = wall - lastFrameWall;
-      lastFrameWall = wall;
-      if (frameDt > 0) smoothedFps = smoothedFps * 0.9 + (1 / frameDt) * 0.1;
+			// FPS (exponential moving average over instantaneous frame delta)
+			const frameDt = wall - lastFrameWall;
+			lastFrameWall = wall;
+			if (frameDt > 0) smoothedFps = smoothedFps * 0.9 + (1 / frameDt) * 0.1;
 
-      // Report telemetry ~10x/sec so React re-renders stay cheap.
-      const sampler = onSampleRef.current;
-      if (sampler && wall - lastSampleAt > 0.1) {
-        lastSampleAt = wall;
-        const res = uniforms.iResolution.value;
-        sampler({
-          time: feedTime,
-          warp: {
-            x: res.x > 0 ? uniforms.iMouse.value.x / res.x : 0.5,
-            y: res.y > 0 ? uniforms.iMouse.value.y / res.y : 0.5,
-          },
-          fps: smoothedFps,
-        });
-      }
-    });
+			// Report telemetry ~10x/sec so React re-renders stay cheap.
+			const sampler = onSampleRef.current;
+			if (sampler && wall - lastSampleAt > 0.1) {
+				lastSampleAt = wall;
+				const res = uniforms.iResolution.value;
+				sampler({
+					time: feedTime,
+					warp: {
+						x: res.x > 0 ? uniforms.iMouse.value.x / res.x : 0.5,
+						y: res.y > 0 ? uniforms.iMouse.value.y / res.y : 0.5,
+					},
+					fps: smoothedFps,
+				});
+			}
+		});
 
-    // 8) Cleanup
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("pointermove", onPointerMove);
+		// 8) Cleanup
+		return () => {
+			window.removeEventListener("resize", onResize);
+			window.removeEventListener("pointermove", onPointerMove);
 
-      renderer.setAnimationLoop(null);
+			renderer.setAnimationLoop(null);
 
-      const canvas = renderer.domElement;
-      if (canvas.parentNode) {
-        canvas.parentNode.removeChild(canvas);
-      }
+			const canvas = renderer.domElement;
+			if (canvas.parentNode) {
+				canvas.parentNode.removeChild(canvas);
+			}
 
-      material.dispose();
-      geometry.dispose();
-      renderer.dispose();
-    };
-  }, []);
+			material.dispose();
+			geometry.dispose();
+			renderer.dispose();
+		};
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={className}
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        zIndex: -1,
-        pointerEvents: "none",
-        ...style,
-      }}
-      aria-label={ariaLabel}
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className={className}
+			style={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+				width: "100vw",
+				height: "100vh",
+				zIndex: -1,
+				pointerEvents: "none",
+				...style,
+			}}
+			aria-label={ariaLabel}
+		/>
+	);
 }

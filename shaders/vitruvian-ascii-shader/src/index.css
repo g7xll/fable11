@@ -9,36 +9,37 @@
    We only need to point Tailwind's `font-mono` at our vendored JetBrains Mono
    so the heavy lettering ("UIMIX", "PERFECT PROPORTIONS") matches the canvas. */
 @theme {
-  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", "Fira Code", monospace;
-  --font-sans: "JetBrains Mono", ui-monospace, monospace;
+	--font-mono:
+		"JetBrains Mono", ui-monospace, "SF Mono", "Fira Code", monospace;
+	--font-sans: "JetBrains Mono", ui-monospace, monospace;
 }
 
 @layer base {
-  * {
-    box-sizing: border-box;
-  }
+	* {
+		box-sizing: border-box;
+	}
 
-  html,
-  body,
-  #root {
-    height: 100%;
-    /* The hero is a full-bleed single viewport (its verbatim 5vh frame offset
+	html,
+	body,
+	#root {
+		height: 100%;
+		/* The hero is a full-bleed single viewport (its verbatim 5vh frame offset
        would otherwise add a sliver of scroll); clip it to one screen. */
-    overflow: hidden;
-  }
+		overflow: hidden;
+	}
 
-  body {
-    margin: 0;
-    background: #000000;
-    color: #ffffff;
-    font-family: var(--font-mono);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
-    overflow: hidden;
-  }
+	body {
+		margin: 0;
+		background: #000000;
+		color: #ffffff;
+		font-family: var(--font-mono);
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		overflow: hidden;
+	}
 
-  ::selection {
-    background: #ffffff;
-    color: #000000;
-  }
+	::selection {
+		background: #ffffff;
+		color: #000000;
+	}
 }

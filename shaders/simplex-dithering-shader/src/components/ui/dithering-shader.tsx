@@ -238,20 +238,20 @@ void main() {
 
 // Shape and type enums
 export const DitheringShapes = {
-  simplex: 1,
-  warp: 2,
-  dots: 3,
-  wave: 4,
-  ripple: 5,
-  swirl: 6,
-  sphere: 7,
+	simplex: 1,
+	warp: 2,
+	dots: 3,
+	wave: 4,
+	ripple: 5,
+	swirl: 6,
+	sphere: 7,
 } as const;
 
 export const DitheringTypes = {
-  random: 1,
-  "2x2": 2,
-  "4x4": 3,
-  "8x8": 4,
+	random: 1,
+	"2x2": 2,
+	"4x4": 3,
+	"8x8": 4,
 } as const;
 
 export type DitheringShape = keyof typeof DitheringShapes;
@@ -259,332 +259,349 @@ export type DitheringType = keyof typeof DitheringTypes;
 
 /** Per-frame render stats surfaced to the host app for a live HUD. */
 export interface DitheringTelemetry {
-  /** Smoothed frames-per-second. */
-  fps: number;
-  /** Shader clock in seconds (already scaled by `speed`). */
-  time: number;
-  /** Drawing-buffer width in device pixels. */
-  width: number;
-  /** Drawing-buffer height in device pixels. */
-  height: number;
-  /** Total frames drawn since mount. */
-  frames: number;
+	/** Smoothed frames-per-second. */
+	fps: number;
+	/** Shader clock in seconds (already scaled by `speed`). */
+	time: number;
+	/** Drawing-buffer width in device pixels. */
+	width: number;
+	/** Drawing-buffer height in device pixels. */
+	height: number;
+	/** Total frames drawn since mount. */
+	frames: number;
 }
 
 interface DitheringShaderProps {
-  /**
-   * Fixed canvas width in CSS pixels. Ignored when `fill="window"`.
-   * @default 800
-   */
-  width?: number;
-  /**
-   * Fixed canvas height in CSS pixels. Ignored when `fill="window"`.
-   * @default 800
-   */
-  height?: number;
-  colorBack?: string;
-  colorFront?: string;
-  shape?: DitheringShape;
-  type?: DitheringType;
-  pxSize?: number;
-  speed?: number;
-  className?: string;
-  style?: React.CSSProperties;
-  /**
-   * When "window", the canvas tracks its parent's size (DPR-aware) and
-   * re-renders on resize. When "fixed" (default) it uses `width`/`height`.
-   */
-  fill?: "fixed" | "window";
-  /** Pauses the render loop when true (clock freezes at the current frame). */
-  paused?: boolean;
-  /** Callback fired on a throttled cadence with live render telemetry. */
-  onTelemetry?: (t: DitheringTelemetry) => void;
+	/**
+	 * Fixed canvas width in CSS pixels. Ignored when `fill="window"`.
+	 * @default 800
+	 */
+	width?: number;
+	/**
+	 * Fixed canvas height in CSS pixels. Ignored when `fill="window"`.
+	 * @default 800
+	 */
+	height?: number;
+	colorBack?: string;
+	colorFront?: string;
+	shape?: DitheringShape;
+	type?: DitheringType;
+	pxSize?: number;
+	speed?: number;
+	className?: string;
+	style?: React.CSSProperties;
+	/**
+	 * When "window", the canvas tracks its parent's size (DPR-aware) and
+	 * re-renders on resize. When "fixed" (default) it uses `width`/`height`.
+	 */
+	fill?: "fixed" | "window";
+	/** Pauses the render loop when true (clock freezes at the current frame). */
+	paused?: boolean;
+	/** Callback fired on a throttled cadence with live render telemetry. */
+	onTelemetry?: (t: DitheringTelemetry) => void;
 }
 
 function hexToRgba(hex: string): [number, number, number, number] {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result) return [0, 0, 0, 1];
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	if (!result) return [0, 0, 0, 1];
 
-  return [
-    Number.parseInt(result[1], 16) / 255,
-    Number.parseInt(result[2], 16) / 255,
-    Number.parseInt(result[3], 16) / 255,
-    1,
-  ];
+	return [
+		Number.parseInt(result[1], 16) / 255,
+		Number.parseInt(result[2], 16) / 255,
+		Number.parseInt(result[3], 16) / 255,
+		1,
+	];
 }
 
 function createShader(
-  gl: WebGL2RenderingContext,
-  type: number,
-  source: string,
+	gl: WebGL2RenderingContext,
+	type: number,
+	source: string,
 ): WebGLShader | null {
-  const shader = gl.createShader(type);
-  if (!shader) return null;
+	const shader = gl.createShader(type);
+	if (!shader) return null;
 
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
 
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(
-      "An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader),
-    );
-    gl.deleteShader(shader);
-    return null;
-  }
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		console.error(
+			"An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader),
+		);
+		gl.deleteShader(shader);
+		return null;
+	}
 
-  return shader;
+	return shader;
 }
 
 function createProgram(
-  gl: WebGL2RenderingContext,
-  vertexShaderSource: string,
-  fragmentShaderSource: string,
+	gl: WebGL2RenderingContext,
+	vertexShaderSource: string,
+	fragmentShaderSource: string,
 ): WebGLProgram | null {
-  const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
-  const fragmentShader = createShader(
-    gl,
-    gl.FRAGMENT_SHADER,
-    fragmentShaderSource,
-  );
+	const vertexShader = createShader(gl, gl.VERTEX_SHADER, vertexShaderSource);
+	const fragmentShader = createShader(
+		gl,
+		gl.FRAGMENT_SHADER,
+		fragmentShaderSource,
+	);
 
-  if (!vertexShader || !fragmentShader) return null;
+	if (!vertexShader || !fragmentShader) return null;
 
-  const program = gl.createProgram();
-  if (!program) return null;
+	const program = gl.createProgram();
+	if (!program) return null;
 
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
 
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.error(
-      "Unable to initialize the shader program: " +
-        gl.getProgramInfoLog(program),
-    );
-    gl.deleteProgram(program);
-    return null;
-  }
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		console.error(
+			"Unable to initialize the shader program: " +
+				gl.getProgramInfoLog(program),
+		);
+		gl.deleteProgram(program);
+		return null;
+	}
 
-  return program;
+	return program;
 }
 
 export function DitheringShader({
-  width = 800,
-  height = 800,
-  colorBack = "#000000",
-  colorFront = "#ffffff",
-  shape = "simplex",
-  type = "8x8",
-  pxSize = 4,
-  speed = 1,
-  className = "",
-  style = {},
-  fill = "fixed",
-  paused = false,
-  onTelemetry,
+	width = 800,
+	height = 800,
+	colorBack = "#000000",
+	colorFront = "#ffffff",
+	shape = "simplex",
+	type = "8x8",
+	pxSize = 4,
+	speed = 1,
+	className = "",
+	style = {},
+	fill = "fixed",
+	paused = false,
+	onTelemetry,
 }: DitheringShaderProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const programRef = useRef<WebGLProgram | null>(null);
-  const glRef = useRef<WebGL2RenderingContext | null>(null);
-  const uniformLocationsRef = useRef<
-    Record<string, WebGLUniformLocation | null>
-  >({});
-  // Keep the latest values for props read inside the render loop without
-  // tearing down the GL program on every change.
-  const propsRef = useRef({ colorBack, colorFront, shape, type, pxSize, speed, paused });
-  const telemetryRef = useRef(onTelemetry);
-  const sizeRef = useRef({ w: width, h: height });
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const animationRef = useRef<number>();
+	const programRef = useRef<WebGLProgram | null>(null);
+	const glRef = useRef<WebGL2RenderingContext | null>(null);
+	const uniformLocationsRef = useRef<
+		Record<string, WebGLUniformLocation | null>
+	>({});
+	// Keep the latest values for props read inside the render loop without
+	// tearing down the GL program on every change.
+	const propsRef = useRef({
+		colorBack,
+		colorFront,
+		shape,
+		type,
+		pxSize,
+		speed,
+		paused,
+	});
+	const telemetryRef = useRef(onTelemetry);
+	const sizeRef = useRef({ w: width, h: height });
 
-  // Mirror the fast-changing props into the ref each render.
-  propsRef.current = { colorBack, colorFront, shape, type, pxSize, speed, paused };
-  telemetryRef.current = onTelemetry;
+	// Mirror the fast-changing props into the ref each render.
+	propsRef.current = {
+		colorBack,
+		colorFront,
+		shape,
+		type,
+		pxSize,
+		speed,
+		paused,
+	};
+	telemetryRef.current = onTelemetry;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
 
-    const gl = canvas.getContext("webgl2", {
-      // preserveDrawingBuffer lets headless verification readPixels after a
-      // frame; the visual result is identical to the perf-default of false.
-      preserveDrawingBuffer: true,
-      antialias: false,
-    });
-    if (!gl) {
-      console.error("WebGL2 not supported");
-      return;
-    }
+		const gl = canvas.getContext("webgl2", {
+			// preserveDrawingBuffer lets headless verification readPixels after a
+			// frame; the visual result is identical to the perf-default of false.
+			preserveDrawingBuffer: true,
+			antialias: false,
+		});
+		if (!gl) {
+			console.error("WebGL2 not supported");
+			return;
+		}
 
-    glRef.current = gl;
+		glRef.current = gl;
 
-    // Create shader program
-    const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
-    if (!program) return;
+		// Create shader program
+		const program = createProgram(gl, vertexShaderSource, fragmentShaderSource);
+		if (!program) return;
 
-    programRef.current = program;
+		programRef.current = program;
 
-    // Get uniform locations
-    uniformLocationsRef.current = {
-      u_time: gl.getUniformLocation(program, "u_time"),
-      u_resolution: gl.getUniformLocation(program, "u_resolution"),
-      u_colorBack: gl.getUniformLocation(program, "u_colorBack"),
-      u_colorFront: gl.getUniformLocation(program, "u_colorFront"),
-      u_shape: gl.getUniformLocation(program, "u_shape"),
-      u_type: gl.getUniformLocation(program, "u_type"),
-      u_pxSize: gl.getUniformLocation(program, "u_pxSize"),
-    };
+		// Get uniform locations
+		uniformLocationsRef.current = {
+			u_time: gl.getUniformLocation(program, "u_time"),
+			u_resolution: gl.getUniformLocation(program, "u_resolution"),
+			u_colorBack: gl.getUniformLocation(program, "u_colorBack"),
+			u_colorFront: gl.getUniformLocation(program, "u_colorFront"),
+			u_shape: gl.getUniformLocation(program, "u_shape"),
+			u_type: gl.getUniformLocation(program, "u_type"),
+			u_pxSize: gl.getUniformLocation(program, "u_pxSize"),
+		};
 
-    // Set up position attribute
-    const positionAttributeLocation = gl.getAttribLocation(
-      program,
-      "a_position",
-    );
-    const positionBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-    const positions = [-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1];
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(positionAttributeLocation);
-    gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+		// Set up position attribute
+		const positionAttributeLocation = gl.getAttribLocation(
+			program,
+			"a_position",
+		);
+		const positionBuffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+		const positions = [-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1];
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+		gl.enableVertexAttribArray(positionAttributeLocation);
+		gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 
-    // Size the drawing buffer. In "window" mode we follow the parent box and
-    // account for devicePixelRatio so the dither grid stays crisp.
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const applySize = () => {
-      let cssW = width;
-      let cssH = height;
-      if (fill === "window") {
-        const parent = canvas.parentElement;
-        const rect = parent?.getBoundingClientRect();
-        cssW = Math.max(1, Math.round(rect?.width ?? window.innerWidth));
-        cssH = Math.max(1, Math.round(rect?.height ?? window.innerHeight));
-      }
-      const bw = Math.max(1, Math.round(cssW * dpr));
-      const bh = Math.max(1, Math.round(cssH * dpr));
-      if (canvas.width !== bw || canvas.height !== bh) {
-        canvas.width = bw;
-        canvas.height = bh;
-      }
-      sizeRef.current = { w: bw, h: bh };
-      gl.viewport(0, 0, bw, bh);
-    };
-    applySize();
+		// Size the drawing buffer. In "window" mode we follow the parent box and
+		// account for devicePixelRatio so the dither grid stays crisp.
+		const dpr = Math.min(window.devicePixelRatio || 1, 2);
+		const applySize = () => {
+			let cssW = width;
+			let cssH = height;
+			if (fill === "window") {
+				const parent = canvas.parentElement;
+				const rect = parent?.getBoundingClientRect();
+				cssW = Math.max(1, Math.round(rect?.width ?? window.innerWidth));
+				cssH = Math.max(1, Math.round(rect?.height ?? window.innerHeight));
+			}
+			const bw = Math.max(1, Math.round(cssW * dpr));
+			const bh = Math.max(1, Math.round(cssH * dpr));
+			if (canvas.width !== bw || canvas.height !== bh) {
+				canvas.width = bw;
+				canvas.height = bh;
+			}
+			sizeRef.current = { w: bw, h: bh };
+			gl.viewport(0, 0, bw, bh);
+		};
+		applySize();
 
-    let resizeObserver: ResizeObserver | undefined;
-    if (fill === "window") {
-      resizeObserver = new ResizeObserver(() => applySize());
-      if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
-      window.addEventListener("resize", applySize);
-    }
+		let resizeObserver: ResizeObserver | undefined;
+		if (fill === "window") {
+			resizeObserver = new ResizeObserver(() => applySize());
+			if (canvas.parentElement) resizeObserver.observe(canvas.parentElement);
+			window.addEventListener("resize", applySize);
+		}
 
-    // Telemetry accumulators.
-    let frames = 0;
-    let fpsAccum = 0;
-    let fpsFrames = 0;
-    let fpsWindowStart = performance.now();
-    let smoothedFps = 0;
-    let lastEmit = 0;
-    let lastFrameTs = performance.now();
-    // Clock carried independently of wall time so pausing freezes it cleanly.
-    let clock = 0;
+		// Telemetry accumulators.
+		let frames = 0;
+		let fpsAccum = 0;
+		let fpsFrames = 0;
+		let fpsWindowStart = performance.now();
+		let smoothedFps = 0;
+		let lastEmit = 0;
+		let lastFrameTs = performance.now();
+		// Clock carried independently of wall time so pausing freezes it cleanly.
+		let clock = 0;
 
-    // Animation loop
-    const render = () => {
-      const context = glRef.current;
-      const shaderProgram = programRef.current;
-      if (!context || !shaderProgram) return;
+		// Animation loop
+		const render = () => {
+			const context = glRef.current;
+			const shaderProgram = programRef.current;
+			if (!context || !shaderProgram) return;
 
-      const p = propsRef.current;
-      const now = performance.now();
-      const dt = (now - lastFrameTs) / 1000;
-      lastFrameTs = now;
+			const p = propsRef.current;
+			const now = performance.now();
+			const dt = (now - lastFrameTs) / 1000;
+			lastFrameTs = now;
 
-      if (!p.paused) {
-        clock += dt * p.speed;
-      }
+			if (!p.paused) {
+				clock += dt * p.speed;
+			}
 
-      context.clear(context.COLOR_BUFFER_BIT);
-      context.useProgram(shaderProgram);
+			context.clear(context.COLOR_BUFFER_BIT);
+			context.useProgram(shaderProgram);
 
-      const locations = uniformLocationsRef.current;
-      const { w, h } = sizeRef.current;
+			const locations = uniformLocationsRef.current;
+			const { w, h } = sizeRef.current;
 
-      // NB: locations can be `null` for an unused/optimized-out uniform, so we
-      // guard with `!= null` (not truthiness) — location 0 is valid.
-      if (locations.u_time != null) context.uniform1f(locations.u_time, clock);
-      if (locations.u_resolution != null)
-        context.uniform2f(locations.u_resolution, w, h);
-      if (locations.u_colorBack != null)
-        context.uniform4fv(locations.u_colorBack, hexToRgba(p.colorBack));
-      if (locations.u_colorFront != null)
-        context.uniform4fv(locations.u_colorFront, hexToRgba(p.colorFront));
-      if (locations.u_shape != null)
-        context.uniform1f(locations.u_shape, DitheringShapes[p.shape]);
-      if (locations.u_type != null)
-        context.uniform1f(locations.u_type, DitheringTypes[p.type]);
-      if (locations.u_pxSize != null)
-        context.uniform1f(locations.u_pxSize, p.pxSize);
+			// NB: locations can be `null` for an unused/optimized-out uniform, so we
+			// guard with `!= null` (not truthiness) — location 0 is valid.
+			if (locations.u_time != null) context.uniform1f(locations.u_time, clock);
+			if (locations.u_resolution != null)
+				context.uniform2f(locations.u_resolution, w, h);
+			if (locations.u_colorBack != null)
+				context.uniform4fv(locations.u_colorBack, hexToRgba(p.colorBack));
+			if (locations.u_colorFront != null)
+				context.uniform4fv(locations.u_colorFront, hexToRgba(p.colorFront));
+			if (locations.u_shape != null)
+				context.uniform1f(locations.u_shape, DitheringShapes[p.shape]);
+			if (locations.u_type != null)
+				context.uniform1f(locations.u_type, DitheringTypes[p.type]);
+			if (locations.u_pxSize != null)
+				context.uniform1f(locations.u_pxSize, p.pxSize);
 
-      context.drawArrays(context.TRIANGLES, 0, 6);
+			context.drawArrays(context.TRIANGLES, 0, 6);
 
-      // ── Telemetry ──────────────────────────────────────────────────────
-      frames += 1;
-      fpsFrames += 1;
-      fpsAccum += dt;
-      if (now - fpsWindowStart >= 250) {
-        const instFps = fpsFrames / Math.max(fpsAccum, 1e-4);
-        smoothedFps = smoothedFps === 0 ? instFps : smoothedFps * 0.6 + instFps * 0.4;
-        fpsFrames = 0;
-        fpsAccum = 0;
-        fpsWindowStart = now;
-      }
-      if (telemetryRef.current && now - lastEmit >= 100) {
-        lastEmit = now;
-        telemetryRef.current({
-          fps: Math.round(smoothedFps),
-          time: clock,
-          width: w,
-          height: h,
-          frames,
-        });
-      }
+			// ── Telemetry ──────────────────────────────────────────────────────
+			frames += 1;
+			fpsFrames += 1;
+			fpsAccum += dt;
+			if (now - fpsWindowStart >= 250) {
+				const instFps = fpsFrames / Math.max(fpsAccum, 1e-4);
+				smoothedFps =
+					smoothedFps === 0 ? instFps : smoothedFps * 0.6 + instFps * 0.4;
+				fpsFrames = 0;
+				fpsAccum = 0;
+				fpsWindowStart = now;
+			}
+			if (telemetryRef.current && now - lastEmit >= 100) {
+				lastEmit = now;
+				telemetryRef.current({
+					fps: Math.round(smoothedFps),
+					time: clock,
+					width: w,
+					height: h,
+					frames,
+				});
+			}
 
-      animationRef.current = requestAnimationFrame(render);
-    };
+			animationRef.current = requestAnimationFrame(render);
+		};
 
-    animationRef.current = requestAnimationFrame(render);
+		animationRef.current = requestAnimationFrame(render);
 
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      if (resizeObserver) resizeObserver.disconnect();
-      window.removeEventListener("resize", applySize);
-      if (glRef.current && programRef.current) {
-        glRef.current.deleteProgram(programRef.current);
-      }
-    };
-    // Only structural props (that require rebuilding GL state) belong here;
-    // color/shape/type/pxSize/speed/paused are read live from refs each frame.
-  }, [width, height, fill]);
+		return () => {
+			if (animationRef.current) {
+				cancelAnimationFrame(animationRef.current);
+			}
+			if (resizeObserver) resizeObserver.disconnect();
+			window.removeEventListener("resize", applySize);
+			if (glRef.current && programRef.current) {
+				glRef.current.deleteProgram(programRef.current);
+			}
+		};
+		// Only structural props (that require rebuilding GL state) belong here;
+		// color/shape/type/pxSize/speed/paused are read live from refs each frame.
+	}, [width, height, fill]);
 
-  return (
-    <div
-      className={className}
-      style={{
-        position: "relative",
-        width: fill === "window" ? "100%" : width,
-        height: fill === "window" ? "100%" : height,
-        ...style,
-      }}
-    >
-      <canvas
-        ref={canvasRef}
-        style={{
-          display: "block",
-          width: "100%",
-          height: "100%",
-        }}
-      />
-    </div>
-  );
+	return (
+		<div
+			className={className}
+			style={{
+				position: "relative",
+				width: fill === "window" ? "100%" : width,
+				height: fill === "window" ? "100%" : height,
+				...style,
+			}}
+		>
+			<canvas
+				ref={canvasRef}
+				style={{
+					display: "block",
+					width: "100%",
+					height: "100%",
+				}}
+			/>
+		</div>
+	);
 }

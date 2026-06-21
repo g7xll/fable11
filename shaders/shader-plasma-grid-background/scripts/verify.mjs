@@ -83,7 +83,12 @@ function averagePng(buf) {
 	const r = Math.round(rSum / count);
 	const g = Math.round(gSum / count);
 	const bAvg = Math.round(bSum / count);
-	return { r, g, b: bAvg, lum: Math.round(0.299 * r + 0.587 * g + 0.114 * bAvg) };
+	return {
+		r,
+		g,
+		b: bAvg,
+		lum: Math.round(0.299 * r + 0.587 * g + 0.114 * bAvg),
+	};
 }
 
 const PORT = 4319;
@@ -132,7 +137,9 @@ async function main() {
 		await waitForServer(URL);
 
 		const browser = await chromium.launch();
-		const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+		const page = await browser.newPage({
+			viewport: { width: 1280, height: 800 },
+		});
 
 		const errors = [];
 		page.on("console", (m) => {

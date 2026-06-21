@@ -112,7 +112,8 @@
 		border-radius: 999px;
 		background: var(--color-ink);
 		border: 2px solid var(--color-signal);
-		box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-signal) 22%, transparent),
+		box-shadow:
+			0 0 0 3px color-mix(in srgb, var(--color-signal) 22%, transparent),
 			0 2px 6px rgba(0, 0, 0, 0.6);
 		transition: transform 0.12s ease;
 	}
@@ -127,14 +128,16 @@
 		border: 2px solid var(--color-signal);
 	}
 	input[type="range"]:focus-visible::-webkit-slider-thumb {
-		box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-signal) 40%, transparent);
+		box-shadow: 0 0 0 4px
+			color-mix(in srgb, var(--color-signal) 40%, transparent);
 	}
 }
 
 @layer utilities {
 	/* Engraved hairline grid used on panels. */
 	.bg-engrave-grid {
-		background-image: linear-gradient(var(--color-hairline) 1px, transparent 1px),
+		background-image:
+			linear-gradient(var(--color-hairline) 1px, transparent 1px),
 			linear-gradient(90deg, var(--color-hairline) 1px, transparent 1px);
 		background-size: 28px 28px;
 	}
@@ -165,7 +168,8 @@
 	}
 
 	.text-glow {
-		text-shadow: 0 0 18px color-mix(in srgb, var(--color-signal) 45%, transparent);
+		text-shadow: 0 0 18px
+			color-mix(in srgb, var(--color-signal) 45%, transparent);
 	}
 
 	/* Travelling signal-sweep bar. */

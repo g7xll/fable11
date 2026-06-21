@@ -130,7 +130,8 @@
 		border-radius: 999px;
 		background: hsl(var(--foreground));
 		border: 1px solid hsl(var(--glass-gold) / 0.65);
-		box-shadow: 0 0 0 4px hsl(var(--glass-gold) / 0.12),
+		box-shadow:
+			0 0 0 4px hsl(var(--glass-gold) / 0.12),
 			0 0 14px hsl(var(--glass-gold) / 0.4);
 		transition: transform 0.12s ease;
 	}

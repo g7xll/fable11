@@ -76,7 +76,11 @@ body::before {
 	inset: 0;
 	z-index: -20;
 	background:
-		radial-gradient(120% 80% at 50% 0%, rgba(139, 92, 246, 0.12), transparent 60%),
+		radial-gradient(
+			120% 80% at 50% 0%,
+			rgba(139, 92, 246, 0.12),
+			transparent 60%
+		),
 		var(--void);
 }
 

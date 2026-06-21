@@ -39,7 +39,10 @@ export interface LivingNebulaShaderProps {
 	onContext?: (supported: boolean) => void;
 }
 
-const LivingNebulaShader = ({ onFrame, onContext }: LivingNebulaShaderProps) => {
+const LivingNebulaShader = ({
+	onFrame,
+	onContext,
+}: LivingNebulaShaderProps) => {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
 	// Keep the latest callbacks in refs so the WebGL effect can stay mount-only
@@ -60,7 +63,10 @@ const LivingNebulaShader = ({ onFrame, onContext }: LivingNebulaShaderProps) => 
 		} catch (err) {
 			// No WebGL — fall back to a static deep-space gradient so the feed
 			// window is never an empty black rectangle.
-			console.warn("Living Nebula: WebGL unavailable, using CSS fallback.", err);
+			console.warn(
+				"Living Nebula: WebGL unavailable, using CSS fallback.",
+				err,
+			);
 			container.dataset.fallback = "true";
 			onContextRef.current?.(false);
 			return;
@@ -200,7 +206,7 @@ const LivingNebulaShader = ({ onFrame, onContext }: LivingNebulaShaderProps) => 
 			const now = performance.now();
 			const dt = now - last;
 			last = now;
-			if (dt > 0) fps += ((1000 / dt) - fps) * 0.1;
+			if (dt > 0) fps += (1000 / dt - fps) * 0.1;
 
 			const time = clock.getElapsedTime();
 			uniforms.iTime.value = time;
@@ -214,7 +220,7 @@ const LivingNebulaShader = ({ onFrame, onContext }: LivingNebulaShaderProps) => 
 					? {
 							x: (m.x - 0.5 * res.x) / res.y,
 							y: (m.y - 0.5 * res.y) / res.y,
-					  }
+						}
 					: null;
 			onFrameRef.current?.({ time, fps, warp });
 		});

@@ -44,8 +44,8 @@ export function Field() {
 						Where teams have dropped it.
 					</h2>
 					<p className="mt-4 font-body text-ink-dim">
-						The same file, recoloured per brand. A quiet hero backdrop on one site, a
-						loud launch page on the next.
+						The same file, recoloured per brand. A quiet hero backdrop on one
+						site, a loud launch page on the next.
 					</p>
 				</Reveal>
 
@@ -80,9 +80,9 @@ export function Field() {
 					<figure className="panel relative overflow-hidden rounded-xl p-7 sm:p-10">
 						<Quote className="absolute right-6 top-6 h-12 w-12 text-violet/15" />
 						<blockquote className="max-w-3xl font-display text-xl font-medium leading-snug text-ink sm:text-2xl">
-							"We'd been reaching for a heavy 3D library just to get an animated hero.
-							This was a single file, one draw call, and it ran at 60fps on a
-							three-year-old laptop. We deleted 40kb of dependencies."
+							"We'd been reaching for a heavy 3D library just to get an animated
+							hero. This was a single file, one draw call, and it ran at 60fps
+							on a three-year-old laptop. We deleted 40kb of dependencies."
 						</blockquote>
 						<figcaption className="mt-7 flex items-center gap-4">
 							<div className="flex -space-x-3">

@@ -32,7 +32,12 @@ const DEFAULT_PROPS: WaveSettings = {
 	mouseDistortion: 0.5,
 };
 
-type Channel = { id: string; name: string; code: string; settings: WaveSettings };
+type Channel = {
+	id: string;
+	name: string;
+	code: string;
+	settings: WaveSettings;
+};
 
 const CHANNELS: Channel[] = [
 	{
@@ -86,7 +91,12 @@ const CHANNELS: Channel[] = [
 ];
 
 // ── Fader / trim definitions (drive the shader uniforms directly) ───────────
-type FaderKey = "speed" | "complexity" | "amplitude" | "frequency" | "mouseDistortion";
+type FaderKey =
+	| "speed"
+	| "complexity"
+	| "amplitude"
+	| "frequency"
+	| "mouseDistortion";
 
 const FADERS: {
 	key: FaderKey;
@@ -99,11 +109,61 @@ const FADERS: {
 	icon: typeof Gauge;
 	hint: string;
 }[] = [
-	{ key: "speed", label: "Sweep Rate", unit: "×", min: 0, max: 2, step: 0.01, decimals: 2, icon: Gauge, hint: "Trace scroll speed" },
-	{ key: "complexity", label: "Harmonics", unit: "ord", min: 1, max: 8, step: 0.1, decimals: 1, icon: Waves, hint: "Stacked sine orders" },
-	{ key: "amplitude", label: "Amplitude", unit: "V", min: 0, max: 2, step: 0.01, decimals: 2, icon: AudioWaveform, hint: "Peak deflection" },
-	{ key: "frequency", label: "Frequency", unit: "Hz", min: 5, max: 50, step: 0.1, decimals: 1, icon: Radio, hint: "Base oscillation" },
-	{ key: "mouseDistortion", label: "Probe Gain", unit: "%", min: 0, max: 2, step: 0.01, decimals: 2, icon: MousePointer2, hint: "Cursor warp depth" },
+	{
+		key: "speed",
+		label: "Sweep Rate",
+		unit: "×",
+		min: 0,
+		max: 2,
+		step: 0.01,
+		decimals: 2,
+		icon: Gauge,
+		hint: "Trace scroll speed",
+	},
+	{
+		key: "complexity",
+		label: "Harmonics",
+		unit: "ord",
+		min: 1,
+		max: 8,
+		step: 0.1,
+		decimals: 1,
+		icon: Waves,
+		hint: "Stacked sine orders",
+	},
+	{
+		key: "amplitude",
+		label: "Amplitude",
+		unit: "V",
+		min: 0,
+		max: 2,
+		step: 0.01,
+		decimals: 2,
+		icon: AudioWaveform,
+		hint: "Peak deflection",
+	},
+	{
+		key: "frequency",
+		label: "Frequency",
+		unit: "Hz",
+		min: 5,
+		max: 50,
+		step: 0.1,
+		decimals: 1,
+		icon: Radio,
+		hint: "Base oscillation",
+	},
+	{
+		key: "mouseDistortion",
+		label: "Probe Gain",
+		unit: "%",
+		min: 0,
+		max: 2,
+		step: 0.01,
+		decimals: 2,
+		icon: MousePointer2,
+		hint: "Cursor warp depth",
+	},
 ];
 
 const pad2 = (n: number) => String(Math.floor(n)).padStart(2, "0");
@@ -180,10 +240,13 @@ export default function App() {
 		setActiveChannel("custom");
 	}, []);
 
-	const handleColorChange = useCallback((key: "color1" | "color2", value: string) => {
-		setProps((prev) => ({ ...prev, [key]: value }));
-		setActiveChannel("custom");
-	}, []);
+	const handleColorChange = useCallback(
+		(key: "color1" | "color2", value: string) => {
+			setProps((prev) => ({ ...prev, [key]: value }));
+			setActiveChannel("custom");
+		},
+		[],
+	);
 
 	const reset = useCallback(() => applyChannel(CHANNELS[0]), [applyChannel]);
 
@@ -234,9 +297,16 @@ export default function App() {
 			{/* Left console — the instrument controls */}
 			<section className="console" aria-label="Signal controls">
 				<div className="console-head">
-					<Sliders className="console-head-icon" strokeWidth={1.75} aria-hidden />
+					<Sliders
+						className="console-head-icon"
+						strokeWidth={1.75}
+						aria-hidden
+					/>
 					<h1>Dynamic Waveform</h1>
-					<p>Drive the live GLSL trace. Every control writes straight to a shader uniform.</p>
+					<p>
+						Drive the live GLSL trace. Every control writes straight to a shader
+						uniform.
+					</p>
 				</div>
 
 				{/* Trace colour trim */}
@@ -265,7 +335,11 @@ export default function App() {
 							<div className="fader" key={f.key}>
 								<div className="fader-top">
 									<span className="fader-label">
-										<Icon className="fader-icon" strokeWidth={1.75} aria-hidden />
+										<Icon
+											className="fader-icon"
+											strokeWidth={1.75}
+											aria-hidden
+										/>
 										{f.label}
 									</span>
 									<span className="fader-read">
@@ -282,7 +356,9 @@ export default function App() {
 									value={value}
 									aria-label={`${f.label} (${f.hint})`}
 									style={{ ["--pct" as string]: `${pct}%` }}
-									onChange={(e) => handleValueChange(f.key, parseFloat(e.target.value))}
+									onChange={(e) =>
+										handleValueChange(f.key, parseFloat(e.target.value))
+									}
 								/>
 								<span className="fader-hint">{f.hint}</span>
 							</div>
@@ -295,7 +371,11 @@ export default function App() {
 					<div className="channels-head">
 						<span>Channel Memory</span>
 						<button className="channels-reset" onClick={reset} type="button">
-							<RotateCcw className="channels-reset-icon" strokeWidth={2} aria-hidden />
+							<RotateCcw
+								className="channels-reset-icon"
+								strokeWidth={2}
+								aria-hidden
+							/>
 							Reset
 						</button>
 					</div>
@@ -360,7 +440,10 @@ export default function App() {
 					<span className="telemetry-live">
 						<span className="telemetry-live-dot" /> Live GLSL render
 					</span>
-					<span>Move the cursor over the screen to bend the trace · probe gain {props.mouseDistortion.toFixed(2)}</span>
+					<span>
+						Move the cursor over the screen to bend the trace · probe gain{" "}
+						{props.mouseDistortion.toFixed(2)}
+					</span>
 				</div>
 			</footer>
 		</div>

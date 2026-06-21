@@ -9,13 +9,13 @@ import CelestialInkShader from "@/components/ui/celestial-ink-shader";
  * of styles in `index.css` (`.app-container`, `.overlay-content`, ...).
  */
 export default function DemoOne() {
-  return (
-    <div className="app-container">
-      <CelestialInkShader />
-      <div className="overlay-content">
-        <h1 className="title">Celestial Ink</h1>
-        <p className="description">An Interactive WebGL Shader</p>
-      </div>
-    </div>
-  );
+	return (
+		<div className="app-container">
+			<CelestialInkShader />
+			<div className="overlay-content">
+				<h1 className="title">Celestial Ink</h1>
+				<p className="description">An Interactive WebGL Shader</p>
+			</div>
+		</div>
+	);
 }

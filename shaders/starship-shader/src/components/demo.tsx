@@ -10,9 +10,9 @@ import { Component } from "@/components/ui/starship-shader";
  * automatic JSX runtime makes it unused under TypeScript's noUnusedLocals.)
  */
 export default function Demo() {
-  return (
-    <div style={{ width: "100%", height: "100vh" }}>
-      <Component />
-    </div>
-  );
+	return (
+		<div style={{ width: "100%", height: "100vh" }}>
+			<Component />
+		</div>
+	);
 }

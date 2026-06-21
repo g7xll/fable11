@@ -37,7 +37,9 @@ if (!existsSync(serverBundle)) {
 	}
 }
 
-console.log(`[dev] Serving production build via \`vite preview ${extraArgs.join(" ")}\``);
+console.log(
+	`[dev] Serving production build via \`vite preview ${extraArgs.join(" ")}\``,
+);
 const preview = spawn(viteBin, ["preview", ...extraArgs], {
 	cwd: root,
 	stdio: "inherit",

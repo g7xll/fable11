@@ -68,7 +68,9 @@ try {
 			"--ignore-gpu-blocklist",
 		],
 	});
-	const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+	const ctx = await browser.newContext({
+		viewport: { width: 1280, height: 800 },
+	});
 	const page = await ctx.newPage();
 
 	const pageErrors = [];
@@ -87,8 +89,13 @@ try {
 	else bad(`header missing (got "${h1}")`);
 
 	// Channels: patch each, assert a non-empty canvas appears
-	const channelButtons = page.locator('aside button[aria-pressed]');
-	const channelLabels = ["Mesh Gradient", "Dot Orbit", "Combined Bus", "Shader Plane"];
+	const channelButtons = page.locator("aside button[aria-pressed]");
+	const channelLabels = [
+		"Mesh Gradient",
+		"Dot Orbit",
+		"Combined Bus",
+		"Shader Plane",
+	];
 	for (let i = 0; i < channelLabels.length; i++) {
 		await channelButtons.nth(i).click();
 		await sleep(900);
@@ -99,9 +106,13 @@ try {
 			return { w: Math.round(r.width), h: Math.round(r.height) };
 		});
 		if (canvasBox && canvasBox.w > 100 && canvasBox.h > 100) {
-			ok(`channel "${channelLabels[i]}" renders canvas ${canvasBox.w}x${canvasBox.h}`);
+			ok(
+				`channel "${channelLabels[i]}" renders canvas ${canvasBox.w}x${canvasBox.h}`,
+			);
 		} else {
-			bad(`channel "${channelLabels[i]}" has no live canvas (${JSON.stringify(canvasBox)})`);
+			bad(
+				`channel "${channelLabels[i]}" has no live canvas (${JSON.stringify(canvasBox)})`,
+			);
 		}
 	}
 
@@ -110,7 +121,9 @@ try {
 		const c = document.querySelector("canvas");
 		if (!c) return false;
 		const gl =
-			c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+			c.getContext("webgl2") ||
+			c.getContext("webgl") ||
+			c.getContext("experimental-webgl");
 		return !!gl;
 	});
 	if (hasGL) ok("WebGL context is live");
@@ -122,12 +135,14 @@ try {
 	await speed.press("Home"); // -> min (0)
 	await sleep(300);
 	const minTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
 	);
 	await speed.press("End"); // -> max (3)
 	await sleep(300);
 	const maxTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.parentElement?.textContent ?? "",
 	);
 	if (/0\.00/.test(minTxt) && /3\.00/.test(maxTxt))
 		ok("speed fader sweeps 0.00 → 3.00");

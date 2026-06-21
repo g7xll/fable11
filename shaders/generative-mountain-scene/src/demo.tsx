@@ -8,11 +8,11 @@ import GenerativeMountainScene from "@/components/ui/mountain-scene";
  * to `h-full` so it can sit inside a framed instrument window).
  */
 export default function DemoOne() {
-  return (
-    <main className="relative h-full w-full overflow-hidden bg-[#0f172a] text-slate-100">
-      <Suspense fallback={<div className="h-full w-full bg-[#0f172a]" />}>
-        <GenerativeMountainScene />
-      </Suspense>
-    </main>
-  );
+	return (
+		<main className="relative h-full w-full overflow-hidden bg-[#0f172a] text-slate-100">
+			<Suspense fallback={<div className="h-full w-full bg-[#0f172a]" />}>
+				<GenerativeMountainScene />
+			</Suspense>
+		</main>
+	);
 }

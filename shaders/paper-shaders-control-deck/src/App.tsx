@@ -76,7 +76,8 @@ const CHANNELS: ChannelDef[] = [
 	},
 ];
 
-const INSTALL_CMD = "npm i @paper-design/shaders-react three @react-three/fiber";
+const INSTALL_CMD =
+	"npm i @paper-design/shaders-react three @react-three/fiber";
 
 /* ------------------------------------------------------------------ *
  * Faders — instrument-styled range modules
@@ -117,7 +118,9 @@ function Fader({
 				</div>
 				<span className="font-mono text-[13px] tabular-nums text-[var(--signal)]">
 					{value.toFixed(2)}
-					<span className="ml-0.5 text-[9px] text-[var(--ink-dim)]">{unit}</span>
+					<span className="ml-0.5 text-[9px] text-[var(--ink-dim)]">
+						{unit}
+					</span>
 				</span>
 			</div>
 			<input
@@ -143,15 +146,7 @@ function Fader({
 /* ------------------------------------------------------------------ *
  * Telemetry readout cell
  * ------------------------------------------------------------------ */
-function Readout({
-	k,
-	v,
-	accent,
-}: {
-	k: string;
-	v: string;
-	accent?: boolean;
-}) {
+function Readout({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
 	return (
 		<div className="flex flex-col gap-0.5 border-l border-[var(--hairline)] px-3 first:border-l-0 first:pl-0">
 			<span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--ink-dim)]">
@@ -236,7 +231,11 @@ export default function App() {
 			<header className="flex shrink-0 flex-wrap items-center justify-between gap-3 border-b border-[var(--hairline)] pb-3">
 				<div className="flex items-center gap-3">
 					<div className="grid h-9 w-9 place-items-center rounded-md border border-[var(--hairline)] bg-[var(--panel)]">
-						<Sparkles size={16} strokeWidth={1.75} className="text-[var(--signal)]" />
+						<Sparkles
+							size={16}
+							strokeWidth={1.75}
+							className="text-[var(--signal)]"
+						/>
 					</div>
 					<div className="leading-none">
 						<h1 className="font-mono text-[13px] font-medium uppercase tracking-[0.28em] text-[var(--ink)]">
@@ -425,9 +424,8 @@ export default function App() {
 							<span className="text-[var(--ink-dim)]">
 								background-paper-shaders.tsx
 							</span>{" "}
-							into{" "}
-							<span className="text-[var(--ink-dim)]">/components/ui</span> and patch
-							any channel behind your UI.
+							into <span className="text-[var(--ink-dim)]">/components/ui</span>{" "}
+							and patch any channel behind your UI.
 						</p>
 					</section>
 				</aside>
@@ -462,7 +460,11 @@ export default function App() {
 
 						{/* Top-left scope label */}
 						<div className="pointer-events-none absolute left-4 top-4 flex items-center gap-2 rounded-md border border-[var(--hairline)] bg-black/45 px-3 py-1.5 backdrop-blur-sm">
-							<active.icon size={13} className="text-[var(--signal)]" strokeWidth={1.75} />
+							<active.icon
+								size={13}
+								className="text-[var(--signal)]"
+								strokeWidth={1.75}
+							/>
 							<span className="font-mono text-[11px] tracking-[0.06em] text-[var(--ink)]">
 								{active.label}
 							</span>
@@ -474,10 +476,16 @@ export default function App() {
 						{/* Top-right scope readout */}
 						<div className="pointer-events-none absolute right-4 top-4 flex items-center gap-3 rounded-md border border-[var(--hairline)] bg-black/45 px-3 py-1.5 font-mono text-[10px] backdrop-blur-sm">
 							<span className="text-[var(--ink-dim)]">
-								SPD <span className="text-[var(--signal)]">{liveSpeed.toFixed(2)}</span>
+								SPD{" "}
+								<span className="text-[var(--signal)]">
+									{liveSpeed.toFixed(2)}
+								</span>
 							</span>
 							<span className="text-[var(--ink-dim)]">
-								AMP <span className="text-[var(--signal)]">{intensity.toFixed(2)}</span>
+								AMP{" "}
+								<span className="text-[var(--signal)]">
+									{intensity.toFixed(2)}
+								</span>
 							</span>
 						</div>
 
@@ -500,8 +508,8 @@ export default function App() {
 			{/* ============================== FOOTER ============================= */}
 			<footer className="mt-3 flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-[var(--hairline)] pt-2.5 font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--ink-dim)]">
 				<span>
-					Paper&nbsp;Shaders&nbsp;Control&nbsp;Deck — @paper-design/shaders-react ·
-					react-three-fiber · three
+					Paper&nbsp;Shaders&nbsp;Control&nbsp;Deck —
+					@paper-design/shaders-react · react-three-fiber · three
 				</span>
 				<span className="flex items-center gap-1.5 text-[var(--ink-dim)]/70">
 					<span className="hidden sm:inline">Keys 1–4 patch · Space holds</span>

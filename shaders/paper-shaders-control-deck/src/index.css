@@ -111,8 +111,12 @@ body,
 
 body {
 	margin: 0;
-	background:
-		radial-gradient(120% 90% at 50% -10%, #15181d 0%, var(--rail) 55%, #050608 100%);
+	background: radial-gradient(
+		120% 90% at 50% -10%,
+		#15181d 0%,
+		var(--rail) 55%,
+		#050608 100%
+	);
 	color: var(--ink);
 	font-family: var(--font-geist-sans);
 	-webkit-font-smoothing: antialiased;
@@ -122,8 +126,11 @@ body {
 
 /* Fine engraved scanline texture on the chassis */
 .chassis-grain {
-	background-image:
-		repeating-linear-gradient(0deg, transparent 0 3px, rgba(255, 255, 255, 0.012) 3px 4px);
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent 0 3px,
+		rgba(255, 255, 255, 0.012) 3px 4px
+	);
 }
 
 /* Scope frame scanlines over the live viewport */
@@ -192,7 +199,9 @@ body {
 	cursor: grab;
 }
 .fader:focus-visible {
-	box-shadow: 0 0 0 2px var(--rail), 0 0 0 4px var(--signal);
+	box-shadow:
+		0 0 0 2px var(--rail),
+		0 0 0 4px var(--signal);
 }
 
 /* Soft pulsing "live" tally */

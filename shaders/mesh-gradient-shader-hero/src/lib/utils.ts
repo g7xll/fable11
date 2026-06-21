@@ -1,4 +1,6 @@
-export function cn(...classes: Array<string | false | null | undefined>): string {
+export function cn(
+	...classes: Array<string | false | null | undefined>
+): string {
 	return classes.filter(Boolean).join(" ");
 }
 
@@ -9,7 +11,11 @@ export function clamp(v: number, lo: number, hi: number): number {
 /** Normalise any #rgb / #rrggbb string to a lowercase #rrggbb. */
 export function normalizeHex(hex: string): string {
 	let h = hex.trim().replace(/^#/, "");
-	if (h.length === 3) h = h.split("").map((c) => c + c).join("");
+	if (h.length === 3)
+		h = h
+			.split("")
+			.map((c) => c + c)
+			.join("");
 	if (!/^[0-9a-fA-F]{6}$/.test(h)) return "#000000";
 	return `#${h.toLowerCase()}`;
 }
@@ -20,6 +26,7 @@ export function luminance(hex: string): number {
 	const r = parseInt(h.slice(0, 2), 16) / 255;
 	const g = parseInt(h.slice(2, 4), 16) / 255;
 	const b = parseInt(h.slice(4, 6), 16) / 255;
-	const lin = (c: number) => (c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+	const lin = (c: number) =>
+		c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
 	return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b);
 }

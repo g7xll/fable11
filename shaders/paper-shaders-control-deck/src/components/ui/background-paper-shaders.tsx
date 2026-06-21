@@ -122,7 +122,12 @@ export function EnergyRing({
 	return (
 		<mesh ref={mesh} position={position}>
 			<ringGeometry args={[radius * 0.8, radius, 32]} />
-			<meshBasicMaterial color={color} transparent opacity={0.6} side={THREE.DoubleSide} />
+			<meshBasicMaterial
+				color={color}
+				transparent
+				opacity={0.6}
+				side={THREE.DoubleSide}
+			/>
 		</mesh>
 	);
 }
@@ -154,12 +159,45 @@ export function BackgroundPaperShaders({
 			dpr={[1, 2]}
 		>
 			<ambientLight intensity={0.5} />
-			<ShaderPlane position={[-1.1, 0.4, 0]} color1={color1} color2={color2} speed={speed} intensity={intensity} />
-			<ShaderPlane position={[1.1, -0.4, -0.4]} color1={color2} color2={color1} speed={speed * 0.8} intensity={intensity} />
-			<ShaderPlane position={[0, 0, -1]} color1={color1} color2="#1a1a1a" speed={speed * 1.2} intensity={intensity * 0.7} />
-			<EnergyRing radius={1.4} position={[-1.1, 0.4, 0.3]} speed={speed} color={color1} />
-			<EnergyRing radius={1.0} position={[1.1, -0.4, 0]} speed={speed * 1.3} color={color1} />
-			<EnergyRing radius={1.8} position={[0, 0, -0.6]} speed={speed * 0.6} color={color2} />
+			<ShaderPlane
+				position={[-1.1, 0.4, 0]}
+				color1={color1}
+				color2={color2}
+				speed={speed}
+				intensity={intensity}
+			/>
+			<ShaderPlane
+				position={[1.1, -0.4, -0.4]}
+				color1={color2}
+				color2={color1}
+				speed={speed * 0.8}
+				intensity={intensity}
+			/>
+			<ShaderPlane
+				position={[0, 0, -1]}
+				color1={color1}
+				color2="#1a1a1a"
+				speed={speed * 1.2}
+				intensity={intensity * 0.7}
+			/>
+			<EnergyRing
+				radius={1.4}
+				position={[-1.1, 0.4, 0.3]}
+				speed={speed}
+				color={color1}
+			/>
+			<EnergyRing
+				radius={1.0}
+				position={[1.1, -0.4, 0]}
+				speed={speed * 1.3}
+				color={color1}
+			/>
+			<EnergyRing
+				radius={1.8}
+				position={[0, 0, -0.6]}
+				speed={speed * 0.6}
+				color={color2}
+			/>
 		</Canvas>
 	);
 }

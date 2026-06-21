@@ -15,7 +15,10 @@ import {
 	Repeat,
 	ZoomIn,
 } from "lucide-react";
-import { ShaderCanvas, type ShaderParams } from "@/components/ui/sdf-dreamscape";
+import {
+	ShaderCanvas,
+	type ShaderParams,
+} from "@/components/ui/sdf-dreamscape";
 
 /* ──────────────────────────────────────────────────────────────────────────
  * SDF Dreamscape — "Oneirograph" dream-recorder console.
@@ -241,7 +244,11 @@ export default function App() {
 							<Layers className="deck-title-icon" strokeWidth={1.6} />
 							Tuning Deck
 						</span>
-						<div className="deck-presets" role="group" aria-label="Dream states">
+						<div
+							className="deck-presets"
+							role="group"
+							aria-label="Dream states"
+						>
 							{DREAM_STATES.map((s) => (
 								<button
 									key={s.id}

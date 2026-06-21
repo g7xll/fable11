@@ -21,9 +21,10 @@ export function Footer() {
 
 				<p className="max-w-md font-body text-[13px] leading-relaxed text-paper-faint">
 					A Claude Fable 5 experiment integrating the{" "}
-					<span className="text-paper-dim">designali-in/dithering-shader</span> component
-					into a shadcn-structured Vite + TypeScript + Tailwind app. The visual is one
-					WebGL2 fragment shader; fonts are vendored locally, so it runs offline.
+					<span className="text-paper-dim">designali-in/dithering-shader</span>{" "}
+					component into a shadcn-structured Vite + TypeScript + Tailwind app.
+					The visual is one WebGL2 fragment shader; fonts are vendored locally,
+					so it runs offline.
 				</p>
 
 				<a

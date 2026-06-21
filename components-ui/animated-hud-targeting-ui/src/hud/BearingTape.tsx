@@ -21,7 +21,7 @@ export function BearingTape({ bearing, locked }: BearingTapeProps) {
 	const span = 40;
 	const ticks: { deg: number; major: boolean; label?: string }[] = [];
 	for (let d = -span; d <= span; d += 5) {
-		const raw = ((Math.round(bearing) + d) % 360 + 360) % 360;
+		const raw = (((Math.round(bearing) + d) % 360) + 360) % 360;
 		const major = raw % 45 === 0;
 		ticks.push({ deg: d, major, label: major ? CARDINALS[raw] : undefined });
 	}
@@ -30,7 +30,8 @@ export function BearingTape({ bearing, locked }: BearingTapeProps) {
 		<div
 			className="relative h-9 overflow-hidden select-none"
 			style={{
-				maskImage: "linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent)",
+				maskImage:
+					"linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent)",
 				WebkitMaskImage:
 					"linear-gradient(90deg, transparent, #000 14%, #000 86%, transparent)",
 			}}
@@ -55,7 +56,10 @@ export function BearingTape({ bearing, locked }: BearingTapeProps) {
 						{t.label && (
 							<span
 								className="mt-0.5 text-[9px] tracking-[0.18em]"
-								style={{ color: "var(--phosphor-dim)", fontFamily: "var(--display)" }}
+								style={{
+									color: "var(--phosphor-dim)",
+									fontFamily: "var(--display)",
+								}}
 							>
 								{t.label}
 							</span>

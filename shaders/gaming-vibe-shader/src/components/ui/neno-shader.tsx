@@ -285,7 +285,9 @@ export function NenoShader({
  * brief shows, while `NenoShader` (named export) is the controllable variant.
  */
 export function ShaderAnimation() {
-	return <NenoShader speed={0.05} rings={7} warp={0.1} hueBlend={0.5} parallax={0} />;
+	return (
+		<NenoShader speed={0.05} rings={7} warp={0.1} hueBlend={0.5} parallax={0} />
+	);
 }
 
 export default NenoShader;

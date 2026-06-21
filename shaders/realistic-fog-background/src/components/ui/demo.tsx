@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
 
 /**
  * Mist Background Component
@@ -6,23 +6,23 @@ import React, { useEffect, useRef } from 'react';
  * Style: Ethereal Generative Fluid / Mist
  */
 const MistBackground: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
 
-    const gl = canvas.getContext('webgl');
-    if (!gl) return;
+		const gl = canvas.getContext("webgl");
+		if (!gl) return;
 
-    const vsSource = `
+		const vsSource = `
       attribute vec2 position;
       void main() {
         gl_Position = vec4(position, 0.0, 1.0);
       }
     `;
 
-    const fsSource = `
+		const fsSource = `
       precision highp float;
       uniform float u_time;
       uniform vec2 u_resolution;
@@ -92,71 +92,76 @@ const MistBackground: React.FC = () => {
       }
     `;
 
-    const compileShader = (type: number, source: string) => {
-      const shader = gl.createShader(type)!;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      return shader;
-    };
+		const compileShader = (type: number, source: string) => {
+			const shader = gl.createShader(type)!;
+			gl.shaderSource(shader, source);
+			gl.compileShader(shader);
+			return shader;
+		};
 
-    const program = gl.createProgram()!;
-    gl.attachShader(program, compileShader(gl.VERTEX_SHADER, vsSource));
-    gl.attachShader(program, compileShader(gl.FRAGMENT_SHADER, fsSource));
-    gl.linkProgram(program);
-    gl.useProgram(program);
+		const program = gl.createProgram()!;
+		gl.attachShader(program, compileShader(gl.VERTEX_SHADER, vsSource));
+		gl.attachShader(program, compileShader(gl.FRAGMENT_SHADER, fsSource));
+		gl.linkProgram(program);
+		gl.useProgram(program);
 
-    const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+		const vertices = new Float32Array([
+			-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1,
+		]);
+		const buffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-    const posAttrib = gl.getAttribLocation(program, 'position');
-    gl.enableVertexAttribArray(posAttrib);
-    gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
+		const posAttrib = gl.getAttribLocation(program, "position");
+		gl.enableVertexAttribArray(posAttrib);
+		gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
 
-    const timeLoc = gl.getUniformLocation(program, 'u_time');
-    const resLoc = gl.getUniformLocation(program, 'u_resolution');
-    const mouseLoc = gl.getUniformLocation(program, 'u_mouse');
+		const timeLoc = gl.getUniformLocation(program, "u_time");
+		const resLoc = gl.getUniformLocation(program, "u_resolution");
+		const mouseLoc = gl.getUniformLocation(program, "u_mouse");
 
-    let mouse = { x: 0, y: 0 };
-    const handleMouseMove = (e: MouseEvent) => {
-      mouse.x = e.clientX;
-      mouse.y = window.innerHeight - e.clientY;
-    };
+		let mouse = { x: 0, y: 0 };
+		const handleMouseMove = (e: MouseEvent) => {
+			mouse.x = e.clientX;
+			mouse.y = window.innerHeight - e.clientY;
+		};
 
-    window.addEventListener('mousemove', handleMouseMove);
+		window.addEventListener("mousemove", handleMouseMove);
 
-    let animationFrameId: number;
-    const render = (time: number) => {
-      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-        gl.viewport(0, 0, canvas.width, canvas.height);
-      }
+		let animationFrameId: number;
+		const render = (time: number) => {
+			if (
+				canvas.width !== window.innerWidth ||
+				canvas.height !== window.innerHeight
+			) {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+				gl.viewport(0, 0, canvas.width, canvas.height);
+			}
 
-      gl.uniform1f(timeLoc, time * 0.001);
-      gl.uniform2f(resLoc, canvas.width, canvas.height);
-      gl.uniform2f(mouseLoc, mouse.x, mouse.y);
+			gl.uniform1f(timeLoc, time * 0.001);
+			gl.uniform2f(resLoc, canvas.width, canvas.height);
+			gl.uniform2f(mouseLoc, mouse.x, mouse.y);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      animationFrameId = requestAnimationFrame(render);
-    };
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
+			animationFrameId = requestAnimationFrame(render);
+		};
 
-    animationFrameId = requestAnimationFrame(render);
+		animationFrameId = requestAnimationFrame(render);
 
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      cancelAnimationFrame(animationFrameId);
-    };
-  }, []);
+		return () => {
+			window.removeEventListener("mousemove", handleMouseMove);
+			cancelAnimationFrame(animationFrameId);
+		};
+	}, []);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className="fixed inset-0 w-full h-full pointer-events-none z-[-1]"
-      style={{ background: '#09090b' }}
-    />
-  );
+	return (
+		<canvas
+			ref={canvasRef}
+			className="fixed inset-0 w-full h-full pointer-events-none z-[-1]"
+			style={{ background: "#09090b" }}
+		/>
+	);
 };
 
 export default MistBackground;

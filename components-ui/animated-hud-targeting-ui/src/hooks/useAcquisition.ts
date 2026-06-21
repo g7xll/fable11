@@ -69,7 +69,12 @@ function reducer(state: State, action: Action): State {
 			return { ...state, paused: !state.paused };
 		case "selectTarget":
 			if (action.index === state.targetIndex) {
-				return { ...state, phase: "scanning", cycle: state.cycle + 1, confidence: 0 };
+				return {
+					...state,
+					phase: "scanning",
+					cycle: state.cycle + 1,
+					confidence: 0,
+				};
 			}
 			return {
 				...state,
@@ -79,7 +84,12 @@ function reducer(state: State, action: Action): State {
 				confidence: 0,
 			};
 		case "rearm":
-			return { ...state, phase: "scanning", cycle: state.cycle + 1, confidence: 0 };
+			return {
+				...state,
+				phase: "scanning",
+				cycle: state.cycle + 1,
+				confidence: 0,
+			};
 		default:
 			return state;
 	}
@@ -134,7 +144,10 @@ export function useAcquisition(): Acquisition {
 	}, [phase, paused]);
 
 	const togglePause = useCallback(() => dispatch({ type: "togglePause" }), []);
-	const selectTarget = useCallback((index: number) => dispatch({ type: "selectTarget", index }), []);
+	const selectTarget = useCallback(
+		(index: number) => dispatch({ type: "selectTarget", index }),
+		[],
+	);
 	const rearm = useCallback(() => dispatch({ type: "rearm" }), []);
 
 	return { ...state, togglePause, selectTarget, rearm };

@@ -23,21 +23,114 @@ type Knob = {
 };
 
 const KNOBS: Knob[] = [
-	{ key: "speed", label: "Tempo", uniform: "uSpeed", min: 0, max: 3, step: 0.05, format: (v) => `${v.toFixed(2)}×` },
-	{ key: "scale", label: "Field scale", uniform: "uScale", min: 2, max: 12, step: 0.1, format: (v) => v.toFixed(1) },
-	{ key: "amplitude", label: "Amplitude", uniform: "uAmplitude", min: 0.2, max: 2.4, step: 0.05, format: (v) => v.toFixed(2) },
-	{ key: "warp", label: "Warp", uniform: "uWarp", min: 0, max: 2.5, step: 0.05, format: (v) => v.toFixed(2) },
-	{ key: "lineCount", label: "Lines / group", uniform: "uLineCount", min: 2, max: 16, step: 1, format: (v) => `${Math.round(v)}` },
-	{ key: "hue", label: "Hue shift", uniform: "uHue", min: -180, max: 180, step: 2, format: (v) => `${v > 0 ? "+" : ""}${Math.round(v)}°` },
+	{
+		key: "speed",
+		label: "Tempo",
+		uniform: "uSpeed",
+		min: 0,
+		max: 3,
+		step: 0.05,
+		format: (v) => `${v.toFixed(2)}×`,
+	},
+	{
+		key: "scale",
+		label: "Field scale",
+		uniform: "uScale",
+		min: 2,
+		max: 12,
+		step: 0.1,
+		format: (v) => v.toFixed(1),
+	},
+	{
+		key: "amplitude",
+		label: "Amplitude",
+		uniform: "uAmplitude",
+		min: 0.2,
+		max: 2.4,
+		step: 0.05,
+		format: (v) => v.toFixed(2),
+	},
+	{
+		key: "warp",
+		label: "Warp",
+		uniform: "uWarp",
+		min: 0,
+		max: 2.5,
+		step: 0.05,
+		format: (v) => v.toFixed(2),
+	},
+	{
+		key: "lineCount",
+		label: "Lines / group",
+		uniform: "uLineCount",
+		min: 2,
+		max: 16,
+		step: 1,
+		format: (v) => `${Math.round(v)}`,
+	},
+	{
+		key: "hue",
+		label: "Hue shift",
+		uniform: "uHue",
+		min: -180,
+		max: 180,
+		step: 2,
+		format: (v) => `${v > 0 ? "+" : ""}${Math.round(v)}°`,
+	},
 ];
 
-const PRESETS: { name: string; tag: string; params: Partial<ShaderParams> }[] = [
-	{ name: "Default", tag: "the brief", params: DEFAULT_PARAMS },
-	{ name: "Aurora", tag: "calm, wide", params: { speed: 0.55, scale: 8, amplitude: 1.4, warp: 1.6, hue: -38, lineCount: 16 } },
-	{ name: "Reactor", tag: "fast, tight", params: { speed: 2.2, scale: 3.4, amplitude: 1.1, warp: 0.6, hue: 24, lineCount: 16 } },
-	{ name: "Acid", tag: "green burn", params: { speed: 1.3, scale: 5, amplitude: 1.6, warp: 1.2, hue: 120, lineCount: 12 } },
-	{ name: "Hairline", tag: "minimal", params: { speed: 0.7, scale: 6.5, amplitude: 0.7, warp: 0.4, hue: 0, lineCount: 5 } },
-];
+const PRESETS: { name: string; tag: string; params: Partial<ShaderParams> }[] =
+	[
+		{ name: "Default", tag: "the brief", params: DEFAULT_PARAMS },
+		{
+			name: "Aurora",
+			tag: "calm, wide",
+			params: {
+				speed: 0.55,
+				scale: 8,
+				amplitude: 1.4,
+				warp: 1.6,
+				hue: -38,
+				lineCount: 16,
+			},
+		},
+		{
+			name: "Reactor",
+			tag: "fast, tight",
+			params: {
+				speed: 2.2,
+				scale: 3.4,
+				amplitude: 1.1,
+				warp: 0.6,
+				hue: 24,
+				lineCount: 16,
+			},
+		},
+		{
+			name: "Acid",
+			tag: "green burn",
+			params: {
+				speed: 1.3,
+				scale: 5,
+				amplitude: 1.6,
+				warp: 1.2,
+				hue: 120,
+				lineCount: 12,
+			},
+		},
+		{
+			name: "Hairline",
+			tag: "minimal",
+			params: {
+				speed: 0.7,
+				scale: 6.5,
+				amplitude: 0.7,
+				warp: 0.4,
+				hue: 0,
+				lineCount: 5,
+			},
+		},
+	];
 
 export function ControlDeck({ params, onChange, onReset }: ControlDeckProps) {
 	const set = (key: keyof ShaderParams, value: number) =>
@@ -61,9 +154,10 @@ export function ControlDeck({ params, onChange, onReset }: ControlDeckProps) {
 							Every constant is a knob.
 						</h2>
 						<p className="mt-4 max-w-md font-body text-ink-dim">
-							The shipped component bakes its look into constants. This deck promotes
-							them to live uniforms — drag a fader and the field below repaints on the
-							next frame. Find a look you like, then copy the numbers.
+							The shipped component bakes its look into constants. This deck
+							promotes them to live uniforms — drag a fader and the field below
+							repaints on the next frame. Find a look you like, then copy the
+							numbers.
 						</p>
 					</div>
 					<button

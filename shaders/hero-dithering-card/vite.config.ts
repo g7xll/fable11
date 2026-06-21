@@ -7,10 +7,10 @@ import path from "node:path";
 // `aliases` block so the verbatim `@/components/ui/hero-dithering-card` import
 // in demo.tsx resolves.
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+	plugins: [react(), tailwindcss()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+		},
+	},
 });

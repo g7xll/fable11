@@ -51,7 +51,9 @@ async function waitForServer(proc) {
 const checks = [];
 const record = (name, ok, detail = "") => {
 	checks.push({ name, ok, detail });
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 };
 
 let dev;
@@ -83,9 +85,7 @@ try {
 	// 1. Title + hero headline.
 	const title = await page.title();
 	record("page title set", /Gradient Bars/.test(title), title);
-	const heroH1 = await page
-		.locator("h1", { hasText: "Gradient" })
-		.count();
+	const heroH1 = await page.locator("h1", { hasText: "Gradient" }).count();
 	record("hero headline renders", heroH1 >= 1, `${heroH1} match(es)`);
 
 	// 2. GradientBars layer mounts and paints linear-gradient bars.
@@ -138,7 +138,9 @@ try {
 	const beforeHeadline = (
 		await page.locator("[data-deck-headline]").innerText()
 	).trim();
-	const fader = page.locator('label:has-text("numBars") input[type="range"]').first();
+	const fader = page
+		.locator('label:has-text("numBars") input[type="range"]')
+		.first();
 	await fader.fill("18");
 	await page.dispatchEvent(
 		'label:has-text("numBars") input[type="range"]',
@@ -161,13 +163,9 @@ try {
 	record("live usage snippet reflects props", usageReflects >= 1);
 
 	// 6. Colour preset updates the preview's reported rgb() label.
-	await page
-		.locator('button[aria-label="Set bar colour to Azure"]')
-		.click();
+	await page.locator('button[aria-label="Set bar colour to Azure"]').click();
 	await wait(300);
-	const azureShown = await page
-		.locator("text=rgb(58, 134, 255)")
-		.count();
+	const azureShown = await page.locator("text=rgb(58, 134, 255)").count();
 	record("colour preset updates preview", azureShown >= 1);
 
 	// 7. Required showcase sections exist.
@@ -213,5 +211,7 @@ try {
 }
 
 const failed = checks.filter((c) => !c.ok);
-console.log(`\n${checks.length - failed.length}/${checks.length} checks passed`);
+console.log(
+	`\n${checks.length - failed.length}/${checks.length} checks passed`,
+);
 process.exit(failed.length === 0 ? 0 : 1);

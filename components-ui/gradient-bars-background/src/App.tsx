@@ -10,7 +10,10 @@ import {
 	Sparkles,
 	Zap,
 } from "lucide-react";
-import { Component, GradientBars } from "@/components/ui/gradient-bars-background";
+import {
+	Component,
+	GradientBars,
+} from "@/components/ui/gradient-bars-background";
 import { Fader, SwatchRow } from "@/components/lab/Fader";
 import { CodeBlock } from "@/components/lab/CodeBlock";
 import {
@@ -260,9 +263,10 @@ function ControlDeck() {
 				<Eyebrow>Live control deck</Eyebrow>
 				<SectionTitle>Every fader is wired to a real prop.</SectionTitle>
 				<Lead>
-					The preview below is a second live <code className="font-mono text-ember">&lt;Component /&gt;</code>{" "}
-					instance. Move a fader, pick a colour, change the canvas — the bars and
-					the copyable usage snippet update in lock-step, so what you see is
+					The preview below is a second live{" "}
+					<code className="font-mono text-ember">&lt;Component /&gt;</code>{" "}
+					instance. Move a fader, pick a colour, change the canvas — the bars
+					and the copyable usage snippet update in lock-step, so what you see is
 					exactly what you ship.
 				</Lead>
 			</div>
@@ -387,11 +391,7 @@ function ControlDeck() {
 
 			{/* mirrored usage snippet */}
 			<div className="mt-5">
-				<CodeBlock
-					code={usage}
-					filename="live-usage.tsx"
-					lang="tsx"
-				/>
+				<CodeBlock code={usage} filename="live-usage.tsx" lang="tsx" />
 			</div>
 		</Section>
 	);
@@ -408,10 +408,11 @@ function Integration() {
 				<Eyebrow>Integration story</Eyebrow>
 				<SectionTitle>Drop it into a shadcn project — unchanged.</SectionTitle>
 				<Lead>
-					The prompt asks for a shadcn-structured, Tailwind + TypeScript codebase
-					with the component living under <code className="font-mono text-ember">/components/ui</code>.
-					Here is the supported-stack check, the CLI setup, why that folder
-					matters, the single dependency, and the verbatim source.
+					The prompt asks for a shadcn-structured, Tailwind + TypeScript
+					codebase with the component living under{" "}
+					<code className="font-mono text-ember">/components/ui</code>. Here is
+					the supported-stack check, the CLI setup, why that folder matters, the
+					single dependency, and the verbatim source.
 				</Lead>
 			</div>
 
@@ -423,9 +424,11 @@ function Integration() {
 						shadcn structure
 					</h3>
 					<p className="mt-1.5 text-sm leading-relaxed text-fog-400">
-						This project ships a real <code className="font-mono text-ember">components.json</code>,
-						the <code className="font-mono text-ember">@/*</code> alias, and the{" "}
-						<code className="font-mono text-ember">@/lib/utils</code> <code className="font-mono text-ember">cn()</code> helper.
+						This project ships a real{" "}
+						<code className="font-mono text-ember">components.json</code>, the{" "}
+						<code className="font-mono text-ember">@/*</code> alias, and the{" "}
+						<code className="font-mono text-ember">@/lib/utils</code>{" "}
+						<code className="font-mono text-ember">cn()</code> helper.
 					</p>
 				</Card>
 				<Card>
@@ -434,8 +437,11 @@ function Integration() {
 						Tailwind CSS v4
 					</h3>
 					<p className="mt-1.5 text-sm leading-relaxed text-fog-400">
-						Wired through <code className="font-mono text-ember">@tailwindcss/vite</code> with a single{" "}
-						<code className="font-mono text-ember">@import "tailwindcss"</code> and design tokens in{" "}
+						Wired through{" "}
+						<code className="font-mono text-ember">@tailwindcss/vite</code> with
+						a single{" "}
+						<code className="font-mono text-ember">@import "tailwindcss"</code>{" "}
+						and design tokens in{" "}
 						<code className="font-mono text-ember">@theme</code>.
 					</p>
 				</Card>
@@ -472,43 +478,53 @@ function Integration() {
 					<div className="flex items-center gap-2">
 						<MousePointerClick className="h-4 w-4 text-flame-soft" />
 						<h3 className="font-display text-lg font-semibold text-fog-200">
-							Why <code className="font-mono text-ember">/components/ui</code> matters
+							Why <code className="font-mono text-ember">/components/ui</code>{" "}
+							matters
 						</h3>
 					</div>
 					<ul className="flex flex-col gap-4 text-sm leading-relaxed text-fog-400">
 						<li className="flex gap-3">
 							<StepNum n={1} />
 							<span>
-								<strong className="text-fog-200">It's the shadcn contract.</strong>{" "}
-								<code className="font-mono text-ember">components.json</code> maps the{" "}
-								<code className="font-mono text-ember">ui</code> alias to{" "}
-								<code className="font-mono text-ember">@/components/ui</code>. The CLI and every
-								tutorial expect generated primitives to land there.
+								<strong className="text-fog-200">
+									It's the shadcn contract.
+								</strong>{" "}
+								<code className="font-mono text-ember">components.json</code>{" "}
+								maps the <code className="font-mono text-ember">ui</code> alias
+								to <code className="font-mono text-ember">@/components/ui</code>
+								. The CLI and every tutorial expect generated primitives to land
+								there.
 							</span>
 						</li>
 						<li className="flex gap-3">
 							<StepNum n={2} />
 							<span>
-								<strong className="text-fog-200">Imports stay portable.</strong> The demo
-								imports <code className="font-mono text-ember">@/components/ui/gradient-bars-background</code>{" "}
+								<strong className="text-fog-200">Imports stay portable.</strong>{" "}
+								The demo imports{" "}
+								<code className="font-mono text-ember">
+									@/components/ui/gradient-bars-background
+								</code>{" "}
 								— place the file anywhere else and that import breaks.
 							</span>
 						</li>
 						<li className="flex gap-3">
 							<StepNum n={3} />
 							<span>
-								<strong className="text-fog-200">It separates concerns.</strong> Reusable,
-								copy-owned primitives live in <code className="font-mono text-ember">ui/</code>;
-								your composed app components live one level up.
+								<strong className="text-fog-200">It separates concerns.</strong>{" "}
+								Reusable, copy-owned primitives live in{" "}
+								<code className="font-mono text-ember">ui/</code>; your composed
+								app components live one level up.
 							</span>
 						</li>
 					</ul>
 					<p className="mt-1 rounded-lg border border-line bg-ink-900/60 p-3 font-mono text-xs leading-relaxed text-fog-400">
 						components → <span className="text-ember">@/components</span>
 						<br />
-						ui&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; → <span className="text-ember">@/components/ui</span>
+						ui&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; →{" "}
+						<span className="text-ember">@/components/ui</span>
 						<br />
-						styles&nbsp;&nbsp; → <span className="text-ember">src/index.css</span>
+						styles&nbsp;&nbsp; →{" "}
+						<span className="text-ember">src/index.css</span>
 					</p>
 				</Card>
 			</div>
@@ -552,7 +568,9 @@ function PropsApi() {
 						<tr className="bg-ink-850/80 font-mono text-[11px] uppercase tracking-[0.16em] text-fog-400">
 							<th className="px-4 py-3 font-medium">Prop</th>
 							<th className="px-4 py-3 font-medium">Type</th>
-							<th className="hidden px-4 py-3 font-medium sm:table-cell">Default</th>
+							<th className="hidden px-4 py-3 font-medium sm:table-cell">
+								Default
+							</th>
 							<th className="px-4 py-3 font-medium">What it does</th>
 						</tr>
 					</thead>
@@ -560,7 +578,9 @@ function PropsApi() {
 						{PROPS.map((p) => (
 							<tr key={p.name} className="align-top hover:bg-ink-850/40">
 								<td className="whitespace-nowrap px-4 py-3">
-									<code className="font-mono text-[13px] text-ember">{p.name}</code>
+									<code className="font-mono text-[13px] text-ember">
+										{p.name}
+									</code>
 								</td>
 								<td className="whitespace-nowrap px-4 py-3 font-mono text-[12px] text-fog-300">
 									{p.type}
@@ -617,7 +637,8 @@ function Footer() {
 					Gradient Bars · components/ui integration
 				</p>
 				<p className="font-mono text-xs text-fog-400">
-					Pure CSS @keyframes · zero image assets · offline-first · React + TS + Tailwind
+					Pure CSS @keyframes · zero image assets · offline-first · React + TS +
+					Tailwind
 				</p>
 			</div>
 		</footer>

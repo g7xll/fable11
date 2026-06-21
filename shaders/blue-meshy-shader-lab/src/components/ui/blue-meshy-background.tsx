@@ -34,26 +34,26 @@ const FBM_OCTAVES = 10;
 // 20-step palette of blues.
 // If the darkest color is used, alpha=0 => total transparency in darkest areas.
 const seaColors = [
-  [0.0, 0.02, 0.05],
-  [0.0, 0.04, 0.08],
-  [0.0, 0.06, 0.12],
-  [0.0, 0.08, 0.18],
-  [0.0, 0.1, 0.24],
-  [0.0, 0.14, 0.32],
-  [0.0, 0.2, 0.4],
-  [0.0, 0.24, 0.48],
-  [0.0, 0.3, 0.55],
-  [0.05, 0.35, 0.6],
-  [0.08, 0.4, 0.65],
-  [0.1, 0.45, 0.7],
-  [0.15, 0.5, 0.75],
-  [0.2, 0.58, 0.8],
-  [0.25, 0.65, 0.85],
-  [0.3, 0.72, 0.9],
-  [0.4, 0.78, 0.92],
-  [0.5, 0.85, 0.95],
-  [0.7, 0.9, 0.97],
-  [0.85, 0.95, 1.0]
+	[0.0, 0.02, 0.05],
+	[0.0, 0.04, 0.08],
+	[0.0, 0.06, 0.12],
+	[0.0, 0.08, 0.18],
+	[0.0, 0.1, 0.24],
+	[0.0, 0.14, 0.32],
+	[0.0, 0.2, 0.4],
+	[0.0, 0.24, 0.48],
+	[0.0, 0.3, 0.55],
+	[0.05, 0.35, 0.6],
+	[0.08, 0.4, 0.65],
+	[0.1, 0.45, 0.7],
+	[0.15, 0.5, 0.75],
+	[0.2, 0.58, 0.8],
+	[0.25, 0.65, 0.85],
+	[0.3, 0.72, 0.9],
+	[0.4, 0.78, 0.92],
+	[0.5, 0.85, 0.95],
+	[0.7, 0.9, 0.97],
+	[0.85, 0.95, 1.0],
 ];
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -61,13 +61,15 @@ const seaColors = [
 ////////////////////////////////////////////////////////////////////////////////
 
 function buildFragmentShader(): string {
-  // Force integer for the for-loop.
-  const fbmOctavesInt = Math.floor(FBM_OCTAVES);
+	// Force integer for the for-loop.
+	const fbmOctavesInt = Math.floor(FBM_OCTAVES);
 
-  // Convert seaColors array to GLSL array of vec3.
-  const colorArraySrc = seaColors.map((c) => `vec3(${c[0]}, ${c[1]}, ${c[2]})`).join(", ");
+	// Convert seaColors array to GLSL array of vec3.
+	const colorArraySrc = seaColors
+		.map((c) => `vec3(${c[0]}, ${c[1]}, ${c[2]})`)
+		.join(", ");
 
-  return `#version 300 es
+	return `#version 300 es
 
 precision highp float;
 out vec4 outColor;
@@ -227,173 +229,188 @@ void main() {
 // SHADER COMPILATION UTIL
 ////////////////////////////////////////////////////////////////////////////////
 function createShaderProgram(
-  gl: WebGL2RenderingContext,
-  vsSource: string,
-  fsSource: string
+	gl: WebGL2RenderingContext,
+	vsSource: string,
+	fsSource: string,
 ): WebGLProgram | null {
-  const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-  if (!vertexShader) return null;
+	const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+	if (!vertexShader) return null;
 
-  gl.shaderSource(vertexShader, vsSource);
-  gl.compileShader(vertexShader);
-  if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-    console.error("Vertex shader error:", gl.getShaderInfoLog(vertexShader));
-    gl.deleteShader(vertexShader);
-    return null;
-  }
+	gl.shaderSource(vertexShader, vsSource);
+	gl.compileShader(vertexShader);
+	if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+		console.error("Vertex shader error:", gl.getShaderInfoLog(vertexShader));
+		gl.deleteShader(vertexShader);
+		return null;
+	}
 
-  const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-  if (!fragmentShader) {
-    gl.deleteShader(vertexShader);
-    return null;
-  }
+	const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+	if (!fragmentShader) {
+		gl.deleteShader(vertexShader);
+		return null;
+	}
 
-  gl.shaderSource(fragmentShader, fsSource);
-  gl.compileShader(fragmentShader);
-  if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-    console.error("Fragment shader error:", gl.getShaderInfoLog(fragmentShader));
-    gl.deleteShader(vertexShader);
-    gl.deleteShader(fragmentShader);
-    return null;
-  }
+	gl.shaderSource(fragmentShader, fsSource);
+	gl.compileShader(fragmentShader);
+	if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+		console.error(
+			"Fragment shader error:",
+			gl.getShaderInfoLog(fragmentShader),
+		);
+		gl.deleteShader(vertexShader);
+		gl.deleteShader(fragmentShader);
+		return null;
+	}
 
-  const program = gl.createProgram();
-  if (!program) {
-    gl.deleteShader(vertexShader);
-    gl.deleteShader(fragmentShader);
-    return null;
-  }
+	const program = gl.createProgram();
+	if (!program) {
+		gl.deleteShader(vertexShader);
+		gl.deleteShader(fragmentShader);
+		return null;
+	}
 
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
+	gl.attachShader(program, vertexShader);
+	gl.attachShader(program, fragmentShader);
+	gl.linkProgram(program);
 
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.error("Could not link WebGL program:", gl.getProgramInfoLog(program));
-    gl.deleteShader(vertexShader);
-    gl.deleteShader(fragmentShader);
-    gl.deleteProgram(program);
-    return null;
-  }
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		console.error(
+			"Could not link WebGL program:",
+			gl.getProgramInfoLog(program),
+		);
+		gl.deleteShader(vertexShader);
+		gl.deleteShader(fragmentShader);
+		gl.deleteProgram(program);
+		return null;
+	}
 
-  return program;
+	return program;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
 // MAIN REACT COMPONENT
 ////////////////////////////////////////////////////////////////////////////////
 export default function WavyBackground({
-  children,
-  className
+	children,
+	className,
 }: {
-  children: React.ReactNode;
-  className?: string;
+	children: React.ReactNode;
+	className?: string;
 }) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  useEffect(() => {
-    const canvas = canvasRef.current!;
-    if (!canvas) return;
+	useEffect(() => {
+		const canvas = canvasRef.current!;
+		if (!canvas) return;
 
-    // Build final fragment shader from above config
-    const fsSource = buildFragmentShader();
+		// Build final fragment shader from above config
+		const fsSource = buildFragmentShader();
 
-    const gl = canvas.getContext("webgl2", { alpha: true })!;
-    if (!gl) {
-      console.error("WebGL2 is not supported by your browser.");
-      return;
-    }
+		const gl = canvas.getContext("webgl2", { alpha: true })!;
+		if (!gl) {
+			console.error("WebGL2 is not supported by your browser.");
+			return;
+		}
 
-    // Enable blending for transparency
-    gl.enable(gl.BLEND);
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+		// Enable blending for transparency
+		gl.enable(gl.BLEND);
+		gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
-    // Transparent background
-    gl.clearColor(0, 0, 0, 0);
+		// Transparent background
+		gl.clearColor(0, 0, 0, 0);
 
-    // Resize canvas to fill screen
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+		// Resize canvas to fill screen
+		canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
 
-    const program = createShaderProgram(gl, vertexShaderSource, fsSource);
-    if (!program) {
-      console.error("Failed to create shader program.");
-      return;
-    }
+		const program = createShaderProgram(gl, vertexShaderSource, fsSource);
+		if (!program) {
+			console.error("Failed to create shader program.");
+			return;
+		}
 
-    gl.useProgram(program);
+		gl.useProgram(program);
 
-    // Full-screen quad
-    const quadVertices = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
+		// Full-screen quad
+		const quadVertices = new Float32Array([
+			-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1,
+		]);
 
-    const vao = gl.createVertexArray();
-    gl.bindVertexArray(vao);
+		const vao = gl.createVertexArray();
+		gl.bindVertexArray(vao);
 
-    const vbo = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, quadVertices, gl.STATIC_DRAW);
+		const vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+		gl.bufferData(gl.ARRAY_BUFFER, quadVertices, gl.STATIC_DRAW);
 
-    const aPositionLoc = gl.getAttribLocation(program, "aPosition");
-    gl.enableVertexAttribArray(aPositionLoc);
-    gl.vertexAttribPointer(aPositionLoc, 2, gl.FLOAT, false, 0, 0);
+		const aPositionLoc = gl.getAttribLocation(program, "aPosition");
+		gl.enableVertexAttribArray(aPositionLoc);
+		gl.vertexAttribPointer(aPositionLoc, 2, gl.FLOAT, false, 0, 0);
 
-    // Uniform locations
-    const uResolutionLoc = gl.getUniformLocation(program, "uResolution");
-    const uTimeLoc = gl.getUniformLocation(program, "uTime");
+		// Uniform locations
+		const uResolutionLoc = gl.getUniformLocation(program, "uResolution");
+		const uTimeLoc = gl.getUniformLocation(program, "uTime");
 
-    let startTime = performance.now();
+		let startTime = performance.now();
 
-    // Track the animation frame so the loop can be cancelled on unmount. Without
-    // this, React 18 StrictMode's mount→unmount→remount in development leaves the
-    // first loop running against GL objects deleted in cleanup (INVALID_OPERATION
-    // spam + a blank canvas). One handle + one cancelAnimationFrame makes the
-    // verbatim shader StrictMode-safe.
-    let frameId = 0;
+		// Track the animation frame so the loop can be cancelled on unmount. Without
+		// this, React 18 StrictMode's mount→unmount→remount in development leaves the
+		// first loop running against GL objects deleted in cleanup (INVALID_OPERATION
+		// spam + a blank canvas). One handle + one cancelAnimationFrame makes the
+		// verbatim shader StrictMode-safe.
+		let frameId = 0;
 
-    function render() {
-      const currentTime = performance.now();
-      const elapsed = (currentTime - startTime) * 0.001; // seconds
+		function render() {
+			const currentTime = performance.now();
+			const elapsed = (currentTime - startTime) * 0.001; // seconds
 
-      if (canvas.width !== window.innerWidth || canvas.height !== window.innerHeight) {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+			if (
+				canvas.width !== window.innerWidth ||
+				canvas.height !== window.innerHeight
+			) {
+				canvas.width = window.innerWidth;
+				canvas.height = window.innerHeight;
+			}
 
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.clear(gl.COLOR_BUFFER_BIT);
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			gl.clear(gl.COLOR_BUFFER_BIT);
 
-      gl.useProgram(program);
-      gl.bindVertexArray(vao);
+			gl.useProgram(program);
+			gl.bindVertexArray(vao);
 
-      gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
-      gl.uniform1f(uTimeLoc, elapsed);
+			gl.uniform2f(uResolutionLoc, canvas.width, canvas.height);
+			gl.uniform1f(uTimeLoc, elapsed);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
-      frameId = requestAnimationFrame(render);
-    }
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
+			frameId = requestAnimationFrame(render);
+		}
 
-    render();
+		render();
 
-    const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-      gl.viewport(0, 0, canvas.width, canvas.height);
-    };
-    window.addEventListener("resize", handleResize);
+		const handleResize = () => {
+			canvas.width = window.innerWidth;
+			canvas.height = window.innerHeight;
+			gl.viewport(0, 0, canvas.width, canvas.height);
+		};
+		window.addEventListener("resize", handleResize);
 
-    return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", handleResize);
-      gl.deleteProgram(program);
-      gl.deleteBuffer(vbo);
-      gl.deleteVertexArray(vao);
-    };
-  }, []);
+		return () => {
+			cancelAnimationFrame(frameId);
+			window.removeEventListener("resize", handleResize);
+			gl.deleteProgram(program);
+			gl.deleteBuffer(vbo);
+			gl.deleteVertexArray(vao);
+		};
+	}, []);
 
-  return (
-    <div className={cn("relative w-full overflow-hidden", className)}>
-      <canvas ref={canvasRef} className="absolute inset-0" style={{ background: "transparent" }} />
-      {children}
-    </div>
-  );
+	return (
+		<div className={cn("relative w-full overflow-hidden", className)}>
+			<canvas
+				ref={canvasRef}
+				className="absolute inset-0"
+				style={{ background: "transparent" }}
+			/>
+			{children}
+		</div>
+	);
 }

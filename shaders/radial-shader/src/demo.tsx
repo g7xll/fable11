@@ -1,5 +1,5 @@
-import Component  from "@/components/ui/radial-shader";
+import Component from "@/components/ui/radial-shader";
 
 export default function DemoOne() {
-  return <Component />;
+	return <Component />;
 }

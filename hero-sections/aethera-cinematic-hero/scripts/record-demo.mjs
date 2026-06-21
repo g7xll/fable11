@@ -57,7 +57,9 @@ try {
 	});
 	const page = await ctx.newPage();
 	await page.goto(URL, { waitUntil: "load" });
-	await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
+	await page
+		.evaluate(() => document.fonts && document.fonts.ready)
+		.catch(() => {});
 	await sleep(2500); // let the hero settle + video fade in
 
 	const toggle = page.locator("[data-theme-toggle]");
@@ -90,14 +92,21 @@ try {
 		"ffmpeg",
 		[
 			"-y",
-			"-i", path.join(TMP, webm.f),
-			"-r", "30",
+			"-i",
+			path.join(TMP, webm.f),
+			"-r",
+			"30",
 			"-an",
-			"-c:v", "libx264",
-			"-preset", "slow",
-			"-pix_fmt", "yuv420p",
-			"-crf", "18",
-			"-movflags", "+faststart",
+			"-c:v",
+			"libx264",
+			"-preset",
+			"slow",
+			"-pix_fmt",
+			"yuv420p",
+			"-crf",
+			"18",
+			"-movflags",
+			"+faststart",
 			OUT,
 		],
 		{ stdio: "inherit" },

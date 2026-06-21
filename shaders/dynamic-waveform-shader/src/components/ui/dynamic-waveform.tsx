@@ -116,7 +116,10 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 			const uniforms = {
 				u_time: { value: 0.0 },
 				u_resolution: {
-					value: new THREE.Vector2(container.clientWidth, container.clientHeight),
+					value: new THREE.Vector2(
+						container.clientWidth,
+						container.clientHeight,
+					),
 				},
 				u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
 				u_color1: { value: new THREE.Color(color1) },
@@ -129,7 +132,11 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 
 			// 4. Fullscreen quad
 			const geo = new THREE.PlaneGeometry(2, 2);
-			const mat = new THREE.ShaderMaterial({ uniforms, vertexShader, fragmentShader });
+			const mat = new THREE.ShaderMaterial({
+				uniforms,
+				vertexShader,
+				fragmentShader,
+			});
 			const mesh = new THREE.Mesh(geo, mat);
 			scene.add(mesh);
 
@@ -197,7 +204,15 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 			uniforms.u_frequency.value = frequency;
 			uniforms.u_mouse_distortion.value = mouseDistortion;
 			threeRef.current.speed = speed;
-		}, [color1, color2, complexity, amplitude, frequency, mouseDistortion, speed]);
+		}, [
+			color1,
+			color2,
+			complexity,
+			amplitude,
+			frequency,
+			mouseDistortion,
+			speed,
+		]);
 
 		// Fill the mount box with a fallback background
 		return (

@@ -218,7 +218,9 @@ const ProductDetails = ({
 }) => {
 	const alignClass = isLeft ? "items-start text-left" : "items-end text-right";
 	const flexDirClass = isLeft ? "flex-row" : "flex-row-reverse";
-	const barColorClass = isLeft ? "left-0 bg-blue-500" : "right-0 bg-emerald-500";
+	const barColorClass = isLeft
+		? "left-0 bg-blue-500"
+		: "right-0 bg-emerald-500";
 
 	return (
 		<motion.div
@@ -281,7 +283,9 @@ const ProductDetails = ({
 					</div>
 				))}
 
-				<div className={`pt-4 flex ${isLeft ? "justify-start" : "justify-end"}`}>
+				<div
+					className={`pt-4 flex ${isLeft ? "justify-start" : "justify-end"}`}
+				>
 					<button
 						type="button"
 						className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-zinc-300 hover:text-white transition-colors group focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40 rounded-full px-1 py-1"

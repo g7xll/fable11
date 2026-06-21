@@ -1,104 +1,113 @@
-"use client"
-import { useFrame, useThree } from "@react-three/fiber"
-import { useRef, useMemo, useImperativeHandle, forwardRef } from "react"
-import * as THREE from "three"
+"use client";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useRef, useMemo, useImperativeHandle, forwardRef } from "react";
+import * as THREE from "three";
 
 interface Ripple {
-  id: number;
-  x: number;
-  y: number;
-  startTime: number;
+	id: number;
+	x: number;
+	y: number;
+	startTime: number;
 }
 
 interface GrainyGradientProps {
-  ripples?: Ripple[];
-  onTimeUpdate?: (time: number) => void;
+	ripples?: Ripple[];
+	onTimeUpdate?: (time: number) => void;
 }
 
-const GrainyGradient = forwardRef<any, GrainyGradientProps>(({ ripples = [], onTimeUpdate }, ref) => {
-  const mesh = useRef<THREE.Mesh>(null)
-  const { viewport } = useThree()
+const GrainyGradient = forwardRef<any, GrainyGradientProps>(
+	({ ripples = [], onTimeUpdate }, ref) => {
+		const mesh = useRef<THREE.Mesh>(null);
+		const { viewport } = useThree();
 
-  const uniforms = useMemo(
-    () => ({
-      iTime: { value: 0.0 },
-      iResolution: { value: new THREE.Vector3() },
-      // Simplex noise uniforms
-      noiseIntensity: { value: 1.55 },
-      noiseScale: { value: 2.0 },
-      noiseSpeed: { value: 0.15 },
-      // Wave/domain warping noise uniforms
-      waveNoiseIntensity: { value: 1.2 },
-      waveNoiseScale1: { value: 0.5 },
-      waveNoiseScale2: { value: 0.8 },
-      waveNoiseScale3: { value: 1.2 },
-      waveNoiseSpeed1: { value: 0.24 },
-      waveNoiseSpeed2: { value: 0.2 },
-      waveNoiseSpeed3: { value: 0.3 },
-      // Ripple uniforms
-      ripplePositions: { value: [] as number[] },
-      rippleTimes: { value: [] as number[] },
-      rippleCount: { value: 0 },
-    }),
-    [],
-  )
+		const uniforms = useMemo(
+			() => ({
+				iTime: { value: 0.0 },
+				iResolution: { value: new THREE.Vector3() },
+				// Simplex noise uniforms
+				noiseIntensity: { value: 1.55 },
+				noiseScale: { value: 2.0 },
+				noiseSpeed: { value: 0.15 },
+				// Wave/domain warping noise uniforms
+				waveNoiseIntensity: { value: 1.2 },
+				waveNoiseScale1: { value: 0.5 },
+				waveNoiseScale2: { value: 0.8 },
+				waveNoiseScale3: { value: 1.2 },
+				waveNoiseSpeed1: { value: 0.24 },
+				waveNoiseSpeed2: { value: 0.2 },
+				waveNoiseSpeed3: { value: 0.3 },
+				// Ripple uniforms
+				ripplePositions: { value: [] as number[] },
+				rippleTimes: { value: [] as number[] },
+				rippleCount: { value: 0 },
+			}),
+			[],
+		);
 
-  useFrame((state) => {
-    if (mesh.current) {
-      const currentTime = state.clock.getElapsedTime()
-      uniforms.iTime.value = currentTime
-      uniforms.iResolution.value.set(window.innerWidth, window.innerHeight, 1)
+		useFrame((state) => {
+			if (mesh.current) {
+				const currentTime = state.clock.getElapsedTime();
+				uniforms.iTime.value = currentTime;
+				uniforms.iResolution.value.set(
+					window.innerWidth,
+					window.innerHeight,
+					1,
+				);
 
-      // Call the time update callback
-      if (onTimeUpdate) {
-        onTimeUpdate(currentTime)
-      }
+				// Call the time update callback
+				if (onTimeUpdate) {
+					onTimeUpdate(currentTime);
+				}
 
-      // Update ripple uniforms
-      const activeRipples = ripples.filter(ripple => currentTime - ripple.startTime < 2.0) // 2 second duration
-      const positions = []
-      const times = []
+				// Update ripple uniforms
+				const activeRipples = ripples.filter(
+					(ripple) => currentTime - ripple.startTime < 2.0,
+				); // 2 second duration
+				const positions = [];
+				const times = [];
 
-      for (let i = 0; i < Math.min(activeRipples.length, 10); i++) { // Max 10 ripples
-        const ripple = activeRipples[i]
-        // Convert to normalized coordinates (-1 to 1)
-        const normalizedX = (ripple.x / 800) * 2 - 1 // 800 is card width
-        const normalizedY = 1 - (ripple.y / 600) * 2 // 600 is card height, flip Y
-        positions.push(normalizedX, normalizedY)
-        times.push(currentTime - ripple.startTime)
-      }
+				for (let i = 0; i < Math.min(activeRipples.length, 10); i++) {
+					// Max 10 ripples
+					const ripple = activeRipples[i];
+					// Convert to normalized coordinates (-1 to 1)
+					const normalizedX = (ripple.x / 800) * 2 - 1; // 800 is card width
+					const normalizedY = 1 - (ripple.y / 600) * 2; // 600 is card height, flip Y
+					positions.push(normalizedX, normalizedY);
+					times.push(currentTime - ripple.startTime);
+				}
 
-      uniforms.ripplePositions.value = positions
-      uniforms.rippleTimes.value = times
-      uniforms.rippleCount.value = activeRipples.length
-    }
-  })
+				uniforms.ripplePositions.value = positions;
+				uniforms.rippleTimes.value = times;
+				uniforms.rippleCount.value = activeRipples.length;
+			}
+		});
 
-  const material = useMemo(() => {
-    return new THREE.ShaderMaterial({
-      fragmentShader,
-      vertexShader,
-      uniforms,
-    })
-  }, [uniforms])
+		const material = useMemo(() => {
+			return new THREE.ShaderMaterial({
+				fragmentShader,
+				vertexShader,
+				uniforms,
+			});
+		}, [uniforms]);
 
-  useImperativeHandle(ref, () => ({
-    material,
-    uniforms,
-    getCurrentTime: () => uniforms.iTime.value
-  }))
+		useImperativeHandle(ref, () => ({
+			material,
+			uniforms,
+			getCurrentTime: () => uniforms.iTime.value,
+		}));
 
-  return (
-    <mesh ref={mesh} scale={[viewport.width, viewport.height, 1]}>
-      <planeGeometry args={[1, 1]} />
-      {material && <primitive object={material} attach="material" />}
-    </mesh>
-  )
-})
+		return (
+			<mesh ref={mesh} scale={[viewport.width, viewport.height, 1]}>
+				<planeGeometry args={[1, 1]} />
+				{material && <primitive object={material} attach="material" />}
+			</mesh>
+		);
+	},
+);
 
-GrainyGradient.displayName = "GrainyGradient"
+GrainyGradient.displayName = "GrainyGradient";
 
-export default GrainyGradient
+export default GrainyGradient;
 
 const vertexShader = `
   varying vec2 vUv;
@@ -106,7 +115,7 @@ const vertexShader = `
     vUv = uv;
     gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
   }
-`
+`;
 
 const fragmentShader = `
   uniform vec3 iResolution;
@@ -416,4 +425,4 @@ const fragmentShader = `
     vec2 fragCoord = vUv * iResolution.xy;
     mainImage(gl_FragColor, fragCoord);
   }
-`
+`;

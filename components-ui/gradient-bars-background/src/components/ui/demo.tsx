@@ -3,33 +3,33 @@ import { Component } from "@/components/ui/gradient-bars-background";
 import { Settings, X } from "lucide-react";
 
 export default function Demo() {
-  const [numBars, setNumBars] = useState(7);
-  const [gradientColor, setGradientColor] = useState("#ff3c00");
-  const [isPanelOpen, setIsPanelOpen] = useState(false);
+	const [numBars, setNumBars] = useState(7);
+	const [gradientColor, setGradientColor] = useState("#ff3c00");
+	const [isPanelOpen, setIsPanelOpen] = useState(false);
 
-  // Ensure only odd numbers
-  const handleBarsChange = (value: number) => {
-    // If even, round to nearest odd number
-    const oddValue = value % 2 === 0 ? value + 1 : value;
-    setNumBars(oddValue);
-  };
+	// Ensure only odd numbers
+	const handleBarsChange = (value: number) => {
+		// If even, round to nearest odd number
+		const oddValue = value % 2 === 0 ? value + 1 : value;
+		setNumBars(oddValue);
+	};
 
-  // Convert hex to RGB
-  const hexToRgb = (hex: string) => {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    return result
-      ? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
-      : "rgb(255, 60, 0)";
-  };
+	// Convert hex to RGB
+	const hexToRgb = (hex: string) => {
+		const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		return result
+			? `rgb(${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)})`
+			: "rgb(255, 60, 0)";
+	};
 
-  return (
-    <>
-      {/*
+	return (
+		<>
+			{/*
         Note: the source prompt loaded "Inter" from a remote Google Fonts
         <link>. In this offline-first integration "Inter" is vendored locally
         via @font-face in src/index.css, so the remote stylesheet is omitted.
       */}
-      <style>{`
+			<style>{`
         .font-modern {
           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
@@ -160,98 +160,103 @@ export default function Demo() {
         }
       `}</style>
 
-      <Component
-        numBars={numBars}
-        gradientFrom={hexToRgb(gradientColor)}
-        gradientTo="transparent"
-        animationDuration={2}
-        backgroundColor="rgb(10, 10, 10)"
-      >
-        {/* Toggle Button */}
-        <button
-          onClick={() => setIsPanelOpen(!isPanelOpen)}
-          className="fixed top-4 right-4 z-50 toggle-btn rounded-lg p-3 shadow-2xl"
-          aria-label={isPanelOpen ? "Close controls" : "Open controls"}
-        >
-          {isPanelOpen ? (
-            <X className="w-5 h-5 text-white" />
-          ) : (
-            <Settings className="w-5 h-5 text-white" />
-          )}
-        </button>
+			<Component
+				numBars={numBars}
+				gradientFrom={hexToRgb(gradientColor)}
+				gradientTo="transparent"
+				animationDuration={2}
+				backgroundColor="rgb(10, 10, 10)"
+			>
+				{/* Toggle Button */}
+				<button
+					onClick={() => setIsPanelOpen(!isPanelOpen)}
+					className="fixed top-4 right-4 z-50 toggle-btn rounded-lg p-3 shadow-2xl"
+					aria-label={isPanelOpen ? "Close controls" : "Open controls"}
+				>
+					{isPanelOpen ? (
+						<X className="w-5 h-5 text-white" />
+					) : (
+						<Settings className="w-5 h-5 text-white" />
+					)}
+				</button>
 
-        {/* Control Panel */}
-        <div className={`fixed top-16 right-4 z-40 control-panel rounded-xl p-4 w-[260px] shadow-2xl ${!isPanelOpen ? 'hidden' : ''}`}>
-          <h3 className="text-white font-bold text-base mb-4">Customize</h3>
+				{/* Control Panel */}
+				<div
+					className={`fixed top-16 right-4 z-40 control-panel rounded-xl p-4 w-[260px] shadow-2xl ${!isPanelOpen ? "hidden" : ""}`}
+				>
+					<h3 className="text-white font-bold text-base mb-4">Customize</h3>
 
-          {/* Number of Bars */}
-          <div className="mb-4">
-            <div className="flex justify-between items-center mb-2">
-              <label className="control-label">Bars</label>
-              <span className="text-white text-xs font-bold bg-white/20 px-2 py-0.5 rounded-full">
-                {numBars}
-              </span>
-            </div>
-            <input
-              type="range"
-              min="3"
-              max="20"
-              value={numBars}
-              onChange={(e) => handleBarsChange(Number(e.target.value))}
-              className="slider"
-            />
-          </div>
+					{/* Number of Bars */}
+					<div className="mb-4">
+						<div className="flex justify-between items-center mb-2">
+							<label className="control-label">Bars</label>
+							<span className="text-white text-xs font-bold bg-white/20 px-2 py-0.5 rounded-full">
+								{numBars}
+							</span>
+						</div>
+						<input
+							type="range"
+							min="3"
+							max="20"
+							value={numBars}
+							onChange={(e) => handleBarsChange(Number(e.target.value))}
+							className="slider"
+						/>
+					</div>
 
-          {/* Color Picker */}
-          <div className="mb-4">
-            <label className="control-label">Color</label>
-            <div className="color-picker-wrapper" style={{ background: gradientColor }}>
-              <input
-                type="color"
-                value={gradientColor}
-                onChange={(e) => setGradientColor(e.target.value)}
-                className="color-picker"
-              />
-              <div className="color-display">
-                {gradientColor.toUpperCase()}
-              </div>
-            </div>
-          </div>
+					{/* Color Picker */}
+					<div className="mb-4">
+						<label className="control-label">Color</label>
+						<div
+							className="color-picker-wrapper"
+							style={{ background: gradientColor }}
+						>
+							<input
+								type="color"
+								value={gradientColor}
+								onChange={(e) => setGradientColor(e.target.value)}
+								className="color-picker"
+							/>
+							<div className="color-display">{gradientColor.toUpperCase()}</div>
+						</div>
+					</div>
 
-          {/* Preset Colors */}
-          <div>
-            <label className="control-label mb-2">Presets</label>
-            <div className="grid grid-cols-3 gap-2">
-              {[
-                "#ff3c00", // Orange
-                "#ff006e", // Pink
-                "#8338ec", // Purple
-                "#3a86ff", // Blue
-                "#06ffa5", // Mint
-                "#ffbe0b", // Gold
-              ].map((color) => (
-                <button
-                  key={color}
-                  onClick={() => setGradientColor(color)}
-                  className="preset-btn"
-                  style={{ background: color }}
-                  aria-label={`Set color to ${color}`}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+					{/* Preset Colors */}
+					<div>
+						<label className="control-label mb-2">Presets</label>
+						<div className="grid grid-cols-3 gap-2">
+							{[
+								"#ff3c00", // Orange
+								"#ff006e", // Pink
+								"#8338ec", // Purple
+								"#3a86ff", // Blue
+								"#06ffa5", // Mint
+								"#ffbe0b", // Gold
+							].map((color) => (
+								<button
+									key={color}
+									onClick={() => setGradientColor(color)}
+									className="preset-btn"
+									style={{ background: color }}
+									aria-label={`Set color to ${color}`}
+								/>
+							))}
+						</div>
+					</div>
+				</div>
 
-        {/* Center Info */}
-        <div className="text-center font-modern">
-          <h1 className="text-white text-5xl md:text-7xl font-bold mb-4 tracking-tight">
-            Gradient Bars
-          </h1>
-          <p className="text-gray-400 text-lg md:text-xl font-medium">
-            {isPanelOpen ? "Customize using the panel" : "Click the settings icon to customize"}
-          </p>
-        </div>
-      </Component>
-    </>
-  );
+				{/* Center Info */}
+				<div className="text-center font-modern">
+					<h1 className="text-white text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+						Gradient Bars
+					</h1>
+					<p className="text-gray-400 text-lg md:text-xl font-medium">
+						{isPanelOpen
+							? "Customize using the panel"
+							: "Click the settings icon to customize"}
+					</p>
+				</div>
+			</Component>
+		</>
+	);
 }

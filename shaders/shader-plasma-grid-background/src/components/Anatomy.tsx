@@ -1,11 +1,4 @@
-import {
-	CircleDot,
-	Grid3x3,
-	Layers,
-	Spline,
-	Waves,
-	Zap,
-} from "lucide-react";
+import { CircleDot, Grid3x3, Layers, Spline, Waves, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
@@ -78,8 +71,8 @@ export function Anatomy() {
 						What's inside one fragment shader.
 					</h2>
 					<p className="mt-4 font-body text-ink-dim">
-						The whole effect is ~90 lines of GLSL evaluated once per pixel. Read it
-						top to bottom and each layer stacks onto the last.
+						The whole effect is ~90 lines of GLSL evaluated once per pixel. Read
+						it top to bottom and each layer stacks onto the last.
 					</p>
 				</Reveal>
 

@@ -237,13 +237,14 @@ export default function App() {
 						A canvas rain of dots that fall in columns, each bleeding one{" "}
 						<span className="text-chan-r">R</span>
 						<span className="text-chan-g">G</span>
-						<span className="text-chan-b">B</span> channel from black to full
-						as it drops — drops straight into{" "}
+						<span className="text-chan-b">B</span> channel from black to full as
+						it drops — drops straight into{" "}
 						<code className="rounded bg-ink-950/80 px-1.5 py-0.5 font-mono text-sm text-accent">
 							@/components/ui
 						</code>{" "}
-						as a single <span className="text-fog-200">requestAnimationFrame</span>{" "}
-						loop. Zero dependencies, zero assets.
+						as a single{" "}
+						<span className="text-fog-200">requestAnimationFrame</span> loop.
+						Zero dependencies, zero assets.
 					</p>
 
 					<div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -287,8 +288,9 @@ export default function App() {
 					<p className="max-w-md text-sm leading-relaxed text-fog-400">
 						The deck mounts a second{" "}
 						<code className="font-mono text-accent">AnimatedDots</code> instance
-						(<code className="font-mono text-accent">fullScreen=false</code>) and
-						drives its real props — exactly the values you&apos;d pass in JSX.
+						(<code className="font-mono text-accent">fullScreen=false</code>)
+						and drives its real props — exactly the values you&apos;d pass in
+						JSX.
 					</p>
 				</div>
 
@@ -551,8 +553,8 @@ export default function App() {
 							<p className="mb-4 text-sm leading-relaxed text-fog-400">
 								If your codebase doesn&apos;t already have shadcn + Tailwind +
 								TypeScript, stand one up, then run{" "}
-								<code className="font-mono text-accent">init</code>. It writes the{" "}
-								<code className="font-mono text-accent">@/</code> alias,{" "}
+								<code className="font-mono text-accent">init</code>. It writes
+								the <code className="font-mono text-accent">@/</code> alias,{" "}
 								<code className="font-mono text-accent">lib/utils.ts</code>, and
 								your CSS variables.
 							</p>
@@ -568,9 +570,10 @@ export default function App() {
 							/>
 							<p className="mb-4 text-sm leading-relaxed text-fog-400">
 								Unlike a typical effect, this component has{" "}
-								<span className="text-fog-200">no external runtime deps</span>. It
-								uses only <code className="font-mono text-accent">react</code> and
-								the native <code className="font-mono">&lt;canvas&gt;</code> 2D
+								<span className="text-fog-200">no external runtime deps</span>.
+								It uses only{" "}
+								<code className="font-mono text-accent">react</code> and the
+								native <code className="font-mono">&lt;canvas&gt;</code> 2D
 								context — no three.js, no framer-motion, no context providers.
 							</p>
 							<CodeBlock code={INSTALL_DEP} lang="bash" />
@@ -583,7 +586,8 @@ export default function App() {
 								</div>
 								<ul className="mt-3 space-y-1.5 font-mono text-[0.72rem] text-fog-300">
 									<li>
-										components → <span className="text-accent">@/components</span>
+										components →{" "}
+										<span className="text-accent">@/components</span>
 									</li>
 									<li>
 										ui → <span className="text-accent">@/components/ui</span>
@@ -610,14 +614,15 @@ export default function App() {
 									<span className="font-600 text-accent">
 										Why /components/ui matters.
 									</span>{" "}
-									It&apos;s the convention every shadcn import path assumes — the{" "}
+									It&apos;s the convention every shadcn import path assumes —
+									the{" "}
 									<code className="font-mono">
 										@/components/ui/&lt;name&gt;
 									</code>{" "}
 									alias, the registry&apos;s copy targets, and tooling like the
 									CLI&apos;s <code className="font-mono">add</code> command all
-									resolve here. Keeping primitives in one predictable folder means
-									the demo&apos;s{" "}
+									resolve here. Keeping primitives in one predictable folder
+									means the demo&apos;s{" "}
 									<code className="font-mono">
 										import {"{"} AnimatedDots {"}"} from
 										&quot;@/components/ui/animated-dots&quot;
@@ -674,7 +679,9 @@ export default function App() {
 									className="grid grid-cols-[1.1fr_0.9fr_0.6fr] items-start gap-2 px-5 py-3.5"
 								>
 									<div>
-										<div className="font-mono text-sm text-accent">{p.name}</div>
+										<div className="font-mono text-sm text-accent">
+											{p.name}
+										</div>
 										<div className="mt-1 text-[0.78rem] leading-snug text-fog-400">
 											{p.desc}
 										</div>

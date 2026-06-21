@@ -82,8 +82,10 @@
 	--mint: #6fcfba; /* cool accent (ok / live dot)         */
 
 	--font-inter: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-	--font-instrument: "Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
-	--font-mono-stack: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+	--font-instrument:
+		"Instrument Serif", ui-serif, Georgia, "Times New Roman", serif;
+	--font-mono-stack:
+		"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 /* The `.instrument` class the verbatim hero uses for its display wordmark. */
@@ -118,8 +120,17 @@ body {
 /* Console bench — a carbon gradient that frames the live hero plate. */
 .bench {
 	background:
-		radial-gradient(120% 90% at 85% -10%, color-mix(in oklab, var(--ember-deep), transparent 86%) 0%, transparent 55%),
-		radial-gradient(120% 100% at 8% 0%, color-mix(in oklab, var(--carbon-2), #fff 4%) 0%, var(--carbon) 52%, #060504 100%);
+		radial-gradient(
+			120% 90% at 85% -10%,
+			color-mix(in oklab, var(--ember-deep), transparent 86%) 0%,
+			transparent 55%
+		),
+		radial-gradient(
+			120% 100% at 8% 0%,
+			color-mix(in oklab, var(--carbon-2), #fff 4%) 0%,
+			var(--carbon) 52%,
+			#060504 100%
+		);
 }
 
 /* Frosted instrument module */
@@ -131,8 +142,11 @@ body {
 
 /* Fine engraved grain on chrome panels */
 .grain {
-	background-image:
-		repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in oklab, #fff, transparent 97%) 3px 4px);
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent 0 3px,
+		color-mix(in oklab, #fff, transparent 97%) 3px 4px
+	);
 }
 
 /* Corner registration brackets on the live viewport (specimen plate framing) */
@@ -216,7 +230,9 @@ body {
 	cursor: grab;
 }
 .fader:focus-visible {
-	box-shadow: 0 0 0 2px var(--carbon), 0 0 0 4px var(--ember);
+	box-shadow:
+		0 0 0 2px var(--carbon),
+		0 0 0 4px var(--ember);
 }
 
 /* Native colour input → bare swatch chip */
@@ -302,7 +318,10 @@ body {
 }
 
 .tab-ink {
-	transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+	transition:
+		color 160ms ease,
+		border-color 160ms ease,
+		background 160ms ease;
 }
 
 button:focus-visible,

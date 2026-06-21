@@ -11,70 +11,88 @@ import * as THREE from "three";
  * shader hard-coded, so zero-prop usage is byte-for-byte the original look.
  */
 export interface MorphingLightProps {
-  /** Animation speed multiplier (original: 2.5). */
-  speed?: number;
-  /** Inner ring frequency (original: 4.0). */
-  innerBands?: number;
-  /** Outer ring frequency (original: 8.0). */
-  outerBands?: number;
-  /** Hue rotation applied to the final color, in degrees (original: 0). */
-  hueShift?: number;
-  /** First spectrum endpoint, rgb 0–1 (original: pink 1.0, 0.41, 0.71). */
-  colorA?: [number, number, number];
-  /** Second spectrum endpoint, rgb 0–1 (original: cyan 0.0, 1.0, 1.0). */
-  colorB?: [number, number, number];
-  /** Freeze the clock without tearing down the GL context. */
-  paused?: boolean;
-  /** Per-frame telemetry tap: center-pixel color + luminance, clock, fps. */
-  onSample?: (s: {
-    time: number;
-    fps: number;
-    luma: number;
-    rgb: [number, number, number];
-  }) => void;
-  className?: string;
+	/** Animation speed multiplier (original: 2.5). */
+	speed?: number;
+	/** Inner ring frequency (original: 4.0). */
+	innerBands?: number;
+	/** Outer ring frequency (original: 8.0). */
+	outerBands?: number;
+	/** Hue rotation applied to the final color, in degrees (original: 0). */
+	hueShift?: number;
+	/** First spectrum endpoint, rgb 0–1 (original: pink 1.0, 0.41, 0.71). */
+	colorA?: [number, number, number];
+	/** Second spectrum endpoint, rgb 0–1 (original: cyan 0.0, 1.0, 1.0). */
+	colorB?: [number, number, number];
+	/** Freeze the clock without tearing down the GL context. */
+	paused?: boolean;
+	/** Per-frame telemetry tap: center-pixel color + luminance, clock, fps. */
+	onSample?: (s: {
+		time: number;
+		fps: number;
+		luma: number;
+		rgb: [number, number, number];
+	}) => void;
+	className?: string;
 }
 
 export function MorphingLight({
-  speed = 2.5,
-  innerBands = 4.0,
-  outerBands = 8.0,
-  hueShift = 0,
-  colorA = [1.0, 0.41, 0.71],
-  colorB = [0.0, 1.0, 1.0],
-  paused = false,
-  onSample,
-  className = "absolute -z-10 w-full h-screen",
+	speed = 2.5,
+	innerBands = 4.0,
+	outerBands = 8.0,
+	hueShift = 0,
+	colorA = [1.0, 0.41, 0.71],
+	colorB = [0.0, 1.0, 1.0],
+	paused = false,
+	onSample,
+	className = "absolute -z-10 w-full h-screen",
 }: MorphingLightProps) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<{
-    camera?: THREE.Camera;
-    scene?: THREE.Scene;
-    renderer?: THREE.WebGLRenderer;
-    clock?: THREE.Clock;
-    uniforms?: any;
-    animationId?: number;
-  }>({});
+	const containerRef = useRef<HTMLDivElement>(null);
+	const sceneRef = useRef<{
+		camera?: THREE.Camera;
+		scene?: THREE.Scene;
+		renderer?: THREE.WebGLRenderer;
+		clock?: THREE.Clock;
+		uniforms?: any;
+		animationId?: number;
+	}>({});
 
-  // Live mirrors so prop changes reach the render loop without re-creating GL.
-  const props = useRef({ speed, innerBands, outerBands, hueShift, colorA, colorB, paused, onSample });
-  props.current = { speed, innerBands, outerBands, hueShift, colorA, colorB, paused, onSample };
+	// Live mirrors so prop changes reach the render loop without re-creating GL.
+	const props = useRef({
+		speed,
+		innerBands,
+		outerBands,
+		hueShift,
+		colorA,
+		colorB,
+		paused,
+		onSample,
+	});
+	props.current = {
+		speed,
+		innerBands,
+		outerBands,
+		hueShift,
+		colorA,
+		colorB,
+		paused,
+		onSample,
+	};
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+	useEffect(() => {
+		if (!containerRef.current) return;
 
-    const container = containerRef.current;
+		const container = containerRef.current;
 
-    // Vertex shader
-    const vertexShader = `
+		// Vertex shader
+		const vertexShader = `
       void main() {
         gl_Position = vec4(position, 1.0);
       }
     `;
 
-    // Fragment shader — the brief's logic, with the hard-coded constants read
-    // from uniforms and an HSV hue-shift on the final color.
-    const fragmentShader = `
+		// Fragment shader — the brief's logic, with the hard-coded constants read
+		// from uniforms and an HSV hue-shift on the final color.
+		const fragmentShader = `
 precision highp float;
 
 uniform vec2 u_resolution;
@@ -128,138 +146,138 @@ void main() {
 }
     `;
 
-    // Initialize Three.js scene
-    const clock = new THREE.Clock();
-    const camera = new THREE.Camera();
-    camera.position.z = 1;
+		// Initialize Three.js scene
+		const clock = new THREE.Clock();
+		const camera = new THREE.Camera();
+		camera.position.z = 1;
 
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneGeometry(2, 2);
+		const scene = new THREE.Scene();
+		const geometry = new THREE.PlaneGeometry(2, 2);
 
-    const uniforms = {
-      u_time: { value: 1.0 },
-      u_resolution: { value: new THREE.Vector2() },
-      u_speed: { value: speed },
-      u_inner: { value: innerBands },
-      u_outer: { value: outerBands },
-      u_hue: { value: hueShift },
-      u_colorA: { value: new THREE.Vector3(...colorA) },
-      u_colorB: { value: new THREE.Vector3(...colorB) },
-    };
+		const uniforms = {
+			u_time: { value: 1.0 },
+			u_resolution: { value: new THREE.Vector2() },
+			u_speed: { value: speed },
+			u_inner: { value: innerBands },
+			u_outer: { value: outerBands },
+			u_hue: { value: hueShift },
+			u_colorA: { value: new THREE.Vector3(...colorA) },
+			u_colorB: { value: new THREE.Vector3(...colorB) },
+		};
 
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader,
-      fragmentShader,
-    });
+		const material = new THREE.ShaderMaterial({
+			uniforms,
+			vertexShader,
+			fragmentShader,
+		});
 
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    // preserveDrawingBuffer lets us read the center pixel back for telemetry.
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      preserveDrawingBuffer: true,
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		// preserveDrawingBuffer lets us read the center pixel back for telemetry.
+		const renderer = new THREE.WebGLRenderer({
+			antialias: true,
+			preserveDrawingBuffer: true,
+		});
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    container.appendChild(renderer.domElement);
+		container.appendChild(renderer.domElement);
 
-    sceneRef.current = { camera, scene, renderer, clock, uniforms };
+		sceneRef.current = { camera, scene, renderer, clock, uniforms };
 
-    // Resize handler
-    const onWindowResize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
+		// Resize handler
+		const onWindowResize = () => {
+			const width = container.clientWidth;
+			const height = container.clientHeight;
 
-      renderer.setSize(width, height);
-      uniforms.u_resolution.value.x = renderer.domElement.width;
-      uniforms.u_resolution.value.y = renderer.domElement.height;
-    };
+			renderer.setSize(width, height);
+			uniforms.u_resolution.value.x = renderer.domElement.width;
+			uniforms.u_resolution.value.y = renderer.domElement.height;
+		};
 
-    // Telemetry: throttled center-pixel readback + fps.
-    const pixel = new Uint8Array(4);
-    let last = performance.now();
-    let fps = 60;
-    let acc = 0;
-    let frozenTime = 0;
-    let wasPaused = false;
+		// Telemetry: throttled center-pixel readback + fps.
+		const pixel = new Uint8Array(4);
+		let last = performance.now();
+		let fps = 60;
+		let acc = 0;
+		let frozenTime = 0;
+		let wasPaused = false;
 
-    const animate = () => {
-      const ref = sceneRef.current;
-      if (!ref.uniforms || !ref.clock) return;
-      const p = props.current;
+		const animate = () => {
+			const ref = sceneRef.current;
+			if (!ref.uniforms || !ref.clock) return;
+			const p = props.current;
 
-      // Pause: hold the clock value steady while still rendering the last frame.
-      if (p.paused) {
-        if (!wasPaused) {
-          frozenTime = ref.clock.getElapsedTime();
-          wasPaused = true;
-        }
-      } else {
-        if (wasPaused) {
-          // Re-anchor so resuming doesn't jump the animation.
-          ref.clock.start();
-          ref.clock.elapsedTime = frozenTime;
-          wasPaused = false;
-        }
-      }
+			// Pause: hold the clock value steady while still rendering the last frame.
+			if (p.paused) {
+				if (!wasPaused) {
+					frozenTime = ref.clock.getElapsedTime();
+					wasPaused = true;
+				}
+			} else {
+				if (wasPaused) {
+					// Re-anchor so resuming doesn't jump the animation.
+					ref.clock.start();
+					ref.clock.elapsedTime = frozenTime;
+					wasPaused = false;
+				}
+			}
 
-      const t = p.paused ? frozenTime : ref.clock.getElapsedTime();
-      ref.uniforms.u_time.value = t;
-      ref.uniforms.u_speed.value = p.speed;
-      ref.uniforms.u_inner.value = p.innerBands;
-      ref.uniforms.u_outer.value = p.outerBands;
-      ref.uniforms.u_hue.value = p.hueShift;
-      ref.uniforms.u_colorA.value.set(...p.colorA);
-      ref.uniforms.u_colorB.value.set(...p.colorB);
+			const t = p.paused ? frozenTime : ref.clock.getElapsedTime();
+			ref.uniforms.u_time.value = t;
+			ref.uniforms.u_speed.value = p.speed;
+			ref.uniforms.u_inner.value = p.innerBands;
+			ref.uniforms.u_outer.value = p.outerBands;
+			ref.uniforms.u_hue.value = p.hueShift;
+			ref.uniforms.u_colorA.value.set(...p.colorA);
+			ref.uniforms.u_colorB.value.set(...p.colorB);
 
-      renderer.render(scene, camera);
+			renderer.render(scene, camera);
 
-      // fps (EMA) + center-pixel sample, reported ~10x/sec.
-      const now = performance.now();
-      const dt = now - last;
-      last = now;
-      if (dt > 0) fps = fps * 0.9 + (1000 / dt) * 0.1;
-      acc += dt;
-      if (acc >= 100 && p.onSample) {
-        acc = 0;
-        const gl = renderer.getContext();
-        const w = renderer.domElement.width;
-        const h = renderer.domElement.height;
-        gl.readPixels(w >> 1, h >> 1, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
-        const r = pixel[0] / 255;
-        const g = pixel[1] / 255;
-        const b = pixel[2] / 255;
-        p.onSample({
-          time: t,
-          fps,
-          luma: 0.2126 * r + 0.7152 * g + 0.0722 * b,
-          rgb: [r, g, b],
-        });
-      }
+			// fps (EMA) + center-pixel sample, reported ~10x/sec.
+			const now = performance.now();
+			const dt = now - last;
+			last = now;
+			if (dt > 0) fps = fps * 0.9 + (1000 / dt) * 0.1;
+			acc += dt;
+			if (acc >= 100 && p.onSample) {
+				acc = 0;
+				const gl = renderer.getContext();
+				const w = renderer.domElement.width;
+				const h = renderer.domElement.height;
+				gl.readPixels(w >> 1, h >> 1, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixel);
+				const r = pixel[0] / 255;
+				const g = pixel[1] / 255;
+				const b = pixel[2] / 255;
+				p.onSample({
+					time: t,
+					fps,
+					luma: 0.2126 * r + 0.7152 * g + 0.0722 * b,
+					rgb: [r, g, b],
+				});
+			}
 
-      ref.animationId = requestAnimationFrame(animate);
-    };
+			ref.animationId = requestAnimationFrame(animate);
+		};
 
-    onWindowResize();
-    window.addEventListener("resize", onWindowResize);
-    animate();
+		onWindowResize();
+		window.addEventListener("resize", onWindowResize);
+		animate();
 
-    return () => {
-      window.removeEventListener("resize", onWindowResize);
-      if (sceneRef.current.animationId) {
-        cancelAnimationFrame(sceneRef.current.animationId);
-      }
-      if (sceneRef.current.renderer) {
-        container.removeChild(sceneRef.current.renderer.domElement);
-        sceneRef.current.renderer.dispose();
-      }
-      geometry.dispose();
-      material.dispose();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+		return () => {
+			window.removeEventListener("resize", onWindowResize);
+			if (sceneRef.current.animationId) {
+				cancelAnimationFrame(sceneRef.current.animationId);
+			}
+			if (sceneRef.current.renderer) {
+				container.removeChild(sceneRef.current.renderer.domElement);
+				sceneRef.current.renderer.dispose();
+			}
+			geometry.dispose();
+			material.dispose();
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
 
-  return <div className={className} ref={containerRef} />;
+	return <div className={className} ref={containerRef} />;
 }

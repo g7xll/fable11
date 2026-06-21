@@ -6,5 +6,5 @@ import { FluidSwirl } from "@/components/ui/fluid-swirl-shader";
  * pigments, contrast 2.0, spin 0.36 and pixel_filter 700.
  */
 export default function DemoOne() {
-  return <FluidSwirl />;
+	return <FluidSwirl />;
 }

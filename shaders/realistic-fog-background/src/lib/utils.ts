@@ -6,5 +6,5 @@ import { twMerge } from "tailwind-merge";
  * de-duplicate conflicting Tailwind utilities.
  */
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+	return twMerge(clsx(inputs));
 }

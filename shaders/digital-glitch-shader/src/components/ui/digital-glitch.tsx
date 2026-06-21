@@ -108,10 +108,7 @@ const ShaderCanvas = memo((props: ShaderCanvasProps) => {
 		if (!mountRef.current) return;
 
 		const probe = document.createElement("canvas");
-		if (
-			!probe.getContext("webgl") &&
-			!probe.getContext("experimental-webgl")
-		) {
+		if (!probe.getContext("webgl") && !probe.getContext("experimental-webgl")) {
 			setIsWebGLSupported(false);
 			return;
 		}
@@ -199,7 +196,9 @@ const ShaderCanvas = memo((props: ShaderCanvasProps) => {
 		return (
 			<div className="w-full h-full flex items-center justify-center bg-black text-white">
 				<div className="text-center p-8 bg-gray-900/50 rounded-lg border border-red-500/50">
-					<h2 className="text-2xl font-bold text-red-400">WebGL Not Supported</h2>
+					<h2 className="text-2xl font-bold text-red-400">
+						WebGL Not Supported
+					</h2>
 					<p className="text-white/70 mt-2">
 						Sorry, your browser does not support WebGL, which is required for
 						this animation.

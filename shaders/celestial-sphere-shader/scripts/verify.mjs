@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -40,7 +42,10 @@ check(
 	(await page.title()).startsWith("Celestial Sphere"),
 	await page.title(),
 );
-check("app-container present", (await page.locator(".app-container").count()) === 1);
+check(
+	"app-container present",
+	(await page.locator(".app-container").count()) === 1,
+);
 check("console present", (await page.locator(".console").count()) === 1);
 
 // ── Required brief copy (verbatim) ──────────────────────────────────────────
@@ -96,10 +101,18 @@ check(
 
 // ── Live telemetry advances over time ───────────────────────────────────────
 const clockA = await page.locator(".telemetry-cell--clock dd").innerText();
-check("feed clock formatted", /^T\+\d{2}:\d{2}\.\d$/.test(clockA.trim()), clockA);
+check(
+	"feed clock formatted",
+	/^T\+\d{2}:\d{2}\.\d$/.test(clockA.trim()),
+	clockA,
+);
 await page.waitForTimeout(1300);
 const clockB = await page.locator(".telemetry-cell--clock dd").innerText();
-check("feed clock advances over time", clockA !== clockB, `${clockA} -> ${clockB}`);
+check(
+	"feed clock advances over time",
+	clockA !== clockB,
+	`${clockA} -> ${clockB}`,
+);
 
 const fps = await page
 	.locator(".telemetry-cell")
@@ -119,7 +132,11 @@ check(
 await page.mouse.move(120, 140);
 await page.waitForTimeout(350);
 const warpAfter = await page.locator(".telemetry-cell--warp dd").innerText();
-check("warp readout responds to cursor", warpAfter !== warp, `${warp} -> ${warpAfter}`);
+check(
+	"warp readout responds to cursor",
+	warpAfter !== warp,
+	`${warp} -> ${warpAfter}`,
+);
 
 // ── Faders drive the live uniform (hue readout follows the slider) ──────────
 const hueBefore = await page
@@ -162,7 +179,11 @@ check(
 const heroFont = await page
 	.locator("h1")
 	.evaluate((el) => getComputedStyle(el).fontFamily);
-check("display face is Space Grotesk", heroFont.includes("Space Grotesk"), heroFont);
+check(
+	"display face is Space Grotesk",
+	heroFont.includes("Space Grotesk"),
+	heroFont,
+);
 
 // ── Responsive: deck collapses + reticle hidden on mobile ───────────────────
 await page.setViewportSize({ width: 390, height: 844 });
@@ -171,7 +192,11 @@ check("h1 still visible on mobile", await page.locator("h1").isVisible());
 const deckCols = await page
 	.locator(".deck")
 	.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" ").length);
-check("deck collapses to one column on mobile", deckCols === 1, `${deckCols} col(s)`);
+check(
+	"deck collapses to one column on mobile",
+	deckCols === 1,
+	`${deckCols} col(s)`,
+);
 const reticleHidden = await page
 	.locator(".cursor-reticle")
 	.evaluate((el) => getComputedStyle(el).display === "none");
@@ -184,5 +209,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

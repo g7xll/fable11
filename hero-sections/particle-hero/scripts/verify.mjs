@@ -67,7 +67,11 @@ try {
 		.first()
 		.evaluate((el) => getComputedStyle(el).backgroundColor)
 		.catch(() => "");
-	check("hero canvas is #05060f", heroBg === "rgb(5, 6, 15)", heroBg || "not found");
+	check(
+		"hero canvas is #05060f",
+		heroBg === "rgb(5, 6, 15)",
+		heroBg || "not found",
+	);
 
 	// Canvas exists and has been sized to the container.
 	const canvas = hero.locator("#particleCanvas");
@@ -89,7 +93,11 @@ try {
 		for (let i = 3; i < data.length; i += 4) if (data[i] > 0) lit++;
 		return lit;
 	});
-	check("canvas is drawing particles", drawnPixels > 50, `${drawnPixels} lit px`);
+	check(
+		"canvas is drawing particles",
+		drawnPixels > 50,
+		`${drawnPixels} lit px`,
+	);
 
 	// Headline (two stacked h2 of the same title) + tagline copy.
 	const h2s = hero.locator(".heroT h2");
@@ -102,7 +110,10 @@ try {
 	const headline = h2s.first();
 	const headlineStyles = await headline.evaluate((el) => {
 		const s = getComputedStyle(el);
-		return { clip: s.webkitBackgroundClip || s.backgroundClip, fill: s.webkitTextFillColor };
+		return {
+			clip: s.webkitBackgroundClip || s.backgroundClip,
+			fill: s.webkitTextFillColor,
+		};
 	});
 	// The headline stacks a radial + linear gradient, so background-clip
 	// computes to a comma-list ("text, text") — every entry must be `text`.
@@ -130,9 +141,12 @@ try {
 	check("CSS.registerProperty supported (@property --p)", hasProperty);
 
 	// ---- Gold-mode orb toggles the scene -----------------------------------
-	check("not in gold mode initially", (await hero.locator(".gold-mode").count()) === 0
-		? (await page.locator(".particle-hero.gold-mode").count()) === 0
-		: false);
+	check(
+		"not in gold mode initially",
+		(await hero.locator(".gold-mode").count()) === 0
+			? (await page.locator(".particle-hero.gold-mode").count()) === 0
+			: false,
+	);
 	const orb = hero.locator("button.mid-spot");
 	check("gold-mode orb present", (await orb.count()) === 1);
 	await orb.first().click();
@@ -164,9 +178,18 @@ try {
 
 	// ---- Showcase sections -------------------------------------------------
 	check("navbar present", (await page.locator("header").count()) === 1);
-	check("anatomy section present", (await page.locator("#anatomy").count()) === 1);
-	check("playground section present", (await page.locator("#playground").count()) === 1);
-	check("install section present", (await page.locator("#install").count()) === 1);
+	check(
+		"anatomy section present",
+		(await page.locator("#anatomy").count()) === 1,
+	);
+	check(
+		"playground section present",
+		(await page.locator("#playground").count()) === 1,
+	);
+	check(
+		"install section present",
+		(await page.locator("#install").count()) === 1,
+	);
 	check(
 		"install lists lucide-react + clsx + tailwind-merge",
 		(await page.getByText(/lucide-react\s+clsx\s+tailwind-merge/).count()) >= 1,
@@ -183,7 +206,7 @@ try {
 	);
 	check(
 		"editing title updates the live hero headline",
-		(await hero.locator('.heroT h2', { hasText: "Fable Five" }).count()) >= 1,
+		(await hero.locator(".heroT h2", { hasText: "Fable Five" }).count()) >= 1,
 	);
 	check(
 		"default usage prints bare <ParticleHero /> after reset",
@@ -212,7 +235,9 @@ try {
 	);
 
 	// ---- Responsive: nav collapses, hero still renders on mobile -----------
-	const mobile = await browser.newPage({ viewport: { width: 390, height: 844 } });
+	const mobile = await browser.newPage({
+		viewport: { width: 390, height: 844 },
+	});
 	await mobile.goto(URL_BASE, { waitUntil: "networkidle" });
 	await mobile.waitForTimeout(2600);
 	const navVisible = await mobile

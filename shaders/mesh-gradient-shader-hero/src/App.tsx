@@ -100,10 +100,20 @@ const DEFAULT_OFFSET_X = 0.08;
  * Small presentational atoms
  * ------------------------------------------------------------------ */
 
-function Stat({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
+function Stat({
+	label,
+	value,
+	accent,
+}: {
+	label: string;
+	value: string;
+	accent?: boolean;
+}) {
 	return (
 		<div className="flex flex-col leading-none">
-			<span className="text-[9px] uppercase tracking-[0.18em] text-ink-dim">{label}</span>
+			<span className="text-[9px] uppercase tracking-[0.18em] text-ink-dim">
+				{label}
+			</span>
 			<span
 				className={cn(
 					"mt-1 font-mono text-[13px] tabular-nums",
@@ -181,7 +191,10 @@ function ModuleCard({
 		<section className="rounded-xl border border-hairline bg-bone-2/70 paper-grain backdrop-blur-sm">
 			<header className="flex items-center justify-between border-b border-hairline px-4 py-2.5">
 				<h3 className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ink">
-					<Icon className="size-3.5 text-sage-deep dark:text-sage" strokeWidth={2} />
+					<Icon
+						className="size-3.5 text-sage-deep dark:text-sage"
+						strokeWidth={2}
+					/>
 					{title}
 				</h3>
 				{right}
@@ -197,24 +210,99 @@ function ModuleCard({
 
 const INSTALL_CMD = `npm i @paper-design/shaders-react lucide-react`;
 
-const PROPS_API: Array<{ name: string; type: string; def: string; note: string }> = [
-	{ name: "title", type: "string", def: '"Intelligent AI Agents for"', note: "Leading headline text" },
-	{ name: "highlightText", type: "string", def: '"Smart Brands"', note: "Accent span (text-primary)" },
-	{ name: "description", type: "string", def: '"Transform your brand…"', note: "Sub-headline paragraph" },
-	{ name: "buttonText", type: "string", def: '"Join Waitlist"', note: "CTA label" },
-	{ name: "onButtonClick", type: "() => void", def: "—", note: "CTA click handler" },
-	{ name: "colors", type: "string[]", def: "6 mint/peach stops", note: "MeshGradient colour spots (≤ 10)" },
-	{ name: "distortion", type: "number", def: "0.8", note: "Organic noise distortion (0–1+)" },
-	{ name: "swirl", type: "number", def: "0.6", note: "Vortex distortion (0–1+)" },
-	{ name: "speed", type: "number", def: "0.42", note: "Animation time multiplier" },
-	{ name: "offsetX", type: "number", def: "0.08", note: "Horizontal centre offset (−1…1)" },
-	{ name: "veilOpacity", type: "string", def: '"bg-white/20 dark:bg-black/25"', note: "Frosted veil over the shader" },
-	{ name: "maxWidth", type: "string", def: '"max-w-6xl"', note: "Content column width" },
-	{ name: "fontFamily", type: "string", def: '"Satoshi, sans-serif"', note: "Headline typeface" },
+const PROPS_API: Array<{
+	name: string;
+	type: string;
+	def: string;
+	note: string;
+}> = [
+	{
+		name: "title",
+		type: "string",
+		def: '"Intelligent AI Agents for"',
+		note: "Leading headline text",
+	},
+	{
+		name: "highlightText",
+		type: "string",
+		def: '"Smart Brands"',
+		note: "Accent span (text-primary)",
+	},
+	{
+		name: "description",
+		type: "string",
+		def: '"Transform your brand…"',
+		note: "Sub-headline paragraph",
+	},
+	{
+		name: "buttonText",
+		type: "string",
+		def: '"Join Waitlist"',
+		note: "CTA label",
+	},
+	{
+		name: "onButtonClick",
+		type: "() => void",
+		def: "—",
+		note: "CTA click handler",
+	},
+	{
+		name: "colors",
+		type: "string[]",
+		def: "6 mint/peach stops",
+		note: "MeshGradient colour spots (≤ 10)",
+	},
+	{
+		name: "distortion",
+		type: "number",
+		def: "0.8",
+		note: "Organic noise distortion (0–1+)",
+	},
+	{
+		name: "swirl",
+		type: "number",
+		def: "0.6",
+		note: "Vortex distortion (0–1+)",
+	},
+	{
+		name: "speed",
+		type: "number",
+		def: "0.42",
+		note: "Animation time multiplier",
+	},
+	{
+		name: "offsetX",
+		type: "number",
+		def: "0.08",
+		note: "Horizontal centre offset (−1…1)",
+	},
+	{
+		name: "veilOpacity",
+		type: "string",
+		def: '"bg-white/20 dark:bg-black/25"',
+		note: "Frosted veil over the shader",
+	},
+	{
+		name: "maxWidth",
+		type: "string",
+		def: '"max-w-6xl"',
+		note: "Content column width",
+	},
+	{
+		name: "fontFamily",
+		type: "string",
+		def: '"Satoshi, sans-serif"',
+		note: "Headline typeface",
+	},
 	{ name: "fontWeight", type: "number", def: "500", note: "Headline weight" },
 ];
 
-function usageSnippet(p: { distortion: number; swirl: number; speed: number; colors: string[] }): string {
+function usageSnippet(p: {
+	distortion: number;
+	swirl: number;
+	speed: number;
+	colors: string[];
+}): string {
 	const colors = p.colors.map((c) => `"${c}"`).join(", ");
 	return `import { HeroSection } from "@/components/ui/hero-section-with-smooth-bg-shader";
 
@@ -279,8 +367,9 @@ function Dock({
 				{tab === "install" && (
 					<div className="space-y-3">
 						<p className="text-[13px] leading-relaxed text-ink-dim">
-							Add the single runtime dependency the hero needs (the shader) plus the icon set,
-							then drop the component into <code className="text-ink">src/components/ui</code>.
+							Add the single runtime dependency the hero needs (the shader) plus
+							the icon set, then drop the component into{" "}
+							<code className="text-ink">src/components/ui</code>.
 						</p>
 						<CodeBlock
 							code={INSTALL_CMD}
@@ -317,8 +406,12 @@ function Dock({
 										<td className="whitespace-nowrap py-1.5 pr-4 font-mono text-sage-deep dark:text-sage">
 											{p.name}
 										</td>
-										<td className="whitespace-nowrap py-1.5 pr-4 font-mono text-ink">{p.type}</td>
-										<td className="whitespace-nowrap py-1.5 pr-4 font-mono text-ink-dim">{p.def}</td>
+										<td className="whitespace-nowrap py-1.5 pr-4 font-mono text-ink">
+											{p.type}
+										</td>
+										<td className="whitespace-nowrap py-1.5 pr-4 font-mono text-ink-dim">
+											{p.def}
+										</td>
 										<td className="py-1.5 text-ink-dim">{p.note}</td>
 									</tr>
 								))}
@@ -330,41 +423,56 @@ function Dock({
 				{tab === "source" && (
 					<div className="space-y-3">
 						<p className="text-[13px] leading-relaxed text-ink-dim">
-							This snippet reflects the <strong className="text-ink">live</strong> deck above —
-							recolour or drag a fader and copy a ready-to-paste call.
+							This snippet reflects the{" "}
+							<strong className="text-ink">live</strong> deck above — recolour
+							or drag a fader and copy a ready-to-paste call.
 						</p>
-						<CodeBlock code={snippet} onCopy={() => onCopy(snippet, "source")} copied={copied === "source"} />
+						<CodeBlock
+							code={snippet}
+							onCopy={() => onCopy(snippet, "source")}
+							copied={copied === "source"}
+						/>
 					</div>
 				)}
 
 				{tab === "shadcn" && (
 					<div className="space-y-3 text-[13px] leading-relaxed text-ink-dim">
 						<p>
-							shadcn/ui isn't a dependency you import — it copies source straight into your repo. The
-							convention is <code className="text-ink">@/components/ui</code>, wired through a{" "}
+							shadcn/ui isn't a dependency you import — it copies source
+							straight into your repo. The convention is{" "}
+							<code className="text-ink">@/components/ui</code>, wired through a{" "}
 							<code className="text-ink">@/*</code> path alias (in{" "}
-							<code className="text-ink">tsconfig</code> + <code className="text-ink">vite.config</code>).
+							<code className="text-ink">tsconfig</code> +{" "}
+							<code className="text-ink">vite.config</code>).
 						</p>
 						<ul className="list-disc space-y-1.5 pl-5">
 							<li>
 								The CLI writes here by default, so{" "}
-								<code className="text-ink">npx shadcn@latest add …</code> drops files in the same place.
+								<code className="text-ink">npx shadcn@latest add …</code> drops
+								files in the same place.
 							</li>
 							<li>
-								The import <code className="text-ink">@/components/ui/hero-section-with-smooth-bg-shader</code>{" "}
+								The import{" "}
+								<code className="text-ink">
+									@/components/ui/hero-section-with-smooth-bg-shader
+								</code>{" "}
 								resolves regardless of how deep the importing file is nested.
 							</li>
 							<li>
-								It keeps owned primitives separate from your app/feature components — predictable to find
-								and to theme.
+								It keeps owned primitives separate from your app/feature
+								components — predictable to find and to theme.
 							</li>
 						</ul>
 						<p>
 							This project mirrors that exactly: the verbatim component lives at{" "}
-							<code className="text-ink">src/components/ui/hero-section-with-smooth-bg-shader.tsx</code>, and
-							its shadcn tokens (<code className="text-ink">bg-background</code>,{" "}
-							<code className="text-ink">text-primary</code>, <code className="text-ink">border-card</code>)
-							are defined in the global stylesheet so every class resolves.
+							<code className="text-ink">
+								src/components/ui/hero-section-with-smooth-bg-shader.tsx
+							</code>
+							, and its shadcn tokens (
+							<code className="text-ink">bg-background</code>,{" "}
+							<code className="text-ink">text-primary</code>,{" "}
+							<code className="text-ink">border-card</code>) are defined in the
+							global stylesheet so every class resolves.
 						</p>
 					</div>
 				)}
@@ -389,7 +497,11 @@ function CodeBlock({
 				className="absolute right-2 top-2 z-10 flex items-center gap-1 rounded-md border border-hairline bg-bone-2/90 px-2 py-1 text-[10px] uppercase tracking-wide text-ink-dim transition-colors hover:text-ink"
 				aria-label="Copy code"
 			>
-				{copied ? <Check className="size-3 text-sage-deep dark:text-sage" /> : <Copy className="size-3" />}
+				{copied ? (
+					<Check className="size-3 text-sage-deep dark:text-sage" />
+				) : (
+					<Copy className="size-3" />
+				)}
 				{copied ? "Copied" : "Copy"}
 			</button>
 			<pre className="overflow-x-auto px-4 py-3 font-mono text-[12px] leading-relaxed text-ink">
@@ -509,7 +621,9 @@ export default function App() {
 					</span>
 					<div className="leading-none">
 						<div className="flex items-center gap-2">
-							<h1 className="text-[13px] font-semibold tracking-tight text-ink">Mesh Gradient</h1>
+							<h1 className="text-[13px] font-semibold tracking-tight text-ink">
+								Mesh Gradient
+							</h1>
 							<span className="rounded-full border border-hairline px-1.5 py-0.5 font-mono text-[9px] text-ink-dim">
 								shaders-react · 0.0.76
 							</span>
@@ -524,7 +638,9 @@ export default function App() {
 					<div className="hidden items-center gap-4 rounded-lg border border-hairline bg-bone-2/70 px-3 py-1.5 sm:flex">
 						<span className="flex items-center gap-1.5">
 							<span className="tally inline-block size-1.5 rounded-full bg-sage" />
-							<span className="text-[9px] uppercase tracking-[0.18em] text-ink-dim">Live</span>
+							<span className="text-[9px] uppercase tracking-[0.18em] text-ink-dim">
+								Live
+							</span>
 						</span>
 						<Stat label="FPS" value={String(tel.fps)} accent />
 						<Stat label="Frame" value={String(tel.frame)} />
@@ -536,8 +652,14 @@ export default function App() {
 						className="flex items-center gap-1.5 rounded-lg border border-hairline bg-bone-2/80 px-2.5 py-1.5 text-[11px] text-ink transition-colors hover:border-sage"
 						aria-label="Toggle theme"
 					>
-						{theme === "dark" ? <Sun className="size-3.5" /> : <Moon className="size-3.5" />}
-						<span className="hidden sm:inline">{theme === "dark" ? "Light" : "Dark"}</span>
+						{theme === "dark" ? (
+							<Sun className="size-3.5" />
+						) : (
+							<Moon className="size-3.5" />
+						)}
+						<span className="hidden sm:inline">
+							{theme === "dark" ? "Light" : "Dark"}
+						</span>
 					</button>
 				</div>
 			</header>
@@ -547,9 +669,15 @@ export default function App() {
 				{/* Stage caption sits over the live hero (which is fixed behind) */}
 				<div className="pointer-events-none relative hidden lg:block">
 					<div className="pointer-events-auto absolute left-0 top-0 flex items-center gap-2 rounded-full border border-hairline bg-bone/55 px-3 py-1.5 backdrop-blur-md">
-						<Sparkles className="size-3.5 text-sage-deep dark:text-sage" strokeWidth={2} />
+						<Sparkles
+							className="size-3.5 text-sage-deep dark:text-sage"
+							strokeWidth={2}
+						/>
 						<span className="text-[11px] text-ink">
-							Live specimen · <span className="font-mono">{activePreset?.name ?? "Custom"}</span>
+							Live specimen ·{" "}
+							<span className="font-mono">
+								{activePreset?.name ?? "Custom"}
+							</span>
 						</span>
 					</div>
 					<div className="pointer-events-auto absolute bottom-0 left-0 flex items-center gap-2 rounded-full border border-hairline bg-bone/55 px-3 py-1.5 font-mono text-[11px] text-ink-dim backdrop-blur-md">
@@ -590,16 +718,24 @@ export default function App() {
 									>
 										<span className="flex h-6 w-16 overflow-hidden rounded-md border border-hairline">
 											{p.colors.map((c, i) => (
-												<span key={i} className="flex-1" style={{ background: c }} />
+												<span
+													key={i}
+													className="flex-1"
+													style={{ background: c }}
+												/>
 											))}
 										</span>
 										<span className="flex-1">
-											<span className="block text-[12px] font-medium text-ink">{p.name}</span>
+											<span className="block text-[12px] font-medium text-ink">
+												{p.name}
+											</span>
 										</span>
 										<span
 											className={cn(
 												"font-mono text-[9px] tracking-wide",
-												active ? "text-sage-deep dark:text-sage" : "text-ink-dim",
+												active
+													? "text-sage-deep dark:text-sage"
+													: "text-ink-dim",
 											)}
 										>
 											{p.tag}
@@ -631,7 +767,9 @@ export default function App() {
 										/>
 										<span
 											className="pointer-events-none absolute bottom-0.5 left-0 right-0 text-center font-mono text-[7px] leading-none"
-											style={{ color: luminance(c) > 0.5 ? "#1c2128cc" : "#ffffffcc" }}
+											style={{
+												color: luminance(c) > 0.5 ? "#1c2128cc" : "#ffffffcc",
+											}}
 										>
 											{normalizeHex(c).slice(1)}
 										</span>
@@ -727,7 +865,13 @@ export default function App() {
 
 			{/* ---- Documentation dock ---- */}
 			<section className="relative z-10 px-4 pb-4 sm:px-6">
-				<Dock tab={tab} setTab={setTab} snippet={snippet} onCopy={copy} copied={copied} />
+				<Dock
+					tab={tab}
+					setTab={setTab}
+					snippet={snippet}
+					onCopy={copy}
+					copied={copied}
+				/>
 			</section>
 
 			{/* ---- Bottom signal bus ---- */}
@@ -735,10 +879,12 @@ export default function App() {
 				<div className="relative flex items-center justify-between font-mono text-[10px] text-ink-dim">
 					<span className="flex items-center gap-2">
 						<Sparkles className="size-3 text-sage-deep dark:text-sage" />
-						MeshGradient · @paper-design/shaders-react · vendored Onest (Satoshi substitute)
+						MeshGradient · @paper-design/shaders-react · vendored Onest (Satoshi
+						substitute)
 					</span>
 					<span className="hidden sm:inline">
-						distortion {distortion.toFixed(2)} · swirl {swirl.toFixed(2)} · speed {speed.toFixed(2)}×
+						distortion {distortion.toFixed(2)} · swirl {swirl.toFixed(2)} ·
+						speed {speed.toFixed(2)}×
 					</span>
 				</div>
 				<div className="pointer-events-none absolute inset-x-0 bottom-0 h-px overflow-hidden">

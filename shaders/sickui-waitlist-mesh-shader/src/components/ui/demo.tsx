@@ -1,5 +1,5 @@
-import  Waitlist  from "@/components/ui/background-shader";
+import Waitlist from "@/components/ui/background-shader";
 
 export default function DemoOne() {
-  return <Waitlist />;
+	return <Waitlist />;
 }

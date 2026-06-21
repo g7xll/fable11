@@ -92,13 +92,23 @@ export function Hero({ telemetry }: HeroProps) {
 						className="bg-[var(--panel-solid)]/90 px-4 py-3"
 						data-telemetry="fps"
 					>
-						<Readout label="Render" value={fmt(telemetry.fps)} unit="fps" accent />
+						<Readout
+							label="Render"
+							value={fmt(telemetry.fps)}
+							unit="fps"
+							accent
+						/>
 					</div>
 					<div
 						className="bg-[var(--panel-solid)]/90 px-4 py-3"
 						data-telemetry="time"
 					>
-						<Readout label="iTime" value={fmt(telemetry.time, 2)} unit="s" accent />
+						<Readout
+							label="iTime"
+							value={fmt(telemetry.time, 2)}
+							unit="s"
+							accent
+						/>
 					</div>
 					<div
 						className="bg-[var(--panel-solid)]/90 px-4 py-3"
@@ -119,10 +129,7 @@ export function Hero({ telemetry }: HeroProps) {
 						className="hidden bg-[var(--panel-solid)]/90 px-4 py-3 lg:block"
 						data-telemetry="mouse"
 					>
-						<Readout
-							label="iMouse"
-							value={`${fmt(mx)}, ${fmt(my)}`}
-						/>
+						<Readout label="iMouse" value={`${fmt(mx)}, ${fmt(my)}`} />
 					</div>
 				</div>
 			</div>

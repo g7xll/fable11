@@ -4,7 +4,7 @@ import ThermalDemo from "./demo";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <ThermalDemo />
-  </React.StrictMode>,
+	<React.StrictMode>
+		<ThermalDemo />
+	</React.StrictMode>,
 );

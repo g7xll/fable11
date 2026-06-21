@@ -26,10 +26,14 @@ const PORT = process.env.PORT || 5331;
 const URL = `http://localhost:${PORT}/`;
 
 function startDev() {
-	const dev = spawn("npm", ["run", "dev", "--", "--port", String(PORT), "--strictPort"], {
-		stdio: ["ignore", "pipe", "pipe"],
-		env: { ...process.env },
-	});
+	const dev = spawn(
+		"npm",
+		["run", "dev", "--", "--port", String(PORT), "--strictPort"],
+		{
+			stdio: ["ignore", "pipe", "pipe"],
+			env: { ...process.env },
+		},
+	);
 	dev.stdout.on("data", () => {});
 	dev.stderr.on("data", (d) => process.stderr.write(`[vite] ${d}`));
 	return dev;
@@ -73,7 +77,9 @@ try {
 			"--ignore-gpu-blocklist",
 		],
 	});
-	const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+	const ctx = await browser.newContext({
+		viewport: { width: 1280, height: 800 },
+	});
 	const page = await ctx.newPage();
 
 	const pageErrors = [];
@@ -87,20 +93,26 @@ try {
 	await sleep(1400);
 
 	// Nav wordmark renders
-	const brand = (await page.locator("header a").first().textContent())?.trim() ?? "";
+	const brand =
+		(await page.locator("header a").first().textContent())?.trim() ?? "";
 	if (/SickUI/i.test(brand)) ok(`nav wordmark renders ("${brand}")`);
 	else bad(`nav wordmark missing (got "${brand}")`);
 
 	// Hero headline renders with the vendored font
-	const h1 = (await page.locator("main h1").first().textContent())?.replace(/\s+/g, " ").trim() ?? "";
-	if (/We are launching SickUI soon!/i.test(h1)) ok(`launch headline renders ("${h1}")`);
+	const h1 =
+		(await page.locator("main h1").first().textContent())
+			?.replace(/\s+/g, " ")
+			.trim() ?? "";
+	if (/We are launching SickUI soon!/i.test(h1))
+		ok(`launch headline renders ("${h1}")`);
 	else bad(`launch headline missing (got "${h1}")`);
 
 	const heroFont = await page.evaluate(() => {
 		const h = document.querySelector("main h1");
 		return h ? getComputedStyle(h).fontFamily : "";
 	});
-	if (/onest/i.test(heroFont)) ok(`headline uses vendored Onest font ("${heroFont}")`);
+	if (/onest/i.test(heroFont))
+		ok(`headline uses vendored Onest font ("${heroFont}")`);
 	else bad(`headline font unexpected ("${heroFont}")`);
 
 	// MeshGradient canvas present + non-empty
@@ -110,14 +122,18 @@ try {
 		const r = c.getBoundingClientRect();
 		return { w: Math.round(r.width), h: Math.round(r.height) };
 	});
-	if (box && box.w > 600 && box.h > 400) ok(`MeshGradient canvas mounts ${box.w}x${box.h}`);
+	if (box && box.w > 600 && box.h > 400)
+		ok(`MeshGradient canvas mounts ${box.w}x${box.h}`);
 	else bad(`no live canvas (${JSON.stringify(box)})`);
 
 	// Real WebGL context
 	const hasGL = await page.evaluate(() => {
 		const c = document.querySelector("canvas");
 		if (!c) return false;
-		const gl = c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+		const gl =
+			c.getContext("webgl2") ||
+			c.getContext("webgl") ||
+			c.getContext("experimental-webgl");
 		return !!gl;
 	});
 	if (hasGL) ok("WebGL context is live");
@@ -126,7 +142,10 @@ try {
 	// Vendored avatars loaded
 	const avatarInfo = await page.evaluate(() => {
 		const imgs = Array.from(document.querySelectorAll("main img"));
-		return { count: imgs.length, loaded: imgs.filter((i) => i.naturalWidth > 0).length };
+		return {
+			count: imgs.length,
+			loaded: imgs.filter((i) => i.naturalWidth > 0).length,
+		};
 	});
 	if (avatarInfo.count >= 5 && avatarInfo.loaded === avatarInfo.count)
 		ok(`all ${avatarInfo.count} vendored avatars loaded`);
@@ -136,7 +155,8 @@ try {
 	await page.fill("#waitlist-email", "not-an-email");
 	await page.getByRole("button", { name: /Join waitlist/i }).click();
 	await sleep(300);
-	const errText = (await page.locator("#waitlist-error").textContent())?.trim() ?? "";
+	const errText =
+		(await page.locator("#waitlist-error").textContent())?.trim() ?? "";
 	if (/valid email/i.test(errText)) ok(`invalid email rejected ("${errText}")`);
 	else bad(`invalid email not rejected (got "${errText}")`);
 

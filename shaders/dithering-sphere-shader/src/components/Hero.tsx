@@ -9,7 +9,15 @@ type HeroProps = {
 	telemetry: FrameClock;
 };
 
-function Readout({ label, value, testid }: { label: string; value: string; testid?: string }) {
+function Readout({
+	label,
+	value,
+	testid,
+}: {
+	label: string;
+	value: string;
+	testid?: string;
+}) {
 	return (
 		<div className="flex min-w-0 flex-col gap-1 px-4 py-3">
 			<span className="font-mono text-[10px] uppercase tracking-[0.2em] text-paper-faint">
@@ -30,7 +38,10 @@ export function Hero({ params, telemetry }: HeroProps) {
 	const type = TYPE_BY_KEY[params.type];
 
 	return (
-		<section id="top" className="relative min-h-[100svh] w-full overflow-hidden">
+		<section
+			id="top"
+			className="relative min-h-[100svh] w-full overflow-hidden"
+		>
 			{/* The brief's component, live and full-bleed. */}
 			<DitheringStage params={params} className="absolute inset-0 -z-10" />
 
@@ -58,10 +69,11 @@ export function Hero({ params, telemetry }: HeroProps) {
 					</h1>
 
 					<p className="mt-6 max-w-xl text-balance font-body text-base leading-relaxed text-paper-dim sm:text-lg">
-						<span className="font-semibold text-paper">DITHER LAB</span> is a single
-						WebGL2 fragment shader that paints seven procedural fields and crushes them
-						to two colours through ordered Bayer or stochastic dithering — the whole
-						look of newsprint, CRTs and 1-bit art, in one drop-in component.
+						<span className="font-semibold text-paper">DITHER LAB</span> is a
+						single WebGL2 fragment shader that paints seven procedural fields
+						and crushes them to two colours through ordered Bayer or stochastic
+						dithering — the whole look of newsprint, CRTs and 1-bit art, in one
+						drop-in component.
 					</p>
 
 					<div className="mt-8 flex flex-wrap items-center gap-3">
@@ -85,8 +97,16 @@ export function Hero({ params, telemetry }: HeroProps) {
 				{/* Live telemetry HUD reading the real render loop + current params. */}
 				<div className="brackets mt-10 w-full overflow-hidden rounded-xl">
 					<div className="scanlines grid grid-cols-2 divide-x divide-[var(--line)] border border-[var(--line-strong)] bg-[var(--panel)] backdrop-blur sm:grid-cols-5">
-						<Readout label="Render" value={`${telemetry.fps} fps`} testid="hud-fps" />
-						<Readout label="Frame" value={String(telemetry.frames)} testid="hud-frame" />
+						<Readout
+							label="Render"
+							value={`${telemetry.fps} fps`}
+							testid="hud-fps"
+						/>
+						<Readout
+							label="Frame"
+							value={String(telemetry.frames)}
+							testid="hud-frame"
+						/>
 						<Readout label="Shape" value={shape.label} testid="hud-shape" />
 						<Readout label="Dither" value={type.label} testid="hud-type" />
 						<Readout

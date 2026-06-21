@@ -49,7 +49,10 @@ function DepthGauge({ depth, paused }: { depth: number; paused: boolean }) {
 					{ticks.map((_, i) => {
 						const major = i % 5 === 0;
 						return (
-							<div key={i} className="flex items-center gap-2 pl-[calc(50%-0px)]">
+							<div
+								key={i}
+								className="flex items-center gap-2 pl-[calc(50%-0px)]"
+							>
 								<span
 									className="block h-px bg-white/30"
 									style={{ width: major ? 14 : 7 }}
@@ -94,7 +97,9 @@ function DepthGauge({ depth, paused }: { depth: number; paused: boolean }) {
 				>
 					CORRIDOR&nbsp;DEPTH
 				</span>
-				<span className={`tele mt-1 ${paused ? "text-iris-amber" : "text-iris-cyan"}`}>
+				<span
+					className={`tele mt-1 ${paused ? "text-iris-amber" : "text-iris-cyan"}`}
+				>
 					{paused ? "HOLD" : "FEED"}
 				</span>
 			</div>
@@ -151,7 +156,9 @@ export default function App() {
 						className="h-4 w-4 text-white/80 animate-signal-flicker"
 						strokeWidth={1.6}
 					/>
-					<span className="tele text-white/85">ATC&nbsp;·&nbsp;APERTURE&nbsp;TRANSIT</span>
+					<span className="tele text-white/85">
+						ATC&nbsp;·&nbsp;APERTURE&nbsp;TRANSIT
+					</span>
 				</div>
 				<nav className="hidden items-center gap-7 md:flex">
 					<span className="tele text-white/35">CHANNELS</span>
@@ -193,9 +200,9 @@ export default function App() {
 						className="animate-reveal-up mt-6 max-w-md text-sm leading-relaxed text-white/55 sm:text-base"
 						style={{ animationDelay: "0.22s" }}
 					>
-						You are looking down the throat of an aperture transit corridor — a single
-						WebGL2 pass, ray-marched live, folding chromatic light all the way to the
-						vanishing point.
+						You are looking down the throat of an aperture transit corridor — a
+						single WebGL2 pass, ray-marched live, folding chromatic light all
+						the way to the vanishing point.
 					</p>
 
 					{/* freeze / resume — drives the shader's own `paused` prop */}

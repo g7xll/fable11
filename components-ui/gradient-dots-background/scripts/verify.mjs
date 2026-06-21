@@ -19,11 +19,10 @@ const PORT = 5247;
 const URL = `http://localhost:${PORT}/`;
 
 function startDev() {
-	const proc = spawn(
-		"npx",
-		["vite", "--port", String(PORT), "--strictPort"],
-		{ cwd: process.cwd(), stdio: ["ignore", "pipe", "pipe"] },
-	);
+	const proc = spawn("npx", ["vite", "--port", String(PORT), "--strictPort"], {
+		cwd: process.cwd(),
+		stdio: ["ignore", "pipe", "pipe"],
+	});
 	return proc;
 }
 
@@ -51,7 +50,9 @@ async function waitForServer(proc) {
 const checks = [];
 const record = (name, ok, detail = "") => {
 	checks.push({ name, ok, detail });
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 };
 
 let dev;
@@ -62,7 +63,9 @@ try {
 	await wait(1200); // let the optimizer settle
 
 	browser = await chromium.launch({ headless: true });
-	const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+	const ctx = await browser.newContext({
+		viewport: { width: 1280, height: 800 },
+	});
 	const page = await ctx.newPage();
 
 	const consoleErrors = [];
@@ -106,7 +109,9 @@ try {
 	record(
 		"GradientDots paints layered radial-gradients",
 		!!dotsLayer && dotsLayer.layers >= 6,
-		dotsLayer ? `${dotsLayer.layers} radial-gradient layers` : "layer not found",
+		dotsLayer
+			? `${dotsLayer.layers} radial-gradient layers`
+			: "layer not found",
 	);
 
 	// 3. framer-motion is animating: background-position changes over time.

@@ -17,7 +17,12 @@ export function HorizonLadder({ roll, pitch }: HorizonLadderProps) {
 		>
 			<g transform={`rotate(${roll} 200 200)`}>
 				{/* boresight wings */}
-				<g stroke="var(--phosphor)" strokeWidth="1.2" fill="none" opacity="0.85">
+				<g
+					stroke="var(--phosphor)"
+					strokeWidth="1.2"
+					fill="none"
+					opacity="0.85"
+				>
 					<path d="M120 200 H168 l8 8" />
 					<path d="M280 200 H232 l-8 8" />
 				</g>
@@ -25,7 +30,12 @@ export function HorizonLadder({ roll, pitch }: HorizonLadderProps) {
 					const y = 200 - deg * 4 - pitch * 4;
 					const neg = deg < 0;
 					return (
-						<g key={deg} stroke="var(--phosphor-dim)" strokeWidth="1" opacity="0.55">
+						<g
+							key={deg}
+							stroke="var(--phosphor-dim)"
+							strokeWidth="1"
+							opacity="0.55"
+						>
 							{neg ? (
 								<>
 									<line x1="150" y1={y} x2="170" y2={y} strokeDasharray="4 4" />

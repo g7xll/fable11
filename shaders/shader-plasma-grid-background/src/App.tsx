@@ -24,7 +24,8 @@ export default function App() {
 	// One params object drives BOTH the page-wide background and the deck preview,
 	// so tuning a fader recolours the entire page live.
 	const [params, setParams] = useState<ShaderParams>(DEFAULT_PARAMS);
-	const [telemetry, setTelemetry] = useState<ShaderTelemetry>(INITIAL_TELEMETRY);
+	const [telemetry, setTelemetry] =
+		useState<ShaderTelemetry>(INITIAL_TELEMETRY);
 
 	const handleTelemetry = useCallback((t: ShaderTelemetry) => {
 		setTelemetry(t);

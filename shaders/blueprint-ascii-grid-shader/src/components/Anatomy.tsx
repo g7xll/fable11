@@ -1,11 +1,4 @@
-import {
-	Binary,
-	Grid3x3,
-	Hash,
-	Sparkles,
-	SunDim,
-	Waves,
-} from "lucide-react";
+import { Binary, Grid3x3, Hash, Sparkles, SunDim, Waves } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 
@@ -83,7 +76,8 @@ export function Anatomy() {
 					</h2>
 					<p className="mt-4 font-body text-ink-dim">
 						The fragment shader composites in a fixed order — every frame, for
-						every pixel. Read top to bottom, it's the same sequence as the brief's{" "}
+						every pixel. Read top to bottom, it's the same sequence as the
+						brief's{" "}
 						<code className="rounded bg-[var(--navy)] px-1.5 py-0.5 font-mono text-xs text-cobalt-bright">
 							mainImage()
 						</code>

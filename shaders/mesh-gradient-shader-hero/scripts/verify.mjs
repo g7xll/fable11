@@ -23,10 +23,14 @@ const PORT = process.env.PORT || 5321;
 const URL = `http://localhost:${PORT}/`;
 
 function startDev() {
-	const dev = spawn("npm", ["run", "dev", "--", "--port", String(PORT), "--strictPort"], {
-		stdio: ["ignore", "pipe", "pipe"],
-		env: { ...process.env },
-	});
+	const dev = spawn(
+		"npm",
+		["run", "dev", "--", "--port", String(PORT), "--strictPort"],
+		{
+			stdio: ["ignore", "pipe", "pipe"],
+			env: { ...process.env },
+		},
+	);
 	dev.stdout.on("data", () => {});
 	dev.stderr.on("data", (d) => process.stderr.write(`[vite] ${d}`));
 	return dev;
@@ -110,7 +114,9 @@ try {
 			"--ignore-gpu-blocklist",
 		],
 	});
-	const ctx = await browser.newContext({ viewport: { width: 1366, height: 860 } });
+	const ctx = await browser.newContext({
+		viewport: { width: 1366, height: 860 },
+	});
 	const page = await ctx.newPage();
 
 	const pageErrors = [];
@@ -124,7 +130,8 @@ try {
 	await sleep(1400);
 
 	// Header renders
-	const h1 = (await page.locator("header h1").first().textContent())?.trim() ?? "";
+	const h1 =
+		(await page.locator("header h1").first().textContent())?.trim() ?? "";
 	if (/Mesh Gradient/i.test(h1)) ok(`header renders ("${h1}")`);
 	else bad(`header missing (got "${h1}")`);
 
@@ -133,7 +140,8 @@ try {
 		const h = document.querySelector("section h1");
 		return h ? getComputedStyle(h).fontFamily : "";
 	});
-	if (/satoshi/i.test(heroFont)) ok(`hero headline uses vendored font ("${heroFont}")`);
+	if (/satoshi/i.test(heroFont))
+		ok(`hero headline uses vendored font ("${heroFont}")`);
 	else bad(`hero font family unexpected ("${heroFont}")`);
 
 	// Canvas present, non-empty
@@ -143,14 +151,18 @@ try {
 		const r = c.getBoundingClientRect();
 		return { w: Math.round(r.width), h: Math.round(r.height) };
 	});
-	if (box && box.w > 300 && box.h > 300) ok(`MeshGradient canvas mounts ${box.w}x${box.h}`);
+	if (box && box.w > 300 && box.h > 300)
+		ok(`MeshGradient canvas mounts ${box.w}x${box.h}`);
 	else bad(`no live canvas (${JSON.stringify(box)})`);
 
 	// Real WebGL context
 	const hasGL = await page.evaluate(() => {
 		const c = document.querySelector("canvas");
 		if (!c) return false;
-		const gl = c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+		const gl =
+			c.getContext("webgl2") ||
+			c.getContext("webgl") ||
+			c.getContext("experimental-webgl");
 		return !!gl;
 	});
 	if (hasGL) ok("WebGL context is live");
@@ -162,9 +174,16 @@ try {
 	await sleep(1100);
 	const after = await canvasSignature(page);
 	if (before && after) {
-		const delta = Math.abs(before[0] - after[0]) + Math.abs(before[1] - after[1]) + Math.abs(before[2] - after[2]);
-		if (delta > 12) ok(`preset re-tints shader (Δrgb=${delta}, ${before} → ${after})`);
-		else bad(`preset did not change shader pixels (Δrgb=${delta}, ${before} → ${after})`);
+		const delta =
+			Math.abs(before[0] - after[0]) +
+			Math.abs(before[1] - after[1]) +
+			Math.abs(before[2] - after[2]);
+		if (delta > 12)
+			ok(`preset re-tints shader (Δrgb=${delta}, ${before} → ${after})`);
+		else
+			bad(
+				`preset did not change shader pixels (Δrgb=${delta}, ${before} → ${after})`,
+			);
 	} else {
 		bad(`could not sample canvas (before=${before}, after=${after})`);
 	}
@@ -175,21 +194,31 @@ try {
 	await speed.press("Home");
 	await sleep(250);
 	const minTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.closest(".group")?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.closest(".group")?.textContent ??
+			"",
 	);
 	await speed.press("End");
 	await sleep(250);
 	const maxTxt = await page.evaluate(
-		() => document.querySelector("#fader-speed")?.closest(".group")?.textContent ?? "",
+		() =>
+			document.querySelector("#fader-speed")?.closest(".group")?.textContent ??
+			"",
 	);
-	if (/0\.00/.test(minTxt) && /2\.00/.test(maxTxt)) ok("speed fader sweeps 0.00 → 2.00");
-	else bad(`speed fader did not sweep (min="${minTxt.trim()}" max="${maxTxt.trim()}")`);
+	if (/0\.00/.test(minTxt) && /2\.00/.test(maxTxt))
+		ok("speed fader sweeps 0.00 → 2.00");
+	else
+		bad(
+			`speed fader did not sweep (min="${minTxt.trim()}" max="${maxTxt.trim()}")`,
+		);
 
 	// Documentation dock switches to the Props API table.
 	await page.getByRole("tab", { name: /Props API/ }).click();
 	await sleep(300);
 	const hasPropsRow = await page.evaluate(() =>
-		Array.from(document.querySelectorAll("td")).some((td) => td.textContent?.trim() === "distortion"),
+		Array.from(document.querySelectorAll("td")).some(
+			(td) => td.textContent?.trim() === "distortion",
+		),
 	);
 	if (hasPropsRow) ok("docs dock renders the Props API table");
 	else bad("Props API table did not render");

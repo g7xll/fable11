@@ -1,244 +1,249 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from "react";
 
 // --- OGL Library Inlined ---
 // To resolve the import error, the necessary classes from the OGL library
 // have been included directly in this file. This makes the component self-contained.
 
 class Vec2 extends Array {
-    constructor(x = 0, y = 0) {
-        super(x, y);
-        return this;
-    }
-    get x() {
-        return this[0];
-    }
-    get y() {
-        return this[1];
-    }
-    set x(v) {
-        this[0] = v;
-    }
-    set y(v) {
-        this[1] = v;
-    }
-    set(x, y) {
-        if (x.length) return this.copy(x);
-        this[0] = x;
-        this[1] = y;
-        return this;
-    }
-    copy(v) {
-        this[0] = v[0];
-        this[1] = v[1];
-        return this;
-    }
+	constructor(x = 0, y = 0) {
+		super(x, y);
+		return this;
+	}
+	get x() {
+		return this[0];
+	}
+	get y() {
+		return this[1];
+	}
+	set x(v) {
+		this[0] = v;
+	}
+	set y(v) {
+		this[1] = v;
+	}
+	set(x, y) {
+		if (x.length) return this.copy(x);
+		this[0] = x;
+		this[1] = y;
+		return this;
+	}
+	copy(v) {
+		this[0] = v[0];
+		this[1] = v[1];
+		return this;
+	}
 }
 
 class Color extends Array {
-    constructor(r, g, b) {
-        if (r && r.length === 3) return super(...r);
-        return super(r, g, b);
-    }
+	constructor(r, g, b) {
+		if (r && r.length === 3) return super(...r);
+		return super(r, g, b);
+	}
 
-    get r() {
-        return this[0];
-    }
-    get g() {
-        return this[1];
-    }
-    get b() {
-        return this[2];
-    }
-    set r(v) {
-        this[0] = v;
-    }
-    set g(v) {
-        this[1] = v;
-    }
-    set b(v) {
-        this[2] = v;
-    }
+	get r() {
+		return this[0];
+	}
+	get g() {
+		return this[1];
+	}
+	get b() {
+		return this[2];
+	}
+	set r(v) {
+		this[0] = v;
+	}
+	set g(v) {
+		this[1] = v;
+	}
+	set b(v) {
+		this[2] = v;
+	}
 
-    set(r, g, b) {
-        if (r.length) return this.copy(r);
-        this[0] = r;
-        this[1] = g;
-        this[2] = b;
-        return this;
-    }
+	set(r, g, b) {
+		if (r.length) return this.copy(r);
+		this[0] = r;
+		this[1] = g;
+		this[2] = b;
+		return this;
+	}
 
-    copy(v) {
-        this[0] = v[0];
-        this[1] = v[1];
-        this[2] = v[2];
-        return this;
-    }
+	copy(v) {
+		this[0] = v[0];
+		this[1] = v[1];
+		this[2] = v[2];
+		return this;
+	}
 }
-
 
 let ID = 1;
 let ATTR_ID = 1;
 
 class Geometry {
-    constructor(gl, attributes = {}) {
-        this.gl = gl;
-        this.attributes = attributes;
-        this.id = ID++;
+	constructor(gl, attributes = {}) {
+		this.gl = gl;
+		this.attributes = attributes;
+		this.id = ID++;
 
-        this.drawRange = {
-            start: 0,
-            count: 0
-        };
-        this.instancedCount = 0;
+		this.drawRange = {
+			start: 0,
+			count: 0,
+		};
+		this.instancedCount = 0;
 
-        for (let key in attributes) {
-            this.addAttribute(key, attributes[key]);
-        }
-    }
-    addAttribute(key, attr) {
-        this.attributes[key] = attr;
-        attr.id = ATTR_ID++;
-        if (attr.data.length && !this.drawRange.count) {
-            this.drawRange.count = attr.data.length / attr.size;
-        }
-    }
+		for (let key in attributes) {
+			this.addAttribute(key, attributes[key]);
+		}
+	}
+	addAttribute(key, attr) {
+		this.attributes[key] = attr;
+		attr.id = ATTR_ID++;
+		if (attr.data.length && !this.drawRange.count) {
+			this.drawRange.count = attr.data.length / attr.size;
+		}
+	}
 }
 
 class Program {
-    constructor(gl, {
-        vertex,
-        fragment,
-        uniforms = {}
-    } = {}) {
-        this.gl = gl;
-        this.uniforms = uniforms;
-        this.vertex = vertex;
-        this.fragment = fragment;
-        const vertexShader = gl.createShader(gl.VERTEX_SHADER);
-        gl.shaderSource(vertexShader, vertex);
-        gl.compileShader(vertexShader);
-        if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
-            console.error(gl.getShaderInfoLog(vertexShader));
-        }
+	constructor(gl, { vertex, fragment, uniforms = {} } = {}) {
+		this.gl = gl;
+		this.uniforms = uniforms;
+		this.vertex = vertex;
+		this.fragment = fragment;
+		const vertexShader = gl.createShader(gl.VERTEX_SHADER);
+		gl.shaderSource(vertexShader, vertex);
+		gl.compileShader(vertexShader);
+		if (!gl.getShaderParameter(vertexShader, gl.COMPILE_STATUS)) {
+			console.error(gl.getShaderInfoLog(vertexShader));
+		}
 
-        const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
-        gl.shaderSource(fragmentShader, fragment);
-        gl.compileShader(fragmentShader);
-        if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
-            console.error(gl.getShaderInfoLog(fragmentShader));
-        }
+		const fragmentShader = gl.createShader(gl.FRAGMENT_SHADER);
+		gl.shaderSource(fragmentShader, fragment);
+		gl.compileShader(fragmentShader);
+		if (!gl.getShaderParameter(fragmentShader, gl.COMPILE_STATUS)) {
+			console.error(gl.getShaderInfoLog(fragmentShader));
+		}
 
-        this.program = gl.createProgram();
-        gl.attachShader(this.program, vertexShader);
-        gl.attachShader(this.program, fragmentShader);
-        gl.linkProgram(this.program);
-        if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
-            console.error(gl.getProgramInfoLog(this.program));
-        }
+		this.program = gl.createProgram();
+		gl.attachShader(this.program, vertexShader);
+		gl.attachShader(this.program, fragmentShader);
+		gl.linkProgram(this.program);
+		if (!gl.getProgramParameter(this.program, gl.LINK_STATUS)) {
+			console.error(gl.getProgramInfoLog(this.program));
+		}
 
-        this.uniformLocations = new Map();
-        const numUniforms = gl.getProgramParameter(this.program, gl.ACTIVE_UNIFORMS);
-        for (let i = 0; i < numUniforms; i++) {
-            const uniform = gl.getActiveUniform(this.program, i);
-            this.uniformLocations.set(uniform.name, gl.getUniformLocation(this.program, uniform.name));
-        }
-        this.attributeLocations = new Map();
-        const numAttribs = gl.getProgramParameter(this.program, gl.ACTIVE_ATTRIBUTES);
-        for (let i = 0; i < numAttribs; i++) {
-            const attrib = gl.getActiveAttrib(this.program, i);
-            this.attributeLocations.set(attrib.name, gl.getAttribLocation(this.program, attrib.name));
-        }
-    }
-    use() {
-        this.gl.useProgram(this.program);
-    }
+		this.uniformLocations = new Map();
+		const numUniforms = gl.getProgramParameter(
+			this.program,
+			gl.ACTIVE_UNIFORMS,
+		);
+		for (let i = 0; i < numUniforms; i++) {
+			const uniform = gl.getActiveUniform(this.program, i);
+			this.uniformLocations.set(
+				uniform.name,
+				gl.getUniformLocation(this.program, uniform.name),
+			);
+		}
+		this.attributeLocations = new Map();
+		const numAttribs = gl.getProgramParameter(
+			this.program,
+			gl.ACTIVE_ATTRIBUTES,
+		);
+		for (let i = 0; i < numAttribs; i++) {
+			const attrib = gl.getActiveAttrib(this.program, i);
+			this.attributeLocations.set(
+				attrib.name,
+				gl.getAttribLocation(this.program, attrib.name),
+			);
+		}
+	}
+	use() {
+		this.gl.useProgram(this.program);
+	}
 }
 
 class Mesh {
-    constructor(gl, {
-        geometry,
-        program
-    }) {
-        this.gl = gl;
-        this.geometry = geometry;
-        this.program = program;
+	constructor(gl, { geometry, program }) {
+		this.gl = gl;
+		this.geometry = geometry;
+		this.program = program;
 
-        this.vao = this.gl.createVertexArray();
-        this.gl.bindVertexArray(this.vao);
+		this.vao = this.gl.createVertexArray();
+		this.gl.bindVertexArray(this.vao);
 
-        Object.keys(this.geometry.attributes).forEach(key => {
-            const attr = this.geometry.attributes[key];
-            const location = this.program.attributeLocations.get(key);
-            if (location === undefined) return;
-            this.gl.enableVertexAttribArray(location);
-            const buffer = this.gl.createBuffer();
-            this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
-            this.gl.bufferData(this.gl.ARRAY_BUFFER, attr.data, this.gl.STATIC_DRAW);
-            this.gl.vertexAttribPointer(location, attr.size, this.gl.FLOAT, false, 0, 0);
-        });
-        this.gl.bindVertexArray(null);
-    }
-    draw() {
-        this.program.use();
-        Object.keys(this.program.uniforms).forEach(key => {
-            const uniform = this.program.uniforms[key];
-            const location = this.program.uniformLocations.get(key);
-            if (!location) return;
-            if (uniform.value instanceof Color) {
-                this.gl.uniform3fv(location, uniform.value);
-            } else if (uniform.value instanceof Vec2) {
-                this.gl.uniform2fv(location, uniform.value);
-            } else {
-                this.gl.uniform1f(location, uniform.value);
-            }
-        });
+		Object.keys(this.geometry.attributes).forEach((key) => {
+			const attr = this.geometry.attributes[key];
+			const location = this.program.attributeLocations.get(key);
+			if (location === undefined) return;
+			this.gl.enableVertexAttribArray(location);
+			const buffer = this.gl.createBuffer();
+			this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
+			this.gl.bufferData(this.gl.ARRAY_BUFFER, attr.data, this.gl.STATIC_DRAW);
+			this.gl.vertexAttribPointer(
+				location,
+				attr.size,
+				this.gl.FLOAT,
+				false,
+				0,
+				0,
+			);
+		});
+		this.gl.bindVertexArray(null);
+	}
+	draw() {
+		this.program.use();
+		Object.keys(this.program.uniforms).forEach((key) => {
+			const uniform = this.program.uniforms[key];
+			const location = this.program.uniformLocations.get(key);
+			if (!location) return;
+			if (uniform.value instanceof Color) {
+				this.gl.uniform3fv(location, uniform.value);
+			} else if (uniform.value instanceof Vec2) {
+				this.gl.uniform2fv(location, uniform.value);
+			} else {
+				this.gl.uniform1f(location, uniform.value);
+			}
+		});
 
-        this.gl.bindVertexArray(this.vao);
-        this.gl.drawArrays(this.gl.TRIANGLES, 0, this.geometry.drawRange.count);
-    }
+		this.gl.bindVertexArray(this.vao);
+		this.gl.drawArrays(this.gl.TRIANGLES, 0, this.geometry.drawRange.count);
+	}
 }
 
 class Renderer {
-    constructor({
-        canvas,
-        dpr = 1,
-        antialias = false
-    }) {
-        this.dpr = dpr;
-        this.canvas = canvas;
-        this.gl = canvas.getContext('webgl2', {
-            antialias
-        });
-    }
-    setSize(width, height) {
-        this.canvas.width = width * this.dpr;
-        this.canvas.height = height * this.dpr;
-        this.canvas.style.width = `${width}px`;
-        this.canvas.style.height = `${height}px`;
-        this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
-    }
-    render({
-        scene
-    }) {
-        this.gl.clearColor(0, 0, 0, 0);
-        this.gl.clear(this.gl.COLOR_BUFFER_BIT);
-        scene.draw();
-    }
+	constructor({ canvas, dpr = 1, antialias = false }) {
+		this.dpr = dpr;
+		this.canvas = canvas;
+		this.gl = canvas.getContext("webgl2", {
+			antialias,
+		});
+	}
+	setSize(width, height) {
+		this.canvas.width = width * this.dpr;
+		this.canvas.height = height * this.dpr;
+		this.canvas.style.width = `${width}px`;
+		this.canvas.style.height = `${height}px`;
+		this.gl.viewport(0, 0, this.gl.canvas.width, this.gl.canvas.height);
+	}
+	render({ scene }) {
+		this.gl.clearColor(0, 0, 0, 0);
+		this.gl.clear(this.gl.COLOR_BUFFER_BIT);
+		scene.draw();
+	}
 }
 
-const Triangle = (gl) => new Geometry(gl, {
-    position: {
-        size: 2,
-        data: new Float32Array([-1, -1, 3, -1, -1, 3])
-    },
-    uv: {
-        size: 2,
-        data: new Float32Array([0, 0, 2, 0, 0, 2])
-    },
-});
+const Triangle = (gl) =>
+	new Geometry(gl, {
+		position: {
+			size: 2,
+			data: new Float32Array([-1, -1, 3, -1, -1, 3]),
+		},
+		uv: {
+			size: 2,
+			data: new Float32Array([0, 0, 2, 0, 0, 2]),
+		},
+	});
 
 // --- End of Inlined OGL Library ---
-
 
 // The main GLSL code for the shader, written as a string.
 const fragmentShader = `
@@ -355,119 +360,153 @@ const vertexShader = `
 
 // A simple slider component for the UI.
 const Slider = ({ label, value, min, max, step, onChange }) => (
-    <div className="flex flex-col space-y-2">
-        <label className="text-xs font-medium text-gray-400">{label}</label>
-        <input
-            type="range"
-            min={min}
-            max={max}
-            step={step}
-            value={value}
-            onChange={onChange}
-            className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-yellow-400"
-        />
-    </div>
+	<div className="flex flex-col space-y-2">
+		<label className="text-xs font-medium text-gray-400">{label}</label>
+		<input
+			type="range"
+			min={min}
+			max={max}
+			step={step}
+			value={value}
+			onChange={onChange}
+			className="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer accent-yellow-400"
+		/>
+	</div>
 );
 
 // The main React component.
 const AuraCore = () => {
-    const canvasRef = useRef(null);
-    const mousePos = useRef({ x: 0, y: 0 });
-    const programRef = useRef(null);
+	const canvasRef = useRef(null);
+	const mousePos = useRef({ x: 0, y: 0 });
+	const programRef = useRef(null);
 
-    // State variables to hold the shader parameters, controlled by sliders.
-    const [hue, setHue] = useState(210);
-    const [power, setPower] = useState(1.5);
-    const [focus, setFocus] = useState(30.0);
-    const [distortion, setDistortion] = useState(1.0);
+	// State variables to hold the shader parameters, controlled by sliders.
+	const [hue, setHue] = useState(210);
+	const [power, setPower] = useState(1.5);
+	const [focus, setFocus] = useState(30.0);
+	const [distortion, setDistortion] = useState(1.0);
 
-    // This effect runs only once to initialize the WebGL scene.
-    useEffect(() => {
-        if (!canvasRef.current) return;
+	// This effect runs only once to initialize the WebGL scene.
+	useEffect(() => {
+		if (!canvasRef.current) return;
 
-        const canvas = canvasRef.current;
-        const renderer = new Renderer({ canvas, dpr: Math.min(window.devicePixelRatio, 2), antialias: true });
-        const gl = renderer.gl;
+		const canvas = canvasRef.current;
+		const renderer = new Renderer({
+			canvas,
+			dpr: Math.min(window.devicePixelRatio, 2),
+			antialias: true,
+		});
+		const gl = renderer.gl;
 
-        const geometry = Triangle(gl);
+		const geometry = Triangle(gl);
 
-        const program = new Program(gl, {
-            vertex: vertexShader,
-            fragment: fragmentShader,
-            uniforms: {
-                uTime: { value: 0 },
-                uResolution: { value: new Vec2(gl.canvas.width, gl.canvas.height) },
-                uMouse: { value: new Vec2() },
-                uColor: { value: new Color(0,0,0) },
-                uPower: { value: 0 },
-                uFocus: { value: 0 },
-                uDistortion: { value: 0 },
-            },
-        });
-        programRef.current = program;
+		const program = new Program(gl, {
+			vertex: vertexShader,
+			fragment: fragmentShader,
+			uniforms: {
+				uTime: { value: 0 },
+				uResolution: { value: new Vec2(gl.canvas.width, gl.canvas.height) },
+				uMouse: { value: new Vec2() },
+				uColor: { value: new Color(0, 0, 0) },
+				uPower: { value: 0 },
+				uFocus: { value: 0 },
+				uDistortion: { value: 0 },
+			},
+		});
+		programRef.current = program;
 
-        const mesh = new Mesh(gl, { geometry, program });
+		const mesh = new Mesh(gl, { geometry, program });
 
-        const handleResize = () => {
-            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
-            program.uniforms.uResolution.value.set(gl.canvas.width, gl.canvas.height);
-        };
-        window.addEventListener('resize', handleResize);
-        handleResize();
+		const handleResize = () => {
+			renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+			program.uniforms.uResolution.value.set(gl.canvas.width, gl.canvas.height);
+		};
+		window.addEventListener("resize", handleResize);
+		handleResize();
 
-        const handleMouseMove = (e) => {
-            const rect = canvas.getBoundingClientRect();
-            const normalizedX = (e.clientX - rect.left) / rect.width * 2 - 1;
-            const normalizedY = -((e.clientY - rect.top) / rect.height * 2 - 1);
+		const handleMouseMove = (e) => {
+			const rect = canvas.getBoundingClientRect();
+			const normalizedX = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+			const normalizedY = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
 
-            const aspectRatio = rect.width / rect.height;
-            mousePos.current = { x: normalizedX * aspectRatio, y: normalizedY };
-        };
-        window.addEventListener('mousemove', handleMouseMove);
+			const aspectRatio = rect.width / rect.height;
+			mousePos.current = { x: normalizedX * aspectRatio, y: normalizedY };
+		};
+		window.addEventListener("mousemove", handleMouseMove);
 
-        let animationFrameId;
-        const animate = (t) => {
-            animationFrameId = requestAnimationFrame(animate);
-            program.uniforms.uTime.value = t * 0.001;
-            program.uniforms.uMouse.value.set(mousePos.current.x, mousePos.current.y);
-            renderer.render({ scene: mesh });
-        };
-        animate(0);
+		let animationFrameId;
+		const animate = (t) => {
+			animationFrameId = requestAnimationFrame(animate);
+			program.uniforms.uTime.value = t * 0.001;
+			program.uniforms.uMouse.value.set(mousePos.current.x, mousePos.current.y);
+			renderer.render({ scene: mesh });
+		};
+		animate(0);
 
-        return () => {
-            cancelAnimationFrame(animationFrameId);
-            window.removeEventListener('resize', handleResize);
-            window.removeEventListener('mousemove', handleMouseMove);
-        };
-    }, []); // Empty dependency array ensures this runs only once.
+		return () => {
+			cancelAnimationFrame(animationFrameId);
+			window.removeEventListener("resize", handleResize);
+			window.removeEventListener("mousemove", handleMouseMove);
+		};
+	}, []); // Empty dependency array ensures this runs only once.
 
-    // This effect runs whenever the slider values change to update the uniforms.
-    useEffect(() => {
-        if (programRef.current) {
-            programRef.current.uniforms.uColor.value.set(hue / 360, 1, 1);
-            programRef.current.uniforms.uPower.value = power;
-            programRef.current.uniforms.uFocus.value = focus;
-            programRef.current.uniforms.uDistortion.value = distortion;
-        }
-    }, [hue, power, focus, distortion]);
+	// This effect runs whenever the slider values change to update the uniforms.
+	useEffect(() => {
+		if (programRef.current) {
+			programRef.current.uniforms.uColor.value.set(hue / 360, 1, 1);
+			programRef.current.uniforms.uPower.value = power;
+			programRef.current.uniforms.uFocus.value = focus;
+			programRef.current.uniforms.uDistortion.value = distortion;
+		}
+	}, [hue, power, focus, distortion]);
 
-    return (
-        <div className="relative w-full h-full bg-black">
-            <canvas ref={canvasRef} className="w-full h-full" />
-            <div className="absolute z-10 bottom-4 left-4 right-4 md:left-auto md:w-72 p-4 rounded-lg
-                            bg-black/30 backdrop-blur-md border border-white/10 text-white shadow-2xl">
-                <div className="flex items-center justify-between mb-4">
-                    <h2 className="text-lg font-bold">Aura Core Controls</h2>
-                    <div className="w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></div>
-                </div>
-                <div className="space-y-4">
-                    <Slider label="Hue" value={hue} min="0" max="360" step="1" onChange={(e) => setHue(parseFloat(e.target.value))} />
-                    <Slider label="Power" value={power} min="0.1" max="5.0" step="0.1" onChange={(e) => setPower(parseFloat(e.target.value))} />
-                    <Slider label="Ray Focus" value={focus} min="5.0" max="100.0" step="1.0" onChange={(e) => setFocus(parseFloat(e.target.value))} />
-                    <Slider label="Distortion" value={distortion} min="0.0" max="3.0" step="0.1" onChange={(e) => setDistortion(parseFloat(e.target.value))} />
-                </div>
-            </div>
-        </div>
-    );
+	return (
+		<div className="relative w-full h-full bg-black">
+			<canvas ref={canvasRef} className="w-full h-full" />
+			<div
+				className="absolute z-10 bottom-4 left-4 right-4 md:left-auto md:w-72 p-4 rounded-lg
+                            bg-black/30 backdrop-blur-md border border-white/10 text-white shadow-2xl"
+			>
+				<div className="flex items-center justify-between mb-4">
+					<h2 className="text-lg font-bold">Aura Core Controls</h2>
+					<div className="w-3 h-3 rounded-full bg-yellow-400 animate-pulse"></div>
+				</div>
+				<div className="space-y-4">
+					<Slider
+						label="Hue"
+						value={hue}
+						min="0"
+						max="360"
+						step="1"
+						onChange={(e) => setHue(parseFloat(e.target.value))}
+					/>
+					<Slider
+						label="Power"
+						value={power}
+						min="0.1"
+						max="5.0"
+						step="0.1"
+						onChange={(e) => setPower(parseFloat(e.target.value))}
+					/>
+					<Slider
+						label="Ray Focus"
+						value={focus}
+						min="5.0"
+						max="100.0"
+						step="1.0"
+						onChange={(e) => setFocus(parseFloat(e.target.value))}
+					/>
+					<Slider
+						label="Distortion"
+						value={distortion}
+						min="0.0"
+						max="3.0"
+						step="0.1"
+						onChange={(e) => setDistortion(parseFloat(e.target.value))}
+					/>
+				</div>
+			</div>
+		</div>
+	);
 };
 export default AuraCore;

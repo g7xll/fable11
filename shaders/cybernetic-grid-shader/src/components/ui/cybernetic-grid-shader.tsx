@@ -20,62 +20,65 @@ import * as THREE from "three";
  */
 
 export interface ShaderTelemetry {
-  /** Seconds elapsed on the shader clock. */
-  time: number;
-  /** Smoothed frames-per-second. */
-  fps: number;
-  /** Cursor X in [0,1] across the viewport. */
-  mouseX: number;
-  /** Cursor Y in [0,1] from the bottom of the viewport (shader space). */
-  mouseY: number;
+	/** Seconds elapsed on the shader clock. */
+	time: number;
+	/** Smoothed frames-per-second. */
+	fps: number;
+	/** Cursor X in [0,1] across the viewport. */
+	mouseX: number;
+	/** Cursor Y in [0,1] from the bottom of the viewport (shader space). */
+	mouseY: number;
 }
 
 interface CyberneticGridShaderProps {
-  /** When true, the animation clock holds and the lattice freezes. */
-  paused?: boolean;
-  /** Called once per rendered frame with live telemetry. */
-  onFrame?: (telemetry: ShaderTelemetry) => void;
+	/** When true, the animation clock holds and the lattice freezes. */
+	paused?: boolean;
+	/** Called once per rendered frame with live telemetry. */
+	onFrame?: (telemetry: ShaderTelemetry) => void;
 }
 
-const CyberneticGridShader = ({ paused = false, onFrame }: CyberneticGridShaderProps) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const CyberneticGridShader = ({
+	paused = false,
+	onFrame,
+}: CyberneticGridShaderProps) => {
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  // Keep the latest props in refs so the animation loop closure always reads
-  // current values without re-running the (expensive) WebGL setup effect.
-  const pausedRef = useRef(paused);
-  const onFrameRef = useRef(onFrame);
-  pausedRef.current = paused;
-  onFrameRef.current = onFrame;
+	// Keep the latest props in refs so the animation loop closure always reads
+	// current values without re-running the (expensive) WebGL setup effect.
+	const pausedRef = useRef(paused);
+	const onFrameRef = useRef(onFrame);
+	pausedRef.current = paused;
+	onFrameRef.current = onFrame;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-    // 1) Renderer, Scene, Camera, Clock
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-      renderer.setPixelRatio(window.devicePixelRatio);
-      container.appendChild(renderer.domElement);
-    } catch (err) {
-      console.error("WebGL not supported:", err);
-      container.innerHTML =
-        '<p style="color:#8aa0c8;font-family:monospace;text-align:center;padding:2rem;">WebGL is unavailable — the cybernetic grid cannot render.</p>';
-      return;
-    }
+		// 1) Renderer, Scene, Camera, Clock
+		let renderer: THREE.WebGLRenderer;
+		try {
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+			renderer.setPixelRatio(window.devicePixelRatio);
+			container.appendChild(renderer.domElement);
+		} catch (err) {
+			console.error("WebGL not supported:", err);
+			container.innerHTML =
+				'<p style="color:#8aa0c8;font-family:monospace;text-align:center;padding:2rem;">WebGL is unavailable — the cybernetic grid cannot render.</p>';
+			return;
+		}
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const clock = new THREE.Clock();
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		const clock = new THREE.Clock();
 
-    // 2) GLSL Shaders (verbatim from the brief)
-    const vertexShader = `
+		// 2) GLSL Shaders (verbatim from the brief)
+		const vertexShader = `
       void main() {
         gl_Position = vec4(position, 1.0);
       }
     `;
 
-    const fragmentShader = `
+		const fragmentShader = `
       precision highp float;
       uniform vec2 iResolution;
       uniform float iTime;
@@ -128,112 +131,112 @@ const CyberneticGridShader = ({ paused = false, onFrame }: CyberneticGridShaderP
       }
     `;
 
-    // 3) Uniforms, Material, Mesh
-    const uniforms = {
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector2() },
-      iMouse: {
-        value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
-      },
-    };
+		// 3) Uniforms, Material, Mesh
+		const uniforms = {
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector2() },
+			iMouse: {
+				value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
+			},
+		};
 
-    const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms,
-    });
+		const material = new THREE.ShaderMaterial({
+			vertexShader,
+			fragmentShader,
+			uniforms,
+		});
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    // 4) Resize handler
-    const onResize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      renderer.setSize(width, height);
-      uniforms.iResolution.value.set(width, height);
-    };
-    window.addEventListener("resize", onResize);
-    onResize(); // set initial size
+		// 4) Resize handler
+		const onResize = () => {
+			const width = container.clientWidth;
+			const height = container.clientHeight;
+			renderer.setSize(width, height);
+			uniforms.iResolution.value.set(width, height);
+		};
+		window.addEventListener("resize", onResize);
+		onResize(); // set initial size
 
-    // 5) Mouse handler — flip Y so (0,0) is bottom-left, matching the shader's
-    //    gl_FragCoord space. A pointermove listener is added alongside the
-    //    brief's mousemove so touch/pen and synthetic pointers also drive the
-    //    warp.
-    const onMouseMove = (e: { clientX: number; clientY: number }) => {
-      uniforms.iMouse.value.set(e.clientX, container.clientHeight - e.clientY);
-    };
-    window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("pointermove", onMouseMove);
+		// 5) Mouse handler — flip Y so (0,0) is bottom-left, matching the shader's
+		//    gl_FragCoord space. A pointermove listener is added alongside the
+		//    brief's mousemove so touch/pen and synthetic pointers also drive the
+		//    warp.
+		const onMouseMove = (e: { clientX: number; clientY: number }) => {
+			uniforms.iMouse.value.set(e.clientX, container.clientHeight - e.clientY);
+		};
+		window.addEventListener("mousemove", onMouseMove);
+		window.addEventListener("pointermove", onMouseMove);
 
-    // Pausing freezes the clock by holding the last elapsed value and offsetting
-    // future deltas, so the lattice resumes seamlessly instead of jumping.
-    let elapsed = 0;
-    let lastFrame = performance.now();
-    let fpsSmoothed = 60;
+		// Pausing freezes the clock by holding the last elapsed value and offsetting
+		// future deltas, so the lattice resumes seamlessly instead of jumping.
+		let elapsed = 0;
+		let lastFrame = performance.now();
+		let fpsSmoothed = 60;
 
-    // 6) Animation loop
-    renderer.setAnimationLoop(() => {
-      const now = performance.now();
-      const dt = (now - lastFrame) / 1000;
-      lastFrame = now;
-      if (dt > 0) fpsSmoothed += (1 / dt - fpsSmoothed) * 0.1;
+		// 6) Animation loop
+		renderer.setAnimationLoop(() => {
+			const now = performance.now();
+			const dt = (now - lastFrame) / 1000;
+			lastFrame = now;
+			if (dt > 0) fpsSmoothed += (1 / dt - fpsSmoothed) * 0.1;
 
-      if (!pausedRef.current) elapsed += clock.getDelta();
-      else clock.getDelta(); // keep the clock's internal delta drained while paused
+			if (!pausedRef.current) elapsed += clock.getDelta();
+			else clock.getDelta(); // keep the clock's internal delta drained while paused
 
-      uniforms.iTime.value = elapsed;
-      renderer.render(scene, camera);
+			uniforms.iTime.value = elapsed;
+			renderer.render(scene, camera);
 
-      const cb = onFrameRef.current;
-      if (cb) {
-        const w = uniforms.iResolution.value.x || 1;
-        const h = uniforms.iResolution.value.y || 1;
-        cb({
-          time: elapsed,
-          fps: fpsSmoothed,
-          mouseX: uniforms.iMouse.value.x / w,
-          mouseY: uniforms.iMouse.value.y / h,
-        });
-      }
-    });
+			const cb = onFrameRef.current;
+			if (cb) {
+				const w = uniforms.iResolution.value.x || 1;
+				const h = uniforms.iResolution.value.y || 1;
+				cb({
+					time: elapsed,
+					fps: fpsSmoothed,
+					mouseX: uniforms.iMouse.value.x / w,
+					mouseY: uniforms.iMouse.value.y / h,
+				});
+			}
+		});
 
-    // 7) Cleanup on unmount
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMouseMove);
-      window.removeEventListener("pointermove", onMouseMove);
+		// 7) Cleanup on unmount
+		return () => {
+			window.removeEventListener("resize", onResize);
+			window.removeEventListener("mousemove", onMouseMove);
+			window.removeEventListener("pointermove", onMouseMove);
 
-      renderer.setAnimationLoop(null);
+			renderer.setAnimationLoop(null);
 
-      const canvas = renderer.domElement;
-      if (canvas.parentNode) {
-        canvas.parentNode.removeChild(canvas);
-      }
+			const canvas = renderer.domElement;
+			if (canvas.parentNode) {
+				canvas.parentNode.removeChild(canvas);
+			}
 
-      material.dispose();
-      geometry.dispose();
-      renderer.dispose();
-    };
-  }, []);
+			material.dispose();
+			geometry.dispose();
+			renderer.dispose();
+		};
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className="shader-container"
-      style={{
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100vw",
-        height: "100vh",
-        zIndex: -1,
-        pointerEvents: "none",
-      }}
-      aria-label="Cybernetic Grid animated background"
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className="shader-container"
+			style={{
+				position: "fixed",
+				top: 0,
+				left: 0,
+				width: "100vw",
+				height: "100vh",
+				zIndex: -1,
+				pointerEvents: "none",
+			}}
+			aria-label="Cybernetic Grid animated background"
+		/>
+	);
 };
 
 export default CyberneticGridShader;

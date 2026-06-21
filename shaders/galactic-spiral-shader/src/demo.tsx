@@ -21,8 +21,14 @@ export default function DemoOne() {
 			<ShaderAnimation />
 
 			{/* 2 · Grading — pull focus to the core, then grain over the flats. */}
-			<div aria-hidden className="stage-vignette pointer-events-none fixed inset-0 z-[5]" />
-			<div aria-hidden className="stage-grain pointer-events-none fixed inset-0 z-[6]" />
+			<div
+				aria-hidden
+				className="stage-vignette pointer-events-none fixed inset-0 z-[5]"
+			/>
+			<div
+				aria-hidden
+				className="stage-grain pointer-events-none fixed inset-0 z-[6]"
+			/>
 
 			{/* 3 · Registration frame + corner crops anchor the field as a plate. */}
 			<div className="pointer-events-none fixed inset-3 z-20 border border-white/10 sm:inset-5">
@@ -36,7 +42,10 @@ export default function DemoOne() {
 			<header className="fixed inset-x-0 top-0 z-30 flex items-center justify-between gap-3 px-5 py-5 sm:px-8 sm:py-7">
 				<div className="animate-rise flex items-center gap-3">
 					<span className="grid h-9 w-9 place-items-center border border-white/15 bg-black/40 backdrop-blur-sm">
-						<Orbit aria-hidden className="animate-ring-spin h-4 w-4 text-neon-cyan" />
+						<Orbit
+							aria-hidden
+							className="animate-ring-spin h-4 w-4 text-neon-cyan"
+						/>
 					</span>
 					<div className="leading-tight">
 						<p className="font-mono text-[10px] uppercase tracking-[0.34em] text-ink">
@@ -76,14 +85,23 @@ export default function DemoOne() {
 					className="animate-rise mt-7 h-px w-24 bg-gradient-to-r from-transparent via-white/50 to-transparent [animation-delay:320ms]"
 				/>
 				<p className="animate-rise mt-6 max-w-md font-serif text-base italic text-ink/85 [animation-delay:400ms] sm:text-lg">
-					A seven-band neon rainbow, wound into a spiral and rendered live on the GPU.
+					A seven-band neon rainbow, wound into a spiral and rendered live on
+					the GPU.
 				</p>
 			</main>
 
 			{/* 6 · Telemetry ledger — live mission clock + measured render rate. */}
 			<footer className="fixed inset-x-0 bottom-0 z-30 hidden items-center justify-between gap-6 px-8 py-5 md:flex">
-				<Stat label="Mission" value={formatClock(elapsed)} valueClass="telemetry-clock" />
-				<Stat label="Render" value={`${Math.round(fps)} fps`} valueClass="telemetry-fps" />
+				<Stat
+					label="Mission"
+					value={formatClock(elapsed)}
+					valueClass="telemetry-clock"
+				/>
+				<Stat
+					label="Render"
+					value={`${Math.round(fps)} fps`}
+					valueClass="telemetry-fps"
+				/>
 				<Stat label="R.A." value={formatRa(elapsed)} />
 				<Stat label="Dec." value={formatDec(elapsed)} />
 				<Stat label="Pipeline" value="Three.js · WebGL" />
@@ -92,7 +110,9 @@ export default function DemoOne() {
 
 			{/* Mobile mini-ledger so small screens still show live state. */}
 			<div className="fixed inset-x-0 bottom-0 z-30 flex items-center justify-center gap-4 px-5 py-4 font-mono text-[10px] uppercase tracking-[0.22em] text-haze md:hidden">
-				<span className="telemetry-clock-m text-ink">{formatClock(elapsed)}</span>
+				<span className="telemetry-clock-m text-ink">
+					{formatClock(elapsed)}
+				</span>
 				<span className="h-3 w-px bg-white/20" />
 				<span>Three.js · WebGL</span>
 			</div>
@@ -164,7 +184,13 @@ function formatDec(elapsed: number) {
 
 function Corner({ className }: { className?: string }) {
 	return (
-		<span aria-hidden className={cn("reticle-corner absolute h-5 w-5 border-white/40", className)} />
+		<span
+			aria-hidden
+			className={cn(
+				"reticle-corner absolute h-5 w-5 border-white/40",
+				className,
+			)}
+		/>
 	);
 }
 

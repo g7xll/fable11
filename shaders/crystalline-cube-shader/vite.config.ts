@@ -6,10 +6,10 @@ import path from "node:path";
 // `import InteractiveShader from "@/components/ui/crystalline-cube"`, works
 // exactly as written in the prompt.
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+	plugins: [react()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+		},
+	},
 });

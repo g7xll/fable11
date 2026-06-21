@@ -58,7 +58,9 @@ try {
 	await ensureServer();
 
 	const browser = await chromium.launch();
-	const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
+	const page = await browser.newPage({
+		viewport: { width: 1440, height: 900 },
+	});
 
 	const consoleErrors = [];
 	page.on(
@@ -80,7 +82,11 @@ try {
 	await page.waitForTimeout(1200); // let the initial icon layer settle
 
 	// ── Page meta ────────────────────────────────────────────────────────────
-	check("page title", (await page.title()) === "Loading Resources", await page.title());
+	check(
+		"page title",
+		(await page.title()) === "Loading Resources",
+		await page.title(),
+	);
 
 	// ── Root background + layout ───────────────────────────────────────────────
 	const rootStyle = await page.locator("main.loader-root").evaluate((el) => {
@@ -113,8 +119,16 @@ try {
 		sh: document.documentElement.scrollHeight,
 		ch: document.documentElement.clientHeight,
 	}));
-	check("no horizontal scroll", scroll.sw <= scroll.cw + 1, `${scroll.sw} vs ${scroll.cw}`);
-	check("no vertical scroll", scroll.sh <= scroll.ch + 1, `${scroll.sh} vs ${scroll.ch}`);
+	check(
+		"no horizontal scroll",
+		scroll.sw <= scroll.cw + 1,
+		`${scroll.sw} vs ${scroll.cw}`,
+	);
+	check(
+		"no vertical scroll",
+		scroll.sh <= scroll.ch + 1,
+		`${scroll.sh} vs ${scroll.ch}`,
+	);
 
 	// ── Scene container + mask ────────────────────────────────────────────────
 	const scene = page.locator(".hex-scene-mask");
@@ -128,8 +142,16 @@ try {
 			position: cs.position,
 		};
 	});
-	check("scene width 1184px", approx(sceneBox.width, 1184, 1), `${sceneBox.width}`);
-	check("scene height 799.5px", approx(sceneBox.height, 799.5, 1), `${sceneBox.height}`);
+	check(
+		"scene width 1184px",
+		approx(sceneBox.width, 1184, 1),
+		`${sceneBox.width}`,
+	);
+	check(
+		"scene height 799.5px",
+		approx(sceneBox.height, 799.5, 1),
+		`${sceneBox.height}`,
+	);
 	check("scene position relative", sceneBox.position === "relative");
 	check(
 		"scene radial mask applied",
@@ -155,7 +177,11 @@ try {
 	check("29 polygon tiles", polyInfo.total === 29, `${polyInfo.total}`);
 	check("22 s-polygons", polyInfo.counts.s === 22, `${polyInfo.counts.s}`);
 	check("6 c-polygons", polyInfo.counts.c === 6, `${polyInfo.counts.c}`);
-	check("1 m-polygon (center)", polyInfo.counts.m === 1, `${polyInfo.counts.m}`);
+	check(
+		"1 m-polygon (center)",
+		polyInfo.counts.m === 1,
+		`${polyInfo.counts.m}`,
+	);
 
 	// ── Center glow ────────────────────────────────────────────────────────────
 	const glow = await page.locator(".hex-glow").evaluate((el) => {
@@ -169,7 +195,11 @@ try {
 			bg: cs.backgroundColor,
 		};
 	});
-	check("glow 120x120", glow.w === 120 && glow.h === 120, `${glow.w}x${glow.h}`);
+	check(
+		"glow 120x120",
+		glow.w === 120 && glow.h === 120,
+		`${glow.w}x${glow.h}`,
+	);
 	check("glow circular", glow.radius === "50%", glow.radius);
 	check("glow blur(37px)", glow.filter.includes("blur(37px)"), glow.filter);
 	check("glow z-index 3", glow.z === "3", glow.z);
@@ -178,7 +208,11 @@ try {
 	// ── Icons: exactly 3 settled slots, distinct, correct sets ────────────────
 	const iconInfo = await page.evaluate(() => {
 		const icons = [...document.querySelectorAll("img.hex-icon")];
-		const settled = icons.filter((i) => !i.className.includes("hex-icon-in") && !i.className.includes("hex-icon-out"));
+		const settled = icons.filter(
+			(i) =>
+				!i.className.includes("hex-icon-in") &&
+				!i.className.includes("hex-icon-out"),
+		);
 		const slots = icons.map((i) => i.getAttribute("src"));
 		return {
 			rendered: icons.length,
@@ -186,24 +220,47 @@ try {
 			srcs: slots,
 		};
 	});
-	check("3 settled icons (one per slot)", iconInfo.settled === 3, `${iconInfo.settled}`);
+	check(
+		"3 settled icons (one per slot)",
+		iconInfo.settled === 3,
+		`${iconInfo.settled}`,
+	);
 	// Center (middle) slot uses white icons, the two side slots use dark icons.
-	const whiteCount = iconInfo.srcs.filter((s) => s && s.includes("icon-w-")).length;
-	const darkCount = iconInfo.srcs.filter((s) => s && /icon-\d/.test(s) && !s.includes("icon-w-")).length;
+	const whiteCount = iconInfo.srcs.filter(
+		(s) => s && s.includes("icon-w-"),
+	).length;
+	const darkCount = iconInfo.srcs.filter(
+		(s) => s && /icon-\d/.test(s) && !s.includes("icon-w-"),
+	).length;
 	check("middle slot uses white icon", whiteCount >= 1, `${whiteCount}`);
 	check("side slots use dark icons", darkCount >= 2, `${darkCount}`);
 	// Distinct triplet
 	const distinctIdx = new Set(
 		iconInfo.srcs.map((s) => (s || "").match(/icon-(?:w-)?(\d\d)\.svg/)?.[1]),
 	);
-	check("triplet icons distinct", distinctIdx.size === 3, [...distinctIdx].join(","));
+	check(
+		"triplet icons distinct",
+		distinctIdx.size === 3,
+		[...distinctIdx].join(","),
+	);
 
 	// All icons must be 32x32 and centered (transform contains translate(-50%, -50%))
-	const iconBox = await page.locator("img.hex-icon").first().evaluate((el) => {
-		const cs = getComputedStyle(el);
-		return { w: parseFloat(cs.width), h: parseFloat(cs.height), pe: cs.pointerEvents };
-	});
-	check("icon size 32x32", iconBox.w === 32 && iconBox.h === 32, `${iconBox.w}x${iconBox.h}`);
+	const iconBox = await page
+		.locator("img.hex-icon")
+		.first()
+		.evaluate((el) => {
+			const cs = getComputedStyle(el);
+			return {
+				w: parseFloat(cs.width),
+				h: parseFloat(cs.height),
+				pe: cs.pointerEvents,
+			};
+		});
+	check(
+		"icon size 32x32",
+		iconBox.w === 32 && iconBox.h === 32,
+		`${iconBox.w}x${iconBox.h}`,
+	);
 	check("icon pointer-events none", iconBox.pe === "none", iconBox.pe);
 
 	// ── Loading label ─────────────────────────────────────────────────────────
@@ -223,9 +280,21 @@ try {
 	});
 	check("label 12px", labelStyle.size === "12px", labelStyle.size);
 	check("label weight 500", labelStyle.weight === "500", labelStyle.weight);
-	check("label uppercase", labelStyle.transform === "uppercase", labelStyle.transform);
-	check("label background-clip text", labelStyle.clip === "text", labelStyle.clip);
-	check("label shimmer animation", labelStyle.anim.includes("loadingShimmer"), labelStyle.anim);
+	check(
+		"label uppercase",
+		labelStyle.transform === "uppercase",
+		labelStyle.transform,
+	);
+	check(
+		"label background-clip text",
+		labelStyle.clip === "text",
+		labelStyle.clip,
+	);
+	check(
+		"label shimmer animation",
+		labelStyle.anim.includes("loadingShimmer"),
+		labelStyle.anim,
+	);
 
 	// ── Progress bar: present, fills over time, behaves unevenly ──────────────
 	const track = page.locator(".progress-track");
@@ -236,34 +305,54 @@ try {
 		return { h: cs.height, overflow: cs.overflow };
 	});
 	check("track 3px tall", trackStyle.h === "3px", trackStyle.h);
-	check("track overflow hidden", trackStyle.overflow === "hidden", trackStyle.overflow);
+	check(
+		"track overflow hidden",
+		trackStyle.overflow === "hidden",
+		trackStyle.overflow,
+	);
 
 	const widthAt = async () =>
 		fill.evaluate((el) => parseFloat(getComputedStyle(el).width));
-	const trackWidth = await track.evaluate((el) => parseFloat(getComputedStyle(el).width));
+	const trackWidth = await track.evaluate((el) =>
+		parseFloat(getComputedStyle(el).width),
+	);
 	const w1 = await widthAt();
 	await page.waitForTimeout(2500);
 	const w2 = await widthAt();
-	check("progress advances over time", w2 > w1 || w2 < w1 + trackWidth, `${w1.toFixed(0)} -> ${w2.toFixed(0)} of ${trackWidth.toFixed(0)}`);
-	check("progress fill is bounded", w2 <= trackWidth + 1, `${w2.toFixed(0)} <= ${trackWidth.toFixed(0)}`);
+	check(
+		"progress advances over time",
+		w2 > w1 || w2 < w1 + trackWidth,
+		`${w1.toFixed(0)} -> ${w2.toFixed(0)} of ${trackWidth.toFixed(0)}`,
+	);
+	check(
+		"progress fill is bounded",
+		w2 <= trackWidth + 1,
+		`${w2.toFixed(0)} <= ${trackWidth.toFixed(0)}`,
+	);
 
 	// ── Breathing motion: the m-polygon image scale changes over a frame gap ──
 	const mScaleAt = () =>
 		page.evaluate(() => {
-			const m = [...document.querySelectorAll(".hex-scene-mask img")].find((i) =>
-				i.src.includes("m-polygon"),
+			const m = [...document.querySelectorAll(".hex-scene-mask img")].find(
+				(i) => i.src.includes("m-polygon"),
 			);
 			return getComputedStyle(m).transform;
 		});
 	const s1 = await mScaleAt();
 	await page.waitForTimeout(500);
 	const s2 = await mScaleAt();
-	check("breathing animates m-polygon", s1 !== s2, `${s1.slice(0, 24)} -> ${s2.slice(0, 24)}`);
+	check(
+		"breathing animates m-polygon",
+		s1 !== s2,
+		`${s1.slice(0, 24)} -> ${s2.slice(0, 24)}`,
+	);
 
 	// ── Icon swap actually happens within one full cycle (~2.5s) ──────────────
 	const tripletNow = await page.evaluate(() =>
 		[...document.querySelectorAll("img.hex-icon")]
-			.map((i) => (i.getAttribute("src") || "").match(/icon-(?:w-)?(\d\d)/)?.[1])
+			.map(
+				(i) => (i.getAttribute("src") || "").match(/icon-(?:w-)?(\d\d)/)?.[1],
+			)
 			.filter(Boolean)
 			.sort()
 			.join(","),
@@ -273,7 +362,9 @@ try {
 		await page.waitForTimeout(300);
 		const t = await page.evaluate(() =>
 			[...document.querySelectorAll("img.hex-icon")]
-				.map((i) => (i.getAttribute("src") || "").match(/icon-(?:w-)?(\d\d)/)?.[1])
+				.map(
+					(i) => (i.getAttribute("src") || "").match(/icon-(?:w-)?(\d\d)/)?.[1],
+				)
 				.filter(Boolean)
 				.sort()
 				.join(","),
@@ -283,12 +374,28 @@ try {
 			break;
 		}
 	}
-	check("icons swap to a new triplet within a cycle", swapped, `from ${tripletNow}`);
+	check(
+		"icons swap to a new triplet within a cycle",
+		swapped,
+		`from ${tripletNow}`,
+	);
 
 	// ── No errors / no missing assets ─────────────────────────────────────────
-	check("no failed requests", failedRequests.length === 0, failedRequests.join(" | ").slice(0, 200));
-	check("no 4xx/5xx responses", notFound.length === 0, notFound.join(" | ").slice(0, 200));
-	check("no console/page errors", consoleErrors.length === 0, consoleErrors.join(" | ").slice(0, 200));
+	check(
+		"no failed requests",
+		failedRequests.length === 0,
+		failedRequests.join(" | ").slice(0, 200),
+	);
+	check(
+		"no 4xx/5xx responses",
+		notFound.length === 0,
+		notFound.join(" | ").slice(0, 200),
+	);
+	check(
+		"no console/page errors",
+		consoleErrors.length === 0,
+		consoleErrors.join(" | ").slice(0, 200),
+	);
 
 	await browser.close();
 

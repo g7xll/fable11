@@ -16,7 +16,11 @@ export type FrameClock = {
  * actually painting. Throttled to ~10 state updates/sec to stay cheap.
  */
 export function useFrameClock(): FrameClock {
-	const [clock, setClock] = useState<FrameClock>({ time: 0, fps: 60, frames: 0 });
+	const [clock, setClock] = useState<FrameClock>({
+		time: 0,
+		fps: 60,
+		frames: 0,
+	});
 	const raf = useRef(0);
 
 	useEffect(() => {

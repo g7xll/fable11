@@ -9,17 +9,17 @@ import CelestialMatrixShader from "@/components/ui/martrix-shader";
  * the brief asks for.
  */
 export default function DemoOne() {
-  return (
-    <div className="relative grid h-screen w-screen place-items-center">
-      <CelestialMatrixShader />
-      <div className="text-center">
-        <h1 className="font-display text-5xl font-bold tracking-tight text-white">
-          Celestial Matrix
-        </h1>
-        <p className="mt-3 font-mono text-sm uppercase tracking-[0.4em] text-mist">
-          An Interactive WebGL Shader
-        </p>
-      </div>
-    </div>
-  );
+	return (
+		<div className="relative grid h-screen w-screen place-items-center">
+			<CelestialMatrixShader />
+			<div className="text-center">
+				<h1 className="font-display text-5xl font-bold tracking-tight text-white">
+					Celestial Matrix
+				</h1>
+				<p className="mt-3 font-mono text-sm uppercase tracking-[0.4em] text-mist">
+					An Interactive WebGL Shader
+				</p>
+			</div>
+		</div>
+	);
 }

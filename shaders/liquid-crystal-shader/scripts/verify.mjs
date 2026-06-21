@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -130,7 +132,7 @@ await page.waitForTimeout(400);
 check("instrument rail hidden on mobile", !(await rail.isVisible()));
 check(
 	"ControlsPanel still present on mobile",
-	await page.locator("input#hue").count() === 1,
+	(await page.locator("input#hue").count()) === 1,
 );
 
 check(
@@ -140,5 +142,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

@@ -1,6 +1,6 @@
-import React, { useMemo, useRef, useEffect } from 'react'
-import * as THREE from 'three'
-import { Canvas, useFrame, useThree, type MeshProps } from '@react-three/fiber'
+import React, { useMemo, useRef, useEffect } from "react";
+import * as THREE from "three";
+import { Canvas, useFrame, useThree, type MeshProps } from "@react-three/fiber";
 
 const vertexShader = `
   varying vec2 vUv;
@@ -8,7 +8,7 @@ const vertexShader = `
     vUv = uv;
     gl_Position = vec4(position.xy, 0.0, 1.0);
   }
-`
+`;
 
 const fragmentShader = `
   precision highp float;
@@ -211,279 +211,343 @@ const fragmentShader = `
 
     gl_FragColor = vec4(col, 1.0);
   }
-`
+`;
 
 export interface VolumetricBeamsShaderProps extends MeshProps {
-  // Motion
-  speed?: number
-  autoRotateSpeed?: number
-  mouseInfluence?: number
+	// Motion
+	speed?: number;
+	autoRotateSpeed?: number;
+	mouseInfluence?: number;
 
-  // Camera
-  cameraRadius?: number
-  fov?: number
+	// Camera
+	cameraRadius?: number;
+	fov?: number;
 
-  // Beams
-  beamCount?: number
-  beamHalfAngle?: number
-  beamEdgeSoft?: number
-  beamRotation?: number
-  twistDepth?: number
+	// Beams
+	beamCount?: number;
+	beamHalfAngle?: number;
+	beamEdgeSoft?: number;
+	beamRotation?: number;
+	twistDepth?: number;
 
-  // Volume/scatter
-  density?: number
-  falloff?: number
-  anisotropy?: number
-  lightIntensity?: number
-  lightColor?: [number, number, number]
-  tint?: [number, number, number]
+	// Volume/scatter
+	density?: number;
+	falloff?: number;
+	anisotropy?: number;
+	lightIntensity?: number;
+	lightColor?: [number, number, number];
+	tint?: [number, number, number];
 
-  // Ribbing
-  stripeFreq?: number
-  stripeAmp?: number
-  stripeSharp?: number
-  stripeSpeed?: number
-  stripeJitter?: number
+	// Ribbing
+	stripeFreq?: number;
+	stripeAmp?: number;
+	stripeSharp?: number;
+	stripeSpeed?: number;
+	stripeJitter?: number;
 
-  // Quality
-  volSteps?: number
-  stepMin?: number
-  stepMax?: number
-  maxDist?: number
+	// Quality
+	volSteps?: number;
+	stepMin?: number;
+	stepMax?: number;
+	maxDist?: number;
 
-  // Film/post
-  exposure?: number
-  gamma?: number
-  grainAmount?: number
-  vignette?: number
-  bgColor?: [number, number, number]
+	// Film/post
+	exposure?: number;
+	gamma?: number;
+	grainAmount?: number;
+	vignette?: number;
+	bgColor?: [number, number, number];
 
-  // Interaction
-  pointerSmoothing?: number
+	// Interaction
+	pointerSmoothing?: number;
 }
 
 function VolumetricBeamsShader({
-  // Motion
-  speed = 0.25,
-  autoRotateSpeed = 0.015,
-  mouseInfluence = 0.45,
+	// Motion
+	speed = 0.25,
+	autoRotateSpeed = 0.015,
+	mouseInfluence = 0.45,
 
-  // Camera
-  cameraRadius = 3.8,
-  fov = 1.65,
+	// Camera
+	cameraRadius = 3.8,
+	fov = 1.65,
 
-  // Beams
-  beamCount = 4,
-  beamHalfAngle = 0.085,
-  beamEdgeSoft = 0.045,
-  beamRotation = 0.0,
-  twistDepth = 0.06,
+	// Beams
+	beamCount = 4,
+	beamHalfAngle = 0.085,
+	beamEdgeSoft = 0.045,
+	beamRotation = 0.0,
+	twistDepth = 0.06,
 
-  // Volume/scatter
-  density = 1.15,
-  falloff = 0.55,
-  anisotropy = 0.76,
-  lightIntensity = 2.2,
-  lightColor = [0.64, 0.74, 1.0],
-  tint = [0.55, 0.58, 0.95],
+	// Volume/scatter
+	density = 1.15,
+	falloff = 0.55,
+	anisotropy = 0.76,
+	lightIntensity = 2.2,
+	lightColor = [0.64, 0.74, 1.0],
+	tint = [0.55, 0.58, 0.95],
 
-  // Ribbing
-  stripeFreq = 42.0,
-  stripeAmp = 0.55,
-  stripeSharp = 1.85,
-  stripeSpeed = 0.12,
-  stripeJitter = 0.25,
+	// Ribbing
+	stripeFreq = 42.0,
+	stripeAmp = 0.55,
+	stripeSharp = 1.85,
+	stripeSpeed = 0.12,
+	stripeJitter = 0.25,
 
-  // Quality
-  volSteps = 110,
-  stepMin = 0.015,
-  stepMax = 0.06,
-  maxDist = 18.0,
+	// Quality
+	volSteps = 110,
+	stepMin = 0.015,
+	stepMax = 0.06,
+	maxDist = 18.0,
 
-  // Film/post
-  exposure = 1.05,
-  gamma = 2.0,
-  grainAmount = 0.045,
-  vignette = 0.35,
-  bgColor = [0.04, 0.035, 0.06],
+	// Film/post
+	exposure = 1.05,
+	gamma = 2.0,
+	grainAmount = 0.045,
+	vignette = 0.35,
+	bgColor = [0.04, 0.035, 0.06],
 
-  // Interaction
-  pointerSmoothing = 0.18,
+	// Interaction
+	pointerSmoothing = 0.18,
 
-  ...meshProps
+	...meshProps
 }: VolumetricBeamsShaderProps) {
-  const mat = useRef<THREE.ShaderMaterial>(null)
-  const { size, gl, pointer } = useThree()
-  const tmpV2 = useMemo(() => new THREE.Vector2(), [])
+	const mat = useRef<THREE.ShaderMaterial>(null);
+	const { size, gl, pointer } = useThree();
+	const tmpV2 = useMemo(() => new THREE.Vector2(), []);
 
-  const uniforms = useMemo(() => ({
-    uTime: { value: 0 },
-    uResolution: { value: new THREE.Vector2(1, 1) },
-    uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+	const uniforms = useMemo(
+		() => ({
+			uTime: { value: 0 },
+			uResolution: { value: new THREE.Vector2(1, 1) },
+			uMouse: { value: new THREE.Vector2(0.5, 0.5) },
 
-    uSpeed: { value: speed },
-    uRadius: { value: cameraRadius },
-    uFov: { value: fov },
-    uMouseInfluence: { value: mouseInfluence },
-    uAutoRotateSpeed: { value: autoRotateSpeed },
+			uSpeed: { value: speed },
+			uRadius: { value: cameraRadius },
+			uFov: { value: fov },
+			uMouseInfluence: { value: mouseInfluence },
+			uAutoRotateSpeed: { value: autoRotateSpeed },
 
-    uBeamCount: { value: beamCount },
-    uHalfAngle: { value: beamHalfAngle },
-    uEdgeSoft: { value: beamEdgeSoft },
-    uBeamRot: { value: beamRotation },
-    uTwistDepth: { value: twistDepth },
+			uBeamCount: { value: beamCount },
+			uHalfAngle: { value: beamHalfAngle },
+			uEdgeSoft: { value: beamEdgeSoft },
+			uBeamRot: { value: beamRotation },
+			uTwistDepth: { value: twistDepth },
 
-    uDensity: { value: density },
-    uFalloff: { value: falloff },
-    uAniso: { value: anisotropy },
-    uLightIntensity: { value: lightIntensity },
-    uLightColor: { value: new THREE.Vector3().fromArray(lightColor) },
-    uTint: { value: new THREE.Vector3().fromArray(tint) },
+			uDensity: { value: density },
+			uFalloff: { value: falloff },
+			uAniso: { value: anisotropy },
+			uLightIntensity: { value: lightIntensity },
+			uLightColor: { value: new THREE.Vector3().fromArray(lightColor) },
+			uTint: { value: new THREE.Vector3().fromArray(tint) },
 
-    uStripeFreq: { value: stripeFreq },
-    uStripeAmp: { value: stripeAmp },
-    uStripeSharp: { value: stripeSharp },
-    uStripeSpeed: { value: stripeSpeed },
-    uStripeJit: { value: stripeJitter },
+			uStripeFreq: { value: stripeFreq },
+			uStripeAmp: { value: stripeAmp },
+			uStripeSharp: { value: stripeSharp },
+			uStripeSpeed: { value: stripeSpeed },
+			uStripeJit: { value: stripeJitter },
 
-    uVolSteps: { value: volSteps },
-    uStepMin: { value: stepMin },
-    uStepMax: { value: stepMax },
-    uMaxDist: { value: maxDist },
+			uVolSteps: { value: volSteps },
+			uStepMin: { value: stepMin },
+			uStepMax: { value: stepMax },
+			uMaxDist: { value: maxDist },
 
-    uExposure: { value: exposure },
-    uGamma: { value: gamma },
-    uGrainAmount: { value: grainAmount },
-    uVignette: { value: vignette },
-    uBgColor: { value: new THREE.Vector3().fromArray(bgColor) },
-  }), [])
+			uExposure: { value: exposure },
+			uGamma: { value: gamma },
+			uGrainAmount: { value: grainAmount },
+			uVignette: { value: vignette },
+			uBgColor: { value: new THREE.Vector3().fromArray(bgColor) },
+		}),
+		[],
+	);
 
-  // Sync prop changes -> uniforms
-  useEffect(() => { uniforms.uSpeed.value = speed }, [speed])
-  useEffect(() => { uniforms.uRadius.value = cameraRadius }, [cameraRadius])
-  useEffect(() => { uniforms.uFov.value = fov }, [fov])
-  useEffect(() => { uniforms.uMouseInfluence.value = mouseInfluence }, [mouseInfluence])
-  useEffect(() => { uniforms.uAutoRotateSpeed.value = autoRotateSpeed }, [autoRotateSpeed])
+	// Sync prop changes -> uniforms
+	useEffect(() => {
+		uniforms.uSpeed.value = speed;
+	}, [speed]);
+	useEffect(() => {
+		uniforms.uRadius.value = cameraRadius;
+	}, [cameraRadius]);
+	useEffect(() => {
+		uniforms.uFov.value = fov;
+	}, [fov]);
+	useEffect(() => {
+		uniforms.uMouseInfluence.value = mouseInfluence;
+	}, [mouseInfluence]);
+	useEffect(() => {
+		uniforms.uAutoRotateSpeed.value = autoRotateSpeed;
+	}, [autoRotateSpeed]);
 
-  useEffect(() => { uniforms.uBeamCount.value = beamCount }, [beamCount])
-  useEffect(() => { uniforms.uHalfAngle.value = beamHalfAngle }, [beamHalfAngle])
-  useEffect(() => { uniforms.uEdgeSoft.value = beamEdgeSoft }, [beamEdgeSoft])
-  useEffect(() => { uniforms.uBeamRot.value = beamRotation }, [beamRotation])
-  useEffect(() => { uniforms.uTwistDepth.value = twistDepth }, [twistDepth])
+	useEffect(() => {
+		uniforms.uBeamCount.value = beamCount;
+	}, [beamCount]);
+	useEffect(() => {
+		uniforms.uHalfAngle.value = beamHalfAngle;
+	}, [beamHalfAngle]);
+	useEffect(() => {
+		uniforms.uEdgeSoft.value = beamEdgeSoft;
+	}, [beamEdgeSoft]);
+	useEffect(() => {
+		uniforms.uBeamRot.value = beamRotation;
+	}, [beamRotation]);
+	useEffect(() => {
+		uniforms.uTwistDepth.value = twistDepth;
+	}, [twistDepth]);
 
-  useEffect(() => { uniforms.uDensity.value = density }, [density])
-  useEffect(() => { uniforms.uFalloff.value = falloff }, [falloff])
-  useEffect(() => { uniforms.uAniso.value = anisotropy }, [anisotropy])
-  useEffect(() => { uniforms.uLightIntensity.value = lightIntensity }, [lightIntensity])
-  useEffect(() => { uniforms.uLightColor.value.fromArray(lightColor) }, [lightColor])
-  useEffect(() => { uniforms.uTint.value.fromArray(tint) }, [tint])
+	useEffect(() => {
+		uniforms.uDensity.value = density;
+	}, [density]);
+	useEffect(() => {
+		uniforms.uFalloff.value = falloff;
+	}, [falloff]);
+	useEffect(() => {
+		uniforms.uAniso.value = anisotropy;
+	}, [anisotropy]);
+	useEffect(() => {
+		uniforms.uLightIntensity.value = lightIntensity;
+	}, [lightIntensity]);
+	useEffect(() => {
+		uniforms.uLightColor.value.fromArray(lightColor);
+	}, [lightColor]);
+	useEffect(() => {
+		uniforms.uTint.value.fromArray(tint);
+	}, [tint]);
 
-  useEffect(() => { uniforms.uStripeFreq.value = stripeFreq }, [stripeFreq])
-  useEffect(() => { uniforms.uStripeAmp.value = stripeAmp }, [stripeAmp])
-  useEffect(() => { uniforms.uStripeSharp.value = stripeSharp }, [stripeSharp])
-  useEffect(() => { uniforms.uStripeSpeed.value = stripeSpeed }, [stripeSpeed])
-  useEffect(() => { uniforms.uStripeJit.value = stripeJitter }, [stripeJitter])
+	useEffect(() => {
+		uniforms.uStripeFreq.value = stripeFreq;
+	}, [stripeFreq]);
+	useEffect(() => {
+		uniforms.uStripeAmp.value = stripeAmp;
+	}, [stripeAmp]);
+	useEffect(() => {
+		uniforms.uStripeSharp.value = stripeSharp;
+	}, [stripeSharp]);
+	useEffect(() => {
+		uniforms.uStripeSpeed.value = stripeSpeed;
+	}, [stripeSpeed]);
+	useEffect(() => {
+		uniforms.uStripeJit.value = stripeJitter;
+	}, [stripeJitter]);
 
-  useEffect(() => { uniforms.uVolSteps.value = volSteps }, [volSteps])
-  useEffect(() => { uniforms.uStepMin.value = stepMin }, [stepMin])
-  useEffect(() => { uniforms.uStepMax.value = stepMax }, [stepMax])
-  useEffect(() => { uniforms.uMaxDist.value = maxDist }, [maxDist])
+	useEffect(() => {
+		uniforms.uVolSteps.value = volSteps;
+	}, [volSteps]);
+	useEffect(() => {
+		uniforms.uStepMin.value = stepMin;
+	}, [stepMin]);
+	useEffect(() => {
+		uniforms.uStepMax.value = stepMax;
+	}, [stepMax]);
+	useEffect(() => {
+		uniforms.uMaxDist.value = maxDist;
+	}, [maxDist]);
 
-  useEffect(() => { uniforms.uExposure.value = exposure }, [exposure])
-  useEffect(() => { uniforms.uGamma.value = gamma }, [gamma])
-  useEffect(() => { uniforms.uGrainAmount.value = grainAmount }, [grainAmount])
-  useEffect(() => { uniforms.uVignette.value = vignette }, [vignette])
-  useEffect(() => { uniforms.uBgColor.value.fromArray(bgColor) }, [bgColor])
+	useEffect(() => {
+		uniforms.uExposure.value = exposure;
+	}, [exposure]);
+	useEffect(() => {
+		uniforms.uGamma.value = gamma;
+	}, [gamma]);
+	useEffect(() => {
+		uniforms.uGrainAmount.value = grainAmount;
+	}, [grainAmount]);
+	useEffect(() => {
+		uniforms.uVignette.value = vignette;
+	}, [vignette]);
+	useEffect(() => {
+		uniforms.uBgColor.value.fromArray(bgColor);
+	}, [bgColor]);
 
-  useFrame((state) => {
-    const dpr = gl.getPixelRatio()
-    uniforms.uTime.value = state.clock.elapsedTime
-    uniforms.uResolution.value.set(size.width * dpr, size.height * dpr)
-    const mx = 0.5 + state.pointer.x * 0.5
-    const my = 0.5 + state.pointer.y * 0.5
-    uniforms.uMouse.value.lerp(tmpV2.set(mx, my), pointerSmoothing)
-  })
+	useFrame((state) => {
+		const dpr = gl.getPixelRatio();
+		uniforms.uTime.value = state.clock.elapsedTime;
+		uniforms.uResolution.value.set(size.width * dpr, size.height * dpr);
+		const mx = 0.5 + state.pointer.x * 0.5;
+		const my = 0.5 + state.pointer.y * 0.5;
+		uniforms.uMouse.value.lerp(tmpV2.set(mx, my), pointerSmoothing);
+	});
 
-  return (
-    <mesh frustumCulled={false} {...meshProps}>
-      <planeGeometry args={[2, 2, 1, 1]} />
-      <shaderMaterial
-        ref={mat}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-        uniforms={uniforms}
-        depthTest={false}
-        depthWrite={false}
-        side={THREE.DoubleSide}
-      />
-    </mesh>
-  )
+	return (
+		<mesh frustumCulled={false} {...meshProps}>
+			<planeGeometry args={[2, 2, 1, 1]} />
+			<shaderMaterial
+				ref={mat}
+				vertexShader={vertexShader}
+				fragmentShader={fragmentShader}
+				uniforms={uniforms}
+				depthTest={false}
+				depthWrite={false}
+				side={THREE.DoubleSide}
+			/>
+		</mesh>
+	);
 }
 
-export interface VolumetricBeamsFullScreenProps extends VolumetricBeamsShaderProps {
-  dpr?: number | [number, number]
-  gl?: Record<string, unknown>
-  className?: string
-  title?: string
-  subtitle?: string
-  headingClassName?: string
-  subtitleClassName?: string
-  /** Optional render slot layered above the canvas (kept inside the same root). */
-  children?: React.ReactNode
+export interface VolumetricBeamsFullScreenProps
+	extends VolumetricBeamsShaderProps {
+	dpr?: number | [number, number];
+	gl?: Record<string, unknown>;
+	className?: string;
+	title?: string;
+	subtitle?: string;
+	headingClassName?: string;
+	subtitleClassName?: string;
+	/** Optional render slot layered above the canvas (kept inside the same root). */
+	children?: React.ReactNode;
 }
 
 export default function VolumetricBeamsFullScreen({
-  dpr = [1, 2],
-  gl = { antialias: true },
-  className = 'fixed inset-0 bg-black',
-  // New props
-  title = 'Background Shader',
-  subtitle = 'volumetric Beams',
-  headingClassName = '',
-  subtitleClassName = '',
-  children,
-  ...shaderProps
+	dpr = [1, 2],
+	gl = { antialias: true },
+	className = "fixed inset-0 bg-black",
+	// New props
+	title = "Background Shader",
+	subtitle = "volumetric Beams",
+	headingClassName = "",
+	subtitleClassName = "",
+	children,
+	...shaderProps
 }: VolumetricBeamsFullScreenProps) {
-  return (
-    <div className={className}>
-      <Canvas dpr={dpr} gl={gl} className="w-full h-full touch-none">
-        <VolumetricBeamsShader {...shaderProps} />
-      </Canvas>
-      {/* Heading overlay */}
-      <div className="pointer-events-none absolute inset-x-0 top-4 sm:top-6 md:top-80 z-10 flex justify-center">
-        <div className="text-center">
-          <h1
-            className={[
-              // Bold, modern, centered
-              'select-none font-extrabold uppercase tracking-[0.25em]',
-              'text-2xl sm:text-3xl md:text-5xl',
-              // Subtle gradient + glow
-              'bg-gradient-to-r from-indigo-200/90 via-blue-300 to-indigo-200/90',
-              'bg-clip-text text-transparent',
-              'drop-shadow-[0_8px_32px_rgba(64,128,255,0.35)]',
-              headingClassName,
-            ].join(' ')}
-          >
-            {title}
-          </h1>
+	return (
+		<div className={className}>
+			<Canvas dpr={dpr} gl={gl} className="w-full h-full touch-none">
+				<VolumetricBeamsShader {...shaderProps} />
+			</Canvas>
+			{/* Heading overlay */}
+			<div className="pointer-events-none absolute inset-x-0 top-4 sm:top-6 md:top-80 z-10 flex justify-center">
+				<div className="text-center">
+					<h1
+						className={[
+							// Bold, modern, centered
+							"select-none font-extrabold uppercase tracking-[0.25em]",
+							"text-2xl sm:text-3xl md:text-5xl",
+							// Subtle gradient + glow
+							"bg-gradient-to-r from-indigo-200/90 via-blue-300 to-indigo-200/90",
+							"bg-clip-text text-transparent",
+							"drop-shadow-[0_8px_32px_rgba(64,128,255,0.35)]",
+							headingClassName,
+						].join(" ")}
+					>
+						{title}
+					</h1>
 
-          {subtitle && (
-            <p
-              className={[
-                'mt-2 text-xs sm:text-sm md:text-base',
-                'tracking-widest text-slate-200/70',
-                'drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)]',
-                subtitleClassName,
-              ].join(' ')}
-            >
-              {subtitle}
-            </p>
-          )}
-        </div>
-      </div>
-      {children}
-    </div>
-  )
+					{subtitle && (
+						<p
+							className={[
+								"mt-2 text-xs sm:text-sm md:text-base",
+								"tracking-widest text-slate-200/70",
+								"drop-shadow-[0_4px_16px_rgba(0,0,0,0.45)]",
+								subtitleClassName,
+							].join(" ")}
+						>
+							{subtitle}
+						</p>
+					)}
+				</div>
+			</div>
+			{children}
+		</div>
+	);
 }
 
-export { VolumetricBeamsShader }
+export { VolumetricBeamsShader };

@@ -5,5 +5,5 @@ import { Component } from "@/components/ui/moving-circles-shader";
  * untouched. The console in App.tsx wraps this same Component with live chrome.
  */
 export default function DemoOne() {
-  return <Component />;
+	return <Component />;
 }

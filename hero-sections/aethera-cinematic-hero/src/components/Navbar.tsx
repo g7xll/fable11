@@ -15,10 +15,7 @@ export default function Navbar() {
 				aria-label="Primary"
 				className="mx-auto flex max-w-7xl items-center justify-between px-8 py-6"
 			>
-				<a
-					href="#"
-					className="font-display text-3xl tracking-tight text-ink"
-				>
+				<a href="#" className="font-display text-3xl tracking-tight text-ink">
 					Aethera<sup className="text-[0.45em]">&reg;</sup>
 				</a>
 

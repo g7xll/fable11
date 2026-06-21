@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -44,8 +46,9 @@ check("bench container present", (await page.locator(".bench").count()) === 1);
 check("console present", (await page.locator(".console").count()) === 1);
 check(
 	"brand reads STATIC BUREAU",
-	(await page.locator(".brand-name").innerText()).replace(/\s+/g, " ").trim() ===
-		"STATIC BUREAU",
+	(await page.locator(".brand-name").innerText())
+		.replace(/\s+/g, " ")
+		.trim() === "STATIC BUREAU",
 	await page.locator(".brand-name").innerText(),
 );
 
@@ -105,8 +108,15 @@ check("five trim faders present", faderCount === 5, `${faderCount} faders`);
 
 // ── Presets / channels (brief presets + reset) ────────────────────────────
 const channelCount = await page.locator(".channel-btn").count();
-check("four patch channels present", channelCount === 4, `${channelCount} channels`);
-check("reset control present", (await page.locator(".reset-btn").count()) === 1);
+check(
+	"four patch channels present",
+	channelCount === 4,
+	`${channelCount} channels`,
+);
+check(
+	"reset control present",
+	(await page.locator(".reset-btn").count()) === 1,
+);
 
 // ── A fader actually changes the shader uniform readout ───────────────────
 const tearReadout = page
@@ -148,9 +158,11 @@ await page.locator(".channel-btn", { hasText: "Damaged VCR" }).click();
 await page.waitForTimeout(150);
 check(
 	"patching Damaged VCR activates that channel",
-	(await page
-		.locator(".channel-btn", { hasText: "Damaged VCR" })
-		.getAttribute("class"))?.includes("is-active"),
+	(
+		await page
+			.locator(".channel-btn", { hasText: "Damaged VCR" })
+			.getAttribute("class")
+	)?.includes("is-active"),
 );
 const vcrTear = (await tearReadout.innerText()).trim();
 check(
@@ -159,11 +171,7 @@ check(
 	vcrTear,
 );
 const vcrHex = (await page.locator(".swatch-hex").innerText()).trim();
-check(
-	"Damaged VCR sets carrier tint to #FDE047",
-	vcrHex === "#FDE047",
-	vcrHex,
-);
+check("Damaged VCR sets carrier tint to #FDE047", vcrHex === "#FDE047", vcrHex);
 
 // ── Signal meter reflects degradation ─────────────────────────────────────
 const signalVcr = parseInt(
@@ -190,7 +198,9 @@ const tcB = await page.locator(".tc").innerText();
 check("SMPTE timecode advances over time", tcA !== tcB, `${tcA} -> ${tcB}`);
 
 // Refresh FPS reported non-zero.
-const fps = (await page.locator(".tele-cell").first().locator("dd").innerText()).trim();
+const fps = (
+	await page.locator(".tele-cell").first().locator("dd").innerText()
+).trim();
 check("refresh fps reported (non-zero)", /[1-9]/.test(fps), fps);
 
 // ── Reset returns to bench default ────────────────────────────────────────
@@ -203,9 +213,11 @@ check(
 );
 check(
 	"reset re-activates CH-00 Bench Default",
-	(await page
-		.locator(".channel-btn", { hasText: "Bench Default" })
-		.getAttribute("class"))?.includes("is-active"),
+	(
+		await page
+			.locator(".channel-btn", { hasText: "Bench Default" })
+			.getAttribute("class")
+	)?.includes("is-active"),
 );
 
 // ── Fonts vendored locally ────────────────────────────────────────────────
@@ -222,11 +234,18 @@ check("display face is Archivo", headFont.includes("Archivo"), headFont);
 // ── Responsive: rack stacks under the spine on mobile ─────────────────────
 await page.setViewportSize({ width: 390, height: 844 });
 await page.waitForTimeout(400);
-check("headline still visible on mobile", await page.locator(".headline").isVisible());
+check(
+	"headline still visible on mobile",
+	await page.locator(".headline").isVisible(),
+);
 const bodyCols = await page
 	.locator(".body")
 	.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" ").length);
-check("body collapses to one column on mobile", bodyCols === 1, `${bodyCols} cols`);
+check(
+	"body collapses to one column on mobile",
+	bodyCols === 1,
+	`${bodyCols} cols`,
+);
 
 check(
 	"no console/page errors",
@@ -235,5 +254,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

@@ -14,13 +14,12 @@
 	}
 	body {
 		@apply font-sans text-white antialiased overflow-hidden;
-		background:
-			radial-gradient(
-				120% 120% at 50% 50%,
-				#0b0f1e 0%,
-				#070a14 55%,
-				#04060d 100%
-			);
+		background: radial-gradient(
+			120% 120% at 50% 50%,
+			#0b0f1e 0%,
+			#070a14 55%,
+			#04060d 100%
+		);
 	}
 }
 

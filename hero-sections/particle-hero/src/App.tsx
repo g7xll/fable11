@@ -31,7 +31,9 @@ function Eyebrow({ index, label }: { index: string; label: string }) {
 function StatPill({ value, label }: { value: string; label: string }) {
 	return (
 		<div className="flex flex-col gap-1 border-l border-hairline pl-4">
-			<span className="font-display text-2xl font-medium text-ice-3">{value}</span>
+			<span className="font-display text-2xl font-medium text-ice-3">
+				{value}
+			</span>
 			<span className="font-mono text-[11px] uppercase tracking-[0.22em] text-muted">
 				{label}
 			</span>
@@ -44,7 +46,8 @@ function StatPill({ value, label }: { value: string; label: string }) {
 /* -------------------------------------------------------------------------- */
 
 const DEFAULT_TITLE = "Gold Design";
-const DEFAULT_SUBTITLE = "The world's best platform for Designs,\npowered by Dalim";
+const DEFAULT_SUBTITLE =
+	"The world's best platform for Designs,\npowered by Dalim";
 
 export default function App() {
 	// Showcase state that drives the integrated <ParticleHero /> live.
@@ -62,9 +65,7 @@ export default function App() {
 				: `\n  subtitle={${JSON.stringify(subtitle)}}`;
 		const goldProp = gold ? "\n  defaultGold" : "";
 		const props = `${titleProp}${subtitleProp}${goldProp}`;
-		return props
-			? `<ParticleHero${props}\n/>`
-			: `<ParticleHero />`;
+		return props ? `<ParticleHero${props}\n/>` : `<ParticleHero />`;
 	}, [title, subtitle, gold]);
 
 	const copyCode = async () => {
@@ -101,7 +102,10 @@ export default function App() {
 						<a className="transition-colors hover:text-ice-3" href="#anatomy">
 							Anatomy
 						</a>
-						<a className="transition-colors hover:text-ice-3" href="#playground">
+						<a
+							className="transition-colors hover:text-ice-3"
+							href="#playground"
+						>
 							Playground
 						</a>
 						<a className="transition-colors hover:text-ice-3" href="#install">
@@ -144,10 +148,10 @@ export default function App() {
 									<code className="rounded bg-panel px-1.5 py-0.5 font-mono text-[12.5px] text-ice-2">
 										&lt;canvas&gt;
 									</code>{" "}
-									of upward-drifting embers, three rotating conic spotlights, and a
-									pulsing radial-reveal headline.{" "}
-									<span className="text-ice-3">Click the orb at the top</span> to flip
-									the whole scene into gold.
+									of upward-drifting embers, three rotating conic spotlights,
+									and a pulsing radial-reveal headline.{" "}
+									<span className="text-ice-3">Click the orb at the top</span>{" "}
+									to flip the whole scene into gold.
 								</p>
 							</div>
 							<div className="flex flex-wrap gap-7">
@@ -170,7 +174,8 @@ export default function App() {
 					</h2>
 					<p className="mt-4 max-w-xl text-[15px] leading-relaxed text-haze">
 						The hero is pure DOM and Canvas 2D — no WebGL, no animation library.
-						Everything below composes inside a single relatively-positioned shell.
+						Everything below composes inside a single relatively-positioned
+						shell.
 					</p>
 
 					<div className="mt-12 grid gap-px overflow-hidden rounded-xl border border-hairline bg-hairline md:grid-cols-2">
@@ -234,9 +239,9 @@ export default function App() {
 							Drive the props, read the JSX.
 						</h2>
 						<p className="mt-4 max-w-xl text-[15px] leading-relaxed text-haze">
-							Edit the headline and tagline, flip the palette, and the snippet below
-							updates to exactly what you'd paste into your app. Changes apply to the
-							hero at the top of the page too.
+							Edit the headline and tagline, flip the palette, and the snippet
+							below updates to exactly what you'd paste into your app. Changes
+							apply to the hero at the top of the page too.
 						</p>
 
 						<div className="mt-12 grid gap-8 lg:grid-cols-[1fr_1.05fr]">
@@ -349,9 +354,13 @@ export default function App() {
 									<code>
 										<span className="text-haze">{`import { ParticleHero } from "@/components/ui/particle-hero";`}</span>
 										{"\n\n"}
-										<span className="text-haze">{"export default function Page() {"}</span>
+										<span className="text-haze">
+											{"export default function Page() {"}
+										</span>
 										{"\n  return "}
-										<span className="whitespace-pre text-ice-2">{generatedCode}</span>
+										<span className="whitespace-pre text-ice-2">
+											{generatedCode}
+										</span>
 										{"\n"}
 										<span className="text-haze">{"}"}</span>
 									</code>
@@ -413,8 +422,8 @@ export default function App() {
 								</div>
 								<pre className="codeblock overflow-x-auto px-5 py-4 font-mono text-[13px] text-ice-3">
 									<code>
-										<span className="text-gold">$</span> npm install lucide-react
-										clsx tailwind-merge
+										<span className="text-gold">$</span> npm install
+										lucide-react clsx tailwind-merge
 									</code>
 								</pre>
 							</div>
@@ -438,10 +447,10 @@ export default function App() {
 							</div>
 							<p className="rounded-xl border border-hairline bg-panel px-5 py-4 text-[13.5px] leading-relaxed text-haze">
 								The orb toggles a single{" "}
-								<code className="font-mono text-ice-2">.gold-mode</code> class — no theme
-								provider, no context. State lives in one{" "}
-								<code className="font-mono text-ice-2">useState</code> inside the
-								component.
+								<code className="font-mono text-ice-2">.gold-mode</code> class —
+								no theme provider, no context. State lives in one{" "}
+								<code className="font-mono text-ice-2">useState</code> inside
+								the component.
 							</p>
 						</div>
 					</div>
@@ -456,7 +465,9 @@ export default function App() {
 							<Sparkles className="h-3 w-3 text-ice-2" />
 						</span>
 						<span className="font-display text-[14px] text-ice-3">Dalim</span>
-						<span className="font-mono text-[11px] text-muted">— Particle Hero</span>
+						<span className="font-mono text-[11px] text-muted">
+							— Particle Hero
+						</span>
 					</div>
 					<p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
 						React · Tailwind · Canvas 2D · shadcn

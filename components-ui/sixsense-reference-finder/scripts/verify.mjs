@@ -88,13 +88,19 @@ try {
 	);
 	// After mount the reveal animation paints some tiles -> canvas not blank.
 	await page.waitForTimeout(1200);
-	const canvasHasPixels = await page.locator("canvas").first().evaluate((c) => {
-		const ctx = c.getContext("2d");
-		const data = ctx.getImageData(0, 0, c.width, c.height).data;
-		for (let i = 3; i < data.length; i += 4) if (data[i] > 0) return true;
-		return false;
-	});
-	check(canvasHasPixels, "left grid canvas has painted (non-transparent) tiles");
+	const canvasHasPixels = await page
+		.locator("canvas")
+		.first()
+		.evaluate((c) => {
+			const ctx = c.getContext("2d");
+			const data = ctx.getImageData(0, 0, c.width, c.height).data;
+			for (let i = 3; i < data.length; i += 4) if (data[i] > 0) return true;
+			return false;
+		});
+	check(
+		canvasHasPixels,
+		"left grid canvas has painted (non-transparent) tiles",
+	);
 
 	console.log("\nSection 2 — Navbar");
 	check(
@@ -129,7 +135,10 @@ try {
 	const cardW = await page
 		.locator('img[src*="image-2.png"]')
 		.evaluate((el) => el.getBoundingClientRect().width);
-	check(cardW > 60, `card entrance tween ran (image-2 width ${cardW.toFixed(0)}px > 60)`);
+	check(
+		cardW > 60,
+		`card entrance tween ran (image-2 width ${cardW.toFixed(0)}px > 60)`,
+	);
 
 	console.log("\nSection 4c/4d — Heading + subtitle");
 	check(
@@ -183,9 +192,7 @@ try {
 	await sendBtn.scrollIntoViewIfNeeded();
 	await sendBtn.hover();
 	await page.waitForTimeout(120);
-	const ring = page
-		.locator('div[style*="conic-gradient"]')
-		.first();
+	const ring = page.locator('div[style*="conic-gradient"]').first();
 	const r1 = await ring.evaluate((el) => getComputedStyle(el).transform);
 	await page.waitForTimeout(400);
 	const r2 = await ring.evaluate((el) => getComputedStyle(el).transform);
@@ -193,33 +200,33 @@ try {
 
 	console.log("\nSection 5 — Footer");
 	check(
-		await page
-			.getByText(/By sending a message to ChatBot/)
-			.isVisible(),
+		await page.getByText(/By sending a message to ChatBot/).isVisible(),
 		"footer disclaimer present",
 	);
 	check(
-		await page.getByText("Terms", { exact: true }).isVisible() &&
+		(await page.getByText("Terms", { exact: true }).isVisible()) &&
 			(await page.getByText("Privacy Policy.").isVisible()),
 		"Terms + Privacy Policy links present",
 	);
 
 	console.log("\nAsset health");
-	const brokenAssets = failedRequests.filter(
-		(u) => /\.(svg|png|woff2)/.test(u),
+	const brokenAssets = failedRequests.filter((u) =>
+		/\.(svg|png|woff2)/.test(u),
 	);
 	check(
 		brokenAssets.length === 0,
 		`all vendored assets loaded (${brokenAssets.length} failures)`,
 	);
-	if (brokenAssets.length) brokenAssets.forEach((u) => console.error(`    ${u}`));
+	if (brokenAssets.length)
+		brokenAssets.forEach((u) => console.error(`    ${u}`));
 
 	console.log("\nConsole health");
 	check(
 		consoleErrors.length === 0,
 		`no console/page errors (${consoleErrors.length} found)`,
 	);
-	if (consoleErrors.length) consoleErrors.forEach((e) => console.error(`    ${e}`));
+	if (consoleErrors.length)
+		consoleErrors.forEach((e) => console.error(`    ${e}`));
 
 	await browser.close();
 } finally {

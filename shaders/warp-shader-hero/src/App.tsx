@@ -11,7 +11,13 @@ import {
 } from "lucide-react";
 
 import { WarpStage } from "@/components/lab/warp-stage";
-import { CopyButton, Fader, Panel, Segments, Swatch } from "@/components/lab/primitives";
+import {
+	CopyButton,
+	Fader,
+	Panel,
+	Segments,
+	Swatch,
+} from "@/components/lab/primitives";
 import { useTelemetry } from "@/lib/use-telemetry";
 import {
 	PROMPT_WARP,
@@ -25,16 +31,20 @@ import { cn } from "@/lib/utils";
 
 const INSTALL_CMD = "npm i @paper-design/shaders-react";
 
-const SHAPE_OPTIONS: { value: WarpShape; label: string }[] = WARP_SHAPES.map((s) => ({
-	value: s,
-	label: s,
-}));
+const SHAPE_OPTIONS: { value: WarpShape; label: string }[] = WARP_SHAPES.map(
+	(s) => ({
+		value: s,
+		label: s,
+	}),
+);
 
 /** A single telemetry cell in the header strip. */
 function Readout({ k, v, accent }: { k: string; v: string; accent?: boolean }) {
 	return (
 		<div className="flex flex-col gap-0.5 border-l border-hairline px-3 first:border-l-0 first:pl-0">
-			<span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">{k}</span>
+			<span className="font-mono text-[9px] uppercase tracking-[0.2em] text-ink-dim">
+				{k}
+			</span>
 			<span
 				className={cn(
 					"font-mono text-[13px] tabular-nums",
@@ -58,7 +68,10 @@ function Bracket({ pos }: { pos: "tl" | "tr" | "bl" | "br" }) {
 	return (
 		<span
 			aria-hidden
-			className={cn("pointer-events-none absolute h-5 w-5 border-signal", map[pos])}
+			className={cn(
+				"pointer-events-none absolute h-5 w-5 border-signal",
+				map[pos],
+			)}
 		/>
 	);
 }
@@ -223,7 +236,11 @@ export default function App() {
 											: "border-warn/60 bg-warn/10 text-warn",
 									)}
 								>
-									{running ? <Pause className="h-3 w-3" /> : <Play className="h-3 w-3" />}
+									{running ? (
+										<Pause className="h-3 w-3" />
+									) : (
+										<Play className="h-3 w-3" />
+									)}
 									{running ? "Hold" : "Run"}
 								</button>
 								<button
@@ -260,7 +277,12 @@ export default function App() {
 					>
 						<div className="grid grid-cols-1 gap-2">
 							{config.colors.map((c, i) => (
-								<Swatch key={i} value={c} index={i} onChange={(v) => setColor(i, v)} />
+								<Swatch
+									key={i}
+									value={c}
+									index={i}
+									onChange={(v) => setColor(i, v)}
+								/>
 							))}
 						</div>
 					</Panel>
@@ -270,12 +292,16 @@ export default function App() {
 						kicker="Drop-in components/ui"
 						right={<SlidersHorizontal className="h-3.5 w-3.5 text-ink-dim" />}
 					>
-						<CopyButton text={INSTALL_CMD} label={INSTALL_CMD} className="w-full justify-start" />
+						<CopyButton
+							text={INSTALL_CMD}
+							label={INSTALL_CMD}
+							className="w-full justify-start"
+						/>
 						<p className="mt-2 font-mono text-[10px] leading-relaxed text-ink-dim/80">
-							Copy{" "}
-							<span className="text-ink-dim">wrap-shader.tsx</span> into{" "}
+							Copy <span className="text-ink-dim">wrap-shader.tsx</span> into{" "}
 							<span className="text-ink-dim">/components/ui</span> and render{" "}
-							<span className="text-ink-dim">&lt;WarpShaderHero /&gt;</span> behind any hero.
+							<span className="text-ink-dim">&lt;WarpShaderHero /&gt;</span>{" "}
+							behind any hero.
 						</p>
 					</Panel>
 				</aside>
@@ -307,18 +333,21 @@ export default function App() {
 						{/* Top-right scope readout */}
 						<div className="pointer-events-none absolute right-4 top-4 flex items-center gap-3 rounded-md border border-hairline bg-black/45 px-3 py-1.5 font-mono text-[10px] backdrop-blur-sm">
 							<span className="text-ink-dim">
-								SPD <span className="text-signal">{config.speed.toFixed(2)}</span>
+								SPD{" "}
+								<span className="text-signal">{config.speed.toFixed(2)}</span>
 							</span>
 							<span className="text-ink-dim">
-								SCL <span className="text-signal">{config.scale.toFixed(2)}</span>
+								SCL{" "}
+								<span className="text-signal">{config.scale.toFixed(2)}</span>
 							</span>
 						</div>
 
 						{/* Bottom signal bus */}
 						<div className="pointer-events-none absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
 							<p className="max-w-[58%] font-mono text-[10px] leading-relaxed text-ink-dim">
-								@paper-design/shaders-react · &lt;Warp&gt; — {config.swirlIterations}× swirl
-								iterations, distortion {config.distortion.toFixed(2)}
+								@paper-design/shaders-react · &lt;Warp&gt; —{" "}
+								{config.swirlIterations}× swirl iterations, distortion{" "}
+								{config.distortion.toFixed(2)}
 							</p>
 							<div className="signal-sweep relative h-1.5 w-40 overflow-hidden rounded-full border border-hairline bg-black/50" />
 						</div>
@@ -328,7 +357,10 @@ export default function App() {
 
 			{/* ============================== FOOTER ============================= */}
 			<footer className="mt-3 flex shrink-0 flex-wrap items-center justify-between gap-2 border-t border-hairline pt-2.5 font-mono text-[9px] uppercase tracking-[0.22em] text-ink-dim">
-				<span>Paper&nbsp;Warp&nbsp;Shader&nbsp;Lab — @paper-design/shaders-react · WebGL</span>
+				<span>
+					Paper&nbsp;Warp&nbsp;Shader&nbsp;Lab — @paper-design/shaders-react ·
+					WebGL
+				</span>
 				<span className="flex items-center gap-1.5 text-ink-dim/70">
 					<span className="hidden sm:inline">Space holds the clock</span>
 					<span className="text-signal-dim">●</span> GLSL

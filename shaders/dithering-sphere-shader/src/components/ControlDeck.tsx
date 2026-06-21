@@ -17,8 +17,22 @@ type ControlDeckProps = {
 	onChange: (next: Params) => void;
 };
 
-const FRONT_SWATCHES = ["#f43f5e", "#f3efe7", "#c6f55a", "#7dd3fc", "#fbbf24", "#ffffff"];
-const BACK_SWATCHES = ["#000000", "#0a0a0b", "#05060a", "#1a0b1f", "#03120a", "#f4f1ea"];
+const FRONT_SWATCHES = [
+	"#f43f5e",
+	"#f3efe7",
+	"#c6f55a",
+	"#7dd3fc",
+	"#fbbf24",
+	"#ffffff",
+];
+const BACK_SWATCHES = [
+	"#000000",
+	"#0a0a0b",
+	"#05060a",
+	"#1a0b1f",
+	"#03120a",
+	"#f4f1ea",
+];
 
 function Segmented<T extends string>({
 	options,
@@ -85,7 +99,10 @@ function Fader({
 				>
 					{label}
 				</label>
-				<span data-testid={`${id}-value`} className="font-mono text-xs font-bold text-paper">
+				<span
+					data-testid={`${id}-value`}
+					className="font-mono text-xs font-bold text-paper"
+				>
 					{display}
 				</span>
 			</div>
@@ -149,7 +166,10 @@ export function ControlDeck({ params, onChange }: ControlDeckProps) {
 		onChange({ ...params, [key]: value });
 
 	return (
-		<section id="deck" className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8">
+		<section
+			id="deck"
+			className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8"
+		>
 			<div className="mx-auto max-w-6xl">
 				<Reveal className="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
 					<div>
@@ -166,9 +186,9 @@ export function ControlDeck({ params, onChange }: ControlDeckProps) {
 							<code className="font-mono text-paper">type</code>,{" "}
 							<code className="font-mono text-paper">pxSize</code>,{" "}
 							<code className="font-mono text-paper">speed</code>,{" "}
-							<code className="font-mono text-paper">colorFront/Back</code>. Drag a fader
-							and the hero above repaints on the next frame, because both share one
-							params object.
+							<code className="font-mono text-paper">colorFront/Back</code>.
+							Drag a fader and the hero above repaints on the next frame,
+							because both share one params object.
 						</p>
 					</div>
 					<button
@@ -267,7 +287,11 @@ export function ControlDeck({ params, onChange }: ControlDeckProps) {
 							<button
 								type="button"
 								onClick={() =>
-									onChange({ ...params, colorFront: params.colorBack, colorBack: params.colorFront })
+									onChange({
+										...params,
+										colorFront: params.colorBack,
+										colorBack: params.colorFront,
+									})
 								}
 								className="inline-flex w-fit items-center gap-2 font-mono text-[11px] uppercase tracking-[0.12em] text-paper-faint transition-colors hover:text-rose"
 							>

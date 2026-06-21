@@ -67,8 +67,7 @@ export function Panel({
 
 /** Corner registration brackets for the instrument framing. */
 export function CornerBrackets({ className }: { className?: string }) {
-	const base =
-		"pointer-events-none absolute h-4 w-4 border-accent/60";
+	const base = "pointer-events-none absolute h-4 w-4 border-accent/60";
 	return (
 		<div className={cn("pointer-events-none absolute inset-0", className)}>
 			<span className={cn(base, "left-3 top-3 border-l border-t")} />

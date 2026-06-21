@@ -6,28 +6,31 @@ import * as React from "react";
  * child element so `<Button asChild>` works).
  */
 export interface SlotProps extends React.HTMLAttributes<HTMLElement> {
-  children?: React.ReactNode;
+	children?: React.ReactNode;
 }
 
 export const Slot = React.forwardRef<HTMLElement, SlotProps>(
-  ({ children, ...slotProps }, ref) => {
-    if (!React.isValidElement(children)) {
-      return null;
-    }
+	({ children, ...slotProps }, ref) => {
+		if (!React.isValidElement(children)) {
+			return null;
+		}
 
-    const child = children as React.ReactElement<Record<string, unknown>>;
-    const childProps = child.props;
+		const child = children as React.ReactElement<Record<string, unknown>>;
+		const childProps = child.props;
 
-    const mergedClassName = [slotProps.className, childProps.className as string]
-      .filter(Boolean)
-      .join(" ");
+		const mergedClassName = [
+			slotProps.className,
+			childProps.className as string,
+		]
+			.filter(Boolean)
+			.join(" ");
 
-    return React.cloneElement(child, {
-      ...slotProps,
-      ...childProps,
-      className: mergedClassName || undefined,
-      ref,
-    });
-  },
+		return React.cloneElement(child, {
+			...slotProps,
+			...childProps,
+			className: mergedClassName || undefined,
+			ref,
+		});
+	},
 );
 Slot.displayName = "Slot";

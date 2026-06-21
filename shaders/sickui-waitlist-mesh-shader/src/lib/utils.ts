@@ -1,5 +1,7 @@
 /** Tiny classnames joiner (keeps the project dependency-light, no clsx needed). */
-export function cn(...classes: Array<string | false | null | undefined>): string {
+export function cn(
+	...classes: Array<string | false | null | undefined>
+): string {
 	return classes.filter(Boolean).join(" ");
 }
 

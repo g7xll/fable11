@@ -32,10 +32,22 @@ export default function DemoOne() {
 }`;
 
 const FILES = [
-	{ path: "components/ui/dithering-shader.tsx", role: "The shader component (the dependency), ported to TypeScript." },
-	{ path: "components/ui/dithering-shader.demo.tsx", role: "The brief's demo usage — the default export DemoOne." },
-	{ path: "components/ui/sphere.tsx", role: "The brief's starter Component example, kept verbatim." },
-	{ path: "lib/utils.ts", role: "The shadcn cn() helper (clsx + tailwind-merge)." },
+	{
+		path: "components/ui/dithering-shader.tsx",
+		role: "The shader component (the dependency), ported to TypeScript.",
+	},
+	{
+		path: "components/ui/dithering-shader.demo.tsx",
+		role: "The brief's demo usage — the default export DemoOne.",
+	},
+	{
+		path: "components/ui/sphere.tsx",
+		role: "The brief's starter Component example, kept verbatim.",
+	},
+	{
+		path: "lib/utils.ts",
+		role: "The shadcn cn() helper (clsx + tailwind-merge).",
+	},
 ];
 
 function CopyBlock({
@@ -71,7 +83,11 @@ function CopyBlock({
 					onClick={copy}
 					className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-paper-faint transition-colors hover:text-rose"
 				>
-					{copied ? <Check className="h-3.5 w-3.5 text-lime" /> : <Copy className="h-3.5 w-3.5" />}
+					{copied ? (
+						<Check className="h-3.5 w-3.5 text-lime" />
+					) : (
+						<Copy className="h-3.5 w-3.5" />
+					)}
 					{copied ? "Copied" : "Copy"}
 				</button>
 			</div>
@@ -84,7 +100,10 @@ function CopyBlock({
 
 export function Install() {
 	return (
-		<section id="install" className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8">
+		<section
+			id="install"
+			className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8"
+		>
 			<div className="mx-auto max-w-6xl">
 				<Reveal className="mb-12 max-w-2xl">
 					<span className="font-mono text-xs uppercase tracking-[0.2em] text-rose">
@@ -95,13 +114,13 @@ export function Install() {
 					</h2>
 					<p className="mt-4 font-body text-paper-dim">
 						The component lives at the shadcn default path,{" "}
-						<code className="font-mono text-paper">@/components/ui</code>. Keeping it
-						there matters: the alias is what makes{" "}
+						<code className="font-mono text-paper">@/components/ui</code>.
+						Keeping it there matters: the alias is what makes{" "}
 						<code className="font-mono text-paper">
 							import … from "@/components/ui/dithering-shader"
 						</code>{" "}
-						resolve, and it sits alongside the rest of your shadcn registry so updates and
-						imports stay predictable.
+						resolve, and it sits alongside the rest of your shadcn registry so
+						updates and imports stay predictable.
 					</p>
 				</Reveal>
 
@@ -121,9 +140,16 @@ export function Install() {
 						</div>
 						<ul className="divide-y divide-[var(--line)]">
 							{FILES.map((f) => (
-								<li key={f.path} className="flex flex-col gap-1 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between">
-									<span className="font-mono text-xs font-bold text-paper">{f.path}</span>
-									<span className="font-body text-[12px] text-paper-dim">{f.role}</span>
+								<li
+									key={f.path}
+									className="flex flex-col gap-1 px-5 py-3.5 sm:flex-row sm:items-center sm:justify-between"
+								>
+									<span className="font-mono text-xs font-bold text-paper">
+										{f.path}
+									</span>
+									<span className="font-body text-[12px] text-paper-dim">
+										{f.role}
+									</span>
 								</li>
 							))}
 						</ul>

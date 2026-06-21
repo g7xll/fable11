@@ -2,7 +2,12 @@ import { motion } from "framer-motion";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-type Variant = "hero" | "photographer" | "projects" | "marvels" | "marvelsBottom";
+type Variant =
+	| "hero"
+	| "photographer"
+	| "projects"
+	| "marvels"
+	| "marvelsBottom";
 
 type Line = [number, number, number, number];
 
@@ -128,11 +133,7 @@ export default function LineField({ variant = "hero" }: { variant?: Variant }) {
 							letterSpacing="0.02em"
 						>
 							{words.map((word, wi) => (
-								<tspan
-									key={wi}
-									x={px + 0.5}
-									dy={wi === 0 ? 0 : "0.7em"}
-								>
+								<tspan key={wi} x={px + 0.5} dy={wi === 0 ? 0 : "0.7em"}>
 									{word}
 								</tspan>
 							))}

@@ -4,7 +4,7 @@ import HeroDemo from "./demo";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <HeroDemo />
-  </React.StrictMode>,
+	<React.StrictMode>
+		<HeroDemo />
+	</React.StrictMode>,
 );

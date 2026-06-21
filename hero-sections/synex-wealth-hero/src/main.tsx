@@ -4,7 +4,7 @@ import Index from "./pages/Index";
 import "./index.css";
 
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <Index />
-  </StrictMode>,
+	<StrictMode>
+		<Index />
+	</StrictMode>,
 );

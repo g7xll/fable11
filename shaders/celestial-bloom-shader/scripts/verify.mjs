@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -31,7 +33,10 @@ check(
 	(await page.title()).startsWith("Celestial Bloom"),
 	await page.title(),
 );
-check("app-container present", (await page.locator(".app-container").count()) === 1);
+check(
+	"app-container present",
+	(await page.locator(".app-container").count()) === 1,
+);
 check(
 	"content-overlay present",
 	(await page.locator(".content-overlay").count()) === 1,
@@ -45,7 +50,9 @@ check(
 );
 check(
 	'subtitle reads "A Procedural Shader Animation"',
-	(await page.getByText("A Procedural Shader Animation", { exact: true }).count()) === 1,
+	(await page
+		.getByText("A Procedural Shader Animation", { exact: true })
+		.count()) === 1,
 );
 
 // ── Shader canvas (WebGL) ──────────────────────────────────────────────────
@@ -53,7 +60,9 @@ const canvas = page.locator(".app-container canvas");
 check("shader canvas exists", (await canvas.count()) === 1);
 const canvasInfo = await canvas.first().evaluate((c) => {
 	const gl =
-		c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+		c.getContext("webgl2") ||
+		c.getContext("webgl") ||
+		c.getContext("experimental-webgl");
 	const box = c.getBoundingClientRect();
 	return {
 		hasGL: !!gl,
@@ -94,16 +103,35 @@ const clockA = await page.locator(".telemetry-cell--clock dd").innerText();
 check("mission clock formatted", /^T\+\d{2}:\d{2}:\d{2}$/.test(clockA), clockA);
 await page.waitForTimeout(1300);
 const clockB = await page.locator(".telemetry-cell--clock dd").innerText();
-check("mission clock advances over time", clockA !== clockB, `${clockA} -> ${clockB}`);
+check(
+	"mission clock advances over time",
+	clockA !== clockB,
+	`${clockA} -> ${clockB}`,
+);
 
-const fps = await page.locator(".plate-bar--bottom .telemetry-cell").nth(1).locator("dd").innerText();
-check("render fps reported (non-zero)", /\d/.test(fps) && !fps.startsWith("0fps"), fps);
+const fps = await page
+	.locator(".plate-bar--bottom .telemetry-cell")
+	.nth(1)
+	.locator("dd")
+	.innerText();
+check(
+	"render fps reported (non-zero)",
+	/\d/.test(fps) && !fps.startsWith("0fps"),
+	fps,
+);
 
-const petals = await page.locator(".plate-bar--bottom .telemetry-cell").nth(2).locator("dd").innerText();
+const petals = await page
+	.locator(".plate-bar--bottom .telemetry-cell")
+	.nth(2)
+	.locator("dd")
+	.innerText();
 check("petals readout is 05", petals.trim() === "05", petals.trim());
 
 // ── Reticle frame ──────────────────────────────────────────────────────────
-check("reticle corners present", (await page.locator(".reticle-corner").count()) === 4);
+check(
+	"reticle corners present",
+	(await page.locator(".reticle-corner").count()) === 4,
+);
 
 // ── Fonts vendored locally (no remote gstatic/gfonts requests) ─────────────
 const fontRequests = [];
@@ -120,20 +148,23 @@ check(
 	fontRequests.length === 0,
 	fontRequests.slice(0, 2).join(" | "),
 );
-const heroFont = await page.locator("h1").evaluate((el) => getComputedStyle(el).fontFamily);
+const heroFont = await page
+	.locator("h1")
+	.evaluate((el) => getComputedStyle(el).fontFamily);
 check("display face is Fraunces", heroFont.includes("Fraunces"), heroFont);
 
 // ── Responsive: telemetry collapses on mobile ──────────────────────────────
 await page.setViewportSize({ width: 390, height: 844 });
 await page.waitForTimeout(400);
-check(
-	"h1 still visible on mobile",
-	await page.locator("h1").isVisible(),
-);
+check("h1 still visible on mobile", await page.locator("h1").isVisible());
 const gridCols = await page
 	.locator(".telemetry")
 	.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" ").length);
-check("telemetry grid collapses (<5 cols) on mobile", gridCols < 5, `${gridCols} cols`);
+check(
+	"telemetry grid collapses (<5 cols) on mobile",
+	gridCols < 5,
+	`${gridCols} cols`,
+);
 
 check(
 	"no console/page errors",
@@ -142,5 +173,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

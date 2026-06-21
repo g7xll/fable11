@@ -205,10 +205,18 @@ export default function ShaderDemo_ATC({
 	}, []);
 
 	return (
-		<div className={className} style={{ position: "relative", width: "100%", height: "100%" }}>
+		<div
+			className={className}
+			style={{ position: "relative", width: "100%", height: "100%" }}
+		>
 			<canvas
 				ref={ref}
-				style={{ width: "100%", height: "100%", display: "block", background: "#000" }}
+				style={{
+					width: "100%",
+					height: "100%",
+					display: "block",
+					background: "#000",
+				}}
 			/>
 			<pre
 				ref={preRef}

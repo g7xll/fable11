@@ -60,7 +60,12 @@ interface SwatchRowProps {
 }
 
 /** A row of preset colour swatches; the active one gets a flame ring. */
-export function SwatchRow({ colors, active, onPick, className }: SwatchRowProps) {
+export function SwatchRow({
+	colors,
+	active,
+	onPick,
+	className,
+}: SwatchRowProps) {
 	return (
 		<div className={cn("grid grid-cols-6 gap-2", className)}>
 			{colors.map((c) => (

@@ -63,7 +63,10 @@ export function WarpStage({
 						compact ? "max-w-2xl space-y-5" : "max-w-4xl space-y-8",
 					)}
 				>
-					<div className="rise flex items-center justify-center" style={{ animationDelay: "40ms" }}>
+					<div
+						className="rise flex items-center justify-center"
+						style={{ animationDelay: "40ms" }}
+					>
 						<span className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/10 px-3.5 py-1.5 text-[11px] font-medium uppercase tracking-[0.22em] text-white/85 backdrop-blur-sm">
 							<Sparkles className="h-3.5 w-3.5" />
 							Paper Design · Warp
@@ -83,13 +86,15 @@ export function WarpStage({
 					<p
 						className={cn(
 							"rise text-white/90 font-sans font-light leading-relaxed mx-auto",
-							compact ? "text-base md:text-lg max-w-xl" : "text-xl md:text-2xl max-w-3xl",
+							compact
+								? "text-base md:text-lg max-w-xl"
+								: "text-xl md:text-2xl max-w-3xl",
 						)}
 						style={{ animationDelay: "200ms" }}
 					>
-						Beautiful, performant shader effects that enhance your content without
-						overwhelming it. Perfect for hero sections, landing pages, and modern web
-						experiences.
+						Beautiful, performant shader effects that enhance your content
+						without overwhelming it. Perfect for hero sections, landing pages,
+						and modern web experiences.
 					</p>
 
 					<div
