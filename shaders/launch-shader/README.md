@@ -1,36 +1,6 @@
-# LAUNCH — Ignition Control
+# LAUNCH — Ignition Control — Ray-Marched Molten Plume WebGL2 Shader (React + TypeScript + Vite)
 
-The prompt's `Component` (`launch.tsx`) — a single **WebGL2 fullscreen
-fragment-shader** pass that ray-marches a molten engine plume: the camera sits at
-`v = vec3(0,-2,7)`, every one of the ~100 marching steps flattens space vertically
-(`a.y *= .3`) and folds an animated turbulence loop into it
-(`a -= .1*sin((a.zxy + t*v + d)*d) * p.y/d`), then the SDF unions a ground plane
-with a `cos`-rippled floor. Colour accumulates into a hot red/amber channel and is
-tone-mapped with `tanh`, giving a glowing, endlessly churning lava horizon. It is
-integrated at the canonical shadcn `@/components/ui` location and framed as a rocket
-**flight-control ignition console**.
-
-The shader is preserved faithfully at `src/components/ui/launch.tsx` — the same
-`SHADER_SRC` / `VERT_SRC` GLSL (Russian comments and all), the same throw-free
-compile/link helpers, the same fullscreen-triangle buffer `[-1,-1, 3,-1, -1,3]`, the
-same `iResolution / iTime / iFrame / iMouse` uniforms, the same `ResizeObserver`
-sizing, mouse wiring, WebGL context-loss handling and `requestAnimationFrame` loop.
-The only changes to the original paste are **additive and optional**, so the default
-export is still the brief's zero-config fixed-fullscreen background:
-
-- a non-null re-bind of the `gl` context (`const gl = ctx`) so the narrowed type flows
-  into the nested render-loop / cleanup closures under `strict` TypeScript — runtime
-  behaviour is identical;
-- two additive props — an optional `paused` flag (holds the clock, freezing the lava)
-  and an `onSample` callback (fired ~2×/s with the shader's own `iTime` / `iFrame` /
-  smoothed FPS) — so the host page can drive honest telemetry without touching the
-  draw path;
-- the lower bound of the device-pixel-ratio clamp relaxed from `1` to a tiny floor so
-  a caller MAY opt into sub-1 super-sampling via an explicit `pixelRatio`. With no
-  prop the value is the system DPR (≥ 1), so the default is unchanged. This is used
-  only by the capture path below.
-
-The companion `src/components/ui/demo.tsx` is the brief's demo, verbatim.
+A full-screen WebGL2 fragment shader that ray-marches a molten engine plume in real time — hot red/amber colour accumulated across ~100 marching steps and tone-mapped with `tanh` — integrated at the shadcn `@/components/ui` location and framed as a rocket flight-control ignition console. The shader drives a vertical thrust gauge, live telemetry rail, and ignition sequence checklist, with an Ignite/Hold control that pauses and resumes the GPU clock. Built with React 18, TypeScript, Vite 5, and Tailwind CSS v3 using raw WebGL2 — no Three.js required. Generated with Claude Fable 5.
 
 ## The instrument
 
@@ -129,3 +99,7 @@ the auto-detection.
   launch teaser, a loading / "ignition" splash, or any section that wants a living,
   GPU-driven molten backdrop behind foreground copy.
 - **Images** — none. The procedural shader is the entire visual.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

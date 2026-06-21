@@ -1,38 +1,6 @@
-# Exoplanet Survey Shader
+# Exoplanet Survey Shader — Procedural Planetary Sphere (React + TypeScript + Three.js + Tailwind CSS)
 
-A single procedural sphere — six-octave fractal Brownian-motion noise for the
-cloud deck and a Fresnel rim for the atmosphere — rendered with a Three.js
-`ShaderMaterial`, then catalogued as a live **exoplanet survey specimen**.
-
-The shader component from the integration brief is dropped in verbatim (the
-GLSL vertex/fragment shaders, uniforms, sphere geometry, animation loop, resize
-handling and cleanup are unchanged) at
-`src/components/ui/celestial-sphere-shader.tsx` — the canonical shadcn
-`@/components/ui` location, so the brief's own import
-`@/components/ui/celestial-sphere-shader` resolves untouched.
-
-Around it is a deliberate instrument, **Stellar Cartography**:
-
-- **The scope (hero)** — the sphere is framed inside a circular brass eyepiece
-  with an engraved reticle, azimuth ticks and a slow radar sweep. The shader
-  fills the bezel via an additive `fill` prop instead of owning the viewport.
-- **The catalog entry** — colour chips for the two nebula colours, three brass
-  dials for rotation / cloud density / glow, and three "catalogued worlds"
-  presets (Orion Nebula, Crimson Gas Giant, Ice Planet) from the brief.
-- **Derived survey facts (signature)** — the catalog card reads the live shader
-  props back as astronomy: a pseudo Morgan–Keenan **spectral class** from the
-  rim colour, a **rotation period** inferred from `rotationSpeed`, and an
-  **atmosphere / albedo** read from `cloudDensity` / `glowIntensity`.
-- **Live field telemetry** — the shader emits per-frame telemetry (`elapsed`,
-  `fps`, `rotation`) through an `onFrame` callback; the bottom strip reports the
-  shader's own WebGL clock, smoothed render rate, sphere longitude and geometry.
-
-Palette and type are chosen for an astronomical-journal feel rather than the
-default dark-sci-fi look: deep ink-indigo ground, warm brass / parchment
-instrument chrome, a coral catalog accent and an oxide-cyan readout accent. Type
-pairing: **Newsreader** (display serif) · **Inter** (body) · **Space Mono**
-(data). Icons from `lucide-react`. The entrance reveal and radar sweep respect
-`prefers-reduced-motion`.
+A procedural 3D sphere rendered with a Three.js `ShaderMaterial` — six-octave fractal Brownian-motion noise for the cloud deck and a Fresnel rim for the atmosphere glow. Framed as a live "Stellar Cartography" exoplanet survey instrument: a circular brass eyepiece with reticle, azimuth ticks, and a slow radar sweep; colour pickers and dials for rotation speed, cloud density, and glow intensity; three preset worlds (Orion Nebula, Crimson Gas Giant, Ice Planet); and a per-frame telemetry strip (mission clock, FPS, sphere longitude). All self-contained and offline-ready. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -90,3 +58,7 @@ npm run verify    # headless Playwright checks against the preview server
   viewer, or a settings playground.
 - **Images** — no photographic stock imagery is needed; the only raster asset is
   the vendored `stardust.png` starfield the brief referenced.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

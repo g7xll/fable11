@@ -1,9 +1,6 @@
-# Aura Core Shader
+# Aura Core Shader — Interactive WebGL2 Energy Core with HSV Glow (React + TypeScript + WebGL2 + Tailwind CSS)
 
-An interactive **WebGL2** energy-core shader — a glowing HSV core with ten
-rotating rays, an fbm-distorted surface, and a shimmering particle field that
-brightens as the cursor nears the center — framed inside a **plasma-containment
-monitoring console**.
+An interactive WebGL2 energy-core shader featuring a glowing HSV core with ten rotating rays, an FBM-distorted surface, and a shimmering particle field that brightens as the cursor nears the center — framed inside a plasma-containment monitoring console. Four shader uniforms (`uColor`, `uPower`, `uFocus`, `uDistortion`) are exposed as live faders with named field profiles (Halcyon, Solar Flare, Ion Bloom, Verdant). Telemetry readouts for containment integrity, field power, coherence, turbulence, and excitation are computed deterministically from live uniforms and cursor proximity. Uses an inlined OGL micro-renderer with no Three.js dependency. Generated with Claude Fable 5.
 
 The shader is the verbatim drop-in from the integration brief
 (`src/components/ui/aura-core.tsx`, with its inlined OGL renderer), placed in the
@@ -134,3 +131,7 @@ npm install lucide-react
 - **Best place to use it?** As a full-bleed interactive background or a framed
   hero/instrument panel — anywhere a living, cursor-reactive focal point earns
   its pixels. Here it is the centerpiece of a monitoring console.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

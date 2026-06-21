@@ -1,8 +1,6 @@
-# Animated Dots
+# Animated Dots Rain — Canvas Background Component (React + Vite + Tailwind CSS + shadcn)
 
-A shadcn/ui integration of **`AnimatedDots`** — a raw-`<canvas>` background where columns of dots rain down, each dot bleeding a single **R / G / B** channel from black to full as it accelerates toward the bottom, then recycling with a fresh colour and speed. No three.js, no framer-motion, no assets — just `react` and one `requestAnimationFrame` loop.
-
-The page is a **component lab**: a full-bleed live hero (the verbatim `demo.tsx`), a control deck wiring every real prop to a fader, copy-paste integration steps, and a full props API with the prompt's required Q&A.
+A shadcn/ui integration of **`AnimatedDots`** — a raw-`<canvas>` background where columns of dots rain down, each dot bleeding a single **R / G / B** channel from black to full saturation as it accelerates toward the bottom, then recycling with a fresh colour and speed. No Three.js, no Framer Motion, no assets — just React and one `requestAnimationFrame` loop. The showcase page is a component lab: a full-bleed live hero (the verbatim `demo.tsx`), a control deck wiring every real prop to a fader, copy-paste integration steps, and a full props API with the prompt's required Q&A. All fonts (Space Grotesk, Inter, JetBrains Mono) are vendored locally as woff2 for fully offline operation. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -41,4 +39,6 @@ npm run verify   # headless Chromium CLI checks (boots dev server)
 
 Use it as a background: wrap it in a `relative`, sized container with `fullScreen={false}` and place content in a higher-`z` sibling.
 
-This is a Fable 5 experiment.
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

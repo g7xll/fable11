@@ -1,10 +1,6 @@
-# Pelmatech — Your Personal Health Companion
+# Pelmatech — Personal Health Companion Landing Page (React + TanStack Start + Tailwind v4)
 
-A pixel-faithful recreation of the Pelmatech landing page, built with
-**React + TanStack Start + TypeScript + Tailwind v4** (shadcn-ui base),
-`motion/react` (framer-motion), and `lucide-react`.
-
-See [`prompt.md`](./prompt.md) for the full specification this was built from.
+A pixel-faithful recreation of the Pelmatech landing page — a health-tech marketing site for a personal online health companion platform. Features a full-bleed dark hero with animated headline, a horizontal team carousel with a central blurred arrow puck, and a three-card benefits grid on a surface background with custom edge-fading gridlines. Built with React + TanStack Start + TypeScript + Tailwind v4 (shadcn-ui base), `motion/react` (Framer Motion), and `lucide-react`. Generated with Claude Fable 5.
 
 ## What's inside
 
@@ -46,3 +42,7 @@ npm run typecheck  # tsc --noEmit
 
 A `demo.mp4` walkthrough (recorded with the repo's `scripts/record-demos`
 recorder) sits alongside this README.
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

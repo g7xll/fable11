@@ -1,19 +1,6 @@
-# Digital Petals — Interactive WebGL Shader
+# Digital Petals — Interactive WebGL Polar-Coordinate Flower Shader (Three.js, GLSL, React, TypeScript)
 
-A shadcn-style integration of the brief's `DigitalPetalsShader` component — a
-polar-coordinate GLSL flower rendered on a single full-screen quad with Three.js
-— framed as a **herbarium specimen plate** for a living *digital cultivar*.
-
-The shader's corolla breathes on its own between three and seven petals
-(`5.0 + sin(iTime * 0.3) * 2.0`), mixing the same two pigments the fragment
-shader hard-codes (magenta `#cc1980` → blue `#3366e5`). Glide the cursor across
-the plate to seed a soft `bloom` of light. The plate around it catalogues the
-specimen: a plate number, a binomial name set in Fraunces, and a **cultivation
-log** that reads the shader's own per-frame state straight off the GPU.
-
-The signature device is the **Petal Dial** — a small radial gauge whose needle
-sweeps and whose lobe ticks light up to show the *exact integer* number of
-petals the fragment shader is rendering this frame.
+A shadcn-style integration of the `DigitalPetalsShader` component — a polar-coordinate GLSL flower rendered on a single full-screen Three.js quad — framed as a herbarium specimen plate for a living digital cultivar, with a Petal Dial radial gauge that tracks the shader's live petal count, a cultivation log reading per-frame GPU state, and mouse-driven bloom lighting. The corolla breathes between three and seven petals, mixing magenta and blue pigments, and the specimen plate catalogues binomial name, plate number, and growth clock — all self-contained, fully offline, and interactive. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -133,3 +120,7 @@ resolve: { alias: { "@": path.resolve(__dirname, "./src") } }
 Shader component from the integration brief. Everything around it
 (specimen-plate framing, Petal Dial, cultivation log, verification) was built
 for this experiment.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,11 +1,6 @@
-# ATC — Aperture Transit Corridor
+# ATC Aperture Transit Corridor — WebGL2 Ray-March Warp Tunnel Shader (React + TypeScript + WebGL2)
 
-The prompt's `ShaderDemo_ATC` "ATC one-liner" — a single WebGL2 fullscreen
-fragment-shader pass that ray-marches through cosine-folded space with a
-per-fragment `mat2` rotation, building an iridescent chromatic warp tunnel that
-drifts toward a vanishing point forever (`p.x += t / 0.2`). It is integrated at
-the canonical shadcn `@/components/ui` location and framed as a deep-space
-**aperture transit instrument**.
+A single WebGL2 fullscreen fragment-shader pass that ray-marches through cosine-folded space with a per-fragment `mat2` rotation, building an iridescent chromatic warp tunnel that drifts toward a vanishing point forever. Framed as a deep-space aperture transit instrument with a vertical aperture-depth gauge, a chromatic-split wordmark echoing the shader's RGB colour split, a live telemetry rail reporting corridor depth and smoothed render FPS, and a Hold/Resume control. The entrance respects `prefers-reduced-motion`. Built with React 18, TypeScript, Vite 5, Tailwind CSS v3, and raw WebGL2 with no Three.js dependency. Generated with Claude Fable 5.
 
 The shader is preserved faithfully at
 `src/components/ui/atc-shader.tsx` — same GLSL, same fullscreen-triangle vertex
@@ -79,3 +74,7 @@ npm run preview   # serve the production build
   default to the brief's behaviour.
 - **Images** — none. The procedural shader is the entire visual, so no Unsplash
   stock imagery is needed.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

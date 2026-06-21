@@ -1,15 +1,6 @@
-# Gradient Bars — `components/ui` integration
+# Gradient Bars — Animated CSS Equalizer Background Component (React + shadcn/ui + Tailwind CSS)
 
-A shadcn/ui integration of the `Component` / `GradientBars` background: an
-**equalizer-shaped wall of pulsing vertical CSS gradients**. Each bar is a single
-`linear-gradient(to top, …)` whose height follows a U-shaped curve (tall at the
-edges, short in the middle) and which pulses via a `scaleY` `@keyframes`
-animation, staggered per-bar for a rolling-wave ripple. No canvas, no WebGL, no
-images — just React, inline styles and one keyframe.
-
-The verbatim component is dropped into
-`@/components/ui/gradient-bars-background.tsx` and wrapped in a polished
-"component lab" page that documents the integration end to end.
+A shadcn/ui integration of the `GradientBars` background component: a wall of pulsing vertical CSS `linear-gradient` bars shaped like an equalizer, staggered via `@keyframes scaleY` animation for a rolling-wave ripple — no canvas, no WebGL, no images. The verbatim component lives at `@/components/ui/gradient-bars-background.tsx` and is wrapped in a full "component lab" page with a live hero, an interactive control deck (bar count, color picker, six presets, background color), a copyable usage snippet, a props API table, and integration story for shadcn/ui projects. Ideal as a dramatic animated background for dark-mode landing pages or loading screens. Generated with Claude Fable 5.
 
 ## What's inside
 
@@ -61,3 +52,7 @@ transform matrix advances over time), the control-deck `numBars` fader re-render
 the live preview and the usage snippet, a colour preset updates the preview's
 reported `rgb()`, every showcase section is present, and the props API documents
 all seven props.
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

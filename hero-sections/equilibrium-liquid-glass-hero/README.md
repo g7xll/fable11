@@ -1,8 +1,6 @@
-# Equilibrium — Liquid Glass Hero
+# Equilibrium — Liquid Glass Wellness Hero Section (React + Vite + Tailwind CSS)
 
-A full-screen, single-screen hero for a wellness brand, sitting on a looping background video and overlaid with a "liquid glass" UI: a frosted blurred navbar pill, glassy CTA buttons, and a bottom-left headline block. Built with React 18, TypeScript, Vite, Tailwind CSS 3, and Lucide icons, with the Geist typeface from Google Fonts.
-
-The signature effect is a `.liquid-glass` utility combining `backdrop-filter: blur(4px)` with a gradient-border `::before` pseudo-element drawn via mask compositing (`mask-composite: exclude`). There are no keyframe animations — buttons use Tailwind `transition-colors`, and all on-page motion comes from the looping muted autoplay video itself. Includes a responsive mobile menu toggled by state.
+A full-screen, single-viewport hero section for a wellness brand featuring a looping background video overlaid with a "liquid glass" frosted UI. The design uses `backdrop-filter: blur` with gradient-border pseudo-elements to create a premium glassmorphism aesthetic — a floating navbar pill, glassy CTA buttons, and a bottom-left headline block over cinematic video. Built with React 18, TypeScript, Vite, and Tailwind CSS 3, using the Geist typeface from Google Fonts. Generated with Claude Fable 5.
 
 ## Run
 
@@ -14,3 +12,7 @@ npm run preview  # preview the production build
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

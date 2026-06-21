@@ -1,15 +1,6 @@
-# Paper Warp // Shader Lab
+# Paper Warp Shader Lab — Live Warp Hero with Instrument Deck (@paper-design/shaders-react + React + Tailwind CSS v4)
 
-A shadcn-style integration of the prompt's `@paper-design/shaders-react`
-**`<Warp>`** hero. The verbatim component is dropped into `components/ui`
-exactly as supplied — and then framed as an **instrument deck**: instead of a
-lone full-bleed background, the hero sits behind glass as a live *specimen* in a
-brushed-graphite scope housing, steered from a left-hand module rack.
-
-The prompt's component is preserved untouched at
-`src/components/ui/wrap-shader.tsx` (and its `demo.tsx` companion). The lab view
-re-renders the same `<Warp>` element with every baked-in prop promoted to a live
-control, so you can see the exact hero the brief asked for — and dial it.
+A full-screen hero section built on `@paper-design/shaders-react`'s `<Warp>` component — a teal/aqua animated checks-warp field — integrated in a shadcn/Tailwind/TypeScript project and presented as a brushed-graphite instrument deck. The verbatim `WarpShaderHero` component sits behind glass as a live specimen in a scope housing; a left-hand module rack exposes every Warp uniform as a live fader, a shape selector, four mood presets (Lagoon — the prompt's verbatim configuration, plus Ember, Ultraviolet, Graphite), an editable four-stop colour ramp, transport controls, and a telemetry strip reading real FPS and frame count. Generated with Claude Fable 5.
 
 ## What the deck does
 
@@ -82,3 +73,7 @@ WebGL, and asserts: the deck header renders, the verbatim hero copy renders, the
 `<Warp>` shader paints a live WebGL canvas, the speed fader sweeps
 `0.00 → 3.00`, switching a preset re-labels the scope, and no page/console
 errors fire.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,7 +1,6 @@
-# bags-editorial-collage
+# Bags Editorial Collage — Scroll-Driven Fashion Landing Page (React + Vite + Framer Motion)
 
-A three-section animated bags landing page — a faithful reproduction built with
-**React + Vite + TypeScript + TailwindCSS + framer-motion**.
+A three-section animated bags landing page with a warm cream editorial sticker hero, a scroll-driven envelope-reveal product collection, and an orbiting bag carousel — built with React, Vite, TypeScript, Tailwind CSS, and Framer Motion. Features instanced signature serif glow words, a parallax sticker collage, and a canvas `requestAnimationFrame` orbit engine. Generated with Claude Fable 5.
 
 The page renders three sections back-to-back, with no wrappers between them:
 
@@ -43,3 +42,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # tsc + vite production build
 ```
+
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

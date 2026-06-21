@@ -1,9 +1,6 @@
-# Aurora Borealis Shader
+# Aurora Borealis Shader — Interactive Three.js FBM Aurora Background (React + TypeScript + Three.js + Tailwind CSS)
 
-An interactive **Three.js / WebGL** aurora-borealis shader background — an
-FBM-noise curtain mixed green→violet up the viewport, brightened by a soft flare
-that tracks your cursor — framed inside a high-latitude **Aurora Watch** field
-console.
+An interactive Three.js WebGL aurora-borealis shader background featuring an FBM-noise curtain mixed green to violet up the viewport, brightened by a soft flare that tracks the cursor. Framed inside a high-latitude Aurora Watch field console with a probe reticle reporting geomagnetic latitude/longitude, and a Kp-index gauge (the real 0–9 geomagnetic-activity scale) whose lit segments are driven by aurora brightness sampled off the GPU each frame. A Hold Sky control freezes the animation clock. Built with React 18, TypeScript, Vite, Three.js, Tailwind CSS, and `lucide-react`. Generated with Claude Fable 5.
 
 The shader component is the verbatim drop-in from the integration brief
 (`src/components/ui/aurora-borealis-shader.tsx`), placed in the shadcn
@@ -81,3 +78,7 @@ npm run verify     # headless Chromium checks (canvas, flare, Kp, hold)
 - **Recalibrate** — resets the shader clock to zero.
 
 Everything is self-contained and runs offline — no remote assets.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

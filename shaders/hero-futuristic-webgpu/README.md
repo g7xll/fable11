@@ -1,16 +1,6 @@
-# Hero Futuristic — WebGPU / TSL
+# Hero Futuristic — WebGPU Dot-Matrix Portrait Hero (Three.js TSL + React Three Fiber + Tailwind CSS)
 
-A faithful integration of the **Hero Futuristic** React component — a
-depth-mapped portrait dissolved into a scanning **dot-matrix** field and rendered
-through a **Three.js WebGPU** pipeline written entirely in **TSL** (Three Shading
-Language). A colour texture and its companion depth map feed a node material that
-displaces the image by the cursor, masks it into a cellular-noise dot grid, and
-sweeps a depth-driven reveal down the frame — then a **TSL post-processing** pass
-adds **bloom** and a travelling **red scan line** over the whole scene.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn** project
-structure, exactly as the prompt requires. The component drops into
-`@/components/ui/hero-futuristic` and is consumed verbatim.
+A depth-mapped portrait dissolved into a scanning dot-matrix field rendered through a Three.js WebGPU pipeline written entirely in TSL (Three Shading Language). A colour texture and companion depth map feed a node material that displaces the image by cursor position, masks it into a cellular-noise dot grid, and sweeps a depth-driven reveal down the frame — with a TSL post-processing pass adding bloom and a travelling red scan line. Ideal as a cinematic above-the-fold hero for landing pages. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -73,3 +63,7 @@ check + production build pass via `npm run build`.
 
 React 19, TypeScript, Vite, Tailwind CSS, shadcn/ui, Three.js (WebGPU + TSL),
 @react-three/fiber v9, @react-three/drei, Lucide.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

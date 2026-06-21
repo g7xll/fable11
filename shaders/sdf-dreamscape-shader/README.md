@@ -1,41 +1,6 @@
-# SDF Dreamscape
+# SDF Dreamscape — WebGL Fractal Signed-Distance-Field Shader Hero (React + Vite + Tailwind CSS v4 + WebGL)
 
-A WebGL fractal **signed-distance-field** shader — a recursive Julia-fold ringed
-by a glowing palette and bent in real time by the cursor — rendered full-viewport
-on a single fragment shader, then framed as a captured dream behind glass: the
-**Oneirograph dream-recorder console**.
-
-The shader component from the prompt is integrated (GLSL, the native-WebGL
-animation loop, the throttled pointer handler, resize handling and cleanup
-unchanged) at `src/components/ui/sdf-dreamscape.tsx`, the canonical shadcn
-`@/components/ui` location. The untyped JS was ported to strict TypeScript and
-split into two exports — a reusable `ShaderCanvas` / `useShaderAnimation`
-primitive plus the brief's original self-contained `ShaderComponent` (default),
-so `import ShaderComponent from "@/components/ui/sdf-dreamscape"` still renders
-exactly what the prompt describes. It is wrapped in a deliberate piece of chrome:
-
-- **Hero lockup** — `SDF Dreamscape` set in Big Shoulders Display over the live
-  fractal, with an `h1` that reads "SDF Dreamscape" exactly as the brief
-  specifies (styled uppercase via CSS).
-- **Reticle / registration frame** — corner brackets and a centre cross-hair
-  aligned to the dream core, over a vignette and faint film grain so the GPU
-  output reads as a recorded specimen.
-- **Tuning deck** — the brief's four controls (Hue / Speed / Iterations / Zoom)
-  reframed as the recorder's dials — **Spectrum**, **Drift**, **Recursion**,
-  **Lens** — each annotated with the underlying uniform (`u_hue`, `u_speed`,
-  `u_intensity`, `u_complexity`) it drives. Four **dream-state presets**
-  (Lucid / Abyssal / Solar / REM) snap all four uniforms at once.
-- **Live telemetry strip (signature element)** — the shader emits its measured
-  frame rate through an `onFps` callback, and the bottom bar reports the dream's
-  own state: a running dream clock, render FPS, recursion depth, lens depth and
-  the GPU pipeline. Moving the mouse warps the dream exactly as the GLSL
-  `u_mouse` interaction prescribes.
-
-Palette and type are derived from the shader's own cyan slider accent (signal
-`#7df9ff`) over a near-black indigo void (`#05060b`). Type pairing: Big Shoulders
-Display (display) · Inter (body) · Space Mono (data). Icons from `lucide-react`.
-The entrance reveal and the record-light pulse both respect
-`prefers-reduced-motion`.
+A full-viewport WebGL fractal signed-distance-field (SDF) shader — a recursive Julia-fold ringed by a glowing palette and bent in real time by the cursor — rendered on a single GLSL fragment shader and framed as the Oneirograph dream-recorder console. The shader component is integrated at the shadcn `@/components/ui/sdf-dreamscape` location as a reusable `ShaderCanvas`/`useShaderAnimation` primitive plus the original self-contained `ShaderComponent`. The chrome includes a hero lockup, corner bracket registration frame, a tuning deck with four controls (Spectrum/Drift/Recursion/Lens), four dream-state presets, and a live telemetry strip reading frame rate through an `onFps` callback. No Three.js — native WebGL only. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -82,3 +47,7 @@ npm run verify    # headless Playwright checks against the preview server
   the brief's behavior, so the host can wrap its own UI around the live canvas.
 - **Images** — none. The procedural shader is the entire visual, so no Unsplash
   stock imagery is needed.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

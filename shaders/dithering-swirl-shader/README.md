@@ -1,16 +1,6 @@
-# dithering-swirl-shader — HALFTONE ENGINE
+# Dithering Swirl Shader — Halftone Press with Bayer Dither & Live Ink Coverage (React, WebGL2, TypeScript)
 
-A self-contained shader experiment that integrates the **`DitheringShader`**
-React component (a procedural WebGL2 field quantised to **two colours** through
-an ordered **Bayer** dither matrix) into a polished **halftone press** — a
-visualization-first companion to the repo's `dithering-shader-lab` take, built
-around a panel that renders the _exact_ threshold matrix the GPU samples.
-
-> **HALFTONE ENGINE** — _One field, two colours, decided on the GPU._ The prompt
-> ships a `swirl` shape dithered 1-bit cyan-on-magenta; here it becomes a live
-> press: swap the shape, swap the screen matrix, re-skin the phosphor, watch the
-> active Bayer matrix light up cell-by-cell, and read real ink coverage straight
-> off the framebuffer.
+A WebGL2 shader experiment integrating the `DitheringShader` React component as a live **halftone press** — a swirl procedural field quantised 1-bit cyan-on-magenta through an ordered Bayer dither matrix, with a Bayer threshold-matrix panel, a CRT signal-telemetry readout sampled from the actual GPU framebuffer, and shape/screen/colour controls for switching between seven fields and four dither modes in real time. Generated with Claude Fable 5.
 
 ## What's here
 
@@ -110,3 +100,7 @@ raw WebGL2.
 
 Component: **`designali-in/dithering-shader`** (the `DitheringShader` from the
 integration prompt).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

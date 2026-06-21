@@ -1,8 +1,6 @@
-# Liquid Crystal Shader
+# Liquid Crystal Shader — Interactive WebGL Simplex-Noise Interference Bands (React + TypeScript + WebGL)
 
-An interactive raw-WebGL fragment shader — simplex-noise **interference bands**
-on a single full-screen quad, warped by the pointer — integrated as a shadcn
-`@/components/ui` component and framed as a **polarized-light microscopy bench**.
+An interactive raw-WebGL fragment shader featuring simplex-noise interference bands on a full-screen quad, warped by the pointer, integrated as a shadcn `@/components/ui` component and framed as a polarized-light microscopy bench. The six live uniforms — hue, speed, noise, warp, zoom, brightness — are controlled by the prompt's `ControlsPanel`, while a specimen reticle, instrument telemetry rail, and optical mineralogy band readout complete the microscopy metaphor. Built with React 18, TypeScript, Vite 6, and Tailwind CSS v3 using raw WebGL — no Three.js. Generated with Claude Fable 5.
 
 The component from the prompt is integrated verbatim at
 `src/components/ui/liquid-crystal.tsx`, the canonical shadcn `@/components/ui`
@@ -82,3 +80,7 @@ npm run verify    # headless Playwright checks against the preview server
   as in the brief's `demo.tsx`.
 - **Images** — none. The procedural shader is the entire visual, so no Unsplash
   stock imagery is needed.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,4 +1,6 @@
-# AI Budget Tracking Landing Page — Velara AI
+# Velara AI — AI Budget Tracking Landing Page (React + Vite + TypeScript + Tailwind CSS + Framer Motion)
+
+A dark, purple-accented fintech landing page for the fictional AI budget-tracking brand **Velara AI**, featuring ten stacked sections including a video-background hero with glass dashboard mockup, animated feature bento grids, a global-transfers map card, infinite testimonial ticker, cosmic-horizon pricing, and an SVG globe-arc footer. Built with React 18, TypeScript, Vite, Tailwind CSS, and Framer Motion, ported from a Next.js App Router template to the standard Vite stack with all component code kept identical. Generated with Claude Fable 5.
 
 A dark, purple-accented (`#A855F7`) AI budget-tracking landing page for the
 fictional fintech brand **Velara AI**, assembled from ten numbered template
@@ -82,3 +84,7 @@ tinted circles, and Inter falls back to the system sans stack declared in
 
 `demo.mp4` is a headless-Chromium walkthrough recorded with the repo's
 `scripts/record-demos` recorder.
+
+---
+
+Part of the [UI design](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

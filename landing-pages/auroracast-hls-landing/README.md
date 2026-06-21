@@ -1,9 +1,6 @@
-# Auroracast — HLS Landing
+# Auroracast — HLS Video Streaming Landing Page (React + hls.js + Glassmorphism)
 
-A modern React landing page for a fictional broadcast-grade live video
-platform. Dark cinematic aesthetic: Gloock display serif, Archivo body,
-JetBrains Mono telemetry labels, aurora-green signal accent, film grain
-and vignette over a full-screen adaptive HLS stream.
+A modern React landing page for a fictional broadcast-grade live video platform featuring a full-screen adaptive HLS video background, a glassmorphic navigation header, and hero content pinned to the bottom-left corner. Dark cinematic aesthetic with Gloock display serif, Archivo body, JetBrains Mono telemetry labels, and an aurora-green signal accent — ideal as a live streaming platform or video SaaS landing page template. Generated with Claude Fable 5.
 
 ## Features
 
@@ -29,3 +26,7 @@ npm run dev      # dev server
 npm run build    # production build
 npm run preview  # serve dist/
 ```
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

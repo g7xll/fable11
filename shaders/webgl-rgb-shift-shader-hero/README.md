@@ -1,16 +1,6 @@
-# CHROMA OSC — WebGL RGB-Split Shader Hero
+# CHROMA OSC — WebGL RGB-Split Shader Hero (React + Three.js + Tailwind CSS + shadcn)
 
-A shadcn-structured integration of the `WebGLShader` + `LiquidButton` components from
-the prompt, framed as a live oscilloscope instrument.
-
-The signature is the shader itself: a single `RawShaderMaterial` GLSL pass that draws
-three additive sine ribbons (`0.05 / abs(p.y + sin(...))`) on pure black, with the R/G/B
-channels distorted differently by a radial `distortion` term — chromatic aberration baked
-into the math. Everything around it stays disciplined: a hairline `#27272a` instrument
-card (kept exactly from the prompt's demo), corner brackets, an RGB-split mirrored
-headline, a sweeping scan line, the demo's pinging green "available" pulse, and a
-`LiquidButton` CTA. Top and bottom mono telemetry strips read the page's *real* frame rate
-and shader uptime, sampled from `requestAnimationFrame`.
+A live oscilloscope instrument hero framed in a shadcn-structured React app, built around a `RawShaderMaterial` GLSL pass that draws three additive sine ribbons on pure black with R/G/B channels distorted by a radial term — chromatic aberration baked directly into the math. The surrounding instrument card keeps a hairline `#27272a` border, corner brackets, an RGB-split mirrored headline, a sweeping scan line, a pinging green "available" pulse dot, and a `LiquidButton` CTA. Top and bottom mono telemetry strips read the page's real frame rate and shader uptime, sampled from `requestAnimationFrame`. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -53,3 +43,7 @@ npm run preview  # serve the production build
 ```
 
 See `prompt.md` for the original integration prompt.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,17 +1,6 @@
-# Paper Shaders // Control Deck
+# Paper Shaders Control Deck — Multi-Channel WebGL Shader Instrument Console (React + React Three Fiber + Vite + Tailwind CSS v4)
 
-`PAPER SHADERS // CONTROL DECK` — an **instrument console** for driving live
-WebGL shaders. Instead of the usual full-bleed shader demo with a few floating
-sliders, the shader sits behind glass as a specimen inside a brushed-graphite
-scope housing, and you steer it from a left-hand **module rack**: a channel
-patch grid, a patch-bay of faders, transport controls, and a live telemetry
-strip across the top (FPS, frame count, uptime, source).
-
-It's the runnable, self-contained delivery of a shadcn-style component
-integration prompt: the prompt's `background-paper-shaders.tsx`
-(`ShaderPlane` + `EnergyRing`, custom GLSL on **react-three-fiber**) is dropped
-into `src/components/ui/` and wired up as a real, selectable channel alongside
-the `@paper-design/shaders-react` shaders.
+An instrument console for driving live WebGL shaders, integrating four shader channels — including `@paper-design/shaders-react` MeshGradient and DotOrbit shaders plus a custom GLSL `ShaderPlane` via React Three Fiber — behind glass in a brushed-graphite scope housing. A left-hand module rack provides a channel patch grid, a patch-bay of faders, transport controls, and a live telemetry strip (FPS, frame count, uptime, source). Built with React 19 + TypeScript + Vite 7 + Tailwind CSS v4 on a shadcn-style project structure. Generated with Claude Fable 5.
 
 ## Four shader channels
 
@@ -88,3 +77,7 @@ npm run verify    # headless Playwright checks (boots its own dev server)
 WebGL, and asserts: the header renders, every channel produces a live WebGL
 canvas, the WebGL context is real, the faders sweep `0.00 → 3.00`, and no
 page/console errors fire.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

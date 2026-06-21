@@ -1,19 +1,6 @@
-# Volumetric Beams Shader
+# BEAMWORKS — Volumetric Beams Shader with Optics Control Deck (React Three Fiber + GLSL + Tailwind CSS)
 
-**BEAMWORKS** — a faithful shadcn integration of the brief's `volumetric-beams`
-React component, a single full-screen **Three.js + @react-three/fiber** fragment
-raymarch that fires an angular **star of light beams** through a scattering
-medium (single-scatter in-scattering with Beer–Lambert transmittance, a
-Henyey–Greenstein phase, depth twist, striation ribbing, and film-grain post).
-The shader is the live observation window; everything around it — an **optics
-calibration bench** with grouped faders, a named **beacon bank**, and a live
-**GPU telemetry** panel — is a calm control surface that drives the shader's
-uniforms and reads its per-frame state back out.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
-project structure, exactly as the prompt requires. The component drops into
-`@/components/ui/volumetric-beams` and is consumed verbatim, and the brief's
-`demo.tsx` is rendered live, unmodified, in its own framed section.
+A full-screen volumetric light-beam shader rendered via a Three.js + React Three Fiber fragment raymarch — firing an angular star of light beams through a scattering medium with single-scatter in-scattering, Beer-Lambert transmittance, Henyey-Greenstein phase, depth twist, striation ribbing, and film-grain post — wrapped in a polished optics calibration bench UI. The live observation window is driven by 18 grouped faders, six named beacon presets (Searchlight, Aurora Fan, Ember Cross, Twist Drill, Veil, Supernova), mouse-steered beam orbit, and a GPU telemetry panel reading real FPS, beam flux, and spectral cast from the composited canvas. Built as a shadcn/Tailwind/TypeScript component on React + Vite. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -105,3 +92,7 @@ telemetry probe can read the composited frame back via `drawImage` (a WebGL
 canvas reads empty otherwise). The component degrades to the browser's software
 WebGL path where no GPU is present, which is also how the bundled `demo.mp4` was
 recorded headlessly.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

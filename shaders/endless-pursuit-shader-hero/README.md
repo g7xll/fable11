@@ -1,14 +1,6 @@
-# Endless Pursuit — UIMIX Shader Hero
+# Endless Pursuit — Monochrome Shader Hero Section (React + TypeScript + Vite + Tailwind CSS v4)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `hero-ascii-one.tsx` component — UIMIX's monochrome "ENDLESS PURSUIT" hero whose
-background is a live shader field — as a shadcn `components/ui` piece.
-
-The original component renders its background from a remote **UnicornStudio** scene. That embed is
-preserved verbatim, but it is layered over a **dependency-free WebGL fallback shader** (a drifting
-cosmic nebula, an "endless orbit" arc, and parallax twinkling stars) so the hero is alive even when
-the remote scene can't load — and a pure-CSS starfield sits under that as a final no-WebGL fallback.
-The result runs fully offline.
+A full-viewport landing hero section built around the UIMIX "ENDLESS PURSUIT" monochrome design — bold serif headline, corner frame accents, CTA buttons, and a live animated background. The remote UnicornStudio scene is preserved verbatim and layered over a dependency-free WebGL fallback shader (drifting cosmic nebula, endless orbit arc, parallax twinkling stars) so the hero is alive even offline, with a pure-CSS starfield as a final no-WebGL fallback. Adapts from Next.js to plain Vite + React with no behaviour change. Generated with Claude Fable 5.
 
 ## Run
 
@@ -102,3 +94,7 @@ Recorded with the repo recorder:
 cd scripts/record-demos && npm install
 ./record-one.sh ../../shaders/endless-pursuit-shader-hero
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).
