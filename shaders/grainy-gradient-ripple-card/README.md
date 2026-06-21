@@ -1,18 +1,6 @@
-# Grainy Gradient Ripple Card
+# Grainy Gradient Ripple Card — Interactive WebGL Shader Card (React Three Fiber + Tailwind CSS)
 
-A faithful integration of the prompt's `gradient-shader-card` component — a
-**grainy, multi-stop gradient** rendered on a single Three.js quad with
-**React Three Fiber**, that ripples where you tap it — dropped into a distinctive
-**Chroma Foundry** pigment-lab console. The card is the live specimen plate;
-everything around it (a left **instrument rail** with a pigment-stop reference, a
-field-control deck, a named **patch bank**, and a **telemetry** strip) is a calm,
-opinionated surface that drives the shader's uniforms and reads its per-frame
-state back out.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
-project structure, exactly as the brief requires. The component drops into
-`@/components/ui/gradient-shader-card` and is consumed verbatim (the brief's own
-`demo.tsx` is preserved alongside it at `@/components/ui/demo`).
+A faithful integration of a grainy multi-stop gradient shader card rendered on a Three.js quad with React Three Fiber, featuring ripple effects on tap and a complete Chroma Foundry pigment-lab console around it. The card is framed as a live specimen plate with an instrument rail showing pigment-stop references, a field-control deck, a named patch bank, and a telemetry strip reading per-frame shader state — making it ideal as a hero backdrop, feature card, or landing splash. Built on the shadcn project structure with React, TypeScript, Vite, and Tailwind CSS. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -186,3 +174,7 @@ Anywhere you want a premium, living gradient surface: a hero backdrop, a feature
 card, an auth/landing splash, or — as here — the centrepiece of a controllable
 shader showcase. The drop-in `gradient-shader-card` is the reusable piece; the
 `Chroma Foundry` console around it is one opinionated way to present it.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

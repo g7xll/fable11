@@ -1,8 +1,6 @@
-# Xero — Encryption Hero
+# Xero — Encryption Product Hero Section (React + TypeScript + Plain CSS)
 
-A single-section landing hero for a fictional data-encryption product: a navbar, a rounded dark hero card featuring an animated icon pipeline — a beam of light that travels between three neumorphic nodes, splashing as it passes through the central Xero "X" logo — and a row of five monochrome brand logos. Built with React + TypeScript on Vite, styled entirely with plain global CSS (no Tailwind for the hero), with the Inter typeface from Google Fonts.
-
-The signature visual is the pink-magenta gradient arc near the top of the card, built from many hand-tuned radial-gradient stops, with a crosshatch grid clipped to the arc via `mask-image`. The beam is driven by a `requestAnimationFrame` state machine (`p1` → `splash` → `p2` → `idle`, ~3.4s per cycle) that slides the bright window of an SVG `linearGradient` in `userSpaceOnUse` mode along a path recomputed from live node positions via `getBoundingClientRect()` on mount and resize. Nodes use neumorphic soft-UI box-shadows, side-light glows toggle as the beam passes, and a CSS keyframe splash plays at the center.
+A single-section landing hero for a fictional data-encryption product, **Xero**, featuring a navbar, a rounded dark hero card with an animated icon pipeline — a beam of light that travels between three neumorphic nodes, splashing as it passes through the central Xero "X" logo — and a row of five monochrome brand logos. The signature visual is a pink-magenta gradient arc near the top of the card built from many hand-tuned radial-gradient stops, with a crosshatch grid clipped to the arc via `mask-image`. Styled entirely with plain global CSS (no Tailwind), this dark SaaS hero is a strong reference for neumorphic soft-UI, animated SVG gradients, and `requestAnimationFrame` state machines. Generated with Claude Fable 5.
 
 ## Run
 
@@ -14,3 +12,7 @@ npm run preview  # preview the production build
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

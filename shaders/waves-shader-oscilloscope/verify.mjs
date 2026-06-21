@@ -116,8 +116,7 @@ console.log(
 console.log("errors:", errors.length ? errors : "none");
 
 const pass =
-	canvas &&
-	canvas.hasGL &&
+	canvas?.hasGL &&
 	canvas.w > 0 &&
 	drawing.ok &&
 	// A live coswarp field is textured (byte spread) AND moving between captures.

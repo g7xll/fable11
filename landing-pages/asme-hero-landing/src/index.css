@@ -63,5 +63,5 @@ body {
 	-webkit-backdrop-filter: blur(16px) saturate(180%);
 	backdrop-filter: blur(16px) saturate(180%);
 	border-radius: 9999px;
-	box-shadow: none !important;
+	box-shadow: none;
 }

@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Compass, Orbit, Sparkle, Telescope } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CelestialBloomShader, {
 	type CelestialBloomFrame,
 } from "@/components/ui/celestial-bloom-shader";

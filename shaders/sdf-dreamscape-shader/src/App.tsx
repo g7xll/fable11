@@ -1,12 +1,4 @@
 import {
-	useCallback,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-	type ChangeEvent,
-} from "react";
-import {
 	Aperture,
 	Gauge,
 	Layers,
@@ -15,6 +7,14 @@ import {
 	Repeat,
 	ZoomIn,
 } from "lucide-react";
+import {
+	type ChangeEvent,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
+} from "react";
 import {
 	ShaderCanvas,
 	type ShaderParams,

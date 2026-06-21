@@ -1,16 +1,14 @@
-import { useEffect, useMemo, useState } from "react";
 import {
 	Activity,
 	Palette,
-	Play,
 	Pause,
+	Play,
 	RotateCcw,
 	Shapes,
 	SlidersHorizontal,
 	Sparkles,
 } from "lucide-react";
-
-import { WarpStage } from "@/components/lab/warp-stage";
+import { useEffect, useMemo, useState } from "react";
 import {
 	CopyButton,
 	Fader,
@@ -18,7 +16,9 @@ import {
 	Segments,
 	Swatch,
 } from "@/components/lab/primitives";
+import { WarpStage } from "@/components/lab/warp-stage";
 import { useTelemetry } from "@/lib/use-telemetry";
+import { cn } from "@/lib/utils";
 import {
 	PROMPT_WARP,
 	WARP_CONTROLS,
@@ -27,7 +27,6 @@ import {
 	type WarpConfig,
 	type WarpShape,
 } from "@/lib/warp";
-import { cn } from "@/lib/utils";
 
 const INSTALL_CMD = "npm i @paper-design/shaders-react";
 

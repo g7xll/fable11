@@ -1,4 +1,3 @@
-import { afterEach, describe, expect, it } from "vitest";
 import {
 	cleanup,
 	fireEvent,
@@ -6,6 +5,7 @@ import {
 	screen,
 	within,
 } from "@testing-library/react";
+import { afterEach, describe, expect, it } from "vitest";
 import App from "./App";
 
 const VIDEO_URL =
@@ -18,12 +18,12 @@ describe("VANGUARD hero landing", () => {
 		const { container } = render(<App />);
 		const video = container.querySelector("video");
 		expect(video).not.toBeNull();
-		expect(video!.src).toBe(VIDEO_URL);
-		expect(video!.hasAttribute("autoplay")).toBe(true);
-		expect(video!.hasAttribute("loop")).toBe(true);
-		expect(video!.hasAttribute("playsinline")).toBe(true);
-		expect(video!.muted).toBe(true);
-		expect(video!.className).toContain("object-cover");
+		expect(video?.src).toBe(VIDEO_URL);
+		expect(video?.hasAttribute("autoplay")).toBe(true);
+		expect(video?.hasAttribute("loop")).toBe(true);
+		expect(video?.hasAttribute("playsinline")).toBe(true);
+		expect(video?.muted).toBe(true);
+		expect(video?.className).toContain("object-cover");
 	});
 
 	it("renders the brand name in the navbar and the mobile menu", () => {

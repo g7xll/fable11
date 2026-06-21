@@ -15,7 +15,7 @@
       // It runs the SAME promoted-uniform GLSL as src/components/aperture-canvas.tsx,
       // reads a preset from the query string, draws one frame, and flags ready
       // so the Playwright capture script can screenshot a deterministic still.
-      (function () {
+      (() => {
         var q = new URLSearchParams(location.search);
         var blades = parseFloat(q.get("blades") || "9");
         var gain = parseFloat(q.get("gain") || "1");
@@ -26,8 +26,8 @@
         var canvas = document.getElementById("c");
         canvas.width = SIZE;
         canvas.height = SIZE;
-        canvas.style.width = SIZE + "px";
-        canvas.style.height = SIZE + "px";
+        canvas.style.width = `${SIZE}px`;
+        canvas.style.height = `${SIZE}px`;
 
         var gl = canvas.getContext("webgl2", { premultipliedAlpha: false });
         if (!gl) {

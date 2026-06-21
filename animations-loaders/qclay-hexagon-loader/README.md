@@ -1,12 +1,6 @@
-# QClay Hexagon Loader
+# QClay Hexagon Loader — Animated Honeycomb Loading Screen (React + Vite + TypeScript)
 
-A faithful, single full-screen recreation of the **QClay loader** — a centered
-animated honeycomb of flat-top hexagonal tiles with a blue active center tile,
-a soft blue glow, swapping icons, breathing polygon motion, a shimmering
-"Loading Resources" label and an uneven, organic progress bar.
-
-Built with **Vite + React + TypeScript**. No CSS clip-path approximations: the
-polygons are the real supplied SVGs.
+A faithful, single full-screen recreation of the **QClay loader** — a centered animated honeycomb of flat-top hexagonal tiles with a blue active center tile, a soft blue glow, swapping icons, breathing polygon motion, a shimmering "Loading Resources" label, and an uneven organic progress bar. Built with **Vite + React + TypeScript** using the real supplied polygon SVGs (no CSS clip-path approximations), all assets vendored locally for fully offline operation. The 29-tile honeycomb uses three SVG polygon types (`s-polygon`, `c-polygon`, `m-polygon`) positioned on a precise 149×128.9px logical grid inside a 1184×799.5px scene container, masked radially so outer tiles fade away. Generated with Claude Fable 5.
 
 ## Run
 
@@ -68,3 +62,7 @@ the loader, asserting: page meta, fl/centered layout with no scrollbars, the
 distinct settled icons with the correct dark/white sets at 32×32, the shimmering
 "Loading Resources" label, the uneven progress bar, live breathing of the center
 tile, an icon swap within one cycle, and zero console errors / failed requests.
+
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

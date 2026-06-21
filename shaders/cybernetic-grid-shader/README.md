@@ -1,19 +1,6 @@
-# Cybernetic Grid Shader
+# Cybernetic Grid Shader — Interactive Three.js WebGL Lattice with Mouse Warp (React, TypeScript, GLSL)
 
-An interactive **Three.js / WebGL** "Cybernetic Grid" shader — a pulsing cobalt
-lattice with magenta energy crawling the intersections and a bright glow that
-warps the grid around the cursor — framed inside a **lattice-integrity
-diagnostic console**.
-
-The shader component is the verbatim drop-in from the integration brief
-(`src/components/ui/cybernetic-grid-shader.tsx`), placed in the shadcn
-`components/ui` folder and imported through the `@/` alias exactly as the brief
-expects. The surrounding chrome makes the shader's hidden interaction legible: a
-**probe caliper** snaps to the warp center and reports its coordinates, live
-readouts show render rate / field uptime / probe X·Y, and a left-edge integrity
-gauge fills with the field's health.
-
-![Cybernetic Grid diagnostic console](./demo.mp4)
+An interactive Three.js / WebGL "Cybernetic Grid" shader — a pulsing cobalt lattice with magenta energy crawling the intersections and a bright glow that warps the grid around the cursor — framed inside a lattice-integrity diagnostic console with a live probe caliper, field-health gauge, and real-time telemetry readouts. The component lives at the shadcn `@/components/ui` path and drops cleanly into any Vite + React + TypeScript project with Tailwind CSS. Generated with Claude Fable 5.
 
 ## Integration story (per the brief)
 
@@ -85,3 +72,7 @@ npm run verify     # headless Chromium checks (canvas, warp, freeze)
 - **Re-seed** — remounts the shader and resets the field clock to zero.
 
 Everything is self-contained and runs offline — no remote assets.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

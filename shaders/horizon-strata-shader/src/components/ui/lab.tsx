@@ -240,7 +240,7 @@ export default function Component({
 			canvas.removeEventListener("mouseup", onUp);
 			canvas.removeEventListener("contextmenu", onContextMenu);
 			try {
-				ro && ro.disconnect();
+				ro?.disconnect();
 			} catch {}
 			try {
 				gl.deleteProgram(program);

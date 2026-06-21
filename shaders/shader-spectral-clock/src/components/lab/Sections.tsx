@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
 	Boxes,
 	CircleHelp,
@@ -14,15 +13,16 @@ import {
 	Thermometer,
 	Waves,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 import { SectionHead } from "@/components/lab/Chrome";
 import { CodeTabs } from "@/components/lab/CodeTabs";
-import { ShaderBackground, TimeDisplay } from "@/components/ui/shader-clock";
 import {
 	DEMO_TSX,
 	INSTALL_SH,
 	SHADER_CLOCK_TSX,
 	USAGE_MIN_TSX,
 } from "@/components/lab/sources";
+import { ShaderBackground, TimeDisplay } from "@/components/ui/shader-clock";
 
 /* ----------------------------------------------------------------- Anatomy -- */
 

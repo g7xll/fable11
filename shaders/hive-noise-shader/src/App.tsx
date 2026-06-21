@@ -1,9 +1,9 @@
-import ShaderDemo from "@/components/ui/hive";
-import { TopBar } from "@/components/lab/TopBar";
 import { HeroPanel } from "@/components/lab/HeroPanel";
-import { SpecHud } from "@/components/lab/SpecHud";
 import { IntegrationTicker } from "@/components/lab/IntegrationTicker";
+import { SpecHud } from "@/components/lab/SpecHud";
 import { Docs } from "@/components/lab/sections";
+import { TopBar } from "@/components/lab/TopBar";
+import ShaderDemo from "@/components/ui/hive";
 
 /**
  * HIVE — the shader lab. The dropped-in `@/components/ui/hive` component is the

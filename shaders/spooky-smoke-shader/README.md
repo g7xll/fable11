@@ -1,13 +1,6 @@
-# spooky-smoke-shader — AETHER
+# AETHER Spooky Smoke Shader — WebGL2 FBM Noise Smoke Animation React Component (Tailwind CSS, shadcn/ui, TypeScript)
 
-A self-contained shader experiment that integrates the **`spooky-smoke-animation`**
-React component (a WebGL2 fbm-noise smoke field, tinted by a single `smokeColor`
-prop) into a polished séance-themed "vapour reading instrument."
-
-> **AETHER** — _Read the smoke._ Tune a live WebGL2 smoke field by colour: pick a
-> reagent from the tray, or dial an arbitrary tint. Everything you see — the
-> headline accent, the live readout, the background, and the two specimen panes —
-> is driven by one shared hex value.
+A séance-themed interactive WebGL2 smoke-field showcase that integrates the `SmokeBackground` React component — a raw WebGL2 fbm-noise smoke animation driven by a single `smokeColor` hex prop — into a polished "vapour reading instrument" UI. The dark, atmospheric design features a reagent tray of alchemical preset colours, a brass-dial color picker, live smoke readout panels, and a headline accent that all respond to one shared hex value. Built on React 18, TypeScript, Vite, Tailwind CSS, and shadcn/ui project structure with no external shader libraries. Generated with Claude Fable 5.
 
 ## What's here
 
@@ -84,3 +77,7 @@ Everything is vendored locally for offline use:
 
 React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui structure, lucide-react,
 raw WebGL2.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

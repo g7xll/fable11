@@ -15,8 +15,8 @@
  * Prereq: project deps installed (npm install) + ffmpeg on PATH.
  * Usage:   NODE_PATH=../../scripts/record-demos/node_modules node scripts/record-demo.mjs
  */
-import { spawn, execFileSync } from "node:child_process";
-import { readdirSync, rmSync, mkdirSync, statSync } from "node:fs";
+import { execFileSync, spawn } from "node:child_process";
+import { mkdirSync, readdirSync, rmSync, statSync } from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright";
 
@@ -79,9 +79,7 @@ try {
 	});
 	const page = await ctx.newPage();
 	await page.goto(URL, { waitUntil: "load" });
-	await page
-		.evaluate(() => document.fonts && document.fonts.ready)
-		.catch(() => {});
+	await page.evaluate(() => document.fonts?.ready).catch(() => {});
 	await sleep(2000); // settle hero + start looping video
 
 	// Expand the media by feeding wheel deltas (slow, so the growth reads).

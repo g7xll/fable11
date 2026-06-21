@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import type { SignalSample } from "@/lib/use-signal-clock";
+import { cn } from "@/lib/utils";
 
 interface Channel {
 	id: string;

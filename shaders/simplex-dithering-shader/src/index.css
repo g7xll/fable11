@@ -151,6 +151,6 @@
 @media (prefers-reduced-motion: reduce) {
 	.animate-rise,
 	.animate-develop {
-		animation: none !important;
+		animation: none;
 	}
 }

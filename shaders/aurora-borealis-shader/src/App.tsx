@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	Compass,
@@ -9,6 +8,7 @@ import {
 	Satellite,
 	Snowflake,
 } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import AuroraBorealisShader, {
 	type AuroraTelemetry,
 } from "@/components/ui/aurora-borealis-shader";
@@ -43,7 +43,7 @@ function fmtClock(t: number) {
 // the dark upper sky into a bright curtain walks the gauge across its full
 // span instead of pinning at the top.
 function kpFromBrightness(b: number) {
-	const shaped = Math.pow(Math.min(1, Math.max(0, b)), 0.8);
+	const shaped = Math.min(1, Math.max(0, b)) ** 0.8;
 	return Math.min(9, shaped * 9);
 }
 

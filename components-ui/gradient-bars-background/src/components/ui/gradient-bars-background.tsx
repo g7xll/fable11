@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 
 interface GradientBarsProps {
 	numBars?: number;
@@ -22,7 +22,7 @@ const GradientBars: React.FC<GradientBarsProps> = ({
 
 		const center = 0.5;
 		const distanceFromCenter = Math.abs(position - center);
-		const heightPercentage = Math.pow(distanceFromCenter * 2, 1.2);
+		const heightPercentage = (distanceFromCenter * 2) ** 1.2;
 
 		return minHeight + (maxHeight - minHeight) * heightPercentage;
 	};
@@ -63,7 +63,7 @@ const GradientBars: React.FC<GradientBarsProps> = ({
 									animationDelay: `${index * 0.1}s`,
 									outline: "1px solid rgba(0, 0, 0, 0)",
 									boxSizing: "border-box",
-									// @ts-ignore
+									// @ts-expect-error
 									"--initial-scale": height / 100,
 								}}
 							/>
@@ -113,5 +113,5 @@ export default function Component({
 	);
 }
 
+export type { ComponentProps, GradientBarsProps };
 export { Component, GradientBars };
-export type { GradientBarsProps, ComponentProps };

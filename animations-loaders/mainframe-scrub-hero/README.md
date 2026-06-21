@@ -1,17 +1,6 @@
-# Mainframe® — Scrub Hero
+# Mainframe® — Cursor-Scrubbed Contact Hero Section (React + Vite + Tailwind CSS + Framer Motion)
 
-An interactive contact hero for the fictional studio **Mainframe®**. On desktop, the
-background film is *scrubbed natively by the cursor*: horizontal mouse movement drives
-`video.currentTime` (one full-viewport sweep ≈ 80% of the timeline), with seeks
-serialized through the `seeked` event so tracking stays smooth frame to frame. Below
-the `lg` breakpoint scrubbing is disabled and the video simply autoplays beneath the
-content.
-
-The headline types itself out with a custom `useTypewriter` hook (blinking block
-cursor, removed when typing completes), and a multi-select row of service pills feeds
-a contingent status banner that springs open with the current selection.
-
-Built from the verbatim prompt in [`prompt.md`](./prompt.md).
+An interactive contact hero section for the fictional studio **Mainframe®**, featuring a full-bleed background video scrubbed frame-by-frame by horizontal mouse movement on desktop. The cursor position drives `video.currentTime` directly — one full viewport sweep covers ~80% of the timeline — with seeks serialised through the `seeked` event for smooth frame-to-frame tracking. Below the `lg` breakpoint scrubbing is disabled and the video autoplays, making this hero fully responsive. The headline types itself out with a custom `useTypewriter` hook (blinking block cursor, removed on completion), and a multi-select service pill row feeds a spring-animated status banner via Framer Motion `AnimatePresence`. Built as a studio contact page hero with a clean dark-green palette on white. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -57,3 +46,7 @@ video URL with a local 4-second fixture (`scripts/fixtures/scrub-fixture.mp4`),
 served with proper `Accept-Ranges`/206 semantics so Chromium treats it as seekable.
 That keeps all 49 checks — including actual scrub-forward / rewind-and-clamp
 assertions and mobile autoplay — deterministic and offline-safe.
+
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

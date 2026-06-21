@@ -1,14 +1,6 @@
-# Scanner Card Stream
+# Scanner Card Stream — Draggable Infinite WebGL Card Stream with ASCII Scan Effect (React + Three.js + Tailwind CSS v4)
 
-A draggable, infinitely-looping **Three.js** card stream. Each card glides toward a glowing
-violet scan line at the center of the viewport; as it crosses, the photo clips away and the
-card "decodes" into a wall of glitching, scrambling ASCII. An ambient WebGL particle field
-drifts behind the cards, and a 2D spark field erupts from the scan line whenever a card is
-under it.
-
-Built as a self-contained **shadcn-style** component drop: the component lives in
-`src/components/ui/scanner-card-stream.tsx` and is consumed from `src/App.tsx` via the
-`@/components/ui/...` alias — exactly the integration the prompt asked for.
+A draggable, infinitely-looping Three.js card stream component where each card glides toward a glowing violet scan line at the center of the viewport — as it crosses, the photo clips away and the card "decodes" into a wall of glitching, scrambling ASCII. An ambient WebGL particle field drifts behind the cards, and a 2D spark field erupts from the scan line whenever a card is under it. Structured as a shadcn-style drop-in component (`src/components/ui/scanner-card-stream.tsx`) for React + Tailwind CSS v4 + TypeScript projects. Generated with Claude Fable 5.
 
 ## Run it
 
@@ -92,3 +84,7 @@ The pasted component was a scaffold with stubbed-out internals. To make it actua
 ## Stack
 
 React 18, TypeScript, Vite 6, Tailwind CSS v4, Three.js, lucide-react.
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

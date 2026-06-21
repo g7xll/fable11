@@ -1,12 +1,6 @@
-# Blue Meshy Lab
+# Blue Meshy Lab — WebGL2 Domain-Warped fBm Sea Shader Background (React + TypeScript + WebGL2 + Tailwind CSS)
 
-A faithful **shadcn integration** of the verbatim WebGL2 *“blue meshy”*
-background — a procedural, domain-warped **fractal-noise (fBm) sea** rendered on
-a single full-screen quad — dropped into `@/components/ui/blue-meshy-background`
-and wrapped in a distinctive integration lab. The shader is the full-bleed hero;
-everything below the fold is the integration story: a live preview, a real
-setup guide, the component anatomy, a props & shader-parameter reference, and a
-usage gallery.
+A procedural WebGL2 background component (`WavyBackground`) rendering a domain-warped fractal-noise (fBm) sea using a 20-step blue palette, from deep-abyss transparency to bright sea-blue, on a single full-screen quad. The shader applies sine-based domain warping and swirl distortion over 10 fBm octaves, with the darkest noise values rendered transparent for compositing flexibility. Framed as a shadcn integration lab with a live hero preview, setup guide, component anatomy, props and shader-parameter reference, and a usage gallery. Generated with Claude Fable 5.
 
 Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
 project structure, exactly as the prompt requires. The component and its demo
@@ -141,3 +135,7 @@ project:
    and cancelling it in the effect's cleanup (the same pattern every other
    shader here uses) makes the verbatim component StrictMode-safe. No visual or
    API behaviour changes.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

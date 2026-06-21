@@ -1,16 +1,6 @@
-# PHOSPHOR // 30 — Field of Light
+# Phosphor 30 — Field of Light — CRT Phosphor GLSL Hero (React + Vite + Tailwind CSS + WebGL2)
 
-An integration of the prompt's `phosphor-30` WebGL2 shader into a clean
-**shadcn / Vite / TypeScript / Tailwind** project, framed as a CRT phosphor
-instrument hero.
-
-The shader is a single fragment program: an 80-step raymarch through a rotating
-signed-distance field, accumulating ribbons of light (`tanh(o / 5e3)`) on pure
-black. No textures, no geometry — every photon is solved live in GLSL ES 3.00.
-The hero wraps that tube in a designed instrument: a hairline bezel with corner
-brackets, a drifting CRT scan line, a phosphor-glow `FIELD OF / LIGHT` headline,
-a mono telemetry strip reading the page's **real** render frame rate + session
-uptime, a live status chip and two CTAs.
+A full-viewport CRT phosphor instrument hero built around the `phosphor-30` WebGL2 GLSL shader — an 80-step signed-distance-field raymarch that accumulates ribbons of glowing light (`tanh(o / 5e3)`) on pure black, solved entirely in GLSL ES 3.00 with no textures and no geometry. The hero frames the live shader behind a hairline bezel with corner brackets, a drifting CRT scanline, a phosphor-glow "FIELD OF LIGHT" headline, and a mono telemetry strip reporting real render FPS and session uptime. Integrated as a shadcn `@/components/ui` drop-in following the canonical React + TypeScript + Vite + Tailwind CSS project structure. Generated with Claude Fable 5.
 
 ## The component (copied verbatim)
 
@@ -131,3 +121,7 @@ npm run verify    # headless Chromium check (canvas + shader + HUD)
 ```
 
 See `prompt.md` for the original integration prompt.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

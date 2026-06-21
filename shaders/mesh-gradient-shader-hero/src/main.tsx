@@ -1,8 +1,8 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
 import satoshiWoff2 from "../assets/fonts/Onest-Variable.woff2?url";
+import App from "./App.tsx";
 
 /*
  * Load the vendored "Satoshi" face (Onest, OFL) via the JS FontFace API instead

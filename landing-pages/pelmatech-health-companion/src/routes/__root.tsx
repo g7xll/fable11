@@ -1,11 +1,11 @@
-import * as React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
+	createRootRoute,
 	HeadContent,
 	Outlet,
 	Scripts,
-	createRootRoute,
 } from "@tanstack/react-router";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import * as React from "react";
 
 import appCss from "@/styles.css?url";
 

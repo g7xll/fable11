@@ -1,18 +1,6 @@
-# NOVATRIX — Gradient Mesh Studio
+# NOVATRIX — Gradient Mesh Shader Studio (ogl + React + Vite + Tailwind CSS v4)
 
-An integration of the prompt's `gradient-mesh.tsx` (the **Novatrix** `ogl` shader) into
-a real **shadcn-style, Tailwind CSS v4, TypeScript** Vite project — then framed as a
-small palette/uniform studio, **NOVATRIX · Gradient Mesh Lab**.
-
-The shader is the hero: a water-distorted fractal gradient field rendered on the GPU
-through [`ogl`](https://github.com/oframe/ogl) — three colour stops mixed through a
-distortion loop, rippled by sine/cosine waves, swirled radially and finished with a
-colour-dodge film grain. The prompt's `demo.tsx` headline (**"Gradient Mesh"** in
-`mix-blend-overlay`) sits verbatim on top of the live field. Around it is monochrome
-glass chrome so the shader stays the only source of colour: a brand bar, registration
-corner brackets, a **uniform control deck** that promotes every baked-in constant to a
-live fader, eight curated palettes, a live **telemetry HUD** (FPS / frame / clock), and
-a tabbed docs dock (Install · Props API · Usage · `components/ui`).
+An interactive palette and uniform studio built around the **Novatrix** `ogl` gradient mesh WebGL shader — a water-distorted fractal gradient field rendered on the GPU through three colour stops mixed via a distortion loop, sine/cosine ripples, radial swirl, and colour-dodge film grain. The prompt's `demo.tsx` headline ("Gradient Mesh" in `mix-blend-overlay`) sits verbatim on top of the live field; surrounding monochrome glass chrome keeps the shader as the sole colour source with a uniform control deck, eight curated palettes, a live telemetry HUD, and a tabbed docs dock. Built with React 18 + TypeScript + Vite 5 + Tailwind CSS v4 on a shadcn-style project structure. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -108,3 +96,7 @@ npm run verify      # headless Playwright: GLSL paint (colourful, non-black),
 ```
 
 All 20 checks pass.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

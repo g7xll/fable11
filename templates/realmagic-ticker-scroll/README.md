@@ -1,10 +1,6 @@
-# Real Magic — Ticker-Tape Scroll
+# Real Magic — Horizontal Ticker-Tape Scroll (GSAP ScrollTrigger, Vanilla JS)
 
-A horizontal scroll experiment driven by GSAP ScrollTrigger. Instead of full-screen slides, the entire page is one continuous horizontal text flow — a single very long sentence read sideways like a ticker tape: *"In every bottle, discover the undeniable Real Magic of sharing pure Refreshment that brings us Together."* Inline SVG glyphs (a bottle, rising bubbles, the signature ribbon swoosh, a drop, clinking bottles, a heart) sit between the words, acting like punctuation and conjunctions rather than separate sections.
-
-It uses a Coca-Cola "Real Magic" color system — a full flat red stage (`#f40009`) with cream type — and a single flex line as the only scrolling element. Anton drives the running uppercase words while Instrument Serif handles the faint connective words and italic accent words; the "huge" accent words (Magic, Together) render as cream text-stroke outlines for rhythm breaks. Variable per-item margins make the line feel hand-set.
-
-The stage is pinned and vertical scroll maps to the line's horizontal travel via a scrubbed ScrollTrigger, with a depth parallax on accent words and idle, scroll-independent GSAP loops (drawing ribbon, rising bubbles, a beating heart) so nothing freezes. GSAP, fonts, and a grain/vignette overlay are all vendored locally; `prefers-reduced-motion` is respected.
+A horizontal scroll experiment driven by GSAP ScrollTrigger that turns the entire page into a single continuous ticker-tape sentence: *"In every bottle, discover the undeniable Real Magic of sharing pure Refreshment that brings us Together."* The full flat-red Coca-Cola "Real Magic" stage (`#f40009`) with cream type, inline SVG glyphs (bottle, bubbles, ribbon swoosh, drop, clinking bottles, heart) sitting between words like punctuation, and idle scroll-independent GSAP loops (drawing ribbon, rising bubbles, beating heart) make this a richly animated, single-line reading experience. Anton handles running uppercase words while Instrument Serif covers faint connective and italic accent words; `prefers-reduced-motion` is respected throughout. Generated with Claude Fable 5.
 
 ## Run
 
@@ -15,3 +11,7 @@ python3 -m http.server 8000
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Templates](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

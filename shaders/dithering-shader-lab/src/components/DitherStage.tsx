@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import {
-	DitheringShapes,
-	DitheringTypes,
 	type DitheringShape,
+	DitheringShapes,
 	type DitheringType,
+	DitheringTypes,
 } from "@/components/ui/dithering-shader";
+import { cn } from "@/lib/utils";
 
 /**
  * Live telemetry the dithering stage reports each animation frame so the lab
@@ -297,7 +298,7 @@ function createShader(
 	gl.shaderSource(shader, source);
 	gl.compileShader(shader);
 	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-		console.error("Shader compile error: " + gl.getShaderInfoLog(shader));
+		console.error(`Shader compile error: ${gl.getShaderInfoLog(shader)}`);
 		gl.deleteShader(shader);
 		return null;
 	}
@@ -314,7 +315,7 @@ function createProgram(gl: WebGL2RenderingContext): WebGLProgram | null {
 	gl.attachShader(program, fs);
 	gl.linkProgram(program);
 	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-		console.error("Program link error: " + gl.getProgramInfoLog(program));
+		console.error(`Program link error: ${gl.getProgramInfoLog(program)}`);
 		gl.deleteProgram(program);
 		return null;
 	}
@@ -487,11 +488,7 @@ const DitherStage: React.FC<DitherStageProps> = ({
 
 	return (
 		<div className={cn("absolute inset-0 overflow-hidden", className)}>
-			<canvas
-				ref={canvasRef}
-				className="dither-canvas block h-full w-full"
-				aria-hidden="true"
-			/>
+			<canvas ref={canvasRef} className="dither-canvas block h-full w-full" />
 			{glError && (
 				<div className="absolute inset-0 grid place-items-center px-6 text-center">
 					<p className="font-mono text-sm text-ash">

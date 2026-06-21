@@ -287,7 +287,6 @@ export default function MistField({
 	return (
 		<canvas
 			ref={canvasRef}
-			aria-hidden="true"
 			className={
 				className ?? "fixed inset-0 h-full w-full pointer-events-none z-[-1]"
 			}

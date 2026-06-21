@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
-import { ResponsiveDither } from "@/components/responsive-dither";
 import { CornerBrackets } from "@/components/chrome";
-import { SHAPES } from "@/lib/shader-meta";
-import type { LiveParams } from "@/lib/shader-meta";
+import { ResponsiveDither } from "@/components/responsive-dither";
 import type { DitheringShape } from "@/components/ui/dithering-shader";
+import type { LiveParams } from "@/lib/shader-meta";
+import { SHAPES } from "@/lib/shader-meta";
+import { cn } from "@/lib/utils";
 
 interface ShapeLibraryProps {
 	params: LiveParams;

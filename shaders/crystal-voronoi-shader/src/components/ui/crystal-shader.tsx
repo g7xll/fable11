@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 export interface InteractiveShaderProps {
 	/** How many cells in the Voronoi grid. */
@@ -65,14 +66,14 @@ const InteractiveShader: React.FC<InteractiveShaderProps> = ({
 
 		// Compile a shader of given type.
 		function compileShader(src: string, type: number) {
-			const s = gl!.createShader(type);
+			const s = gl?.createShader(type);
 			if (!s) return null;
-			gl!.shaderSource(s, src);
-			gl!.compileShader(s);
+			gl?.shaderSource(s, src);
+			gl?.compileShader(s);
 
-			if (!gl!.getShaderParameter(s, gl!.COMPILE_STATUS)) {
-				console.error("Shader compile error:", gl!.getShaderInfoLog(s));
-				gl!.deleteShader(s);
+			if (!gl?.getShaderParameter(s, gl?.COMPILE_STATUS)) {
+				console.error("Shader compile error:", gl?.getShaderInfoLog(s));
+				gl?.deleteShader(s);
 				return null;
 			}
 			return s;
@@ -215,13 +216,13 @@ const InteractiveShader: React.FC<InteractiveShaderProps> = ({
 			c.style.width = `${width}px`;
 			c.style.height = `${height}px`;
 
-			gl!.viewport(0, 0, c.width, c.height);
-			gl!.uniform2f(iResolutionLoc, c.width, c.height);
+			gl?.viewport(0, 0, c.width, c.height);
+			gl?.uniform2f(iResolutionLoc, c.width, c.height);
 		}
 
 		// Mouse-tracking helper.
 		function handleMouseMove(e: MouseEvent) {
-			const rect = canvas!.getBoundingClientRect();
+			const rect = canvas?.getBoundingClientRect();
 			mousePos.current = {
 				x: (e.clientX - rect.left) / rect.width,
 				y: (e.clientY - rect.top) / rect.height,
@@ -239,29 +240,29 @@ const InteractiveShader: React.FC<InteractiveShaderProps> = ({
 
 		// Main render loop.
 		function render() {
-			gl!.clear(gl!.COLOR_BUFFER_BIT);
+			gl?.clear(gl?.COLOR_BUFFER_BIT);
 
 			const now = (performance.now() - start) / 1000;
-			gl!.uniform1f(iTimeLoc, now);
-			gl!.uniform2f(iMouseLoc, mousePos.current.x, mousePos.current.y);
-			gl!.uniform1f(uCellDensityLoc, cellDensityRef.current);
-			gl!.uniform1f(uAnimationSpeedLoc, animationSpeedRef.current);
-			gl!.uniform1f(uWarpFactorLoc, warpFactorRef.current);
-			gl!.uniform1f(uMouseInfluenceLoc, mouseInfluenceRef.current);
+			gl?.uniform1f(iTimeLoc, now);
+			gl?.uniform2f(iMouseLoc, mousePos.current.x, mousePos.current.y);
+			gl?.uniform1f(uCellDensityLoc, cellDensityRef.current);
+			gl?.uniform1f(uAnimationSpeedLoc, animationSpeedRef.current);
+			gl?.uniform1f(uWarpFactorLoc, warpFactorRef.current);
+			gl?.uniform1f(uMouseInfluenceLoc, mouseInfluenceRef.current);
 
-			gl!.drawArrays(gl!.TRIANGLES, 0, 6);
+			gl?.drawArrays(gl?.TRIANGLES, 0, 6);
 
 			// Probe the centre pixel ~12×/s for an honest read of the specimen.
 			const probe = sampleRef.current;
 			if (probe && now - lastSample > 0.08) {
 				lastSample = now;
-				gl!.readPixels(
-					(canvas!.width / 2) | 0,
-					(canvas!.height / 2) | 0,
+				gl?.readPixels(
+					(canvas?.width / 2) | 0,
+					(canvas?.height / 2) | 0,
 					1,
 					1,
-					gl!.RGBA,
-					gl!.UNSIGNED_BYTE,
+					gl?.RGBA,
+					gl?.UNSIGNED_BYTE,
 					px,
 				);
 				const r = px[0] / 255;

@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import logo from "@/assets/logo.svg";
 
 const EASE = [0.22, 1, 0.36, 1] as const;

@@ -1,9 +1,6 @@
-# Cosmic Plasma Web · Field Resonance Console
+# Cosmic Plasma Web — Cursor-Driven OGL Plasma Lattice Shader (React + Vite + Tailwind + shadcn/ui)
 
-The brief's verbatim **`<PlasmaWeb>`** — an [OGL](https://github.com/oframe/ogl)
-fragment shader that paints a layered plasma lattice of pulsing nodes, flowing
-connective streams and excited particles — dropped untouched into a shadcn
-`components/ui` project and framed as a **cursor-driven field-resonance console**.
+A cursor-reactive OGL fragment shader painting a layered plasma lattice of pulsing nodes, flowing connective streams, and excited particles — integrated verbatim as a shadcn `@/components/ui` drop-in and framed as a field-resonance console with live faders, named presets, cursor-tracking reticle, and real-time telemetry. The `<PlasmaWeb>` component's `uMouse` / `uMouseAttraction` uniforms pull the entire field toward the pointer, making it a vivid full-bleed interactive hero background or animated landing page section. Generated with Claude Fable 5.
 
 The shader is entirely cursor-reactive (its `uMouse` / `uMouseAttraction`
 uniforms pull the field toward the pointer), so the console leans into that: a
@@ -86,3 +83,7 @@ control flips the status to `FROZEN`, and no runtime errors fire — **9/9 pass*
 ## Stack
 
 React · TypeScript · Vite · Tailwind CSS · shadcn structure · OGL · Lucide
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

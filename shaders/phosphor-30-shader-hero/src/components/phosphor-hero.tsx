@@ -1,9 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import {
-	ArrowUpRight,
 	Activity,
+	ArrowUpRight,
 	Boxes,
 	CircleDot,
 	Cpu,
@@ -11,9 +10,9 @@ import {
 	Radio,
 	Waves,
 } from "lucide-react";
-
-import { PhosphorCanvas } from "@/components/ui/phosphor-canvas";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { PhosphorCanvas } from "@/components/ui/phosphor-canvas";
 import { formatUptime, useUptime } from "@/lib/use-clock";
 
 /* ------------------------------------------------------------------ */

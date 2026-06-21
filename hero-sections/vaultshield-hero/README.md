@@ -1,8 +1,6 @@
-# VaultShield Hero
+# VaultShield — Cinematic Password-Manager Hero Section (React + TypeScript + Framer Motion)
 
-Fullscreen hero section for a fictional password manager, **VaultShield** — built with React 18, TypeScript, Tailwind CSS, Framer Motion, and Lucide React icons.
-
-The originating prompt is preserved verbatim (uppercased) in [`prompt.md`](./prompt.md).
+A full-viewport hero section for a fictional password-manager app, **VaultShield**, featuring a looping background video, staggered Framer Motion entrance animations, inline Lucide icons baked into the heading, and a responsive mobile slide-in sheet. The dark-and-purple visual identity pairs Helvetica Now Display Bold headlines with Inter body text over a cinematic video backdrop, making it ideal as a landing page hero for security or productivity SaaS products. Generated with Claude Fable 5.
 
 ## Highlights
 
@@ -30,3 +28,7 @@ node scripts/verify.mjs http://localhost:4723
 ```
 
 The script drives headless Chromium through desktop (1440×900) and mobile (390×844) passes, asserting the video wiring, fonts, CSS variables, nav, heading/subtext/CTA computed styles, entrance animation completion, hover behavior, and the full mobile-sheet lifecycle.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

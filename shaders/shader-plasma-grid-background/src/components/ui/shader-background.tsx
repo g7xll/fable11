@@ -243,7 +243,7 @@ const ShaderBackground = () => {
 			window.removeEventListener("resize", resizeCanvas);
 			cancelAnimationFrame(frameId);
 		};
-	}, []);
+	}, [initShaderProgram]);
 
 	return (
 		<canvas

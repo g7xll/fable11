@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	Crosshair,
@@ -9,6 +8,7 @@ import {
 	Sparkles,
 	Waves,
 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PlasmaWeb } from "@/components/ui/cosmic-plasma-web";
 import { cn } from "@/lib/utils";
 

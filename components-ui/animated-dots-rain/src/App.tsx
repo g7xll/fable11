@@ -1,4 +1,3 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	Boxes,
 	Droplets,
@@ -11,16 +10,16 @@ import {
 	Sparkles,
 	Terminal,
 } from "lucide-react";
-
-import { AnimatedDots } from "@/components/ui/animated-dots";
-import { Fader } from "@/components/lab/Fader";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { CodeBlock } from "@/components/lab/CodeBlock";
+import { Fader } from "@/components/lab/Fader";
 import {
 	CornerBrackets,
 	Eyebrow,
 	Panel,
 	SectionTitle,
 } from "@/components/lab/Primitives";
+import { AnimatedDots } from "@/components/ui/animated-dots";
 import {
 	COMPONENT_SOURCE,
 	DEMO_SOURCE,

@@ -1,5 +1,5 @@
+import { Check, Copy, FolderTree, Terminal } from "lucide-react";
 import { useState } from "react";
-import { Terminal, FolderTree, Check, Copy } from "lucide-react";
 
 function CopyRow({ cmd }: { cmd: string }) {
 	const [copied, setCopied] = useState(false);

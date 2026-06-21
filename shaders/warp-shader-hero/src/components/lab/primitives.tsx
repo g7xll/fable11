@@ -1,6 +1,6 @@
-import { useState, type ReactNode } from "react";
 import { Check, Copy } from "lucide-react";
-import { cn, clamp } from "@/lib/utils";
+import { type ReactNode, useState } from "react";
+import { clamp, cn } from "@/lib/utils";
 
 /** A graphite instrument panel with an engraved title strip. */
 export function Panel({

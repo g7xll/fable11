@@ -1,12 +1,13 @@
-import { useEffect, useState, type RefObject } from "react";
 import {
+	type MotionValue,
 	motion,
+	useMotionValue,
+	useMotionValueEvent,
 	useScroll,
 	useTransform,
-	useMotionValueEvent,
-	useMotionValue,
-	type MotionValue,
 } from "framer-motion";
+import { type RefObject, useEffect, useState } from "react";
+import { useViewport, type Viewport } from "../hooks/useViewport";
 import {
 	CARD_SIZE,
 	CARD_SRCS,
@@ -17,7 +18,6 @@ import {
 	SLOTS,
 	smoothEase,
 } from "../lib/cards";
-import { useViewport, type Viewport } from "../hooks/useViewport";
 
 /* ------------------------------------------------------------------ *
  * Intro choreography timing (see prompt). All in seconds.
@@ -314,7 +314,7 @@ export default function ScrollCards({
 			window.removeEventListener("resize", measure);
 			window.removeEventListener("scroll", onScroll);
 		};
-	}, [containerRef, vp.w, vp.h, clamped]);
+	}, [containerRef, clamped]);
 
 	// Also honour framer-motion's own scrollYProgress whenever it does update
 	// (keeps the two perfectly in lock-step if/when the ref-based source fires).

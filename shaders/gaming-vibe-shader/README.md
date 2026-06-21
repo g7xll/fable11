@@ -1,39 +1,6 @@
-# Gaming Vibe Shader — NENO RIG
+# Gaming Vibe Shader — Neon Ring Field GLSL Background (React + Three.js + Tailwind CSS)
 
-The brief's **"Gaming vibe Shader"** (`neno-shader.tsx`) — a full-bleed neon
-ring field that warps, breathes and slowly rotates, with the GLSL's electric
-blue (`#1d8bff`) bleeding into magenta (`#ff2e88`) and a grain pass on top —
-integrated as a shadcn `@/components/ui` primitive and framed as a live
-**arcade-rig boot diagnostic**: the *NENO RIG // NR-7*.
-
-The shader from the prompt is integrated at
-`src/components/ui/neno-shader.tsx`, the canonical shadcn `@/components/ui`
-location. The brief's `ShaderAnimation` export is preserved verbatim (same
-vertex/fragment GLSL, animation loop, resize handling and cleanup), and a
-controllable `NenoShader` variant promotes the shader's four baked-in magic
-numbers — pulse rate, ring count, warp amplitude and colour blend — to live
-uniforms, then wraps it in a deliberate piece of chrome:
-
-- **Cabinet marquee lockup (signature element)** — `Gaming vibe Shader` set in
-  Orbitron, the accent line carrying the shader's own blue→magenta gradient with
-  a chromatic-aberration ghost, under a blinking `INSERT COIN · PRESS START`
-  eyebrow. The CRT shell adds scanlines, a bloom vignette and a corner-bracket
-  bezel.
-- **Overclock control deck** — four neon channel faders (Clock / Rings / Warp /
-  Sync) wired straight into the shader uniforms, plus three "RGB profiles"
-  (Cruise · Overclock · Glacier) that snap the whole rig to a preset.
-- **Live telemetry HUD** — the shader emits per-frame state (`time`, `fps`,
-  `pixelRatio`, `rings`, `warp`) through an `onFrame` callback; the deck reports
-  a session clock that advances with shader time, smoothed render FPS, the active
-  ring count, sample rate, and a **warp lock** readout.
-- **Pointer parallax + targeting reticle** — sweeping the screen nudges the
-  shader's ring center; an arcade reticle tracks the live warp coordinate.
-
-Palette and type are derived from the shader's own GLSL constants. Type pairing:
-Orbitron (display) · Chakra Petch (body/UI) · Space Mono (data). Icons from
-`lucide-react`. The boot reveal, the pulse and the blink all respect
-`prefers-reduced-motion` (the shader also freezes its clock when reduced motion
-is requested).
+A full-bleed neon ring shader component integrated as a shadcn `@/components/ui` primitive and framed as a live arcade boot diagnostic called the *NENO RIG // NR-7*. The GLSL fragment shader produces a warping, breathing, slowly-rotating ring field with electric blue (`#1d8bff`) bleeding into magenta (`#ff2e88`) and a grain pass on top — making it ideal as a gaming, esports, or music-visualiser hero background. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -95,3 +62,7 @@ npm run verify    # headless Playwright checks against the preview server
   with a gaming, music-visualiser, esports or launch-screen vibe; drop
   `<ShaderAnimation />` behind your own foreground content, or `<NenoShader … />`
   when you want the look to react to controls or the cursor.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

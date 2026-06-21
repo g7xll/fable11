@@ -1,7 +1,7 @@
 import { useCallback, useState } from "react";
-import HlsBackground from "./components/HlsBackground.jsx";
 import GlassNav from "./components/GlassNav.jsx";
 import Hero from "./components/Hero.jsx";
+import HlsBackground from "./components/HlsBackground.jsx";
 import Telemetry from "./components/Telemetry.jsx";
 
 export default function App() {

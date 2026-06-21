@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	Check,
@@ -19,19 +18,20 @@ import {
 	Wind,
 	Zap,
 } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	ConfigurablePulsingCircle,
 	ConfigurableShaderBackground,
 	Header,
 	HeroContent,
 	PULSE_DEFAULTS,
-	SHADER_DEFAULTS,
 	type PulseConfig,
+	SHADER_DEFAULTS,
 	type ShaderConfig,
 } from "@/components/ui/shaders-hero-lab";
-import { useTelemetry } from "@/lib/useTelemetry";
 import { useCanvasSignature } from "@/lib/useCanvasSignature";
-import { cn, clamp, luminance, normalizeHex } from "@/lib/utils";
+import { useTelemetry } from "@/lib/useTelemetry";
+import { clamp, cn, luminance, normalizeHex } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ *
  * Palette presets — each is a full ShaderConfig the hero accepts, plus a
@@ -1193,7 +1193,7 @@ function ClickProbe({
 		if (!el) return;
 		const handler = (e: MouseEvent) => {
 			const t = e.target as HTMLElement | null;
-			if (t && t.closest("button")) onHitRef.current();
+			if (t?.closest("button")) onHitRef.current();
 		};
 		el.addEventListener("click", handler);
 		return () => el.removeEventListener("click", handler);

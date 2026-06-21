@@ -1,7 +1,7 @@
-import { useState } from "react";
 import type { FormEvent } from "react";
-import { Icon } from "./icons";
+import { useState } from "react";
 import type { IconName } from "./icons";
+import { Icon } from "./icons";
 
 const MAX_CHARS = 3000;
 

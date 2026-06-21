@@ -1,10 +1,6 @@
-# Gradient Dots — `components/ui` integration
+# Gradient Dots — Hue-Cycling Hexagonal Dot-Grid Background (React + shadcn/ui + Framer Motion)
 
-A shadcn/ui integration of the `GradientDots` component: a hue-cycling
-hexagonal dot-grid animated background painted entirely with layered CSS
-`radial-gradient`s and looped with **framer-motion**. The verbatim component
-is dropped into `@/components/ui/gradient-dots.tsx` and wrapped in a polished
-"component lab" page that documents the integration end to end.
+A shadcn/ui integration of the `GradientDots` component: a hue-cycling hexagonal dot-grid animated background painted entirely with six layered CSS `radial-gradient`s and driven by Framer Motion — no canvas, no images, no assets. The verbatim component lives at `@/components/ui/gradient-dots.tsx` and is wrapped in a polished "component lab" page with a live hero, an interactive control deck (dot size, spacing, animation duration, color cycle, background color, named presets), a copyable usage snippet, and a full props API table. Perfect as a living background for dark-mode landing pages, splash screens, or hero sections. Generated with Claude Fable 5.
 
 ## What's inside
 
@@ -51,3 +47,7 @@ page, asserting: the page loads with no console errors / failed requests, the
 framer-motion is genuinely animating (`background-position` advances), the
 control-deck fader updates the live preview and usage snippet, every showcase
 section is present, and the props API documents all five props.
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

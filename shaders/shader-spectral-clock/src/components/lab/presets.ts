@@ -3,12 +3,13 @@
 // baked in (iterations / warpScale / spectralSpread / speed). Selecting a preset
 // also sets the displayed location + a representative mock temperature so the
 // component's TimeDisplay reads coherently against the chosen city.
-import tokyo from "@/../assets/images/tokyo.jpg";
-import newyork from "@/../assets/images/newyork.jpg";
-import london from "@/../assets/images/london.jpg";
+
 import dubai from "@/../assets/images/dubai.jpg";
-import singapore from "@/../assets/images/singapore.jpg";
+import london from "@/../assets/images/london.jpg";
+import newyork from "@/../assets/images/newyork.jpg";
 import reykjavik from "@/../assets/images/reykjavik.jpg";
+import singapore from "@/../assets/images/singapore.jpg";
+import tokyo from "@/../assets/images/tokyo.jpg";
 
 export type WorldPreset = {
 	id: string;

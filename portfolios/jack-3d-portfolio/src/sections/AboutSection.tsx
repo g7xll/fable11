@@ -1,6 +1,6 @@
-import FadeIn from "../components/FadeIn";
 import AnimatedText from "../components/AnimatedText";
 import ContactButton from "../components/ContactButton";
+import FadeIn from "../components/FadeIn";
 
 const ABOUT_TEXT =
 	"With more than five years of experience in design, i focus on branding, web design, and user experience, i truly enjoy working with businesses that aim to stand out and present their best image. Let’s build something incredible together!";

@@ -1,18 +1,18 @@
+import { Activity, Cpu, Radio } from "lucide-react";
 import {
+	type ReactNode,
 	useCallback,
 	useEffect,
 	useMemo,
 	useRef,
 	useState,
-	type ReactNode,
 } from "react";
-import { Activity, Cpu, Radio } from "lucide-react";
+import { FaderBank, type FaderSpec } from "@/components/flux-faders";
+import { SignalTelemetry } from "@/components/signal-telemetry";
 import {
 	ShaderCanvas,
 	type ShaderSample,
 } from "@/components/ui/interactive-shader";
-import { FaderBank, type FaderSpec } from "@/components/flux-faders";
-import { SignalTelemetry } from "@/components/signal-telemetry";
 
 /**
  * DemoOne — the integration the brief asks for. The verbatim

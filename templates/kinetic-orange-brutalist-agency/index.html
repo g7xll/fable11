@@ -289,7 +289,7 @@
   const row2Str = "FUTURE • CREATIVE • CODE • • ";
   function buildTrack(el, str, reps){
     const half = str.repeat(reps);
-    el.innerHTML = "<span>"+half+"</span><span>"+half+"</span>";
+    el.innerHTML = `<span>${half}</span><span>${half}</span>`;
   }
   buildTrack(document.getElementById("t1"), row1Str, 8);
   buildTrack(document.getElementById("t2"), row2Str, 8);

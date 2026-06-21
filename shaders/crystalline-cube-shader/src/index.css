@@ -203,6 +203,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.scanline,
 	.rise {
-		animation: none !important;
+		animation: none;
 	}
 }

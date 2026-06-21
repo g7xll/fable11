@@ -77,7 +77,7 @@ if (!canvasHandle) {
 		await new Promise((res, rej) => {
 			img.onload = res;
 			img.onerror = rej;
-			img.src = "data:image/png;base64," + b64;
+			img.src = `data:image/png;base64,${b64}`;
 		});
 		const off = document.createElement("canvas");
 		off.width = img.naturalWidth;
@@ -157,13 +157,13 @@ else if (!fade.animationName || fade.animationName === "none")
 	);
 
 // 6) No console / page errors (covers GLSL compile + uniform issues).
-if (pageErrors.length) fail("page errors:\n" + pageErrors.join("\n"));
+if (pageErrors.length) fail(`page errors:\n${pageErrors.join("\n")}`);
 // Filter benign noise (favicon, etc.); WebGL/THREE/shader errors must be empty.
 const badConsole = consoleErrors.filter((e) =>
 	/shader|three|glsl|webgl|uniform|compile|gl_|undefined/i.test(e),
 );
 if (badConsole.length)
-	fail("shader/webgl console errors:\n" + badConsole.join("\n"));
+	fail(`shader/webgl console errors:\n${badConsole.join("\n")}`);
 console.log(
 	`OK errors: ${pageErrors.length} pageerrors, ${consoleErrors.length} console errors (${badConsole.length} shader-related)`,
 );

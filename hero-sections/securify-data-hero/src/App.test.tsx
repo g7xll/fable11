@@ -16,7 +16,7 @@ describe("securify hero", () => {
 			"overflow-hidden",
 			"bg-black",
 		]) {
-			expect(section!.classList.contains(cls)).toBe(true);
+			expect(section?.classList.contains(cls)).toBe(true);
 		}
 	});
 
@@ -111,7 +111,7 @@ describe("securify hero", () => {
 			const numberEl = screen.getByText(number);
 			expect(numberEl.className).toContain("font-medium");
 			expect(numberEl.className).toContain("tracking-tight");
-			const block = numberEl.closest("div")!.parentElement!;
+			const block = numberEl.closest("div")?.parentElement!;
 			expect(within(block).getByText(sublabel).className).toContain(
 				"text-white/70",
 			);
@@ -141,7 +141,7 @@ describe("securify hero", () => {
 
 	it("uses only lowercase copy throughout", () => {
 		const { container } = render(<App />);
-		expect(container.textContent).toBe(container.textContent!.toLowerCase());
+		expect(container.textContent).toBe(container.textContent?.toLowerCase());
 	});
 
 	it("uses no purple or indigo classes anywhere", () => {

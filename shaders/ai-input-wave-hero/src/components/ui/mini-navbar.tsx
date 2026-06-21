@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 
 const AnimatedNavLink = ({
 	href,

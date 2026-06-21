@@ -1,9 +1,9 @@
-import { useCallback, useRef, useState } from "react";
 import { Waves } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { TideTelemetry } from "@/components/tide-telemetry";
 import FlowingWavesShader, {
 	type WaveMode,
 } from "@/components/ui/flowing-waves-shader";
-import { TideTelemetry } from "@/components/tide-telemetry";
 import {
 	AmplitudeDial,
 	ClarityToggle,

@@ -1,11 +1,11 @@
-import { useCallback, useMemo, useState } from "react";
 import { Github, Pause, Play, RotateCcw, Shuffle } from "lucide-react";
+import { useCallback, useMemo, useState } from "react";
 import { GradientMesh } from "@/components/ui/gradient-mesh";
-import { Slider } from "./components/Slider";
-import { TelemetryHud } from "./components/TelemetryHud";
+import { cn } from "@/lib/utils";
 import { DocsDock } from "./components/DocsDock";
 import { PALETTES, type Palette } from "./components/palettes";
-import { cn } from "@/lib/utils";
+import { Slider } from "./components/Slider";
+import { TelemetryHud } from "./components/TelemetryHud";
 
 /** The full live prop surface of the GradientMesh shader. */
 interface MeshState {
@@ -54,7 +54,7 @@ export default function App() {
 
 	// colors prop is a fresh array each render; memoize on the palette id so the
 	// component's effect (which lists `colors` as a dep) only re-runs on change.
-	const colors = useMemo(() => [...palette.colors], [palette.id]);
+	const colors = useMemo(() => [...palette.colors], [palette.colors]);
 
 	const randomize = () => {
 		const next = PALETTES[Math.floor(Math.random() * PALETTES.length)];

@@ -1,9 +1,6 @@
-# Celestial Ink Shader
+# Celestial Ink Shader — Interactive fBm Ink Field GLSL Background (React + Three.js + Tailwind)
 
-An interactive **Three.js / WebGL** "Celestial Ink" fragment shader — a rotating,
-six-octave fBm ink field in deep plum → magenta → warm gold that **ripples around
-the cursor** — framed as an **inkstone scrying instrument** you read rather than
-just look at.
+An interactive Three.js / WebGL fragment shader rendering a rotating six-octave fBm ink field in deep plum, magenta, and warm gold that ripples around the cursor — framed as an inkstone scrying instrument with live telemetry, cursor-tracking astrolabe reticle, and real-time shader controls. The GLSL is preserved verbatim as a shadcn `@/components/ui` drop-in, with additive props for freeze, ink speed, and ripple gain, making it an atmospheric cursor-reactive hero background or interactive shader showcase. Generated with Claude Fable 5.
 
 The shader component is the brief's drop-in, ported to TypeScript and dropped
 into the shadcn `components/ui` folder
@@ -71,3 +68,7 @@ npm run verify     # headless Chromium checks (canvas, ripple, freeze, fader)
 - **Ripple** — scales the pointer ripple strength.
 
 Everything is self-contained and runs offline — no remote assets.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

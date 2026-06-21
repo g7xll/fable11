@@ -1,19 +1,6 @@
-# CodeNest — Hero
+# CodeNest — Cinematic Dark Hero Section (React + TypeScript + Tailwind CSS + hls.js)
 
-High-end, dark-themed hero section for the fictional coding education platform
-**CodeNest**. Built with React 18, TypeScript, Tailwind CSS, hls.js (HLS
-background video with `enableWorker: false`), lucide-react icons, and the
-Inter / Plus Jakarta Sans / Instrument Serif type stack.
-
-Highlights:
-
-- Full-screen Mux HLS background video at 60% opacity under layered
-  left + bottom `#070b0a` gradients
-- 200×200px "liquid glass" card (luminosity blend, 4px backdrop blur,
-  1.4px XOR-masked gradient border frame) floated 50px above the headline
-- SVG ellipse glow (25px gaussian blur, cyan/dark-green) and 25/50/75%
-  vertical grid lines on desktop
-- Functional mobile hamburger menu with full-screen dark overlay
+High-end, dark-themed hero section for the fictional coding education platform **CodeNest**. A full-screen Mux HLS background video plays at 60% opacity under layered left and bottom `#070b0a` gradients, while a 200×200px liquid glass card (luminosity blend, 4px backdrop blur, 1.4px XOR-masked gradient border) floats 50px above a bold uppercase headline. Desktop grid lines and an SVG ellipse glow in cyan/dark-green complete the cinematic atmosphere. Includes a functional mobile hamburger menu with a full-screen dark overlay. Generated with Claude Fable 5.
 
 ## Run
 
@@ -25,3 +12,7 @@ npm test           # vitest unit/DOM tests
 npm run preview    # serve the production build
 npm run verify     # headless Playwright spec verification (needs preview server)
 ```
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

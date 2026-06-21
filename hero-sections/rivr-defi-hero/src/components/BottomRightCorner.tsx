@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
 import { ArrowUpRight, ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 
 export default function BottomRightCorner() {
 	return (

@@ -9,6 +9,7 @@ import {
 	Home,
 	Landmark,
 	ListChecks,
+	type LucideIcon,
 	MoreVertical,
 	Plus,
 	Route,
@@ -16,7 +17,6 @@ import {
 	Send,
 	Settings,
 	Wallet,
-	type LucideIcon,
 } from "lucide-react";
 
 interface NavItem {

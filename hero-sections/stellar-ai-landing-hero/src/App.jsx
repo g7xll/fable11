@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
 	BarChart3,
 	BookOpen,
@@ -9,6 +8,7 @@ import {
 	Star,
 	Users,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const TABS = [
 	{ id: "analyse", label: "Analyse", icon: BarChart3 },

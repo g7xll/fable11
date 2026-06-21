@@ -1,7 +1,7 @@
 import { Warp } from "@paper-design/shaders-react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { warpProps, type WarpConfig } from "@/lib/warp";
+import { type WarpConfig, warpProps } from "@/lib/warp";
 
 /**
  * WarpStage — the same `@paper-design/shaders-react` <Warp> element from the

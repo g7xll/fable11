@@ -12,4 +12,4 @@ const Customized = () => {
 	return <SmokeBackground smokeColor="#FF0000" />;
 };
 
-export { Default, Customized };
+export { Customized, Default };

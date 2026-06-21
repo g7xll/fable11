@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * Mist Background Component
@@ -120,7 +121,7 @@ const MistBackground: React.FC = () => {
 		const resLoc = gl.getUniformLocation(program, "u_resolution");
 		const mouseLoc = gl.getUniformLocation(program, "u_mouse");
 
-		let mouse = { x: 0, y: 0 };
+		const mouse = { x: 0, y: 0 };
 		const handleMouseMove = (e: MouseEvent) => {
 			mouse.x = e.clientX;
 			mouse.y = window.innerHeight - e.clientY;

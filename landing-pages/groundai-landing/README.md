@@ -1,21 +1,6 @@
-# GroundAI — Landing Page
+# GroundAI — Interior Design AI Landing Page (TanStack Start, React 19, TypeScript, Tailwind v4, Framer Motion)
 
-A single-page **TanStack Start v1** landing page for *GroundAI*, an interior-design AI
-product. Built with **React 19**, **TypeScript**, **Tailwind v4**, **framer-motion**,
-and **lucide-react**.
-
-The page is one scrolling document composed of four stacked sections, in order:
-
-1. **Hero** — full-bleed autoplaying video background, animated header that springs up
-   from the bottom, an expanding glass nav pill, staggered headline reveal, and a
-   word-by-word animated description.
-2. **TrustedBy** — an infinite CSS marquee of partner brand wordmarks with edge fades.
-3. **CraftExperiences** — three feature cards:
-   - a spring-driven **style carousel** that cycles design aesthetics through a
-     morphing glass pill,
-   - a **chat card** whose skeleton bubble morphs into a real customer message,
-   - an **adaptable list** with staggered, in-view reveals and a gradient mask.
-4. **Testimonials** — a staggered two-column testimonial block with a word-animated quote.
+A single-page landing page for GroundAI, an interior-design AI product, built with TanStack Start v1 on file-based routing, React 19, TypeScript, Tailwind CSS v4, framer-motion for all animation, and lucide-react for icons. The page is composed of four stacked sections: a full-bleed autoplaying video hero with spring-animated header, expanding glass nav pill, and word-by-word animated description; a CSS marquee of partner brand wordmarks; a CraftExperiences section with a spring-driven style carousel, a skeleton-morphing chat card, and a staggered adaptable list; and a two-column testimonials block with animated word reveals. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -52,3 +37,7 @@ npm run typecheck   # tsc --noEmit
 ```
 
 A walkthrough recording lives at [`demo.mp4`](./demo.mp4).
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

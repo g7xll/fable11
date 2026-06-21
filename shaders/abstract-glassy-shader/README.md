@@ -1,17 +1,6 @@
-# Abstract Glassy Shader — GLASSWORKS
+# Abstract Glassy Shader — WebGL2 Metaball Component Lab (React + TypeScript + Vite + Tailwind CSS)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `abstract-glassy-shader.tsx` component — a raw **WebGL2** metaball field (two
-signed-distance circles fused with a smooth union, lit by an exponential glow over a cosine
-spectrum) — and frames it as **GLASSWORKS**, a shadcn-style component lab.
-
-The live shader is a fixed, full-viewport background. Floating over it: a frosted-glass hero, a
-**live telemetry HUD** that reads the shader's own per-frame state (clock, FPS, the two blob
-centres, merge `k`, palette), and a **control deck** whose faders promote the shader's baked-in
-constants to live uniforms. Below the fold is the integration story — the shadcn drop-in path,
-copyable source tabs, a shader anatomy walkthrough, and a props/uniforms API.
-
-![demo](./demo.mp4)
+Abstract Glassy Shader — branded as GLASSWORKS — is a React + TypeScript + Vite + Tailwind CSS v4 project that integrates a raw WebGL2 metaball field: two signed-distance circles fused with a smooth union operator, lit by an exponential glow over a cosine-spectrum palette. The live shader runs as a fixed, full-viewport background; layered above it are a frosted-glass hero, a live telemetry HUD reading the shader's own per-frame state (clock, FPS, blob centres, merge `k`, palette), and a control deck whose faders promote baked-in constants to live uniforms. Below the fold is the integration story — the shadcn drop-in path, copyable source tabs, a shader anatomy walkthrough, and a props/uniforms API reference. The component has a CSS metaball fallback when WebGL2 is unavailable, cleans up its GL program on unmount without losing context, and respects `prefers-reduced-motion`. Generated with Claude Fable 5.
 
 ## Run
 
@@ -96,3 +85,7 @@ to `Frozen`, and that the mobile layout has no horizontal overflow. It adapts to
 # from the project folder, with Playwright resolvable:
 URL=http://localhost:5312/ node scripts/verify.mjs
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

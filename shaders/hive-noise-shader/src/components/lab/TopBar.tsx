@@ -1,4 +1,4 @@
-import { Hexagon, Github, BookOpen } from "lucide-react";
+import { BookOpen, Github, Hexagon } from "lucide-react";
 
 /**
  * Fixed top bar. Frosted, full-width, floating over the live shader. Holds the

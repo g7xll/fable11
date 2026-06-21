@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, memo } from "react";
+import type React from "react";
+import { memo, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // --- GLSL Shaders ---
@@ -191,7 +192,15 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 				}
 			};
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, []);
+		}, [
+			speed,
+			frequency,
+			color1,
+			mouseDistortion,
+			complexity,
+			color2,
+			amplitude,
+		]);
 
 		// Keep uniforms in sync if props change
 		useEffect(() => {

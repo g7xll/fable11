@@ -180,7 +180,7 @@ const nav=document.getElementById('nav');
 addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passive:true});
 
 /* EDITORIAL WORD REVEAL */
-(function(){
+(()=> {
   const el=document.getElementById('revealText');
   const accents=new Set(['editorial','discipline.','grid','page','itself.']);
   const words=el.textContent.trim().split(/\s+/);
@@ -200,7 +200,7 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 })();
 
 /* WORKFLOW steps */
-(function(){
+(()=> {
   const steps=[...document.querySelectorAll('.step')];
   const status=document.getElementById('flowStatus');
   const labels=['Step 01 / Capturing','Step 02 / Structuring','Step 03 / Shipping'];
@@ -212,7 +212,7 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>40),{passi
 })();
 
 /* USE CASE tabs */
-(function(){
+(()=> {
   const tabs=[...document.querySelectorAll('.tab')];
   const data=[
     {g:'P',t:'Product teams',x:'Translate ambiguous Figma files into structured, grid-true builds. Stakeholders review on the real surface — fewer mockups, fewer surprises.'},

@@ -658,14 +658,14 @@ button:focus-visible,
 @media (prefers-reduced-motion: reduce) {
 	.console > *,
 	.console.is-booted > * {
-		opacity: 1 !important;
-		transform: none !important;
-		transition: none !important;
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 	.hero-btn,
 	.hero-btn:hover,
 	.controls-reset:hover {
-		transform: none !important;
+		transform: none;
 	}
 	.cursor-ring--outer {
 		animation: none;

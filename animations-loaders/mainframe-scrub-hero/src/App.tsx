@@ -1,6 +1,6 @@
-import { Navbar } from "./components/Navbar";
 import { BackgroundVideo } from "./components/BackgroundVideo";
 import { HeroContent } from "./components/HeroContent";
+import { Navbar } from "./components/Navbar";
 
 export default function App() {
 	return (

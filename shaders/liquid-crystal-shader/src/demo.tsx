@@ -1,13 +1,14 @@
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import {
-	InteractiveShader,
-	ControlsPanel,
-	type ShaderParams,
-	type ShaderFrame,
-} from "@/components/ui/liquid-crystal";
-import { SpecimenReticle } from "@/components/specimen-reticle";
+import type React from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { InstrumentRail } from "@/components/instrument-rail";
 import { IntegrationDocket } from "@/components/integration-docket";
+import { SpecimenReticle } from "@/components/specimen-reticle";
+import {
+	ControlsPanel,
+	InteractiveShader,
+	type ShaderFrame,
+	type ShaderParams,
+} from "@/components/ui/liquid-crystal";
 import { readInterference } from "@/lib/birefringence";
 
 export default function DemoOne() {

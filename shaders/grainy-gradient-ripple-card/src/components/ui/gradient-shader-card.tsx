@@ -1,6 +1,6 @@
 "use client";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useRef, useMemo, useImperativeHandle, forwardRef } from "react";
+import { forwardRef, useImperativeHandle, useMemo, useRef } from "react";
 import * as THREE from "three";
 
 interface Ripple {

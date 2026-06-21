@@ -24,15 +24,15 @@
  * Zero assets, fully procedural; renders on a single full-screen R3F quad.
  */
 
-import { useEffect, useMemo, useRef } from "react";
+import { shaderMaterial } from "@react-three/drei";
 import {
 	Canvas,
-	useFrame,
-	useThree,
 	extend,
 	type MaterialNode,
+	useFrame,
+	useThree,
 } from "@react-three/fiber";
-import { shaderMaterial } from "@react-three/drei";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
 import { cn } from "@/lib/utils";
 

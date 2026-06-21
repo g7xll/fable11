@@ -201,7 +201,7 @@ body:not(.is-ready) .logo__arc-2a,
 body:not(.is-ready) .logo__arc-2b,
 body:not(.is-ready) .logo__text-group {
 	opacity: 0;
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 .logo__circle {
 	transform-origin: 14.3px 14.9px;
@@ -288,7 +288,7 @@ body:not(.is-ready) .logo__text-group {
 	animation: navPillReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 body:not(.is-ready) .nav-pill {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 @keyframes navPillReveal {
 	to {
@@ -309,7 +309,7 @@ body:not(.is-ready) .nav-pill {
 	animation: navLinkReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 body:not(.is-ready) .nav-pill__link {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 .nav-pill__link:hover {
 	color: #fff;
@@ -382,7 +382,7 @@ body:not(.is-ready) .nav-pill__link {
 }
 body:not(.is-ready) .btn--header,
 body:not(.is-ready) .btn--footer {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 @keyframes buttonBounce {
 	0% {
@@ -462,7 +462,7 @@ body.is-ready .hero__desc {
 	animation: charReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 body:not(.is-ready) .hero__char {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 @keyframes charReveal {
 	to {
@@ -503,7 +503,7 @@ body:not(.is-ready) .hero__char {
 }
 body:not(.is-ready) .side-nav__link-text,
 body:not(.is-ready) .side-nav__line {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 	opacity: 0;
 }
 .side-nav__link:nth-child(1) .side-nav__link-text {
@@ -589,7 +589,7 @@ body:not(.is-ready) .side-nav__line {
 		box-shadow 0.25s ease;
 }
 body:not(.is-ready) .about-card {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 .about-card:hover {
 	transform: translateY(-2px);
@@ -650,7 +650,7 @@ body:not(.is-ready) .about-card {
 	background: none;
 }
 body:not(.is-ready) .scroll-down {
-	animation-play-state: paused !important;
+	animation-play-state: paused;
 }
 .scroll-down__text {
 	font-family: "Inter Tight", sans-serif;

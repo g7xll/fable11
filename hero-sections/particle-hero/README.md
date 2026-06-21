@@ -1,15 +1,6 @@
-# Particle Hero
+# Particle Hero — Canvas Particle Animation Hero Component (React + Vite + Tailwind CSS v4 + shadcn/ui)
 
-An integration of the **`ParticleHero`** component — a full-bleed night-sky hero
-where a single `<canvas>` of upward-drifting embers floats behind three rotating
-conic-gradient spotlights and a pulsing, radial-reveal **"Gold Design"** headline.
-A glowing orb at the top toggles **gold mode**: one `.gold-mode` class inverts and
-over-brightens the entire scene, flipping the cold ice-blue night into warm gold.
-
-The component is dropped into a proper **shadcn/ui** project structure and wrapped
-in a small "observatory" showcase — a floating navbar, an anatomy grid, a live
-props playground that drives the hero and prints the matching JSX, and an install
-band — demonstrating the best place to use it: above the fold.
+A full-bleed night-sky hero section built around the `ParticleHero` shadcn/ui component: a Canvas 2D animation of upward-drifting ember particles floats behind three rotating conic-gradient spotlights and a pulsing, radial-reveal "Gold Design" headline. A glowing orb toggles gold mode, inverting and over-brightening the entire scene from cold ice-blue to warm gold. The component is integrated into a proper shadcn/ui project structure and demonstrated with a floating navbar, anatomy grid, live props playground, and install band — making it a ready-to-drop-in hero section for design systems and SaaS landing pages. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -99,3 +90,7 @@ a Next-only compiler feature, so in this Vite app the equivalent is a co-located
 The orb is a real `<button>` with `aria-pressed` and a label; focus styling is
 visible throughout, and `prefers-reduced-motion` holds the scene in its settled,
 fully-visible state instead of running the load/spotlight/sweep loops.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

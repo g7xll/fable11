@@ -1,6 +1,6 @@
 import { ChevronRight } from "lucide-react";
-import Navbar from "./components/Navbar";
 import DashboardPreview from "./components/DashboardPreview";
+import Navbar from "./components/Navbar";
 
 const VIDEO_SRC =
 	"/assets/hf_20260424_064411_9e9d7f84-9277-41f4-ab10-59172d89e6be.mp4";

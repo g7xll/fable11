@@ -1,6 +1,6 @@
-# VHS Hero Section — Noise // Distortion
+# VHS Noise Distortion Hero — Corrupted VHS-Grade Hero Section (React Three Fiber + GSAP + Tailwind CSS)
 
-A faithful shadcn/Tailwind/TypeScript integration of the prompt's `vhs-hero-section.tsx` component: a corrupted, VHS-grade hero built on **React Three Fiber**. A `planeGeometry(25×25, 100×100)` carries a custom GLSL **fbm domain-warp** shader (six-octave fractal noise, edge-growing chromatic aberration, a sweeping horizontal tracking-error band, per-frame glitch sparks, scanlines, film grain and a vignette), with **800 chaotic noise particles** (red / white / cyan) drifting and repelling away from the cursor on top. A `GlitchText` primitive scrambles the headline characters and pulses an RGB text-shadow via **GSAP**, while the whole hero runs an aggressive GSAP entrance timeline plus a looping hue-shift/jitter glitch and a mouse-parallax tilt.
+A full-screen VHS-grade hero section with a procedural GLSL fbm domain-warp background shader, 800 chaotic noise particles, glitch text animation, and a GSAP entrance timeline — built as a shadcn/Tailwind/TypeScript component for React. The background uses a `planeGeometry(25×25, 100×100)` carrying a six-octave fractal noise shader with edge-growing chromatic aberration, a sweeping horizontal tracking-error band, per-frame glitch sparks, scanlines, film grain, and a vignette; on top, red/white/cyan noise particles drift and repel from the cursor. A `GlitchText` primitive scrambles headline characters and pulses an RGB text-shadow via GSAP, while a mouse-parallax tilt and looping hue-shift glitch round out the cinematic effect. Generated with Claude Fable 5.
 
 ## What's inside
 
@@ -30,3 +30,7 @@ npm run build    # tsc -b && vite build
 ```
 
 Stack: React, TypeScript, Vite, Tailwind CSS, shadcn/ui, Three.js, React Three Fiber, GSAP.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

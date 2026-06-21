@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
 
 interface Testimonial {

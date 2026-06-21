@@ -1,18 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowUpRight } from "lucide-react";
-
-import { Header } from "@/components/Header";
+import clockLamp from "@/assets/clock-lamp.png";
+import doctorComputer from "@/assets/doctor-computer.png";
+import pills from "@/assets/pills.png";
+import waitlist from "@/assets/waitlist.png";
 import {
 	AnimatedHeading,
 	AnimatedText,
 	MaskedImage,
 } from "@/components/AnimatedHeading";
+import { Header } from "@/components/Header";
 import { TeamCarousel } from "@/components/TeamCarousel";
-
-import doctorComputer from "@/assets/doctor-computer.png";
-import clockLamp from "@/assets/clock-lamp.png";
-import pills from "@/assets/pills.png";
-import waitlist from "@/assets/waitlist.png";
 
 const TT_HOVES = '"TT Hoves", "Helvetica Neue", Helvetica, Arial, sans-serif';
 

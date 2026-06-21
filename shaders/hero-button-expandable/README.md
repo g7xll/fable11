@@ -1,15 +1,6 @@
-# Hero Button Expandable — Nexus
+# Hero Button Expandable — Nexus — GodRays Hero with Expanding Modal (React + @paper-design/shaders-react + Framer Motion)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `hero-button-expendable.tsx` component: a **GodRays**-lit marketing hero whose CTA
-performs a **framer-motion shared-layout morph** (`layoutId="cta-card"`) — the pill button
-expands into a full-screen **MeshGradient** modal carrying a "Get a Demo" form with an
-animated `idle → submitting → success` flow.
-
-Both shaders come from [`@paper-design/shaders-react`](https://www.npmjs.com/package/@paper-design/shaders-react):
-the `GodRays` background behind the headline and the `MeshGradient` field inside the modal.
-
-![demo](./demo.mp4)
+A React + TypeScript + Vite + Tailwind CSS v4 hero section integrating a `GodRays`-lit marketing hero whose CTA performs a Framer Motion shared-layout morph — the pill button expands into a full-screen `MeshGradient` modal with an animated "Get a Demo" form featuring `idle → submitting → success` states. Both shaders come from `@paper-design/shaders-react`, making it a compelling above-the-fold landing page component with WebGL backgrounds and smooth layout transitions. Generated with Claude Fable 5.
 
 ## Run
 
@@ -94,3 +85,7 @@ against the production `vite preview` build) that drives the full interaction an
 5. **"Return to Homepage"** closes the modal, restores the CTA, and unlocks scroll;
 
 with **no console or page errors** anywhere in the flow. All **17 checks pass**.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,6 +1,6 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useRef } from "react";
 
 const SERVICES = [
 	{

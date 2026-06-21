@@ -186,7 +186,7 @@
 	.grad-text,
 	.animate-rise,
 	.scan-sweep {
-		animation: none !important;
+		animation: none;
 	}
 	.grad-text {
 		color: var(--color-volt);

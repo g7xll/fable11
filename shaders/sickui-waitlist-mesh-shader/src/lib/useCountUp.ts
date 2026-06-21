@@ -12,7 +12,7 @@ export function useCountUp(to: number, duration = 1600, from = 0): number {
 	const start = useRef(0);
 
 	useEffect(() => {
-		const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+		const easeOut = (t: number) => 1 - (1 - t) ** 3;
 		const tick = (now: number) => {
 			if (!start.current) start.current = now;
 			const t = Math.min(1, (now - start.current) / duration);

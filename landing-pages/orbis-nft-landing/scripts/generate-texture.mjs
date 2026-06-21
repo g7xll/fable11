@@ -3,10 +3,11 @@
  * star specks, used by the full-screen overlay (mix-blend-mode: lighten).
  * Pure Node implementation: hand-assembled PNG chunks + zlib deflate.
  */
-import { deflateSync } from "node:zlib";
-import { writeFileSync, mkdirSync } from "node:fs";
+
+import { mkdirSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { deflateSync } from "node:zlib";
 
 const SIZE = 1024;
 

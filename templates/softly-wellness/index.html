@@ -433,13 +433,13 @@
         document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
 
         // FAQ Toggle
-        function toggleFaq(button) {
+        function _toggleFaq(button) {
             const content = button.nextElementSibling;
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
             const icon = button.querySelector('svg, i[data-icon]');
             button.setAttribute('aria-expanded', !isExpanded);
             if (!isExpanded) {
-                content.style.height = content.scrollHeight + 'px';
+                content.style.height = `${content.scrollHeight}px`;
                 if (icon) icon.style.transform = 'rotate(45deg)';
             } else {
                 content.style.height = '0px';

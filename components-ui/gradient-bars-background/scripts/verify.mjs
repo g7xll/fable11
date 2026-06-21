@@ -12,9 +12,10 @@
  *
  * Usage: node scripts/verify.mjs
  */
-import { chromium } from "playwright";
+
 import { spawn } from "node:child_process";
 import { setTimeout as wait } from "node:timers/promises";
+import { chromium } from "playwright";
 
 const PORT = 5251;
 const URL = `http://localhost:${PORT}/`;

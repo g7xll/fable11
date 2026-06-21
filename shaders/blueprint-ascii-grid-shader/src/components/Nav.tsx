@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Github, Grid2x2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 

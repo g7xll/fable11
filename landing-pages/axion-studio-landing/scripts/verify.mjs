@@ -4,7 +4,7 @@ const BASE = "http://localhost:4761/";
 const results = [];
 const check = (name, ok, extra = "") =>
 	results.push(
-		`${ok ? "PASS" : "FAIL"}  ${name}${extra ? "  -> " + extra : ""}`,
+		`${ok ? "PASS" : "FAIL"}  ${name}${extra ? `  -> ${extra}` : ""}`,
 	);
 
 const browser = await chromium.launch();
@@ -13,7 +13,7 @@ const errors = [];
 // ---------- Desktop ----------
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
-page.on("pageerror", (e) => errors.push("PAGEERROR: " + e.message));
+page.on("pageerror", (e) => errors.push(`PAGEERROR: ${e.message}`));
 await page.goto(BASE, { waitUntil: "networkidle" });
 await page.waitForTimeout(2500);
 
@@ -240,9 +240,9 @@ await page.screenshot({ path: "/tmp/axion-desktop.png", fullPage: true });
 const mob = await browser.newPage({ viewport: { width: 390, height: 844 } });
 mob.on(
 	"console",
-	(m) => m.type() === "error" && errors.push("[mobile] " + m.text()),
+	(m) => m.type() === "error" && errors.push(`[mobile] ${m.text()}`),
 );
-mob.on("pageerror", (e) => errors.push("[mobile] PAGEERROR: " + e.message));
+mob.on("pageerror", (e) => errors.push(`[mobile] PAGEERROR: ${e.message}`));
 await mob.goto(BASE, { waitUntil: "networkidle" });
 await mob.waitForTimeout(1500);
 

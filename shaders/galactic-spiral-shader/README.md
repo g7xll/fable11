@@ -1,34 +1,6 @@
-# Galactic Spiral Shader
+# Galactic Spiral Shader — Neon Rainbow Spiral GLSL Hero (React + TypeScript + Three.js + Tailwind CSS v4)
 
-A 7-colour **neon rainbow spiral** GLSL fragment shader — five interleaved arms
-wound around a bright core in polar coordinates — rendered full-viewport with
-Three.js, then framed as a **deep-field survey transmission**.
-
-The shader component from the prompt is integrated essentially verbatim (shader
-code, animation loop, resize handling, and cleanup unchanged) at
-`src/components/ui/spiral-shader.tsx`, the canonical shadcn `@/components/ui`
-location. The only edit is dropping the unused default `React` import so the
-strict build (`noUnusedLocals`) passes — the JSX automatic runtime needs no
-`React` in scope. It is wrapped in a deliberate piece of chrome:
-
-- **Galactic Spiral hero lockup** — the brief's `Galactic Spiral` title set over
-  a soft radial legibility scrim, with an eyebrow (`Transmission 04 — Neon
-  Rainbow Spiral`) and a Fraunces italic strapline. The brief's exact stage
-  (`relative flex h-screen w-full … bg-black`) and title styling
-  (`text-5xl md:text-7xl font-semibold tracking-tighter`) are preserved; the
-  heading is promoted to a semantic `<h1>`.
-- **Registration plate** — an inset hairline frame with four corner crops and a
-  vignette + film-grain grade that pulls focus to the spiral core.
-- **Live telemetry ledger (signature element)** — a bottom bar reporting a
-  mission clock, the *measured* render FPS, and slowly drifting right-ascension /
-  declination coordinates. These are driven by the demo's own
-  `requestAnimationFrame` loop so the shader component stays untouched; the
-  ledger collapses to a compact mobile strip below `md`.
-
-Palette and type are derived from the shader's own GLSL neon constants over a
-near-black void (`#05010a`). Type pairing: Inter (display) · Space Mono (data) ·
-Fraunces (strapline). Icons from `lucide-react`. The entrance reveal and the
-ambient pulse both respect `prefers-reduced-motion`.
+A 7-colour neon rainbow spiral GLSL fragment shader — five interleaved arms wound around a bright core in polar coordinates — rendered full-viewport with Three.js. Framed as a deep-field survey transmission: the "Galactic Spiral" title set over a soft radial legibility scrim, an eyebrow label, a Fraunces italic strapline, a hairline registration frame with corner crops, film-grain grade, and a live telemetry ledger (mission clock, measured FPS, drifting right-ascension / declination coordinates). Fully offline-ready with vendored fonts. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -82,3 +54,7 @@ npm run verify    # headless Playwright checks against the preview server
 - **Where to use it** — as an immersive full-bleed hero / landing backdrop or a
   splash/loading scene where a living, GPU-cheap background is wanted behind a
   short headline.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

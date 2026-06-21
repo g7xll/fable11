@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import HeroShader from "@/components/HeroShader";
 import HeroNavbar from "@/components/HeroNavbar";
+import HeroShader from "@/components/HeroShader";
 import PromptInput from "@/components/PromptInput";
 import SectionTrustedBy from "@/components/SectionTrustedBy";
 

@@ -542,11 +542,11 @@ body {
 	color: var(--ink-faint);
 }
 .tpipe {
-	font-size: 0.74rem !important;
-	font-weight: 400 !important;
+	font-size: 0.74rem;
+	font-weight: 400;
 	letter-spacing: 0.02em;
 	text-transform: none;
-	color: var(--ink-soft) !important;
+	color: var(--ink-soft);
 }
 
 /* ── Focus visibility ──────────────────────────────────────────────────── */
@@ -606,9 +606,9 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.console > *,
 	.console.is-booted > * {
-		opacity: 1 !important;
-		transform: none !important;
-		transition: none !important;
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 	.rec-dot {
 		animation: none;

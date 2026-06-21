@@ -1,10 +1,10 @@
 "use client";
 
-import type React from "react";
 import { motion } from "framer-motion";
-import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import type React from "react";
 import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface TargetingUIProps {
 	className?: string;

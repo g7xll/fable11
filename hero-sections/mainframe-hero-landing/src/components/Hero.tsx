@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTypewriter } from "../hooks/useTypewriter";
 
 const VIDEO_URL =
@@ -40,7 +40,7 @@ export function Hero() {
 		video.addEventListener("seeked", handleSeeked);
 
 		const handleMouseMove = (e: MouseEvent) => {
-			if (!video || !video.duration) return;
+			if (!video?.duration) return;
 
 			const currentX = e.clientX;
 			if (prevXRef.current === null) {

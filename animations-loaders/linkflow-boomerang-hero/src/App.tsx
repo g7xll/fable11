@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { LogIn, UserPlus, Play, Sparkles, Menu, X } from "lucide-react";
+import { LogIn, Menu, Play, Sparkles, UserPlus, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import BoomerangVideoBg from "./BoomerangVideoBg";
 
 const BG_VIDEO =

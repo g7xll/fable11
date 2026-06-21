@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 
 const VIDEO_URL =
 	"/assets/hf_20260210_031346_d87182fb-b0af-4273-84d1-c6fd17d6bf0f.mp4";

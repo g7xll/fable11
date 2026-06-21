@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
 import { Clock, Menu, X } from "lucide-react";
-import RollButton from "./RollButton";
+import { useEffect, useState } from "react";
 import useLondonTime from "../hooks/useLondonTime";
+import RollButton from "./RollButton";
 
 const NAV_LINKS = ["Projects", "Studio", "Journal", "Connect"];
 const EASE = "ease-[cubic-bezier(0.25,0.1,0.25,1)]";

@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Film, ImageIcon, MousePointer2 } from "lucide-react";
-import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
+import { useEffect, useState } from "react";
 import MediaContent, { sampleMediaContent } from "@/components/media-content";
+import ScrollExpandMedia from "@/components/ui/scroll-expansion-hero";
 
 type MediaType = "video" | "image";
 
@@ -13,7 +13,7 @@ const App = () => {
 	useEffect(() => {
 		window.scrollTo(0, 0);
 		window.dispatchEvent(new Event("resetSection"));
-	}, [mediaType]);
+	}, []);
 
 	return (
 		<main className="relative min-h-[100dvh] bg-ink text-white selection:bg-iris/40">

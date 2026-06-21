@@ -270,7 +270,7 @@
   <script>
     var form = document.getElementById('capture');
     var btn = document.getElementById('submit');
-    form.addEventListener('submit', function(e){
+    form.addEventListener('submit', (e)=> {
       e.preventDefault();
       var email = document.getElementById('email');
       if(!email.value){ return; }

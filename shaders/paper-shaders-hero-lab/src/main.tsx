@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import App from "./App.tsx";
-import interVar from "../assets/fonts/Inter-Variable.woff2?url";
-import instrumentRegular from "../assets/fonts/InstrumentSerif-Regular.woff2?url";
 import instrumentItalic from "../assets/fonts/InstrumentSerif-Italic.woff2?url";
+import instrumentRegular from "../assets/fonts/InstrumentSerif-Regular.woff2?url";
+import interVar from "../assets/fonts/Inter-Variable.woff2?url";
+import App from "./App.tsx";
 
 /*
  * Register the vendored faces via the JS FontFace API instead of CSS @font-face.

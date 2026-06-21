@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import type Hls from "hls.js";
+import { useEffect, useRef } from "react";
 
 /**
  * Attaches an HLS stream to a <video> element.

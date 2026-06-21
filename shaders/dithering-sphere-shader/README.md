@@ -1,18 +1,6 @@
-# dithering-sphere-shader
+# Dithering Sphere Shader — WebGL2 Dithering Lab with Bayer & Stochastic Modes (React, TypeScript, Vite, Tailwind CSS)
 
-**DITHER LAB** — a showcase for `dithering-shader.tsx`, the drop-in WebGL2 dithering
-component from the integration brief (`designali-in/dithering-shader`), set up inside a
-real shadcn-structured Vite + TypeScript + Tailwind app.
-
-One fragment shader paints seven procedural fields — sphere, ripple, swirl, warp, dots,
-wave, simplex — and crushes each to two colours through **ordered Bayer** (2×2 / 4×4 /
-8×8) or **stochastic** dithering. The page treats the component like a lab instrument: a
-full-bleed live hero with an FPS/frame telemetry HUD, a control deck that promotes every
-prop to a knob, and a signature **Threshold Matrix** panel that draws the exact Bayer
-matrices the GLSL samples and live-dithers a tonal ramp with whatever you've selected.
-
-The brief's home settings — `shape="sphere"`, `type="random"`, `#f43f5e` on `#000000`,
-`pxSize={2}`, `speed={1.5}` — are the lab's default state.
+An interactive WebGL2 dithering component lab that renders seven procedural shader fields — sphere, ripple, swirl, warp, dots, wave, and simplex — and quantises each to two colours through ordered Bayer (2×2, 4×4, 8×8) or stochastic dithering, with a live FPS telemetry HUD, a full-bleed hero, and a Threshold Matrix panel that visualises the exact Bayer matrices sampled by the GLSL fragment shader. Configured by default as `shape="sphere"`, `type="random"`, rose-on-black, giving a retro 1-bit / newsprint / CRT texture ideal for hero backgrounds or loading states. Generated with Claude Fable 5.
 
 ## What's in `components/ui`
 
@@ -63,3 +51,7 @@ and the control deck mutates the shared params live.
 React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui structure (`@/components/ui`,
 `@/lib/utils`), Lucide icons, raw WebGL2. Fonts are vendored locally under `public/fonts` —
 the project runs fully offline.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,7 +1,7 @@
-import VideoBackground from "./components/VideoBackground";
-import Navbar from "./components/Navbar";
 import HeroHeader from "./components/HeroHeader";
+import Navbar from "./components/Navbar";
 import SearchBox from "./components/SearchBox";
+import VideoBackground from "./components/VideoBackground";
 
 export default function App() {
 	return (

@@ -121,7 +121,7 @@ body {
 	.animate-rise,
 	.animate-pulse-dot,
 	.animate-ring-spin {
-		animation: none !important;
+		animation: none;
 	}
 	.animate-rise {
 		opacity: 1;

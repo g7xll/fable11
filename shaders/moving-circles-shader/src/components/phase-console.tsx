@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	Activity,
 	ChevronRight,
@@ -9,9 +8,10 @@ import {
 	Play,
 	Repeat,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
-import type { ShaderTelemetry } from "@/components/ui/moving-circles-shader";
+import { useState } from "react";
 import { CodeBlock } from "@/components/code-block";
+import type { ShaderTelemetry } from "@/components/ui/moving-circles-shader";
+import { cn } from "@/lib/utils";
 
 const AXES = ["X", "Y", "Z"] as const;
 

@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
-import { X, Check, ArrowRight, BarChart3, Globe2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import { GodRays, MeshGradient } from "@paper-design/shaders-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ArrowRight, BarChart3, Check, Globe2, X } from "lucide-react";
+import { type FormEvent, useEffect, useState } from "react";
 
 export default function Hero() {
 	const [isExpanded, setIsExpanded] = useState(false);

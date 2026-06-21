@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { motion, type Variants } from "motion/react";
 import {
 	Chrome,
 	Circle,
@@ -8,6 +6,8 @@ import {
 	Github,
 	type LucideIcon,
 } from "lucide-react";
+import { motion, type Variants } from "motion/react";
+import { useState } from "react";
 
 const VIDEO_SRC =
 	"/assets/hf_20260506_081238_406ed0e3-5d83-436e-a512-0bbff7ec5b95.mp4";
@@ -38,7 +38,6 @@ export default function App() {
 					muted
 					loop
 					playsInline
-					aria-hidden="true"
 				>
 					<source src={VIDEO_SRC} type="video/mp4" />
 				</video>

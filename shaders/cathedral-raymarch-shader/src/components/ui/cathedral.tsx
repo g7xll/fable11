@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 /* ========= Ваш фрагментный шейдер (Shadertoy mainImage) ========= */
 const SHADER_SRC = `#version 300 es

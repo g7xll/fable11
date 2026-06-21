@@ -1,15 +1,15 @@
 import { useCallback, useRef, useState } from "react";
+import { ControlDeck } from "@/components/lab/ControlDeck";
+import { HeroPanel } from "@/components/lab/HeroPanel";
+import { Docs } from "@/components/lab/sections";
+import { TelemetryHud } from "@/components/lab/TelemetryHud";
+import { TopBar } from "@/components/lab/TopBar";
 import {
 	DEFAULT_SETTINGS,
 	ShaderComponent,
 	type ShaderSettings,
 	type ShaderStats,
 } from "@/components/ui/abstract-glassy-shader";
-import { TopBar } from "@/components/lab/TopBar";
-import { HeroPanel } from "@/components/lab/HeroPanel";
-import { TelemetryHud } from "@/components/lab/TelemetryHud";
-import { ControlDeck } from "@/components/lab/ControlDeck";
-import { Docs } from "@/components/lab/sections";
 
 const prefersReducedMotion = () =>
 	typeof window !== "undefined" &&

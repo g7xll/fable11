@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
 import { Menu } from "lucide-react";
-import LogoMark from "./LogoMark";
+import { motion } from "motion/react";
 import AppleButton from "./AppleButton";
+import LogoMark from "./LogoMark";
 
 const LINKS = ["Solutions", "Pricing", "Blog", "Documentation", "Careers"];
 

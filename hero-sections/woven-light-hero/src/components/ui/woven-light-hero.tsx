@@ -1,7 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // --- Main Hero Component ---
@@ -135,9 +135,9 @@ const WovenCanvas = () => {
 		const mouse = new THREE.Vector2(0, 0);
 		const clock = new THREE.Clock();
 
-		const isDarkMode =
-			window.matchMedia &&
-			window.matchMedia("(prefers-color-scheme: dark)").matches;
+		const isDarkMode = window.matchMedia?.(
+			"(prefers-color-scheme: dark)",
+		).matches;
 
 		// --- Woven Silk ---
 		const particleCount = 50000;

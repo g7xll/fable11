@@ -1,11 +1,10 @@
-import * as React from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { MaskedImage } from "@/components/AnimatedHeading";
-
+import { AnimatePresence, motion } from "motion/react";
+import * as React from "react";
 import blurDoctor from "@/assets/blur-doctor.png";
 import happyDoctor from "@/assets/happy-doctor.png";
 import youngDoctor from "@/assets/young-doctor.png";
+import { MaskedImage } from "@/components/AnimatedHeading";
 
 const TT_HOVES = '"TT Hoves", "Helvetica Neue", Helvetica, Arial, sans-serif';
 

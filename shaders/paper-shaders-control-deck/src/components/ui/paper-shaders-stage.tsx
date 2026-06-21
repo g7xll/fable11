@@ -1,6 +1,6 @@
 "use client";
 
-import { MeshGradient, DotOrbit } from "@paper-design/shaders-react";
+import { DotOrbit, MeshGradient } from "@paper-design/shaders-react";
 
 /**
  * PaperShadersStage — renders the @paper-design/shaders-react channels.

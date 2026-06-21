@@ -10,11 +10,11 @@
 //   NODE_PATH=../../scripts/record-demos/node_modules \
 //   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
 //     node scripts/verify.mjs
-import { existsSync, mkdirSync } from "fs";
-import { inflateSync } from "zlib";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import { createRequire } from "module";
+import { existsSync, mkdirSync } from "node:fs";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { inflateSync } from "node:zlib";
 
 // Playwright is a dev-only dependency for this check, deliberately kept out of
 // the project's package.json so `npm install` never triggers a browser

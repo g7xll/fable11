@@ -506,7 +506,7 @@ a {
 @media (max-width: 820px) {
 	.news,
 	.foot-links {
-		grid-column: span 12 !important;
+		grid-column: span 12;
 	}
 }
 .news h2 {

@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import type { CSSProperties } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import type { CSSProperties } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 const IMAGES = [
 	{

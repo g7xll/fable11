@@ -1,14 +1,6 @@
-# Radial Aperture Shader — APERTURE
+# Radial Aperture Shader — APERTURE — WebGL2 Radial Bloom Instrument (React + Vite + Tailwind CSS v4 + WebGL2)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-brief's `raidal-2.tsx` component — a raw **WebGL2 radial-bloom** shader (nine accumulating blades
-gated by an angular `smoothstep` and tone-mapped with `tanh`, all on a single full-screen triangle)
-— as a shadcn `components/ui` piece, and frames it as an optical instrument called **APERTURE**.
-
-The page is a live shader hero with a real-time telemetry HUD, a **control deck** that promotes the
-shader's baked-in constants (`9` blades, `0.03` gain, the hue phase) to live uniforms, a GLSL
-anatomy walkthrough, a "field captures" gallery rendered from the shader itself, a full integration
-story with copyable source, and the **verbatim drop-in** shown both contained and fullscreen.
+A full-viewport WebGL2 radial-bloom hero framed as an optical instrument called APERTURE. The GLSL shader renders nine accumulating blades gated by an angular `smoothstep`, tone-mapped with `tanh`, on a single full-screen triangle — no Three.js, no textures, purely procedural. The page surrounds the live shader with a real-time telemetry HUD, a control deck that promotes the shader's baked constants (`9` blades, `0.03` gain, hue phase) to live uniforms, a GLSL anatomy walkthrough, a "field captures" gallery rendered headless from the shader itself, and a full integration story with copyable source. Integrated as a shadcn `@/components/ui` drop-in. Generated with Claude Fable 5.
 
 ![demo](./demo.mp4)
 
@@ -114,3 +106,7 @@ URL=http://localhost:5312/ CHROME_PATH=/path/to/chrome node scripts/verify.mjs
 
 React 18 · TypeScript (strict) · Vite 6 · Tailwind CSS v4 · raw WebGL2 (no three.js) · lucide-react ·
 Space Grotesk + JetBrains Mono (vendored).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

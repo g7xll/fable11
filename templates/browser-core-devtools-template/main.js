@@ -1,22 +1,20 @@
 /* Browser-Core DevTools — interactions */
-(function () {
-	"use strict";
-
+(() => {
 	/* ---- slide-up reveals (0.4s) staggered via IntersectionObserver ---- */
 	var reveals = Array.prototype.slice.call(
 		document.querySelectorAll(".reveal"),
 	);
 	if ("IntersectionObserver" in window) {
 		var io = new IntersectionObserver(
-			function (entries) {
-				entries.forEach(function (e) {
+			(entries) => {
+				entries.forEach((e) => {
 					if (e.isIntersecting) {
 						var el = e.target;
 						var sibs = Array.prototype.slice.call(
 							el.parentNode.querySelectorAll(".reveal"),
 						);
 						var idx = Math.max(0, sibs.indexOf(el));
-						el.style.animationDelay = idx * 60 + "ms";
+						el.style.animationDelay = `${idx * 60}ms`;
 						el.classList.add("in");
 						io.unobserve(el);
 					}
@@ -24,11 +22,11 @@
 			},
 			{ threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
 		);
-		reveals.forEach(function (el) {
+		reveals.forEach((el) => {
 			io.observe(el);
 		});
 	} else {
-		reveals.forEach(function (el) {
+		reveals.forEach((el) => {
 			el.classList.add("in");
 		});
 	}
@@ -38,9 +36,7 @@
 		document.querySelectorAll(".demo-body .card"),
 	);
 	var tip = document.getElementById("tip");
-	var reduce =
-		window.matchMedia &&
-		window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+	var reduce = window.matchMedia?.("(prefers-reduced-motion:reduce)").matches;
 
 	var props = [
 		{ sel: "div.card", w: "320px", r: "8px", bg: "#06b6d4" },
@@ -67,12 +63,12 @@
 		// anchor the tip near the active card
 		var card = cards[i];
 		if (card) {
-			tip.style.top = card.offsetTop - 6 + "px";
+			tip.style.top = `${card.offsetTop - 6}px`;
 		}
 	}
 
 	function setActive(i) {
-		cards.forEach(function (c, k) {
+		cards.forEach((c, k) => {
 			c.classList.toggle("is-active", k === i);
 		});
 		paintTip(i);
@@ -86,7 +82,7 @@
 			var seq = [0, 1, 2];
 			var step = 0;
 			setActive(0);
-			setInterval(function () {
+			setInterval(() => {
 				step = (step + 1) % seq.length;
 				setActive(seq[step]);
 			}, 3000);
@@ -96,11 +92,11 @@
 	/* ---- property inspector: toggle buttons ---- */
 	Array.prototype.slice
 		.call(document.querySelectorAll(".toggle-group"))
-		.forEach(function (g) {
-			g.addEventListener("click", function (e) {
+		.forEach((g) => {
+			g.addEventListener("click", (e) => {
 				var t = e.target.closest(".tg");
 				if (!t) return;
-				g.querySelectorAll(".tg").forEach(function (b) {
+				g.querySelectorAll(".tg").forEach((b) => {
 					b.classList.remove("on");
 				});
 				t.classList.add("on");
@@ -110,9 +106,9 @@
 	/* ---- stage tools: select / move / measure ---- */
 	Array.prototype.slice
 		.call(document.querySelectorAll(".stage-tools .t"))
-		.forEach(function (t) {
-			t.addEventListener("click", function () {
-				document.querySelectorAll(".stage-tools .t").forEach(function (b) {
+		.forEach((t) => {
+			t.addEventListener("click", () => {
+				document.querySelectorAll(".stage-tools .t").forEach((b) => {
 					b.classList.remove("on");
 				});
 				t.classList.add("on");
@@ -122,7 +118,7 @@
 	/* ---- drag-to-resize on font-size style inputs ---- */
 	Array.prototype.slice
 		.call(document.querySelectorAll(".resize-input input"))
-		.forEach(function (inp) {
+		.forEach((inp) => {
 			var dragging = false,
 				startX = 0,
 				startVal = 0,
@@ -133,7 +129,7 @@
 				unit = m[2] || "";
 				return parseFloat(m[1]);
 			}
-			inp.addEventListener("mousedown", function (e) {
+			inp.addEventListener("mousedown", (e) => {
 				// only initiate drag from the right "handle" zone
 				var rect = inp.getBoundingClientRect();
 				if (e.clientX < rect.right - 24) return;
@@ -145,7 +141,7 @@
 				document.body.style.cursor = "col-resize";
 				e.preventDefault();
 			});
-			window.addEventListener("mousemove", function (e) {
+			window.addEventListener("mousemove", (e) => {
 				if (!dragging) return;
 				var dv = Math.round((e.clientX - startX) / 2);
 				var nv = startVal + dv;
@@ -156,7 +152,7 @@
 					inp.value = Math.max(0, nv) + unit;
 				}
 			});
-			window.addEventListener("mouseup", function () {
+			window.addEventListener("mouseup", () => {
 				if (dragging) {
 					dragging = false;
 					document.body.style.cursor = "";
@@ -167,17 +163,17 @@
 	/* ---- copy install command ---- */
 	Array.prototype.slice
 		.call(document.querySelectorAll(".copybtn"))
-		.forEach(function (btn) {
-			btn.addEventListener("click", function () {
+		.forEach((btn) => {
+			btn.addEventListener("click", () => {
 				var txt = btn.getAttribute("data-copy") || "";
-				var done = function () {
+				var done = () => {
 					var old = btn.textContent;
 					btn.textContent = "Copied";
-					setTimeout(function () {
+					setTimeout(() => {
 						btn.textContent = old;
 					}, 1400);
 				};
-				if (navigator.clipboard && navigator.clipboard.writeText) {
+				if (navigator.clipboard?.writeText) {
 					navigator.clipboard.writeText(txt).then(done).catch(done);
 				} else {
 					done();

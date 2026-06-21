@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /* ---------------------------------------------------------------------------
@@ -207,7 +208,14 @@ const useShaderAnimation = (
 			material.dispose();
 			renderer.dispose();
 		};
-	}, []); // Empty dependency array ensures this runs only once
+	}, [
+		shaderProps.speed,
+		shaderProps.complexity,
+		shaderProps.warp,
+		shaderProps.intensity,
+		shaderProps.hue,
+		mountRef.current,
+	]); // Empty dependency array ensures this runs only once
 
 	// This effect runs when shaderProps change, updating the uniforms
 	useEffect(() => {

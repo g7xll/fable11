@@ -4,10 +4,11 @@
 // and vendored under public/assets/specimens/.
 //
 //   CHROME_PATH=/opt/pw-browsers/chromium/chrome-linux/chrome node scripts/capture-specimens.mjs
+
+import { mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
-import { mkdirSync } from "fs";
-import { dirname, join } from "path";
-import { fileURLToPath } from "url";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const outDir = join(here, "..", "public", "assets", "specimens");

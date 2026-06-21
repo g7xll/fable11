@@ -232,7 +232,7 @@ const LivingNebulaShader = ({
 			renderer.setAnimationLoop(null);
 
 			const canvas = renderer.domElement;
-			if (canvas && canvas.parentNode) {
+			if (canvas?.parentNode) {
 				canvas.parentNode.removeChild(canvas);
 			}
 

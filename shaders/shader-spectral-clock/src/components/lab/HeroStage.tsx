@@ -1,13 +1,13 @@
-import { useCallback, useRef, useState } from "react";
 import { Activity, Gauge, Pause, Play, Timer } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { ReticleCorners } from "@/components/lab/Chrome";
+import { LabClock } from "@/components/lab/LabClock";
+import type { WorldPreset } from "@/components/lab/presets";
+import { SpectralFallback } from "@/components/lab/SpectralFallback";
 import {
 	ShaderBackground,
 	type ShaderTelemetry,
 } from "@/components/ui/shader-clock";
-import type { WorldPreset } from "@/components/lab/presets";
-import { LabClock } from "@/components/lab/LabClock";
-import { SpectralFallback } from "@/components/lab/SpectralFallback";
-import { ReticleCorners } from "@/components/lab/Chrome";
 
 type Uniforms = {
 	iterations: number;

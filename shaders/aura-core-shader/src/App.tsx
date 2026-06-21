@@ -1,4 +1,3 @@
-import { useCallback, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	Atom,
@@ -12,6 +11,7 @@ import {
 	Sparkles,
 	Waves,
 } from "lucide-react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import AuraReactor, {
 	type ReactorTelemetry,
 } from "@/components/ui/aura-reactor";

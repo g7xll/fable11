@@ -13,7 +13,7 @@ const io = new IntersectionObserver(
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
 /* ===== Testimonial carousel ===== */
-(function () {
+(() => {
 	const slides = Array.from(document.querySelectorAll("#testiTrack .testi"));
 	const dotsWrap = document.getElementById("testiDots");
 	if (!slides.length || !dotsWrap) return;
@@ -31,12 +31,12 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 			max = Math.max(max, s.offsetHeight);
 			if (!wasActive) s.classList.remove("is-active");
 		});
-		track.style.minHeight = max + "px";
+		track.style.minHeight = `${max}px`;
 	}
 
 	slides.forEach((_, idx) => {
 		const b = document.createElement("button");
-		b.setAttribute("aria-label", "Show testimonial " + (idx + 1));
+		b.setAttribute("aria-label", `Show testimonial ${idx + 1}`);
 		if (idx === 0) b.classList.add("on");
 		b.addEventListener("click", () => {
 			go(idx);

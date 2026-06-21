@@ -1,22 +1,22 @@
 /* VERDE — interactions */
-(function () {
+(() => {
 	var P = window.PRODUCE;
 
 	// ---- hero letter stagger ----
 	var ht = document.getElementById("heroTitle");
 	var word = ht.textContent.trim();
 	ht.innerHTML = "";
-	word.split("").forEach(function (ch, i) {
+	word.split("").forEach((ch, i) => {
 		var span = document.createElement("span");
 		span.className = "ltr";
 		var inner = document.createElement("i");
 		inner.textContent = ch;
-		inner.style.transitionDelay = i * 0.05 + "s";
+		inner.style.transitionDelay = `${i * 0.05}s`;
 		span.appendChild(inner);
 		ht.appendChild(span);
 	});
-	requestAnimationFrame(function () {
-		requestAnimationFrame(function () {
+	requestAnimationFrame(() => {
+		requestAnimationFrame(() => {
 			document.body.classList.add("loaded");
 		});
 	});
@@ -36,8 +36,8 @@
 		"Zero Waste",
 		"Regenerative",
 	];
-	words.forEach(function (w) {
-		phrase += w + ' <span class="star">✦</span> ';
+	words.forEach((w) => {
+		phrase += `${w} <span class="star">✦</span> `;
 	});
 	document.getElementById("mq").innerHTML = phrase;
 	document.getElementById("mq2").innerHTML = phrase;
@@ -52,10 +52,10 @@
 		{ name: "Sourdough Loaf", price: "$5", art: P.grain },
 	];
 	var grid = document.getElementById("grid");
-	products.forEach(function (p, i) {
+	products.forEach((p, i) => {
 		var el = document.createElement("article");
 		el.className = "card reveal";
-		el.style.transitionDelay = (i % 3) * 0.08 + "s";
+		el.style.transitionDelay = `${(i % 3) * 0.08}s`;
 		el.innerHTML =
 			'<div class="media">' +
 			p.art +
@@ -70,8 +70,8 @@
 
 	// ---- reveal on scroll ----
 	var io = new IntersectionObserver(
-		function (entries) {
-			entries.forEach(function (e) {
+		(entries) => {
+			entries.forEach((e) => {
 				if (e.isIntersecting) {
 					e.target.classList.add("is-visible");
 					io.unobserve(e.target);
@@ -80,7 +80,7 @@
 		},
 		{ threshold: 0.12 },
 	);
-	document.querySelectorAll(".reveal").forEach(function (el) {
+	document.querySelectorAll(".reveal").forEach((el) => {
 		io.observe(el);
 	});
 
@@ -90,11 +90,11 @@
 	function onScroll() {
 		if (ticking) return;
 		ticking = true;
-		requestAnimationFrame(function () {
+		requestAnimationFrame(() => {
 			var y = window.scrollY;
-			floats.forEach(function (f) {
+			floats.forEach((f) => {
 				var s = parseFloat(f.getAttribute("data-speed")) || 0.05;
-				f.style.translate = "0 " + y * s + "px";
+				f.style.translate = `0 ${y * s}px`;
 			});
 			ticking = false;
 		});
@@ -103,7 +103,7 @@
 
 	// ---- cart counter demo ----
 	var count = document.querySelector(".cart .count");
-	document.addEventListener("click", function (e) {
+	document.addEventListener("click", (e) => {
 		if (e.target.matches(".ov button")) {
 			count.textContent = parseInt(count.textContent, 10) + 1;
 		}

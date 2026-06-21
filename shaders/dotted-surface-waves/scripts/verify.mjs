@@ -7,11 +7,12 @@
 //
 //   URL=http://localhost:5314/ CHROME_PATH=/opt/pw-browsers/chromium \
 //     node scripts/verify.mjs
+
+import { mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { inflateSync } from "node:zlib";
 import { chromium } from "playwright";
-import { mkdirSync } from "fs";
-import { inflateSync } from "zlib";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
 
 /**
  * Decode a 24/32-bit PNG buffer just enough to scan pixels (no deps). Returns
@@ -46,7 +47,7 @@ function pngStats(buf) {
 	const cur = new Uint8Array(stride);
 	let maxLum = 0,
 		minLum = 255,
-		lit = 0,
+		_lit = 0,
 		total = 0,
 		rSum = 0,
 		gSum = 0,
@@ -143,7 +144,7 @@ page.on("console", (m) => {
 page.on("pageerror", (e) => note(`pageerror: ${e.message}`));
 
 await page.goto(TARGET, { waitUntil: "networkidle", timeout: 30000 });
-await page.evaluate(() => document.fonts && document.fonts.ready);
+await page.evaluate(() => document.fonts?.ready);
 await page.waitForTimeout(1400);
 
 const checks = [];
@@ -302,13 +303,13 @@ let failed = 0;
 console.log("\n=== VERIFY RESULTS ===");
 for (const [name, ok, extra] of checks) {
 	console.log(
-		`${ok ? "PASS" : "FAIL"}  ${name}${extra ? "  -> " + extra : ""}`,
+		`${ok ? "PASS" : "FAIL"}  ${name}${extra ? `  -> ${extra}` : ""}`,
 	);
 	if (!ok) failed++;
 }
 console.log("\n=== CONSOLE / PAGE ERRORS ===");
 if (errors.length === 0) console.log("(none)");
-else errors.forEach((e) => console.log(" - " + e));
+else errors.forEach((e) => console.log(` - ${e}`));
 
 console.log(`\nScreenshots: ${OUT}`);
 if (failed > 0 || errors.length > 0) {

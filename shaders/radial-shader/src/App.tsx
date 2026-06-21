@@ -1,12 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	ArrowDownRight,
 	Box,
+	Check,
 	CircleDot,
 	Code2,
 	Copy,
-	Check,
 	Cpu,
 	FileCode2,
 	FolderTree,
@@ -18,6 +17,7 @@ import {
 	Terminal,
 	Waves,
 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import RadialShader from "@/components/ui/radial-shader";
 import { cn } from "@/lib/utils";
 

@@ -1,21 +1,21 @@
-import { useCallback, useState } from "react";
 import { Github, Layers, Zap } from "lucide-react";
+import { useCallback, useState } from "react";
+import { BeamStage } from "@/components/beam-stage";
+import { ControlDeck } from "@/components/control-deck";
+import { Hero } from "@/components/hero";
+import { InstallStory } from "@/components/install-story";
+import { PresetBank } from "@/components/preset-bank";
+import { PropsTable } from "@/components/props-table";
+import { Telemetry } from "@/components/telemetry";
+import { useCanvasTelemetry } from "@/components/use-canvas-telemetry";
+import { VerbatimDemo } from "@/components/verbatim-demo";
 import {
+	type BeamParams,
 	DEFAULT_PRESET,
 	PRESETS,
-	rgbToHex,
-	type BeamParams,
 	type Preset,
+	rgbToHex,
 } from "@/lib/presets";
-import { BeamStage } from "@/components/beam-stage";
-import { Hero } from "@/components/hero";
-import { ControlDeck } from "@/components/control-deck";
-import { PresetBank } from "@/components/preset-bank";
-import { Telemetry } from "@/components/telemetry";
-import { PropsTable } from "@/components/props-table";
-import { InstallStory } from "@/components/install-story";
-import { VerbatimDemo } from "@/components/verbatim-demo";
-import { useCanvasTelemetry } from "@/components/use-canvas-telemetry";
 
 function SectionLabel({
 	index,

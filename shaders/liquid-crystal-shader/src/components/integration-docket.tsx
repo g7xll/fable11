@@ -6,8 +6,9 @@
  * It is the "documentation" half of a component-library page, kept out of the
  * way until opened so the live specimen stays the hero.
  */
-import { useState } from "react";
+
 import { Check, ClipboardCopy, FileCode2, PanelBottom } from "lucide-react";
+import { useState } from "react";
 
 const INSTALL_CMD = `npx shadcn@latest init      # sets up @/components/ui + Tailwind
 # drop liquid-crystal.tsx into src/components/ui/

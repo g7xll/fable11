@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 
 const LOGO_URL = "/assets/logoipsum-415.svg";
 

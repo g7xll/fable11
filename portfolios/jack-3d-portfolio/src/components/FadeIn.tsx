@@ -1,6 +1,6 @@
-import { useMemo } from "react";
-import type { CSSProperties, ReactNode } from "react";
 import { motion } from "framer-motion";
+import type { CSSProperties, ReactNode } from "react";
+import { useMemo } from "react";
 
 type FadeInTag = "div" | "nav" | "span" | "section" | "header" | "footer";
 

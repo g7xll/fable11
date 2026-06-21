@@ -1,16 +1,16 @@
 import { useCallback, useRef, useState } from "react";
+import { HelmConsole } from "@/components/helm-console";
+import { NavReticle } from "@/components/nav-reticle";
+import {
+	ApiSection,
+	BriefSection,
+	ConsoleFooter,
+	SetupSection,
+	UsageSection,
+} from "@/components/showcase-sections";
 import WarpDriveShader, {
 	type WarpDriveFrame,
 } from "@/components/ui/warp-drive-shader";
-import { NavReticle } from "@/components/nav-reticle";
-import { HelmConsole } from "@/components/helm-console";
-import {
-	BriefSection,
-	SetupSection,
-	UsageSection,
-	ApiSection,
-	ConsoleFooter,
-} from "@/components/showcase-sections";
 
 /**
  * DemoOne — the integration showcase for the Warp Drive shader.

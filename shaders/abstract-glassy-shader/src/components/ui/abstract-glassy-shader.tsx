@@ -15,7 +15,8 @@
 //   • a graceful CSS fallback if WebGL2 is unavailable (never goes black)
 //
 // With no props, `<ShaderComponent />` renders exactly the original shader.
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* ---------- Public types ---------- */
 

@@ -665,12 +665,12 @@ img {
 
 @media (prefers-reduced-motion: reduce) {
 	* {
-		animation: none !important;
+		animation: none;
 	}
 	.reveal,
 	.hero__title .char,
 	.card {
-		transform: none !important;
-		opacity: 1 !important;
+		transform: none;
+		opacity: 1;
 	}
 }

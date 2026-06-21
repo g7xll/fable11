@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Activity,
+	Crosshair,
 	Pause,
 	Play,
-	RotateCcw,
 	Radio,
-	Crosshair,
+	RotateCcw,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CelestialMatrixShader, {
 	type ShaderTelemetry,
 } from "@/components/ui/martrix-shader";

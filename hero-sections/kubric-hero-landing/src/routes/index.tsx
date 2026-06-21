@@ -31,7 +31,7 @@ function Home() {
 			baseDelay: number,
 			lineGap: number,
 		) {
-			const inners = hero!.querySelectorAll<HTMLElement>(selector);
+			const inners = hero?.querySelectorAll<HTMLElement>(selector);
 			inners.forEach((inner, lineIndex) => {
 				if (inner.dataset.split === "true") return;
 				inner.dataset.split = "true";

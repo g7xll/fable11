@@ -1,29 +1,28 @@
 "use client";
 
-import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
 import { useAspect, useTexture } from "@react-three/drei";
-import { useMemo, useRef, useState, useEffect } from "react";
-import * as THREE from "three/webgpu";
+import { Canvas, extend, useFrame, useThree } from "@react-three/fiber";
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { Mesh } from "three";
 import { bloom } from "three/examples/jsm/tsl/display/BloomNode.js";
-import { Mesh } from "three";
-
 import {
 	abs,
+	add,
 	blendScreen,
 	float,
+	mix,
 	mod,
 	mx_cell_noise_float,
 	oneMinus,
+	pass,
 	smoothstep,
 	texture,
 	uniform,
 	uv,
 	vec2,
 	vec3,
-	pass,
-	mix,
-	add,
 } from "three/tsl";
+import * as THREE from "three/webgpu";
 
 // Assets vendored locally (see /src/assets). The depth map drives both the
 // pointer parallax and the vertical scan reveal, so it is kept alongside the
@@ -201,7 +200,7 @@ export const HeroFuturistic = () => {
 		setDelays(titleWords.map(() => Math.random() * 0.07));
 		setSubtitleDelay(Math.random() * 0.1);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [titleWords.length]);
+	}, []);
 
 	useEffect(() => {
 		if (visibleWords < titleWords.length) {
@@ -211,7 +210,7 @@ export const HeroFuturistic = () => {
 			const timeout = setTimeout(() => setSubtitleVisible(true), 800);
 			return () => clearTimeout(timeout);
 		}
-	}, [visibleWords, titleWords.length]);
+	}, [visibleWords]);
 
 	return (
 		<div className="h-svh">

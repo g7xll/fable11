@@ -13,8 +13,8 @@
 import { spawn } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
-import zlib from "node:zlib";
 import { setTimeout as sleep } from "node:timers/promises";
+import zlib from "node:zlib";
 import { chromium } from "playwright";
 
 // Minimal PNG decoder (8-bit, colour types 0/2/6, no interlace) so we can

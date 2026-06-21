@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
 	Aperture,
 	Droplets,
@@ -10,8 +9,9 @@ import {
 	Spline,
 	Wind,
 } from "lucide-react";
-import { FluidSwirl } from "@/components/ui/fluid-swirl-shader";
+import { type ReactNode, useEffect, useRef, useState } from "react";
 import { PigmentTrace } from "@/components/pigment-trace";
+import { FluidSwirl } from "@/components/ui/fluid-swirl-shader";
 import { cn } from "@/lib/utils";
 
 /* -------------------------------------------------------------------------- */

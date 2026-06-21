@@ -1,8 +1,6 @@
-# DITHER LAB
+# Dither Lab — WebGL2 Ordered Bayer Dithering Shader Workbench (React, TypeScript, GLSL ES 3.00)
 
-A darkroom-bench integration of the drop-in **`DitheringShader`** — a WebGL2 / GLSL ES 3.00 fragment shader that pixelises an animated field and resolves it to **two inks** through an ordered (Bayer) or white-noise dithering matrix. The lab frames the component as a print/darkroom instrument: a full-bleed live stage behind reticle chrome, a control deck that drives every shader uniform in real time, and a telemetry HUD read straight off the GPU each frame.
-
-It opens on the prompt's exact demo — **shape `wave`, type `8x8`, `#001122` → `#ff0088`, `pxSize 3`, `speed 0.6`** — as the default "Wave" preset.
+A darkroom-bench integration of the drop-in `DitheringShader` — a WebGL2 / GLSL ES 3.00 fragment shader that pixelises an animated field and resolves it to two inks through an ordered (Bayer) or white-noise dithering matrix — framed as a live print instrument with seven shape modes (wave, simplex, warp, dots, ripple, swirl, sphere), four matrix types (random, 2×2, 4×4, 8×8), real-time ink pickers, pixel-size and speed faders, freeze/resume transport, five curated presets, and a telemetry HUD reading FPS, shader clock, resolution, and pixel-cell grid directly from the GPU each frame. Generated with Claude Fable 5.
 
 ![DITHER LAB demo](./demo.mp4)
 
@@ -108,3 +106,7 @@ ALL CHECKS PASSED ✓
 - **Fallback.** If WebGL2 is unavailable the stage shows a graceful message instead of a blank canvas.
 
 Component credit: `designali-in/dithering-shader`.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

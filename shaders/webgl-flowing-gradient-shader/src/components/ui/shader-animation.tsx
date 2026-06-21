@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /**
@@ -318,11 +319,7 @@ const ShaderAnimation: React.FC<ShaderAnimationProps> = ({
 				className,
 			)}
 		>
-			<canvas
-				ref={canvasRef}
-				className="shader-canvas block h-full w-full"
-				aria-hidden="true"
-			/>
+			<canvas ref={canvasRef} className="shader-canvas block h-full w-full" />
 
 			{glError && (
 				<div className="absolute inset-0 grid place-items-center px-6 text-center">

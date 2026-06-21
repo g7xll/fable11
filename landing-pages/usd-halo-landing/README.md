@@ -1,8 +1,6 @@
-# USD Halo Landing
+# USD Halo — Reward-Earning Stablecoin Landing Page (React + TypeScript + Vite + Tailwind CSS)
 
-Premium fintech-style landing page for **Halo / USD Halo**, a reward-earning
-stablecoin. Built with React + TypeScript + Vite + Tailwind CSS and
-lucide-react for icons — no other UI libraries.
+**USD Halo** is a premium fintech-style landing page for a reward-earning stablecoin product. The design is dark and editorial, with a full-viewport video hero, animated brand marquees, and a structured feature grid — a polished crypto/DeFi marketing landing page suitable for stablecoin launches, Web3 wallets, and fintech products. Generated with Claude Fable 5.
 
 ## Sections
 
@@ -28,3 +26,7 @@ npm run dev      # local dev server
 npm run build    # type-check + production build
 npm run verify   # headless Chromium checks against the production build
 ```
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

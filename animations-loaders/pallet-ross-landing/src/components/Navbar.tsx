@@ -1,5 +1,5 @@
+import { Settings, User } from "lucide-react";
 import { useState } from "react";
-import { User, Settings } from "lucide-react";
 import Logo from "./Logo";
 
 const NAV_TRAILING = ["Pricing", "Contact", "Solution", "E-Commerce"];

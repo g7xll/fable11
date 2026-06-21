@@ -1,9 +1,6 @@
-# Living Nebula Shader
+# Living Nebula Shader — Cursor-Lensing FBM Gas Cloud WebGL Shader (React + TypeScript + Three.js)
 
-An interactive WebGL fragment shader — a two-layer fractal-Brownian-motion gas
-cloud (magenta plasma + ion-blue), rotating slowly and **lensing around the
-cursor** like a small gravitational well — rendered full-viewport with Three.js,
-then framed as a **deep-sky radio-observatory sky-feed console**.
+An interactive WebGL fragment shader rendering a two-layer fractal-Brownian-motion gas cloud — magenta plasma and ion-blue, rotating slowly and lensing around the cursor like a gravitational well — rendered full-viewport with Three.js and framed as a deep-sky radio-observatory sky-feed console. The live telemetry HUD reports shader time, smoothed FPS, and warp-center coordinates sampled directly from the render loop. Built with React 18, TypeScript, Vite 6, and Tailwind CSS v4 using Three.js as the WebGL host. Generated with Claude Fable 5.
 
 The shader component from the prompt is integrated at
 `src/components/ui/living-nebula.tsx`, the canonical shadcn `@/components/ui`
@@ -84,3 +81,7 @@ npm run verify    # headless Playwright checks against the preview server
   telemetry rail collapses from five columns to a 2×2 grid and the long lede is
   dropped on small screens. WebGL failures fall back to a static deep-space CSS
   gradient so the layout never goes black.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

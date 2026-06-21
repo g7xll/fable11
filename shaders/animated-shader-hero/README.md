@@ -1,11 +1,6 @@
-# animated-shader-hero
+# Animated Shader Hero — WebGL2 Ember Field Hero Section (React + TypeScript + WebGL2 + Tailwind CSS)
 
-A self-contained, runnable showcase for a reusable **WebGL2 animated shader hero** —
-a drop-in component for shadcn + Tailwind + TypeScript projects. The background is a
-live fragment shader (drifting fractal ember field by
-[Matthias Hurrle / @atzedent](https://twitter.com/atzedent)) that reacts to pointer
-drags. The page around it tells the integration story the prompt asks for: where the
-component lives (`@/components/ui`), why that folder matters, and how to use it.
+A full-viewport hero section backed by a live WebGL2 fragment shader rendering a drifting fractal ember field by Matthias Hurrle ([@atzedent](https://twitter.com/atzedent)) that reacts to pointer drags. The reusable `Hero` component accepts `trustBadge`, `headline`, `subtitle`, and `buttons` props, and pairs with a live uniforms HUD in the corner reporting real-time `time`, `resolution`, `pointerCount`, and FPS — proving it is a live WebGL program rather than a video loop. Built as a drop-in for shadcn + Tailwind CSS + TypeScript projects. Generated with Claude Fable 5.
 
 This project adapts the prompt's "integrate this component into a shadcn/Tailwind/TS
 codebase" task into a complete, working build. The exact `<Hero />` usage from the
@@ -80,3 +75,7 @@ no image assets (the background is a procedural shader, not a photo).
 ## Credit
 
 Fragment shader by Matthias Hurrle ([@atzedent](https://twitter.com/atzedent)).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

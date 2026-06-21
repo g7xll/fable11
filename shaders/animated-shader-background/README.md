@@ -1,13 +1,6 @@
-# Animated Shader Background — AnoAI
+# Animated Shader Background — AnoAI Aurora WebGL Hero (React + Three.js + Tailwind CSS)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `animated-shader-background.tsx` component (a `three.js` aurora fragment shader) and
-composes a polished **AnoAI** product hero on top of it.
-
-The live aurora is a full-viewport WebGL layer; the hero uses every `lucide-react` icon the
-original snippet imported (`Infinity`, `Rocket`, `Shield`, `Brain`, `Play`, `ChevronDown`).
-
-![demo](./demo.mp4)
+A full-viewport WebGL aurora fragment shader background integrated as the hero layer for the AnoAI product landing page. The shader renders a time-animated aurora effect using fractional Brownian motion (FBM) noise and a 35-iteration loop, producing flowing green-to-violet curtains with a subtle camera shake effect. The hero overlays a dark glassmorphic navbar, headline, and CTA buttons on top of the live canvas. A WebGL-unavailable fallback renders an animated CSS aurora instead of crashing the React tree. Built with React 18, TypeScript, Vite, and Tailwind CSS v4 on a shadcn project structure. Generated with Claude Fable 5.
 
 ## Run
 
@@ -77,3 +70,7 @@ console/page errors, the shader paints visible aurora (decodes a screenshot, not
 all hero elements render, fonts load, avatars decode, and the mobile layout has no overflow. It
 adapts to the environment (WebGL present → asserts the canvas; WebGL absent → asserts the CSS
 fallback engaged).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

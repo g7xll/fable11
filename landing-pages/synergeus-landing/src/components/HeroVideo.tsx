@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import Hls from "hls.js";
+import { useEffect, useRef } from "react";
 import { ASSETS } from "../lib/assets";
 
 // The original spec streams an HLS (.m3u8) source. To keep the experiment

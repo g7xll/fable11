@@ -1,10 +1,6 @@
-# Viktor Oddy — Creative Studio Landing Page
+# Viktor Oddy — Creative Studio Landing Page (React + TypeScript + Vite + Tailwind CSS)
 
-Single-page landing for the fictional creative design studio **Viktor Oddy**,
-built with React + TypeScript + Vite + Tailwind CSS and lucide-react icons.
-
-Typography pairs **PP Neue Montreal** (body, Webflow CDN) with **PP Mondwest**
-(serif accent, served locally from `/PPMondwest-Regular.woff2`).
+Single-page landing for the fictional creative design studio **Viktor Oddy**, built with React + TypeScript + Vite + Tailwind CSS and lucide-react icons. The design is minimal white-background throughout, pairing **PP Neue Montreal** (body, Webflow CDN) with **PP Mondwest** (serif accent, served locally from `/PPMondwest-Regular.woff2`). Staggered IntersectionObserver scroll reveals, an infinite image marquee, a parallax testimonial portrait, pricing cards, an auto-scrolling testimonial carousel, a project showcase, and a cursor-trail GIF CTA make up the full interactive experience. Generated with Claude Fable 5.
 
 ## Sections
 
@@ -25,3 +21,7 @@ npm run dev      # dev server
 npm run build    # type-check + production build
 npm run preview  # serve dist/
 ```
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

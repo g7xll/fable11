@@ -279,7 +279,7 @@ const btnStyle = await nextBtn.evaluate((el) => {
 	const cs = getComputedStyle(el);
 	return {
 		radius: cs.borderRadius,
-		border: cs.borderWidth + " " + cs.borderColor,
+		border: `${cs.borderWidth} ${cs.borderColor}`,
 		w: cs.width,
 		h: cs.height,
 		bg: cs.backgroundColor,

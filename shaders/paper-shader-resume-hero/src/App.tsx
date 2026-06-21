@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { Dithering } from "@paper-design/shaders-react";
 import {
 	ArrowUpRight,
@@ -11,17 +10,18 @@ import {
 	Sun,
 	Terminal,
 } from "lucide-react";
-import ResumePage from "@/components/ui/portfolio-hero-with-paper-shaders";
-import { ShaderConsole } from "@/components/shader-console";
+import { useEffect, useState } from "react";
 import { CodeBlock } from "@/components/code-block";
-import { useStudioClock } from "@/lib/useStudioClock";
+import { ShaderConsole } from "@/components/shader-console";
+import ResumePage from "@/components/ui/portfolio-hero-with-paper-shaders";
 import { useInView } from "@/lib/useInView";
+import { useStudioClock } from "@/lib/useStudioClock";
+import { cn } from "@/lib/utils";
 import {
 	COMPONENT_SOURCE,
 	DEMO_SOURCE,
 	INSTALL_SOURCE,
 } from "@/source-snippets";
-import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ *
  * Small chrome primitives

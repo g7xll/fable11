@@ -1,17 +1,6 @@
-# scroll-expansion-hero
+# Scroll Expansion Hero — ScrollExpandMedia Component Integration (React + Vite + Framer Motion + shadcn)
 
-A **component-integration** experiment: the **ScrollExpandMedia** scroll-driven
-hero dropped into a real shadcn-style codebase and built out into a
-self-contained showcase. Built with **React + Vite + TypeScript + Tailwind CSS +
-framer-motion**, with **lucide-react** for icons.
-
-The component (`src/components/ui/scroll-expansion-hero.tsx`) is the exact
-primitive from the prompt: a compact media card sitting over a full-bleed
-backdrop that **hijacks the wheel/touch** to drive a `0 → 1` progress value.
-As progress climbs the card grows from `300×400` toward fullscreen, the
-title's first word and remaining words translate apart, the background
-dissolves, and once it is fully expanded the page below becomes scrollable and
-an editorial "about" section fades in.
+A **component-integration** showcase: the **ScrollExpandMedia** scroll-driven hero dropped into a real shadcn-style codebase and built out into a self-contained cinematic showcase. A compact media card sits over a full-bleed backdrop and **hijacks the wheel/touch** to drive a `0 → 1` progress value — as progress climbs the card grows from `300×400` toward fullscreen, the title's first word and remaining words translate apart, the background dissolves, and once fully expanded the page below becomes scrollable and an editorial "about" section fades in. Supports both video and image modes with the same expansion engine. Built with a dark graphite canvas, periwinkle iris `#7C82FF` accent, Space Grotesk / Inter / JetBrains Mono typography, and all media vendored locally. Generated with Claude Fable 5.
 
 ## What was integrated
 
@@ -70,4 +59,6 @@ npm run build    # tsc + vite build
 Scroll (wheel) or swipe up to expand the media; scroll back to the top to
 collapse it, or hit **Replay the reveal**.
 
-[claude-directory](../../README.md)
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

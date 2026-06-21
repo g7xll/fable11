@@ -1,12 +1,12 @@
-import { useState, useCallback } from "react";
-import Hero from "@/components/ui/animated-shader-hero";
-import { UniformsHud, type UniformState } from "@/components/ui/uniforms-hud";
+import { useCallback, useState } from "react";
 import {
-	IntegrationSection,
-	UniformsSection,
 	HowToUseSection,
+	IntegrationSection,
 	SiteFooter,
+	UniformsSection,
 } from "@/components/showcase-sections";
+import Hero from "@/components/ui/animated-shader-hero";
+import { type UniformState, UniformsHud } from "@/components/ui/uniforms-hud";
 
 /**
  * Demo / showcase for the reusable Hero.

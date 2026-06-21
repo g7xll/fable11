@@ -329,6 +329,6 @@ input[type="range"]::-moz-range-thumb {
 	.marquee,
 	.animate-ping,
 	.animate-pulse {
-		animation: none !important;
+		animation: none;
 	}
 }

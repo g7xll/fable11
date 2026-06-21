@@ -1,20 +1,6 @@
-# Mesh Gradient // Hero Studio
+# Mesh Gradient Shader Hero — Live Palette Studio with MeshGradient (React + Vite + Tailwind CSS + paper-design/shaders-react)
 
-A runnable, self-contained integration of the prompt's
-`hero-section-with-smooth-bg-shader.tsx` — a hero whose background is a flowing
-`@paper-design/shaders-react` **`MeshGradient`** under a frosted veil. Instead of
-dropping the component on a blank page, it's framed as a **palette studio**: the
-live hero sits behind a registration-bracketed plate, and a right-hand control
-deck drives the shader's *actual* props — color stops, distortion, swirl, speed,
-offset — in real time, with a tabbed dock that documents the install,
-the full props API, a live copy-paste usage snippet, and the shadcn
-`components/ui` story.
-
-The prompt's component is integrated **verbatim** at
-`src/components/ui/hero-section-with-smooth-bg-shader.tsx` (the shadcn path), and
-every shadcn theme token it relies on (`bg-background`, `text-foreground`,
-`text-primary`, `border-card`) is defined in the global stylesheet so the hero
-renders exactly as intended.
+A full-featured shader hero integration built around the `@paper-design/shaders-react` **`MeshGradient`** component, framed as an interactive **palette studio**. The live hero sits behind a registration-bracketed plate with a frosted veil; a right-hand control deck drives the shader's real props — color stops, distortion, swirl, speed, and offset — in real time. A tabbed dock documents the install, the full props API, a live copy-paste usage snippet, and the shadcn `components/ui` story. Generated with Claude Fable 5.
 
 ## What's wired up
 
@@ -133,3 +119,7 @@ WebGL, and asserts: the header renders, the `MeshGradient` canvas mounts with a
 real WebGL context, the hero uses the vendored font, a palette preset re-tints
 the live shader (canvas pixels change), the speed fader sweeps `0.00 → 2.00`, the
 docs dock renders the Props API table, and no page/console errors fire.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

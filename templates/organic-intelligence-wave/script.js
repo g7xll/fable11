@@ -28,7 +28,7 @@ function setPanel(item, open) {
 		item.classList.add("open");
 		head.setAttribute("aria-expanded", "true");
 		icon.textContent = "–"; // en-dash
-		panel.style.maxHeight = panel.scrollHeight + "px";
+		panel.style.maxHeight = `${panel.scrollHeight}px`;
 		panel.style.opacity = "1";
 	} else {
 		item.classList.remove("open");
@@ -59,6 +59,6 @@ window.addEventListener("resize", () => {
 	clearTimeout(resizeTimer);
 	resizeTimer = setTimeout(() => {
 		const open = document.querySelector(".acc-item.open .acc-panel");
-		if (open) open.style.maxHeight = open.scrollHeight + "px";
+		if (open) open.style.maxHeight = `${open.scrollHeight}px`;
 	}, 120);
 });

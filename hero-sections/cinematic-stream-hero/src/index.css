@@ -100,7 +100,7 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.animate-blur-fade-up {
 		animation-duration: 0.01ms;
-		animation-delay: 0ms !important;
+		animation-delay: 0ms;
 	}
 
 	.liquid-glass,

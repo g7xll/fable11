@@ -89,12 +89,12 @@
    of the viewport, so the unmodified component can be embedded in a card. The
    heading overlay's md:top-80 is pulled back up to sit inside the frame too. */
 .verbatim-frame > div {
-	position: absolute !important;
-	inset: 0 !important;
+	position: absolute;
+	inset: 0;
 }
 @media (min-width: 768px) {
 	.verbatim-frame .md\:top-80 {
-		top: 1.5rem !important;
+		top: 1.5rem;
 	}
 }
 
@@ -174,8 +174,8 @@ input[type="range"].beam-fader:focus-visible::-webkit-slider-thumb {
 	*,
 	*::before,
 	*::after {
-		animation-duration: 0.001ms !important;
-		animation-iteration-count: 1 !important;
-		transition-duration: 0.001ms !important;
+		animation-duration: 0.001ms;
+		animation-iteration-count: 1;
+		transition-duration: 0.001ms;
 	}
 }

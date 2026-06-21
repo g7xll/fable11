@@ -1,17 +1,6 @@
-# blueprint-ascii-grid-shader
+# Blueprint ASCII Grid Shader — Full-Screen WebGL2 Blueprint Background with ASCII Glyphs (React + Vite + Tailwind + shadcn/ui)
 
-**GRIDLINE** — a showcase for `asd.tsx`, the drop-in WebGL2 shader background from the
-integration brief, set up inside a real shadcn-structured Vite + TypeScript + Tailwind
-app.
-
-The background is a single GLSL ES 3.00 fragment program painted onto one full-screen
-triangle (one draw call, zero runtime dependencies): a deep-navy four-point **mesh
-gradient**, a drifting **blueprint grid**, **ASCII glyphs** stamped on the major
-intersections by local luma, then **value-noise grain**, **Bayer 4×4 ordered dithering**
-and a **tanh** tone-map. The page frames it like a live instrument — a hero + telemetry
-HUD reading real `iTime` / FPS / `iResolution` / `iMouse` off the running context, a
-control deck whose faders promote the shader's baked-in `const`s to live uniforms, an
-anatomy walkthrough of the per-pixel pipeline, and a full integration story.
+A full-screen WebGL2 GLSL ES 3.00 fragment shader that renders a drifting deep-navy blueprint grid with ASCII glyphs stamped at major intersections — integrated as a drop-in shadcn/ui component (`asd.tsx`) with a live control deck, telemetry HUD, and anatomy walkthrough. The single-draw-call shader combines a four-point mesh gradient, Bayer 4×4 ordered dithering, value-noise grain, and tanh tone-mapping to produce a technical, cyberpunk-blueprint aesthetic ideal as a hero or landing-page background. Generated with Claude Fable 5.
 
 ## What's in `components/ui`
 
@@ -109,3 +98,7 @@ React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui structure (`@/components/ui`
 `@/lib/utils`, `components.json`), Lucide icons, raw WebGL2. Fonts (Space Grotesk /
 JetBrains Mono / Inter) are vendored locally under `public/fonts` — the project runs fully
 offline. The shader needs no image assets.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

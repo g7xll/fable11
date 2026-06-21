@@ -1,19 +1,6 @@
-# Simplex — Dithering Shader
+# Simplex Dither Bench — Bayer Ordered-Dithering Shader Instrument (WebGL2 + React 18 + TypeScript + Tailwind CSS v4)
 
-An integration of the prompt's `dithering-shader.tsx` into a real **shadcn-style,
-Tailwind CSS v4, TypeScript** Vite project — then framed as a darkroom / pre-press
-halftone instrument, **Simplex · Dither Bench**.
-
-The shader is the hero: a continuous field (ripple, simplex, swirl, …) is crushed
-through a **Bayer ordered-dithering matrix** into two tones of ink — amber `#ffff00`
-on an oxblood `#330000` ground — entirely on the GPU, no textures or images. The
-brief's `demo.tsx` is the centerpiece, full-bleed behind a centered **"Simplex"**
-lockup; around it sits glass chrome so nothing competes with the dither field: a
-brand bar, a live **Bayer threshold-matrix** panel (the actual kernel the shader
-indexes per pixel), a control rail wired straight to the uniforms (field / matrix /
-pixel-size / speed + a Pause and a Reset-to-brief), and the signature element — a
-**telemetry HUD** (FPS, shader clock, cell size, drawing-buffer resolution) fed off
-the render loop.
+An integration of `dithering-shader.tsx` into a shadcn-style, Tailwind CSS v4, TypeScript Vite project, framed as a darkroom / pre-press halftone instrument: **Simplex · Dither Bench**. The shader is the hero — a continuous field (ripple, simplex, swirl, and more) crushed through a Bayer ordered-dithering matrix into two tones of ink entirely on the GPU using raw WebGL2 (GLSL ES 3.00), with no textures or images. The brief's `demo.tsx` is full-bleed behind a centred "Simplex" lockup, surrounded by a live Bayer threshold-matrix panel, a control rail wired to the uniforms, and a telemetry HUD (FPS, shader clock, cell size, drawing-buffer resolution) fed off the render loop. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -87,3 +74,7 @@ npm run preview &   # serves dist on :4173
 npm run verify      # headless Playwright: WebGL paint + palette, HUD ticks, pause freeze,
                     # matrix/field swaps, reset-to-brief, no-scroll, vendored fonts, mobile
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).
