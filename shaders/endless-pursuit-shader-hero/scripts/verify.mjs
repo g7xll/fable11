@@ -11,9 +11,9 @@
 //      non-flat-black pixels. Skipped cleanly when no browser is available.
 //
 //   npm run build && node scripts/verify.mjs
-import { readFileSync, readdirSync, existsSync, statSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
+import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
 const DIST = join(ROOT, "dist");
@@ -112,8 +112,8 @@ try {
 	}
 	if (chrome && playwright) {
 		liveRan = true;
-		const { createServer } = await import("http");
-		const { extname } = await import("path");
+		const { createServer } = await import("node:http");
+		const { extname } = await import("node:path");
 		const TYPES = {
 			".html": "text/html",
 			".js": "text/javascript",
@@ -182,7 +182,7 @@ let failed = 0;
 console.log("\n=== VERIFY RESULTS (static build verification) ===");
 for (const [name, pass, extra] of checks) {
 	console.log(
-		`${pass ? "PASS" : "FAIL"}  ${name}${extra ? "  -> " + extra : ""}`,
+		`${pass ? "PASS" : "FAIL"}  ${name}${extra ? `  -> ${extra}` : ""}`,
 	);
 	if (!pass) failed++;
 }

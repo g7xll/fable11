@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 import PreloaderNumberArc from "./PreloaderNumberArc";
 
 /* ------------------------------------------------------------------ */
@@ -214,7 +214,7 @@ const Preloader = () => {
 				const step = (t: number) => {
 					if (cancelled) return;
 					const k = Math.min(1, (t - start) / seg.duration);
-					const eased = 1 - Math.pow(1 - k, 2); // easeOut quadratic
+					const eased = 1 - (1 - k) ** 2; // easeOut quadratic
 					const value = from + (seg.to - from) * eased;
 					current = value;
 					setProgress(value);
@@ -233,7 +233,7 @@ const Preloader = () => {
 		return () => {
 			cancelled = true;
 		};
-	}, [runId]);
+	}, []);
 
 	return (
 		<AnimatePresence>

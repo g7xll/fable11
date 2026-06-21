@@ -28,14 +28,14 @@ export function Counter({
 		const dur = ease * 1000;
 		const step = (now: number) => {
 			const t = dur <= 0 ? 1 : Math.min(1, (now - startRef.current) / dur);
-			const k = 1 - Math.pow(1 - t, 3); // easeOutCubic
+			const k = 1 - (1 - t) ** 3; // easeOutCubic
 			setDisplay(fromRef.current + (targetRef.current - fromRef.current) * k);
 			if (t < 1) raf = requestAnimationFrame(step);
 		};
 		raf = requestAnimationFrame(step);
 		return () => cancelAnimationFrame(raf);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [value, ease]);
+	}, [value, ease, display]);
 
 	return (
 		<span className={`tnum ${className ?? ""}`}>

@@ -396,7 +396,7 @@ export default function CathedralStage({
 
 		return cleanup;
 		// Re-init only when the surface mode changes; live props are read via refs.
-	}, [fill]);
+	}, []);
 
 	const positioned: React.CSSProperties = fill
 		? { position: "absolute", inset: 0 }

@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
 import { Globe } from "lucide-react";
+import { motion } from "motion/react";
 
 const NAV_LINKS = ["Features", "Pricing", "About"];
 

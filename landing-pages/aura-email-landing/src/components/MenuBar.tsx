@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
 import { Search } from "lucide-react";
+import { motion } from "motion/react";
 import AppleLogo from "./AppleLogo";
 
 const MENU_ITEMS = ["File", "Edit", "View", "Go", "Window", "Help"];

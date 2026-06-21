@@ -381,13 +381,13 @@ footer{position:relative;background:var(--fg);color:var(--bg);overflow:hidden;}
 </div><!-- /shell -->
 
 <script>
-(function(){
+(()=> {
   // ---- 12-column structural grid (13 hairlines) ----
   var inner=document.getElementById('gridInner');
   for(var i=0;i<=12;i++){
     var v=document.createElement('div');
     v.className='v';
-    v.style.left=(i/12*100)+'%';
+    v.style.left=`${i/12*100}%`;
     if(i===12) v.style.left='calc(100% - 1px)';
     inner.appendChild(v);
   }
@@ -397,50 +397,50 @@ footer{position:relative;background:var(--fg);color:var(--bg);overflow:hidden;}
   var track=document.getElementById('marqueeTrack');
   function buildSeq(){
     var html='';
-    words.forEach(function(w){
+    words.forEach((w)=> {
       var cls=w[1]?'item serif':'item stroke';
-      html+='<span class="'+cls+'">'+w[0]+'</span><span class="item star">&#10038;</span>';
+      html+=`<span class="${cls}">${w[0]}</span><span class="item star">&#10038;</span>`;
     });
     return html;
   }
   track.innerHTML=buildSeq()+buildSeq(); // duplicate for seamless -50% loop
 
   // ---- Glass-card progress bars (on load) ----
-  window.addEventListener('load',function(){
-    setTimeout(function(){
-      document.querySelectorAll('.bar i').forEach(function(b){ b.style.width=b.getAttribute('data-w'); });
+  window.addEventListener('load',()=> {
+    setTimeout(()=> {
+      document.querySelectorAll('.bar i').forEach((b)=> { b.style.width=b.getAttribute('data-w'); });
     },300);
   });
 
   // ---- IntersectionObserver entrance reveals ----
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
+  var io=new IntersectionObserver((entries)=> {
+    entries.forEach((e)=> {
       if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
     });
   },{threshold:.15});
-  document.querySelectorAll('.reveal').forEach(function(el,i){
-    el.style.transitionDelay=(Math.min(i,6)*0.07)+'s';
+  document.querySelectorAll('.reveal').forEach((el,i)=> {
+    el.style.transitionDelay=`${Math.min(i,6)*0.07}s`;
     io.observe(el);
   });
 
   // ---- Project rows: cursor-following view circle ----
-  document.querySelectorAll('.projects .row').forEach(function(row){
+  document.querySelectorAll('.projects .row').forEach((row)=> {
     var circle=row.querySelector('.view-circle');
     var tx=0,ty=0,cx=0,cy=0,raf=null;
     function loop(){
       cx+=(tx-cx)*0.18; cy+=(ty-cy)*0.18;
-      circle.style.left=cx+'px'; circle.style.top=cy+'px';
+      circle.style.left=`${cx}px`; circle.style.top=`${cy}px`;
       if(Math.abs(tx-cx)>0.3||Math.abs(ty-cy)>0.3){ raf=requestAnimationFrame(loop); } else { raf=null; }
     }
-    row.addEventListener('mousemove',function(ev){
+    row.addEventListener('mousemove',(ev)=> {
       var r=row.getBoundingClientRect();
       tx=ev.clientX-r.left; ty=ev.clientY-r.top;
       if(!raf) raf=requestAnimationFrame(loop);
     });
-    row.addEventListener('mouseenter',function(ev){
+    row.addEventListener('mouseenter',(ev)=> {
       var r=row.getBoundingClientRect();
       cx=tx=ev.clientX-r.left; cy=ty=ev.clientY-r.top;
-      circle.style.left=cx+'px'; circle.style.top=cy+'px';
+      circle.style.left=`${cx}px`; circle.style.top=`${cy}px`;
     });
   });
 
@@ -454,11 +454,11 @@ footer{position:relative;background:var(--fg);color:var(--bg);overflow:hidden;}
     var vh=window.innerHeight;
     var prog=(vh-r.top)/(vh+r.height); // 0..1 as section passes through
     var p=Math.max(-1,Math.min(1,(prog-0.5)*2));
-    if(watermark) watermark.style.transform='translate(-50%,-50%) translateY('+(p*-80)+'px)';
-    if(statement) statement.style.transform='translateY('+(p*30)+'px)';
+    if(watermark) watermark.style.transform=`translate(-50%,-50%) translateY(${p*-80}px)`;
+    if(statement) statement.style.transform=`translateY(${p*30}px)`;
     ticking=false;
   }
-  window.addEventListener('scroll',function(){
+  window.addEventListener('scroll',()=> {
     if(!ticking){ ticking=true; requestAnimationFrame(parallax); }
   },{passive:true});
   parallax();

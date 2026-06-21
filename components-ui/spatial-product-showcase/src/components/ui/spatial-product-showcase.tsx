@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { motion, AnimatePresence, type Variants } from "motion/react";
 import {
 	Battery,
-	Sliders,
-	ChevronRight,
-	Zap,
 	Bluetooth,
-	Wifi,
-	Music,
+	ChevronRight,
 	type LucideIcon,
+	Music,
+	Sliders,
+	Wifi,
+	Zap,
 } from "lucide-react";
+import { AnimatePresence, motion, type Variants } from "motion/react";
+import { useState } from "react";
 
 // =========================================
 // 1. CONFIGURATION & DATA TYPES

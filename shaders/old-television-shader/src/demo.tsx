@@ -1,28 +1,28 @@
-import { useCallback, useRef, useState, type ReactNode } from "react";
 import {
 	Antenna,
-	Tv,
-	Radio,
-	Power,
-	Gauge,
 	Boxes,
-	Terminal,
 	FolderTree,
+	Gauge,
 	Package,
+	Power,
+	Radio,
 	Sparkles,
+	Terminal,
+	Tv,
 } from "lucide-react";
-import { OldTelevisionShader } from "@/components/ui/old-television-shader";
-import { CrtScreen } from "@/components/crt-screen";
-import { SignalMeter, useFps } from "@/components/signal-meter";
+import { type ReactNode, useCallback, useRef, useState } from "react";
+import { ApiTable, PROP_ROWS } from "@/components/api-table";
 import {
+	ColorChip,
 	Fader,
 	ToggleSwitch,
-	ColorChip,
 } from "@/components/broadcast-controls";
 import { CodeBlock } from "@/components/code-block";
-import { ApiTable, PROP_ROWS } from "@/components/api-table";
+import { CrtScreen } from "@/components/crt-screen";
+import { SignalMeter, useFps } from "@/components/signal-meter";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { OldTelevisionShader } from "@/components/ui/old-television-shader";
 import { useTypewriter } from "@/hooks/use-typewriter";
 import { CHANNELS, type Channel } from "@/lib/channels";
 import { cn } from "@/lib/utils";

@@ -110,7 +110,7 @@ export function useAcquisition(): Acquisition {
 	// Reset the phase clock whenever a new phase or acquisition cycle begins.
 	useEffect(() => {
 		phaseStartRef.current = performance.now();
-	}, [phase, cycle]);
+	}, []);
 
 	// Phase advance timer.
 	useEffect(() => {
@@ -119,7 +119,7 @@ export function useAcquisition(): Acquisition {
 		const remaining = Math.max(0, PHASE_MS[phase] - elapsed);
 		const t = window.setTimeout(() => dispatch({ type: "advance" }), remaining);
 		return () => window.clearTimeout(t);
-	}, [phase, cycle, paused]);
+	}, [phase, paused]);
 
 	// Confidence ramp — climbs through acquiring/tracking, snaps to 100 on lock,
 	// and sits near zero while scanning.

@@ -225,6 +225,6 @@
 	.animate-rise,
 	.scan-sweep,
 	.blink {
-		animation: none !important;
+		animation: none;
 	}
 }

@@ -1,6 +1,6 @@
 import { Pipette } from "lucide-react";
-import { REAGENTS } from "@/lib/reagents";
 import type { TunedColor } from "@/hooks/useTunedColor";
+import { REAGENTS } from "@/lib/reagents";
 import { cn } from "@/lib/utils";
 
 interface VapourConsoleProps {

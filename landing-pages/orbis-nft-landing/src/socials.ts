@@ -1,4 +1,4 @@
-import { Github, Mail, Twitter, type LucideIcon } from "lucide-react";
+import { Github, type LucideIcon, Mail, Twitter } from "lucide-react";
 
 export interface Social {
 	label: string;

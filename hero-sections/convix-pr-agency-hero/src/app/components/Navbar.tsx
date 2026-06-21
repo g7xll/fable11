@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { ChevronDown, ChevronRight, Menu, ShoppingCart } from "lucide-react";
+import { useState } from "react";
 
 const ORANGE = "#ef4d23";
 const NAV_LINKS = ["Home", "Features", "About", "Pages"] as const;

@@ -1,18 +1,18 @@
-import { useCallback, useRef, useState } from "react";
 import {
 	Activity,
+	Gauge,
+	Github,
+	Layers3,
 	MousePointer2,
 	Pause,
 	Play,
-	Layers3,
 	Sparkles,
-	Gauge,
-	Github,
 } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import Slider from "@/components/Slider";
 import ShaderAnimation, {
 	type ShaderTelemetry,
 } from "@/components/ui/shader-animation";
-import Slider from "@/components/Slider";
 import { cn } from "@/lib/utils";
 
 /**

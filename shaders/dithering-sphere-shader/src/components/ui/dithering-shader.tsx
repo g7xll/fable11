@@ -295,7 +295,7 @@ function createShader(
 
 	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
 		console.error(
-			"An error occurred compiling the shaders: " + gl.getShaderInfoLog(shader),
+			`An error occurred compiling the shaders: ${gl.getShaderInfoLog(shader)}`,
 		);
 		gl.deleteShader(shader);
 		return null;
@@ -414,7 +414,7 @@ export function DitheringShader({
 			if (!context || !shaderProgram) return;
 
 			context.clear(context.COLOR_BUFFER_BIT);
-			context["useProgram"](shaderProgram);
+			context.useProgram(shaderProgram);
 
 			// Set uniforms
 			const locations = uniformLocationsRef.current;

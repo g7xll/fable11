@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const EASE_OUT_EXPO: [number, number, number, number] = [0.16, 1, 0.3, 1];
 

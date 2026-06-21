@@ -26,7 +26,7 @@ function clamp(v: number, lo: number, hi: number) {
 export function visibilityFromLum(lum: number) {
 	const t = clamp((lum - LUM_LO) / (LUM_HI - LUM_LO), 0, 1); // 0 clear → 1 dense
 	const metres =
-		Math.round((VIS_MAX - (VIS_MAX - VIS_MIN) * Math.pow(t, 0.85)) / 5) * 5;
+		Math.round((VIS_MAX - (VIS_MAX - VIS_MIN) * t ** 0.85) / 5) * 5;
 	return { metres, density: t };
 }
 

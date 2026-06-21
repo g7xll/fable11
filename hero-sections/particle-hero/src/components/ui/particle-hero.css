@@ -189,11 +189,11 @@
 	.particle-hero .heroP,
 	.particle-hero .accent-lines > div > div,
 	.particle-hero .spotlight > div {
-		animation: none !important;
-		opacity: 1 !important;
-		transform: none !important;
+		animation: none;
+		opacity: 1;
+		transform: none;
 	}
 	.particle-hero .heroT h2 {
-		animation: none !important;
+		animation: none;
 	}
 }

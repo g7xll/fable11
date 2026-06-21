@@ -1,6 +1,6 @@
 import { Activity, Radio } from "lucide-react";
-import { cn } from "@/lib/utils";
 import type { SignalSample } from "@/lib/use-signal-clock";
+import { cn } from "@/lib/utils";
 
 function pad(n: number, width = 2) {
 	return n.toFixed(0).padStart(width, "0");

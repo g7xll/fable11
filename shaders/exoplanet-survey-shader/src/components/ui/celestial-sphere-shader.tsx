@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, memo } from "react";
+import type React from "react";
+import { memo, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 // --- GLSL Shaders ---
@@ -204,9 +205,9 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 			let fpsEMA = 60;
 			const loop = () => {
 				const { clock, sphere } = threeRef.current;
-				const delta = clock!.getDelta();
-				sphere!.rotation.y += delta * rotationSpeedRef.current;
-				uniforms.u_time.value = clock!.getElapsedTime();
+				const delta = clock?.getDelta();
+				sphere?.rotation.y += delta * rotationSpeedRef.current;
+				uniforms.u_time.value = clock?.getElapsedTime();
 
 				renderer.render(scene, camera);
 
@@ -215,7 +216,7 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 				onFrameRef.current?.({
 					elapsed: uniforms.u_time.value,
 					fps: fpsEMA,
-					rotation: sphere!.rotation.y,
+					rotation: sphere?.rotation.y,
 				});
 
 				raf = requestAnimationFrame(loop);
@@ -237,7 +238,7 @@ const ShaderCanvas: React.FC<ShaderCanvasProps> = memo(
 			// Only `fill` changes the scene plumbing; colours/dials are synced live
 			// by the effect below without rebuilding the renderer.
 			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [fill]);
+		}, [fill, glowIntensity, color2, color1, cloudDensity]);
 
 		// Sync the live uniforms in place (no scene rebuild, so the sphere keeps
 		// spinning from where it was and the GL context is never recreated).

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Gauge, Radio, Waves, Wind } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import type { WaveMode } from "@/components/ui/flowing-waves-shader";
 import { cn } from "@/lib/utils";
 

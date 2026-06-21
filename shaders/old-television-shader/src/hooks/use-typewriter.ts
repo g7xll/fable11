@@ -56,7 +56,7 @@ export function useTypewriter(
 
 		return () => timers.current.forEach((t) => clearTimeout(t));
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [lines.join(""), speed, lineDelay, startDelay, loop]);
+	}, [speed, lineDelay, startDelay, loop, lines.forEach]);
 
 	return { rendered, done };
 }

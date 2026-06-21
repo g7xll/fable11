@@ -1,6 +1,3 @@
-import { useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, usePresence } from "motion/react";
-import type { Variants } from "motion/react";
 import {
 	ArrowRight,
 	ArrowUpRight,
@@ -11,6 +8,9 @@ import {
 	Leaf,
 	Plus,
 } from "lucide-react";
+import type { Variants } from "motion/react";
+import { AnimatePresence, motion, usePresence } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 const VIDEO_URL =
 	"/assets/magnific_use-img-2-as-the-exact-ba_Piu3X0W42C_wnrc8f.mp4";
@@ -148,7 +148,7 @@ function SandTransitionImage({
 		const tick = (now: number) => {
 			if (start === null) start = now;
 			const t = Math.min(1, (now - start) / DURATION);
-			const eased = entering ? 1 - Math.pow(1 - t, 4) : Math.pow(t, 3);
+			const eased = entering ? 1 - (1 - t) ** 4 : t ** 3;
 			applyDissolve(entering ? 1 - eased : eased);
 			if (t < 1) {
 				frame = requestAnimationFrame(tick);

@@ -1,5 +1,5 @@
-import { Snowflake, RotateCcw, Pause, Play } from "lucide-react";
-import { FADERS, PRESETS, DEFAULT_PARAMS, type FogParams } from "./presets";
+import { Pause, Play, RotateCcw, Snowflake } from "lucide-react";
+import { DEFAULT_PARAMS, FADERS, type FogParams, PRESETS } from "./presets";
 
 interface Props {
 	params: FogParams;

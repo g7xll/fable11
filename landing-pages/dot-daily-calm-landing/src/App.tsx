@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const MESSAGES = ["Are you here?", "Yes, I am.", "Speak soon."];
 const TYPING_SPEED = 100;

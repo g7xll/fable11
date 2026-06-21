@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import {
 	FolderTree,
 	MousePointer2,
@@ -8,6 +7,7 @@ import {
 	SlidersHorizontal,
 	Terminal,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 /* The 7-stop thermal LUT baked into the component (THERMAL_PALETTE). */

@@ -1,4 +1,4 @@
-import { Moon, MonitorCog, Sun } from "lucide-react";
+import { MonitorCog, Moon, Sun } from "lucide-react";
 import type { MoltenCoreTheme } from "@/components/ui/molten-core-shader";
 import { cn } from "@/lib/utils";
 

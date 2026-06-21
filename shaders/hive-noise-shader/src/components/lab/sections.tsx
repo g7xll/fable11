@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import {
 	CheckCircle2,
 	FolderTree,
@@ -12,6 +11,7 @@ import {
 	Terminal,
 	Workflow,
 } from "lucide-react";
+import type { ReactNode } from "react";
 import { Code } from "./code";
 import {
 	CSS_IMPORT,

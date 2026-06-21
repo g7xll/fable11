@@ -1,6 +1,6 @@
+import ContactButton from "../components/ContactButton";
 import FadeIn from "../components/FadeIn";
 import Magnet from "../components/Magnet";
-import ContactButton from "../components/ContactButton";
 
 const PORTRAIT_URL = "/assets/Rectangle_40443.81459862.png";
 

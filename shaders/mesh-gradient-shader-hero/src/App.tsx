@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	Check,
@@ -14,9 +13,10 @@ import {
 	Waves,
 	Wind,
 } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { HeroSection } from "@/components/ui/hero-section-with-smooth-bg-shader";
 import { useTelemetry } from "@/lib/useTelemetry";
-import { cn, clamp, luminance, normalizeHex } from "@/lib/utils";
+import { clamp, cn, luminance, normalizeHex } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ *
  * Palette presets — each is a full set of MeshGradient colour stops the

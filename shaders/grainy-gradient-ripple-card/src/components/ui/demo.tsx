@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber";
 import { motion } from "framer-motion";
-import { useState, useRef } from "react";
+import { useRef, useState } from "react";
 import GrainyGradient from "@/components/ui/gradient-shader-card";
 
 interface Ripple {

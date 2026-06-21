@@ -1,4 +1,5 @@
 import { chromium } from "playwright-core";
+
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 let failures = 0;
 for (const width of [1440, 1280, 1024, 834]) {

@@ -11,8 +11,8 @@
  * Usage: node scripts/verify.mjs   (this also runs the build).
  */
 import { spawn } from "node:child_process";
-import { inflateSync } from "node:zlib";
 import { setTimeout as sleep } from "node:timers/promises";
+import { inflateSync } from "node:zlib";
 
 import { chromium } from "playwright";
 

@@ -4,12 +4,12 @@ import { DitheringStage } from "@/components/DitheringStage";
 import { Reveal } from "@/components/Reveal";
 import {
 	DEFAULT_PARAMS,
+	type Params,
 	PRESETS,
 	PX_RANGE,
 	SHAPES,
 	SPEED_RANGE,
 	TYPES,
-	type Params,
 } from "@/lib/dithering";
 
 type ControlDeckProps = {

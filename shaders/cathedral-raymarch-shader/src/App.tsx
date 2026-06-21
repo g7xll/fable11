@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Church,
 	Flame,
@@ -9,6 +8,7 @@ import {
 	SunMedium,
 	Terminal,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 import CathedralStage, {
 	type CathedralSample,
@@ -270,7 +270,7 @@ export default function App() {
 		const el = stageWrapRef.current;
 		if (!el) return;
 		function onMove(e: PointerEvent) {
-			const rect = el!.getBoundingClientRect();
+			const rect = el?.getBoundingClientRect();
 			const x = (e.clientX - rect.left) / rect.width;
 			const y = (e.clientY - rect.top) / rect.height;
 			setLightUV({

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { HeroWave } from "@/components/ui/ai-input-hero";
 import { ShowcaseSections } from "@/components/showcase-sections";
+import { HeroWave } from "@/components/ui/ai-input-hero";
 
 /**
  * Demo / showcase for the reusable <HeroWave /> shader hero.

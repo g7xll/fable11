@@ -1,5 +1,5 @@
-import { useId } from "react";
 import { ChevronDown, TrendingDown, TrendingUp, X } from "lucide-react";
+import { useId } from "react";
 import Gauge from "./Gauge";
 
 const ORANGE = "#ef4d23";

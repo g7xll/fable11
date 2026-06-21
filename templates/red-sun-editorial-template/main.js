@@ -1,7 +1,5 @@
 // Red Sun — interactions
-(function () {
-	"use strict";
-
+(() => {
 	// Glass-on-scroll nav
 	var nav = document.getElementById("nav");
 	function onScroll() {
@@ -16,13 +14,13 @@
 	var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 	var els = document.querySelectorAll("[data-reveal]");
 	if (reduce || !("IntersectionObserver" in window)) {
-		els.forEach(function (el) {
+		els.forEach((el) => {
 			el.classList.add("in-view");
 		});
 	} else {
 		var io = new IntersectionObserver(
-			function (entries) {
-				entries.forEach(function (e) {
+			(entries) => {
+				entries.forEach((e) => {
 					if (e.isIntersecting) {
 						e.target.classList.add("in-view");
 						io.unobserve(e.target);
@@ -31,7 +29,7 @@
 			},
 			{ threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
 		);
-		els.forEach(function (el) {
+		els.forEach((el) => {
 			io.observe(el);
 		});
 	}

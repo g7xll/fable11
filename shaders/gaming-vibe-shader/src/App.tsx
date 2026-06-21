@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Cpu, Gamepad2, Joystick, Radio, Volume2, Zap } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import NenoShader, { type NenoFrame } from "@/components/ui/neno-shader";
 
 /* ── Control-deck channel definitions ─────────────────────────────────────

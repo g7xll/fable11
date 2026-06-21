@@ -1,7 +1,7 @@
 import { useCallback, useRef, useState } from "react";
-import { AnomalousMatterHero } from "@/components/ui/anomalous-matter-hero";
 import { Fader, FreezeToggle } from "@/components/containment-controls";
 import { ContainmentTelemetry } from "@/components/containment-telemetry";
+import { AnomalousMatterHero } from "@/components/ui/anomalous-matter-hero";
 
 /**
  * The integration the prompt asks for. The `AnomalousMatterHero` is the fixed

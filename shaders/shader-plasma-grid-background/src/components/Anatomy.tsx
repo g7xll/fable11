@@ -1,5 +1,5 @@
-import { CircleDot, Grid3x3, Layers, Spline, Waves, Zap } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { CircleDot, Grid3x3, Layers, Spline, Waves, Zap } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 

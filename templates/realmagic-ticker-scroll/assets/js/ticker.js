@@ -101,7 +101,7 @@ let scrollTween;
 
 function buildScroll() {
 	if (scrollTween) {
-		scrollTween.scrollTrigger && scrollTween.scrollTrigger.kill();
+		scrollTween.scrollTrigger?.kill();
 		scrollTween.kill();
 		gsap.set(line, { x: 0 });
 	}
@@ -116,14 +116,14 @@ function buildScroll() {
 			start: "top top",
 			// 1px of scroll == 1px of horizontal travel feels like real tape.
 			// multiplier > 1 makes the read feel longer/slower.
-			end: () => "+=" + travel * 1.15,
+			end: () => `+=${travel * 1.15}`,
 			pin: true,
 			scrub: prefersReduced ? true : 0.6,
 			anticipatePin: 1,
 			invalidateRefresh: true,
 			onUpdate: (self) => {
 				if (progressFill) {
-					progressFill.style.width = (self.progress * 100).toFixed(2) + "%";
+					progressFill.style.width = `${(self.progress * 100).toFixed(2)}%`;
 				}
 			},
 		},
@@ -138,7 +138,7 @@ function buildScroll() {
 				scrollTrigger: {
 					trigger: stage,
 					start: "top top",
-					end: () => "+=" + travel * 1.15,
+					end: () => `+=${travel * 1.15}`,
 					scrub: 1,
 				},
 			});
@@ -156,7 +156,7 @@ function boot() {
 	ScrollTrigger.refresh();
 }
 
-if (document.fonts && document.fonts.ready) {
+if (document.fonts?.ready) {
 	document.fonts.ready.then(boot);
 	// safety net in case fonts.ready never resolves
 	setTimeout(() => {

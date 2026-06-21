@@ -119,7 +119,7 @@ export default function ShaderDemo_ATC({
 		try {
 			prog = link(vertSrc, fragSrc);
 		} catch (e: unknown) {
-			pre.textContent = "Shader error:\n" + (e as Error).message;
+			pre.textContent = `Shader error:\n${(e as Error).message}`;
 			return;
 		}
 

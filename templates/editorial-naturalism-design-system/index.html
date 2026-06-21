@@ -302,7 +302,7 @@ window.addEventListener('scroll', onScroll); onScroll();
 
 // reveal observer
 const io = new IntersectionObserver((es)=>{
-  es.forEach((e,i)=>{ if(e.isIntersecting){ e.target.style.transitionDelay=(e.target.dataset.delay||0)+'ms'; e.target.classList.add('in'); io.unobserve(e.target);} });
+  es.forEach((e,_i)=>{ if(e.isIntersecting){ e.target.style.transitionDelay=`${e.target.dataset.delay||0}ms`; e.target.classList.add('in'); io.unobserve(e.target);} });
 },{threshold:.15});
 document.querySelectorAll('[data-reveal]').forEach((el,i)=>{el.dataset.delay=(i%3)*90; io.observe(el);});
 
@@ -340,12 +340,12 @@ function renderTab(i){
   const t = TABS[i];
   panel.style.opacity = 0;
   setTimeout(()=>{
-    panel.innerHTML = '<div class="bento">'+ t.cards.map(c=>`
+    panel.innerHTML = `<div class="bento">${t.cards.map(c=>`
       <div class="bcard">
         <span class="mono">${c.id}</span>
         <div class="bi"><svg class="icn" viewBox="0 0 24 24"><path d="${ICN[c.ic]}"/></svg></div>
         <h3>${c.h}</h3><p>${c.p}</p>
-      </div>`).join('') + '</div>';
+      </div>`).join('')}</div>`;
     panel.style.opacity = 1;
   },150);
 }

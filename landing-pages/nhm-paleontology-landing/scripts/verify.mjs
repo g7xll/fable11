@@ -2,10 +2,11 @@
 // Usage: node scripts/verify.mjs [url]
 // Requires playwright to be resolvable: either `npm i -D playwright` in this
 // project, or an install in a sibling project of this repo.
-import { createRequire } from "module";
-import { existsSync } from "fs";
-import path from "path";
-import { fileURLToPath } from "url";
+
+import { existsSync } from "node:fs";
+import { createRequire } from "node:module";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const candidates = [

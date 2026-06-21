@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
 import { DitheringShader } from "@/components/ui/dithering-shader";
-import { cn } from "@/lib/utils";
 import type { Params } from "@/lib/dithering";
+import { cn } from "@/lib/utils";
 
 type DitheringStageProps = {
 	params: Params;

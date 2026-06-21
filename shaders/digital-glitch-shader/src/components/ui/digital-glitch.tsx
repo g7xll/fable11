@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, memo } from "react";
+import { memo, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 // --- GLSL Shaders ---
@@ -178,7 +178,14 @@ const ShaderCanvas = memo((props: ShaderCanvasProps) => {
 			renderer.dispose();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [
+		props.scanlineOpacity,
+		props.glitchIntensity,
+		props.speed,
+		props.scanlineDensity,
+		props.rgbShift,
+		props.baseColor,
+	]);
 
 	useEffect(() => {
 		const { uniforms } = threeRef.current;

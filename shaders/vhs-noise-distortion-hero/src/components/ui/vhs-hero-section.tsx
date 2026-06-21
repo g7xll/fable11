@@ -1,7 +1,7 @@
+import { Canvas, useFrame } from "@react-three/fiber";
 import { gsap } from "gsap";
-import { useFrame, Canvas } from "@react-three/fiber";
-import type { Points, Mesh, ShaderMaterial } from "three";
-import { useEffect, useRef, useState, useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { Mesh, Points, ShaderMaterial } from "three";
 import { Button } from "@/components/ui/button";
 
 interface MousePosition {

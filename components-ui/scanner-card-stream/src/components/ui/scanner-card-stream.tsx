@@ -1,15 +1,15 @@
 "use client";
 
+import { ArrowLeftRight, Gauge, Pause, Play, RotateCcw } from "lucide-react";
 import {
-	useState,
-	useEffect,
-	useRef,
-	useCallback,
-	useMemo,
 	type CSSProperties,
+	useCallback,
+	useEffect,
+	useMemo,
+	useRef,
+	useState,
 } from "react";
 import * as THREE from "three";
-import { Pause, Play, RotateCcw, ArrowLeftRight, Gauge } from "lucide-react";
 
 // --- Default Images (used if no cardImages prop is provided) ---
 // Vendored locally under /assets/cards so the component runs fully offline.
@@ -31,7 +31,7 @@ const generateCode = (width: number, height: number): string => {
 	}
 	let out = "";
 	for (let i = 0; i < height; i++) {
-		out += text.substring(i * width, (i + 1) * width) + "\n";
+		out += `${text.substring(i * width, (i + 1) * width)}\n`;
 	}
 	return out;
 };
@@ -206,7 +206,7 @@ const ScannerCardStream = ({
 			life: number;
 			decay: number;
 		};
-		let scannerParticles: Spark[] = [];
+		const scannerParticles: Spark[] = [];
 		const baseMaxParticles = 800;
 		let currentMaxParticles = baseMaxParticles;
 		const scanTargetMaxParticles = 2500;
@@ -433,7 +433,7 @@ const ScannerCardStream = ({
 			texture.dispose();
 			renderer.dispose();
 		};
-	}, [isPaused, cards, cardGap, friction, scanEffect, initialSpeed]);
+	}, [isPaused, cards, scanEffect, initialSpeed]);
 
 	const ctrlBtn =
 		"grid place-items-center h-9 w-9 rounded-md border border-white/10 bg-white/[0.03] text-violet-100/80 transition hover:bg-violet-500/20 hover:text-white hover:border-violet-400/40 active:scale-95";

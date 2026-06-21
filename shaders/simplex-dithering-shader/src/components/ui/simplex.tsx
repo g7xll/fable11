@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
 import { useState } from "react";
 import {
 	DitheringShader,
 	type DitheringTelemetry,
 } from "@/components/ui/dithering-shader";
+import { cn } from "@/lib/utils";
 
 /**
  * The component scaffold shipped with the integration prompt. Kept verbatim so

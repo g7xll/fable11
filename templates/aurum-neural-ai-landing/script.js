@@ -1,7 +1,5 @@
 /* ===== Aurum — interactions ===== */
 (() => {
-	"use strict";
-
 	/* Nav scroll state */
 	const nav = document.getElementById("nav");
 	const onScroll = () => nav.classList.toggle("scrolled", window.scrollY > 40);
@@ -98,38 +96,35 @@
 	window.addEventListener("resize", drawNet, { passive: true });
 	// redraw after fonts/layout settle
 	setTimeout(drawNet, 250);
-	if (document.fonts && document.fonts.ready)
-		document.fonts.ready.then(drawNet);
+	if (document.fonts?.ready) document.fonts.ready.then(drawNet);
 
 	/* Parallax drift on satellites + central reacting to pointer */
 	let raf = null;
-	stage &&
-		stage.addEventListener("mousemove", (e) => {
-			if (raf) return;
-			raf = requestAnimationFrame(() => {
-				const r = stage.getBoundingClientRect();
-				const nx = (e.clientX - r.left) / r.width - 0.5;
-				const ny = (e.clientY - r.top) / r.height - 0.5;
-				stage.querySelectorAll(".satellite").forEach((s, i) => {
-					const depth = 14 + (i % 3) * 8;
-					s.style.transform = `translate(${(-nx * depth).toFixed(1)}px, ${(-ny * depth).toFixed(1)}px)`;
-				});
-				const cen = stage.querySelector(".central");
-				if (cen)
-					cen.style.transform = `translate(calc(-50% + ${(nx * 10).toFixed(1)}px), calc(-50% + ${(ny * 10).toFixed(1)}px))`;
-				drawNet();
-				raf = null;
-			});
-		});
-	stage &&
-		stage.addEventListener("mouseleave", () => {
-			stage.querySelectorAll(".satellite").forEach((s) => {
-				s.style.transform = "";
+	stage?.addEventListener("mousemove", (e) => {
+		if (raf) return;
+		raf = requestAnimationFrame(() => {
+			const r = stage.getBoundingClientRect();
+			const nx = (e.clientX - r.left) / r.width - 0.5;
+			const ny = (e.clientY - r.top) / r.height - 0.5;
+			stage.querySelectorAll(".satellite").forEach((s, i) => {
+				const depth = 14 + (i % 3) * 8;
+				s.style.transform = `translate(${(-nx * depth).toFixed(1)}px, ${(-ny * depth).toFixed(1)}px)`;
 			});
 			const cen = stage.querySelector(".central");
-			if (cen) cen.style.transform = "translate(-50%, -50%)";
+			if (cen)
+				cen.style.transform = `translate(calc(-50% + ${(nx * 10).toFixed(1)}px), calc(-50% + ${(ny * 10).toFixed(1)}px))`;
 			drawNet();
+			raf = null;
 		});
+	});
+	stage?.addEventListener("mouseleave", () => {
+		stage.querySelectorAll(".satellite").forEach((s) => {
+			s.style.transform = "";
+		});
+		const cen = stage.querySelector(".central");
+		if (cen) cen.style.transform = "translate(-50%, -50%)";
+		drawNet();
+	});
 
 	/* Pricing toggle */
 	const sw = document.getElementById("switch");
@@ -150,22 +145,20 @@
 		lblA.classList.toggle("on", annual);
 		setPrices();
 	};
-	sw && sw.addEventListener("click", toggle);
-	sw &&
-		sw.addEventListener("keydown", (e) => {
-			if (e.key === "Enter" || e.key === " ") {
-				e.preventDefault();
-				toggle();
-			}
-		});
+	sw?.addEventListener("click", toggle);
+	sw?.addEventListener("keydown", (e) => {
+		if (e.key === "Enter" || e.key === " ") {
+			e.preventDefault();
+			toggle();
+		}
+	});
 
 	/* Digest form */
 	const form = document.getElementById("digest-form");
-	form &&
-		form.addEventListener("submit", (e) => {
-			e.preventDefault();
-			const input = form.querySelector("input");
-			input.value = "";
-			input.placeholder = "Welcome to the digest ✦";
-		});
+	form?.addEventListener("submit", (e) => {
+		e.preventDefault();
+		const input = form.querySelector("input");
+		input.value = "";
+		input.placeholder = "Welcome to the digest ✦";
+	});
 })();

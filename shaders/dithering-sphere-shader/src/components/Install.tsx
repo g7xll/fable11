@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Check, Copy, FileCode2, Terminal } from "lucide-react";
+import { useState } from "react";
 
 import { Reveal } from "@/components/Reveal";
 

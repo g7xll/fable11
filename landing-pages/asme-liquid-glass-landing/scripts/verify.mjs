@@ -4,8 +4,8 @@
  * the rendered DOM, computed styles, video wiring, and console errors.
  */
 import { fileURLToPath } from "node:url";
-import { preview } from "vite";
 import { chromium } from "playwright";
+import { preview } from "vite";
 
 const VIDEO_URLS = {
 	hero: "hf_20260405_074625_a81f018a-956b-43fb-9aee-4d1508e30e6a.mp4",

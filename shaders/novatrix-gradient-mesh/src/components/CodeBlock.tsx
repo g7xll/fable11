@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { useState } from "react";
 
 /** A monospace code surface with a one-click copy button. */
 export function CodeBlock({ code, label }: { code: string; label?: string }) {

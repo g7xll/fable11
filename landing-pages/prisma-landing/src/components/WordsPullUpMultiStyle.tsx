@@ -1,5 +1,5 @@
-import { CSSProperties, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { type CSSProperties, useRef } from "react";
 
 export interface TextSegment {
 	text: string;

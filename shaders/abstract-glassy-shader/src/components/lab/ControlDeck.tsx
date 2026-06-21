@@ -8,11 +8,11 @@ import {
 	Waves,
 } from "lucide-react";
 import { Fader, Segmented } from "@/components/lab/controls";
-import { cn } from "@/lib/utils";
 import type {
 	PaletteId,
 	ShaderSettings,
 } from "@/components/ui/abstract-glassy-shader";
+import { cn } from "@/lib/utils";
 
 export function ControlDeck({
 	settings,

@@ -46,7 +46,7 @@ async function main() {
 	assert(
 		resp && resp.status() === 200,
 		"page returns HTTP 200",
-		resp && resp.status(),
+		resp?.status(),
 	);
 
 	// Structural checks (server-rendered + hydrated).
@@ -194,7 +194,7 @@ async function main() {
 			l.classList.contains("side-nav__link--active"),
 		);
 		const lineParent = document.querySelector(".side-nav__line")?.parentElement;
-		const lineIdx = links.findIndex((l) => l === lineParent);
+		const lineIdx = links.indexOf(lineParent);
 		return {
 			activeIdx,
 			lineIdx,

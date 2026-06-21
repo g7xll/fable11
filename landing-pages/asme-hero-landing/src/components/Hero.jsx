@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight, Check } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
+import { useEffect, useState } from "react";
 
 const PLACEHOLDER_PROMPT = "Enter Your Email Here For Early Access";
 const PLACEHOLDER_CONFIRM = "You Will Receive Notifications By Email";
@@ -97,7 +97,6 @@ export default function Hero() {
 									value={email}
 									onChange={(event) => setEmail(event.target.value)}
 									placeholder={placeholder}
-									autoFocus
 									readOnly={submitted}
 									aria-label="Email address"
 									className="flex-1 min-w-0 bg-transparent text-white placeholder-white/45 outline-none"

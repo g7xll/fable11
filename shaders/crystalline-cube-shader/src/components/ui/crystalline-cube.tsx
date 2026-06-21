@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 // Props interface for the InteractiveShader component
 interface ShaderProps {

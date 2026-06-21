@@ -1,4 +1,3 @@
-import { useCallback, useMemo, useRef, useState } from "react";
 import {
 	Activity,
 	ChevronDown,
@@ -14,6 +13,7 @@ import {
 	Target,
 	Waypoints,
 } from "lucide-react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import {
 	AegisShield,
 	type ShieldFrameState,

@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
 import {
 	Activity,
 	Atom,
@@ -17,13 +16,14 @@ import {
 	Waves,
 	Zap,
 } from "lucide-react";
-import {
-	PaperShadersStage,
-	type PaperChannel,
-} from "@/components/ui/paper-shaders-stage";
+import { useEffect, useMemo, useState } from "react";
 import { BackgroundPaperShaders } from "@/components/ui/background-paper-shaders";
+import {
+	type PaperChannel,
+	PaperShadersStage,
+} from "@/components/ui/paper-shaders-stage";
 import { useTelemetry } from "@/lib/useTelemetry";
-import { cn, clamp } from "@/lib/utils";
+import { clamp, cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ *
  * Channels — the four shader sources this deck can patch into the

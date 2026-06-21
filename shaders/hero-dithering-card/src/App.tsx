@@ -1,10 +1,3 @@
-import {
-	useEffect,
-	useRef,
-	useState,
-	type ComponentProps,
-	type ReactNode,
-} from "react";
 import { Dithering } from "@paper-design/shaders-react";
 import {
 	ArrowUpRight,
@@ -26,9 +19,16 @@ import {
 	Sun,
 	Terminal,
 } from "lucide-react";
-import { CTASection } from "@/components/ui/hero-dithering-card";
-import DemoOne from "@/components/ui/demo";
+import {
+	type ComponentProps,
+	type ReactNode,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
 import { CodeBlock } from "@/components/code-block";
+import DemoOne from "@/components/ui/demo";
+import { CTASection } from "@/components/ui/hero-dithering-card";
 import { useTelemetry } from "@/lib/useTelemetry";
 import {
 	COMPONENT_SOURCE,

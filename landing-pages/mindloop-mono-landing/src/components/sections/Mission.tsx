@@ -1,6 +1,6 @@
 import {
-	motion,
 	type MotionValue,
+	motion,
 	useScroll,
 	useTransform,
 } from "framer-motion";

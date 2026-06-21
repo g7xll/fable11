@@ -1,4 +1,4 @@
-import { Blocks, Palette, Wand2, type LucideIcon } from "lucide-react";
+import { Blocks, type LucideIcon, Palette, Wand2 } from "lucide-react";
 
 interface Capability {
 	icon: LucideIcon;

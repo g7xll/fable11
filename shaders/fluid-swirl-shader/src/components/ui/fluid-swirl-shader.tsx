@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 /* -------------------------------------------------------------------------- */
 /*  Shaders (preserved verbatim from the integration prompt)                  */
@@ -307,8 +307,8 @@ export function FluidSwirl({
 			canvas.width = Math.max(1, Math.floor(w * dpr));
 			canvas.height = Math.max(1, Math.floor(h * dpr));
 			if (!fill) {
-				canvas.style.width = window.innerWidth + "px";
-				canvas.style.height = window.innerHeight + "px";
+				canvas.style.width = `${window.innerWidth}px`;
+				canvas.style.height = `${window.innerHeight}px`;
 			}
 			gl.viewport(0, 0, canvas.width, canvas.height);
 		};

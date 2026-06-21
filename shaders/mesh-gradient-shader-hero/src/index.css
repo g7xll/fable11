@@ -318,6 +318,6 @@ button:focus-visible,
 @media (prefers-reduced-motion: reduce) {
 	.tally,
 	.sweep {
-		animation: none !important;
+		animation: none;
 	}
 }

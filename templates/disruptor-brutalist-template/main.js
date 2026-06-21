@@ -1,7 +1,5 @@
 /* ===================== DISRUPTOR — main.js ===================== */
 (() => {
-	"use strict";
-
 	/* ---------- inline SVG square avatar (no external requests) ---------- */
 	function avatar(seed, bg) {
 		const initials = seed
@@ -15,7 +13,7 @@
       <text x='50%' y='54%' dominant-baseline='middle' text-anchor='middle'
         font-family='Archivo, sans-serif' font-weight='900' font-size='20' fill='#000'>${initials}</text>
     </svg>`;
-		return "data:image/svg+xml;utf8," + encodeURIComponent(svg);
+		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 	}
 
 	/* ---------- tickers ---------- */
@@ -158,7 +156,7 @@
 	const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 	function tick() {
-		let diff = Math.floor((target - new Date()) / 1000);
+		let diff = Math.floor((target - Date.now()) / 1000);
 		if (diff < 0) diff = 0;
 		const d = Math.floor(diff / 86400);
 		const h = Math.floor((diff % 86400) / 3600);
@@ -183,13 +181,13 @@
 	if ("IntersectionObserver" in window && !reduce) {
 		const io = new IntersectionObserver(
 			(entries) => {
-				entries.forEach((e, i) => {
+				entries.forEach((e, _i) => {
 					if (e.isIntersecting) {
 						const sibs = Array.from(
 							e.target.parentElement.querySelectorAll(".reveal"),
 						);
 						const idx = Math.max(0, sibs.indexOf(e.target));
-						e.target.style.transitionDelay = Math.min(idx, 6) * 70 + "ms";
+						e.target.style.transitionDelay = `${Math.min(idx, 6) * 70}ms`;
 						e.target.classList.add("in");
 						io.unobserve(e.target);
 					}

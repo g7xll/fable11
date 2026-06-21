@@ -1,5 +1,5 @@
-import { motion } from "motion/react";
 import { ChevronRight } from "lucide-react";
+import { motion } from "motion/react";
 import { cn } from "../lib/utils";
 
 const VIDEO_SRC =

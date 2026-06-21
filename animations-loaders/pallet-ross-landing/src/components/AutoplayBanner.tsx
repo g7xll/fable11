@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const SLIDES = ["/banner-1.png", "/banner-2.png", "/banner-3.png"];
 
@@ -14,7 +14,7 @@ export default function AutoplayBanner() {
 			setActiveSlide((s) => (s + 1) % SLIDES.length);
 		}, 3000);
 		return () => window.clearInterval(id);
-	}, [activeSlide]);
+	}, []);
 
 	const prev = () =>
 		setActiveSlide((s) => (s - 1 + SLIDES.length) % SLIDES.length);

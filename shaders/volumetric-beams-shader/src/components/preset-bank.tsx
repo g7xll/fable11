@@ -1,5 +1,5 @@
 import { Radio } from "lucide-react";
-import { PRESETS, rgbToCss, type Preset } from "@/lib/presets";
+import { PRESETS, type Preset, rgbToCss } from "@/lib/presets";
 
 interface PresetBankProps {
 	activeId: string;

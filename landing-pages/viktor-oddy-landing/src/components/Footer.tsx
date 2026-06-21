@@ -1,6 +1,6 @@
 import { ArrowUpRight } from "lucide-react";
-import Button from "./Button";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
+import Button from "./Button";
 
 const ANCHOR_LINKS = [
 	{ label: "Services", href: "#services" },

@@ -6,8 +6,9 @@
  * component content, and the custom requestAnimationFrame video fade system
  * (fade-in on load, fade-out near the end, reset + fade back in on ended).
  */
-import { createServer } from "node:http";
+
 import { readFile } from "node:fs/promises";
+import { createServer } from "node:http";
 import { extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";

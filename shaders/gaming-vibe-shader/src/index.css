@@ -679,13 +679,13 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.rig-screen > *,
 	.rig-screen.is-booted > * {
-		opacity: 1 !important;
-		transform: none !important;
-		transition: none !important;
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 	.rig-chip--live .rig-chip-icon,
 	.rig-eyebrow,
 	.deck-live-dot {
-		animation: none !important;
+		animation: none;
 	}
 }

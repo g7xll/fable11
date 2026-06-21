@@ -1,5 +1,5 @@
-import * as React from "react";
 import { Menu } from "lucide-react";
+import * as React from "react";
 import logoWhite from "@/assets/logo.svg";
 import logoDark from "@/assets/logo-dark.svg";
 

@@ -350,6 +350,6 @@ button:focus-visible,
 	.tally,
 	.sweep,
 	.scanlines::before {
-		animation: none !important;
+		animation: none;
 	}
 }

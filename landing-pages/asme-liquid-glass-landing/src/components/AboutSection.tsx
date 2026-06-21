@@ -1,5 +1,5 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const AboutSection = () => {
 	const ref = useRef<HTMLElement | null>(null);

@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Gem, RotateCcw, Sparkles } from "lucide-react";
-import InteractiveShader from "@/components/ui/crystal-shader";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CalibrationFader } from "@/components/calibration-fader";
-import { SpecimenTelemetry } from "@/components/specimen-telemetry";
 import { Goniometer } from "@/components/goniometer";
+import { SpecimenTelemetry } from "@/components/specimen-telemetry";
+import InteractiveShader from "@/components/ui/crystal-shader";
 
 /** Factory-calibration defaults — the prompt's original prop values. */
 const DEFAULTS = {

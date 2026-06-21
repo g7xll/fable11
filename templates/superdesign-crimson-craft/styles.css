@@ -1204,7 +1204,7 @@ details[open] > summary .chev {
 }
 @media (prefers-reduced-motion: reduce) {
 	* {
-		animation: none !important;
+		animation: none;
 	}
 	.reveal {
 		opacity: 1;

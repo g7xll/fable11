@@ -1,5 +1,5 @@
-import { useState, type CSSProperties } from "react";
 import { Menu, X } from "lucide-react";
+import { type CSSProperties, useState } from "react";
 
 const VIDEO_URL =
 	"/assets/hf_20260328_091828_e240eb17-6edc-4129-ad9d-98678e3fd238.mp4";

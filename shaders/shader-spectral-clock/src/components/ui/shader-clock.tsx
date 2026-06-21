@@ -281,7 +281,7 @@ export const TimeDisplay = () => {
 		setTime(formatTime(new Date()));
 		const interval = setInterval(() => setTime(formatTime(new Date())), 1000);
 		return () => clearInterval(interval);
-	}, []);
+	}, [formatTime]);
 
 	useEffect(() => {
 		try {
@@ -305,7 +305,7 @@ export const TimeDisplay = () => {
 		setTemperatureValue(mockTemp);
 		setTemperature(`${mockTemp}°${unit}`);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [unit]);
 
 	useEffect(() => {
 		if (temperatureValue !== null) {
@@ -344,7 +344,6 @@ export const TimeDisplay = () => {
 					onChange={handleCityChange}
 					onKeyDown={handleKeyDown}
 					onBlur={handleSubmitCity}
-					autoFocus
 					className="mb-4 bg-black/30 text-white text-center px-4 py-2 rounded-lg backdrop-blur-sm border-0 shadow-inner"
 					placeholder="Enter your city"
 				/>

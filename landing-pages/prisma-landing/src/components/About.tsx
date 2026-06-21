@@ -1,5 +1,10 @@
+import {
+	type MotionValue,
+	motion,
+	useScroll,
+	useTransform,
+} from "framer-motion";
 import { useRef } from "react";
-import { MotionValue, motion, useScroll, useTransform } from "framer-motion";
 import WordsPullUpMultiStyle from "./WordsPullUpMultiStyle";
 
 const BODY_TEXT =

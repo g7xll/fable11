@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, X } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const VIDEO_URL =
 	"/assets/hf_20260517_222138_3e3205be-3364-417b-a64a-bfe087acbec4.mp4";

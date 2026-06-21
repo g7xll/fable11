@@ -1,11 +1,11 @@
-import { useState, type FormEvent } from "react";
 import {
-	Twitter,
 	Circle,
 	Instagram,
 	Linkedin,
 	type LucideIcon,
+	Twitter,
 } from "lucide-react";
+import { type FormEvent, useState } from "react";
 
 const VIDEO_URL =
 	"/assets/hf_20260602_150901_c45b90ec-18d7-42ff-90e2-b95d7109e330.mp4";

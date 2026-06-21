@@ -1,11 +1,11 @@
 import { useRef } from "react";
 import BlurBlobs from "./components/BlurBlobs";
 import Navbar from "./components/Navbar";
-import ScrollIndicator from "./components/ScrollIndicator";
 import ScrollCards from "./components/ScrollCards";
-import SectionHero from "./sections/SectionHero";
-import SectionEcommerce from "./sections/SectionEcommerce";
+import ScrollIndicator from "./components/ScrollIndicator";
 import SectionClass from "./sections/SectionClass";
+import SectionEcommerce from "./sections/SectionEcommerce";
+import SectionHero from "./sections/SectionHero";
 
 export default function App() {
 	const containerRef = useRef<HTMLDivElement>(null);

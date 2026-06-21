@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { PhaseConsole } from "@/components/phase-console";
 import {
 	Component as MovingCirclesShader,
 	type ShaderTelemetry,
 } from "@/components/ui/moving-circles-shader";
-import { PhaseConsole } from "@/components/phase-console";
 
 const SPEEDS = [0.5, 1, 1.75, 3];
 

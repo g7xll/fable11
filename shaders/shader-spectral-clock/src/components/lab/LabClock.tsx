@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { MapPin, Pencil } from "lucide-react";
+import { useEffect, useState } from "react";
 import type { TemperatureUnit } from "@/components/ui/shader-clock";
 
 /**
@@ -93,7 +93,6 @@ export function LabClock({
 				<input
 					type="text"
 					value={draft}
-					autoFocus
 					onChange={(e) => setDraft(e.target.value)}
 					onBlur={commit}
 					onKeyDown={(e) => {

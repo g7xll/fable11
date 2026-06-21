@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
 import TrustedBy from "./components/TrustedBy";
 
 export default function App() {

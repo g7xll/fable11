@@ -190,7 +190,7 @@ try {
 } catch (err) {
 	console.error("VERIFY ERROR:", err?.message ?? err);
 	console.error(
-		"--- server log (tail) ---\n" + serverLog.split("\n").slice(-15).join("\n"),
+		`--- server log (tail) ---\n${serverLog.split("\n").slice(-15).join("\n")}`,
 	);
 	failed = true;
 } finally {

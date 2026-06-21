@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Compass,
 	Crosshair,
@@ -10,6 +9,7 @@ import {
 	Telescope,
 	ZoomIn,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CelestialSphere, {
 	type CelestialFrame,
 } from "@/components/ui/celestial-sphere";

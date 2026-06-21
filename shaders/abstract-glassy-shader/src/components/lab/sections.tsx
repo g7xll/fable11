@@ -1,5 +1,5 @@
-import type { ReactNode } from "react";
 import { Boxes, FolderTree, Sparkles, TerminalSquare } from "lucide-react";
+import type { ReactNode } from "react";
 import { CodeBlock, CodeTabs } from "@/components/lab/code";
 import {
 	componentSource,

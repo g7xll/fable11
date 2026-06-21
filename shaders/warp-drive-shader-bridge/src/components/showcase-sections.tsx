@@ -1,11 +1,11 @@
 import {
-	Terminal,
-	FolderTree,
+	ArrowRight,
 	Boxes,
+	Cpu,
+	FolderTree,
 	Gauge,
 	MousePointer2,
-	Cpu,
-	ArrowRight,
+	Terminal,
 } from "lucide-react";
 
 /* ----------------------------------------------------------------------------

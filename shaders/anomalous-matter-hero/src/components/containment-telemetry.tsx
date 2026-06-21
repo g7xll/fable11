@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Activity, Radio } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Live containment readout. Energy is sampled straight off the GPU (center-pixel

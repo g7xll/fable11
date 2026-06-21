@@ -1,5 +1,5 @@
-import { useEffect, useRef, type ReactNode } from "react";
 import { Activity, Github, Waves, Zap } from "lucide-react";
+import { type ReactNode, useEffect, useRef } from "react";
 import ElectricWavesShader from "@/components/ui/colorful-wave-pattern-1";
 
 /**

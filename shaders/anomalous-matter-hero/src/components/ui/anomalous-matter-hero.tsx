@@ -1,4 +1,4 @@
-import { useEffect, useRef, Suspense } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /**

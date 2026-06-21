@@ -1,8 +1,8 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowUpRight, Info } from "lucide-react";
-import { ASSETS } from "../lib/assets";
+import { useRef } from "react";
 import { useCountUp } from "../hooks/useCountUp";
+import { ASSETS } from "../lib/assets";
 
 const BARS = [
 	{

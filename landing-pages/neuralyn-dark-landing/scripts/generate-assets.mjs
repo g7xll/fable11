@@ -7,10 +7,11 @@
  *   quote-symbol.png        — white Instrument Serif opening quote mark
  *   testimonial-avatar.png  — flat-illustration headshot on gradient
  */
-import { chromium } from "playwright";
-import { mkdirSync, writeFileSync, rmSync } from "node:fs";
-import { fileURLToPath, pathToFileURL } from "node:url";
+
+import { mkdirSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
+import { chromium } from "playwright";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = path.join(root, "src", "assets");

@@ -1,6 +1,4 @@
 (() => {
-	"use strict";
-
 	/* ---------- Data ---------- */
 	const projects = [
 		{
@@ -113,7 +111,7 @@
 				c.style.transform = "translateY(0)";
 			});
 			document.querySelectorAll(".hero .reveal").forEach((r, i) => {
-				r.style.transitionDelay = 0.3 + i * 0.12 + "s";
+				r.style.transitionDelay = `${0.3 + i * 0.12}s`;
 				r.classList.add("is-revealed");
 			});
 		}),
@@ -179,8 +177,8 @@
 		(function loop() {
 			cx = lerp(cx, mx, 0.18);
 			cy = lerp(cy, my, 0.18);
-			cursor.style.left = cx + "px";
-			cursor.style.top = cy + "px";
+			cursor.style.left = `${cx}px`;
+			cursor.style.top = `${cy}px`;
 			requestAnimationFrame(loop);
 		})();
 		const hoverSel = "a, button, [data-cursor-hover]";

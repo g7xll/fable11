@@ -21,7 +21,7 @@ window.addEventListener("scroll", onScroll, { passive: true });
 // ---- mobile sticky cart reveal after hero ----
 const sticky = document.getElementById("stickyCart");
 const heroEl = document.querySelector(".hero");
-const ctaEl = document.getElementById("cta");
+const _ctaEl = document.getElementById("cta");
 const stickyIO = new IntersectionObserver(
 	(entries) => {
 		// show when hero is out of view, hide again over the final CTA

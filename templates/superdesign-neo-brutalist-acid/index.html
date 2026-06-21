@@ -358,10 +358,10 @@
     {name:"Brutal Boot", price:"$185", img:"prod-6.svg", sold:false}
   ];
   var track = document.getElementById("track");
-  PRODUCTS.forEach(function(p){
+  PRODUCTS.forEach((p)=> {
     var card = document.createElement("a");
     card.href = "#";
-    card.className = "card" + (p.sold ? " sold-out" : "");
+    card.className = `card${p.sold ? " sold-out" : ""}`;
     card.innerHTML =
       '<div class="card__img"><img src="./assets/'+p.img+'" alt="'+p.name+'" />'
       + (p.sold ? '<span class="sold-tag">Sold Out</span>' : '') + '</div>'
@@ -374,22 +374,22 @@
   });
 
   // ---- arrow nav ----
-  document.getElementById("next").addEventListener("click", function(){ track.scrollBy({left:344, behavior:"smooth"}); });
-  document.getElementById("prev").addEventListener("click", function(){ track.scrollBy({left:-344, behavior:"smooth"}); });
+  document.getElementById("next").addEventListener("click", ()=> { track.scrollBy({left:344, behavior:"smooth"}); });
+  document.getElementById("prev").addEventListener("click", ()=> { track.scrollBy({left:-344, behavior:"smooth"}); });
 
   // ---- custom cursor (0.2 lerp) ----
   var cur = document.getElementById("cursor");
   var mx = window.innerWidth/2, my = window.innerHeight/2, cx = mx, cy = my;
-  window.addEventListener("mousemove", function(e){ mx = e.clientX; my = e.clientY; });
+  window.addEventListener("mousemove", (e)=> { mx = e.clientX; my = e.clientY; });
   function raf(){
     cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
-    cur.style.left = cx + "px"; cur.style.top = cy + "px";
+    cur.style.left = `${cx}px`; cur.style.top = `${cy}px`;
     requestAnimationFrame(raf);
   }
   raf();
   function bindHover(el){
-    el.addEventListener("mouseenter", function(){ cur.classList.add("cursor--lg"); });
-    el.addEventListener("mouseleave", function(){ cur.classList.remove("cursor--lg"); });
+    el.addEventListener("mouseenter", ()=> { cur.classList.add("cursor--lg"); });
+    el.addEventListener("mouseleave", ()=> { cur.classList.remove("cursor--lg"); });
   }
   document.querySelectorAll("a, button, [data-cursor]").forEach(bindHover);
 </script>

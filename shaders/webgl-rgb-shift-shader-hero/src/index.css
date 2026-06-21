@@ -133,7 +133,7 @@
 		.animate-bracket-in,
 		.animate-signal-flicker,
 		.animate-scan-down {
-			animation: none !important;
+			animation: none;
 		}
 	}
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { PulsingBorder, MeshGradient } from "@paper-design/shaders-react";
+import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react";
 import { motion } from "framer-motion";
 import type React from "react";
 import { useEffect, useRef, useState } from "react";

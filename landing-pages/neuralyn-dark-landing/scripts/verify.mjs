@@ -3,11 +3,12 @@
  * then runs headless-Chromium assertions against every spec requirement
  * (structure, styles, fonts, animations, parallax, scroll word-reveal).
  */
-import { chromium } from "playwright";
+
 import { spawn } from "node:child_process";
 import { mkdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { chromium } from "playwright";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const outDir = path.join(root, "verify-output");

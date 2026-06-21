@@ -16,14 +16,14 @@
     <title>Aethera® — Beyond silence, we build the eternal.</title>
     <script>
       // Apply the saved/system theme before first paint to avoid a flash.
-      (function () {
+      (() => {
         try {
           var saved = localStorage.getItem("aethera-theme");
           var dark = saved
             ? saved === "dark"
             : matchMedia("(prefers-color-scheme: dark)").matches;
           if (dark) document.documentElement.classList.add("dark");
-        } catch (e) {}
+        } catch (_e) {}
       })();
     </script>
   </head>

@@ -2,10 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-import { A } from "../lib/assets";
-import { TrustedBy } from "../components/TrustedBy";
 import { CraftExperiences } from "../components/CraftExperiences";
 import { Testimonials } from "../components/Testimonials";
+import { TrustedBy } from "../components/TrustedBy";
+import { A } from "../lib/assets";
 
 const FONT_HEADING = "'Inter Tight', sans-serif";
 const FONT_ACCENT = "'Playfair Display', serif";

@@ -1,15 +1,9 @@
 import {
-	useCallback,
-	useEffect,
-	useRef,
-	useState,
-	type ReactNode,
-} from "react";
-import {
 	Aperture,
 	Cloud,
 	Globe,
 	Grip,
+	type LucideIcon,
 	Pause,
 	Play,
 	Radio,
@@ -18,15 +12,21 @@ import {
 	Spline,
 	Tornado,
 	Waves,
-	type LucideIcon,
 } from "lucide-react";
-import { cn } from "@/lib/utils";
+import {
+	type ReactNode,
+	useCallback,
+	useEffect,
+	useRef,
+	useState,
+} from "react";
+import DitherStage, { type DitherTelemetry } from "@/components/DitherStage";
+import Fader from "@/components/Fader";
 import type {
 	DitheringShape,
 	DitheringType,
 } from "@/components/ui/dithering-shader";
-import DitherStage, { type DitherTelemetry } from "@/components/DitherStage";
-import Fader from "@/components/Fader";
+import { cn } from "@/lib/utils";
 
 /* ── Catalogue ─────────────────────────────────────────────────────────────
    The seven shapes and four dithering matrices exposed by the drop-in

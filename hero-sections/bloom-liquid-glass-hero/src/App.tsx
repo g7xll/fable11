@@ -1,4 +1,3 @@
-import type { CSSProperties } from "react";
 import type { LucideIcon } from "lucide-react";
 import {
 	ArrowRight,
@@ -11,6 +10,7 @@ import {
 	Twitter,
 	Wand2,
 } from "lucide-react";
+import type { CSSProperties } from "react";
 import heroFlowers from "@/assets/hero-flowers.png";
 
 const VIDEO_SRC =
@@ -39,7 +39,6 @@ export default function App() {
 				loop
 				muted
 				playsInline
-				aria-hidden="true"
 			/>
 
 			{/* Everything floats above the video */}

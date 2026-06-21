@@ -1,7 +1,7 @@
-import { useEffect } from "react";
-import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
+import { useEffect } from "react";
+import { createPortal } from "react-dom";
 import Logo from "./Logo";
 
 const EASE = [0.22, 1, 0.36, 1] as const;

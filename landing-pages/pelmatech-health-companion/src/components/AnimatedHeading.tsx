@@ -1,5 +1,5 @@
-import * as React from "react";
 import { motion } from "motion/react";
+import type * as React from "react";
 
 /**
  * Shared entrance-animation primitives. Every headline, paragraph, and image on

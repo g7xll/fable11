@@ -1,15 +1,15 @@
+import { Github, Grid2x2, Pause, Play, RotateCcw } from "lucide-react";
 import { useCallback, useMemo, useRef, useState } from "react";
-import { Pause, Play, RotateCcw, Github, Grid2x2 } from "lucide-react";
-import {
-	DitheringShader,
-	DitheringShapes,
-	DitheringTypes,
-	type DitheringShape,
-	type DitheringType,
-	type DitheringTelemetry,
-} from "@/components/ui/dithering-shader";
 import Slider from "@/components/Slider";
 import ThresholdMatrix from "@/components/ThresholdMatrix";
+import {
+	DitheringShader,
+	type DitheringShape,
+	DitheringShapes,
+	type DitheringTelemetry,
+	type DitheringType,
+	DitheringTypes,
+} from "@/components/ui/dithering-shader";
 import { cn } from "@/lib/utils";
 
 /**

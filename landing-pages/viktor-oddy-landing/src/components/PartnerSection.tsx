@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import type { MouseEvent } from "react";
-import Button from "./Button";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
+import Button from "./Button";
 
 const SPAWN_INTERVAL_MS = 80;
 const TRAIL_LIFETIME_MS = 1000;

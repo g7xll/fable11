@@ -1,4 +1,3 @@
-import { useCallback, useRef, useState } from "react";
 import {
 	Aperture,
 	ArrowDown,
@@ -15,13 +14,14 @@ import {
 	SlidersHorizontal,
 	X,
 } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
 import {
 	ApertureCanvas,
 	type ApertureFrame,
 } from "@/components/aperture-canvas";
-import { ShaderCanvas, SHADER_SRC } from "@/components/ui/raidal-2";
-import DemoOne from "@/components/ui/demo";
 import { CodeBlock } from "@/components/code-block";
+import DemoOne from "@/components/ui/demo";
+import { SHADER_SRC, ShaderCanvas } from "@/components/ui/raidal-2";
 import {
 	DEMO_SRC,
 	SCAFFOLD_SRC,

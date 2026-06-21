@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { ChevronDown, Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
 import Logo from "./Logo";
 
 const NAV_ITEMS = [

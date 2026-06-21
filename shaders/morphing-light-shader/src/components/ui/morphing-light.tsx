@@ -277,7 +277,7 @@ void main() {
 			material.dispose();
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [outerBands, colorB, speed, innerBands, hueShift, colorA]);
 
 	return <div className={className} ref={containerRef} />;
 }

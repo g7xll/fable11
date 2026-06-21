@@ -1,4 +1,4 @@
-import { CSSProperties } from "react";
+import type { CSSProperties } from "react";
 
 // Minimal drop-in stand-in for `next/image` so the source component can be
 // pasted verbatim into a Vite app. It renders a plain <img> and quietly

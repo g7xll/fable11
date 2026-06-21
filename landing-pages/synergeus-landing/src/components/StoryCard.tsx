@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Heart, MessageCircle } from "lucide-react";
+import { useEffect, useState } from "react";
 import { ASSETS } from "../lib/assets";
 
 const EASE = [0.22, 1, 0.36, 1] as const;

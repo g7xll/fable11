@@ -1,10 +1,10 @@
+import type { MotionValue } from "framer-motion";
 import {
 	motion,
 	useMotionValueEvent,
 	useScroll,
 	useTransform,
 } from "framer-motion";
-import type { MotionValue } from "framer-motion";
 import { useRef, useState } from "react";
 import SerifGlowWord from "../components/SerifGlowWord";
 import { asset } from "../lib/constants";

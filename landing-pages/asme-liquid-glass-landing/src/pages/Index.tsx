@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { ArrowRight, Globe, Instagram, Twitter } from "lucide-react";
+import { useEffect, useRef } from "react";
 import AboutSection from "../components/AboutSection";
 import FeaturedVideoSection from "../components/FeaturedVideoSection";
 import PhilosophySection from "../components/PhilosophySection";

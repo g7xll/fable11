@@ -1,4 +1,7 @@
 #!/usr/bin/env node
+import { spawn } from "node:child_process";
+import { existsSync, readdirSync } from "node:fs";
+import { setTimeout as sleep } from "node:timers/promises";
 /**
  * Headless verification for the Hero Dithering Card showcase.
  *
@@ -17,9 +20,6 @@
  * Exits non-zero on any failure so it can gate CI / pre-commit.
  */
 import { chromium } from "playwright";
-import { spawn } from "node:child_process";
-import { existsSync, readdirSync } from "node:fs";
-import { setTimeout as sleep } from "node:timers/promises";
 
 // Prefer Playwright's own managed browser, but fall back to a pre-installed
 // Chromium when the matching build can't be downloaded (e.g. a sandboxed CI with

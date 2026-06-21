@@ -1,6 +1,6 @@
-import type { CSSProperties } from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowRightCircle, Fingerprint, LockKeyhole, Zap } from "lucide-react";
+import type { CSSProperties } from "react";
 
 const fadeUp: Variants = {
 	hidden: { opacity: 0, y: 28 },

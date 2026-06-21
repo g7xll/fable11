@@ -335,7 +335,7 @@ body {
 	font-variant-numeric: tabular-nums;
 }
 .spec-active {
-	color: var(--phosphor) !important;
+	color: var(--phosphor);
 	text-shadow: 0 0 8px rgba(200, 255, 77, 0.3);
 }
 
@@ -841,9 +841,9 @@ input:focus-visible {
 @media (prefers-reduced-motion: reduce) {
 	.console > *,
 	.console.is-booted > * {
-		opacity: 1 !important;
-		transform: none !important;
-		transition: none !important;
+		opacity: 1;
+		transform: none;
+		transition: none;
 	}
 	.rec-dot,
 	.live-dot {

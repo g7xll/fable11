@@ -1,6 +1,6 @@
-import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const NAV_LINKS = [
 	"Home",

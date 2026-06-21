@@ -1,8 +1,7 @@
-import { useEffect, useRef, useState } from "react";
 import { ArrowUpRight, Radio } from "lucide-react";
-
-import { WebGLShader } from "@/components/ui/web-gl-shader";
+import { useEffect, useRef, useState } from "react";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { WebGLShader } from "@/components/ui/web-gl-shader";
 
 /**
  * Live readout sampled from real requestAnimationFrame deltas. Feeds the

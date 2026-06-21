@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Check, Copy, FolderTree, Terminal } from "lucide-react";
+import { useState } from "react";
 
 const SETUP = `# 1 · scaffold a TypeScript app (skip if you already have one)
 npm create vite@latest my-app -- --template react-ts

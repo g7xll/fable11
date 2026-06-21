@@ -218,7 +218,7 @@ form.addEventListener('submit',e=>{
   if(!val) return;
   const pos=(501+Math.floor(Math.random()*900)).toString(16).toUpperCase();
   cap.classList.add('done');
-  form.innerHTML='✓ ON THE LIST — POSITION #0x'+pos;
+  form.innerHTML=`✓ ON THE LIST — POSITION #0x${pos}`;
 });
 
 // Mobile bottom nav shows after hero

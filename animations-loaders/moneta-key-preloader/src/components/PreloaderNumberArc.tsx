@@ -70,7 +70,7 @@ const PreloaderNumberArc = ({ progress }: PreloaderNumberArcProps) => {
 				const x = CENTER_X + Math.cos(angle) * ARC_RADIUS;
 				const y = CENTER_Y + Math.sin(angle) * ARC_RADIUS;
 				if (x < -80 || x > 630 || y < -20 || y > 90) continue;
-				const fade = Math.pow(1 - absDistance / VISIBLE_DISTANCE, 2.2);
+				const fade = (1 - absDistance / VISIBLE_DISTANCE) ** 2.2;
 				const opacity = Math.max(0, 0.95 * fade);
 				const focal = Math.max(0, 1 - absDistance / 1.2);
 				const scale = 1 + focal * 0.35;

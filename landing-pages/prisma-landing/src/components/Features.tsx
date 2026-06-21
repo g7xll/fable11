@@ -1,6 +1,6 @@
-import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { ArrowRight, Check } from "lucide-react";
+import { useRef } from "react";
 import WordsPullUpMultiStyle from "./WordsPullUpMultiStyle";
 
 const FEATURES_VIDEO_URL =

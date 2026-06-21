@@ -38,7 +38,7 @@
 
   <!-- Framer Motion dev warnings about list keys are benign — filter them out. -->
   <script>
-    (function () {
+    (() => {
       var origError = console.error;
       console.error = function () {
         var first = arguments[0];

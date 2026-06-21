@@ -295,7 +295,7 @@ export default function AsciiVitruvian({
 
 					if (brightI > 0.16) {
 						const idx = clamp(
-							Math.floor(Math.pow(brightI, 1.2) * RAMP_BRIGHT.length),
+							Math.floor(brightI ** 1.2 * RAMP_BRIGHT.length),
 							1,
 							RAMP_BRIGHT.length - 1,
 						);
@@ -385,7 +385,6 @@ export default function AsciiVitruvian({
 		<canvas
 			ref={canvasRef}
 			className={className}
-			aria-hidden="true"
 			style={{ display: "block", width: "100%", height: "100%" }}
 		/>
 	);

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Index from "./pages/Index";
 
 // react-router-dom is wired up per the tech stack, though there is no

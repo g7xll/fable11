@@ -1,8 +1,8 @@
 import { DitheringStage } from "@/components/DitheringStage";
 import { Reveal } from "@/components/Reveal";
-import { useReveal } from "@/hooks/useReveal";
-import { SHAPES, type Params } from "@/lib/dithering";
 import type { DitheringShape } from "@/components/ui/dithering-shader";
+import { useReveal } from "@/hooks/useReveal";
+import { type Params, SHAPES } from "@/lib/dithering";
 
 type ShapeGalleryProps = {
 	params: Params;

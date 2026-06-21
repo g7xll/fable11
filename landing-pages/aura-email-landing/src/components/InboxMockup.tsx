@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import type { LucideIcon } from "lucide-react";
 import {
 	Archive,
 	File,
@@ -13,7 +13,7 @@ import {
 	Star,
 	Trash2,
 } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+import { motion } from "motion/react";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
 

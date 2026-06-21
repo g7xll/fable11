@@ -1,21 +1,21 @@
-import { useEffect, useRef, useState } from "react";
 import {
-	Droplets,
 	Crosshair,
-	MousePointerClick,
+	Droplets,
 	FlaskConical,
+	MousePointerClick,
 } from "lucide-react";
-import { ShaderStage, type ShaderStageHandle } from "@/components/shader-stage";
+import { useEffect, useRef, useState } from "react";
 import { FaderDeck } from "@/components/fader-deck";
-import { PresetBank } from "@/components/preset-bank";
 import { PaletteStrip } from "@/components/palette-strip";
+import { PresetBank } from "@/components/preset-bank";
+import { ShaderStage, type ShaderStageHandle } from "@/components/shader-stage";
 import { Telemetry } from "@/components/telemetry";
 import {
 	DEFAULT_FIELD,
-	PRESETS,
-	fieldsEqual,
 	type FieldParams,
 	type FieldPreset,
+	fieldsEqual,
+	PRESETS,
 } from "@/lib/field";
 
 /** Corner reticle bracket so the live card reads as a specimen under analysis. */
