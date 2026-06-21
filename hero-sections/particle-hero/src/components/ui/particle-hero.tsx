@@ -107,7 +107,10 @@ export function ParticleHero({
 		}
 	};
 
-	const animate = (canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D) => {
+	const animate = (
+		canvas: HTMLCanvasElement,
+		ctx: CanvasRenderingContext2D,
+	) => {
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 		particlesRef.current.forEach((particle) => {
 			particle.update();
@@ -186,7 +189,8 @@ export function ParticleHero({
 					margin: "0 auto",
 					opacity: 0,
 					transform: "translateY(-1em)",
-					animation: "load 2s ease-in 2s forwards, up 1.4s ease-out 2s forwards",
+					animation:
+						"load 2s ease-in 2s forwards, up 1.4s ease-out 2s forwards",
 				}}
 			>
 				<button
@@ -194,8 +198,12 @@ export function ParticleHero({
 					className="mid-spot"
 					onClick={toggleGoldMode}
 					aria-pressed={isGoldMode}
-					aria-label={isGoldMode ? "Switch to night palette" : "Switch to gold palette"}
-					title={isGoldMode ? "Switch to night palette" : "Switch to gold palette"}
+					aria-label={
+						isGoldMode ? "Switch to night palette" : "Switch to gold palette"
+					}
+					title={
+						isGoldMode ? "Switch to night palette" : "Switch to gold palette"
+					}
 					style={{
 						position: "absolute",
 						left: 0,
@@ -256,7 +264,11 @@ export function ParticleHero({
 								filter: "blur(15px) opacity(0.5)",
 								zIndex: -1,
 								transform:
-									i === 0 ? "rotate(20deg)" : i === 1 ? "rotate(-20deg)" : "rotate(0deg)",
+									i === 0
+										? "rotate(20deg)"
+										: i === 1
+											? "rotate(-20deg)"
+											: "rotate(0deg)",
 								animation:
 									i === 0
 										? "load 2s ease-in-out forwards, loadrot 2s ease-in-out forwards, spotlight 17s ease-in-out infinite"
@@ -452,7 +464,8 @@ export function ParticleHero({
 					textAlign: "center",
 					opacity: 0,
 					transform: "translateY(1em)",
-					animation: "load 2s ease-out 2s forwards, up 1.4s ease-out 2s forwards",
+					animation:
+						"load 2s ease-out 2s forwards, up 1.4s ease-out 2s forwards",
 					color: "#d8ecf8",
 					background: "linear-gradient(0deg, #d8ecf8 0, #98c0ef 100%)",
 					backgroundClip: "text",

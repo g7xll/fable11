@@ -12,18 +12,18 @@ import FAQ02Velara from "./components/templates/ai-budget-tracking-landing-page-
 import Footer02Velara from "./components/templates/ai-budget-tracking-landing-page-velara-al/Footer 02 Velara";
 
 export default function Home() {
-  return (
-    <main className="min-h-screen">
-      <AIBudgetTrackingHeroVelara />
-      <WhyChooseUs01Velara />
-      <HowItWorks02Velara />
-      <Features02Velara />
-      <Features03Velara />
-      <Testimonial01Velara />
-      <Features06Velara />
-      <Pricing01Velara />
-      <FAQ02Velara />
-      <Footer02Velara />
-    </main>
-  );
+	return (
+		<main className="min-h-screen">
+			<AIBudgetTrackingHeroVelara />
+			<WhyChooseUs01Velara />
+			<HowItWorks02Velara />
+			<Features02Velara />
+			<Features03Velara />
+			<Testimonial01Velara />
+			<Features06Velara />
+			<Pricing01Velara />
+			<FAQ02Velara />
+			<Footer02Velara />
+		</main>
+	);
 }

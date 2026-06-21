@@ -80,7 +80,11 @@ body::before {
 	inset: 0;
 	z-index: -20;
 	background:
-		radial-gradient(130% 90% at 50% 0%, rgba(77, 125, 255, 0.1), transparent 62%),
+		radial-gradient(
+			130% 90% at 50% 0%,
+			rgba(77, 125, 255, 0.1),
+			transparent 62%
+		),
 		var(--abyss);
 }
 

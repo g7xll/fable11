@@ -141,8 +141,7 @@ function FollowerIntroCard({
 
 	// Reveal timing: invert the smoothEase curve so the fade matches when the
 	// lead card visually passes this slot during the left sweep.
-	const progress =
-		(slot.x - SLOTS[6].x) / (SLOTS[0].x - SLOTS[6].x); // 0 at slot6 … 1 at slot0
+	const progress = (slot.x - SLOTS[6].x) / (SLOTS[0].x - SLOTS[6].x); // 0 at slot6 … 1 at slot0
 	const revealTime = getTimeForProgress(progress, smoothEase);
 	const revealDelay = sweepStart + revealTime * sweepLeftDuration;
 	const revealDuration = index <= 3 ? 0.06 : 0.18;
@@ -210,9 +209,17 @@ function ScrollLinkedCard({
 	const s2Cx = cascadeLeftRef + cascade.left + CARD_SIZE / 2; // Section 2 ladder center x
 	const s2Cy = cascade.top + CARD_SIZE / 2; // Section 2 ladder center y
 
-	const x = useTransform(clamped, [0, p1, p2, lp], [s1Cx, stackCx, stackCx, s2Cx]);
+	const x = useTransform(
+		clamped,
+		[0, p1, p2, lp],
+		[s1Cx, stackCx, stackCx, s2Cx],
+	);
 	const y = useTransform(clamped, [0, p1, p2, lp], [s1Cy, stackCy, s2Cy, s2Cy]);
-	const rotate = useTransform(clamped, [0, p1, lp], [slot.rotate, 0, cascade.rotate]);
+	const rotate = useTransform(
+		clamped,
+		[0, p1, lp],
+		[slot.rotate, 0, cascade.rotate],
+	);
 	const scaleX = useTransform(clamped, [0, p1, lp], [slot.scale, 1, 1]);
 	const scaleY = useTransform(clamped, [0, p1, lp], [slot.scale, 1, 1]);
 

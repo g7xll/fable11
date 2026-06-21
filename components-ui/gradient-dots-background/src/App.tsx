@@ -468,8 +468,8 @@ export default function App() {
 							<p className="mb-4 text-sm leading-relaxed text-fog-400">
 								If your codebase doesn’t already have shadcn + Tailwind +
 								TypeScript, stand one up, then run{" "}
-								<code className="font-mono text-accent">init</code>. It writes the{" "}
-								<code className="font-mono text-accent">@/</code> alias,{" "}
+								<code className="font-mono text-accent">init</code>. It writes
+								the <code className="font-mono text-accent">@/</code> alias,{" "}
 								<code className="font-mono text-accent">lib/utils.ts</code>, and
 								your CSS variables.
 							</p>
@@ -486,8 +486,9 @@ export default function App() {
 							<p className="mb-4 text-sm leading-relaxed text-fog-400">
 								The component’s only external dependency is{" "}
 								<code className="font-mono text-accent">framer-motion</code> —
-								it renders a single <code className="font-mono">motion.div</code>
-								. No context providers, no hooks to wire up.
+								it renders a single{" "}
+								<code className="font-mono">motion.div</code>. No context
+								providers, no hooks to wire up.
 							</p>
 							<CodeBlock code={INSTALL_DEP} lang="bash" />
 							<div className="mt-4 rounded-xl border border-line bg-ink-950/60 p-4">
@@ -499,7 +500,8 @@ export default function App() {
 								</div>
 								<ul className="mt-3 space-y-1.5 font-mono text-[0.72rem] text-fog-300">
 									<li>
-										components → <span className="text-accent">@/components</span>
+										components →{" "}
+										<span className="text-accent">@/components</span>
 									</li>
 									<li>
 										ui → <span className="text-accent">@/components/ui</span>
@@ -527,10 +529,13 @@ export default function App() {
 										Why /components/ui matters.
 									</span>{" "}
 									It’s the convention every shadcn import path assumes — the{" "}
-									<code className="font-mono">@/components/ui/&lt;name&gt;</code>{" "}
+									<code className="font-mono">
+										@/components/ui/&lt;name&gt;
+									</code>{" "}
 									alias, the registry’s copy targets, and tooling like the CLI’s{" "}
-									<code className="font-mono">add</code> command all resolve here.
-									Keeping primitives in one predictable folder means the demo’s{" "}
+									<code className="font-mono">add</code> command all resolve
+									here. Keeping primitives in one predictable folder means the
+									demo’s{" "}
 									<code className="font-mono">
 										import {"{"} GradientDots {"}"} from
 										"@/components/ui/gradient-dots"
@@ -587,7 +592,9 @@ export default function App() {
 									className="grid grid-cols-[1.1fr_0.8fr_0.7fr] items-start gap-2 px-5 py-3.5"
 								>
 									<div>
-										<div className="font-mono text-sm text-accent">{p.name}</div>
+										<div className="font-mono text-sm text-accent">
+											{p.name}
+										</div>
 										<div className="mt-1 text-[0.78rem] leading-snug text-fog-400">
 											{p.desc}
 										</div>

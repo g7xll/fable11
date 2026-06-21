@@ -94,7 +94,10 @@ function Stat({
 	return (
 		<div className="flex items-baseline gap-2 whitespace-nowrap">
 			<span className="tele text-foreground/35">{label}</span>
-			<span className="tele" style={{ color: accent ?? "hsl(var(--foreground) / 0.85)" }}>
+			<span
+				className="tele"
+				style={{ color: accent ?? "hsl(var(--foreground) / 0.85)" }}
+			>
 				{value}
 			</span>
 		</div>
@@ -318,8 +321,12 @@ export default function App() {
 							<Church className="h-4 w-4 text-glass-gold" />
 						</span>
 						<div className="leading-tight">
-							<div className="tele text-foreground/55">VAULTWORK · ORDO LUCIS</div>
-							<div className="tele text-foreground/30">Cathedral of Light — Bay IX</div>
+							<div className="tele text-foreground/55">
+								VAULTWORK · ORDO LUCIS
+							</div>
+							<div className="tele text-foreground/30">
+								Cathedral of Light — Bay IX
+							</div>
 						</div>
 					</div>
 					<div className="hidden items-center gap-2 sm:flex">
@@ -385,7 +392,9 @@ export default function App() {
 												<span className="h-1.5 w-1.5 rounded-full bg-glass-gold shadow-[0_0_8px] shadow-glass-gold/70" />
 											)}
 										</div>
-										<div className="tele mt-1 text-foreground/35">{r.verse}</div>
+										<div className="tele mt-1 text-foreground/35">
+											{r.verse}
+										</div>
 									</button>
 								);
 							})}
@@ -490,7 +499,9 @@ export default function App() {
 							) : (
 								<Pause className="h-3.5 w-3.5" />
 							)}
-							<span className="tele">{paused ? "Resume office" : "Hold office"}</span>
+							<span className="tele">
+								{paused ? "Resume office" : "Hold office"}
+							</span>
 						</button>
 					</div>
 				</aside>
@@ -510,7 +521,11 @@ export default function App() {
 							/>
 							<Stat
 								label="Glass"
-								value={sample ? `${(sample.width / pixelRatio) | 0}×${(sample.height / pixelRatio) | 0}` : "—"}
+								value={
+									sample
+										? `${(sample.width / pixelRatio) | 0}×${(sample.height / pixelRatio) | 0}`
+										: "—"
+								}
 							/>
 							<Stat
 								label="Lantern"
@@ -552,16 +567,23 @@ function IntegrationStory() {
 			<div className="mx-auto max-w-5xl px-6 py-20 sm:px-10">
 				{/* Heading */}
 				<div className="max-w-2xl">
-					<div className="tele mb-3 text-glass-gold/80">INTEGRATION DOSSIER</div>
+					<div className="tele mb-3 text-glass-gold/80">
+						INTEGRATION DOSSIER
+					</div>
 					<h2 className="text-monument text-4xl text-foreground sm:text-5xl">
 						Dropping the nave into{" "}
 						<span className="text-foreground/55">components/ui</span>
 					</h2>
 					<p className="mt-5 font-body text-[15px] leading-relaxed text-foreground/60">
-						The verbatim <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground/80">cathedral.tsx</code>{" "}
+						The verbatim{" "}
+						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground/80">
+							cathedral.tsx
+						</code>{" "}
 						is a self-contained WebGL2 component — no props, no context, no
 						assets, no runtime dependencies. It is copy-pasted unchanged into{" "}
-						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground/80">@/components/ui/cathedral.tsx</code>
+						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground/80">
+							@/components/ui/cathedral.tsx
+						</code>
 						; the framed instrument you scrolled past is a thin wrapper around
 						the same shader runtime.
 					</p>
@@ -576,7 +598,7 @@ function IntegrationStory() {
 						},
 						{
 							q: "State management requirements?",
-							a: "None external. All state is local: useRef holds the GL handles, RAF loop, clock and pointer; no store, no provider, no context. SSR-safe behind the original \"use client\".",
+							a: 'None external. All state is local: useRef holds the GL handles, RAF loop, clock and pointer; no store, no provider, no context. SSR-safe behind the original "use client".',
 						},
 						{
 							q: "Required assets (images, icons)?",
@@ -592,11 +614,13 @@ function IntegrationStory() {
 						},
 						{
 							q: "Why /components/ui specifically?",
-							a: "shadcn's components.json maps the \"ui\" alias to @/components/ui. Placing the file there makes the @/components/ui/cathedral import in the demo resolve, and keeps it on the same shelf the CLI installs primitives into.",
+							a: 'shadcn\'s components.json maps the "ui" alias to @/components/ui. Placing the file there makes the @/components/ui/cathedral import in the demo resolve, and keeps it on the same shelf the CLI installs primitives into.',
 						},
 					].map((item) => (
 						<div key={item.q} className="bg-background p-6">
-							<div className="font-display text-xl text-foreground">{item.q}</div>
+							<div className="font-display text-xl text-foreground">
+								{item.q}
+							</div>
 							<p className="mt-2 font-body text-[14px] leading-relaxed text-foreground/55">
 								{item.a}
 							</p>
@@ -635,7 +659,7 @@ function IntegrationStory() {
 							'"@/*": ["./src/*"]',
 							"",
 							"# 3 — render it (the prompt's demo.tsx)",
-							'import Component from',
+							"import Component from",
 							'  "@/components/ui/cathedral";',
 							"export default () => <Component />;",
 						]}
@@ -659,14 +683,17 @@ function IntegrationStory() {
 						<code className="rounded bg-muted px-1.5 py-0.5 font-mono text-[13px] text-foreground/80">
 							components.json
 						</code>{" "}
-						declares <span className="text-foreground/80">aliases.ui = "@/components/ui"</span>,
-						and the <span className="text-foreground/80">@</span> alias maps to{" "}
-						<span className="text-foreground/80">./src</span>. If the folder doesn't
-						exist, that import can't resolve and every shadcn primitive you add
-						later (which the CLI also drops into{" "}
-						<span className="text-foreground/80">components/ui</span>) lands in a
-						different place — so create it first and keep all UI primitives on one
-						predictable shelf.
+						declares{" "}
+						<span className="text-foreground/80">
+							aliases.ui = "@/components/ui"
+						</span>
+						, and the <span className="text-foreground/80">@</span> alias maps
+						to <span className="text-foreground/80">./src</span>. If the folder
+						doesn't exist, that import can't resolve and every shadcn primitive
+						you add later (which the CLI also drops into{" "}
+						<span className="text-foreground/80">components/ui</span>) lands in
+						a different place — so create it first and keep all UI primitives on
+						one predictable shelf.
 					</p>
 				</div>
 
@@ -687,11 +714,23 @@ function IntegrationStory() {
 							<tbody className="text-foreground/70">
 								{[
 									["pixelRatio", "number?", "Clamp DPR 1–2 → iResolution.z"],
-									["timeScale", "number?", "Scales the iTime advance (0 = frozen)"],
-									["paused", "boolean?", "Holds the clock; render keeps running"],
+									[
+										"timeScale",
+										"number?",
+										"Scales the iTime advance (0 = frozen)",
+									],
+									[
+										"paused",
+										"boolean?",
+										"Holds the clock; render keeps running",
+									],
 									["exposure", "number?", "Post gain on colour → iExposure"],
 									["fill", "boolean?", "Fill ancestor vs. fixed fullscreen"],
-									["onSample", "(s) => void", "GPU-read luma + channel ~1×/sec"],
+									[
+										"onSample",
+										"(s) => void",
+										"GPU-read luma + channel ~1×/sec",
+									],
 								].map(([a, b, c], i) => (
 									<tr
 										key={a}
@@ -702,17 +741,21 @@ function IntegrationStory() {
 									>
 										<td className="px-4 py-3 text-glass-azure">{a}</td>
 										<td className="px-4 py-3 text-foreground/50">{b}</td>
-										<td className="px-4 py-3 font-body text-foreground/70">{c}</td>
+										<td className="px-4 py-3 font-body text-foreground/70">
+											{c}
+										</td>
 									</tr>
 								))}
 							</tbody>
 						</table>
 					</div>
 					<p className="mt-4 font-mono text-[12px] leading-relaxed text-foreground/40">
-						The dropped-in <span className="text-foreground/60">cathedral.tsx</span>{" "}
-						exposes none of these — it is the zero-prop fullscreen default. The
-						wrapper keeps its exact <span className="text-foreground/60">mainImage</span>{" "}
-						body and only appends an <span className="text-foreground/60">iExposure</span>{" "}
+						The dropped-in{" "}
+						<span className="text-foreground/60">cathedral.tsx</span> exposes
+						none of these — it is the zero-prop fullscreen default. The wrapper
+						keeps its exact{" "}
+						<span className="text-foreground/60">mainImage</span> body and only
+						appends an <span className="text-foreground/60">iExposure</span>{" "}
 						multiply in <span className="text-foreground/60">main()</span>.
 					</p>
 				</div>

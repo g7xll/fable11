@@ -79,8 +79,8 @@
 	--coral: #e98a6a; /* warm accent (warn)     */
 
 	--font-onest: "Satoshi", ui-sans-serif, system-ui, sans-serif;
-	--font-mono-stack: ui-monospace, "SFMono-Regular", "JetBrains Mono", "Menlo",
-		monospace;
+	--font-mono-stack:
+		ui-monospace, "SFMono-Regular", "JetBrains Mono", "Menlo", monospace;
 }
 
 /* Dark theme — the component's `dark:` veil branch + a night bench. */
@@ -135,14 +135,21 @@ body {
 
 /* The studio shell uses a warm paper bench; the live hero owns the viewport. */
 .bench {
-	background:
-		radial-gradient(130% 100% at 12% -10%, color-mix(in oklab, var(--bone-2), #fff 6%) 0%, var(--bone) 46%, color-mix(in oklab, var(--bone), #000 6%) 100%);
+	background: radial-gradient(
+		130% 100% at 12% -10%,
+		color-mix(in oklab, var(--bone-2), #fff 6%) 0%,
+		var(--bone) 46%,
+		color-mix(in oklab, var(--bone), #000 6%) 100%
+	);
 }
 
 /* Fine engraved paper texture on the studio chrome */
 .paper-grain {
-	background-image:
-		repeating-linear-gradient(0deg, transparent 0 3px, color-mix(in oklab, var(--ink), transparent 96%) 3px 4px);
+	background-image: repeating-linear-gradient(
+		0deg,
+		transparent 0 3px,
+		color-mix(in oklab, var(--ink), transparent 96%) 3px 4px
+	);
 }
 
 /* Corner registration brackets on the live viewport (palette plate framing) */
@@ -202,7 +209,11 @@ body {
 	width: 14px;
 	height: 22px;
 	border-radius: 3px;
-	background: linear-gradient(180deg, var(--bone-2) 0%, color-mix(in oklab, var(--bone), #000 8%) 100%);
+	background: linear-gradient(
+		180deg,
+		var(--bone-2) 0%,
+		color-mix(in oklab, var(--bone), #000 8%) 100%
+	);
 	border: 1px solid var(--hairline);
 	box-shadow:
 		0 1px 0 color-mix(in oklab, #fff, transparent 78%) inset,
@@ -217,12 +228,18 @@ body {
 	width: 14px;
 	height: 22px;
 	border-radius: 3px;
-	background: linear-gradient(180deg, var(--bone-2) 0%, color-mix(in oklab, var(--bone), #000 8%) 100%);
+	background: linear-gradient(
+		180deg,
+		var(--bone-2) 0%,
+		color-mix(in oklab, var(--bone), #000 8%) 100%
+	);
 	border: 1px solid var(--hairline);
 	cursor: grab;
 }
 .fader:focus-visible {
-	box-shadow: 0 0 0 2px var(--bone), 0 0 0 4px var(--sage);
+	box-shadow:
+		0 0 0 2px var(--bone),
+		0 0 0 4px var(--sage);
 }
 
 /* Native color input → bare swatch chip */
@@ -287,7 +304,10 @@ button:focus-visible,
 
 /* Tab underline transition */
 .tab-ink {
-	transition: color 160ms ease, border-color 160ms ease, background 160ms ease;
+	transition:
+		color 160ms ease,
+		border-color 160ms ease,
+		background 160ms ease;
 }
 
 ::selection {

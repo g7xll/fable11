@@ -89,14 +89,25 @@ export default function App() {
 			{/* === Top instrument bar === */}
 			<header className="fixed inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-4 sm:px-8">
 				<div className="flex items-center gap-2.5">
-					<Radio className="h-4 w-4 text-white/80 animate-signal-flicker" strokeWidth={1.6} />
-					<span className="tele text-white/85">CHROMA&nbsp;OSC&nbsp;/&nbsp;001</span>
+					<Radio
+						className="h-4 w-4 text-white/80 animate-signal-flicker"
+						strokeWidth={1.6}
+					/>
+					<span className="tele text-white/85">
+						CHROMA&nbsp;OSC&nbsp;/&nbsp;001
+					</span>
 				</div>
 				<nav className="hidden items-center gap-7 sm:flex">
 					<span className="tele text-white/45">CHANNELS</span>
-					<span className="tele" style={{ color: "hsl(var(--sig-r))" }}>R</span>
-					<span className="tele" style={{ color: "hsl(var(--sig-g))" }}>G</span>
-					<span className="tele" style={{ color: "hsl(var(--sig-b))" }}>B</span>
+					<span className="tele" style={{ color: "hsl(var(--sig-r))" }}>
+						R
+					</span>
+					<span className="tele" style={{ color: "hsl(var(--sig-g))" }}>
+						G
+					</span>
+					<span className="tele" style={{ color: "hsl(var(--sig-b))" }}>
+						B
+					</span>
 				</nav>
 				<Telemetry label="MODE" value="LIVE" />
 			</header>
@@ -130,7 +141,9 @@ export default function App() {
 						<div className="relative overflow-hidden border border-[#27272a] px-6 py-12 sm:py-14">
 							{/* inner top caption strip — true to the read-out vernacular */}
 							<div className="mb-7 flex items-center justify-between">
-								<span className="tele text-white/40">SIGNAL&nbsp;:&nbsp;SINE&nbsp;×3</span>
+								<span className="tele text-white/40">
+									SIGNAL&nbsp;:&nbsp;SINE&nbsp;×3
+								</span>
 								<span className="tele text-white/40">DIST&nbsp;0.05</span>
 							</div>
 
@@ -147,7 +160,8 @@ export default function App() {
 								style={{ animationDelay: "0.08s" }}
 							>
 								Unleashing creativity through bold visuals, seamless interfaces,
-								and limitless possibilities — rendered live in a single GLSL pass.
+								and limitless possibilities — rendered live in a single GLSL
+								pass.
 							</p>
 
 							{/* live status — the demo's pinging green dot, kept as the brand pulse */}
@@ -159,7 +173,9 @@ export default function App() {
 									<span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
 									<span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
 								</span>
-								<span className="tele text-green-500">AVAILABLE&nbsp;FOR&nbsp;NEW&nbsp;PROJECTS</span>
+								<span className="tele text-green-500">
+									AVAILABLE&nbsp;FOR&nbsp;NEW&nbsp;PROJECTS
+								</span>
 							</div>
 
 							<div

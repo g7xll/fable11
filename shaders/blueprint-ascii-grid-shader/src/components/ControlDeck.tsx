@@ -81,9 +81,9 @@ export function ControlDeck({ params, onChange, onReset }: ControlDeckProps) {
 						<code className="rounded bg-[var(--navy)] px-1.5 py-0.5 font-mono text-xs text-cobalt-bright">
 							const
 						</code>{" "}
-						declarations. Here they're promoted to uniforms — drag a fader and the
-						whole page background re-shapes in real time. One params object feeds
-						both this preview and the hero.
+						declarations. Here they're promoted to uniforms — drag a fader and
+						the whole page background re-shapes in real time. One params object
+						feeds both this preview and the hero.
 					</p>
 				</Reveal>
 

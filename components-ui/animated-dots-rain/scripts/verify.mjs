@@ -51,7 +51,9 @@ async function waitForServer(proc) {
 const checks = [];
 const record = (name, ok, detail = "") => {
 	checks.push({ name, ok, detail });
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 };
 
 let dev;
@@ -83,9 +85,7 @@ try {
 	// 1. Title + hero headline.
 	const title = await page.title();
 	record("page title set", /Animated Dots/.test(title), title);
-	const heroH1 = await page
-		.locator("h1", { hasText: "Animated Dots" })
-		.count();
+	const heroH1 = await page.locator("h1", { hasText: "Animated Dots" }).count();
 	record("hero headline renders", heroH1 >= 1, `${heroH1} match(es)`);
 
 	// 2. AnimatedDots mounts a <canvas>.
@@ -198,5 +198,7 @@ try {
 }
 
 const failed = checks.filter((c) => !c.ok);
-console.log(`\n${checks.length - failed.length}/${checks.length} checks passed`);
+console.log(
+	`\n${checks.length - failed.length}/${checks.length} checks passed`,
+);
 process.exit(failed.length === 0 ? 0 : 1);

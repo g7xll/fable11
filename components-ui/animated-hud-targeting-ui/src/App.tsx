@@ -1,7 +1,17 @@
 import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Crosshair, Pause, Play, RotateCcw, ScanLine, Radio } from "lucide-react";
-import { HudFrame, TargetingUI } from "@/components/ui/animated-hud-targeting-ui";
+import {
+	Crosshair,
+	Pause,
+	Play,
+	RotateCcw,
+	ScanLine,
+	Radio,
+} from "lucide-react";
+import {
+	HudFrame,
+	TargetingUI,
+} from "@/components/ui/animated-hud-targeting-ui";
 import { PHASE_LABEL, useAcquisition } from "@/hooks/useAcquisition";
 import { TARGETS, THREAT_COLOR } from "@/data/targets";
 import { Counter } from "@/hud/Counter";
@@ -10,7 +20,13 @@ import { HorizonLadder } from "@/hud/HorizonLadder";
 import { LockBrackets } from "@/hud/LockBrackets";
 
 /** Small uppercase label/value pair used throughout the readout corners. */
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+	label,
+	children,
+}: {
+	label: string;
+	children: React.ReactNode;
+}) {
 	return (
 		<div className="flex items-baseline justify-between gap-3">
 			<span
@@ -19,7 +35,10 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 			>
 				{label}
 			</span>
-			<span className="text-[12px] font-medium tnum" style={{ color: "var(--phosphor)" }}>
+			<span
+				className="text-[12px] font-medium tnum"
+				style={{ color: "var(--phosphor)" }}
+			>
 				{children}
 			</span>
 		</div>
@@ -45,7 +64,8 @@ function Readout({
 			className={`relative w-[40vw] max-w-[228px] min-w-[140px] px-2.5 py-2.5 sm:px-3.5 sm:py-3 ${edge[corner]}`}
 			style={{
 				borderColor: "rgba(95,230,214,0.28)",
-				background: "linear-gradient(180deg, rgba(8,16,15,0.62), rgba(8,16,15,0.30))",
+				background:
+					"linear-gradient(180deg, rgba(8,16,15,0.62), rgba(8,16,15,0.30))",
 				backdropFilter: "blur(2px)",
 			}}
 		>
@@ -82,7 +102,8 @@ export default function App() {
 	const jitter = locked ? 0.06 : tracking ? 0.4 : 1.1;
 	const range = target.rangeKm + Math.sin(t * 1.3) * 0.12 * jitter;
 	const azimuth = target.azimuthDeg + Math.sin(t * 1.7) * 1.6 * jitter;
-	const elevation = target.elevationM + Math.round(Math.sin(t * 1.1) * 6 * jitter);
+	const elevation =
+		target.elevationM + Math.round(Math.sin(t * 1.1) * 6 * jitter);
 	const speed = target.speedKt;
 
 	// Mission clock derived from elapsed seconds.
@@ -91,12 +112,19 @@ export default function App() {
 	const ss = String(Number(elapsed) % 60).padStart(2, "0");
 
 	const phaseLabel = PHASE_LABEL[acq.phase];
-	const phaseColor = locked ? "var(--lock)" : tracking ? "var(--cyan)" : "var(--phosphor)";
+	const phaseColor = locked
+		? "var(--lock)"
+		: tracking
+			? "var(--cyan)"
+			: "var(--phosphor)";
 
 	const targetList = useMemo(() => TARGETS, []);
 
 	return (
-		<div className="relative h-screen w-screen overflow-hidden" style={{ background: "var(--abyss)" }}>
+		<div
+			className="relative h-screen w-screen overflow-hidden"
+			style={{ background: "var(--abyss)" }}
+		>
 			{/* ── Recon feed framed by the chamfered/notched HUD frame ───────────── */}
 			<HudFrame backgroundColor="#060809">
 				{/* The frame's children render above everything (z-20). We layer the
@@ -139,7 +167,10 @@ export default function App() {
 					</AnimatePresence>
 
 					{/* Scanline + grid atmospherics */}
-					<div className="pointer-events-none absolute inset-0" style={{ opacity: 0.5 }}>
+					<div
+						className="pointer-events-none absolute inset-0"
+						style={{ opacity: 0.5 }}
+					>
 						<div
 							className="absolute inset-0"
 							style={{
@@ -261,9 +292,16 @@ export default function App() {
 						<div className="absolute left-1/2 top-[10px] w-[240px] -translate-x-1/2 text-center">
 							<div
 								className="flex items-center justify-center gap-2 text-[11px] font-semibold tracking-[0.34em] uppercase"
-								style={{ color: "var(--phosphor)", fontFamily: "var(--display)" }}
+								style={{
+									color: "var(--phosphor)",
+									fontFamily: "var(--display)",
+								}}
 							>
-								<Crosshair size={13} strokeWidth={2} style={{ color: "var(--cyan)" }} />
+								<Crosshair
+									size={13}
+									strokeWidth={2}
+									style={{ color: "var(--cyan)" }}
+								/>
 								FCS // ARRAY-7
 							</div>
 						</div>
@@ -304,7 +342,12 @@ export default function App() {
 								</div>
 								<Field label="Callsign">{target.callsign}</Field>
 								<Field label="Range">
-									<Counter value={range} decimals={2} ease={tracking ? 0.5 : 0.9} /> km
+									<Counter
+										value={range}
+										decimals={2}
+										ease={tracking ? 0.5 : 0.9}
+									/>{" "}
+									km
 								</Field>
 								<Field label="Bearing">
 									{String(target.bearingDeg).padStart(3, "0")}°
@@ -319,7 +362,10 @@ export default function App() {
 							<Readout corner="bl">
 								<div
 									className="mb-2 text-[10px] font-semibold tracking-[0.28em] uppercase"
-									style={{ color: "var(--phosphor-dim)", fontFamily: "var(--display)" }}
+									style={{
+										color: "var(--phosphor-dim)",
+										fontFamily: "var(--display)",
+									}}
 								>
 									Ballistics
 								</div>
@@ -330,7 +376,9 @@ export default function App() {
 									<Counter value={elevation} /> m
 								</Field>
 								<Field label="Classify">
-									<span className="text-[9px]">{target.classify.split(" // ")[0]}</span>
+									<span className="text-[9px]">
+										{target.classify.split(" // ")[0]}
+									</span>
 								</Field>
 							</Readout>
 						</div>
@@ -341,7 +389,10 @@ export default function App() {
 								<div className="mb-2 flex items-center justify-between">
 									<span
 										className="text-[10px] font-semibold tracking-[0.28em] uppercase"
-										style={{ color: "var(--phosphor-dim)", fontFamily: "var(--display)" }}
+										style={{
+											color: "var(--phosphor-dim)",
+											fontFamily: "var(--display)",
+										}}
 									>
 										Acquisition
 									</span>
@@ -359,7 +410,10 @@ export default function App() {
 								<div className="mb-1 flex items-baseline justify-between">
 									<span
 										className="text-[9px] tracking-[0.22em] uppercase"
-										style={{ color: "var(--phosphor-dim)", fontFamily: "var(--display)" }}
+										style={{
+											color: "var(--phosphor-dim)",
+											fontFamily: "var(--display)",
+										}}
 									>
 										Lock Conf.
 									</span>
@@ -394,7 +448,10 @@ export default function App() {
 									/>
 									<span
 										className="text-[9px] tracking-[0.2em] uppercase"
-										style={{ color: "var(--phosphor-dim)", fontFamily: "var(--display)" }}
+										style={{
+											color: "var(--phosphor-dim)",
+											fontFamily: "var(--display)",
+										}}
 									>
 										Threat {target.threat}
 									</span>
@@ -410,7 +467,8 @@ export default function App() {
 				<div
 					className="flex flex-wrap items-center justify-center gap-1.5 px-2 py-2"
 					style={{
-						background: "linear-gradient(180deg, rgba(12,17,19,0.92), rgba(8,12,13,0.92))",
+						background:
+							"linear-gradient(180deg, rgba(12,17,19,0.92), rgba(8,12,13,0.92))",
 						border: "1px solid rgba(95,230,214,0.22)",
 						backdropFilter: "blur(8px)",
 						clipPath:
@@ -426,7 +484,10 @@ export default function App() {
 						{acq.paused ? <Play size={13} /> : <Pause size={13} />}
 						{acq.paused ? "Resume" : "Hold"}
 					</button>
-					<div className="h-5 w-px" style={{ background: "rgba(95,230,214,0.2)" }} />
+					<div
+						className="h-5 w-px"
+						style={{ background: "rgba(95,230,214,0.2)" }}
+					/>
 					<button
 						onClick={acq.rearm}
 						className="flex items-center gap-1.5 px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em]"
@@ -435,7 +496,10 @@ export default function App() {
 					>
 						<RotateCcw size={13} /> Re-arm
 					</button>
-					<div className="h-5 w-px" style={{ background: "rgba(95,230,214,0.2)" }} />
+					<div
+						className="h-5 w-px"
+						style={{ background: "rgba(95,230,214,0.2)" }}
+					/>
 					{/* target chips */}
 					<div className="flex items-center gap-1.5 px-1.5">
 						{targetList.map((tg, i) => {

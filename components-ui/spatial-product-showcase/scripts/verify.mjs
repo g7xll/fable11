@@ -7,7 +7,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -63,7 +65,10 @@ check(
 		.count()) === 1,
 );
 for (const f of ["Latency", "Sync Rate"]) {
-	check(`Left feature "${f}"`, (await page.getByText(f, { exact: true }).count()) >= 1);
+	check(
+		`Left feature "${f}"`,
+		(await page.getByText(f, { exact: true }).count()) >= 1,
+	);
 }
 check(
 	"Left battery 82%",
@@ -92,8 +97,9 @@ const tabs = page.getByRole("tab");
 check("switcher has 2 tabs", (await tabs.count()) === 2);
 check(
 	"Left tab selected by default",
-	(await page.getByRole("tab", { name: "Left" }).getAttribute("aria-selected")) ===
-		"true",
+	(await page
+		.getByRole("tab", { name: "Left" })
+		.getAttribute("aria-selected")) === "true",
 );
 
 // Feature bar animated to a non-zero width
@@ -102,7 +108,11 @@ const barWidth = await page
 	.locator("main .bg-blue-500")
 	.last()
 	.evaluate((el) => el.getBoundingClientRect().width);
-check("Left feature bar filled", barWidth > 4, `width=${barWidth.toFixed(1)}px`);
+check(
+	"Left feature bar filled",
+	barWidth > 4,
+	`width=${barWidth.toFixed(1)}px`,
+);
 
 // ── Switch to Right ──────────────────────────────────────────────────────
 await page.getByRole("tab", { name: "Right" }).click();
@@ -116,7 +126,10 @@ check(
 	await page.getByText("Right Earbud", { exact: true }).isVisible(),
 );
 for (const f of ["Bitrate", "Clarifier"]) {
-	check(`Right feature "${f}"`, (await page.getByText(f, { exact: true }).count()) >= 1);
+	check(
+		`Right feature "${f}"`,
+		(await page.getByText(f, { exact: true }).count()) >= 1,
+	);
 }
 check(
 	"Right battery 74%",
@@ -131,7 +144,10 @@ check(
 const rightImg = await page
 	.locator("main img")
 	.first()
-	.evaluate((el) => ({ src: el.getAttribute("src"), natural: el.naturalWidth }));
+	.evaluate((el) => ({
+		src: el.getAttribute("src"),
+		natural: el.naturalWidth,
+	}));
 check(
 	"Right image swapped + loaded",
 	rightImg.src.includes("right-earbud") && rightImg.natural > 0,

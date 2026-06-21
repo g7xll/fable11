@@ -64,7 +64,14 @@ interface DialDef {
 const DIALS: DialDef[] = [
 	{ key: "count", label: "Rings", min: 6, max: 40, step: 1, unit: "" },
 	{ key: "duration", label: "Period", min: 0.8, max: 4, step: 0.1, unit: "s" },
-	{ key: "stagger", label: "Stagger", min: 0, max: 0.24, step: 0.01, unit: "s" },
+	{
+		key: "stagger",
+		label: "Stagger",
+		min: 0,
+		max: 0.24,
+		step: 0.01,
+		unit: "s",
+	},
 	{ key: "scale", label: "Growth", min: 1, max: 3, step: 0.05, unit: "×" },
 	{ key: "rotate", label: "Spin", min: 0, max: 360, step: 5, unit: "°" },
 	{ key: "angle", label: "Light", min: 0, max: 180, step: 5, unit: "°" },
@@ -123,10 +130,42 @@ function Graticule() {
 				);
 			})}
 			{/* crosshair */}
-			<line x1="200" y1="18" x2="200" y2="64" stroke="currentColor" strokeWidth="0.75" opacity="0.45" />
-			<line x1="200" y1="336" x2="200" y2="382" stroke="currentColor" strokeWidth="0.75" opacity="0.45" />
-			<line x1="18" y1="200" x2="64" y2="200" stroke="currentColor" strokeWidth="0.75" opacity="0.45" />
-			<line x1="336" y1="200" x2="382" y2="200" stroke="currentColor" strokeWidth="0.75" opacity="0.45" />
+			<line
+				x1="200"
+				y1="18"
+				x2="200"
+				y2="64"
+				stroke="currentColor"
+				strokeWidth="0.75"
+				opacity="0.45"
+			/>
+			<line
+				x1="200"
+				y1="336"
+				x2="200"
+				y2="382"
+				stroke="currentColor"
+				strokeWidth="0.75"
+				opacity="0.45"
+			/>
+			<line
+				x1="18"
+				y1="200"
+				x2="64"
+				y2="200"
+				stroke="currentColor"
+				strokeWidth="0.75"
+				opacity="0.45"
+			/>
+			<line
+				x1="336"
+				y1="200"
+				x2="382"
+				y2="200"
+				stroke="currentColor"
+				strokeWidth="0.75"
+				opacity="0.45"
+			/>
 		</svg>
 	);
 }
@@ -179,8 +218,8 @@ export default function App() {
 					</div>
 					<p className="max-w-sm text-sm leading-relaxed text-lilac/80">
 						Twenty-five concentric squares, each ringed in a gradient and set to
-						scale and rotate forever. Observed here under a tunable viewer — turn
-						the dials and watch the same component re-bloom.
+						scale and rotate forever. Observed here under a tunable viewer —
+						turn the dials and watch the same component re-bloom.
 					</p>
 				</header>
 
@@ -238,7 +277,9 @@ export default function App() {
 							{DIALS.map((d) => (
 								<label key={d.key} className="block">
 									<div className="mb-2 flex items-baseline justify-between">
-										<span className="text-[0.82rem] text-lilac/90">{d.label}</span>
+										<span className="text-[0.82rem] text-lilac/90">
+											{d.label}
+										</span>
 										<span className="font-mono text-[0.72rem] text-bone">
 											{fmt(d)}
 										</span>
@@ -315,7 +356,13 @@ export default function App() {
 	);
 }
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+	label,
+	children,
+}: {
+	label: string;
+	children: React.ReactNode;
+}) {
 	return (
 		<div>
 			<p className="eyebrow mb-2">{label}</p>

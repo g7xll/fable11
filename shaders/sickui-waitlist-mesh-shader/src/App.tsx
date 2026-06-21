@@ -56,8 +56,9 @@ export default function App() {
 					</h1>
 
 					<p className="mx-auto mt-5 max-w-xl text-pretty text-base text-white/75 sm:text-lg">
-						The copy-paste component library for builders who care about craft. Drop in shaders,
-						data tables, and command menus — and own every line. Join the waitlist for early access.
+						The copy-paste component library for builders who care about craft.
+						Drop in shaders, data tables, and command menus — and own every
+						line. Join the waitlist for early access.
 					</p>
 
 					{/* Email capture */}

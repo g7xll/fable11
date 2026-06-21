@@ -39,11 +39,9 @@ async function waitForServer(url, tries = 80) {
 	return false;
 }
 
-const dev = spawn(
-	"npx",
-	["vite", "--port", String(PORT), "--strictPort"],
-	{ stdio: ["ignore", "pipe", "pipe"] },
-);
+const dev = spawn("npx", ["vite", "--port", String(PORT), "--strictPort"], {
+	stdio: ["ignore", "pipe", "pipe"],
+});
 let devLog = "";
 dev.stdout.on("data", (d) => (devLog += d));
 dev.stderr.on("data", (d) => (devLog += d));
@@ -71,7 +69,9 @@ try {
 			"--enable-webgl",
 		],
 	});
-	const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+	const page = await browser.newPage({
+		viewport: { width: 1280, height: 800 },
+	});
 
 	const errors = [];
 	page.on("console", (m) => {
@@ -107,7 +107,8 @@ try {
 	};
 	const readHud = () =>
 		page.evaluate(() => ({
-			time: document.querySelector('[data-telemetry="time"]')?.textContent ?? "",
+			time:
+				document.querySelector('[data-telemetry="time"]')?.textContent ?? "",
 			fps: document.querySelector('[data-telemetry="fps"]')?.textContent ?? "",
 		}));
 	const t1 = await readHud();
@@ -162,7 +163,10 @@ try {
 		return { r: r / n, g: g / n, b: b / n };
 	}, "data:image/png;base64," + shot.toString("base64"));
 	const bright = px ? (px.r + px.g + px.b) / 3 : 0;
-	check(!!px && bright > 6, `Canvas is not black (mean rgb ≈ ${bright.toFixed(1)})`);
+	check(
+		!!px && bright > 6,
+		`Canvas is not black (mean rgb ≈ ${bright.toFixed(1)})`,
+	);
 	check(
 		!!px && px.b >= px.r,
 		`Field reads navy, not error-red (b=${px ? px.b.toFixed(0) : "?"} ≥ r=${px ? px.r.toFixed(0) : "?"})`,

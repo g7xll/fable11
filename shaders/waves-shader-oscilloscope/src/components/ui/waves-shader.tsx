@@ -5,34 +5,34 @@ import * as THREE from "three";
 import { cn } from "@/lib/utils";
 
 export const ShaderComponent = () => {
-  const containerRef = useRef<HTMLDivElement | null>(null);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
-    const container = containerRef.current;
+	useEffect(() => {
+		if (!containerRef.current) return;
+		const container = containerRef.current;
 
-    let camera: THREE.Camera;
-    let scene: THREE.Scene;
-    let renderer: THREE.WebGLRenderer;
-    let clock: THREE.Clock;
-    let uniforms: { [key: string]: THREE.IUniform };
+		let camera: THREE.Camera;
+		let scene: THREE.Scene;
+		let renderer: THREE.WebGLRenderer;
+		let clock: THREE.Clock;
+		let uniforms: { [key: string]: THREE.IUniform };
 
-    const init = () => {
-      clock = new THREE.Clock();
-      camera = new THREE.Camera();
-      camera.position.z = 1;
+		const init = () => {
+			clock = new THREE.Clock();
+			camera = new THREE.Camera();
+			camera.position.z = 1;
 
-      scene = new THREE.Scene();
+			scene = new THREE.Scene();
 
-      // ✅ Updated geometry
-      const geometry = new THREE.PlaneGeometry(2, 2);
+			// ✅ Updated geometry
+			const geometry = new THREE.PlaneGeometry(2, 2);
 
-      uniforms = {
-        u_time: { value: 1.0 },
-        u_resolution: { value: new THREE.Vector2() },
-      };
+			uniforms = {
+				u_time: { value: 1.0 },
+				u_resolution: { value: new THREE.Vector2() },
+			};
 
-      const vertexShader = `
+			const vertexShader = `
         varying vec2 vUv;
         void main() {
           gl_Position = vec4(position, 1.0);
@@ -40,7 +40,7 @@ export const ShaderComponent = () => {
         }
       `;
 
-      const fragmentShader = `
+			const fragmentShader = `
         precision highp float;
 
         uniform vec2 u_resolution;
@@ -81,52 +81,52 @@ export const ShaderComponent = () => {
         }
       `;
 
-      const material = new THREE.ShaderMaterial({
-        uniforms,
-        vertexShader,
-        fragmentShader,
-      });
+			const material = new THREE.ShaderMaterial({
+				uniforms,
+				vertexShader,
+				fragmentShader,
+			});
 
-      const mesh = new THREE.Mesh(geometry, material);
-      scene.add(mesh);
+			const mesh = new THREE.Mesh(geometry, material);
+			scene.add(mesh);
 
-      renderer = new THREE.WebGLRenderer();
-      renderer.setPixelRatio(window.devicePixelRatio);
+			renderer = new THREE.WebGLRenderer();
+			renderer.setPixelRatio(window.devicePixelRatio);
 
-      container.appendChild(renderer.domElement);
+			container.appendChild(renderer.domElement);
 
-      const onWindowResize = () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        uniforms.u_resolution.value.x = renderer.domElement.width;
-        uniforms.u_resolution.value.y = renderer.domElement.height;
-      };
+			const onWindowResize = () => {
+				renderer.setSize(window.innerWidth, window.innerHeight);
+				uniforms.u_resolution.value.x = renderer.domElement.width;
+				uniforms.u_resolution.value.y = renderer.domElement.height;
+			};
 
-      window.addEventListener("resize", onWindowResize);
-      onWindowResize();
+			window.addEventListener("resize", onWindowResize);
+			onWindowResize();
 
-      const animate = () => {
-        uniforms.u_time.value = clock.getElapsedTime();
-        renderer.render(scene, camera);
-        requestAnimationFrame(animate);
-      };
+			const animate = () => {
+				uniforms.u_time.value = clock.getElapsedTime();
+				renderer.render(scene, camera);
+				requestAnimationFrame(animate);
+			};
 
-      animate();
+			animate();
 
-      return () => {
-        window.removeEventListener("resize", onWindowResize);
-        renderer.dispose();
-        containerRef.current?.removeChild(renderer.domElement);
-      };
-    };
+			return () => {
+				window.removeEventListener("resize", onWindowResize);
+				renderer.dispose();
+				containerRef.current?.removeChild(renderer.domElement);
+			};
+		};
 
-    const cleanup = init();
-    return cleanup;
-  }, []);
+		const cleanup = init();
+		return cleanup;
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={cn("w-full h-screen overflow-hidden rounded-lg")}
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className={cn("w-full h-screen overflow-hidden rounded-lg")}
+		/>
+	);
 };

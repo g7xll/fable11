@@ -79,7 +79,12 @@ function averagePng(buf) {
 	const r = Math.round(rSum / count);
 	const g = Math.round(gSum / count);
 	const bAvg = Math.round(bSum / count);
-	return { r, g, b: bAvg, lum: Math.round(0.299 * r + 0.587 * g + 0.114 * bAvg) };
+	return {
+		r,
+		g,
+		b: bAvg,
+		lum: Math.round(0.299 * r + 0.587 * g + 0.114 * bAvg),
+	};
 }
 
 const PORT = 4322;
@@ -128,7 +133,9 @@ async function main() {
 		await waitForServer(URL);
 
 		const browser = await chromium.launch();
-		const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+		const page = await browser.newPage({
+			viewport: { width: 1280, height: 800 },
+		});
 
 		const errors = [];
 		page.on("console", (m) => {
@@ -158,14 +165,20 @@ async function main() {
 			clip: { x: 440, y: 250, width: 400, height: 300 },
 		});
 		const { r, g, b, lum } = averagePng(png);
-		if (lum <= 8) fail(`canvas appears black (avg rgb ${r},${g},${b}, lum ${lum})`);
+		if (lum <= 8)
+			fail(`canvas appears black (avg rgb ${r},${g},${b}, lum ${lum})`);
 		if (r <= g + 4 || r <= b + 4)
 			fail(`field is not rose/red-dominant (avg rgb ${r},${g},${b})`);
-		console.log(`✓ canvas painting rose field (avg rgb ${r},${g},${b}, lum ${lum})`);
+		console.log(
+			`✓ canvas painting rose field (avg rgb ${r},${g},${b}, lum ${lum})`,
+		);
 
 		// 3. telemetry frame counter climbs
 		const readFrame = () =>
-			page.getByTestId("hud-frame").innerText().catch(() => null);
+			page
+				.getByTestId("hud-frame")
+				.innerText()
+				.catch(() => null);
 		const f1 = Number(await readFrame());
 		await sleep(900);
 		const f2 = Number(await readFrame());

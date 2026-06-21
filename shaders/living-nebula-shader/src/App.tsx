@@ -69,7 +69,11 @@ export default function DemoOne() {
 			{/* ── Top status bar ───────────────────────────────────────────── */}
 			<header className="masthead">
 				<div className="masthead__brand">
-					<Radio className="masthead__glyph" strokeWidth={1.6} aria-hidden="true" />
+					<Radio
+						className="masthead__glyph"
+						strokeWidth={1.6}
+						aria-hidden="true"
+					/>
 					<span className="masthead__call">DSO·N7</span>
 					<span className="masthead__sep" aria-hidden="true">
 						/
@@ -97,8 +101,8 @@ export default function DemoOne() {
 				<p className="description">An Interactive WebGL Shader</p>
 				<p className="lede">
 					A two-layer fractal gas cloud rendered live on the GPU. Sweep the feed
-					and the medium lenses around your cursor — a gravitational well bending
-					the magenta and ion-blue flows in real time.
+					and the medium lenses around your cursor — a gravitational well
+					bending the magenta and ion-blue flows in real time.
 				</p>
 				<div className="legend" role="list">
 					<span className="legend__item" role="listitem">
@@ -132,7 +136,8 @@ export default function DemoOne() {
 				</div>
 				<div className="telemetry__cell">
 					<dt>
-						<Activity size={12} strokeWidth={2} aria-hidden="true" /> Render rate
+						<Activity size={12} strokeWidth={2} aria-hidden="true" /> Render
+						rate
 					</dt>
 					<dd>
 						{fps}
@@ -141,11 +146,10 @@ export default function DemoOne() {
 				</div>
 				<div className="telemetry__cell telemetry__cell--warp">
 					<dt>
-						<Crosshair size={12} strokeWidth={2} aria-hidden="true" /> Warp center
+						<Crosshair size={12} strokeWidth={2} aria-hidden="true" /> Warp
+						center
 					</dt>
-					<dd>
-						{warp ? `${signed(warp.x)}, ${signed(warp.y)}` : "— idle —"}
-					</dd>
+					<dd>{warp ? `${signed(warp.x)}, ${signed(warp.y)}` : "— idle —"}</dd>
 				</div>
 				<div className="telemetry__cell telemetry__cell--layers">
 					<dt>Gas layers</dt>

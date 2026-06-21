@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -35,9 +37,19 @@ await page.goto(BASE_URL, { waitUntil: "networkidle" });
 await page.waitForTimeout(1700); // entrance reveal + a few shader frames
 
 // ── Title + structure ──────────────────────────────────────────────────────
-check("page title", (await page.title()).startsWith("SDF Dreamscape"), await page.title());
-check("recorder shell present", (await page.locator(".recorder").count()) === 1);
-check("console overlay present", (await page.locator(".console").count()) === 1);
+check(
+	"page title",
+	(await page.title()).startsWith("SDF Dreamscape"),
+	await page.title(),
+);
+check(
+	"recorder shell present",
+	(await page.locator(".recorder").count()) === 1,
+);
+check(
+	"console overlay present",
+	(await page.locator(".console").count()) === 1,
+);
 
 // ── Brief copy ──────────────────────────────────────────────────────────────
 // The hero is styled uppercase via CSS `text-transform`, so `innerText` reports
@@ -94,7 +106,11 @@ check(
 
 // ── Controls (the four brief uniforms) ──────────────────────────────────────
 const ranges = page.locator(".dial-range");
-check("four tuning dials present", (await ranges.count()) === 4, `${await ranges.count()}`);
+check(
+	"four tuning dials present",
+	(await ranges.count()) === 4,
+	`${await ranges.count()}`,
+);
 for (const u of ["u_hue", "u_speed", "u_intensity", "u_complexity"]) {
 	check(
 		`dial wired to ${u}`,
@@ -128,7 +144,11 @@ check(
 // ── Dream-state presets snap all four params ────────────────────────────────
 const presets = page.locator(".preset");
 check("dream-state presets present", (await presets.count()) === 4);
-const lensBefore = await page.locator(".tcell").nth(3).locator("dd").innerText();
+const lensBefore = await page
+	.locator(".tcell")
+	.nth(3)
+	.locator("dd")
+	.innerText();
 await presets.filter({ hasText: "REM" }).click();
 await page.waitForTimeout(400);
 const lensAfter = await page.locator(".tcell").nth(3).locator("dd").innerText();
@@ -148,11 +168,18 @@ check("dream clock formatted", /^\d{2}:\d{2}:\d{2}$/.test(clockA), clockA);
 await page.waitForTimeout(1300);
 const clockB = await page.locator(".tcell--clock dd").innerText();
 check("dream clock advances", clockA !== clockB, `${clockA} -> ${clockB}`);
-const renderCell = await page.locator(".tcell").nth(1).locator("dd").innerText();
+const renderCell = await page
+	.locator(".tcell")
+	.nth(1)
+	.locator("dd")
+	.innerText();
 check("render fps reported (non-zero)", /[1-9]/.test(renderCell), renderCell);
 
 // ── Frame reticle ───────────────────────────────────────────────────────────
-check("registration corners present", (await page.locator(".frame-corner").count()) === 4);
+check(
+	"registration corners present",
+	(await page.locator(".frame-corner").count()) === 4,
+);
 
 // ── Fonts vendored locally ──────────────────────────────────────────────────
 check(
@@ -163,7 +190,11 @@ check(
 const heroFont = await page
 	.locator("h1")
 	.evaluate((el) => getComputedStyle(el).fontFamily);
-check("display face is Big Shoulders Display", heroFont.includes("Big Shoulders"), heroFont);
+check(
+	"display face is Big Shoulders Display",
+	heroFont.includes("Big Shoulders"),
+	heroFont,
+);
 
 // ── Responsive: telemetry collapses on mobile ───────────────────────────────
 await page.setViewportSize({ width: 390, height: 844 });
@@ -181,5 +212,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

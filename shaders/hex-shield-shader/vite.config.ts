@@ -6,10 +6,10 @@ import path from "node:path";
 // "@/components/ui/shield-shader" and "@/lib/utils" work exactly as the
 // pasted component expects, with no edits to the drop-in.
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+	plugins: [react()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+		},
+	},
 });

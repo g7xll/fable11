@@ -23,7 +23,10 @@ import { chromium } from "playwright";
 const PORT = 5201;
 const URL = `http://localhost:${PORT}/`;
 const OUT = path.resolve("demo.mp4");
-const TMP = path.join(process.env.TMPDIR || "/tmp", "scroll-expansion-demo-rec");
+const TMP = path.join(
+	process.env.TMPDIR || "/tmp",
+	"scroll-expansion-demo-rec",
+);
 const VW = 1280;
 const VH = 800;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -35,7 +38,11 @@ async function wheel(page, totalDelta, steps, perStepMs) {
 	for (let i = 0; i < steps; i++) {
 		await page.evaluate((dy) => {
 			window.dispatchEvent(
-				new WheelEvent("wheel", { deltaY: dy, bubbles: true, cancelable: true }),
+				new WheelEvent("wheel", {
+					deltaY: dy,
+					bubbles: true,
+					cancelable: true,
+				}),
 			);
 		}, each);
 		await sleep(perStepMs);
@@ -72,7 +79,9 @@ try {
 	});
 	const page = await ctx.newPage();
 	await page.goto(URL, { waitUntil: "load" });
-	await page.evaluate(() => document.fonts && document.fonts.ready).catch(() => {});
+	await page
+		.evaluate(() => document.fonts && document.fonts.ready)
+		.catch(() => {});
 	await sleep(2000); // settle hero + start looping video
 
 	// Expand the media by feeding wheel deltas (slow, so the growth reads).
@@ -110,11 +119,21 @@ try {
 		"ffmpeg",
 		[
 			"-y",
-			"-i", path.join(TMP, webm.f),
-			"-r", "30", "-an",
-			"-c:v", "libx264", "-preset", "slow",
-			"-pix_fmt", "yuv420p", "-crf", "18",
-			"-movflags", "+faststart",
+			"-i",
+			path.join(TMP, webm.f),
+			"-r",
+			"30",
+			"-an",
+			"-c:v",
+			"libx264",
+			"-preset",
+			"slow",
+			"-pix_fmt",
+			"yuv420p",
+			"-crf",
+			"18",
+			"-movflags",
+			"+faststart",
 			OUT,
 		],
 		{ stdio: "inherit" },

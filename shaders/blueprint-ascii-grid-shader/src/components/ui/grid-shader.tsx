@@ -251,7 +251,11 @@ function safeCompile(gl: WebGL2RenderingContext, type: number, src: string) {
 	const log = gl.getShaderInfoLog(sh) || "";
 	return { shader: ok ? sh : null, log };
 }
-function safeLink(gl: WebGL2RenderingContext, vs: WebGLShader, fs: WebGLShader) {
+function safeLink(
+	gl: WebGL2RenderingContext,
+	vs: WebGLShader,
+	fs: WebGLShader,
+) {
 	const prog = gl.createProgram()!;
 	gl.attachShader(prog, vs);
 	gl.attachShader(prog, fs);
@@ -360,7 +364,11 @@ export default function GridShader({
 		gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
 		// Shaders
-		const { shader: vs, log: vsLog } = safeCompile(gl, gl.VERTEX_SHADER, VERT_SRC);
+		const { shader: vs, log: vsLog } = safeCompile(
+			gl,
+			gl.VERTEX_SHADER,
+			VERT_SRC,
+		);
 		if (!vs) {
 			drawError(gl, `Vertex compile error:\n${vsLog}`);
 			return;
@@ -458,8 +466,7 @@ export default function GridShader({
 
 			if (now - lastReport > 160) {
 				if (fpsAccum > 0) {
-					smoothedFps =
-						smoothedFps * 0.6 + (fpsFrames / fpsAccum) * 1000 * 0.4;
+					smoothedFps = smoothedFps * 0.6 + (fpsFrames / fpsAccum) * 1000 * 0.4;
 				}
 				fpsAccum = 0;
 				fpsFrames = 0;

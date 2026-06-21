@@ -10,18 +10,18 @@ import Blog01Finsyc from "@/components/templates/finance-management-landing-page
 import CTAWithFooter01Finsyc from "@/components/templates/finance-management-landing-page-finsyc/CTA with Footer 01 Finsyc";
 
 export default function App() {
-  return (
-    <main className="min-h-screen">
-      <Header01Finsyc />
-      <MetricsWithLogo01Finsyc />
-      <Feature01Finsyc />
-      <HowItWorks01Finsyc />
-      <WhyChooseUs01Finsyc />
-      <MetricsWithTestimonialFinsyc />
-      <Pricing01Finsyc />
-      <Integration01Finsyc />
-      <Blog01Finsyc />
-      <CTAWithFooter01Finsyc />
-    </main>
-  );
+	return (
+		<main className="min-h-screen">
+			<Header01Finsyc />
+			<MetricsWithLogo01Finsyc />
+			<Feature01Finsyc />
+			<HowItWorks01Finsyc />
+			<WhyChooseUs01Finsyc />
+			<MetricsWithTestimonialFinsyc />
+			<Pricing01Finsyc />
+			<Integration01Finsyc />
+			<Blog01Finsyc />
+			<CTAWithFooter01Finsyc />
+		</main>
+	);
 }

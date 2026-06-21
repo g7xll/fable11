@@ -8,13 +8,13 @@ import CelestialMatrixShader from "@/components/ui/martrix-shader";
  * the canonical drop-in example from the prompt stays runnable on its own.
  */
 export default function DemoOne() {
-  return (
-    <div className="app-container">
-      <CelestialMatrixShader />
-      <div className="overlay-content">
-        <h1 className="title">Celestial Matrix</h1>
-        <p className="description">An Interactive WebGL Shader</p>
-      </div>
-    </div>
-  );
+	return (
+		<div className="app-container">
+			<CelestialMatrixShader />
+			<div className="overlay-content">
+				<h1 className="title">Celestial Matrix</h1>
+				<p className="description">An Interactive WebGL Shader</p>
+			</div>
+		</div>
+	);
 }

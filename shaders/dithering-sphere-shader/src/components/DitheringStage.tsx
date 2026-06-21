@@ -17,7 +17,11 @@ type DitheringStageProps = {
  * ResizeObserver and feeds the measured size straight into the component, so the
  * same verbatim shader can back a full-bleed hero, a preview tile, or a thumbnail.
  */
-export function DitheringStage({ params, className, maxSize = 1600 }: DitheringStageProps) {
+export function DitheringStage({
+	params,
+	className,
+	maxSize = 1600,
+}: DitheringStageProps) {
 	const hostRef = useRef<HTMLDivElement>(null);
 	const [size, setSize] = useState({ w: 0, h: 0 });
 

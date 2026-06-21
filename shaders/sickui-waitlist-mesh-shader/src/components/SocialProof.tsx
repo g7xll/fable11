@@ -44,13 +44,18 @@ export default function SocialProof({ count }: SocialProofProps) {
 				))}
 			</div>
 			<div className="text-center sm:text-left">
-				<div className="flex items-center justify-center gap-1 sm:justify-start" aria-hidden="true">
+				<div
+					className="flex items-center justify-center gap-1 sm:justify-start"
+					aria-hidden="true"
+				>
 					{Array.from({ length: 5 }).map((_, i) => (
 						<Star key={i} className="size-3.5 fill-amber-300 text-amber-300" />
 					))}
 				</div>
 				<p className="text-sm text-white/75">
-					<span className="font-semibold tabular-nums text-white">{formatCount(live)}</span>{" "}
+					<span className="font-semibold tabular-nums text-white">
+						{formatCount(live)}
+					</span>{" "}
 					builders already on the list
 				</p>
 			</div>

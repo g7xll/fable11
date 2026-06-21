@@ -323,11 +323,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	border-top: 1px solid var(--hud-line);
-	background: linear-gradient(
-		180deg,
-		transparent,
-		rgba(2, 1, 10, 0.62) 60%
-	);
+	background: linear-gradient(180deg, transparent, rgba(2, 1, 10, 0.62) 60%);
 	backdrop-filter: blur(3px);
 	-webkit-backdrop-filter: blur(3px);
 }

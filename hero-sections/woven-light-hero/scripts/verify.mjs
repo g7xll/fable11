@@ -58,9 +58,7 @@ try {
 	const canvasBox = await canvas.evaluate((c) => ({
 		w: c.width,
 		h: c.height,
-		hasGL: !!(
-			c.getContext("webgl2") || c.getContext("webgl")
-		),
+		hasGL: !!(c.getContext("webgl2") || c.getContext("webgl")),
 	}));
 	check(
 		"canvas sized to viewport with a GL context",
@@ -110,7 +108,11 @@ try {
 	);
 
 	// ---- Nav ----
-	check("nav brand 'Woven'", (await page.locator("nav").getByText("Woven", { exact: true }).count()) === 1);
+	check(
+		"nav brand 'Woven'",
+		(await page.locator("nav").getByText("Woven", { exact: true }).count()) ===
+			1,
+	);
 
 	// ---- Fonts actually loaded (vendored locally) ----
 	const fontsLoaded = await page.evaluate(async () => {

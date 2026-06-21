@@ -154,7 +154,14 @@ const ScannerCardStream = ({
 		texCanvas.height = 100;
 		const texCtx = texCanvas.getContext("2d")!;
 		const half = 50;
-		const gradient = texCtx.createRadialGradient(half, half, 0, half, half, half);
+		const gradient = texCtx.createRadialGradient(
+			half,
+			half,
+			0,
+			half,
+			half,
+			half,
+		);
 		gradient.addColorStop(0.025, "#fff");
 		gradient.addColorStop(0.1, "hsl(217, 61%, 33%)");
 		gradient.addColorStop(0.25, "hsl(217, 64%, 6%)");
@@ -291,7 +298,7 @@ const ScannerCardStream = ({
 
 		// --- Pointer / wheel interaction (drag to scrub, flick for momentum) ---
 		const pointerX = (e: MouseEvent | TouchEvent) =>
-			"touches" in e ? e.touches[0]?.clientX ?? 0 : e.clientX;
+			"touches" in e ? (e.touches[0]?.clientX ?? 0) : e.clientX;
 
 		const handleMouseDown = (e: MouseEvent | TouchEvent) => {
 			const s = cardStreamState.current;
@@ -507,8 +514,7 @@ const ScannerCardStream = ({
 								className="card-ascii card absolute top-0 left-0 w-full h-full rounded-[15px] overflow-hidden bg-transparent z-[1]"
 								style={
 									{
-										clipPath:
-											"inset(0 calc(100% - var(--clip-left, 0%)) 0 0)",
+										clipPath: "inset(0 calc(100% - var(--clip-left, 0%)) 0 0)",
 									} as CSSProperties
 								}
 							>

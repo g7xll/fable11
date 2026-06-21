@@ -85,8 +85,9 @@ export function Install() {
 						Copy one file. Mount one tag.
 					</h2>
 					<p className="mt-4 font-body text-ink-dim">
-						This page is a shadcn-structured Vite + TypeScript + Tailwind app — the
-						stack the brief asked for. Here's exactly how the component slots in.
+						This page is a shadcn-structured Vite + TypeScript + Tailwind app —
+						the stack the brief asked for. Here's exactly how the component
+						slots in.
 					</p>
 				</Reveal>
 
@@ -113,12 +114,14 @@ export function Install() {
 								file tree
 							</span>
 							<pre className="mt-3 font-mono text-[12.5px] leading-relaxed text-ink-dim">
-								<code>{`src/
+								<code>
+									{`src/
 └─ components/
    └─ ui/
       └─ `}
-								<span className="text-phosphor">shader-background.tsx</span>
-								{`   ← paste here`}</code>
+									<span className="text-phosphor">shader-background.tsx</span>
+									{`   ← paste here`}
+								</code>
 							</pre>
 						</div>
 					</Reveal>

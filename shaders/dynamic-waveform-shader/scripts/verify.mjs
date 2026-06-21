@@ -101,7 +101,16 @@ console.log(`Booting Vite dev server on ${URL} ...`);
 
 const server = spawn(
 	"npm",
-	["run", "dev", "--", "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"],
+	[
+		"run",
+		"dev",
+		"--",
+		"--port",
+		String(PORT),
+		"--strictPort",
+		"--host",
+		"127.0.0.1",
+	],
 	{ cwd: ROOT, stdio: ["ignore", "pipe", "pipe"] },
 );
 let serverLog = "";
@@ -147,7 +156,9 @@ browser = await chromium.launch({
 		"--ignore-gpu-blocklist",
 	],
 });
-const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+const ctx = await browser.newContext({
+	viewport: { width: 1280, height: 800 },
+});
 const page = await ctx.newPage();
 const note = (s) => {
 	if (IGNORABLE.test(s)) return;
@@ -176,21 +187,32 @@ const webglSupported = await page.evaluate(() => {
 	const c = document.createElement("canvas");
 	return !!(c.getContext("webgl2") || c.getContext("webgl"));
 });
-console.log(`(environment: WebGL ${webglSupported ? "available" : "UNAVAILABLE"})`);
+console.log(
+	`(environment: WebGL ${webglSupported ? "available" : "UNAVAILABLE"})`,
+);
 
 // ── structural / integration checks ─────────────────────────────────────────
 await must("WebGL <canvas> mounted", () =>
-	page.locator("canvas").count().then((n) => n >= 1),
+	page
+		.locator("canvas")
+		.count()
+		.then((n) => n >= 1),
 );
 await must("canvas fills the viewport (live trace background)", async () => {
 	const box = await page.locator("canvas").first().boundingBox();
 	return box && box.width >= 1200 && box.height >= 700;
 });
 await must("brand 'WAVEFORM BENCH' present", () =>
-	page.getByText(/WAVEFORM\s*BENCH/i).count().then((n) => n >= 1),
+	page
+		.getByText(/WAVEFORM\s*BENCH/i)
+		.count()
+		.then((n) => n >= 1),
 );
 await must("console title 'Dynamic Waveform' present", () =>
-	page.getByRole("heading", { level: 1 }).innerText().then((t) => /Dynamic Waveform/i.test(t)),
+	page
+		.getByRole("heading", { level: 1 })
+		.innerText()
+		.then((t) => /Dynamic Waveform/i.test(t)),
 );
 await must("both colour trims (Trace A / Trace B)", async () => {
 	const a = await page.getByText(/Trace A/i).count();
@@ -199,19 +221,33 @@ await must("both colour trims (Trace A / Trace B)", async () => {
 	return a >= 1 && b >= 1 && inputs === 2;
 });
 await must("all five faders present", async () => {
-	const labels = ["Sweep Rate", "Harmonics", "Amplitude", "Frequency", "Probe Gain"];
+	const labels = [
+		"Sweep Rate",
+		"Harmonics",
+		"Amplitude",
+		"Frequency",
+		"Probe Gain",
+	];
 	for (const l of labels) {
 		if ((await page.getByText(new RegExp(l, "i")).count()) < 1) return false;
 	}
 	const ranges = await page.locator('input[type="range"]').count();
 	return ranges === 5;
 });
-await must("all four channel presets (Baseline/Signal Scan/Deep Sea/Vaporwave)", async () => {
-	for (const name of ["Baseline", "Signal Scan", "Deep Sea", "Vaporwave"]) {
-		if ((await page.getByRole("button", { name: new RegExp(name, "i") }).count()) < 1) return false;
-	}
-	return true;
-});
+await must(
+	"all four channel presets (Baseline/Signal Scan/Deep Sea/Vaporwave)",
+	async () => {
+		for (const name of ["Baseline", "Signal Scan", "Deep Sea", "Vaporwave"]) {
+			if (
+				(await page
+					.getByRole("button", { name: new RegExp(name, "i") })
+					.count()) < 1
+			)
+				return false;
+		}
+		return true;
+	},
+);
 await must("telemetry HUD labels present", async () => {
 	const a = await page.getByText(/Sweep Time/i).count();
 	const b = await page.getByText(/Refresh/i).count();
@@ -226,23 +262,28 @@ await must("mono font (IBM Plex Mono) applied to body", () =>
 
 // ── the load-bearing one: the shader actually paints ────────────────────────
 if (webglSupported) {
-	await must("live shader paints a coloured trace (canvas not flat black)", async () => {
-		// Sample a wide band across the middle of the canvas where the waveform
-		// trace sweeps — avoids the dark console panel pinned to the left edge.
-		const clip = { x: 380, y: 280, width: 820, height: 260 };
-		const png = await page.screenshot({ clip });
-		const s = pngStats(png);
-		console.log(
-			`   trace region: maxLum=${s.maxLum.toFixed(1)} lit=${(s.litFraction * 100).toFixed(
-				1,
-			)}% colors=${s.distinctColors} avg=rgb(${s.avg.r.toFixed(0)},${s.avg.g.toFixed(
-				0,
-			)},${s.avg.b.toFixed(0)})`,
-		);
-		// A real lit trace has bright pixels and several distinct colour buckets
-		// (line + glow + noise + the two-stop colour mix).
-		return s.maxLum > 30 && s.litFraction > 0.02 && s.distinctColors >= 3;
-	});
+	await must(
+		"live shader paints a coloured trace (canvas not flat black)",
+		async () => {
+			// Sample a wide band across the middle of the canvas where the waveform
+			// trace sweeps — avoids the dark console panel pinned to the left edge.
+			const clip = { x: 380, y: 280, width: 820, height: 260 };
+			const png = await page.screenshot({ clip });
+			const s = pngStats(png);
+			console.log(
+				`   trace region: maxLum=${s.maxLum.toFixed(1)} lit=${(
+					s.litFraction * 100
+				).toFixed(
+					1,
+				)}% colors=${s.distinctColors} avg=rgb(${s.avg.r.toFixed(0)},${s.avg.g.toFixed(
+					0,
+				)},${s.avg.b.toFixed(0)})`,
+			);
+			// A real lit trace has bright pixels and several distinct colour buckets
+			// (line + glow + noise + the two-stop colour mix).
+			return s.maxLum > 30 && s.litFraction > 0.02 && s.distinctColors >= 3;
+		},
+	);
 
 	await must("shader is animating (consecutive frames differ)", async () => {
 		const clip = { x: 380, y: 280, width: 820, height: 260 };
@@ -251,22 +292,29 @@ if (webglSupported) {
 		const b = pngStats(await page.screenshot({ clip }));
 		const dLum = Math.abs(a.maxLum - b.maxLum);
 		const dAvg =
-			Math.abs(a.avg.r - b.avg.r) + Math.abs(a.avg.g - b.avg.g) + Math.abs(a.avg.b - b.avg.b);
-		console.log(`   frame delta: dMaxLum=${dLum.toFixed(2)} dAvg=${dAvg.toFixed(2)}`);
+			Math.abs(a.avg.r - b.avg.r) +
+			Math.abs(a.avg.g - b.avg.g) +
+			Math.abs(a.avg.b - b.avg.b);
+		console.log(
+			`   frame delta: dMaxLum=${dLum.toFixed(2)} dAvg=${dAvg.toFixed(2)}`,
+		);
 		return dLum > 0.05 || dAvg > 0.05;
 	});
 
-	await must("telemetry refresh rate reads non-zero (render loop + onFrame live)", async () => {
-		// The Refresh cell is the second telemetry cell; read its <dd> value.
-		const txt = await page
-			.locator(".telemetry-cell")
-			.nth(1)
-			.locator("dd")
-			.innerText();
-		const fps = parseInt(txt, 10);
-		console.log(`   reported refresh: ${txt.trim()}`);
-		return Number.isFinite(fps) && fps > 0;
-	});
+	await must(
+		"telemetry refresh rate reads non-zero (render loop + onFrame live)",
+		async () => {
+			// The Refresh cell is the second telemetry cell; read its <dd> value.
+			const txt = await page
+				.locator(".telemetry-cell")
+				.nth(1)
+				.locator("dd")
+				.innerText();
+			const fps = parseInt(txt, 10);
+			console.log(`   reported refresh: ${txt.trim()}`);
+			return Number.isFinite(fps) && fps > 0;
+		},
+	);
 
 	await must("changing a fader re-shapes the trace", async () => {
 		const clip = { x: 380, y: 280, width: 820, height: 260 };
@@ -290,11 +338,16 @@ if (webglSupported) {
 			Math.abs(before.avg.g - after.avg.g) +
 			Math.abs(before.avg.b - after.avg.b);
 		console.log(`   fader delta dAvg=${dAvg.toFixed(2)}`);
-		return dAvg > 0.05 || Math.abs(before.litFraction - after.litFraction) > 0.005;
+		return (
+			dAvg > 0.05 || Math.abs(before.litFraction - after.litFraction) > 0.005
+		);
 	});
 } else {
 	await must("graceful (no WebGL): bench shell still renders", () =>
-		page.getByRole("heading", { level: 1 }).count().then((n) => n >= 1),
+		page
+			.getByRole("heading", { level: 1 })
+			.count()
+			.then((n) => n >= 1),
 	);
 }
 
@@ -332,7 +385,9 @@ server.kill("SIGTERM");
 let failed = 0;
 console.log("\n=== VERIFY RESULTS ===");
 for (const [name, ok, extra] of checks) {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${extra ? "  -> " + extra : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${extra ? "  -> " + extra : ""}`,
+	);
 	if (!ok) failed++;
 }
 console.log("\n=== CONSOLE / PAGE ERRORS ===");
@@ -341,7 +396,9 @@ else errors.forEach((e) => console.log(" - " + e));
 
 console.log(`\nScreenshots: ${OUT}`);
 if (failed > 0 || errors.length > 0) {
-	console.log(`\nRESULT: FAIL (${failed} checks failed, ${errors.length} errors)`);
+	console.log(
+		`\nRESULT: FAIL (${failed} checks failed, ${errors.length} errors)`,
+	);
 	process.exit(1);
 }
 console.log("\nRESULT: ALL PASS");

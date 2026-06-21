@@ -5,10 +5,10 @@ import path from "node:path";
 // Path alias mirrors the shadcn convention: `@/*` -> `src/*`,
 // so `@/components/ui/...` and `@/lib/...` imports resolve correctly.
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+	plugins: [react()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+		},
+	},
 });

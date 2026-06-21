@@ -7,34 +7,34 @@ import * as THREE from "three";
  * ratio, and the live world-space position of the mouse-driven point light.
  */
 export interface MountainSceneFrame {
-  /** Real (unpaused) seconds since mount — a true wall clock for the survey HUD. */
-  elapsed: number;
-  /** Raw value of the `time` uniform (the original `activeMs * 0.0003` drift). */
-  time: number;
-  /** Smoothed frames-per-second of the render loop. */
-  fps: number;
-  /** Device pixel ratio the renderer is sampling at (capped at 2). */
-  pixelRatio: number;
-  /** World-space position of the point light = the `pointLightPosition` uniform. */
-  light: { x: number; y: number; z: number };
+	/** Real (unpaused) seconds since mount — a true wall clock for the survey HUD. */
+	elapsed: number;
+	/** Raw value of the `time` uniform (the original `activeMs * 0.0003` drift). */
+	time: number;
+	/** Smoothed frames-per-second of the render loop. */
+	fps: number;
+	/** Device pixel ratio the renderer is sampling at (capped at 2). */
+	pixelRatio: number;
+	/** World-space position of the point light = the `pointLightPosition` uniform. */
+	light: { x: number; y: number; z: number };
 }
 
 export interface GenerativeMountainSceneProps {
-  /**
-   * Ridge colour fed into the `color` uniform. The brief hard-codes `#7dd3fc`;
-   * exposing it lets the showcase retint the whole massif without forking the
-   * shader. Accepts any CSS colour string THREE.Color understands.
-   */
-  baseColor?: string;
-  /**
-   * When true the `time` uniform stops advancing, freezing the slow drift of the
-   * terrain while the light can still be moved. The geometry stays solid.
-   */
-  paused?: boolean;
-  /** Extra classes for the absolutely-positioned full-bleed mount. */
-  className?: string;
-  /** Per-frame telemetry callback (fires once per rendered frame). */
-  onFrame?: (frame: MountainSceneFrame) => void;
+	/**
+	 * Ridge colour fed into the `color` uniform. The brief hard-codes `#7dd3fc`;
+	 * exposing it lets the showcase retint the whole massif without forking the
+	 * shader. Accepts any CSS colour string THREE.Color understands.
+	 */
+	baseColor?: string;
+	/**
+	 * When true the `time` uniform stops advancing, freezing the slow drift of the
+	 * terrain while the light can still be moved. The geometry stays solid.
+	 */
+	paused?: boolean;
+	/** Extra classes for the absolutely-positioned full-bleed mount. */
+	className?: string;
+	/** Per-frame telemetry callback (fires once per rendered frame). */
+	onFrame?: (frame: MountainSceneFrame) => void;
 }
 
 /**
@@ -52,64 +52,64 @@ export interface GenerativeMountainSceneProps {
  * WebGL bootstrap.
  */
 export function GenerativeMountainScene({
-  baseColor = "#7dd3fc",
-  paused = false,
-  className,
-  onFrame,
+	baseColor = "#7dd3fc",
+	paused = false,
+	className,
+	onFrame,
 }: GenerativeMountainSceneProps = {}) {
-  const mountRef = useRef<HTMLDivElement>(null);
-  const lightRef = useRef<THREE.PointLight | null>(null);
+	const mountRef = useRef<HTMLDivElement>(null);
+	const lightRef = useRef<THREE.PointLight | null>(null);
 
-  // Latest prop values, mirrored into refs so the animation loop can read them
-  // without the effect (and the whole WebGL context) tearing down on each change.
-  const baseColorRef = useRef(baseColor);
-  baseColorRef.current = baseColor;
-  const pausedRef = useRef(paused);
-  pausedRef.current = paused;
-  const onFrameRef = useRef(onFrame);
-  onFrameRef.current = onFrame;
+	// Latest prop values, mirrored into refs so the animation loop can read them
+	// without the effect (and the whole WebGL context) tearing down on each change.
+	const baseColorRef = useRef(baseColor);
+	baseColorRef.current = baseColor;
+	const pausedRef = useRef(paused);
+	pausedRef.current = paused;
+	const onFrameRef = useRef(onFrame);
+	onFrameRef.current = onFrame;
 
-  useEffect(() => {
-    const currentMount = mountRef.current;
-    if (!currentMount) return;
+	useEffect(() => {
+		const currentMount = mountRef.current;
+		if (!currentMount) return;
 
-    // SCENE SETUP
-    const scene = new THREE.Scene();
+		// SCENE SETUP
+		const scene = new THREE.Scene();
 
-    // Camera setup
-    const camera = new THREE.PerspectiveCamera(
-      75,
-      currentMount.clientWidth / currentMount.clientHeight,
-      0.1,
-      100,
-    );
-    camera.position.set(0, 1.5, 3);
-    camera.rotation.x = -0.3;
+		// Camera setup
+		const camera = new THREE.PerspectiveCamera(
+			75,
+			currentMount.clientWidth / currentMount.clientHeight,
+			0.1,
+			100,
+		);
+		camera.position.set(0, 1.5, 3);
+		camera.rotation.x = -0.3;
 
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    } catch (err) {
-      console.error("WebGL not supported", err);
-      return;
-    }
-    renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    currentMount.appendChild(renderer.domElement);
+		let renderer: THREE.WebGLRenderer;
+		try {
+			renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		} catch (err) {
+			console.error("WebGL not supported", err);
+			return;
+		}
+		renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		currentMount.appendChild(renderer.domElement);
 
-    // GEOMETRY
-    const geometry = new THREE.PlaneGeometry(12, 8, 128, 128);
+		// GEOMETRY
+		const geometry = new THREE.PlaneGeometry(12, 8, 128, 128);
 
-    // SHADER MATERIAL
-    const material = new THREE.ShaderMaterial({
-      side: THREE.DoubleSide,
-      wireframe: false, // solid surface — no gaps
-      uniforms: {
-        time: { value: 0 },
-        pointLightPosition: { value: new THREE.Vector3(0, 0, 5) },
-        color: { value: new THREE.Color(baseColorRef.current) },
-      },
-      vertexShader: /* glsl */ `
+		// SHADER MATERIAL
+		const material = new THREE.ShaderMaterial({
+			side: THREE.DoubleSide,
+			wireframe: false, // solid surface — no gaps
+			uniforms: {
+				time: { value: 0 },
+				pointLightPosition: { value: new THREE.Vector3(0, 0, 5) },
+				color: { value: new THREE.Color(baseColorRef.current) },
+			},
+			vertexShader: /* glsl */ `
         uniform float time;
         varying vec3 vNormal;
         varying vec3 vPosition;
@@ -179,7 +179,7 @@ export function GenerativeMountainScene({
             gl_Position = projectionMatrix * modelViewMatrix * vec4(newPosition, 1.0);
         }
       `,
-      fragmentShader: /* glsl */ `
+			fragmentShader: /* glsl */ `
         uniform vec3 color;
         uniform vec3 pointLightPosition;
         varying vec3 vNormal;
@@ -199,99 +199,99 @@ export function GenerativeMountainScene({
             gl_FragColor = vec4(finalColor, 1.0);
         }
       `,
-      transparent: true,
-    });
+			transparent: true,
+		});
 
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = -Math.PI / 2;
-    scene.add(mesh);
+		const mesh = new THREE.Mesh(geometry, material);
+		mesh.rotation.x = -Math.PI / 2;
+		scene.add(mesh);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
-    pointLight.position.set(0, 0, 5);
-    lightRef.current = pointLight;
-    scene.add(pointLight);
+		const pointLight = new THREE.PointLight(0xffffff, 1, 100);
+		pointLight.position.set(0, 0, 5);
+		lightRef.current = pointLight;
+		scene.add(pointLight);
 
-    // Animation loop, extended only with: a pause gate on the clock, a smoothed
-    // FPS estimate, and the per-frame telemetry tap. Visuals are unchanged.
-    let frameId = 0;
-    let lastTs = performance.now();
-    let smoothedFps = 60;
-    // Accumulates *unpaused* wall-clock ms so freezing holds the terrain in place
-    // instead of jumping forward by the paused duration when it resumes.
-    let activeMs = 0;
-    let prevT = 0;
+		// Animation loop, extended only with: a pause gate on the clock, a smoothed
+		// FPS estimate, and the per-frame telemetry tap. Visuals are unchanged.
+		let frameId = 0;
+		let lastTs = performance.now();
+		let smoothedFps = 60;
+		// Accumulates *unpaused* wall-clock ms so freezing holds the terrain in place
+		// instead of jumping forward by the paused duration when it resumes.
+		let activeMs = 0;
+		let prevT = 0;
 
-    const animate = (t: number) => {
-      const delta = t - prevT;
-      prevT = t;
-      if (!pausedRef.current) activeMs += delta;
+		const animate = (t: number) => {
+			const delta = t - prevT;
+			prevT = t;
+			if (!pausedRef.current) activeMs += delta;
 
-      material.uniforms.time.value = activeMs * 0.0003;
-      material.uniforms.color.value.set(baseColorRef.current);
-      renderer.render(scene, camera);
+			material.uniforms.time.value = activeMs * 0.0003;
+			material.uniforms.color.value.set(baseColorRef.current);
+			renderer.render(scene, camera);
 
-      const now = performance.now();
-      const dt = now - lastTs;
-      lastTs = now;
-      if (dt > 0) {
-        const instant = 1000 / dt;
-        smoothedFps = smoothedFps * 0.9 + instant * 0.1;
-      }
-      const lp = pointLight.position;
-      onFrameRef.current?.({
-        elapsed: activeMs / 1000,
-        time: material.uniforms.time.value,
-        fps: smoothedFps,
-        pixelRatio: renderer.getPixelRatio(),
-        light: { x: lp.x, y: lp.y, z: lp.z },
-      });
+			const now = performance.now();
+			const dt = now - lastTs;
+			lastTs = now;
+			if (dt > 0) {
+				const instant = 1000 / dt;
+				smoothedFps = smoothedFps * 0.9 + instant * 0.1;
+			}
+			const lp = pointLight.position;
+			onFrameRef.current?.({
+				elapsed: activeMs / 1000,
+				time: material.uniforms.time.value,
+				fps: smoothedFps,
+				pixelRatio: renderer.getPixelRatio(),
+				light: { x: lp.x, y: lp.y, z: lp.z },
+			});
 
-      frameId = requestAnimationFrame(animate);
-    };
-    frameId = requestAnimationFrame(animate);
+			frameId = requestAnimationFrame(animate);
+		};
+		frameId = requestAnimationFrame(animate);
 
-    const handleResize = () => {
-      if (!currentMount) return;
-      camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
-    };
+		const handleResize = () => {
+			if (!currentMount) return;
+			camera.aspect = currentMount.clientWidth / currentMount.clientHeight;
+			camera.updateProjectionMatrix();
+			renderer.setSize(currentMount.clientWidth, currentMount.clientHeight);
+		};
 
-    const handleMouseMove = (e: MouseEvent) => {
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = -(e.clientY / window.innerHeight) * 2 + 1;
-      const lightX = x * 5;
-      const pos = new THREE.Vector3(lightX, 2, 2 - y * 2);
+		const handleMouseMove = (e: MouseEvent) => {
+			const x = (e.clientX / window.innerWidth) * 2 - 1;
+			const y = -(e.clientY / window.innerHeight) * 2 + 1;
+			const lightX = x * 5;
+			const pos = new THREE.Vector3(lightX, 2, 2 - y * 2);
 
-      lightRef.current?.position.copy(pos);
-      if (material.uniforms.pointLightPosition) {
-        material.uniforms.pointLightPosition.value = pos;
-      }
-    };
+			lightRef.current?.position.copy(pos);
+			if (material.uniforms.pointLightPosition) {
+				material.uniforms.pointLightPosition.value = pos;
+			}
+		};
 
-    window.addEventListener("resize", handleResize);
-    window.addEventListener("mousemove", handleMouseMove);
+		window.addEventListener("resize", handleResize);
+		window.addEventListener("mousemove", handleMouseMove);
 
-    return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      if (currentMount.contains(renderer.domElement)) {
-        currentMount.removeChild(renderer.domElement);
-      }
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-    };
-  }, []);
+		return () => {
+			cancelAnimationFrame(frameId);
+			window.removeEventListener("resize", handleResize);
+			window.removeEventListener("mousemove", handleMouseMove);
+			if (currentMount.contains(renderer.domElement)) {
+				currentMount.removeChild(renderer.domElement);
+			}
+			geometry.dispose();
+			material.dispose();
+			renderer.dispose();
+		};
+	}, []);
 
-  return (
-    <div
-      ref={mountRef}
-      className={className ?? "absolute inset-0 z-0 h-full w-full"}
-      aria-label="Generative mountain scene animated background"
-    />
-  );
+	return (
+		<div
+			ref={mountRef}
+			className={className ?? "absolute inset-0 z-0 h-full w-full"}
+			aria-label="Generative mountain scene animated background"
+		/>
+	);
 }
 
 export default GenerativeMountainScene;

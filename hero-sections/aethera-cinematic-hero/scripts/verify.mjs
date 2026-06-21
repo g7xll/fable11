@@ -464,7 +464,10 @@ try {
 		await containerBg(),
 	);
 
-	await page.screenshot({ path: "screenshots/desktop-1440.png", fullPage: false });
+	await page.screenshot({
+		path: "screenshots/desktop-1440.png",
+		fullPage: false,
+	});
 
 	// Toggle -> dark, wait out the 0.5s palette transition, then assert.
 	await toggle.click();
@@ -498,7 +501,11 @@ try {
 	const storedLight = await page.evaluate(() =>
 		localStorage.getItem("aethera-theme"),
 	);
-	check("preference persisted as 'light'", storedLight === "light", storedLight);
+	check(
+		"preference persisted as 'light'",
+		storedLight === "light",
+		storedLight,
+	);
 
 	console.log("\n— Responsive & console health —");
 

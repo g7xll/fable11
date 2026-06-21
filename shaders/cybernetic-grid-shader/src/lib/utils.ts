@@ -3,6 +3,8 @@
  * this keeps the experiment dependency-light while honoring the convention so
  * `@/lib/utils` exists where shadcn components expect it.
  */
-export function cn(...classes: Array<string | false | null | undefined>): string {
-  return classes.filter(Boolean).join(" ");
+export function cn(
+	...classes: Array<string | false | null | undefined>
+): string {
+	return classes.filter(Boolean).join(" ");
 }

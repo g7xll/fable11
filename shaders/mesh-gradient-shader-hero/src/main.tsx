@@ -19,11 +19,15 @@ import satoshiWoff2 from "../assets/fonts/Onest-Variable.woff2?url";
 async function loadSatoshi() {
 	if (typeof document === "undefined" || !("fonts" in document)) return;
 	try {
-		const face = new FontFace("Satoshi", `url(${satoshiWoff2}) format("woff2")`, {
-			weight: "100 900",
-			style: "normal",
-			display: "swap",
-		});
+		const face = new FontFace(
+			"Satoshi",
+			`url(${satoshiWoff2}) format("woff2")`,
+			{
+				weight: "100 900",
+				style: "normal",
+				display: "swap",
+			},
+		);
 		await face.load();
 		document.fonts.add(face);
 	} catch {

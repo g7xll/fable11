@@ -16,10 +16,31 @@ type Channel = {
 };
 
 const CHANNELS: Channel[] = [
-	{ id: "speed", label: "Clock", hint: "Pulse rate", min: 0.01, max: 0.16, step: 0.005 },
+	{
+		id: "speed",
+		label: "Clock",
+		hint: "Pulse rate",
+		min: 0.01,
+		max: 0.16,
+		step: 0.005,
+	},
 	{ id: "rings", label: "Rings", hint: "Loop depth", min: 2, max: 12, step: 1 },
-	{ id: "warp", label: "Warp", hint: "UV distortion", min: 0, max: 0.32, step: 0.01 },
-	{ id: "hue", label: "Sync", hint: "Blue ⇄ magenta", min: 0, max: 1, step: 0.02 },
+	{
+		id: "warp",
+		label: "Warp",
+		hint: "UV distortion",
+		min: 0,
+		max: 0.32,
+		step: 0.01,
+	},
+	{
+		id: "hue",
+		label: "Sync",
+		hint: "Blue ⇄ magenta",
+		min: 0,
+		max: 1,
+		step: 0.02,
+	},
 ];
 
 type DeckState = { speed: number; rings: number; warp: number; hue: number };
@@ -155,13 +176,17 @@ function App() {
 					{/* The brief's required text — "Gaming vibe Shader" — set as the
 					    cabinet marquee title. */}
 					<h1 className="rig-title">
-						<span className="rig-title-line rig-title-line--lead">Gaming vibe</span>
-						<span className="rig-title-line rig-title-line--accent">Shader</span>
+						<span className="rig-title-line rig-title-line--lead">
+							Gaming vibe
+						</span>
+						<span className="rig-title-line rig-title-line--accent">
+							Shader
+						</span>
 					</h1>
 					<p className="rig-tagline">
 						A neon ring field warping in real time — electric blue bleeding into
-						magenta, seven octaves of pulse, never the same frame twice. Drag the
-						deck or sweep the screen to bend the rig.
+						magenta, seven octaves of pulse, never the same frame twice. Drag
+						the deck or sweep the screen to bend the rig.
 					</p>
 				</main>
 

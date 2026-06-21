@@ -15,8 +15,8 @@ export function Footer() {
 							</span>
 						</div>
 						<p className="mt-4 font-body text-sm leading-relaxed text-ink-dim">
-							A WebGL plasma-grid background for shadcn/ui. One file, one draw call,
-							no dependencies — recolour it and ship it.
+							A WebGL plasma-grid background for shadcn/ui. One file, one draw
+							call, no dependencies — recolour it and ship it.
 						</p>
 					</div>
 

@@ -7,12 +7,12 @@ import { useEffect, useState } from "react";
  * triggering a recompile storm, while the UI itself reads the instant value.
  */
 export function useDebounced<T>(value: T, delay = 90): T {
-  const [debounced, setDebounced] = useState(value);
+	const [debounced, setDebounced] = useState(value);
 
-  useEffect(() => {
-    const id = window.setTimeout(() => setDebounced(value), delay);
-    return () => window.clearTimeout(id);
-  }, [value, delay]);
+	useEffect(() => {
+		const id = window.setTimeout(() => setDebounced(value), delay);
+		return () => window.clearTimeout(id);
+	}, [value, delay]);
 
-  return debounced;
+	return debounced;
 }

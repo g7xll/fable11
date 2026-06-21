@@ -57,235 +57,317 @@ void main(){
 
 /* ========= Утилиты (без throw) ========= */
 function safeCompile(gl: WebGL2RenderingContext, type: number, src: string) {
-  const sh = gl.createShader(type)!;
-  gl.shaderSource(sh, src);
-  gl.compileShader(sh);
-  const ok = gl.getShaderParameter(sh, gl.COMPILE_STATUS);
-  const log = gl.getShaderInfoLog(sh) || "";
-  return { shader: ok ? sh : null, log };
+	const sh = gl.createShader(type)!;
+	gl.shaderSource(sh, src);
+	gl.compileShader(sh);
+	const ok = gl.getShaderParameter(sh, gl.COMPILE_STATUS);
+	const log = gl.getShaderInfoLog(sh) || "";
+	return { shader: ok ? sh : null, log };
 }
-function safeLink(gl: WebGL2RenderingContext, vs: WebGLShader, fs: WebGLShader) {
-  const prog = gl.createProgram()!;
-  gl.attachShader(prog, vs);
-  gl.attachShader(prog, fs);
-  gl.linkProgram(prog);
-  const ok = gl.getProgramParameter(prog, gl.LINK_STATUS);
-  const log = gl.getProgramInfoLog(prog) || "";
-  return { program: ok ? prog : null, log };
+function safeLink(
+	gl: WebGL2RenderingContext,
+	vs: WebGLShader,
+	fs: WebGLShader,
+) {
+	const prog = gl.createProgram()!;
+	gl.attachShader(prog, vs);
+	gl.attachShader(prog, fs);
+	gl.linkProgram(prog);
+	const ok = gl.getProgramParameter(prog, gl.LINK_STATUS);
+	const log = gl.getProgramInfoLog(prog) || "";
+	return { program: ok ? prog : null, log };
 }
 function drawError(gl: WebGL2RenderingContext, msg: string) {
-  console.error(msg);
-  gl.bindFramebuffer(gl.FRAMEBUFFER, null);
-  gl.clearColor(0.2, 0.0, 0.0, 1);
-  gl.clear(gl.COLOR_BUFFER_BIT);
+	console.error(msg);
+	gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+	gl.clearColor(0.2, 0.0, 0.0, 1);
+	gl.clear(gl.COLOR_BUFFER_BIT);
 }
 
 /* ========= Канвас-рантайм с безопасным cleanup ========= */
 function ShaderCanvas({
-  fragSource,
-  pixelRatio,
+	fragSource,
+	pixelRatio,
 }: {
-  fragSource: string;
-  pixelRatio?: number;
+	fragSource: string;
+	pixelRatio?: number;
 }) {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const rafRef = useRef<number | null>(null);
-  const startRef = useRef<number>(0);
-  const frameRef = useRef<number>(0);
-  const mouseRef = useRef({ x: 0, y: 0, l: 0, r: 0 });
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const rafRef = useRef<number | null>(null);
+	const startRef = useRef<number>(0);
+	const frameRef = useRef<number>(0);
+	const mouseRef = useRef({ x: 0, y: 0, l: 0, r: 0 });
 
-  useEffect(() => {
-    const canvas = canvasRef.current!;
-    const gl = canvas.getContext("webgl2", { premultipliedAlpha: false });
-    if (!gl) return;
+	useEffect(() => {
+		const canvas = canvasRef.current!;
+		const gl = canvas.getContext("webgl2", { premultipliedAlpha: false });
+		if (!gl) return;
 
-    // ----- заранее объявляем все ресурсы (никакого TDZ) -----
-    let disposed = false;
-    let vao: WebGLVertexArrayObject | null = null;
-    let vbo: WebGLBuffer | null = null;
-    let program: WebGLProgram | null = null;
-    let ro: ResizeObserver | null = null;
-    let resizeScheduled = false;
+		// ----- заранее объявляем все ресурсы (никакого TDZ) -----
+		let disposed = false;
+		let vao: WebGLVertexArrayObject | null = null;
+		let vbo: WebGLBuffer | null = null;
+		let program: WebGLProgram | null = null;
+		let ro: ResizeObserver | null = null;
+		let resizeScheduled = false;
 
-    // флаги для корректного removeEventListener
-    let mouseBound = false;
-    let ctxBound = false;
+		// флаги для корректного removeEventListener
+		let mouseBound = false;
+		let ctxBound = false;
 
-    const onMove = (e: MouseEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      mouseRef.current.x = Math.max(0, Math.min(x, rect.width));
-      mouseRef.current.y = Math.max(0, Math.min(rect.height - y, rect.height));
-    };
-    const onDown = (e: MouseEvent) => { if (e.button === 0) mouseRef.current.l = 1; if (e.button === 2) mouseRef.current.r = 1; };
-    const onUp   = (e: MouseEvent) => { if (e.button === 0) mouseRef.current.l = 0; if (e.button === 2) mouseRef.current.r = 0; };
-    const onCtxMenu = (e: Event) => e.preventDefault();
-    const onContextLost = (ev: Event) => { ev.preventDefault(); if (rafRef.current) cancelAnimationFrame(rafRef.current); rafRef.current = null; };
-    const onContextRestored = () => { scheduleSize(); startRef.current = performance.now(); frameRef.current = 0; if (!rafRef.current) rafRef.current = requestAnimationFrame(tick); };
+		const onMove = (e: MouseEvent) => {
+			const rect = canvas.getBoundingClientRect();
+			const x = e.clientX - rect.left;
+			const y = e.clientY - rect.top;
+			mouseRef.current.x = Math.max(0, Math.min(x, rect.width));
+			mouseRef.current.y = Math.max(0, Math.min(rect.height - y, rect.height));
+		};
+		const onDown = (e: MouseEvent) => {
+			if (e.button === 0) mouseRef.current.l = 1;
+			if (e.button === 2) mouseRef.current.r = 1;
+		};
+		const onUp = (e: MouseEvent) => {
+			if (e.button === 0) mouseRef.current.l = 0;
+			if (e.button === 2) mouseRef.current.r = 0;
+		};
+		const onCtxMenu = (e: Event) => e.preventDefault();
+		const onContextLost = (ev: Event) => {
+			ev.preventDefault();
+			if (rafRef.current) cancelAnimationFrame(rafRef.current);
+			rafRef.current = null;
+		};
+		const onContextRestored = () => {
+			scheduleSize();
+			startRef.current = performance.now();
+			frameRef.current = 0;
+			if (!rafRef.current) rafRef.current = requestAnimationFrame(tick);
+		};
 
-    const getDpr = () => {
-      const sys = (window.devicePixelRatio || 1);
-      return Math.max(1, Math.min(2, pixelRatio ?? sys)); // скобки обязательны (?? с ||)
-    };
+		const getDpr = () => {
+			const sys = window.devicePixelRatio || 1;
+			return Math.max(1, Math.min(2, pixelRatio ?? sys)); // скобки обязательны (?? с ||)
+		};
 
-    function applySize() {
-      resizeScheduled = false;
-      if (disposed || !gl) return;
-      const dpr = getDpr();
-      const cssW = Math.max(1, (canvas.clientWidth | 0));
-      const cssH = Math.max(1, (canvas.clientHeight | 0));
-      const w = Math.max(1, Math.floor(cssW * dpr));
-      const h = Math.max(1, Math.floor(cssH * dpr));
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width = w; canvas.height = h;
-        gl.viewport(0, 0, w, h);
-      }
-    }
-    function scheduleSize() {
-      if (resizeScheduled) return;
-      resizeScheduled = true;
-      requestAnimationFrame(applySize);
-    }
+		function applySize() {
+			resizeScheduled = false;
+			if (disposed || !gl) return;
+			const dpr = getDpr();
+			const cssW = Math.max(1, canvas.clientWidth | 0);
+			const cssH = Math.max(1, canvas.clientHeight | 0);
+			const w = Math.max(1, Math.floor(cssW * dpr));
+			const h = Math.max(1, Math.floor(cssH * dpr));
+			if (canvas.width !== w || canvas.height !== h) {
+				canvas.width = w;
+				canvas.height = h;
+				gl.viewport(0, 0, w, h);
+			}
+		}
+		function scheduleSize() {
+			if (resizeScheduled) return;
+			resizeScheduled = true;
+			requestAnimationFrame(applySize);
+		}
 
-    // ----- геометрия -----
-    vao = gl.createVertexArray();
-    vbo = gl.createBuffer();
-    if (!vao || !vbo) { drawError(gl, "Failed to create VAO/VBO"); return cleanup; }
-    gl.bindVertexArray(vao);
-    gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    gl.enableVertexAttribArray(0);
-    gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+		// ----- геометрия -----
+		vao = gl.createVertexArray();
+		vbo = gl.createBuffer();
+		if (!vao || !vbo) {
+			drawError(gl, "Failed to create VAO/VBO");
+			return cleanup;
+		}
+		gl.bindVertexArray(vao);
+		gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 3, -1, -1, 3]),
+			gl.STATIC_DRAW,
+		);
+		gl.enableVertexAttribArray(0);
+		gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
-    // ----- шейдеры -----
-    const { shader: vs, log: vsLog } = safeCompile(gl, gl.VERTEX_SHADER, VERT_SRC);
-    if (!vs) { drawError(gl, `Vertex compile error:
-${vsLog}`); return cleanup; }
-    const { shader: fs, log: fsLog } = safeCompile(gl, gl.FRAGMENT_SHADER, fragSource);
-    if (!fs) { drawError(gl, `Fragment compile error:
-${fsLog}`); gl.deleteShader(vs); return cleanup; }
-    const linked = safeLink(gl, vs, fs);
-    gl.deleteShader(vs); gl.deleteShader(fs);
-    if (!linked.program) { drawError(gl, `Program link error:
-${linked.log}`); return cleanup; }
-    program = linked.program;
+		// ----- шейдеры -----
+		const { shader: vs, log: vsLog } = safeCompile(
+			gl,
+			gl.VERTEX_SHADER,
+			VERT_SRC,
+		);
+		if (!vs) {
+			drawError(
+				gl,
+				`Vertex compile error:
+${vsLog}`,
+			);
+			return cleanup;
+		}
+		const { shader: fs, log: fsLog } = safeCompile(
+			gl,
+			gl.FRAGMENT_SHADER,
+			fragSource,
+		);
+		if (!fs) {
+			drawError(
+				gl,
+				`Fragment compile error:
+${fsLog}`,
+			);
+			gl.deleteShader(vs);
+			return cleanup;
+		}
+		const linked = safeLink(gl, vs, fs);
+		gl.deleteShader(vs);
+		gl.deleteShader(fs);
+		if (!linked.program) {
+			drawError(
+				gl,
+				`Program link error:
+${linked.log}`,
+			);
+			return cleanup;
+		}
+		program = linked.program;
 
-    // ----- uniforms -----
-    const uResolution = gl.getUniformLocation(program, "iResolution");
-    const uTime = gl.getUniformLocation(program, "iTime");
-    const uFrame = gl.getUniformLocation(program, "iFrame");
-    const uMouse = gl.getUniformLocation(program, "iMouse");
+		// ----- uniforms -----
+		const uResolution = gl.getUniformLocation(program, "iResolution");
+		const uTime = gl.getUniformLocation(program, "iTime");
+		const uFrame = gl.getUniformLocation(program, "iFrame");
+		const uMouse = gl.getUniformLocation(program, "iMouse");
 
-    // ----- ресайз -----
-    ro = new ResizeObserver(scheduleSize);
-    ro.observe(canvas);
-    scheduleSize();
+		// ----- ресайз -----
+		ro = new ResizeObserver(scheduleSize);
+		ro.observe(canvas);
+		scheduleSize();
 
-    // ----- события -----
-    canvas.addEventListener("mousemove", onMove);
-    canvas.addEventListener("mousedown", onDown);
-    canvas.addEventListener("mouseup", onUp);
-    canvas.addEventListener("contextmenu", onCtxMenu);
-    mouseBound = true;
+		// ----- события -----
+		canvas.addEventListener("mousemove", onMove);
+		canvas.addEventListener("mousedown", onDown);
+		canvas.addEventListener("mouseup", onUp);
+		canvas.addEventListener("contextmenu", onCtxMenu);
+		mouseBound = true;
 
-    canvas.addEventListener("webglcontextlost", onContextLost);
-    canvas.addEventListener("webglcontextrestored", onContextRestored);
-    ctxBound = true;
+		canvas.addEventListener("webglcontextlost", onContextLost);
+		canvas.addEventListener("webglcontextrestored", onContextRestored);
+		ctxBound = true;
 
-    // ----- анимация -----
-    startRef.current = performance.now();
-    frameRef.current = 0;
+		// ----- анимация -----
+		startRef.current = performance.now();
+		frameRef.current = 0;
 
-    function tick(now: number) {
-      if (disposed) return;
-      if (gl.isContextLost()) { rafRef.current = requestAnimationFrame(tick); return; }
+		function tick(now: number) {
+			if (disposed) return;
+			if (gl.isContextLost()) {
+				rafRef.current = requestAnimationFrame(tick);
+				return;
+			}
 
-      const t = (now - startRef.current) / 1000;
-      frameRef.current += 1;
+			const t = (now - startRef.current) / 1000;
+			frameRef.current += 1;
 
-      try {
-        if (resizeScheduled) applySize();
+			try {
+				if (resizeScheduled) applySize();
 
-        gl.useProgram(program);
+				gl.useProgram(program);
 
-        const dpr = getDpr();
-        const w = canvas.width, h = canvas.height;
+				const dpr = getDpr();
+				const w = canvas.width,
+					h = canvas.height;
 
-        if (uResolution) gl.uniform3f(uResolution, w, h, dpr);
-        if (uTime) gl.uniform1f(uTime, t);
-        if (uFrame) gl.uniform1i(uFrame, frameRef.current);
-        if (uMouse) {
-          const m = mouseRef.current;
-          gl.uniform4f(uMouse, m.x * dpr, m.y * dpr, m.l, m.r);
-        }
+				if (uResolution) gl.uniform3f(uResolution, w, h, dpr);
+				if (uTime) gl.uniform1f(uTime, t);
+				if (uFrame) gl.uniform1i(uFrame, frameRef.current);
+				if (uMouse) {
+					const m = mouseRef.current;
+					gl.uniform4f(uMouse, m.x * dpr, m.y * dpr, m.l, m.r);
+				}
 
-        gl.bindVertexArray(vao);
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
-      } catch (err) {
-        drawError(gl, (err as Error)?.message ?? String(err));
-      }
+				gl.bindVertexArray(vao);
+				gl.drawArrays(gl.TRIANGLES, 0, 3);
+			} catch (err) {
+				drawError(gl, (err as Error)?.message ?? String(err));
+			}
 
-      rafRef.current = requestAnimationFrame(tick);
-    }
-    rafRef.current = requestAnimationFrame(tick);
+			rafRef.current = requestAnimationFrame(tick);
+		}
+		rafRef.current = requestAnimationFrame(tick);
 
-    // ----- cleanup (без TDZ) -----
-    function cleanup() {
-      disposed = true;
+		// ----- cleanup (без TDZ) -----
+		function cleanup() {
+			disposed = true;
 
-      if (rafRef.current) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = null;
-      }
+			if (rafRef.current) {
+				cancelAnimationFrame(rafRef.current);
+				rafRef.current = null;
+			}
 
-      if (mouseBound) {
-        canvas.removeEventListener("mousemove", onMove);
-        canvas.removeEventListener("mousedown", onDown);
-        canvas.removeEventListener("mouseup", onUp);
-        canvas.removeEventListener("contextmenu", onCtxMenu);
-        mouseBound = false;
-      }
-      if (ctxBound) {
-        canvas.removeEventListener("webglcontextlost", onContextLost);
-        canvas.removeEventListener("webglcontextrestored", onContextRestored);
-        ctxBound = false;
-      }
+			if (mouseBound) {
+				canvas.removeEventListener("mousemove", onMove);
+				canvas.removeEventListener("mousedown", onDown);
+				canvas.removeEventListener("mouseup", onUp);
+				canvas.removeEventListener("contextmenu", onCtxMenu);
+				mouseBound = false;
+			}
+			if (ctxBound) {
+				canvas.removeEventListener("webglcontextlost", onContextLost);
+				canvas.removeEventListener("webglcontextrestored", onContextRestored);
+				ctxBound = false;
+			}
 
-      if (ro) { try { ro.disconnect(); } catch {} ro = null; }
+			if (ro) {
+				try {
+					ro.disconnect();
+				} catch {}
+				ro = null;
+			}
 
-      if (gl) {
-        if (vbo) { try { gl.deleteBuffer(vbo); } catch {} vbo = null; }
-        if (vao) { try { gl.deleteVertexArray(vao); } catch {} vao = null; }
-        if (program) { try { gl.deleteProgram(program); } catch {} program = null; }
-      }
-    }
+			if (gl) {
+				if (vbo) {
+					try {
+						gl.deleteBuffer(vbo);
+					} catch {}
+					vbo = null;
+				}
+				if (vao) {
+					try {
+						gl.deleteVertexArray(vao);
+					} catch {}
+					vao = null;
+				}
+				if (program) {
+					try {
+						gl.deleteProgram(program);
+					} catch {}
+					program = null;
+				}
+			}
+		}
 
-    return cleanup;
-  }, [fragSource, pixelRatio]);
+		return cleanup;
+	}, [fragSource, pixelRatio]);
 
-  // контейнер на 100%
-  return (
-    <div style={{ position: "absolute", inset: 0 }}>
-      <canvas ref={canvasRef} style={{ width: "100%", height: "100%", display: "block" }} />
-    </div>
-  );
+	// контейнер на 100%
+	return (
+		<div style={{ position: "absolute", inset: 0 }}>
+			<canvas
+				ref={canvasRef}
+				style={{ width: "100%", height: "100%", display: "block" }}
+			/>
+		</div>
+	);
 }
 
 /* ========= Default export: фуллскрин по умолчанию ========= */
 export default function Component() {
-  return (
-    <div
-      style={{
-        position: "fixed",
-        inset: 0,
-        width: "100vw",
-        height: "100dvh",
-        background: "black",
-        overflow: "hidden",
-      }}
-    >
-      <ShaderCanvas fragSource={SHADER_SRC} />
-    </div>
-  );
+	return (
+		<div
+			style={{
+				position: "fixed",
+				inset: 0,
+				width: "100vw",
+				height: "100dvh",
+				background: "black",
+				overflow: "hidden",
+			}}
+		>
+			<ShaderCanvas fragSource={SHADER_SRC} />
+		</div>
+	);
 }

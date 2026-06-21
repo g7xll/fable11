@@ -30,7 +30,9 @@ export default function FeatureStrip() {
 						<Icon className="size-4.5" strokeWidth={2} />
 					</span>
 					<span className="min-w-0">
-						<span className="block text-sm font-semibold leading-tight text-white">{label}</span>
+						<span className="block text-sm font-semibold leading-tight text-white">
+							{label}
+						</span>
 						<span className="block text-xs text-white/55">{hint}</span>
 					</span>
 				</li>

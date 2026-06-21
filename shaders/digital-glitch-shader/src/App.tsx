@@ -323,10 +323,7 @@ export default function App() {
 						</dl>
 					</section>
 
-					<section
-						className="rack"
-						aria-label="Signal calibration controls"
-					>
+					<section className="rack" aria-label="Signal calibration controls">
 						<div className="rack-head">
 							<span className="rack-title">TRIM&nbsp;CONTROLS</span>
 							<span className="rack-id">PNL-Δ</span>
@@ -360,8 +357,7 @@ export default function App() {
 						<div className="faders">
 							{FADERS.map((fader) => {
 								const value = props[fader.key];
-								const ratio =
-									(value - fader.min) / (fader.max - fader.min);
+								const ratio = (value - fader.min) / (fader.max - fader.min);
 								return (
 									<div className="control control--fader" key={fader.key}>
 										<label className="control-top" htmlFor={fader.key}>
@@ -389,10 +385,7 @@ export default function App() {
 												step={fader.step}
 												value={value}
 												onChange={(e) =>
-													setUniform(
-														fader.key,
-														parseFloat(e.target.value),
-													)
+													setUniform(fader.key, parseFloat(e.target.value))
 												}
 												className="fader-input"
 											/>
@@ -426,11 +419,7 @@ export default function App() {
 									</button>
 								))}
 							</div>
-							<button
-								type="button"
-								className="reset-btn"
-								onClick={reset}
-							>
+							<button type="button" className="reset-btn" onClick={reset}>
 								<RotateCcw size={13} strokeWidth={2.4} />
 								RESET&nbsp;BENCH
 							</button>
@@ -443,10 +432,7 @@ export default function App() {
 					<div className="meter">
 						<span className="meter-label">SIGNAL</span>
 						<div className="meter-bar">
-							<div
-								className="meter-fill"
-								style={{ width: `${signal}%` }}
-							/>
+							<div className="meter-fill" style={{ width: `${signal}%` }} />
 							<div className="meter-grid" aria-hidden="true" />
 						</div>
 						<span className="meter-value">

@@ -138,7 +138,8 @@ export default function StarField({
 			// Background stars.
 			for (const s of bgStars) {
 				const twinkle =
-					0.55 + 0.45 * (Math.sin(t * s.twinkleSpeed + s.twinkleOffset) * 0.5 + 0.5);
+					0.55 +
+					0.45 * (Math.sin(t * s.twinkleSpeed + s.twinkleOffset) * 0.5 + 0.5);
 				const alpha = s.opacity * twinkle;
 				if (s.r > 1.1) {
 					const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 4);
@@ -178,7 +179,14 @@ export default function StarField({
 					const falloff = Math.max(0.15, 1 - Math.abs(s.radiusOffset) / band);
 					const alpha = s.opacity * twinkle * falloff;
 					if (s.r > 1.0) {
-						const grad = ctx.createRadialGradient(s.x, s.y, 0, s.x, s.y, s.r * 5);
+						const grad = ctx.createRadialGradient(
+							s.x,
+							s.y,
+							0,
+							s.x,
+							s.y,
+							s.r * 5,
+						);
 						grad.addColorStop(0, `rgba(255,255,255,${alpha * 0.4})`);
 						grad.addColorStop(1, "rgba(255,255,255,0)");
 						ctx.fillStyle = grad;

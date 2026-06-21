@@ -5,7 +5,9 @@ import { useEffect, useRef, useState } from "react";
  * element scrolls into view. Respects `prefers-reduced-motion` by revealing
  * immediately.
  */
-export function useReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0.18) {
+export function useReveal<T extends HTMLElement = HTMLDivElement>(
+	threshold = 0.18,
+) {
 	const ref = useRef<T>(null);
 	const [shown, setShown] = useState(false);
 

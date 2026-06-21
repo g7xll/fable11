@@ -39,7 +39,9 @@ export function useTelemetry(): Telemetry {
 			if (dt > 0) {
 				const inst = 1000 / dt;
 				// Exponential moving average smooths out scheduler jitter.
-				emaFps.current = emaFps.current ? emaFps.current * 0.9 + inst * 0.1 : inst;
+				emaFps.current = emaFps.current
+					? emaFps.current * 0.9 + inst * 0.1
+					: inst;
 			}
 
 			if (t - lastEmit.current >= 250) {

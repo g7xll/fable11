@@ -94,10 +94,7 @@ function highlight(src: string): string {
 		(m) => `<span class="tok-str">${m}</span>`,
 	);
 	// line comments
-	s = s.replace(
-		/(\/\/[^\n]*)/g,
-		(m) => `<span class="tok-com">${m}</span>`,
-	);
+	s = s.replace(/(\/\/[^\n]*)/g, (m) => `<span class="tok-com">${m}</span>`);
 	// keywords
 	s = s.replace(
 		/\b(import|from|export|default|const|let|var|function|return|interface|type|extends|React|useState|new|infinity|Infinity|Math)\b/g,

@@ -1,12 +1,12 @@
 // demo.tsx
-"use client"
+"use client";
 
-import ShaderDemo from "@/components/ui/hive"
+import ShaderDemo from "@/components/ui/hive";
 
 export default function Demo() {
-  return (
-    <div className="w-full h-screen">
-      <ShaderDemo />
-    </div>
-  )
+	return (
+		<div className="w-full h-screen">
+			<ShaderDemo />
+		</div>
+	);
 }

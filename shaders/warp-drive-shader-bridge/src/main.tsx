@@ -4,7 +4,7 @@ import DemoOne from "./demo";
 import "./index.css";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <DemoOne />
-  </React.StrictMode>,
+	<React.StrictMode>
+		<DemoOne />
+	</React.StrictMode>,
 );

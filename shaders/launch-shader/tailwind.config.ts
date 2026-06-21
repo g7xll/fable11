@@ -41,7 +41,11 @@ export default {
 					to: { opacity: "1", transform: "translateY(0)" },
 				},
 				"reveal-blur": {
-					from: { opacity: "0", filter: "blur(14px)", transform: "translateY(10px)" },
+					from: {
+						opacity: "0",
+						filter: "blur(14px)",
+						transform: "translateY(10px)",
+					},
 					to: { opacity: "1", filter: "blur(0)", transform: "translateY(0)" },
 				},
 				"rail-in": {
@@ -56,7 +60,7 @@ export default {
 					"0%, 100%": { opacity: "0.45", transform: "scale(1)" },
 					"50%": { opacity: "1", transform: "scale(1.12)" },
 				},
-				"flicker": {
+				flicker: {
 					"0%, 100%": { opacity: "1" },
 					"43%": { opacity: "1" },
 					"47%": { opacity: "0.55" },

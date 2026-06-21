@@ -108,7 +108,9 @@ function StrataGauge({ layers, paused }: { layers: number; paused: boolean }) {
 				>
 					STRATA&nbsp;INDEX
 				</span>
-				<span className={`tele mt-1 ${paused ? "text-strata-amber" : "text-scan-cyan"}`}>
+				<span
+					className={`tele mt-1 ${paused ? "text-strata-amber" : "text-scan-cyan"}`}
+				>
 					{paused ? "HELD" : "SCAN"}
 				</span>
 			</div>
@@ -217,7 +219,9 @@ export default function App() {
 						className="h-4 w-4 animate-signal-flicker text-white/80"
 						strokeWidth={1.6}
 					/>
-					<span className="tele text-white/85">STRATA&nbsp;·&nbsp;FIELD&nbsp;SCANNER</span>
+					<span className="tele text-white/85">
+						STRATA&nbsp;·&nbsp;FIELD&nbsp;SCANNER
+					</span>
 				</div>
 				<nav className="hidden items-center gap-6 md:flex">
 					<span className="tele text-white/35">BANDS</span>
@@ -252,9 +256,9 @@ export default function App() {
 						className="animate-reveal-up mt-6 max-w-md text-sm leading-relaxed text-white/60 sm:text-base"
 						style={{ animationDelay: "0.2s" }}
 					>
-						A single WebGL2 pass, ray-marched live — space folded into glowing horizon
-						strata and flown forward toward the vanishing point. The gauge to the right
-						counts each band as it slides past.
+						A single WebGL2 pass, ray-marched live — space folded into glowing
+						horizon strata and flown forward toward the vanishing point. The
+						gauge to the right counts each band as it slides past.
 					</p>
 
 					{/* freeze / resume — drives the shader component's own `paused` prop */}
@@ -304,7 +308,10 @@ export default function App() {
 			<div className="animate-reveal-up pointer-events-none absolute bottom-20 left-5 z-20 hidden flex-col gap-2 sm:flex sm:bottom-24 sm:left-8">
 				<div className="panel flex w-44 flex-col gap-2 rounded-lg px-4 py-3">
 					<div className="flex items-center gap-2">
-						<Layers className="h-3.5 w-3.5 text-strata-amber" strokeWidth={1.8} />
+						<Layers
+							className="h-3.5 w-3.5 text-strata-amber"
+							strokeWidth={1.8}
+						/>
 						<span className="tele text-white/45">STRATA CROSSED</span>
 					</div>
 					<span className="font-display text-3xl font-semibold tabular-nums text-white/90">
@@ -313,7 +320,9 @@ export default function App() {
 					<div className="h-px w-full bg-white/10" />
 					<div className="flex items-center gap-2">
 						<Activity className="h-3 w-3 text-scan-cyan" strokeWidth={1.8} />
-						<span className="tele text-white/45">PERIOD&nbsp;·&nbsp;4U FOLD</span>
+						<span className="tele text-white/45">
+							PERIOD&nbsp;·&nbsp;4U FOLD
+						</span>
 					</div>
 				</div>
 			</div>

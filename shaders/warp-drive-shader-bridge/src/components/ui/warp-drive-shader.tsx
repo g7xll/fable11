@@ -19,62 +19,62 @@ import * as THREE from "three";
  */
 
 export interface WarpDriveFrame {
-  /** Elapsed shader time fed to `iTime` (seconds). */
-  time: number;
-  /** Pointer position in shader pixels (origin bottom-left), as in `iMouse`. */
-  mouse: { x: number; y: number };
-  /** Drawing-buffer size in CSS pixels. */
-  size: { width: number; height: number };
-  /** Smoothed frames per second. */
-  fps: number;
+	/** Elapsed shader time fed to `iTime` (seconds). */
+	time: number;
+	/** Pointer position in shader pixels (origin bottom-left), as in `iMouse`. */
+	mouse: { x: number; y: number };
+	/** Drawing-buffer size in CSS pixels. */
+	size: { width: number; height: number };
+	/** Smoothed frames per second. */
+	fps: number;
 }
 
 export interface WarpDriveShaderProps {
-  /** Clock multiplier; 1 keeps the brief's `iTime * 0.5` cadence. */
-  warpSpeed?: number;
-  /** Per-frame telemetry, throttled to ~20 Hz. */
-  onFrame?: (frame: WarpDriveFrame) => void;
-  className?: string;
-  style?: React.CSSProperties;
+	/** Clock multiplier; 1 keeps the brief's `iTime * 0.5` cadence. */
+	warpSpeed?: number;
+	/** Per-frame telemetry, throttled to ~20 Hz. */
+	onFrame?: (frame: WarpDriveFrame) => void;
+	className?: string;
+	style?: React.CSSProperties;
 }
 
 const WarpDriveShader: React.FC<WarpDriveShaderProps> = ({
-  warpSpeed = 1,
-  onFrame,
-  className,
-  style,
+	warpSpeed = 1,
+	onFrame,
+	className,
+	style,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  // Keep the latest props in refs so the effect can stay mounted once (matching
-  // the brief's single-shot `useEffect([])`) while still seeing fresh values.
-  const warpSpeedRef = useRef(warpSpeed);
-  const onFrameRef = useRef(onFrame);
-  warpSpeedRef.current = warpSpeed;
-  onFrameRef.current = onFrame;
+	// Keep the latest props in refs so the effect can stay mounted once (matching
+	// the brief's single-shot `useEffect([])`) while still seeing fresh values.
+	const warpSpeedRef = useRef(warpSpeed);
+	const onFrameRef = useRef(onFrame);
+	warpSpeedRef.current = warpSpeed;
+	onFrameRef.current = onFrame;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-    // 1) Renderer + Scene + Camera + Clock
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
-    renderer.domElement.style.display = "block";
+		// 1) Renderer + Scene + Camera + Clock
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		container.appendChild(renderer.domElement);
+		renderer.domElement.style.display = "block";
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const clock = new THREE.Clock();
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		const clock = new THREE.Clock();
 
-    // 2) GLSL shaders — verbatim from the brief.
-    const vertexShader = /* glsl */ `
+		// 2) GLSL shaders — verbatim from the brief.
+		const vertexShader = /* glsl */ `
       void main() {
         gl_Position = vec4(position, 1.0);
       }
     `;
 
-    const fragmentShader = /* glsl */ `
+		const fragmentShader = /* glsl */ `
       precision highp float;
       uniform vec2 iResolution;
       uniform float iTime;
@@ -105,108 +105,108 @@ const WarpDriveShader: React.FC<WarpDriveShaderProps> = ({
       }
     `;
 
-    // 3) Uniforms + Material + Mesh
-    const uniforms = {
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector2() },
-      iMouse: {
-        value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
-      },
-    };
+		// 3) Uniforms + Material + Mesh
+		const uniforms = {
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector2() },
+			iMouse: {
+				value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
+			},
+		};
 
-    const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms,
-    });
+		const material = new THREE.ShaderMaterial({
+			vertexShader,
+			fragmentShader,
+			uniforms,
+		});
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    // 4) Resize handler
-    const onResize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      renderer.setSize(width, height);
-      uniforms.iResolution.value.set(width, height);
-    };
-    window.addEventListener("resize", onResize);
-    onResize(); // initialize size
+		// 4) Resize handler
+		const onResize = () => {
+			const width = container.clientWidth;
+			const height = container.clientHeight;
+			renderer.setSize(width, height);
+			uniforms.iResolution.value.set(width, height);
+		};
+		window.addEventListener("resize", onResize);
+		onResize(); // initialize size
 
-    // 5) Mouse handler — flip Y so origin is bottom-left, as in the brief.
-    const onMouseMove = (e: MouseEvent) => {
-      uniforms.iMouse.value.set(e.clientX, container.clientHeight - e.clientY);
-    };
-    window.addEventListener("mousemove", onMouseMove);
+		// 5) Mouse handler — flip Y so origin is bottom-left, as in the brief.
+		const onMouseMove = (e: MouseEvent) => {
+			uniforms.iMouse.value.set(e.clientX, container.clientHeight - e.clientY);
+		};
+		window.addEventListener("mousemove", onMouseMove);
 
-    // 6) Animation loop. `iTime` is accumulated from per-frame deltas so the
-    //    optional `warpSpeed` can rescale the cadence without snapping the
-    //    visuals (default warpSpeed = 1 reproduces clock.getElapsedTime()).
-    let warpTime = 0;
-    let emitAt = 0;
-    let fps = 60;
-    renderer.setAnimationLoop(() => {
-      const dt = clock.getDelta();
-      warpTime += dt * warpSpeedRef.current;
-      uniforms.iTime.value = warpTime;
-      renderer.render(scene, camera);
+		// 6) Animation loop. `iTime` is accumulated from per-frame deltas so the
+		//    optional `warpSpeed` can rescale the cadence without snapping the
+		//    visuals (default warpSpeed = 1 reproduces clock.getElapsedTime()).
+		let warpTime = 0;
+		let emitAt = 0;
+		let fps = 60;
+		renderer.setAnimationLoop(() => {
+			const dt = clock.getDelta();
+			warpTime += dt * warpSpeedRef.current;
+			uniforms.iTime.value = warpTime;
+			renderer.render(scene, camera);
 
-      // Smooth the instantaneous fps for a steady readout.
-      if (dt > 0) fps += ((1 / dt) - fps) * 0.1;
+			// Smooth the instantaneous fps for a steady readout.
+			if (dt > 0) fps += (1 / dt - fps) * 0.1;
 
-      const now = clock.elapsedTime;
-      const cb = onFrameRef.current;
-      if (cb && now - emitAt >= 0.05) {
-        emitAt = now;
-        cb({
-          time: warpTime,
-          mouse: { x: uniforms.iMouse.value.x, y: uniforms.iMouse.value.y },
-          size: {
-            width: uniforms.iResolution.value.x,
-            height: uniforms.iResolution.value.y,
-          },
-          fps,
-        });
-      }
-    });
+			const now = clock.elapsedTime;
+			const cb = onFrameRef.current;
+			if (cb && now - emitAt >= 0.05) {
+				emitAt = now;
+				cb({
+					time: warpTime,
+					mouse: { x: uniforms.iMouse.value.x, y: uniforms.iMouse.value.y },
+					size: {
+						width: uniforms.iResolution.value.x,
+						height: uniforms.iResolution.value.y,
+					},
+					fps,
+				});
+			}
+		});
 
-    // 7) Cleanup on unmount
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMouseMove);
+		// 7) Cleanup on unmount
+		return () => {
+			window.removeEventListener("resize", onResize);
+			window.removeEventListener("mousemove", onMouseMove);
 
-      renderer.setAnimationLoop(null);
+			renderer.setAnimationLoop(null);
 
-      const canvas = renderer.domElement;
-      if (canvas && canvas.parentNode) {
-        canvas.parentNode.removeChild(canvas);
-      }
+			const canvas = renderer.domElement;
+			if (canvas && canvas.parentNode) {
+				canvas.parentNode.removeChild(canvas);
+			}
 
-      material.dispose();
-      geometry.dispose();
-      renderer.dispose();
-    };
-  }, []);
+			material.dispose();
+			geometry.dispose();
+			renderer.dispose();
+		};
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className={className ?? "shader-container"}
-      style={
-        style ?? {
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100vw",
-          height: "100vh",
-          zIndex: -1,
-          pointerEvents: "none",
-        }
-      }
-      aria-label="Warp Drive animated background"
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className={className ?? "shader-container"}
+			style={
+				style ?? {
+					position: "fixed",
+					top: 0,
+					left: 0,
+					width: "100vw",
+					height: "100vh",
+					zIndex: -1,
+					pointerEvents: "none",
+				}
+			}
+			aria-label="Warp Drive animated background"
+		/>
+	);
 };
 
 export default WarpDriveShader;

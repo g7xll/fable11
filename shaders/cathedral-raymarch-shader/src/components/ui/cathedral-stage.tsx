@@ -86,7 +86,11 @@ function safeCompile(gl: WebGL2RenderingContext, type: number, src: string) {
 	const log = gl.getShaderInfoLog(sh) || "";
 	return { shader: ok ? sh : null, log };
 }
-function safeLink(gl: WebGL2RenderingContext, vs: WebGLShader, fs: WebGLShader) {
+function safeLink(
+	gl: WebGL2RenderingContext,
+	vs: WebGLShader,
+	fs: WebGLShader,
+) {
 	const prog = gl.createProgram()!;
 	gl.attachShader(prog, vs);
 	gl.attachShader(prog, fs);
@@ -183,7 +187,11 @@ export default function CathedralStage({
 		gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
 
 		// Shaders
-		const { shader: vs, log: vsLog } = safeCompile(gl, gl.VERTEX_SHADER, VERT_SRC);
+		const { shader: vs, log: vsLog } = safeCompile(
+			gl,
+			gl.VERTEX_SHADER,
+			VERT_SRC,
+		);
 		if (!vs) {
 			drawError(gl, `Vertex compile error:\n${vsLog}`);
 			return cleanup;
@@ -314,8 +322,10 @@ export default function CathedralStage({
 				if (uResolution) gl.uniform3f(uResolution, w, h, dpr);
 				if (uTime) gl.uniform1f(uTime, clock);
 				if (uFrame) gl.uniform1i(uFrame, frame);
-				if (uMouse) gl.uniform4f(uMouse, mouse.x * dpr, mouse.y * dpr, mouse.l, mouse.r);
-				if (uExposure) gl.uniform1f(uExposure, Math.max(0, exposureRef.current));
+				if (uMouse)
+					gl.uniform4f(uMouse, mouse.x * dpr, mouse.y * dpr, mouse.l, mouse.r);
+				if (uExposure)
+					gl.uniform1f(uExposure, Math.max(0, exposureRef.current));
 
 				gl.bindVertexArray(vao);
 				gl.drawArrays(gl.TRIANGLES, 0, 3);

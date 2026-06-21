@@ -1,10 +1,5 @@
 import type { ReactNode } from "react";
-import {
-	FolderTree,
-	HelpCircle,
-	PackageCheck,
-	Terminal,
-} from "lucide-react";
+import { FolderTree, HelpCircle, PackageCheck, Terminal } from "lucide-react";
 
 import { Reveal } from "@/components/Reveal";
 
@@ -89,8 +84,9 @@ const QA: { q: string; a: ReactNode }[] = [
 		q: "State management?",
 		a: (
 			<>
-				All internal. It owns its <code className="code-chip">requestAnimationFrame</code>{" "}
-				loop, the WebGL2 context, and a <code className="code-chip">ResizeObserver</code>,
+				All internal. It owns its{" "}
+				<code className="code-chip">requestAnimationFrame</code> loop, the
+				WebGL2 context, and a <code className="code-chip">ResizeObserver</code>,
 				and cleans every one up on unmount. Nothing to wire into a store.
 			</>
 		),
@@ -101,7 +97,8 @@ const QA: { q: string; a: ReactNode }[] = [
 			<>
 				Zero. The whole image is generated in GLSL — no photos, icons, fonts, or
 				models ship with the component. (This showcase's chrome uses{" "}
-				<code className="code-chip">lucide-react</code> + locally vendored fonts.)
+				<code className="code-chip">lucide-react</code> + locally vendored
+				fonts.)
 			</>
 		),
 	},
@@ -111,7 +108,8 @@ const QA: { q: string; a: ReactNode }[] = [
 			<>
 				It fills its positioned parent and tracks size via{" "}
 				<code className="code-chip">ResizeObserver</code>, with the device-pixel
-				ratio clamped to 1–2 so it stays crisp on retina without melting the GPU.
+				ratio clamped to 1–2 so it stays crisp on retina without melting the
+				GPU.
 			</>
 		),
 	},
@@ -119,9 +117,9 @@ const QA: { q: string; a: ReactNode }[] = [
 		q: "Where should it live?",
 		a: (
 			<>
-				As a fixed, negative-<code className="code-chip">z-index</code> background
-				behind a hero or landing page — exactly like this one. For a card or panel,
-				render the parametric variant with{" "}
+				As a fixed, negative-<code className="code-chip">z-index</code>{" "}
+				background behind a hero or landing page — exactly like this one. For a
+				card or panel, render the parametric variant with{" "}
 				<code className="code-chip">fixed={"{false}"}</code>.
 			</>
 		),
@@ -144,7 +142,9 @@ export function Integrate() {
 					</h2>
 					<p className="mt-4 font-body text-ink-dim">
 						It's a drop-in for any{" "}
-						<span className="text-cobalt-bright">shadcn · Tailwind · TypeScript</span>{" "}
+						<span className="text-cobalt-bright">
+							shadcn · Tailwind · TypeScript
+						</span>{" "}
 						project. If yours is missing a piece, the commands below add it.
 					</p>
 				</Reveal>
@@ -184,17 +184,19 @@ export function Integrate() {
 								Why <code className="code-chip">components/ui</code>?
 							</h3>
 							<p className="mt-2 max-w-3xl font-body text-sm leading-relaxed text-ink-dim">
-								shadcn maps the{" "}
-								<code className="code-chip">ui</code> alias to{" "}
+								shadcn maps the <code className="code-chip">ui</code> alias to{" "}
 								<code className="code-chip">@/components/ui</code> in{" "}
-								<code className="code-chip">components.json</code>. Dropping the file
-								there means the brief's import —{" "}
-								<code className="code-chip">{'import Component from "@/components/ui/asd"'}</code>{" "}
-								— resolves with no path edits, the CLI can update or add siblings
-								later without clobbering your own components, and every generated UI
-								primitive lives in one predictable, reviewable place. If that folder
-								doesn't exist yet, create it: the alias is convention, and breaking it
-								means rewriting every example import by hand.
+								<code className="code-chip">components.json</code>. Dropping the
+								file there means the brief's import —{" "}
+								<code className="code-chip">
+									{'import Component from "@/components/ui/asd"'}
+								</code>{" "}
+								— resolves with no path edits, the CLI can update or add
+								siblings later without clobbering your own components, and every
+								generated UI primitive lives in one predictable, reviewable
+								place. If that folder doesn't exist yet, create it: the alias is
+								convention, and breaking it means rewriting every example import
+								by hand.
 							</p>
 						</div>
 					</div>

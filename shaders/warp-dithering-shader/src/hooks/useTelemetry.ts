@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 
 export interface Telemetry {
-  /** Smoothed page render rate, sampled twice a second. */
-  fps: number;
-  /** Seconds since the HUD mounted. */
-  elapsed: number;
+	/** Smoothed page render rate, sampled twice a second. */
+	fps: number;
+	/** Seconds since the HUD mounted. */
+	elapsed: number;
 }
 
 /**
@@ -13,31 +13,31 @@ export interface Telemetry {
  * shader tree to re-render on the animation hot path.
  */
 export function useTelemetry(): Telemetry {
-  const [telemetry, setTelemetry] = useState<Telemetry>({ fps: 0, elapsed: 0 });
+	const [telemetry, setTelemetry] = useState<Telemetry>({ fps: 0, elapsed: 0 });
 
-  useEffect(() => {
-    let raf = 0;
-    let frames = 0;
-    const start = performance.now();
-    let last = start;
+	useEffect(() => {
+		let raf = 0;
+		let frames = 0;
+		const start = performance.now();
+		let last = start;
 
-    const loop = (now: number) => {
-      frames += 1;
-      const dt = now - last;
-      if (dt >= 500) {
-        setTelemetry({
-          fps: Math.round((frames * 1000) / dt),
-          elapsed: (now - start) / 1000,
-        });
-        frames = 0;
-        last = now;
-      }
-      raf = requestAnimationFrame(loop);
-    };
+		const loop = (now: number) => {
+			frames += 1;
+			const dt = now - last;
+			if (dt >= 500) {
+				setTelemetry({
+					fps: Math.round((frames * 1000) / dt),
+					elapsed: (now - start) / 1000,
+				});
+				frames = 0;
+				last = now;
+			}
+			raf = requestAnimationFrame(loop);
+		};
 
-    raf = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(raf);
-  }, []);
+		raf = requestAnimationFrame(loop);
+		return () => cancelAnimationFrame(raf);
+	}, []);
 
-  return telemetry;
+	return telemetry;
 }

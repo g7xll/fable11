@@ -39,7 +39,8 @@ const TILE_SRCS = [
 ];
 const EMPTY_SRC = "/tiles/tile-empty.svg";
 
-const DPR = typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
+const DPR =
+	typeof window !== "undefined" ? Math.min(window.devicePixelRatio || 1, 2) : 1;
 
 type Sprite = HTMLCanvasElement;
 
@@ -256,8 +257,7 @@ function PixelGrid({ side }: { side: "left" | "right" }) {
 							Math.sin(angle * 3 + t * 0.0011) * 0.55 +
 							Math.sin(angle * 5 - t * 0.0017 + 1.3) * 0.3 +
 							Math.sin(angle * 2 + t * 0.0007 + 2.1) * 0.2;
-						const rMax =
-							(HOVER_BASE_RADIUS + wobble) * (0.95 + n * 0.3);
+						const rMax = (HOVER_BASE_RADIUS + wobble) * (0.95 + n * 0.3);
 						const i = idx(cx, cy);
 						if (dist <= rMax - 0.5) {
 							next.add(i);
@@ -546,8 +546,7 @@ const CARDS: CardSpec[] = [
 ];
 
 const CARD_START_SIZE = 20;
-const CARD_SHADOW =
-	"0 16px 40px rgba(0,0,0,0.18), 0 4px 10px rgba(0,0,0,0.10)";
+const CARD_SHADOW = "0 16px 40px rgba(0,0,0,0.18), 0 4px 10px rgba(0,0,0,0.10)";
 
 function FolderStack() {
 	const [hovered, setHovered] = useState<number | null>(null);
@@ -601,8 +600,7 @@ function FolderStack() {
 				const isHovered = hovered === i;
 				const anyHovered = hovered !== null;
 				const finalLeft = FOLDER_CENTER + card.x - card.w / 2;
-				const startLeft =
-					FOLDER_CENTER + card.start.x - CARD_START_SIZE / 2;
+				const startLeft = FOLDER_CENTER + card.start.x - CARD_START_SIZE / 2;
 
 				// Idle floating only while nothing is hovered.
 				const idleAnim = anyHovered
@@ -846,8 +844,7 @@ function SendButton() {
 					width: 36,
 					height: 36,
 					borderRadius: 12,
-					background:
-						"linear-gradient(180deg, #70A8F2 0%, #3D82DE 100%)",
+					background: "linear-gradient(180deg, #70A8F2 0%, #3D82DE 100%)",
 					padding: 8,
 					overflow: "hidden",
 					zIndex: 2,
@@ -965,9 +962,7 @@ function SendButton() {
 						src={`${A}/arrow-up.svg`}
 						alt="Send"
 						initial={
-							arrowToggle > 0
-								? { y: 16, opacity: 0 }
-								: { y: 0, opacity: 1 }
+							arrowToggle > 0 ? { y: 16, opacity: 0 } : { y: 0, opacity: 1 }
 						}
 						animate={{ y: 0, opacity: 1 }}
 						transition={{ duration: 0.32, ease: [0.65, 0, 0.35, 1] }}
@@ -1040,13 +1035,10 @@ function SidebarButton({
 				height: 40,
 				borderRadius: 12,
 				border:
-					variant === "filled"
-						? "1px solid rgba(34,106,205,0.05)"
-						: "none",
+					variant === "filled" ? "1px solid rgba(34,106,205,0.05)" : "none",
 				background: bg,
 				backdropFilter: variant === "filled" ? "blur(8px)" : undefined,
-				WebkitBackdropFilter:
-					variant === "filled" ? "blur(8px)" : undefined,
+				WebkitBackdropFilter: variant === "filled" ? "blur(8px)" : undefined,
 				transition: "background 0.2s",
 				display: "flex",
 				alignItems: "center",

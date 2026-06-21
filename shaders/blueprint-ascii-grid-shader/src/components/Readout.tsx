@@ -13,7 +13,13 @@ type ReadoutProps = {
  * A single instrument readout: a small mono label over a tabular-figure value.
  * Used across the telemetry HUD and footer status strip.
  */
-export function Readout({ label, value, unit, className, accent }: ReadoutProps) {
+export function Readout({
+	label,
+	value,
+	unit,
+	className,
+	accent,
+}: ReadoutProps) {
 	return (
 		<div className={cn("flex flex-col gap-1", className)}>
 			<span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-faint">

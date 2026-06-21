@@ -7,33 +7,33 @@ import { useEffect, useRef, useState } from "react";
  * scroll-in entrances); otherwise it tracks visibility both ways.
  */
 export function useInView<T extends HTMLElement>(
-  rootMargin = "200px",
-  once = false
+	rootMargin = "200px",
+	once = false,
 ) {
-  const ref = useRef<T>(null);
-  const [inView, setInView] = useState(false);
+	const ref = useRef<T>(null);
+	const [inView, setInView] = useState(false);
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+	useEffect(() => {
+		const el = ref.current;
+		if (!el) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (!entry) return;
-        if (entry.isIntersecting) {
-          setInView(true);
-          if (once) observer.disconnect();
-        } else if (!once) {
-          setInView(false);
-        }
-      },
-      { rootMargin }
-    );
+		const observer = new IntersectionObserver(
+			(entries) => {
+				const entry = entries[0];
+				if (!entry) return;
+				if (entry.isIntersecting) {
+					setInView(true);
+					if (once) observer.disconnect();
+				} else if (!once) {
+					setInView(false);
+				}
+			},
+			{ rootMargin },
+		);
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [rootMargin, once]);
+		observer.observe(el);
+		return () => observer.disconnect();
+	}, [rootMargin, once]);
 
-  return [ref, inView] as const;
+	return [ref, inView] as const;
 }

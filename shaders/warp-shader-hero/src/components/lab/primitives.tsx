@@ -165,7 +165,11 @@ export function CopyButton({
 			)}
 			aria-label={label}
 		>
-			{copied ? <Check className="h-3.5 w-3.5 text-signal" /> : <Copy className="h-3.5 w-3.5" />}
+			{copied ? (
+				<Check className="h-3.5 w-3.5 text-signal" />
+			) : (
+				<Copy className="h-3.5 w-3.5" />
+			)}
 			{copied ? "Copied" : label}
 		</button>
 	);

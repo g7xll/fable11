@@ -10,14 +10,14 @@ import "./index.css";
 // `defaultTheme="dark"` matches the demo's dark canvas; `enableSystem` is off so
 // the surface starts in a deterministic palette (important for the recorded demo).
 createRoot(document.getElementById("root")!).render(
-  <StrictMode>
-    <ThemeProvider
-      attribute="class"
-      defaultTheme="dark"
-      enableSystem={false}
-      disableTransitionOnChange
-    >
-      <App />
-    </ThemeProvider>
-  </StrictMode>
+	<StrictMode>
+		<ThemeProvider
+			attribute="class"
+			defaultTheme="dark"
+			enableSystem={false}
+			disableTransitionOnChange
+		>
+			<App />
+		</ThemeProvider>
+	</StrictMode>,
 );

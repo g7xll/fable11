@@ -3,8 +3,8 @@
 
 @theme {
 	--font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-	--font-display: "Space Grotesk", "Inter", ui-sans-serif, system-ui,
-		sans-serif;
+	--font-display:
+		"Space Grotesk", "Inter", ui-sans-serif, system-ui, sans-serif;
 	--font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 

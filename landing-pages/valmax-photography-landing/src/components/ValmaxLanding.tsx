@@ -1,12 +1,6 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { motion, useScroll, useTransform, type Variants } from "framer-motion";
-import {
-	ArrowUpRight,
-	Instagram,
-	MoveRight,
-	Menu,
-	Clock3,
-} from "lucide-react";
+import { ArrowUpRight, Instagram, MoveRight, Menu, Clock3 } from "lucide-react";
 import StarField from "@/components/StarField";
 import LineField from "@/components/LineField";
 import IntroSequence from "@/components/IntroSequence";
@@ -112,7 +106,9 @@ function Logo({ className }: { className?: string }) {
 	const [failed, setFailed] = useState(false);
 	if (failed) {
 		return (
-			<span className={`font-display font-black text-white h-6 leading-6 text-lg ${className ?? ""}`}>
+			<span
+				className={`font-display font-black text-white h-6 leading-6 text-lg ${className ?? ""}`}
+			>
 				VALMAX
 			</span>
 		);
@@ -472,7 +468,9 @@ function RalphHero() {
 
 function OurPhotographer() {
 	return (
-		<section className={`relative px-6 md:px-12 py-32 overflow-hidden ${MATTE}`}>
+		<section
+			className={`relative px-6 md:px-12 py-32 overflow-hidden ${MATTE}`}
+		>
 			<StarField count={500} />
 			<LineField variant="photographer" />
 
@@ -629,7 +627,9 @@ const PROJECTS: ProjectCard[] = [
 
 function AllTypes() {
 	return (
-		<section className={`relative px-6 md:px-12 py-32 overflow-hidden ${MATTE}`}>
+		<section
+			className={`relative px-6 md:px-12 py-32 overflow-hidden ${MATTE}`}
+		>
 			<StarField
 				count={550}
 				ring
@@ -781,10 +781,7 @@ function MechanicalMarvels() {
 					className="absolute inset-x-0 -top-[10%] -bottom-[10%]"
 					style={{ y: bgY }}
 				>
-					<DecorImg
-						src={getInTouchBg}
-						className="w-full h-full object-cover"
-					/>
+					<DecorImg src={getInTouchBg} className="w-full h-full object-cover" />
 				</motion.div>
 
 				<div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/20" />

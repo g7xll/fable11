@@ -29,100 +29,100 @@ import * as THREE from "three";
  */
 
 export interface GLSLHillsHandles {
-  /** The live shader uniforms (`time`). */
-  uniforms: { time: { value: number } };
-  renderer: THREE.WebGLRenderer;
-  camera: THREE.PerspectiveCamera;
+	/** The live shader uniforms (`time`). */
+	uniforms: { time: { value: number } };
+	renderer: THREE.WebGLRenderer;
+	camera: THREE.PerspectiveCamera;
 }
 
 export interface GLSLHillsProps {
-  /** CSS width of the host element. Default `'100vw'`. */
-  width?: string | number;
-  /** CSS height of the host element. Default `'100vh'`. */
-  height?: string | number;
-  /** Camera Z distance from the range. Default `125`. */
-  cameraZ?: number;
-  /** Plane size + segment count (the brief couples them). Default `256`. */
-  planeSize?: number;
-  /** Drift speed multiplier applied to the per-frame delta. Default `0.5`. */
-  speed?: number;
-  /** Fog tint as a 0..1 greyscale value (the shader's `vec3(0.6)`). Default `0.6`. */
-  fog?: number;
-  /** Haze depth — divides the opacity falloff (the shader's `256.0`). Default `256`. */
-  haze?: number;
-  /** When true the drift clock is held still. Default `false`. */
-  paused?: boolean;
-  /** Fires once the renderer + uniforms exist. */
-  onReady?: (handles: GLSLHillsHandles) => void;
-  /** Fires every frame with live shader state. */
-  onFrame?: (state: { time: number; fps: number; cameraZ: number }) => void;
-  className?: string;
+	/** CSS width of the host element. Default `'100vw'`. */
+	width?: string | number;
+	/** CSS height of the host element. Default `'100vh'`. */
+	height?: string | number;
+	/** Camera Z distance from the range. Default `125`. */
+	cameraZ?: number;
+	/** Plane size + segment count (the brief couples them). Default `256`. */
+	planeSize?: number;
+	/** Drift speed multiplier applied to the per-frame delta. Default `0.5`. */
+	speed?: number;
+	/** Fog tint as a 0..1 greyscale value (the shader's `vec3(0.6)`). Default `0.6`. */
+	fog?: number;
+	/** Haze depth — divides the opacity falloff (the shader's `256.0`). Default `256`. */
+	haze?: number;
+	/** When true the drift clock is held still. Default `false`. */
+	paused?: boolean;
+	/** Fires once the renderer + uniforms exist. */
+	onReady?: (handles: GLSLHillsHandles) => void;
+	/** Fires every frame with live shader state. */
+	onFrame?: (state: { time: number; fps: number; cameraZ: number }) => void;
+	className?: string;
 }
 
 const GLSLHills = ({
-  width = "100vw",
-  height = "100vh",
-  cameraZ = 125,
-  planeSize = 256,
-  speed = 0.5,
-  fog = 0.6,
-  haze = 256,
-  paused = false,
-  onReady,
-  onFrame,
-  className,
+	width = "100vw",
+	height = "100vh",
+	cameraZ = 125,
+	planeSize = 256,
+	speed = 0.5,
+	fog = 0.6,
+	haze = 256,
+	paused = false,
+	onReady,
+	onFrame,
+	className,
 }: GLSLHillsProps) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const containerRef = useRef<HTMLDivElement | null>(null);
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const containerRef = useRef<HTMLDivElement | null>(null);
 
-  // Live prop mirrors so the render loop can read the latest values without
-  // tearing down and rebuilding the WebGL context on every control tweak.
-  const speedRef = useRef(speed);
-  const pausedRef = useRef(paused);
-  const fogRef = useRef(fog);
-  const hazeRef = useRef(haze);
-  const onFrameRef = useRef(onFrame);
-  const onReadyRef = useRef(onReady);
-  speedRef.current = speed;
-  pausedRef.current = paused;
-  fogRef.current = fog;
-  hazeRef.current = haze;
-  onFrameRef.current = onFrame;
-  onReadyRef.current = onReady;
+	// Live prop mirrors so the render loop can read the latest values without
+	// tearing down and rebuilding the WebGL context on every control tweak.
+	const speedRef = useRef(speed);
+	const pausedRef = useRef(paused);
+	const fogRef = useRef(fog);
+	const hazeRef = useRef(haze);
+	const onFrameRef = useRef(onFrame);
+	const onReadyRef = useRef(onReady);
+	speedRef.current = speed;
+	pausedRef.current = paused;
+	fogRef.current = fog;
+	hazeRef.current = haze;
+	onFrameRef.current = onFrame;
+	onReadyRef.current = onReady;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    const container = containerRef.current;
-    if (!canvas || !container) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		const container = containerRef.current;
+		if (!canvas || !container) return;
 
-    // Plane class — verbatim from the brief, retyped.
-    class Plane {
-      uniforms: {
-        time: { type: string; value: number };
-        // Promoted from the brief's baked constants so the showcase can drive
-        // the fog tint / haze depth live. Defaulted to the original literals.
-        fog: { type: string; value: number };
-        haze: { type: string; value: number };
-      };
-      mesh: THREE.Mesh;
-      time: number;
+		// Plane class — verbatim from the brief, retyped.
+		class Plane {
+			uniforms: {
+				time: { type: string; value: number };
+				// Promoted from the brief's baked constants so the showcase can drive
+				// the fog tint / haze depth live. Defaulted to the original literals.
+				fog: { type: string; value: number };
+				haze: { type: string; value: number };
+			};
+			mesh: THREE.Mesh;
+			time: number;
 
-      constructor() {
-        this.uniforms = {
-          time: { type: "f", value: 0 },
-          fog: { type: "f", value: fogRef.current },
-          haze: { type: "f", value: hazeRef.current },
-        };
-        this.mesh = this.createMesh();
-        this.time = speedRef.current;
-      }
+			constructor() {
+				this.uniforms = {
+					time: { type: "f", value: 0 },
+					fog: { type: "f", value: fogRef.current },
+					haze: { type: "f", value: hazeRef.current },
+				};
+				this.mesh = this.createMesh();
+				this.time = speedRef.current;
+			}
 
-      createMesh() {
-        return new THREE.Mesh(
-          new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
-          new THREE.RawShaderMaterial({
-            uniforms: this.uniforms,
-            vertexShader: `
+			createMesh() {
+				return new THREE.Mesh(
+					new THREE.PlaneGeometry(planeSize, planeSize, planeSize, planeSize),
+					new THREE.RawShaderMaterial({
+						uniforms: this.uniforms,
+						vertexShader: `
               #define GLSLIFY 1
               attribute vec3 position;
               uniform mat4 projectionMatrix;
@@ -230,7 +230,7 @@ const GLSLHills = ({
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(lastPosition, 1.0);
               }
             `,
-            fragmentShader: `
+						fragmentShader: `
               precision highp float;
               #define GLSLIFY 1
               varying vec3 vPosition;
@@ -243,125 +243,134 @@ const GLSLHills = ({
                 gl_FragColor = vec4(color, opacity);
               }
             `,
-            transparent: true,
-          }),
-        );
-      }
+						transparent: true,
+					}),
+				);
+			}
 
-      render(time: number) {
-        this.uniforms.time.value += time * this.time;
-      }
-    }
+			render(time: number) {
+				this.uniforms.time.value += time * this.time;
+			}
+		}
 
-    // Three.js setup — verbatim, retyped.
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false });
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 1, 10000);
-    const clock = new THREE.Clock();
-    const plane = new Plane();
+		// Three.js setup — verbatim, retyped.
+		const renderer = new THREE.WebGLRenderer({ canvas, antialias: false });
+		const scene = new THREE.Scene();
+		const camera = new THREE.PerspectiveCamera(
+			45,
+			container.clientWidth / container.clientHeight,
+			1,
+			10000,
+		);
+		const clock = new THREE.Clock();
+		const plane = new Plane();
 
-    // FPS sampling for the optional telemetry hook (does not touch the maths).
-    let frames = 0;
-    let fpsClock = performance.now();
-    let fps = 0;
+		// FPS sampling for the optional telemetry hook (does not touch the maths).
+		let frames = 0;
+		let fpsClock = performance.now();
+		let fps = 0;
 
-    const sizeOf = () => {
-      // Prefer the host container's measured box; fall back to the window so the
-      // canonical full-bleed demo (100vw/100vh container == viewport) is identical.
-      const w = container.clientWidth || window.innerWidth;
-      const h = container.clientHeight || window.innerHeight;
-      return { w, h };
-    };
+		const sizeOf = () => {
+			// Prefer the host container's measured box; fall back to the window so the
+			// canonical full-bleed demo (100vw/100vh container == viewport) is identical.
+			const w = container.clientWidth || window.innerWidth;
+			const h = container.clientHeight || window.innerHeight;
+			return { w, h };
+		};
 
-    const resize = () => {
-      const { w, h } = sizeOf();
-      canvas.width = w;
-      canvas.height = h;
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
-      renderer.setSize(w, h, false);
-    };
+		const resize = () => {
+			const { w, h } = sizeOf();
+			canvas.width = w;
+			canvas.height = h;
+			camera.aspect = w / h;
+			camera.updateProjectionMatrix();
+			renderer.setSize(w, h, false);
+		};
 
-    let frameId = 0;
-    const render = () => {
-      // Honour live pause without rebuilding the scene: feed a zero delta when held.
-      const delta = pausedRef.current ? 0 : clock.getDelta();
-      plane.time = speedRef.current;
-      plane.uniforms.fog.value = fogRef.current;
-      plane.uniforms.haze.value = hazeRef.current;
-      // Keep the clock advancing so the next resume doesn't jump.
-      if (pausedRef.current) clock.getDelta();
-      plane.render(delta);
-      renderer.render(scene, camera);
+		let frameId = 0;
+		const render = () => {
+			// Honour live pause without rebuilding the scene: feed a zero delta when held.
+			const delta = pausedRef.current ? 0 : clock.getDelta();
+			plane.time = speedRef.current;
+			plane.uniforms.fog.value = fogRef.current;
+			plane.uniforms.haze.value = hazeRef.current;
+			// Keep the clock advancing so the next resume doesn't jump.
+			if (pausedRef.current) clock.getDelta();
+			plane.render(delta);
+			renderer.render(scene, camera);
 
-      // FPS + per-frame telemetry callback.
-      frames++;
-      const now = performance.now();
-      if (now - fpsClock >= 500) {
-        fps = Math.round((frames * 1000) / (now - fpsClock));
-        frames = 0;
-        fpsClock = now;
-      }
-      onFrameRef.current?.({
-        time: plane.uniforms.time.value,
-        fps,
-        cameraZ: camera.position.z,
-      });
-    };
+			// FPS + per-frame telemetry callback.
+			frames++;
+			const now = performance.now();
+			if (now - fpsClock >= 500) {
+				fps = Math.round((frames * 1000) / (now - fpsClock));
+				frames = 0;
+				fpsClock = now;
+			}
+			onFrameRef.current?.({
+				time: plane.uniforms.time.value,
+				fps,
+				cameraZ: camera.position.z,
+			});
+		};
 
-    const renderLoop = () => {
-      render();
-      frameId = requestAnimationFrame(renderLoop);
-    };
+		const renderLoop = () => {
+			render();
+			frameId = requestAnimationFrame(renderLoop);
+		};
 
-    const ro = new ResizeObserver(() => resize());
+		const ro = new ResizeObserver(() => resize());
 
-    const init = () => {
-      const { w, h } = sizeOf();
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setSize(w, h, false);
-      renderer.setClearColor(0x000000, 0);
-      camera.position.set(0, 16, cameraZ);
-      camera.lookAt(new THREE.Vector3(0, 28, 0));
-      scene.add(plane.mesh);
-      window.addEventListener("resize", resize);
-      ro.observe(container);
-      resize();
-      onReadyRef.current?.({ uniforms: plane.uniforms, renderer, camera });
-      renderLoop();
-    };
+		const init = () => {
+			const { w, h } = sizeOf();
+			renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+			renderer.setSize(w, h, false);
+			renderer.setClearColor(0x000000, 0);
+			camera.position.set(0, 16, cameraZ);
+			camera.lookAt(new THREE.Vector3(0, 28, 0));
+			scene.add(plane.mesh);
+			window.addEventListener("resize", resize);
+			ro.observe(container);
+			resize();
+			onReadyRef.current?.({ uniforms: plane.uniforms, renderer, camera });
+			renderLoop();
+		};
 
-    init();
+		init();
 
-    return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", resize);
-      ro.disconnect();
-      plane.mesh.geometry.dispose();
-      (plane.mesh.material as THREE.Material).dispose();
-      renderer.dispose();
-    };
-    // The scene is rebuilt only when the structural props change; live values
-    // (speed/fog/haze/paused/callbacks) flow through refs without a teardown.
-  }, [cameraZ, planeSize]);
+		return () => {
+			cancelAnimationFrame(frameId);
+			window.removeEventListener("resize", resize);
+			ro.disconnect();
+			plane.mesh.geometry.dispose();
+			(plane.mesh.material as THREE.Material).dispose();
+			renderer.dispose();
+		};
+		// The scene is rebuilt only when the structural props change; live values
+		// (speed/fog/haze/paused/callbacks) flow through refs without a teardown.
+	}, [cameraZ, planeSize]);
 
-  return (
-    <div ref={containerRef} className={className} style={{ position: "relative", width, height }}>
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          top: 0,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          zIndex: 1,
-        }}
-      />
-    </div>
-  );
+	return (
+		<div
+			ref={containerRef}
+			className={className}
+			style={{ position: "relative", width, height }}
+		>
+			<canvas
+				ref={canvasRef}
+				style={{
+					position: "absolute",
+					top: 0,
+					right: 0,
+					bottom: 0,
+					left: 0,
+					width: "100%",
+					height: "100%",
+					zIndex: 1,
+				}}
+			/>
+		</div>
+	);
 };
 
 export { GLSLHills };

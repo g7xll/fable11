@@ -60,11 +60,11 @@ export function Instrument({ telemetry }: InstrumentProps) {
 						</h2>
 						<p className="mt-4 max-w-xl font-body text-ink-dim">
 							No video, no images, no DOM grid — the deep-navy field drifting
-							behind every section is a single GLSL fragment program painted onto
-							one full-screen triangle. The mesh gradient, the blueprint lines,
-							the ASCII stamps, the grain and the dithering are all computed
-							per-pixel, per-frame, on the GPU. The numbers below are read straight
-							off that running context.
+							behind every section is a single GLSL fragment program painted
+							onto one full-screen triangle. The mesh gradient, the blueprint
+							lines, the ASCII stamps, the grain and the dithering are all
+							computed per-pixel, per-frame, on the GPU. The numbers below are
+							read straight off that running context.
 						</p>
 					</Reveal>
 

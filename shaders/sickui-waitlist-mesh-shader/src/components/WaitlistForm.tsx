@@ -51,16 +51,24 @@ export default function WaitlistForm({ onJoined }: WaitlistFormProps) {
 				<div className="min-w-0">
 					<p className="font-semibold text-white">You're on the list!</p>
 					<p className="truncate text-sm text-white/70">
-						We'll email <span className="text-white/90">{email.trim()}</span> the moment SickUI ships.
+						We'll email <span className="text-white/90">{email.trim()}</span>{" "}
+						the moment SickUI ships.
 					</p>
 				</div>
-				<Check className="ml-auto size-5 shrink-0 text-emerald-300" strokeWidth={3} />
+				<Check
+					className="ml-auto size-5 shrink-0 text-emerald-300"
+					strokeWidth={3}
+				/>
 			</div>
 		);
 	}
 
 	return (
-		<form onSubmit={handleSubmit} className="mx-auto w-full max-w-md" noValidate>
+		<form
+			onSubmit={handleSubmit}
+			className="mx-auto w-full max-w-md"
+			noValidate
+		>
 			<div
 				className={cn(
 					"group flex items-center gap-2 rounded-2xl border bg-white/10 p-1.5 pl-4 backdrop-blur-xl transition-colors",
@@ -108,7 +116,10 @@ export default function WaitlistForm({ onJoined }: WaitlistFormProps) {
 					) : (
 						<>
 							<span>Join waitlist</span>
-							<ArrowRight className="size-4 transition-transform group-focus-within:translate-x-0.5" aria-hidden="true" />
+							<ArrowRight
+								className="size-4 transition-transform group-focus-within:translate-x-0.5"
+								aria-hidden="true"
+							/>
 						</>
 					)}
 				</button>

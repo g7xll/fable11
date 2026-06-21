@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import {
-  Infinity as InfinityIcon,
-  Rocket,
-  Shield,
-  Brain,
-  Play,
-  ChevronDown,
+	Infinity as InfinityIcon,
+	Rocket,
+	Shield,
+	Brain,
+	Play,
+	ChevronDown,
 } from "lucide-react";
 
 /* ===========================================================================
@@ -23,51 +23,47 @@ import {
    viewport is what makes the aurora visible behind the UI — exactly the
    "w-full h-screen bg-black" intent of the provided demo.
    =========================================================================== */
-const ShaderCanvas = ({
-  onUnsupported,
-}: {
-  onUnsupported: () => void;
-}) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+const ShaderCanvas = ({ onUnsupported }: { onUnsupported: () => void }) => {
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-    // Guard the whole WebGL setup: if a context can't be created (locked-down
-    // browsers, blocklisted GPUs, headless without GL) we must NOT let three.js
-    // throw out of the effect — that would crash the React tree. Instead we
-    // signal the parent to show the CSS aurora fallback.
-    let renderer: THREE.WebGLRenderer;
-    try {
-      renderer = new THREE.WebGLRenderer({ antialias: true });
-    } catch (err) {
-      console.warn("AnoAI: WebGL unavailable, using CSS fallback.", err);
-      onUnsupported();
-      return;
-    }
+		// Guard the whole WebGL setup: if a context can't be created (locked-down
+		// browsers, blocklisted GPUs, headless without GL) we must NOT let three.js
+		// throw out of the effect — that would crash the React tree. Instead we
+		// signal the parent to show the CSS aurora fallback.
+		let renderer: THREE.WebGLRenderer;
+		try {
+			renderer = new THREE.WebGLRenderer({ antialias: true });
+		} catch (err) {
+			console.warn("AnoAI: WebGL unavailable, using CSS fallback.", err);
+			onUnsupported();
+			return;
+		}
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    // Cap the pixel ratio so the heavy 35-iteration fragment loop stays smooth
-    // on hi-DPI displays while remaining crisp.
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    container.appendChild(renderer.domElement);
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		// Cap the pixel ratio so the heavy 35-iteration fragment loop stays smooth
+		// on hi-DPI displays while remaining crisp.
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		renderer.setSize(window.innerWidth, window.innerHeight);
+		container.appendChild(renderer.domElement);
 
-    const material = new THREE.ShaderMaterial({
-      uniforms: {
-        iTime: { value: 0 },
-        iResolution: {
-          value: new THREE.Vector2(window.innerWidth, window.innerHeight),
-        },
-      },
-      vertexShader: `
+		const material = new THREE.ShaderMaterial({
+			uniforms: {
+				iTime: { value: 0 },
+				iResolution: {
+					value: new THREE.Vector2(window.innerWidth, window.innerHeight),
+				},
+			},
+			vertexShader: `
         void main() {
           gl_Position = vec4(position, 1.0);
         }
       `,
-      fragmentShader: `
+			fragmentShader: `
         uniform float iTime;
         uniform vec2 iResolution;
 
@@ -127,58 +123,58 @@ const ShaderCanvas = ({
           gl_FragColor = o * 1.5;
         }
       `,
-    });
+		});
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    let frameId = 0;
-    const animate = () => {
-      material.uniforms.iTime.value += 0.016;
-      renderer.render(scene, camera);
-      frameId = requestAnimationFrame(animate);
-    };
-    animate();
+		let frameId = 0;
+		const animate = () => {
+			material.uniforms.iTime.value += 0.016;
+			renderer.render(scene, camera);
+			frameId = requestAnimationFrame(animate);
+		};
+		animate();
 
-    const handleResize = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      material.uniforms.iResolution.value.set(
-        window.innerWidth,
-        window.innerHeight
-      );
-    };
-    window.addEventListener("resize", handleResize);
+		const handleResize = () => {
+			renderer.setSize(window.innerWidth, window.innerHeight);
+			material.uniforms.iResolution.value.set(
+				window.innerWidth,
+				window.innerHeight,
+			);
+		};
+		window.addEventListener("resize", handleResize);
 
-    // If the GPU context is dropped at runtime, stop the loop and fall back.
-    const canvasEl = renderer.domElement;
-    const handleContextLost = (e: Event) => {
-      e.preventDefault();
-      cancelAnimationFrame(frameId);
-      onUnsupported();
-    };
-    canvasEl.addEventListener("webglcontextlost", handleContextLost);
+		// If the GPU context is dropped at runtime, stop the loop and fall back.
+		const canvasEl = renderer.domElement;
+		const handleContextLost = (e: Event) => {
+			e.preventDefault();
+			cancelAnimationFrame(frameId);
+			onUnsupported();
+		};
+		canvasEl.addEventListener("webglcontextlost", handleContextLost);
 
-    return () => {
-      cancelAnimationFrame(frameId);
-      window.removeEventListener("resize", handleResize);
-      canvasEl.removeEventListener("webglcontextlost", handleContextLost);
-      if (renderer.domElement.parentNode === container) {
-        container.removeChild(renderer.domElement);
-      }
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-    };
-  }, [onUnsupported]);
+		return () => {
+			cancelAnimationFrame(frameId);
+			window.removeEventListener("resize", handleResize);
+			canvasEl.removeEventListener("webglcontextlost", handleContextLost);
+			if (renderer.domElement.parentNode === container) {
+				container.removeChild(renderer.domElement);
+			}
+			geometry.dispose();
+			material.dispose();
+			renderer.dispose();
+		};
+	}, [onUnsupported]);
 
-  return (
-    <div
-      ref={containerRef}
-      aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			aria-hidden="true"
+			className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
+		/>
+	);
 };
 
 /* ===========================================================================
@@ -188,53 +184,53 @@ const ShaderCanvas = ({
    hero always has a living, on-brand background instead of flat black.
    =========================================================================== */
 const CssAuroraFallback = () => (
-  <div
-    aria-hidden="true"
-    className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-black"
-  >
-    <div
-      className="animate-[drift_18s_ease-in-out_infinite] absolute -left-1/4 top-[-10%] h-[70vh] w-[70vw] rounded-full opacity-70 blur-[80px]"
-      style={{
-        background:
-          "radial-gradient(circle at 30% 30%, rgba(45,212,191,0.55), transparent 60%)",
-      }}
-    />
-    <div
-      className="animate-[drift_22s_ease-in-out_infinite_reverse] absolute right-[-15%] top-[5%] h-[80vh] w-[60vw] rounded-full opacity-70 blur-[90px]"
-      style={{
-        background:
-          "radial-gradient(circle at 60% 40%, rgba(167,139,250,0.5), transparent 62%)",
-      }}
-    />
-    <div
-      className="animate-[drift_26s_ease-in-out_infinite] absolute bottom-[-20%] left-1/3 h-[70vh] w-[70vw] rounded-full opacity-60 blur-[100px]"
-      style={{
-        background:
-          "radial-gradient(circle at 50% 50%, rgba(240,171,252,0.4), transparent 60%)",
-      }}
-    />
-  </div>
+	<div
+		aria-hidden="true"
+		className="pointer-events-none fixed inset-0 -z-10 overflow-hidden bg-black"
+	>
+		<div
+			className="animate-[drift_18s_ease-in-out_infinite] absolute -left-1/4 top-[-10%] h-[70vh] w-[70vw] rounded-full opacity-70 blur-[80px]"
+			style={{
+				background:
+					"radial-gradient(circle at 30% 30%, rgba(45,212,191,0.55), transparent 60%)",
+			}}
+		/>
+		<div
+			className="animate-[drift_22s_ease-in-out_infinite_reverse] absolute right-[-15%] top-[5%] h-[80vh] w-[60vw] rounded-full opacity-70 blur-[90px]"
+			style={{
+				background:
+					"radial-gradient(circle at 60% 40%, rgba(167,139,250,0.5), transparent 62%)",
+			}}
+		/>
+		<div
+			className="animate-[drift_26s_ease-in-out_infinite] absolute bottom-[-20%] left-1/3 h-[70vh] w-[70vw] rounded-full opacity-60 blur-[100px]"
+			style={{
+				background:
+					"radial-gradient(circle at 50% 50%, rgba(240,171,252,0.4), transparent 60%)",
+			}}
+		/>
+	</div>
 );
 
 /* ===========================================================================
    Small presentational helpers
    =========================================================================== */
 type FeatureChip = {
-  icon: typeof Rocket;
-  label: string;
+	icon: typeof Rocket;
+	label: string;
 };
 
 const FEATURES: FeatureChip[] = [
-  { icon: Brain, label: "Reasoning engine" },
-  { icon: Rocket, label: "Ships in seconds" },
-  { icon: Shield, label: "Private by design" },
+	{ icon: Brain, label: "Reasoning engine" },
+	{ icon: Rocket, label: "Ships in seconds" },
+	{ icon: Shield, label: "Private by design" },
 ];
 
 const AVATARS = [
-  { src: "/assets/avatar-1.svg", name: "Mara Velez" },
-  { src: "/assets/avatar-2.svg", name: "Idris Cole" },
-  { src: "/assets/avatar-3.svg", name: "Sana Okafor" },
-  { src: "/assets/avatar-4.svg", name: "Theo Lindqvist" },
+	{ src: "/assets/avatar-1.svg", name: "Mara Velez" },
+	{ src: "/assets/avatar-2.svg", name: "Idris Cole" },
+	{ src: "/assets/avatar-3.svg", name: "Sana Okafor" },
+	{ src: "/assets/avatar-4.svg", name: "Theo Lindqvist" },
 ];
 
 /* ===========================================================================
@@ -246,185 +242,185 @@ const AVATARS = [
    `import AnoAI from "@/components/ui/animated-shader-background"`.
    =========================================================================== */
 const AnoAI = () => {
-  const [webglFailed, setWebglFailed] = useState(false);
-  const handleUnsupported = useCallback(() => setWebglFailed(true), []);
+	const [webglFailed, setWebglFailed] = useState(false);
+	const handleUnsupported = useCallback(() => setWebglFailed(true), []);
 
-  return (
-    <div className="relative min-h-screen w-full overflow-x-hidden bg-black text-foreground">
-      {/* Live WebGL aurora — falls back to a CSS aurora if WebGL is unavailable */}
-      {webglFailed ? (
-        <CssAuroraFallback />
-      ) : (
-        <ShaderCanvas onUnsupported={handleUnsupported} />
-      )}
+	return (
+		<div className="relative min-h-screen w-full overflow-x-hidden bg-black text-foreground">
+			{/* Live WebGL aurora — falls back to a CSS aurora if WebGL is unavailable */}
+			{webglFailed ? (
+				<CssAuroraFallback />
+			) : (
+				<ShaderCanvas onUnsupported={handleUnsupported} />
+			)}
 
-      {/* Readability scrim above the shader, below the UI */}
-      <div
-        aria-hidden="true"
-        className="scrim pointer-events-none fixed inset-0 -z-10"
-      />
+			{/* Readability scrim above the shader, below the UI */}
+			<div
+				aria-hidden="true"
+				className="scrim pointer-events-none fixed inset-0 -z-10"
+			/>
 
-      {/* ---------------- Navbar ---------------- */}
-      <header className="animate-rise fixed inset-x-0 top-0 z-30 flex justify-center px-4 pt-5">
-        <nav className="flex w-full max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2.5 backdrop-blur-xl sm:px-6">
-          <a href="#" className="flex items-center gap-2.5">
-            <span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-teal-300/90 to-violet-400/90 text-black shadow-[0_0_24px_-4px_rgba(94,234,212,0.7)]">
-              <InfinityIcon className="h-5 w-5" strokeWidth={2.4} />
-            </span>
-            <span className="text-[15px] font-semibold tracking-tight">
-              Ano<span className="text-accent">AI</span>
-            </span>
-          </a>
+			{/* ---------------- Navbar ---------------- */}
+			<header className="animate-rise fixed inset-x-0 top-0 z-30 flex justify-center px-4 pt-5">
+				<nav className="flex w-full max-w-6xl items-center justify-between gap-4 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2.5 backdrop-blur-xl sm:px-6">
+					<a href="#" className="flex items-center gap-2.5">
+						<span className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-teal-300/90 to-violet-400/90 text-black shadow-[0_0_24px_-4px_rgba(94,234,212,0.7)]">
+							<InfinityIcon className="h-5 w-5" strokeWidth={2.4} />
+						</span>
+						<span className="text-[15px] font-semibold tracking-tight">
+							Ano<span className="text-accent">AI</span>
+						</span>
+					</a>
 
-          <div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
-            <a className="transition-colors hover:text-foreground" href="#">
-              Platform
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#">
-              Research
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#">
-              Pricing
-            </a>
-            <a className="transition-colors hover:text-foreground" href="#">
-              Docs
-            </a>
-          </div>
+					<div className="hidden items-center gap-7 text-sm text-muted-foreground md:flex">
+						<a className="transition-colors hover:text-foreground" href="#">
+							Platform
+						</a>
+						<a className="transition-colors hover:text-foreground" href="#">
+							Research
+						</a>
+						<a className="transition-colors hover:text-foreground" href="#">
+							Pricing
+						</a>
+						<a className="transition-colors hover:text-foreground" href="#">
+							Docs
+						</a>
+					</div>
 
-          <div className="flex items-center gap-2">
-            <a
-              href="#"
-              className="hidden rounded-xl px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:block"
-            >
-              Sign in
-            </a>
-            <a
-              href="#"
-              className="group inline-flex items-center gap-1.5 rounded-xl bg-foreground px-4 py-2 text-sm font-semibold text-black transition-transform duration-200 hover:scale-[1.03]"
-            >
-              Get access
-            </a>
-          </div>
-        </nav>
-      </header>
+					<div className="flex items-center gap-2">
+						<a
+							href="#"
+							className="hidden rounded-xl px-3.5 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground sm:block"
+						>
+							Sign in
+						</a>
+						<a
+							href="#"
+							className="group inline-flex items-center gap-1.5 rounded-xl bg-foreground px-4 py-2 text-sm font-semibold text-black transition-transform duration-200 hover:scale-[1.03]"
+						>
+							Get access
+						</a>
+					</div>
+				</nav>
+			</header>
 
-      {/* ---------------- Hero ---------------- */}
-      <main className="relative z-20 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-5 pb-24 pt-32 text-center">
-        {/* Announcement pill */}
-        <div
-          className="animate-rise mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] py-1.5 pl-1.5 pr-4 text-xs text-muted-foreground backdrop-blur-md"
-          style={{ animationDelay: "0.05s" }}
-        >
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-teal-300 to-violet-400 px-2.5 py-1 text-[11px] font-semibold text-black">
-            <Rocket className="h-3 w-3" strokeWidth={2.6} />
-            New
-          </span>
-          AnoAI v5 — agents that reason across your whole stack
-        </div>
+			{/* ---------------- Hero ---------------- */}
+			<main className="relative z-20 mx-auto flex min-h-screen max-w-5xl flex-col items-center justify-center px-5 pb-24 pt-32 text-center">
+				{/* Announcement pill */}
+				<div
+					className="animate-rise mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] py-1.5 pl-1.5 pr-4 text-xs text-muted-foreground backdrop-blur-md"
+					style={{ animationDelay: "0.05s" }}
+				>
+					<span className="inline-flex items-center gap-1.5 rounded-full bg-gradient-to-r from-teal-300 to-violet-400 px-2.5 py-1 text-[11px] font-semibold text-black">
+						<Rocket className="h-3 w-3" strokeWidth={2.6} />
+						New
+					</span>
+					AnoAI v5 — agents that reason across your whole stack
+				</div>
 
-        {/* Headline */}
-        <h1
-          className="animate-rise copy-legible max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-6xl md:text-7xl"
-          style={{ animationDelay: "0.12s" }}
-        >
-          <span className="text-aurora">Intelligence,</span>
-          <br className="hidden sm:block" /> unbounded.
-        </h1>
+				{/* Headline */}
+				<h1
+					className="animate-rise copy-legible max-w-4xl text-balance text-5xl font-semibold leading-[1.02] tracking-[-0.03em] sm:text-6xl md:text-7xl"
+					style={{ animationDelay: "0.12s" }}
+				>
+					<span className="text-aurora">Intelligence,</span>
+					<br className="hidden sm:block" /> unbounded.
+				</h1>
 
-        {/* Subhead */}
-        <p
-          className="animate-rise copy-legible mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg"
-          style={{ animationDelay: "0.2s" }}
-        >
-          A self-directed research intelligence that plans, searches, and
-          verifies — turning the messy edge of a question into a cited answer
-          you can ship.
-        </p>
+				{/* Subhead */}
+				<p
+					className="animate-rise copy-legible mt-6 max-w-xl text-pretty text-base leading-relaxed text-slate-200/90 sm:text-lg"
+					style={{ animationDelay: "0.2s" }}
+				>
+					A self-directed research intelligence that plans, searches, and
+					verifies — turning the messy edge of a question into a cited answer
+					you can ship.
+				</p>
 
-        {/* CTAs */}
-        <div
-          className="animate-rise mt-9 flex flex-col items-center gap-3 sm:flex-row"
-          style={{ animationDelay: "0.28s" }}
-        >
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2 rounded-2xl bg-foreground px-6 py-3.5 text-sm font-semibold text-black shadow-[0_8px_40px_-12px_rgba(255,255,255,0.5)] transition-transform duration-200 hover:scale-[1.03]"
-          >
-            Start building free
-            <span className="transition-transform duration-200 group-hover:translate-x-0.5">
-              &rarr;
-            </span>
-          </a>
-          <a
-            href="#"
-            className="group inline-flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-white/[0.08]"
-          >
-            <span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 transition-colors group-hover:bg-accent group-hover:text-black">
-              <Play className="h-3.5 w-3.5 translate-x-px fill-current" />
-            </span>
-            Watch the demo
-          </a>
-        </div>
+				{/* CTAs */}
+				<div
+					className="animate-rise mt-9 flex flex-col items-center gap-3 sm:flex-row"
+					style={{ animationDelay: "0.28s" }}
+				>
+					<a
+						href="#"
+						className="group inline-flex items-center gap-2 rounded-2xl bg-foreground px-6 py-3.5 text-sm font-semibold text-black shadow-[0_8px_40px_-12px_rgba(255,255,255,0.5)] transition-transform duration-200 hover:scale-[1.03]"
+					>
+						Start building free
+						<span className="transition-transform duration-200 group-hover:translate-x-0.5">
+							&rarr;
+						</span>
+					</a>
+					<a
+						href="#"
+						className="group inline-flex items-center gap-2.5 rounded-2xl border border-white/15 bg-white/[0.04] px-5 py-3.5 text-sm font-medium text-foreground backdrop-blur-md transition-colors hover:bg-white/[0.08]"
+					>
+						<span className="grid h-7 w-7 place-items-center rounded-full bg-white/10 transition-colors group-hover:bg-accent group-hover:text-black">
+							<Play className="h-3.5 w-3.5 translate-x-px fill-current" />
+						</span>
+						Watch the demo
+					</a>
+				</div>
 
-        {/* Feature chips (Brain / Rocket / Shield) */}
-        <ul
-          className="animate-rise mt-12 flex flex-wrap items-center justify-center gap-2.5"
-          style={{ animationDelay: "0.36s" }}
-        >
-          {FEATURES.map(({ icon: Icon, label }) => (
-            <li
-              key={label}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[13px] text-muted-foreground backdrop-blur-md"
-            >
-              <Icon className="h-4 w-4 text-accent" strokeWidth={2} />
-              {label}
-            </li>
-          ))}
-        </ul>
+				{/* Feature chips (Brain / Rocket / Shield) */}
+				<ul
+					className="animate-rise mt-12 flex flex-wrap items-center justify-center gap-2.5"
+					style={{ animationDelay: "0.36s" }}
+				>
+					{FEATURES.map(({ icon: Icon, label }) => (
+						<li
+							key={label}
+							className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-2 text-[13px] text-muted-foreground backdrop-blur-md"
+						>
+							<Icon className="h-4 w-4 text-accent" strokeWidth={2} />
+							{label}
+						</li>
+					))}
+				</ul>
 
-        {/* Social proof */}
-        <div
-          className="animate-rise mt-12 flex items-center gap-3"
-          style={{ animationDelay: "0.44s" }}
-        >
-          <div className="flex -space-x-2.5">
-            {AVATARS.map((a) => (
-              <img
-                key={a.src}
-                src={a.src}
-                alt={a.name}
-                loading="lazy"
-                width={36}
-                height={36}
-                className="h-9 w-9 rounded-full border-2 border-black/60 object-cover"
-              />
-            ))}
-          </div>
-          <p className="text-left text-xs leading-tight text-muted-foreground">
-            <span className="font-semibold text-foreground">12,000+</span>{" "}
-            researchers
-            <br />
-            building with AnoAI
-          </p>
-        </div>
-      </main>
+				{/* Social proof */}
+				<div
+					className="animate-rise mt-12 flex items-center gap-3"
+					style={{ animationDelay: "0.44s" }}
+				>
+					<div className="flex -space-x-2.5">
+						{AVATARS.map((a) => (
+							<img
+								key={a.src}
+								src={a.src}
+								alt={a.name}
+								loading="lazy"
+								width={36}
+								height={36}
+								className="h-9 w-9 rounded-full border-2 border-black/60 object-cover"
+							/>
+						))}
+					</div>
+					<p className="text-left text-xs leading-tight text-muted-foreground">
+						<span className="font-semibold text-foreground">12,000+</span>{" "}
+						researchers
+						<br />
+						building with AnoAI
+					</p>
+				</div>
+			</main>
 
-      {/* The original component's `divider`, kept and given a role as the
+			{/* The original component's `divider`, kept and given a role as the
           hero's bottom seam. */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-20 z-20 mx-auto max-w-3xl px-6">
-        <div className="relative z-10 divider" />
-      </div>
+			<div className="pointer-events-none absolute inset-x-0 bottom-20 z-20 mx-auto max-w-3xl px-6">
+				<div className="relative z-10 divider" />
+			</div>
 
-      {/* Scroll cue */}
-      <a
-        href="#"
-        className="animate-float absolute inset-x-0 bottom-7 z-20 mx-auto flex w-fit flex-col items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-muted-foreground/70"
-      >
-        Scroll
-        <ChevronDown className="h-4 w-4" />
-      </a>
-    </div>
-  );
+			{/* Scroll cue */}
+			<a
+				href="#"
+				className="animate-float absolute inset-x-0 bottom-7 z-20 mx-auto flex w-fit flex-col items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-muted-foreground/70"
+			>
+				Scroll
+				<ChevronDown className="h-4 w-4" />
+			</a>
+		</div>
+	);
 };
 
 export default AnoAI;

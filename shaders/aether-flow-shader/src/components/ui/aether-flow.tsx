@@ -17,18 +17,18 @@ import * as THREE from "three";
 
 /** Uniform values that drive the shader. */
 export interface ShaderProps {
-  hue: number;
-  speed: number;
-  intensity: number;
-  complexity: number;
-  warp: number;
+	hue: number;
+	speed: number;
+	intensity: number;
+	complexity: number;
+	warp: number;
 }
 
 interface ThreeRefs {
-  renderer: THREE.WebGLRenderer;
-  scene: THREE.Scene;
-  camera: THREE.OrthographicCamera;
-  material: THREE.ShaderMaterial;
+	renderer: THREE.WebGLRenderer;
+	scene: THREE.Scene;
+	camera: THREE.OrthographicCamera;
+	material: THREE.ShaderMaterial;
 }
 
 // --- Custom Hook for Shader Animation ---
@@ -41,50 +41,50 @@ interface ThreeRefs {
  *   warp coordinate (0..1, origin bottom-left) so a host can mirror the field.
  */
 const useShaderAnimation = (
-  mountRef: React.RefObject<HTMLDivElement | null>,
-  shaderProps: ShaderProps,
-  onWarp?: (x: number, y: number) => void,
+	mountRef: React.RefObject<HTMLDivElement | null>,
+	shaderProps: ShaderProps,
+	onWarp?: (x: number, y: number) => void,
 ) => {
-  // Use a ref to hold the Three.js objects to prevent re-creation on every render
-  const threeRef = useRef<ThreeRefs | null>(null);
-  // Keep the latest onWarp without re-running the one-time setup effect.
-  const onWarpRef = useRef(onWarp);
-  onWarpRef.current = onWarp;
+	// Use a ref to hold the Three.js objects to prevent re-creation on every render
+	const threeRef = useRef<ThreeRefs | null>(null);
+	// Keep the latest onWarp without re-running the one-time setup effect.
+	const onWarpRef = useRef(onWarp);
+	onWarpRef.current = onWarp;
 
-  useEffect(() => {
-    // Ensure the mount point is available
-    const mount = mountRef.current;
-    if (!mount) return;
+	useEffect(() => {
+		// Ensure the mount point is available
+		const mount = mountRef.current;
+		if (!mount) return;
 
-    // --- Three.js Core Setup (runs only once) ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const renderer = new THREE.WebGLRenderer({ antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(mount.clientWidth, mount.clientHeight);
-    mount.appendChild(renderer.domElement);
+		// --- Three.js Core Setup (runs only once) ---
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		const renderer = new THREE.WebGLRenderer({ antialias: true });
+		renderer.setPixelRatio(window.devicePixelRatio);
+		renderer.setSize(mount.clientWidth, mount.clientHeight);
+		mount.appendChild(renderer.domElement);
 
-    // --- Shader Material Setup ---
-    const uniforms = {
-      u_time: { value: 0.0 },
-      u_resolution: {
-        value: new THREE.Vector2(mount.clientWidth, mount.clientHeight),
-      },
-      u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
-      u_hue: { value: shaderProps.hue },
-      u_speed: { value: shaderProps.speed },
-      u_intensity: { value: shaderProps.intensity },
-      u_complexity: { value: shaderProps.complexity },
-      u_warp: { value: shaderProps.warp },
-    };
+		// --- Shader Material Setup ---
+		const uniforms = {
+			u_time: { value: 0.0 },
+			u_resolution: {
+				value: new THREE.Vector2(mount.clientWidth, mount.clientHeight),
+			},
+			u_mouse: { value: new THREE.Vector2(0.5, 0.5) },
+			u_hue: { value: shaderProps.hue },
+			u_speed: { value: shaderProps.speed },
+			u_intensity: { value: shaderProps.intensity },
+			u_complexity: { value: shaderProps.complexity },
+			u_warp: { value: shaderProps.warp },
+		};
 
-    const vertexShader = `
+		const vertexShader = `
       void main() {
         gl_Position = vec4(position, 1.0);
       }
     `;
 
-    const fragmentShader = `
+		const fragmentShader = `
       precision highp float;
       uniform vec2 u_resolution;
       uniform float u_time;
@@ -158,137 +158,137 @@ const useShaderAnimation = (
       }
     `;
 
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader,
-      fragmentShader,
-    });
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const material = new THREE.ShaderMaterial({
+			uniforms,
+			vertexShader,
+			fragmentShader,
+		});
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    threeRef.current = { renderer, scene, camera, material };
+		threeRef.current = { renderer, scene, camera, material };
 
-    // --- Animation & Event Listeners ---
-    const clock = new THREE.Clock();
-    let animationFrameId: number;
-    const animate = () => {
-      uniforms.u_time.value = clock.getElapsedTime();
-      renderer.render(scene, camera);
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
+		// --- Animation & Event Listeners ---
+		const clock = new THREE.Clock();
+		let animationFrameId: number;
+		const animate = () => {
+			uniforms.u_time.value = clock.getElapsedTime();
+			renderer.render(scene, camera);
+			animationFrameId = requestAnimationFrame(animate);
+		};
+		animate();
 
-    const handleResize = () => {
-      if (!mountRef.current) return;
-      const { clientWidth, clientHeight } = mountRef.current;
-      renderer.setSize(clientWidth, clientHeight);
-      uniforms.u_resolution.value.set(clientWidth, clientHeight);
-    };
-    window.addEventListener("resize", handleResize);
+		const handleResize = () => {
+			if (!mountRef.current) return;
+			const { clientWidth, clientHeight } = mountRef.current;
+			renderer.setSize(clientWidth, clientHeight);
+			uniforms.u_resolution.value.set(clientWidth, clientHeight);
+		};
+		window.addEventListener("resize", handleResize);
 
-    const handleMouseMove = (e: MouseEvent) => {
-      uniforms.u_mouse.value.x = e.clientX;
-      uniforms.u_mouse.value.y = window.innerHeight - e.clientY;
-      onWarpRef.current?.(
-        e.clientX / window.innerWidth,
-        (window.innerHeight - e.clientY) / window.innerHeight,
-      );
-    };
-    window.addEventListener("mousemove", handleMouseMove);
+		const handleMouseMove = (e: MouseEvent) => {
+			uniforms.u_mouse.value.x = e.clientX;
+			uniforms.u_mouse.value.y = window.innerHeight - e.clientY;
+			onWarpRef.current?.(
+				e.clientX / window.innerWidth,
+				(window.innerHeight - e.clientY) / window.innerHeight,
+			);
+		};
+		window.addEventListener("mousemove", handleMouseMove);
 
-    // --- Cleanup ---
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      mount.removeChild(renderer.domElement);
-      geometry.dispose();
-      material.dispose();
-      renderer.dispose();
-    };
-  }, []); // Empty dependency array ensures this runs only once
+		// --- Cleanup ---
+		return () => {
+			cancelAnimationFrame(animationFrameId);
+			window.removeEventListener("resize", handleResize);
+			window.removeEventListener("mousemove", handleMouseMove);
+			mount.removeChild(renderer.domElement);
+			geometry.dispose();
+			material.dispose();
+			renderer.dispose();
+		};
+	}, []); // Empty dependency array ensures this runs only once
 
-  // This effect runs when shaderProps change, updating the uniforms
-  useEffect(() => {
-    if (threeRef.current) {
-      const { material } = threeRef.current;
-      material.uniforms.u_hue.value = shaderProps.hue;
-      material.uniforms.u_speed.value = shaderProps.speed;
-      material.uniforms.u_intensity.value = shaderProps.intensity;
-      material.uniforms.u_complexity.value = shaderProps.complexity;
-      material.uniforms.u_warp.value = shaderProps.warp;
-    }
-  }, [shaderProps]);
+	// This effect runs when shaderProps change, updating the uniforms
+	useEffect(() => {
+		if (threeRef.current) {
+			const { material } = threeRef.current;
+			material.uniforms.u_hue.value = shaderProps.hue;
+			material.uniforms.u_speed.value = shaderProps.speed;
+			material.uniforms.u_intensity.value = shaderProps.intensity;
+			material.uniforms.u_complexity.value = shaderProps.complexity;
+			material.uniforms.u_warp.value = shaderProps.warp;
+		}
+	}, [shaderProps]);
 };
 
 // --- React Components ---
 
 export interface ShaderCanvasProps extends ShaderProps {
-  /** Extra classes merged onto the mount div. */
-  className?: string;
-  /** Fired on each pointer move with the normalized warp coordinate (0..1). */
-  onWarp?: (x: number, y: number) => void;
+	/** Extra classes merged onto the mount div. */
+	className?: string;
+	/** Fired on each pointer move with the normalized warp coordinate (0..1). */
+	onWarp?: (x: number, y: number) => void;
 }
 
 /**
  * The core canvas component that utilizes the useShaderAnimation hook.
  */
 export const ShaderCanvas = ({
-  className,
-  onWarp,
-  ...props
+	className,
+	onWarp,
+	...props
 }: ShaderCanvasProps) => {
-  const mountRef = useRef<HTMLDivElement>(null);
-  useShaderAnimation(mountRef, props, onWarp);
-  return (
-    <div
-      ref={mountRef}
-      className={`absolute top-0 left-0 w-full h-full ${className ?? ""}`}
-    />
-  );
+	const mountRef = useRef<HTMLDivElement>(null);
+	useShaderAnimation(mountRef, props, onWarp);
+	return (
+		<div
+			ref={mountRef}
+			className={`absolute top-0 left-0 w-full h-full ${className ?? ""}`}
+		/>
+	);
 };
 
 export interface ControlSliderProps {
-  label: string;
-  value: number | string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  min: number | string;
-  max: number | string;
-  step: number | string;
-  /** Extra classes merged onto the native range input. */
-  className?: string;
+	label: string;
+	value: number | string;
+	onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	min: number | string;
+	max: number | string;
+	step: number | string;
+	/** Extra classes merged onto the native range input. */
+	className?: string;
 }
 
 /**
  * A reusable slider component for the control panel.
  */
 export const ControlSlider = ({
-  label,
-  value,
-  onChange,
-  min,
-  max,
-  step,
-  className,
+	label,
+	value,
+	onChange,
+	min,
+	max,
+	step,
+	className,
 }: ControlSliderProps) => (
-  <div className="flex flex-col text-white/90">
-    <div className="flex justify-between items-center mb-2">
-      <label className="text-sm font-medium tracking-wide">{label}</label>
-      <span className="text-xs bg-white/10 px-2 py-1 rounded-full font-mono">
-        {Number(value).toFixed(2)}
-      </span>
-    </div>
-    <input
-      type="range"
-      min={min}
-      max={max}
-      step={step}
-      value={value}
-      onChange={onChange}
-      className={`w-full h-2 bg-gray-700/50 rounded-lg appearance-none cursor-pointer accent-violet-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/50 ${
-        className ?? ""
-      }`}
-    />
-  </div>
+	<div className="flex flex-col text-white/90">
+		<div className="flex justify-between items-center mb-2">
+			<label className="text-sm font-medium tracking-wide">{label}</label>
+			<span className="text-xs bg-white/10 px-2 py-1 rounded-full font-mono">
+				{Number(value).toFixed(2)}
+			</span>
+		</div>
+		<input
+			type="range"
+			min={min}
+			max={max}
+			step={step}
+			value={value}
+			onChange={onChange}
+			className={`w-full h-2 bg-gray-700/50 rounded-lg appearance-none cursor-pointer accent-violet-400 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-violet-400/50 ${
+				className ?? ""
+			}`}
+		/>
+	</div>
 );

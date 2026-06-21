@@ -4,40 +4,47 @@ import * as THREE from "three";
 import { useMemo, useRef } from "react";
 
 function FullscreenShader() {
-  const materialRef = useRef<THREE.ShaderMaterial>(null!);
-  const { size } = useThree();
+	const materialRef = useRef<THREE.ShaderMaterial>(null!);
+	const { size } = useThree();
 
-  const uniforms = useMemo(
-    () => ({
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector3(size.width, size.height, 1) },
-    }),
-    [size.width, size.height]
-  );
+	const uniforms = useMemo(
+		() => ({
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector3(size.width, size.height, 1) },
+		}),
+		[size.width, size.height],
+	);
 
-  useFrame(({ clock }) => {
-    if (!materialRef.current) return;
-    materialRef.current.uniforms.iTime.value = clock.getElapsedTime();
-    materialRef.current.uniforms.iResolution.value.set(size.width, size.height, 1);
-  });
+	useFrame(({ clock }) => {
+		if (!materialRef.current) return;
+		materialRef.current.uniforms.iTime.value = clock.getElapsedTime();
+		materialRef.current.uniforms.iResolution.value.set(
+			size.width,
+			size.height,
+			1,
+		);
+	});
 
-  return (
-    <mesh>
-      <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        ref={materialRef}
-        depthWrite={false}
-        depthTest={false}
-        transparent={false}
-        uniforms={uniforms}
-        vertexShader={/* glsl */ `
+	return (
+		<mesh>
+			<planeGeometry args={[2, 2]} />
+			<shaderMaterial
+				ref={materialRef}
+				depthWrite={false}
+				depthTest={false}
+				transparent={false}
+				uniforms={uniforms}
+				vertexShader={
+					/* glsl */ `
           varying vec2 vUv;
           void main() {
             vUv = uv;
             gl_Position = vec4(position, 1.0);
           }
-        `}
-        fragmentShader={/* glsl */ `
+        `
+				}
+				fragmentShader={
+					/* glsl */ `
           precision highp float;
 
           uniform vec3 iResolution; // viewport resolution (in pixels)
@@ -74,20 +81,29 @@ function FullscreenShader() {
             mainImage(O, gl_FragCoord.xy);
             gl_FragColor = O;
           }
-        `}
-      />
-    </mesh>
-  );
+        `
+				}
+			/>
+		</mesh>
+	);
 }
 
 export const Component = () => {
-  return (
-    <div className={cn("flex flex-col items-center gap-4 p-0 rounded-lg w-full h-[100vh]")}>
-      <Canvas orthographic camera={{ position: [0, 0, 1], zoom: 1 }} dpr={[1, 2]}>
-        {/* Black background */}
-        <color attach="background" args={["#000000"]} />
-        <FullscreenShader />
-      </Canvas>
-    </div>
-  );
+	return (
+		<div
+			className={cn(
+				"flex flex-col items-center gap-4 p-0 rounded-lg w-full h-[100vh]",
+			)}
+		>
+			<Canvas
+				orthographic
+				camera={{ position: [0, 0, 1], zoom: 1 }}
+				dpr={[1, 2]}
+			>
+				{/* Black background */}
+				<color attach="background" args={["#000000"]} />
+				<FullscreenShader />
+			</Canvas>
+		</div>
+	);
 };

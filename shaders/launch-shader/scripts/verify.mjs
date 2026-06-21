@@ -59,7 +59,12 @@ const ctx = await page.evaluate(() => {
 	const c = document.querySelector("canvas");
 	if (!c) return { ok: false, reason: "no canvas" };
 	const gl = c.getContext("webgl2");
-	return { ok: !!gl, reason: gl ? "" : "no webgl2 context", w: c.width, h: c.height };
+	return {
+		ok: !!gl,
+		reason: gl ? "" : "no webgl2 context",
+		w: c.width,
+		h: c.height,
+	};
 });
 
 // --- warm, non-black plume sampled from a real screenshot ---
@@ -67,19 +72,34 @@ const shot = () => page.locator("canvas").screenshot();
 function pngStats(buf) {
 	if (!PNG) return null;
 	const img = PNG.sync.read(buf);
-	let r = 0, g = 0, b = 0, nonBlack = 0, n = 0;
+	let r = 0,
+		g = 0,
+		b = 0,
+		nonBlack = 0,
+		n = 0;
 	const step = 4 * 53; // sparse stride over RGBA bytes
 	for (let i = 0; i + 3 < img.data.length; i += step) {
-		const pr = img.data[i], pg = img.data[i + 1], pb = img.data[i + 2];
-		r += pr; g += pg; b += pb;
+		const pr = img.data[i],
+			pg = img.data[i + 1],
+			pb = img.data[i + 2];
+		r += pr;
+		g += pg;
+		b += pb;
 		if (pr + pg + pb > 18) nonBlack++;
 		n++;
 	}
-	return { r: Math.round(r / n), g: Math.round(g / n), b: Math.round(b / n), nonBlack, n };
+	return {
+		r: Math.round(r / n),
+		g: Math.round(g / n),
+		b: Math.round(b / n),
+		nonBlack,
+		n,
+	};
 }
 // byte-level diff: cheap proxy for "did the rendered frame change?"
 function diff(a, b) {
-	let n = Math.min(a.length, b.length), d = 0;
+	let n = Math.min(a.length, b.length),
+		d = 0;
 	for (let i = 0; i < n; i += 997) if (a[i] !== b[i]) d++;
 	return d;
 }
@@ -128,21 +148,46 @@ await browser.close();
 
 // ---------- assertions ----------
 const checks = [];
-const assert = (name, cond, detail) => checks.push({ name, pass: !!cond, detail });
+const assert = (name, cond, detail) =>
+	checks.push({ name, pass: !!cond, detail });
 
 assert("canvas + webgl2 present", ctx.ok, ctx.reason);
-assert("no shader/console errors", errors.length === 0, errors.slice(0, 4).join(" | "));
+assert(
+	"no shader/console errors",
+	errors.length === 0,
+	errors.slice(0, 4).join(" | "),
+);
 if (stats) {
-	assert("plume renders non-black", stats.nonBlack > stats.n * 0.4, `${stats.nonBlack}/${stats.n} lit`);
-	assert("plume is warm (R≥G≥B)", stats.r >= stats.g && stats.g >= stats.b && stats.r > 10, `avg=${JSON.stringify({ r: stats.r, g: stats.g, b: stats.b })}`);
+	assert(
+		"plume renders non-black",
+		stats.nonBlack > stats.n * 0.4,
+		`${stats.nonBlack}/${stats.n} lit`,
+	);
+	assert(
+		"plume is warm (R≥G≥B)",
+		stats.r >= stats.g && stats.g >= stats.b && stats.r > 10,
+		`avg=${JSON.stringify({ r: stats.r, g: stats.g, b: stats.b })}`,
+	);
 } else {
-	assert("plume render (pngjs absent → screenshot non-empty)", burnA.length > 5000, `${burnA.length} bytes`);
+	assert(
+		"plume render (pngjs absent → screenshot non-empty)",
+		burnA.length > 5000,
+		`${burnA.length} bytes`,
+	);
 }
 assert("frames change while BURNING", burnDiff > 0, `diff=${burnDiff}`);
 assert("HOLD freezes the GPU clock", heldDiff === 0, `held diff=${heldDiff}`);
 assert("RESUME restarts the GPU clock", resDiff > 0, `resumed diff=${resDiff}`);
-assert("telemetry frame advances", hud2.frame != null && hud1.frame != null && hud2.frame > hud1.frame, `frame ${hud1.frame} -> ${hud2.frame}`);
-assert("altitude climbs", hud2.alt != null && hud1.alt != null && hud2.alt >= hud1.alt, `alt ${hud1.alt} -> ${hud2.alt} m`);
+assert(
+	"telemetry frame advances",
+	hud2.frame != null && hud1.frame != null && hud2.frame > hud1.frame,
+	`frame ${hud1.frame} -> ${hud2.frame}`,
+);
+assert(
+	"altitude climbs",
+	hud2.alt != null && hud1.alt != null && hud2.alt >= hud1.alt,
+	`alt ${hud1.alt} -> ${hud2.alt} m`,
+);
 
 let allPass = true;
 for (const c of checks) {

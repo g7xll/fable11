@@ -1,5 +1,13 @@
 import { useCallback, useEffect, useState } from "react";
-import { Flame, Gauge, Pause, Play, Rocket, Signal, Triangle } from "lucide-react";
+import {
+	Flame,
+	Gauge,
+	Pause,
+	Play,
+	Rocket,
+	Signal,
+	Triangle,
+} from "lucide-react";
 
 import Component, { type ShaderSample } from "@/components/ui/launch";
 import { LaunchSequence } from "@/components/lab/LaunchSequence";
@@ -46,7 +54,9 @@ function captureScale(): number | null {
 			const r = ext
 				? String(gl.getParameter(ext.UNMASKED_RENDERER_WEBGL)).toLowerCase()
 				: "";
-			if (/swiftshader|llvmpipe|software|microsoft basic|mesa offscreen/.test(r)) {
+			if (
+				/swiftshader|llvmpipe|software|microsoft basic|mesa offscreen/.test(r)
+			) {
 				return 0.2;
 			}
 		}
@@ -82,7 +92,11 @@ function ShaderStage({
 	// fills the viewport via its own `width/height: 100%`, so the upscaled soft plume
 	// looks the same — only sharper/softer, never repositioned.
 	return (
-		<Component paused={paused} onSample={onSample} pixelRatio={RES_SCALE ?? undefined} />
+		<Component
+			paused={paused}
+			onSample={onSample}
+			pixelRatio={RES_SCALE ?? undefined}
+		/>
 	);
 }
 
@@ -92,11 +106,21 @@ function thrustFromTime(t: number) {
 	return 89 + Math.sin(t * 0.8) * 6 + Math.sin(t * 2.3) * 4;
 }
 
-function Stat({ label, value, accent }: { label: string; value: string; accent?: boolean }) {
+function Stat({
+	label,
+	value,
+	accent,
+}: {
+	label: string;
+	value: string;
+	accent?: boolean;
+}) {
 	return (
 		<div className="flex items-baseline gap-2 whitespace-nowrap">
 			<span className="tele text-white/35">{label}</span>
-			<span className={`tele ${accent ? "text-flare-core" : "text-white/85"}`}>{value}</span>
+			<span className={`tele ${accent ? "text-flare-core" : "text-white/85"}`}>
+				{value}
+			</span>
 		</div>
 	);
 }
@@ -135,7 +159,10 @@ function ThrustGauge({ thrust, paused }: { thrust: number; paused: boolean }) {
 					{ticks.map((_, i) => {
 						const major = i % 5 === 0;
 						return (
-							<div key={i} className="flex items-center gap-2 pl-[calc(50%-0px)]">
+							<div
+								key={i}
+								className="flex items-center gap-2 pl-[calc(50%-0px)]"
+							>
 								<span
 									className="block h-px bg-white/30"
 									style={{ width: major ? 14 : 7 }}
@@ -180,7 +207,9 @@ function ThrustGauge({ thrust, paused }: { thrust: number; paused: boolean }) {
 				>
 					THRUST&nbsp;%
 				</span>
-				<span className={`tele mt-1 ${paused ? "text-flare-plasma" : "text-flare-core"}`}>
+				<span
+					className={`tele mt-1 ${paused ? "text-flare-plasma" : "text-flare-core"}`}
+				>
 					{paused ? "HOLD" : "BURN"}
 				</span>
 			</div>
@@ -243,7 +272,9 @@ export default function App() {
 			<header className="animate-hud-in fixed inset-x-0 top-0 z-20 flex items-center justify-between px-5 py-4 sm:px-8">
 				<div className="flex items-center gap-2.5">
 					<Rocket className="h-4 w-4 text-white/85" strokeWidth={1.6} />
-					<span className="tele text-white/85">LAUNCH&nbsp;·&nbsp;PAD&nbsp;39A</span>
+					<span className="tele text-white/85">
+						LAUNCH&nbsp;·&nbsp;PAD&nbsp;39A
+					</span>
 				</div>
 				<nav className="hidden items-center gap-7 md:flex">
 					<span className="tele text-white/35">STAGE</span>
@@ -251,7 +282,11 @@ export default function App() {
 					<span className="tele text-flare-ember">BOOST</span>
 					<span className="tele text-flare-plasma">MAIN</span>
 				</nav>
-				<Stat label="GNC" value={paused ? "HOLD" : "NOMINAL"} accent={!paused} />
+				<Stat
+					label="GNC"
+					value={paused ? "HOLD" : "NOMINAL"}
+					accent={!paused}
+				/>
 			</header>
 
 			{/* === Left vertical thrust gauge (signature) === */}
@@ -267,13 +302,14 @@ export default function App() {
 						className="animate-reveal-up tele mb-6 flex items-center gap-2 text-white/45"
 						style={{ animationDelay: "0.05s" }}
 					>
-						<Flame className="h-3 w-3 text-flare-ember animate-flicker" strokeWidth={2} />
+						<Flame
+							className="h-3 w-3 text-flare-ember animate-flicker"
+							strokeWidth={2}
+						/>
 						IGNITION&nbsp;SEQUENCE&nbsp;//&nbsp;LV-001&nbsp;//&nbsp;MAINSTAGE&nbsp;HOT
 					</span>
 
-					<h1
-						className="heat-type animate-reveal-blur font-display text-[clamp(3.5rem,15vw,9.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em]"
-					>
+					<h1 className="heat-type animate-reveal-blur font-display text-[clamp(3.5rem,15vw,9.5rem)] font-bold uppercase leading-[0.82] tracking-[-0.055em]">
 						Launch
 					</h1>
 
@@ -281,9 +317,9 @@ export default function App() {
 						className="animate-reveal-up mt-7 max-w-md text-sm leading-relaxed text-white/55 sm:text-base"
 						style={{ animationDelay: "0.22s" }}
 					>
-						You are looking straight down the engine bell — a single WebGL2 pass,
-						ray-marched live, folding a molten plume of turbulence all the way to the
-						horizon as the stack climbs off the pad.
+						You are looking straight down the engine bell — a single WebGL2
+						pass, ray-marched live, folding a molten plume of turbulence all the
+						way to the horizon as the stack climbs off the pad.
 					</p>
 
 					{/* ignite / hold — drives the shader's own `paused` prop */}
@@ -336,12 +372,18 @@ export default function App() {
 					<Stat label="ALT" value={`${altStamp} m`} />
 				</div>
 				<div className="hidden items-center gap-6 md:flex">
-					<Stat label="THR" value={`${Math.round(Math.max(0, Math.min(100, thrust)))}%`} />
+					<Stat
+						label="THR"
+						value={`${Math.round(Math.max(0, Math.min(100, thrust)))}%`}
+					/>
 					<Stat label="FRAME" value={String(frame).padStart(6, "0")} />
 					<Stat label="PASS" value="GLSL · 100 STEPS" />
 				</div>
 				<div className="flex items-center gap-2">
-					<Signal className="h-3.5 w-3.5 text-white/40 animate-flicker" strokeWidth={1.8} />
+					<Signal
+						className="h-3.5 w-3.5 text-white/40 animate-flicker"
+						strokeWidth={1.8}
+					/>
 					<Stat label="FPS" value={String(fps).padStart(2, "0")} />
 				</div>
 			</footer>

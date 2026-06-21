@@ -4,28 +4,28 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 export function ShaderAnimation() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<{
-    camera: THREE.Camera;
-    scene: THREE.Scene;
-    renderer: THREE.WebGLRenderer;
-    uniforms: any;
-    animationId: number;
-  } | null>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
+	const sceneRef = useRef<{
+		camera: THREE.Camera;
+		scene: THREE.Scene;
+		renderer: THREE.WebGLRenderer;
+		uniforms: any;
+		animationId: number;
+	} | null>(null);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+	useEffect(() => {
+		if (!containerRef.current) return;
 
-    const container = containerRef.current;
+		const container = containerRef.current;
 
-    const vertexShader = `
+		const vertexShader = `
       void main() {
         gl_Position = vec4( position, 1.0 );
       }
     `;
 
-    // Updated fragment shader with a 7-color neon rainbow palette
-    const fragmentShader = `
+		// Updated fragment shader with a 7-color neon rainbow palette
+		const fragmentShader = `
       #define TWO_PI 6.2831853072
       #define PI 3.14159265359
 
@@ -80,75 +80,78 @@ export function ShaderAnimation() {
       }
     `;
 
-    const camera = new THREE.Camera();
-    camera.position.z = 1;
+		const camera = new THREE.Camera();
+		camera.position.z = 1;
 
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneGeometry(2, 2);
+		const scene = new THREE.Scene();
+		const geometry = new THREE.PlaneGeometry(2, 2);
 
-    const uniforms = {
-      time: { type: "f", value: 1.0 },
-      resolution: { type: "v2", value: new THREE.Vector2() },
-    };
+		const uniforms = {
+			time: { type: "f", value: 1.0 },
+			resolution: { type: "v2", value: new THREE.Vector2() },
+		};
 
-    const material = new THREE.ShaderMaterial({
-      uniforms: uniforms,
-      vertexShader: vertexShader,
-      fragmentShader: fragmentShader,
-    });
+		const material = new THREE.ShaderMaterial({
+			uniforms: uniforms,
+			vertexShader: vertexShader,
+			fragmentShader: fragmentShader,
+		});
 
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
+		const renderer = new THREE.WebGLRenderer({
+			antialias: true,
+			powerPreference: "high-performance",
+		});
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		container.appendChild(renderer.domElement);
 
-    const onWindowResize = () => {
-      const { clientWidth, clientHeight } = container;
-      renderer.setSize(clientWidth, clientHeight);
-      uniforms.resolution.value.x = renderer.domElement.width;
-      uniforms.resolution.value.y = renderer.domElement.height;
-    };
-    onWindowResize();
-    window.addEventListener("resize", onWindowResize, false);
+		const onWindowResize = () => {
+			const { clientWidth, clientHeight } = container;
+			renderer.setSize(clientWidth, clientHeight);
+			uniforms.resolution.value.x = renderer.domElement.width;
+			uniforms.resolution.value.y = renderer.domElement.height;
+		};
+		onWindowResize();
+		window.addEventListener("resize", onWindowResize, false);
 
-    const animate = () => {
-      const animationId = requestAnimationFrame(animate);
-      uniforms.time.value += 0.05;
-      renderer.render(scene, camera);
-      if (sceneRef.current) {
-        sceneRef.current.animationId = animationId;
-      }
-    };
+		const animate = () => {
+			const animationId = requestAnimationFrame(animate);
+			uniforms.time.value += 0.05;
+			renderer.render(scene, camera);
+			if (sceneRef.current) {
+				sceneRef.current.animationId = animationId;
+			}
+		};
 
-    sceneRef.current = { camera, scene, renderer, uniforms, animationId: 0 };
-    animate();
+		sceneRef.current = { camera, scene, renderer, uniforms, animationId: 0 };
+		animate();
 
-    return () => {
-      window.removeEventListener("resize", onWindowResize);
-      if (sceneRef.current) {
-        cancelAnimationFrame(sceneRef.current.animationId);
-        if (container && sceneRef.current.renderer.domElement) {
-          container.removeChild(sceneRef.current.renderer.domElement);
-        }
-        sceneRef.current.renderer.dispose();
-        geometry.dispose();
-        material.dispose();
-      }
-    };
-  }, []);
+		return () => {
+			window.removeEventListener("resize", onWindowResize);
+			if (sceneRef.current) {
+				cancelAnimationFrame(sceneRef.current.animationId);
+				if (container && sceneRef.current.renderer.domElement) {
+					container.removeChild(sceneRef.current.renderer.domElement);
+				}
+				sceneRef.current.renderer.dispose();
+				geometry.dispose();
+				material.dispose();
+			}
+		};
+	}, []);
 
-  return (
-    <div
-      ref={containerRef}
-      className="absolute top-0 left-0 w-full h-full"
-      style={{
-        background: "#000",
-        overflow: "hidden",
-      }}
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className="absolute top-0 left-0 w-full h-full"
+			style={{
+				background: "#000",
+				overflow: "hidden",
+			}}
+		/>
+	);
 }
 
 export default ShaderAnimation;

@@ -144,7 +144,11 @@ const Preloader = () => {
 	const [runId] = useState(0);
 	const [mounted] = useState(true);
 	const [scale, setScale] = useState(1);
-	const [tri1] = useState<Triangle>({ width: 22.8, height: 24.4, offsetY: 0.2 });
+	const [tri1] = useState<Triangle>({
+		width: 22.8,
+		height: 24.4,
+		offsetY: 0.2,
+	});
 	const [tri2] = useState<Triangle>({
 		width: 26.3,
 		height: 25.51,

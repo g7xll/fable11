@@ -5,10 +5,10 @@ import path from "node:path";
 // shadcn convention: "@" resolves to ./src so imports like
 // "@/components/ui/martrix-shader" work exactly as the component expects.
 export default defineConfig({
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
+	plugins: [react()],
+	resolve: {
+		alias: {
+			"@": path.resolve(__dirname, "./src"),
+		},
+	},
 });

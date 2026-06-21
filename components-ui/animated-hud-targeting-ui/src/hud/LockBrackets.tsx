@@ -53,7 +53,9 @@ export function LockBrackets({ locked, color }: LockBracketsProps) {
 						stroke={color}
 						strokeWidth={locked ? 2.4 : 1.4}
 						strokeLinecap="round"
-						style={{ filter: locked ? `drop-shadow(0 0 6px ${color})` : "none" }}
+						style={{
+							filter: locked ? `drop-shadow(0 0 6px ${color})` : "none",
+						}}
 					/>
 				</motion.svg>
 			))}

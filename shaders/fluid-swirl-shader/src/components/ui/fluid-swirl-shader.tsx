@@ -110,318 +110,338 @@ const fragmentShader = `
 export type HexColor = string;
 
 export interface FluidSwirlProps {
-  /** First / base pigment. Default `#e64d66` (prompt's `colour_1`). */
-  colorOne?: HexColor;
-  /** Second pigment. Default `#4d80e6` (prompt's `colour_2`). */
-  colorTwo?: HexColor;
-  /** Third pigment. Default `#e6cc4d` (prompt's `colour_3`). */
-  colorThree?: HexColor;
-  /** Paint contrast / banding. Default `2.0`. */
-  contrast?: number;
-  /** How tightly the vortex winds (0–1). Default `0.36`. */
-  spinAmount?: number;
-  /** Flow / churn speed. `0` freezes the paint. Default `1.0`. */
-  spinSpeed?: number;
-  /** Pixelisation filter — lower = chunkier blocks. Default `700`. */
-  pixelFilter?: number;
-  /** Field recentre offset. Default `[0, 0]`. */
-  offset?: [number, number];
-  /** Kaleidoscopic polar warp. Default `false`. */
-  polar?: boolean;
-  /** Polar tiling repeat when `polar` is on. Default `2`. */
-  polarRepeat?: number;
-  /** Polar zoom when `polar` is on. Default `1`. */
-  polarZoom?: number;
-  /**
-   * When `true`, the canvas tracks its parent box (via `ResizeObserver`) so it
-   * can sit behind a layout as a full-bleed background. When `false` (default,
-   * matching the pasted component) it fills the viewport via `window` size.
-   */
-  fill?: boolean;
-  /** Multiply spin_rotation by pointer-X like the original demo. Default `true`. */
-  pointerReactive?: boolean;
-  /**
-   * Fires a few times a second with the average luminance of the rendered
-   * field (0–1), sampled directly off the GL framebuffer. Drives live readouts.
-   */
-  onSample?: (luminance: number) => void;
-  className?: string;
-  style?: React.CSSProperties;
+	/** First / base pigment. Default `#e64d66` (prompt's `colour_1`). */
+	colorOne?: HexColor;
+	/** Second pigment. Default `#4d80e6` (prompt's `colour_2`). */
+	colorTwo?: HexColor;
+	/** Third pigment. Default `#e6cc4d` (prompt's `colour_3`). */
+	colorThree?: HexColor;
+	/** Paint contrast / banding. Default `2.0`. */
+	contrast?: number;
+	/** How tightly the vortex winds (0–1). Default `0.36`. */
+	spinAmount?: number;
+	/** Flow / churn speed. `0` freezes the paint. Default `1.0`. */
+	spinSpeed?: number;
+	/** Pixelisation filter — lower = chunkier blocks. Default `700`. */
+	pixelFilter?: number;
+	/** Field recentre offset. Default `[0, 0]`. */
+	offset?: [number, number];
+	/** Kaleidoscopic polar warp. Default `false`. */
+	polar?: boolean;
+	/** Polar tiling repeat when `polar` is on. Default `2`. */
+	polarRepeat?: number;
+	/** Polar zoom when `polar` is on. Default `1`. */
+	polarZoom?: number;
+	/**
+	 * When `true`, the canvas tracks its parent box (via `ResizeObserver`) so it
+	 * can sit behind a layout as a full-bleed background. When `false` (default,
+	 * matching the pasted component) it fills the viewport via `window` size.
+	 */
+	fill?: boolean;
+	/** Multiply spin_rotation by pointer-X like the original demo. Default `true`. */
+	pointerReactive?: boolean;
+	/**
+	 * Fires a few times a second with the average luminance of the rendered
+	 * field (0–1), sampled directly off the GL framebuffer. Drives live readouts.
+	 */
+	onSample?: (luminance: number) => void;
+	className?: string;
+	style?: React.CSSProperties;
 }
 
 /* hex (`#rgb` / `#rrggbb`) → linear-ish [0,1] rgb triplet */
 function hexToRgb(hex: HexColor): [number, number, number] {
-  let h = hex.replace("#", "").trim();
-  if (h.length === 3) {
-    h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
-  }
-  const int = parseInt(h, 16);
-  if (Number.isNaN(int) || h.length !== 6) return [1, 1, 1];
-  return [((int >> 16) & 255) / 255, ((int >> 8) & 255) / 255, (int & 255) / 255];
+	let h = hex.replace("#", "").trim();
+	if (h.length === 3) {
+		h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+	}
+	const int = parseInt(h, 16);
+	if (Number.isNaN(int) || h.length !== 6) return [1, 1, 1];
+	return [
+		((int >> 16) & 255) / 255,
+		((int >> 8) & 255) / 255,
+		(int & 255) / 255,
+	];
 }
 
 export function FluidSwirl({
-  colorOne = "#e64d66",
-  colorTwo = "#4d80e6",
-  colorThree = "#e6cc4d",
-  contrast = 2.0,
-  spinAmount = 0.36,
-  spinSpeed = 1.0,
-  pixelFilter = 700,
-  offset = [0, 0],
-  polar = false,
-  polarRepeat = 2,
-  polarZoom = 1,
-  fill = false,
-  pointerReactive = true,
-  onSample,
-  className = "w-full h-screen",
-  style,
+	colorOne = "#e64d66",
+	colorTwo = "#4d80e6",
+	colorThree = "#e6cc4d",
+	contrast = 2.0,
+	spinAmount = 0.36,
+	spinSpeed = 1.0,
+	pixelFilter = 700,
+	offset = [0, 0],
+	polar = false,
+	polarRepeat = 2,
+	polarZoom = 1,
+	fill = false,
+	pointerReactive = true,
+	onSample,
+	className = "w-full h-screen",
+	style,
 }: FluidSwirlProps = {}) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-  const animationRef = useRef<number>();
-  const startTimeRef = useRef<number>(Date.now());
-  const mouseRef = useRef({ x: 0.5, y: 0.5 });
+	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const animationRef = useRef<number>();
+	const startTimeRef = useRef<number>(Date.now());
+	const mouseRef = useRef({ x: 0.5, y: 0.5 });
 
-  // Keep the live props in a ref so the WebGL loop reads the latest values
-  // without tearing down and rebuilding the GL program on every change.
-  const propsRef = useRef({
-    colorOne,
-    colorTwo,
-    colorThree,
-    contrast,
-    spinAmount,
-    spinSpeed,
-    pixelFilter,
-    offset,
-    polar,
-    polarRepeat,
-    polarZoom,
-    pointerReactive,
-    onSample,
-  });
-  propsRef.current = {
-    colorOne,
-    colorTwo,
-    colorThree,
-    contrast,
-    spinAmount,
-    spinSpeed,
-    pixelFilter,
-    offset,
-    polar,
-    polarRepeat,
-    polarZoom,
-    pointerReactive,
-    onSample,
-  };
+	// Keep the live props in a ref so the WebGL loop reads the latest values
+	// without tearing down and rebuilding the GL program on every change.
+	const propsRef = useRef({
+		colorOne,
+		colorTwo,
+		colorThree,
+		contrast,
+		spinAmount,
+		spinSpeed,
+		pixelFilter,
+		offset,
+		polar,
+		polarRepeat,
+		polarZoom,
+		pointerReactive,
+		onSample,
+	});
+	propsRef.current = {
+		colorOne,
+		colorTwo,
+		colorThree,
+		contrast,
+		spinAmount,
+		spinSpeed,
+		pixelFilter,
+		offset,
+		polar,
+		polarRepeat,
+		polarZoom,
+		pointerReactive,
+		onSample,
+	};
 
-  useEffect(() => {
-    if (!canvasRef.current) return;
+	useEffect(() => {
+		if (!canvasRef.current) return;
 
-    const canvas = canvasRef.current;
-    const gl = canvas.getContext("webgl", {
-      alpha: true,
-      premultipliedAlpha: false,
-      preserveDrawingBuffer: true,
-    });
+		const canvas = canvasRef.current;
+		const gl = canvas.getContext("webgl", {
+			alpha: true,
+			premultipliedAlpha: false,
+			preserveDrawingBuffer: true,
+		});
 
-    if (!gl) {
-      console.error("WebGL not supported");
-      return;
-    }
+		if (!gl) {
+			console.error("WebGL not supported");
+			return;
+		}
 
-    const createShader = (type: number, source: string) => {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
+		const createShader = (type: number, source: string) => {
+			const shader = gl.createShader(type);
+			if (!shader) return null;
 
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
+			gl.shaderSource(shader, source);
+			gl.compileShader(shader);
 
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error("Shader compile error:", gl.getShaderInfoLog(shader));
-        gl.deleteShader(shader);
-        return null;
-      }
+			if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+				console.error("Shader compile error:", gl.getShaderInfoLog(shader));
+				gl.deleteShader(shader);
+				return null;
+			}
 
-      return shader;
-    };
+			return shader;
+		};
 
-    const vShader = createShader(gl.VERTEX_SHADER, vertexShader);
-    const fShader = createShader(gl.FRAGMENT_SHADER, fragmentShader);
+		const vShader = createShader(gl.VERTEX_SHADER, vertexShader);
+		const fShader = createShader(gl.FRAGMENT_SHADER, fragmentShader);
 
-    if (!vShader || !fShader) return;
+		if (!vShader || !fShader) return;
 
-    const program = gl.createProgram();
-    if (!program) return;
+		const program = gl.createProgram();
+		if (!program) return;
 
-    gl.attachShader(program, vShader);
-    gl.attachShader(program, fShader);
-    gl.linkProgram(program);
+		gl.attachShader(program, vShader);
+		gl.attachShader(program, fShader);
+		gl.linkProgram(program);
 
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error("Program link error:", gl.getProgramInfoLog(program));
-      return;
-    }
+		if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+			console.error("Program link error:", gl.getProgramInfoLog(program));
+			return;
+		}
 
-    const positionLoc = gl.getAttribLocation(program, "position");
-    const resolutionLoc = gl.getUniformLocation(program, "resolution");
-    const timeLoc = gl.getUniformLocation(program, "time");
-    const mouseLoc = gl.getUniformLocation(program, "mouse");
+		const positionLoc = gl.getAttribLocation(program, "position");
+		const resolutionLoc = gl.getUniformLocation(program, "resolution");
+		const timeLoc = gl.getUniformLocation(program, "time");
+		const mouseLoc = gl.getUniformLocation(program, "mouse");
 
-    const polarCoordinatesLoc = gl.getUniformLocation(program, "polar_coordinates");
-    const polarCenterLoc = gl.getUniformLocation(program, "polar_center");
-    const polarZoomLoc = gl.getUniformLocation(program, "polar_zoom");
-    const polarRepeatLoc = gl.getUniformLocation(program, "polar_repeat");
-    const spinRotationLoc = gl.getUniformLocation(program, "spin_rotation");
-    const spinSpeedLoc = gl.getUniformLocation(program, "spin_speed");
-    const offsetLoc = gl.getUniformLocation(program, "offset");
-    const colour1Loc = gl.getUniformLocation(program, "colour_1");
-    const colour2Loc = gl.getUniformLocation(program, "colour_2");
-    const colour3Loc = gl.getUniformLocation(program, "colour_3");
-    const contrastLoc = gl.getUniformLocation(program, "contrast");
-    const spinAmountLoc = gl.getUniformLocation(program, "spin_amount");
-    const pixelFilterLoc = gl.getUniformLocation(program, "pixel_filter");
+		const polarCoordinatesLoc = gl.getUniformLocation(
+			program,
+			"polar_coordinates",
+		);
+		const polarCenterLoc = gl.getUniformLocation(program, "polar_center");
+		const polarZoomLoc = gl.getUniformLocation(program, "polar_zoom");
+		const polarRepeatLoc = gl.getUniformLocation(program, "polar_repeat");
+		const spinRotationLoc = gl.getUniformLocation(program, "spin_rotation");
+		const spinSpeedLoc = gl.getUniformLocation(program, "spin_speed");
+		const offsetLoc = gl.getUniformLocation(program, "offset");
+		const colour1Loc = gl.getUniformLocation(program, "colour_1");
+		const colour2Loc = gl.getUniformLocation(program, "colour_2");
+		const colour3Loc = gl.getUniformLocation(program, "colour_3");
+		const contrastLoc = gl.getUniformLocation(program, "contrast");
+		const spinAmountLoc = gl.getUniformLocation(program, "spin_amount");
+		const pixelFilterLoc = gl.getUniformLocation(program, "pixel_filter");
 
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+		const buffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		const vertices = new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]);
+		gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
 
-    // ----- sizing: parent box (fill) or viewport (default, like the prompt) ---
-    const resize = () => {
-      const dpr = window.devicePixelRatio || 1;
-      const w = fill ? canvas.clientWidth || window.innerWidth : window.innerWidth;
-      const h = fill ? canvas.clientHeight || window.innerHeight : window.innerHeight;
-      canvas.width = Math.max(1, Math.floor(w * dpr));
-      canvas.height = Math.max(1, Math.floor(h * dpr));
-      if (!fill) {
-        canvas.style.width = window.innerWidth + "px";
-        canvas.style.height = window.innerHeight + "px";
-      }
-      gl.viewport(0, 0, canvas.width, canvas.height);
-    };
+		// ----- sizing: parent box (fill) or viewport (default, like the prompt) ---
+		const resize = () => {
+			const dpr = window.devicePixelRatio || 1;
+			const w = fill
+				? canvas.clientWidth || window.innerWidth
+				: window.innerWidth;
+			const h = fill
+				? canvas.clientHeight || window.innerHeight
+				: window.innerHeight;
+			canvas.width = Math.max(1, Math.floor(w * dpr));
+			canvas.height = Math.max(1, Math.floor(h * dpr));
+			if (!fill) {
+				canvas.style.width = window.innerWidth + "px";
+				canvas.style.height = window.innerHeight + "px";
+			}
+			gl.viewport(0, 0, canvas.width, canvas.height);
+		};
 
-    const handleMouseMove = (e: MouseEvent | TouchEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      let x, y;
+		const handleMouseMove = (e: MouseEvent | TouchEvent) => {
+			const rect = canvas.getBoundingClientRect();
+			let x, y;
 
-      if ("touches" in e && e.touches.length) {
-        x = e.touches[0].clientX;
-        y = e.touches[0].clientY;
-      } else if ("clientX" in e) {
-        x = e.clientX;
-        y = e.clientY;
-      } else {
-        return;
-      }
+			if ("touches" in e && e.touches.length) {
+				x = e.touches[0].clientX;
+				y = e.touches[0].clientY;
+			} else if ("clientX" in e) {
+				x = e.clientX;
+				y = e.clientY;
+			} else {
+				return;
+			}
 
-      mouseRef.current.x = (x - rect.left) / rect.width;
-      mouseRef.current.y = 1.0 - (y - rect.top) / rect.height;
-    };
+			mouseRef.current.x = (x - rect.left) / rect.width;
+			mouseRef.current.y = 1.0 - (y - rect.top) / rect.height;
+		};
 
-    // ----- luminance probe: average framebuffer brightness, throttled ---------
-    let lastSample = 0;
-    const sampleW = 32;
-    const sampleH = 32;
-    const samplePixels = new Uint8Array(sampleW * sampleH * 4);
-    const readLuminance = (now: number) => {
-      const cb = propsRef.current.onSample;
-      if (!cb || now - lastSample < 200) return;
-      lastSample = now;
-      gl.readPixels(0, 0, sampleW, sampleH, gl.RGBA, gl.UNSIGNED_BYTE, samplePixels);
-      let sum = 0;
-      for (let i = 0; i < samplePixels.length; i += 4) {
-        // Rec. 601 luma of the sampled block.
-        sum +=
-          (0.299 * samplePixels[i] +
-            0.587 * samplePixels[i + 1] +
-            0.114 * samplePixels[i + 2]) /
-          255;
-      }
-      cb(sum / (sampleW * sampleH));
-    };
+		// ----- luminance probe: average framebuffer brightness, throttled ---------
+		let lastSample = 0;
+		const sampleW = 32;
+		const sampleH = 32;
+		const samplePixels = new Uint8Array(sampleW * sampleH * 4);
+		const readLuminance = (now: number) => {
+			const cb = propsRef.current.onSample;
+			if (!cb || now - lastSample < 200) return;
+			lastSample = now;
+			gl.readPixels(
+				0,
+				0,
+				sampleW,
+				sampleH,
+				gl.RGBA,
+				gl.UNSIGNED_BYTE,
+				samplePixels,
+			);
+			let sum = 0;
+			for (let i = 0; i < samplePixels.length; i += 4) {
+				// Rec. 601 luma of the sampled block.
+				sum +=
+					(0.299 * samplePixels[i] +
+						0.587 * samplePixels[i + 1] +
+						0.114 * samplePixels[i + 2]) /
+					255;
+			}
+			cb(sum / (sampleW * sampleH));
+		};
 
-    const render = () => {
-      const p = propsRef.current;
-      const currentTime = (Date.now() - startTimeRef.current) / 1000;
-      const now = performance.now();
+		const render = () => {
+			const p = propsRef.current;
+			const currentTime = (Date.now() - startTimeRef.current) / 1000;
+			const now = performance.now();
 
-      gl.useProgram(program);
+			gl.useProgram(program);
 
-      gl.uniform2f(resolutionLoc, canvas.width, canvas.height);
-      gl.uniform1f(timeLoc, currentTime);
-      gl.uniform2f(mouseLoc, mouseRef.current.x, mouseRef.current.y);
+			gl.uniform2f(resolutionLoc, canvas.width, canvas.height);
+			gl.uniform1f(timeLoc, currentTime);
+			gl.uniform2f(mouseLoc, mouseRef.current.x, mouseRef.current.y);
 
-      gl.uniform1i(polarCoordinatesLoc, p.polar ? 1 : 0);
-      gl.uniform2f(polarCenterLoc, 0.5, 0.5);
-      gl.uniform1f(polarZoomLoc, p.polarZoom);
-      gl.uniform1f(polarRepeatLoc, p.polarRepeat);
+			gl.uniform1i(polarCoordinatesLoc, p.polar ? 1 : 0);
+			gl.uniform2f(polarCenterLoc, 0.5, 0.5);
+			gl.uniform1f(polarZoomLoc, p.polarZoom);
+			gl.uniform1f(polarRepeatLoc, p.polarRepeat);
 
-      const spinRotation =
-        currentTime * 0.5 + (p.pointerReactive ? mouseRef.current.x * Math.PI : 0);
-      gl.uniform1f(spinRotationLoc, spinRotation);
-      gl.uniform1f(spinSpeedLoc, p.spinSpeed);
-      gl.uniform2f(offsetLoc, p.offset[0], p.offset[1]);
+			const spinRotation =
+				currentTime * 0.5 +
+				(p.pointerReactive ? mouseRef.current.x * Math.PI : 0);
+			gl.uniform1f(spinRotationLoc, spinRotation);
+			gl.uniform1f(spinSpeedLoc, p.spinSpeed);
+			gl.uniform2f(offsetLoc, p.offset[0], p.offset[1]);
 
-      gl.uniform3fv(colour1Loc, hexToRgb(p.colorOne));
-      gl.uniform3fv(colour2Loc, hexToRgb(p.colorTwo));
-      gl.uniform3fv(colour3Loc, hexToRgb(p.colorThree));
+			gl.uniform3fv(colour1Loc, hexToRgb(p.colorOne));
+			gl.uniform3fv(colour2Loc, hexToRgb(p.colorTwo));
+			gl.uniform3fv(colour3Loc, hexToRgb(p.colorThree));
 
-      gl.uniform1f(contrastLoc, p.contrast);
-      gl.uniform1f(spinAmountLoc, p.spinAmount);
-      gl.uniform1f(pixelFilterLoc, p.pixelFilter);
+			gl.uniform1f(contrastLoc, p.contrast);
+			gl.uniform1f(spinAmountLoc, p.spinAmount);
+			gl.uniform1f(pixelFilterLoc, p.pixelFilter);
 
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.enableVertexAttribArray(positionLoc);
-      gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+			gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+			gl.enableVertexAttribArray(positionLoc);
+			gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
 
-      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+			gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
 
-      readLuminance(now);
+			readLuminance(now);
 
-      animationRef.current = requestAnimationFrame(render);
-    };
+			animationRef.current = requestAnimationFrame(render);
+		};
 
-    resize();
+		resize();
 
-    // Track the parent box in fill mode; track the window otherwise.
-    let ro: ResizeObserver | undefined;
-    if (fill && typeof ResizeObserver !== "undefined") {
-      ro = new ResizeObserver(resize);
-      ro.observe(canvas);
-    }
-    window.addEventListener("resize", resize);
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchstart", handleMouseMove, { passive: true });
-    window.addEventListener("touchmove", handleMouseMove, { passive: true });
+		// Track the parent box in fill mode; track the window otherwise.
+		let ro: ResizeObserver | undefined;
+		if (fill && typeof ResizeObserver !== "undefined") {
+			ro = new ResizeObserver(resize);
+			ro.observe(canvas);
+		}
+		window.addEventListener("resize", resize);
+		window.addEventListener("mousemove", handleMouseMove);
+		window.addEventListener("touchstart", handleMouseMove, { passive: true });
+		window.addEventListener("touchmove", handleMouseMove, { passive: true });
 
-    render();
+		render();
 
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-      ro?.disconnect();
-      window.removeEventListener("resize", resize);
-      window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchstart", handleMouseMove);
-      window.removeEventListener("touchmove", handleMouseMove);
+		return () => {
+			if (animationRef.current) {
+				cancelAnimationFrame(animationRef.current);
+			}
+			ro?.disconnect();
+			window.removeEventListener("resize", resize);
+			window.removeEventListener("mousemove", handleMouseMove);
+			window.removeEventListener("touchstart", handleMouseMove);
+			window.removeEventListener("touchmove", handleMouseMove);
 
-      gl.deleteProgram(program);
-      gl.deleteShader(vShader);
-      gl.deleteShader(fShader);
-      gl.deleteBuffer(buffer);
-    };
-    // Rebuild GL only when sizing strategy changes; all other props are read
-    // live from propsRef inside the loop.
-  }, [fill]);
+			gl.deleteProgram(program);
+			gl.deleteShader(vShader);
+			gl.deleteShader(fShader);
+			gl.deleteBuffer(buffer);
+		};
+		// Rebuild GL only when sizing strategy changes; all other props are read
+		// live from propsRef inside the loop.
+	}, [fill]);
 
-  return (
-    <canvas
-      ref={canvasRef}
-      className={className}
-      style={{ touchAction: "none", display: "block", ...style }}
-    />
-  );
+	return (
+		<canvas
+			ref={canvasRef}
+			className={className}
+			style={{ touchAction: "none", display: "block", ...style }}
+		/>
+	);
 }

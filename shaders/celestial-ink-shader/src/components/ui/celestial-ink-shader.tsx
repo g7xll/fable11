@@ -24,76 +24,76 @@ import * as THREE from "three";
  */
 
 export interface InkFrame {
-  /** Elapsed shader clock time in seconds (honours freeze). */
-  time: number;
-  /** Current rotation angle of the ink field, in radians. */
-  angle: number;
-  /** Pointer position normalised to the shader's -1..1 short-side space. */
-  ripple: { x: number; y: number };
-  /** Smoothed frames-per-second of the render loop. */
-  fps: number;
+	/** Elapsed shader clock time in seconds (honours freeze). */
+	time: number;
+	/** Current rotation angle of the ink field, in radians. */
+	angle: number;
+	/** Pointer position normalised to the shader's -1..1 short-side space. */
+	ripple: { x: number; y: number };
+	/** Smoothed frames-per-second of the render loop. */
+	fps: number;
 }
 
 export interface CelestialInkShaderProps {
-  /** When true the ink clock stops advancing; the field holds in place. */
-  freeze?: boolean;
-  /** Multiplier on the ink's drift/rotation speed (1 = brief default). */
-  inkSpeed?: number;
-  /** Multiplier on the pointer ripple strength (1 = brief default). */
-  rippleGain?: number;
-  /** Per-frame telemetry from inside the render loop. */
-  onFrame?: (frame: InkFrame) => void;
-  /** Extra classes for the host element (defaults to the brief's fixed bg). */
-  className?: string;
-  /** Override the brief's fixed inline layout (e.g. to inset it in a frame). */
-  fill?: boolean;
+	/** When true the ink clock stops advancing; the field holds in place. */
+	freeze?: boolean;
+	/** Multiplier on the ink's drift/rotation speed (1 = brief default). */
+	inkSpeed?: number;
+	/** Multiplier on the pointer ripple strength (1 = brief default). */
+	rippleGain?: number;
+	/** Per-frame telemetry from inside the render loop. */
+	onFrame?: (frame: InkFrame) => void;
+	/** Extra classes for the host element (defaults to the brief's fixed bg). */
+	className?: string;
+	/** Override the brief's fixed inline layout (e.g. to inset it in a frame). */
+	fill?: boolean;
 }
 
 const CelestialInkShader: React.FC<CelestialInkShaderProps> = ({
-  freeze = false,
-  inkSpeed = 1,
-  rippleGain = 1,
-  onFrame,
-  className,
-  fill = false,
+	freeze = false,
+	inkSpeed = 1,
+	rippleGain = 1,
+	onFrame,
+	className,
+	fill = false,
 }) => {
-  const containerRef = useRef<HTMLDivElement>(null);
+	const containerRef = useRef<HTMLDivElement>(null);
 
-  // Props are read inside a single long-lived effect via refs so changing them
-  // never tears down / re-creates the WebGL context.
-  const freezeRef = useRef(freeze);
-  const speedRef = useRef(inkSpeed);
-  const gainRef = useRef(rippleGain);
-  const onFrameRef = useRef(onFrame);
-  freezeRef.current = freeze;
-  speedRef.current = inkSpeed;
-  gainRef.current = rippleGain;
-  onFrameRef.current = onFrame;
+	// Props are read inside a single long-lived effect via refs so changing them
+	// never tears down / re-creates the WebGL context.
+	const freezeRef = useRef(freeze);
+	const speedRef = useRef(inkSpeed);
+	const gainRef = useRef(rippleGain);
+	const onFrameRef = useRef(onFrame);
+	freezeRef.current = freeze;
+	speedRef.current = inkSpeed;
+	gainRef.current = rippleGain;
+	onFrameRef.current = onFrame;
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+	useEffect(() => {
+		const container = containerRef.current;
+		if (!container) return;
 
-    // 1) Renderer, Scene, Camera, Clock
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
-    renderer.domElement.style.display = "block";
-    renderer.domElement.style.width = "100%";
-    renderer.domElement.style.height = "100%";
+		// 1) Renderer, Scene, Camera, Clock
+		const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		container.appendChild(renderer.domElement);
+		renderer.domElement.style.display = "block";
+		renderer.domElement.style.width = "100%";
+		renderer.domElement.style.height = "100%";
 
-    const scene = new THREE.Scene();
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    const clock = new THREE.Clock();
+		const scene = new THREE.Scene();
+		const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+		const clock = new THREE.Clock();
 
-    // 2) GLSL Shaders — preserved from the integration brief.
-    const vertexShader = /* glsl */ `
+		// 2) GLSL Shaders — preserved from the integration brief.
+		const vertexShader = /* glsl */ `
       void main() {
         gl_Position = vec4(position, 1.0);
       }
     `;
 
-    const fragmentShader = /* glsl */ `
+		const fragmentShader = /* glsl */ `
       precision highp float;
       uniform vec2 iResolution;
       uniform float iTime;
@@ -160,115 +160,116 @@ const CelestialInkShader: React.FC<CelestialInkShaderProps> = ({
       }
     `;
 
-    // 3) Uniforms, Material, Geometry, Mesh
-    const uniforms = {
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector2() },
-      iMouse: {
-        value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
-      },
-      iSpeed: { value: speedRef.current },
-      iRippleGain: { value: gainRef.current },
-    };
+		// 3) Uniforms, Material, Geometry, Mesh
+		const uniforms = {
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector2() },
+			iMouse: {
+				value: new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2),
+			},
+			iSpeed: { value: speedRef.current },
+			iRippleGain: { value: gainRef.current },
+		};
 
-    const material = new THREE.ShaderMaterial({
-      vertexShader,
-      fragmentShader,
-      uniforms,
-    });
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
+		const material = new THREE.ShaderMaterial({
+			vertexShader,
+			fragmentShader,
+			uniforms,
+		});
+		const geometry = new THREE.PlaneGeometry(2, 2);
+		const mesh = new THREE.Mesh(geometry, material);
+		scene.add(mesh);
 
-    // 4) Resize handler
-    const onResize = () => {
-      const width = container.clientWidth || window.innerWidth;
-      const height = container.clientHeight || window.innerHeight;
-      renderer.setSize(width, height);
-      uniforms.iResolution.value.set(
-        width * renderer.getPixelRatio(),
-        height * renderer.getPixelRatio(),
-      );
-    };
-    window.addEventListener("resize", onResize);
-    onResize();
+		// 4) Resize handler
+		const onResize = () => {
+			const width = container.clientWidth || window.innerWidth;
+			const height = container.clientHeight || window.innerHeight;
+			renderer.setSize(width, height);
+			uniforms.iResolution.value.set(
+				width * renderer.getPixelRatio(),
+				height * renderer.getPixelRatio(),
+			);
+		};
+		window.addEventListener("resize", onResize);
+		onResize();
 
-    // 5) Mouse handler — track the pointer relative to the host element so the
-    //    ripple sits under the cursor even when the shader is inset in a frame.
-    const onMouseMove = (e: MouseEvent) => {
-      const rect = container.getBoundingClientRect();
-      const x = (e.clientX - rect.left) * renderer.getPixelRatio();
-      const y = (rect.height - (e.clientY - rect.top)) * renderer.getPixelRatio();
-      uniforms.iMouse.value.set(x, y);
-    };
-    window.addEventListener("mousemove", onMouseMove);
+		// 5) Mouse handler — track the pointer relative to the host element so the
+		//    ripple sits under the cursor even when the shader is inset in a frame.
+		const onMouseMove = (e: MouseEvent) => {
+			const rect = container.getBoundingClientRect();
+			const x = (e.clientX - rect.left) * renderer.getPixelRatio();
+			const y =
+				(rect.height - (e.clientY - rect.top)) * renderer.getPixelRatio();
+			uniforms.iMouse.value.set(x, y);
+		};
+		window.addEventListener("mousemove", onMouseMove);
 
-    // 6) Animation loop — advances a freeze-aware clock and streams telemetry.
-    let inkTime = 0;
-    let last = performance.now();
-    let fps = 60;
-    renderer.setAnimationLoop(() => {
-      const delta = clock.getDelta();
-      if (!freezeRef.current) inkTime += delta;
+		// 6) Animation loop — advances a freeze-aware clock and streams telemetry.
+		let inkTime = 0;
+		let last = performance.now();
+		let fps = 60;
+		renderer.setAnimationLoop(() => {
+			const delta = clock.getDelta();
+			if (!freezeRef.current) inkTime += delta;
 
-      uniforms.iTime.value = inkTime;
-      uniforms.iSpeed.value = speedRef.current;
-      uniforms.iRippleGain.value = gainRef.current;
-      renderer.render(scene, camera);
+			uniforms.iTime.value = inkTime;
+			uniforms.iSpeed.value = speedRef.current;
+			uniforms.iRippleGain.value = gainRef.current;
+			renderer.render(scene, camera);
 
-      const nowMs = performance.now();
-      const frameMs = nowMs - last;
-      last = nowMs;
-      if (frameMs > 0) fps += ((1000 / frameMs) - fps) * 0.1;
+			const nowMs = performance.now();
+			const frameMs = nowMs - last;
+			last = nowMs;
+			if (frameMs > 0) fps += (1000 / frameMs - fps) * 0.1;
 
-      const cb = onFrameRef.current;
-      if (cb) {
-        const res = uniforms.iResolution.value;
-        const mouse = uniforms.iMouse.value;
-        const rx = res.y > 0 ? (mouse.x - 0.5 * res.x) / res.y : 0;
-        const ry = res.y > 0 ? (mouse.y - 0.5 * res.y) / res.y : 0;
-        const t = inkTime * 0.1 * speedRef.current;
-        cb({ time: inkTime, angle: t * 0.5, ripple: { x: rx, y: ry }, fps });
-      }
-    });
+			const cb = onFrameRef.current;
+			if (cb) {
+				const res = uniforms.iResolution.value;
+				const mouse = uniforms.iMouse.value;
+				const rx = res.y > 0 ? (mouse.x - 0.5 * res.x) / res.y : 0;
+				const ry = res.y > 0 ? (mouse.y - 0.5 * res.y) / res.y : 0;
+				const t = inkTime * 0.1 * speedRef.current;
+				cb({ time: inkTime, angle: t * 0.5, ripple: { x: rx, y: ry }, fps });
+			}
+		});
 
-    // 7) Cleanup
-    return () => {
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("mousemove", onMouseMove);
-      renderer.setAnimationLoop(null);
+		// 7) Cleanup
+		return () => {
+			window.removeEventListener("resize", onResize);
+			window.removeEventListener("mousemove", onMouseMove);
+			renderer.setAnimationLoop(null);
 
-      const canvas = renderer.domElement;
-      if (canvas && canvas.parentNode) {
-        canvas.parentNode.removeChild(canvas);
-      }
+			const canvas = renderer.domElement;
+			if (canvas && canvas.parentNode) {
+				canvas.parentNode.removeChild(canvas);
+			}
 
-      material.dispose();
-      geometry.dispose();
-      renderer.dispose();
-    };
-  }, []);
+			material.dispose();
+			geometry.dispose();
+			renderer.dispose();
+		};
+	}, []);
 
-  // Default (no `fill`) matches the brief exactly: a fixed full-viewport,
-  // pointer-transparent background sitting behind the page.
-  const briefStyle: React.CSSProperties = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100vw",
-    height: "100vh",
-    zIndex: -1,
-    pointerEvents: "none",
-  };
+	// Default (no `fill`) matches the brief exactly: a fixed full-viewport,
+	// pointer-transparent background sitting behind the page.
+	const briefStyle: React.CSSProperties = {
+		position: "fixed",
+		top: 0,
+		left: 0,
+		width: "100vw",
+		height: "100vh",
+		zIndex: -1,
+		pointerEvents: "none",
+	};
 
-  return (
-    <div
-      ref={containerRef}
-      className={className}
-      style={fill ? undefined : briefStyle}
-      aria-label="Celestial Ink animated background"
-    />
-  );
+	return (
+		<div
+			ref={containerRef}
+			className={className}
+			style={fill ? undefined : briefStyle}
+			aria-label="Celestial Ink animated background"
+		/>
+	);
 };
 
 export default CelestialInkShader;

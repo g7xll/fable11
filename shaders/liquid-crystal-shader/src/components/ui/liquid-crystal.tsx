@@ -15,295 +15,340 @@ import React, { useRef, useEffect } from "react";
 
 /** The six uniforms exposed as controllable shader parameters. */
 export interface ShaderParams {
-  /** Base birefringence hue, 0–360°. */
-  hue: number;
-  /** Time multiplier for the animation, 0–2. */
-  speed: number;
-  /** Amount of high-frequency detail mixed into the bands, 0–1. */
-  noise: number;
-  /** How far the mouse displaces the field, 0–0.5. */
-  warp: number;
-  /** Field of view of the specimen, 0.5–5. */
-  zoom: number;
-  /** Output gain, 0.1–2. */
-  brightness: number;
+	/** Base birefringence hue, 0–360°. */
+	hue: number;
+	/** Time multiplier for the animation, 0–2. */
+	speed: number;
+	/** Amount of high-frequency detail mixed into the bands, 0–1. */
+	noise: number;
+	/** How far the mouse displaces the field, 0–0.5. */
+	warp: number;
+	/** Field of view of the specimen, 0.5–5. */
+	zoom: number;
+	/** Output gain, 0.1–2. */
+	brightness: number;
 }
 
 /** Per-frame telemetry emitted by the render loop. */
 export interface ShaderFrame {
-  /** Shader clock in seconds (already scaled by `speed`). */
-  time: number;
-  /** Smoothed frames per second. */
-  fps: number;
-  /** Normalized mouse-warp center, each component in [0, 1]. */
-  mouse: { x: number; y: number };
+	/** Shader clock in seconds (already scaled by `speed`). */
+	time: number;
+	/** Smoothed frames per second. */
+	fps: number;
+	/** Normalized mouse-warp center, each component in [0, 1]. */
+	mouse: { x: number; y: number };
 }
 
 export interface InteractiveShaderProps extends ShaderParams {
-  /** Optional callback invoked once per animation frame with live state. */
-  onFrame?: (frame: ShaderFrame) => void;
+	/** Optional callback invoked once per animation frame with live state. */
+	onFrame?: (frame: ShaderFrame) => void;
 }
 
 export interface ControlsPanelProps {
-  params: ShaderParams;
-  /** Curried change handler: `onParamChange("hue")` returns an input handler. */
-  onParamChange: (
-    key: keyof ShaderParams,
-  ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+	params: ShaderParams;
+	/** Curried change handler: `onParamChange("hue")` returns an input handler. */
+	onParamChange: (
+		key: keyof ShaderParams,
+	) => (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 // --- Internal WebGL state ----------------------------------------------------
 
 type UniformLocations = Record<
-  | "iTime"
-  | "iResolution"
-  | "iMouse"
-  | "uHue"
-  | "uNoise"
-  | "uWarp"
-  | "uZoom"
-  | "uBrightness",
-  WebGLUniformLocation | null
+	| "iTime"
+	| "iResolution"
+	| "iMouse"
+	| "uHue"
+	| "uNoise"
+	| "uWarp"
+	| "uZoom"
+	| "uBrightness",
+	WebGLUniformLocation | null
 >;
 
 interface WebGLState {
-  gl: WebGLRenderingContext;
-  program: WebGLProgram;
-  uniformLocations: UniformLocations;
-  vertexBuffer: WebGLBuffer | null;
+	gl: WebGLRenderingContext;
+	program: WebGLProgram;
+	uniformLocations: UniformLocations;
+	vertexBuffer: WebGLBuffer | null;
 }
 
 // --- Custom Hook for Raw WebGL Management ---
 // This hook encapsulates all WebGL setup, state management, and the animation loop.
 const useWebGLShader = (
-  canvasRef: React.RefObject<HTMLCanvasElement>,
-  fragmentShader: string,
-  props: InteractiveShaderProps,
+	canvasRef: React.RefObject<HTMLCanvasElement>,
+	fragmentShader: string,
+	props: InteractiveShaderProps,
 ) => {
-  const webglState = useRef<WebGLState | null>(null);
-  const mousePos = useRef({ x: 0.5, y: 0.5 });
-  // Keep the latest props in a ref so the long-lived animation loop always
-  // reads fresh values without being torn down on every slider change.
-  const propsRef = useRef(props);
-  propsRef.current = props;
+	const webglState = useRef<WebGLState | null>(null);
+	const mousePos = useRef({ x: 0.5, y: 0.5 });
+	// Keep the latest props in a ref so the long-lived animation loop always
+	// reads fresh values without being torn down on every slider change.
+	const propsRef = useRef(props);
+	propsRef.current = props;
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
 
-    const gl = canvas.getContext("webgl", { antialias: true });
-    if (!gl) {
-      console.error("WebGL is not supported in this browser.");
-      return;
-    }
+		const gl = canvas.getContext("webgl", { antialias: true });
+		if (!gl) {
+			console.error("WebGL is not supported in this browser.");
+			return;
+		}
 
-    const vertexShaderSource = `
+		const vertexShaderSource = `
       attribute vec2 position;
       void main() {
         gl_Position = vec4(position, 0.0, 1.0);
       }
     `;
 
-    const compileShader = (source: string, type: number) => {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error(
-          "An error occurred compiling the shaders: " +
-            gl.getShaderInfoLog(shader),
-        );
-        gl.deleteShader(shader);
-        return null;
-      }
-      return shader;
-    };
+		const compileShader = (source: string, type: number) => {
+			const shader = gl.createShader(type);
+			if (!shader) return null;
+			gl.shaderSource(shader, source);
+			gl.compileShader(shader);
+			if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+				console.error(
+					"An error occurred compiling the shaders: " +
+						gl.getShaderInfoLog(shader),
+				);
+				gl.deleteShader(shader);
+				return null;
+			}
+			return shader;
+		};
 
-    const vertexShader = compileShader(vertexShaderSource, gl.VERTEX_SHADER);
-    const fragShader = compileShader(fragmentShader, gl.FRAGMENT_SHADER);
-    if (!vertexShader || !fragShader) return;
+		const vertexShader = compileShader(vertexShaderSource, gl.VERTEX_SHADER);
+		const fragShader = compileShader(fragmentShader, gl.FRAGMENT_SHADER);
+		if (!vertexShader || !fragShader) return;
 
-    const program = gl.createProgram();
-    if (!program) return;
-    gl.attachShader(program, vertexShader);
-    gl.attachShader(program, fragShader);
-    gl.linkProgram(program);
+		const program = gl.createProgram();
+		if (!program) return;
+		gl.attachShader(program, vertexShader);
+		gl.attachShader(program, fragShader);
+		gl.linkProgram(program);
 
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-      console.error(
-        "Unable to initialize the shader program: " +
-          gl.getProgramInfoLog(program),
-      );
-      return;
-    }
-    gl.useProgram(program);
+		if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+			console.error(
+				"Unable to initialize the shader program: " +
+					gl.getProgramInfoLog(program),
+			);
+			return;
+		}
+		gl.useProgram(program);
 
-    const vertices = new Float32Array([
-      -1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1,
-    ]);
-    const vertexBuffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
-    gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
-    const positionAttributeLocation = gl.getAttribLocation(program, "position");
-    gl.enableVertexAttribArray(positionAttributeLocation);
-    gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
+		const vertices = new Float32Array([
+			-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1,
+		]);
+		const vertexBuffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+		gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+		const positionAttributeLocation = gl.getAttribLocation(program, "position");
+		gl.enableVertexAttribArray(positionAttributeLocation);
+		gl.vertexAttribPointer(positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 
-    const uniformLocations: UniformLocations = {
-      iTime: gl.getUniformLocation(program, "iTime"),
-      iResolution: gl.getUniformLocation(program, "iResolution"),
-      iMouse: gl.getUniformLocation(program, "iMouse"),
-      uHue: gl.getUniformLocation(program, "uHue"),
-      uNoise: gl.getUniformLocation(program, "uNoise"),
-      uWarp: gl.getUniformLocation(program, "uWarp"),
-      uZoom: gl.getUniformLocation(program, "uZoom"),
-      uBrightness: gl.getUniformLocation(program, "uBrightness"),
-    };
+		const uniformLocations: UniformLocations = {
+			iTime: gl.getUniformLocation(program, "iTime"),
+			iResolution: gl.getUniformLocation(program, "iResolution"),
+			iMouse: gl.getUniformLocation(program, "iMouse"),
+			uHue: gl.getUniformLocation(program, "uHue"),
+			uNoise: gl.getUniformLocation(program, "uNoise"),
+			uWarp: gl.getUniformLocation(program, "uWarp"),
+			uZoom: gl.getUniformLocation(program, "uZoom"),
+			uBrightness: gl.getUniformLocation(program, "uBrightness"),
+		};
 
-    webglState.current = { gl, program, uniformLocations, vertexBuffer };
+		webglState.current = { gl, program, uniformLocations, vertexBuffer };
 
-    return () => {
-      if (gl && !gl.isContextLost()) {
-        gl.deleteProgram(program);
-        gl.deleteShader(vertexShader);
-        gl.deleteShader(fragShader);
-        gl.deleteBuffer(vertexBuffer);
-      }
-      webglState.current = null;
-    };
-  }, [canvasRef, fragmentShader]);
+		return () => {
+			if (gl && !gl.isContextLost()) {
+				gl.deleteProgram(program);
+				gl.deleteShader(vertexShader);
+				gl.deleteShader(fragShader);
+				gl.deleteBuffer(vertexBuffer);
+			}
+			webglState.current = null;
+		};
+	}, [canvasRef, fragmentShader]);
 
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      mousePos.current = {
-        x: (e.clientX - rect.left) / rect.width,
-        y: 1.0 - (e.clientY - rect.top) / rect.height,
-      };
-    };
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
-  }, [canvasRef]);
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			const canvas = canvasRef.current;
+			if (!canvas) return;
+			const rect = canvas.getBoundingClientRect();
+			mousePos.current = {
+				x: (e.clientX - rect.left) / rect.width,
+				y: 1.0 - (e.clientY - rect.top) / rect.height,
+			};
+		};
+		window.addEventListener("mousemove", handleMouseMove);
+		return () => window.removeEventListener("mousemove", handleMouseMove);
+	}, [canvasRef]);
 
-  useEffect(() => {
-    if (!webglState.current) return;
+	useEffect(() => {
+		if (!webglState.current) return;
 
-    const { gl, uniformLocations } = webglState.current;
-    const startTime = performance.now();
-    let animationFrameId: number;
+		const { gl, uniformLocations } = webglState.current;
+		const startTime = performance.now();
+		let animationFrameId: number;
 
-    // Smoothed FPS tracking for telemetry.
-    let lastFrame = startTime;
-    let fps = 0;
+		// Smoothed FPS tracking for telemetry.
+		let lastFrame = startTime;
+		let fps = 0;
 
-    const handleResize = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
-      gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.uniform2f(uniformLocations.iResolution, canvas.width, canvas.height);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
+		const handleResize = () => {
+			const canvas = canvasRef.current;
+			if (!canvas) return;
+			canvas.width = canvas.clientWidth;
+			canvas.height = canvas.clientHeight;
+			gl.viewport(0, 0, canvas.width, canvas.height);
+			gl.uniform2f(uniformLocations.iResolution, canvas.width, canvas.height);
+		};
+		window.addEventListener("resize", handleResize);
+		handleResize();
 
-    const animate = () => {
-      const now = performance.now();
-      const props = propsRef.current;
-      const time = ((now - startTime) / 1000.0) * props.speed;
+		const animate = () => {
+			const now = performance.now();
+			const props = propsRef.current;
+			const time = ((now - startTime) / 1000.0) * props.speed;
 
-      const dt = now - lastFrame;
-      lastFrame = now;
-      if (dt > 0) fps = fps === 0 ? 1000 / dt : fps * 0.9 + (1000 / dt) * 0.1;
+			const dt = now - lastFrame;
+			lastFrame = now;
+			if (dt > 0) fps = fps === 0 ? 1000 / dt : fps * 0.9 + (1000 / dt) * 0.1;
 
-      gl.uniform1f(uniformLocations.iTime, time);
-      gl.uniform2f(
-        uniformLocations.iMouse,
-        mousePos.current.x,
-        mousePos.current.y,
-      );
-      gl.uniform1f(uniformLocations.uHue, props.hue);
-      gl.uniform1f(uniformLocations.uNoise, props.noise);
-      gl.uniform1f(uniformLocations.uWarp, props.warp);
-      gl.uniform1f(uniformLocations.uZoom, props.zoom);
-      gl.uniform1f(uniformLocations.uBrightness, props.brightness);
+			gl.uniform1f(uniformLocations.iTime, time);
+			gl.uniform2f(
+				uniformLocations.iMouse,
+				mousePos.current.x,
+				mousePos.current.y,
+			);
+			gl.uniform1f(uniformLocations.uHue, props.hue);
+			gl.uniform1f(uniformLocations.uNoise, props.noise);
+			gl.uniform1f(uniformLocations.uWarp, props.warp);
+			gl.uniform1f(uniformLocations.uZoom, props.zoom);
+			gl.uniform1f(uniformLocations.uBrightness, props.brightness);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-      props.onFrame?.({
-        time,
-        fps,
-        mouse: { x: mousePos.current.x, y: mousePos.current.y },
-      });
+			props.onFrame?.({
+				time,
+				fps,
+				mouse: { x: mousePos.current.x, y: mousePos.current.y },
+			});
 
-      animationFrameId = requestAnimationFrame(animate);
-    };
-    animate();
+			animationFrameId = requestAnimationFrame(animate);
+		};
+		animate();
 
-    return () => {
-      cancelAnimationFrame(animationFrameId);
-      window.removeEventListener("resize", handleResize);
-    };
-    // Run the loop once per WebGL program lifetime; live params come from the ref.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [canvasRef]);
+		return () => {
+			cancelAnimationFrame(animationFrameId);
+			window.removeEventListener("resize", handleResize);
+		};
+		// Run the loop once per WebGL program lifetime; live params come from the ref.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [canvasRef]);
 };
 
 // --- UI Controls Component ---
 type Control = {
-  name: string;
-  key: keyof ShaderParams;
-  min: number;
-  max: number;
-  step: number;
-  value: number;
+	name: string;
+	key: keyof ShaderParams;
+	min: number;
+	max: number;
+	step: number;
+	value: number;
 };
 
-export const ControlsPanel = ({ params, onParamChange }: ControlsPanelProps) => (
-  <div className="absolute top-4 left-4 bg-gray-900/60 backdrop-blur-xl text-white p-6 rounded-2xl shadow-2xl w-[340px] border border-white/10 transition-all duration-300">
-    <h1 className="text-2xl font-bold mb-6 tracking-wider text-white/90">
-      Liquid Crystal
-    </h1>
+export const ControlsPanel = ({
+	params,
+	onParamChange,
+}: ControlsPanelProps) => (
+	<div className="absolute top-4 left-4 bg-gray-900/60 backdrop-blur-xl text-white p-6 rounded-2xl shadow-2xl w-[340px] border border-white/10 transition-all duration-300">
+		<h1 className="text-2xl font-bold mb-6 tracking-wider text-white/90">
+			Liquid Crystal
+		</h1>
 
-    {(
-      [
-        { name: "Hue", key: "hue", min: 0, max: 360, step: 1, value: params.hue },
-        { name: "Speed", key: "speed", min: 0, max: 2, step: 0.01, value: params.speed },
-        { name: "Noise", key: "noise", min: 0, max: 1, step: 0.01, value: params.noise },
-        { name: "Warp", key: "warp", min: 0, max: 0.5, step: 0.01, value: params.warp },
-        { name: "Zoom", key: "zoom", min: 0.5, max: 5, step: 0.01, value: params.zoom },
-        { name: "Brightness", key: "brightness", min: 0.1, max: 2, step: 0.01, value: params.brightness },
-      ] satisfies Control[]
-    ).map((p) => (
-      <div className="mb-4" key={p.key}>
-        <label
-          htmlFor={p.key}
-          className="block mb-2 text-sm font-medium text-white/80"
-        >
-          {p.name}: {p.value.toFixed(p.step < 1 ? 2 : 0)}
-        </label>
-        <input
-          id={p.key}
-          type="range"
-          min={p.min}
-          max={p.max}
-          step={p.step}
-          value={p.value}
-          onChange={onParamChange(p.key)}
-          className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
-        />
-      </div>
-    ))}
-  </div>
+		{(
+			[
+				{
+					name: "Hue",
+					key: "hue",
+					min: 0,
+					max: 360,
+					step: 1,
+					value: params.hue,
+				},
+				{
+					name: "Speed",
+					key: "speed",
+					min: 0,
+					max: 2,
+					step: 0.01,
+					value: params.speed,
+				},
+				{
+					name: "Noise",
+					key: "noise",
+					min: 0,
+					max: 1,
+					step: 0.01,
+					value: params.noise,
+				},
+				{
+					name: "Warp",
+					key: "warp",
+					min: 0,
+					max: 0.5,
+					step: 0.01,
+					value: params.warp,
+				},
+				{
+					name: "Zoom",
+					key: "zoom",
+					min: 0.5,
+					max: 5,
+					step: 0.01,
+					value: params.zoom,
+				},
+				{
+					name: "Brightness",
+					key: "brightness",
+					min: 0.1,
+					max: 2,
+					step: 0.01,
+					value: params.brightness,
+				},
+			] satisfies Control[]
+		).map((p) => (
+			<div className="mb-4" key={p.key}>
+				<label
+					htmlFor={p.key}
+					className="block mb-2 text-sm font-medium text-white/80"
+				>
+					{p.name}: {p.value.toFixed(p.step < 1 ? 2 : 0)}
+				</label>
+				<input
+					id={p.key}
+					type="range"
+					min={p.min}
+					max={p.max}
+					step={p.step}
+					value={p.value}
+					onChange={onParamChange(p.key)}
+					className="w-full h-2 bg-white/10 rounded-lg appearance-none cursor-pointer accent-cyan-500"
+				/>
+			</div>
+		))}
+	</div>
 );
 
 // --- Shader Component ---
 export const InteractiveShader = (props: InteractiveShaderProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+	const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  const fragmentShader = `
+	const fragmentShader = `
     precision highp float;
     uniform float iTime;
     uniform vec2 iResolution;
@@ -364,9 +409,9 @@ export const InteractiveShader = (props: InteractiveShaderProps) => {
     }
   `;
 
-  useWebGLShader(canvasRef, fragmentShader, props);
+	useWebGLShader(canvasRef, fragmentShader, props);
 
-  return (
-    <canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
-  );
+	return (
+		<canvas ref={canvasRef} className="absolute top-0 left-0 w-full h-full" />
+	);
 };

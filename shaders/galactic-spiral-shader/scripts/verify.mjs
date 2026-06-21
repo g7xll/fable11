@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -35,7 +37,11 @@ await page.goto(BASE_URL, { waitUntil: "networkidle" });
 await page.waitForTimeout(1600); // let entrance reveal + a few shader frames run
 
 // ── Title + required brief copy ────────────────────────────────────────────
-check("page title", (await page.title()).startsWith("Galactic Spiral"), await page.title());
+check(
+	"page title",
+	(await page.title()).startsWith("Galactic Spiral"),
+	await page.title(),
+);
 check(
 	'h1 reads "Galactic Spiral"',
 	(await page.locator("h1").innerText()).trim() === "Galactic Spiral",
@@ -43,7 +49,9 @@ check(
 );
 check(
 	"eyebrow transmission line present",
-	(await page.getByText("Transmission 04 — Neon Rainbow Spiral", { exact: true }).count()) === 1,
+	(await page
+		.getByText("Transmission 04 — Neon Rainbow Spiral", { exact: true })
+		.count()) === 1,
 );
 check(
 	"subtitle present",
@@ -55,7 +63,9 @@ const canvas = page.locator("canvas");
 check("shader canvas exists", (await canvas.count()) === 1);
 const canvasInfo = await canvas.first().evaluate((c) => {
 	const gl =
-		c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+		c.getContext("webgl2") ||
+		c.getContext("webgl") ||
+		c.getContext("experimental-webgl");
 	const box = c.getBoundingClientRect();
 	return { hasGL: !!gl, w: box.width, h: box.height };
 });
@@ -94,22 +104,41 @@ for (let gy = 0.12; gy <= 0.88; gy += 0.04) {
 const litFrac = lit / samples;
 // Spiral arms are thin lines over a vignette, so a single-digit lit fraction is
 // the expected signal of a live render; a black/failed frame reads ~0%.
-check("shader paints lit arms across the frame", litFrac > 0.04, `${(litFrac * 100).toFixed(0)}% of ${samples} samples lit`);
-check("spiral shows warm hues (red/orange/yellow)", warm > 0, `${warm} warm samples`);
+check(
+	"shader paints lit arms across the frame",
+	litFrac > 0.04,
+	`${(litFrac * 100).toFixed(0)}% of ${samples} samples lit`,
+);
+check(
+	"spiral shows warm hues (red/orange/yellow)",
+	warm > 0,
+	`${warm} warm samples`,
+);
 check("spiral shows cool hues (blue/violet)", cool > 0, `${cool} cool samples`);
 
 // ── Registration frame ─────────────────────────────────────────────────────
-check("four registration corners present", (await page.locator(".reticle-corner").count()) === 4);
+check(
+	"four registration corners present",
+	(await page.locator(".reticle-corner").count()) === 4,
+);
 
 // ── Live telemetry HUD ─────────────────────────────────────────────────────
 const clockA = (await page.locator(".telemetry-clock").innerText()).trim();
 check("mission clock formatted", /^T\+\d{2}:\d{2}:\d{2}$/.test(clockA), clockA);
 await page.waitForTimeout(1300);
 const clockB = (await page.locator(".telemetry-clock").innerText()).trim();
-check("mission clock advances over time", clockA !== clockB, `${clockA} -> ${clockB}`);
+check(
+	"mission clock advances over time",
+	clockA !== clockB,
+	`${clockA} -> ${clockB}`,
+);
 
 const fps = (await page.locator(".telemetry-fps").innerText()).trim();
-check("render fps reported (non-zero)", /\d/.test(fps) && !/^0\s*fps/i.test(fps), fps);
+check(
+	"render fps reported (non-zero)",
+	/\d/.test(fps) && !/^0\s*fps/i.test(fps),
+	fps,
+);
 
 // ── Fonts vendored locally + display face ──────────────────────────────────
 check(
@@ -117,7 +146,9 @@ check(
 	fontRequests.length === 0,
 	fontRequests.slice(0, 2).join(" | "),
 );
-const heroFont = await page.locator("h1").evaluate((el) => getComputedStyle(el).fontFamily);
+const heroFont = await page
+	.locator("h1")
+	.evaluate((el) => getComputedStyle(el).fontFamily);
 check("display face is Inter", heroFont.includes("Inter"), heroFont);
 
 // ── Responsive: ledger collapses to the mobile mini-HUD ────────────────────
@@ -140,5 +171,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

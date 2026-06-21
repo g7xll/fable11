@@ -103,14 +103,24 @@ input {
 
 .scope-vignette {
 	background:
-		radial-gradient(125% 95% at 50% 50%, transparent 42%, rgba(4, 5, 8, 0.66) 100%),
+		radial-gradient(
+			125% 95% at 50% 50%,
+			transparent 42%,
+			rgba(4, 5, 8, 0.66) 100%
+		),
 		linear-gradient(
 			to right,
 			rgba(4, 5, 8, 0.82) 0%,
 			rgba(4, 5, 8, 0.28) 30%,
 			transparent 52%
 		),
-		linear-gradient(to bottom, rgba(4, 5, 8, 0.55) 0%, transparent 22%, transparent 72%, rgba(4, 5, 8, 0.72) 100%);
+		linear-gradient(
+			to bottom,
+			rgba(4, 5, 8, 0.55) 0%,
+			transparent 22%,
+			transparent 72%,
+			rgba(4, 5, 8, 0.72) 100%
+		);
 }
 
 /* Slow horizontal sweep bar, like a CRT refresh. */
@@ -365,7 +375,9 @@ input {
 	border: 1px solid var(--color-edge-soft);
 	background: rgba(7, 8, 11, 0.5);
 	cursor: pointer;
-	transition: border-color 0.2s ease, background 0.2s ease;
+	transition:
+		border-color 0.2s ease,
+		background 0.2s ease;
 }
 .trim:hover {
 	border-color: var(--color-edge);
@@ -530,7 +542,9 @@ input {
 	letter-spacing: 0.12em;
 	text-transform: uppercase;
 	cursor: pointer;
-	transition: border-color 0.2s ease, color 0.2s ease;
+	transition:
+		border-color 0.2s ease,
+		color 0.2s ease;
 }
 .channels-reset:hover {
 	border-color: var(--color-edge);
@@ -554,7 +568,10 @@ input {
 	background: rgba(7, 8, 11, 0.45);
 	cursor: pointer;
 	text-align: left;
-	transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease;
+	transition:
+		border-color 0.2s ease,
+		background 0.2s ease,
+		transform 0.2s ease;
 }
 .channel:hover {
 	border-color: var(--color-edge);

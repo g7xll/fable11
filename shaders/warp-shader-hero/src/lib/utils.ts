@@ -3,7 +3,9 @@
  * wraps `clsx` + `tailwind-merge`; here we keep the same call signature with a
  * dependency-free implementation so the project stays self-contained.
  */
-export function cn(...classes: Array<string | false | null | undefined>): string {
+export function cn(
+	...classes: Array<string | false | null | undefined>
+): string {
 	return classes.filter(Boolean).join(" ");
 }
 

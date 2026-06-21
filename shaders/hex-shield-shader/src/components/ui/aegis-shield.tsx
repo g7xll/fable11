@@ -35,54 +35,54 @@ import { useMemo, useRef } from "react";
  */
 
 export interface ShieldUniformState {
-  /** Sphere projection bias — original `.2`. */
-  domeBias: number;
-  /** Sphere curvature — original `.3`. */
-  curve: number;
-  /** Hex cell scale — original `/ .9` (passed as the divisor). */
-  hexScale: number;
-  /** Lattice drift speed — original `t * .2`. */
-  drift: number;
-  /** Hex edge anisotropy — original `v.x * 1.5`. */
-  hexEdge: number;
-  /** Per-step accumulation gain — original `/ 2e3` denominator scale. */
-  gain: number;
-  /** Outward depth falloff — original `i * .09`. */
-  falloff: number;
-  /** Arc tint (the `vec4(2,3,5)` weighting, normalized to a colour). */
-  tint: [number, number, number];
+	/** Sphere projection bias — original `.2`. */
+	domeBias: number;
+	/** Sphere curvature — original `.3`. */
+	curve: number;
+	/** Hex cell scale — original `/ .9` (passed as the divisor). */
+	hexScale: number;
+	/** Lattice drift speed — original `t * .2`. */
+	drift: number;
+	/** Hex edge anisotropy — original `v.x * 1.5`. */
+	hexEdge: number;
+	/** Per-step accumulation gain — original `/ 2e3` denominator scale. */
+	gain: number;
+	/** Outward depth falloff — original `i * .09`. */
+	falloff: number;
+	/** Arc tint (the `vec4(2,3,5)` weighting, normalized to a colour). */
+	tint: [number, number, number];
 }
 
 export interface ShieldFrameState extends ShieldUniformState {
-  /** Seconds on the shield clock (frozen value while paused). */
-  time: number;
-  /** Measured frames per second. */
-  fps: number;
-  /** Cursor impact point in 0..1 viewport space (y up). */
-  impact: { x: number; y: number };
-  /** 0..1 impact strength (how hard the cursor is "striking" the dome). */
-  charge: number;
+	/** Seconds on the shield clock (frozen value while paused). */
+	time: number;
+	/** Measured frames per second. */
+	fps: number;
+	/** Cursor impact point in 0..1 viewport space (y up). */
+	impact: { x: number; y: number };
+	/** 0..1 impact strength (how hard the cursor is "striking" the dome). */
+	charge: number;
 }
 
 export interface AegisShieldProps extends Partial<ShieldUniformState> {
-  /** Freeze the shield clock in place. */
-  paused?: boolean;
-  /** How strongly the cursor lights the dome on contact (0 = inert). */
-  impactStrength?: number;
-  /** Per-frame telemetry tap. */
-  onFrame?: (s: ShieldFrameState) => void;
-  className?: string;
+	/** Freeze the shield clock in place. */
+	paused?: boolean;
+	/** How strongly the cursor lights the dome on contact (0 = inert). */
+	impactStrength?: number;
+	/** Per-frame telemetry tap. */
+	onFrame?: (s: ShieldFrameState) => void;
+	className?: string;
 }
 
 const DEFAULTS: ShieldUniformState = {
-  domeBias: 0.2,
-  curve: 0.3,
-  hexScale: 0.9,
-  drift: 0.2,
-  hexEdge: 1.5,
-  gain: 1.0, // multiplies the original 1/2e3
-  falloff: 0.09,
-  tint: [2.0, 3.0, 5.0],
+	domeBias: 0.2,
+	curve: 0.3,
+	hexScale: 0.9,
+	drift: 0.2,
+	hexEdge: 1.5,
+	gain: 1.0, // multiplies the original 1/2e3
+	falloff: 0.09,
+	tint: [2.0, 3.0, 5.0],
 };
 
 const vertexShader = /* glsl */ `
@@ -150,151 +150,158 @@ const fragmentShader = /* glsl */ `
 `;
 
 function ShieldField({
-  state,
-  paused,
-  impactStrength,
-  onFrame,
+	state,
+	paused,
+	impactStrength,
+	onFrame,
 }: {
-  state: ShieldUniformState;
-  paused: boolean;
-  impactStrength: number;
-  onFrame?: (s: ShieldFrameState) => void;
+	state: ShieldUniformState;
+	paused: boolean;
+	impactStrength: number;
+	onFrame?: (s: ShieldFrameState) => void;
 }) {
-  const materialRef = useRef<THREE.ShaderMaterial>(null!);
-  const { size, pointer } = useThree();
+	const materialRef = useRef<THREE.ShaderMaterial>(null!);
+	const { size, pointer } = useThree();
 
-  // Frozen-clock bookkeeping so FREEZE holds the exact frame it was struck on.
-  const clockTime = useRef(0);
-  const pausedAt = useRef(0);
-  const wasPaused = useRef(false);
+	// Frozen-clock bookkeeping so FREEZE holds the exact frame it was struck on.
+	const clockTime = useRef(0);
+	const pausedAt = useRef(0);
+	const wasPaused = useRef(false);
 
-  // Eased pointer + measured fps + smoothed charge for telemetry.
-  const smoothMouse = useRef(new THREE.Vector2(0.5, 0.5));
-  const fps = useRef(60);
-  const lastT = useRef(performance.now());
-  const charge = useRef(0);
-  const accum = useRef(0);
-  const frames = useRef(0);
+	// Eased pointer + measured fps + smoothed charge for telemetry.
+	const smoothMouse = useRef(new THREE.Vector2(0.5, 0.5));
+	const fps = useRef(60);
+	const lastT = useRef(performance.now());
+	const charge = useRef(0);
+	const accum = useRef(0);
+	const frames = useRef(0);
 
-  const uniforms = useMemo(
-    () => ({
-      iTime: { value: 0 },
-      iResolution: { value: new THREE.Vector3(size.width, size.height, 1) },
-      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
-      uImpact: { value: 0 },
-      uDomeBias: { value: state.domeBias },
-      uCurve: { value: state.curve },
-      uHexScale: { value: state.hexScale },
-      uDrift: { value: state.drift },
-      uHexEdge: { value: state.hexEdge },
-      uGain: { value: state.gain },
-      uFalloff: { value: state.falloff },
-      uTint: { value: new THREE.Vector3(...state.tint) },
-    }),
-    // Built once; values are mutated each frame below so changes are live and
-    // never trigger a material rebuild / flash.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
-  );
+	const uniforms = useMemo(
+		() => ({
+			iTime: { value: 0 },
+			iResolution: { value: new THREE.Vector3(size.width, size.height, 1) },
+			uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+			uImpact: { value: 0 },
+			uDomeBias: { value: state.domeBias },
+			uCurve: { value: state.curve },
+			uHexScale: { value: state.hexScale },
+			uDrift: { value: state.drift },
+			uHexEdge: { value: state.hexEdge },
+			uGain: { value: state.gain },
+			uFalloff: { value: state.falloff },
+			uTint: { value: new THREE.Vector3(...state.tint) },
+		}),
+		// Built once; values are mutated each frame below so changes are live and
+		// never trigger a material rebuild / flash.
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[],
+	);
 
-  useFrame(({ clock }) => {
-    const mat = materialRef.current;
-    if (!mat) return;
-    const u = mat.uniforms;
+	useFrame(({ clock }) => {
+		const mat = materialRef.current;
+		if (!mat) return;
+		const u = mat.uniforms;
 
-    // --- clock with freeze ---
-    const raw = clock.getElapsedTime();
-    if (paused && !wasPaused.current) pausedAt.current = raw;
-    if (!paused && wasPaused.current) clockTime.current -= raw - pausedAt.current;
-    wasPaused.current = paused;
-    const t = paused ? pausedAt.current + clockTime.current : raw + clockTime.current;
-    u.iTime.value = t;
+		// --- clock with freeze ---
+		const raw = clock.getElapsedTime();
+		if (paused && !wasPaused.current) pausedAt.current = raw;
+		if (!paused && wasPaused.current)
+			clockTime.current -= raw - pausedAt.current;
+		wasPaused.current = paused;
+		const t = paused
+			? pausedAt.current + clockTime.current
+			: raw + clockTime.current;
+		u.iTime.value = t;
 
-    // --- resolution ---
-    (u.iResolution.value as THREE.Vector3).set(size.width, size.height, 1);
+		// --- resolution ---
+		(u.iResolution.value as THREE.Vector3).set(size.width, size.height, 1);
 
-    // --- pointer (r3f pointer is -1..1; convert to 0..1, y up) ---
-    const mx = pointer.x * 0.5 + 0.5;
-    const my = pointer.y * 0.5 + 0.5;
-    const inView = pointer.x !== 0 || pointer.y !== 0;
-    const target = charge.current;
-    // Charge climbs while the pointer sits near the dome centre, decays otherwise.
-    const distToCenter = Math.hypot(mx - 0.5, my - 0.5);
-    const want = inView ? Math.max(0, 1 - distToCenter * 1.7) : 0;
-    charge.current = target + (want - target) * 0.08;
-    smoothMouse.current.x += (mx - smoothMouse.current.x) * 0.12;
-    smoothMouse.current.y += (my - smoothMouse.current.y) * 0.12;
-    (u.uMouse.value as THREE.Vector2).copy(smoothMouse.current);
-    u.uImpact.value = charge.current * impactStrength;
+		// --- pointer (r3f pointer is -1..1; convert to 0..1, y up) ---
+		const mx = pointer.x * 0.5 + 0.5;
+		const my = pointer.y * 0.5 + 0.5;
+		const inView = pointer.x !== 0 || pointer.y !== 0;
+		const target = charge.current;
+		// Charge climbs while the pointer sits near the dome centre, decays otherwise.
+		const distToCenter = Math.hypot(mx - 0.5, my - 0.5);
+		const want = inView ? Math.max(0, 1 - distToCenter * 1.7) : 0;
+		charge.current = target + (want - target) * 0.08;
+		smoothMouse.current.x += (mx - smoothMouse.current.x) * 0.12;
+		smoothMouse.current.y += (my - smoothMouse.current.y) * 0.12;
+		(u.uMouse.value as THREE.Vector2).copy(smoothMouse.current);
+		u.uImpact.value = charge.current * impactStrength;
 
-    // --- live uniform sync (sliders) ---
-    u.uDomeBias.value = state.domeBias;
-    u.uCurve.value = state.curve;
-    u.uHexScale.value = state.hexScale;
-    u.uDrift.value = state.drift;
-    u.uHexEdge.value = state.hexEdge;
-    u.uGain.value = state.gain;
-    u.uFalloff.value = state.falloff;
-    (u.uTint.value as THREE.Vector3).set(...state.tint);
+		// --- live uniform sync (sliders) ---
+		u.uDomeBias.value = state.domeBias;
+		u.uCurve.value = state.curve;
+		u.uHexScale.value = state.hexScale;
+		u.uDrift.value = state.drift;
+		u.uHexEdge.value = state.hexEdge;
+		u.uGain.value = state.gain;
+		u.uFalloff.value = state.falloff;
+		(u.uTint.value as THREE.Vector3).set(...state.tint);
 
-    // --- fps (smoothed) ---
-    const now = performance.now();
-    const dt = now - lastT.current;
-    lastT.current = now;
-    if (dt > 0) fps.current += (1000 / dt - fps.current) * 0.1;
+		// --- fps (smoothed) ---
+		const now = performance.now();
+		const dt = now - lastT.current;
+		lastT.current = now;
+		if (dt > 0) fps.current += (1000 / dt - fps.current) * 0.1;
 
-    // Report telemetry at ~12 Hz so React state churn stays cheap.
-    accum.current += dt;
-    frames.current += 1;
-    if (onFrame && accum.current >= 80) {
-      accum.current = 0;
-      onFrame({
-        ...state,
-        time: t,
-        fps: fps.current,
-        impact: { x: smoothMouse.current.x, y: smoothMouse.current.y },
-        charge: charge.current,
-      });
-    }
-  });
+		// Report telemetry at ~12 Hz so React state churn stays cheap.
+		accum.current += dt;
+		frames.current += 1;
+		if (onFrame && accum.current >= 80) {
+			accum.current = 0;
+			onFrame({
+				...state,
+				time: t,
+				fps: fps.current,
+				impact: { x: smoothMouse.current.x, y: smoothMouse.current.y },
+				charge: charge.current,
+			});
+		}
+	});
 
-  return (
-    <mesh>
-      <planeGeometry args={[2, 2]} />
-      <shaderMaterial
-        ref={materialRef}
-        depthWrite={false}
-        depthTest={false}
-        transparent={false}
-        uniforms={uniforms}
-        vertexShader={vertexShader}
-        fragmentShader={fragmentShader}
-      />
-    </mesh>
-  );
+	return (
+		<mesh>
+			<planeGeometry args={[2, 2]} />
+			<shaderMaterial
+				ref={materialRef}
+				depthWrite={false}
+				depthTest={false}
+				transparent={false}
+				uniforms={uniforms}
+				vertexShader={vertexShader}
+				fragmentShader={fragmentShader}
+			/>
+		</mesh>
+	);
 }
 
 export function AegisShield({
-  paused = false,
-  impactStrength = 1.0,
-  onFrame,
-  className,
-  ...overrides
+	paused = false,
+	impactStrength = 1.0,
+	onFrame,
+	className,
+	...overrides
 }: AegisShieldProps) {
-  const state: ShieldUniformState = { ...DEFAULTS, ...overrides };
-  return (
-    <div className={cn("relative h-full w-full", className)}>
-      <Canvas orthographic camera={{ position: [0, 0, 1], zoom: 1 }} dpr={[1, 2]}>
-        <color attach="background" args={["#000000"]} />
-        <ShieldField
-          state={state}
-          paused={paused}
-          impactStrength={impactStrength}
-          onFrame={onFrame}
-        />
-      </Canvas>
-    </div>
-  );
+	const state: ShieldUniformState = { ...DEFAULTS, ...overrides };
+	return (
+		<div className={cn("relative h-full w-full", className)}>
+			<Canvas
+				orthographic
+				camera={{ position: [0, 0, 1], zoom: 1 }}
+				dpr={[1, 2]}
+			>
+				<color attach="background" args={["#000000"]} />
+				<ShieldField
+					state={state}
+					paused={paused}
+					impactStrength={impactStrength}
+					onFrame={onFrame}
+				/>
+			</Canvas>
+		</div>
+	);
 }
 
 export default AegisShield;

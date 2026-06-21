@@ -42,13 +42,48 @@ export type ShapeMeta = {
 
 /** Ordered to match the `u_shape` branches in the fragment shader. */
 export const SHAPES: ShapeMeta[] = [
-	{ key: "simplex", uniform: 1, label: "Simplex", blurb: "Drifting 2-octave value noise — soft organic clouds." },
-	{ key: "warp", uniform: 2, label: "Warp", blurb: "Domain-warped interference, folded into liquid ribbons." },
-	{ key: "dots", uniform: 3, label: "Dots", blurb: "Per-stripe randomised sine·cosine lattice of pulsing dots." },
-	{ key: "wave", uniform: 4, label: "Wave", blurb: "A travelling crest sweeping a hard horizon line." },
-	{ key: "ripple", uniform: 5, label: "Ripple", blurb: "Concentric shockwave radiating from the centre." },
-	{ key: "swirl", uniform: 6, label: "Swirl", blurb: "Logarithmic spiral winding around the origin." },
-	{ key: "sphere", uniform: 7, label: "Sphere", blurb: "A lit 3-D ball with an orbiting key light. The brief's hero." },
+	{
+		key: "simplex",
+		uniform: 1,
+		label: "Simplex",
+		blurb: "Drifting 2-octave value noise — soft organic clouds.",
+	},
+	{
+		key: "warp",
+		uniform: 2,
+		label: "Warp",
+		blurb: "Domain-warped interference, folded into liquid ribbons.",
+	},
+	{
+		key: "dots",
+		uniform: 3,
+		label: "Dots",
+		blurb: "Per-stripe randomised sine·cosine lattice of pulsing dots.",
+	},
+	{
+		key: "wave",
+		uniform: 4,
+		label: "Wave",
+		blurb: "A travelling crest sweeping a hard horizon line.",
+	},
+	{
+		key: "ripple",
+		uniform: 5,
+		label: "Ripple",
+		blurb: "Concentric shockwave radiating from the centre.",
+	},
+	{
+		key: "swirl",
+		uniform: 6,
+		label: "Swirl",
+		blurb: "Logarithmic spiral winding around the origin.",
+	},
+	{
+		key: "sphere",
+		uniform: 7,
+		label: "Sphere",
+		blurb: "A lit 3-D ball with an orbiting key light. The brief's hero.",
+	},
 ];
 
 export type TypeMeta = {
@@ -120,9 +155,11 @@ export const TYPES: TypeMeta[] = [
 	},
 ];
 
-export const SHAPE_BY_KEY: Record<DitheringShape, ShapeMeta> = Object.fromEntries(
-	SHAPES.map((s) => [s.key, s]),
-) as Record<DitheringShape, ShapeMeta>;
+export const SHAPE_BY_KEY: Record<DitheringShape, ShapeMeta> =
+	Object.fromEntries(SHAPES.map((s) => [s.key, s])) as Record<
+		DitheringShape,
+		ShapeMeta
+	>;
 
 export const TYPE_BY_KEY: Record<DitheringType, TypeMeta> = Object.fromEntries(
 	TYPES.map((t) => [t.key, t]),
@@ -134,21 +171,49 @@ export const PRESETS: { name: string; tag: string; params: Params }[] = [
 	{
 		name: "Newsprint",
 		tag: "ink on paper",
-		params: { shape: "ripple", type: "4x4", colorBack: "#f4f1ea", colorFront: "#0a0a0b", pxSize: 3, speed: 1 },
+		params: {
+			shape: "ripple",
+			type: "4x4",
+			colorBack: "#f4f1ea",
+			colorFront: "#0a0a0b",
+			pxSize: 3,
+			speed: 1,
+		},
 	},
 	{
 		name: "Phosphor",
 		tag: "crt swirl",
-		params: { shape: "swirl", type: "8x8", colorBack: "#03120a", colorFront: "#39ff5a", pxSize: 2, speed: 1.2 },
+		params: {
+			shape: "swirl",
+			type: "8x8",
+			colorBack: "#03120a",
+			colorFront: "#39ff5a",
+			pxSize: 2,
+			speed: 1.2,
+		},
 	},
 	{
 		name: "Static",
 		tag: "warp grain",
-		params: { shape: "warp", type: "random", colorBack: "#05060a", colorFront: "#7dd3fc", pxSize: 2, speed: 1.6 },
+		params: {
+			shape: "warp",
+			type: "random",
+			colorBack: "#05060a",
+			colorFront: "#7dd3fc",
+			pxSize: 2,
+			speed: 1.6,
+		},
 	},
 	{
 		name: "Letterpress",
 		tag: "blocky dots",
-		params: { shape: "dots", type: "2x2", colorBack: "#0b0b0c", colorFront: "#fbbf24", pxSize: 5, speed: 0.8 },
+		params: {
+			shape: "dots",
+			type: "2x2",
+			colorBack: "#0b0b0c",
+			colorFront: "#fbbf24",
+			pxSize: 5,
+			speed: 0.8,
+		},
 	},
 ];

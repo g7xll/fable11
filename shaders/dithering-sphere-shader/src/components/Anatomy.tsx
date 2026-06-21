@@ -10,14 +10,54 @@ type PropRow = {
 };
 
 const PROPS: PropRow[] = [
-	{ prop: "shape", type: `"sphere" | "ripple" | …`, def: `"simplex"`, note: "Which procedural field to draw (7 options)." },
-	{ prop: "type", type: `"random" | "2x2" | "4x4" | "8x8"`, def: `"8x8"`, note: "Dithering algorithm — stochastic or ordered Bayer." },
-	{ prop: "colorFront", type: "string (hex)", def: `"#ffffff"`, note: "The “on” colour after thresholding." },
-	{ prop: "colorBack", type: "string (hex)", def: `"#000000"`, note: "The “off” colour; alpha is derived from it." },
-	{ prop: "pxSize", type: "number", def: "4", note: "Pixelisation block size — bigger = chunkier." },
-	{ prop: "speed", type: "number", def: "1", note: "Animation time multiplier. 0 freezes the frame." },
-	{ prop: "width / height", type: "number", def: "800", note: "Canvas resolution in px. The stage wrapper measures these for you." },
-	{ prop: "className / style", type: "—", def: "—", note: "Forwarded straight to the wrapper element." },
+	{
+		prop: "shape",
+		type: `"sphere" | "ripple" | …`,
+		def: `"simplex"`,
+		note: "Which procedural field to draw (7 options).",
+	},
+	{
+		prop: "type",
+		type: `"random" | "2x2" | "4x4" | "8x8"`,
+		def: `"8x8"`,
+		note: "Dithering algorithm — stochastic or ordered Bayer.",
+	},
+	{
+		prop: "colorFront",
+		type: "string (hex)",
+		def: `"#ffffff"`,
+		note: "The “on” colour after thresholding.",
+	},
+	{
+		prop: "colorBack",
+		type: "string (hex)",
+		def: `"#000000"`,
+		note: "The “off” colour; alpha is derived from it.",
+	},
+	{
+		prop: "pxSize",
+		type: "number",
+		def: "4",
+		note: "Pixelisation block size — bigger = chunkier.",
+	},
+	{
+		prop: "speed",
+		type: "number",
+		def: "1",
+		note: "Animation time multiplier. 0 freezes the frame.",
+	},
+	{
+		prop: "width / height",
+		type: "number",
+		def: "800",
+		note: "Canvas resolution in px. The stage wrapper measures these for you.",
+	},
+	{
+		prop: "className / style",
+		type: "—",
+		def: "—",
+		note: "Forwarded straight to the wrapper element.",
+	},
 ];
 
 const NOTES = [
@@ -40,7 +80,10 @@ const NOTES = [
 
 export function Anatomy() {
 	return (
-		<section id="anatomy" className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8">
+		<section
+			id="anatomy"
+			className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8"
+		>
 			<div className="mx-auto max-w-6xl">
 				<Reveal className="mb-12 max-w-2xl">
 					<span className="font-mono text-xs uppercase tracking-[0.2em] text-rose">
@@ -50,9 +93,9 @@ export function Anatomy() {
 						The whole API, on one screen.
 					</h2>
 					<p className="mt-4 font-body text-paper-dim">
-						Eight props, no required context, no peer setup beyond React. Here's every
-						knob the component exposes and how the showcase answers the integration
-						questions.
+						Eight props, no required context, no peer setup beyond React. Here's
+						every knob the component exposes and how the showcase answers the
+						integration questions.
 					</p>
 				</Reveal>
 
@@ -77,7 +120,9 @@ export function Anatomy() {
 												{p.prop}
 											</td>
 											<td className="px-4 py-3">
-												<div className="font-mono text-xs text-paper">{p.type}</div>
+												<div className="font-mono text-xs text-paper">
+													{p.type}
+												</div>
 												<div className="mt-1 font-body text-[11px] leading-snug text-paper-faint">
 													{p.note}
 												</div>

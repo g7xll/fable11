@@ -44,13 +44,12 @@ body {
    passes: an edge vignette that pulls focus to the core, and a soft scrim
    directly behind the title that buys legibility without hiding the shader. */
 .stage-vignette {
-	background:
-		radial-gradient(
-			120% 120% at 50% 50%,
-			transparent 38%,
-			rgba(5, 1, 10, 0.42) 72%,
-			rgba(5, 1, 10, 0.86) 100%
-		);
+	background: radial-gradient(
+		120% 120% at 50% 50%,
+		transparent 38%,
+		rgba(5, 1, 10, 0.42) 72%,
+		rgba(5, 1, 10, 0.86) 100%
+	);
 }
 
 .title-scrim {

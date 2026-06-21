@@ -8,7 +8,9 @@ const BASE_URL = process.argv[2] ?? "http://localhost:4173";
 
 let failures = 0;
 const check = (name, ok, detail = "") => {
-	console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`);
+	console.log(
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? ` — ${detail}` : ""}`,
+	);
 	if (!ok) failures += 1;
 };
 
@@ -35,12 +37,18 @@ await page.goto(BASE_URL, { waitUntil: "networkidle" });
 await page.waitForTimeout(1600); // boot reveal + a few shader frames
 
 // ── Title + structure ──────────────────────────────────────────────────────
-check("page title", (await page.title()).startsWith("NENO RIG"), await page.title());
+check(
+	"page title",
+	(await page.title()).startsWith("NENO RIG"),
+	await page.title(),
+);
 check("rig shell present", (await page.locator(".rig").count()) === 1);
 check("rig screen present", (await page.locator(".rig-screen").count()) === 1);
 
 // ── Brief's required copy ("Gaming vibe Shader") ────────────────────────────
-const heroText = (await page.locator(".rig-title").innerText()).replace(/\s+/g, " ").trim();
+const heroText = (await page.locator(".rig-title").innerText())
+	.replace(/\s+/g, " ")
+	.trim();
 check(
 	'hero shows the brief text "Gaming vibe Shader"',
 	heroText.toLowerCase() === "gaming vibe shader",
@@ -52,7 +60,9 @@ const canvas = page.locator(".rig-shader canvas");
 check("shader canvas exists", (await canvas.count()) === 1);
 const canvasInfo = await canvas.first().evaluate((c) => {
 	const gl =
-		c.getContext("webgl2") || c.getContext("webgl") || c.getContext("experimental-webgl");
+		c.getContext("webgl2") ||
+		c.getContext("webgl") ||
+		c.getContext("experimental-webgl");
 	const box = c.getBoundingClientRect();
 	return {
 		hasGL: !!gl,
@@ -94,7 +104,11 @@ for (let y = cy - 30; y <= cy + 30; y += 5) {
 r = Math.round(r / n);
 g = Math.round(g / n);
 b = Math.round(b / n);
-check("shader paints non-black pixels", r + g + b > 60, `avg rgb(${r},${g},${b})`);
+check(
+	"shader paints non-black pixels",
+	r + g + b > 60,
+	`avg rgb(${r},${g},${b})`,
+);
 check(
 	"neon ring palette present (blue/magenta bias over green)",
 	r + b > g + 14,
@@ -103,30 +117,62 @@ check(
 
 // ── Telemetry HUD reflects live shader state ────────────────────────────────
 const clockA = await page.locator(".tcell--clock dd").innerText();
-check("session clock formatted MM:SS:CC", /^\d{2}:\d{2}:\d{2}$/.test(clockA), clockA);
+check(
+	"session clock formatted MM:SS:CC",
+	/^\d{2}:\d{2}:\d{2}$/.test(clockA),
+	clockA,
+);
 await page.waitForTimeout(1200);
 const clockB = await page.locator(".tcell--clock dd").innerText();
-check("session clock advances over time", clockA !== clockB, `${clockA} -> ${clockB}`);
+check(
+	"session clock advances over time",
+	clockA !== clockB,
+	`${clockA} -> ${clockB}`,
+);
 
-const fps = await page.locator(".deck-telemetry .tcell").nth(1).locator("dd").innerText();
-check("frame rate reported (non-zero)", /\d/.test(fps) && !/^0\s*fps/i.test(fps), fps);
+const fps = await page
+	.locator(".deck-telemetry .tcell")
+	.nth(1)
+	.locator("dd")
+	.innerText();
+check(
+	"frame rate reported (non-zero)",
+	/\d/.test(fps) && !/^0\s*fps/i.test(fps),
+	fps,
+);
 
 // ── Control deck drives the shader (faders + presets) ───────────────────────
-check("four channel faders present", (await page.locator(".fader-input").count()) === 4);
-check("three RGB profiles present", (await page.locator(".deck-preset").count()) === 3);
+check(
+	"four channel faders present",
+	(await page.locator(".fader-input").count()) === 4,
+);
+check(
+	"three RGB profiles present",
+	(await page.locator(".deck-preset").count()) === 3,
+);
 
 // Rings readout should track the Rings fader. Default profile is Cruise = 07.
-const ringsBefore = (await page.locator(".deck-telemetry .tcell").nth(2).locator("dd").innerText()).trim();
-check("rings readout starts at 07 (Cruise profile)", ringsBefore === "07", ringsBefore);
+const ringsBefore = (
+	await page.locator(".deck-telemetry .tcell").nth(2).locator("dd").innerText()
+).trim();
+check(
+	"rings readout starts at 07 (Cruise profile)",
+	ringsBefore === "07",
+	ringsBefore,
+);
 
 // Switch to Overclock — rings should jump to 11 and the active button flips.
 await page.getByRole("button", { name: "Overclock" }).click();
 await page.waitForTimeout(500);
-const ringsAfter = (await page.locator(".deck-telemetry .tcell").nth(2).locator("dd").innerText()).trim();
+const ringsAfter = (
+	await page.locator(".deck-telemetry .tcell").nth(2).locator("dd").innerText()
+).trim();
 check("Overclock profile drives rings to 11", ringsAfter === "11", ringsAfter);
 check(
 	"Overclock preset marked active",
-	(await page.getByRole("button", { name: "Overclock" }).getAttribute("aria-pressed")) === "true",
+	(await page
+		.getByRole("button", { name: "Overclock" })
+		.getAttribute("aria-pressed")) === "true",
 );
 
 // Warp lock readout reacts to pointer movement over the shader.
@@ -141,7 +187,9 @@ check(
 );
 
 // ── Fonts vendored locally ──────────────────────────────────────────────────
-const heroFont = await page.locator(".rig-title").evaluate((el) => getComputedStyle(el).fontFamily);
+const heroFont = await page
+	.locator(".rig-title")
+	.evaluate((el) => getComputedStyle(el).fontFamily);
 check("display face is Orbitron", heroFont.includes("Orbitron"), heroFont);
 check(
 	"no remote Google Fonts requests (fonts vendored)",
@@ -152,11 +200,18 @@ check(
 // ── Responsive: faders collapse on mobile ───────────────────────────────────
 await page.setViewportSize({ width: 390, height: 844 });
 await page.waitForTimeout(400);
-check("hero still visible on mobile", await page.locator(".rig-title").isVisible());
+check(
+	"hero still visible on mobile",
+	await page.locator(".rig-title").isVisible(),
+);
 const faderCols = await page
 	.locator(".deck-faders")
 	.evaluate((el) => getComputedStyle(el).gridTemplateColumns.split(" ").length);
-check("fader grid collapses to 1 column on mobile", faderCols === 1, `${faderCols} cols`);
+check(
+	"fader grid collapses to 1 column on mobile",
+	faderCols === 1,
+	`${faderCols} cols`,
+);
 
 check(
 	"no console/page errors",
@@ -165,5 +220,7 @@ check(
 );
 
 await browser.close();
-console.log(failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`);
+console.log(
+	failures === 0 ? "\nALL CHECKS PASSED" : `\n${failures} CHECK(S) FAILED`,
+);
 process.exit(failures === 0 ? 0 : 1);

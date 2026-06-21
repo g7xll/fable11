@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
-  DitheringShapes,
-  DitheringTypes,
-  type DitheringShape,
-  type DitheringType,
+	DitheringShapes,
+	DitheringTypes,
+	type DitheringShape,
+	type DitheringType,
 } from "@/components/ui/dithering-shader";
 
 /**
@@ -12,31 +12,31 @@ import {
  * HUD can read exactly what the GPU is doing.
  */
 export interface DitherTelemetry {
-  /** Frames per second, smoothed over a rolling half-second window. */
-  fps: number;
-  /** Seconds on the shader clock (the `u_time` uniform). */
-  time: number;
-  /** Drawing-buffer resolution in device pixels. */
-  width: number;
-  height: number;
-  /** Pixel-cell grid the dithering resolves to (canvasPx / pxSize). */
-  cols: number;
-  rows: number;
+	/** Frames per second, smoothed over a rolling half-second window. */
+	fps: number;
+	/** Seconds on the shader clock (the `u_time` uniform). */
+	time: number;
+	/** Drawing-buffer resolution in device pixels. */
+	width: number;
+	height: number;
+	/** Pixel-cell grid the dithering resolves to (canvasPx / pxSize). */
+	cols: number;
+	rows: number;
 }
 
 export interface DitherStageProps {
-  shape: DitheringShape;
-  type: DitheringType;
-  colorBack: string;
-  colorFront: string;
-  /** Cell size of the pixelization, in CSS px. */
-  pxSize: number;
-  /** Clock multiplier applied to `u_time`. */
-  speed: number;
-  /** Freeze the clock without tearing down the GL context. */
-  paused?: boolean;
-  onTelemetry?: (t: DitherTelemetry) => void;
-  className?: string;
+	shape: DitheringShape;
+	type: DitheringType;
+	colorBack: string;
+	colorFront: string;
+	/** Cell size of the pixelization, in CSS px. */
+	pxSize: number;
+	/** Clock multiplier applied to `u_time`. */
+	speed: number;
+	/** Freeze the clock without tearing down the GL context. */
+	paused?: boolean;
+	onTelemetry?: (t: DitherTelemetry) => void;
+	className?: string;
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -277,50 +277,50 @@ void main() {
 `;
 
 function hexToRgba(hex: string): [number, number, number, number] {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  if (!result) return [0, 0, 0, 1];
-  return [
-    parseInt(result[1], 16) / 255,
-    parseInt(result[2], 16) / 255,
-    parseInt(result[3], 16) / 255,
-    1,
-  ];
+	const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+	if (!result) return [0, 0, 0, 1];
+	return [
+		parseInt(result[1], 16) / 255,
+		parseInt(result[2], 16) / 255,
+		parseInt(result[3], 16) / 255,
+		1,
+	];
 }
 
 function createShader(
-  gl: WebGL2RenderingContext,
-  type: number,
-  source: string,
+	gl: WebGL2RenderingContext,
+	type: number,
+	source: string,
 ): WebGLShader | null {
-  const shader = gl.createShader(type);
-  if (!shader) return null;
-  gl.shaderSource(shader, source);
-  gl.compileShader(shader);
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error("Shader compile error: " + gl.getShaderInfoLog(shader));
-    gl.deleteShader(shader);
-    return null;
-  }
-  return shader;
+	const shader = gl.createShader(type);
+	if (!shader) return null;
+	gl.shaderSource(shader, source);
+	gl.compileShader(shader);
+	if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+		console.error("Shader compile error: " + gl.getShaderInfoLog(shader));
+		gl.deleteShader(shader);
+		return null;
+	}
+	return shader;
 }
 
 function createProgram(gl: WebGL2RenderingContext): WebGLProgram | null {
-  const vs = createShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
-  const fs = createShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
-  if (!vs || !fs) return null;
-  const program = gl.createProgram();
-  if (!program) return null;
-  gl.attachShader(program, vs);
-  gl.attachShader(program, fs);
-  gl.linkProgram(program);
-  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
-    console.error("Program link error: " + gl.getProgramInfoLog(program));
-    gl.deleteProgram(program);
-    return null;
-  }
-  gl.deleteShader(vs);
-  gl.deleteShader(fs);
-  return program;
+	const vs = createShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+	const fs = createShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+	if (!vs || !fs) return null;
+	const program = gl.createProgram();
+	if (!program) return null;
+	gl.attachShader(program, vs);
+	gl.attachShader(program, fs);
+	gl.linkProgram(program);
+	if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+		console.error("Program link error: " + gl.getProgramInfoLog(program));
+		gl.deleteProgram(program);
+		return null;
+	}
+	gl.deleteShader(vs);
+	gl.deleteShader(fs);
+	return program;
 }
 
 /**
@@ -329,150 +329,179 @@ function createProgram(gl: WebGL2RenderingContext): WebGLProgram | null {
  * so dragging a fader re-tints/re-shapes the field with zero recompiles.
  */
 const DitherStage: React.FC<DitherStageProps> = ({
-  shape,
-  type,
-  colorBack,
-  colorFront,
-  pxSize,
-  speed,
-  paused = false,
-  onTelemetry,
-  className,
+	shape,
+	type,
+	colorBack,
+	colorFront,
+	pxSize,
+	speed,
+	paused = false,
+	onTelemetry,
+	className,
 }) => {
-  const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const rafRef = useRef<number | null>(null);
-  const [glError, setGlError] = useState(false);
+	const canvasRef = useRef<HTMLCanvasElement | null>(null);
+	const rafRef = useRef<number | null>(null);
+	const [glError, setGlError] = useState(false);
 
-  // Live prop mirror read inside the rAF loop without re-subscribing the effect.
-  const live = useRef({ shape, type, colorBack, colorFront, pxSize, speed, paused, onTelemetry });
-  live.current = { shape, type, colorBack, colorFront, pxSize, speed, paused, onTelemetry };
+	// Live prop mirror read inside the rAF loop without re-subscribing the effect.
+	const live = useRef({
+		shape,
+		type,
+		colorBack,
+		colorFront,
+		pxSize,
+		speed,
+		paused,
+		onTelemetry,
+	});
+	live.current = {
+		shape,
+		type,
+		colorBack,
+		colorFront,
+		pxSize,
+		speed,
+		paused,
+		onTelemetry,
+	};
 
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
+	useEffect(() => {
+		const canvas = canvasRef.current;
+		if (!canvas) return;
 
-    const gl = canvas.getContext("webgl2", { antialias: false });
-    if (!gl) {
-      console.error("WebGL2 not supported");
-      setGlError(true);
-      return;
-    }
+		const gl = canvas.getContext("webgl2", { antialias: false });
+		if (!gl) {
+			console.error("WebGL2 not supported");
+			setGlError(true);
+			return;
+		}
 
-    const program = createProgram(gl);
-    if (!program) {
-      setGlError(true);
-      return;
-    }
+		const program = createProgram(gl);
+		if (!program) {
+			setGlError(true);
+			return;
+		}
 
-    const u = {
-      time: gl.getUniformLocation(program, "u_time"),
-      resolution: gl.getUniformLocation(program, "u_resolution"),
-      colorBack: gl.getUniformLocation(program, "u_colorBack"),
-      colorFront: gl.getUniformLocation(program, "u_colorFront"),
-      shape: gl.getUniformLocation(program, "u_shape"),
-      type: gl.getUniformLocation(program, "u_type"),
-      pxSize: gl.getUniformLocation(program, "u_pxSize"),
-    };
+		const u = {
+			time: gl.getUniformLocation(program, "u_time"),
+			resolution: gl.getUniformLocation(program, "u_resolution"),
+			colorBack: gl.getUniformLocation(program, "u_colorBack"),
+			colorFront: gl.getUniformLocation(program, "u_colorFront"),
+			shape: gl.getUniformLocation(program, "u_shape"),
+			type: gl.getUniformLocation(program, "u_type"),
+			pxSize: gl.getUniformLocation(program, "u_pxSize"),
+		};
 
-    const loc = gl.getAttribLocation(program, "a_position");
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(
-      gl.ARRAY_BUFFER,
-      new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
-      gl.STATIC_DRAW,
-    );
-    gl.enableVertexAttribArray(loc);
-    gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+		const loc = gl.getAttribLocation(program, "a_position");
+		const buffer = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+		gl.bufferData(
+			gl.ARRAY_BUFFER,
+			new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]),
+			gl.STATIC_DRAW,
+		);
+		gl.enableVertexAttribArray(loc);
+		gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
 
-    let dpr = 1;
-    const sizeTo = () => {
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const rect = canvas.getBoundingClientRect();
-      const w = Math.max(1, Math.round((rect.width || window.innerWidth) * dpr));
-      const h = Math.max(1, Math.round((rect.height || window.innerHeight) * dpr));
-      if (canvas.width !== w || canvas.height !== h) {
-        canvas.width = w;
-        canvas.height = h;
-        gl.viewport(0, 0, w, h);
-      }
-    };
-    sizeTo();
-    window.addEventListener("resize", sizeTo);
+		let dpr = 1;
+		const sizeTo = () => {
+			dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const rect = canvas.getBoundingClientRect();
+			const w = Math.max(
+				1,
+				Math.round((rect.width || window.innerWidth) * dpr),
+			);
+			const h = Math.max(
+				1,
+				Math.round((rect.height || window.innerHeight) * dpr),
+			);
+			if (canvas.width !== w || canvas.height !== h) {
+				canvas.width = w;
+				canvas.height = h;
+				gl.viewport(0, 0, w, h);
+			}
+		};
+		sizeTo();
+		window.addEventListener("resize", sizeTo);
 
-    // Clock that can be frozen on pause (no GL tear-down, just stop advancing).
-    let clock = 0;
-    let last = performance.now();
-    let frames = 0;
-    let fpsWindowStart = performance.now();
-    let fps = 0;
+		// Clock that can be frozen on pause (no GL tear-down, just stop advancing).
+		let clock = 0;
+		let last = performance.now();
+		let frames = 0;
+		let fpsWindowStart = performance.now();
+		let fps = 0;
 
-    gl.useProgram(program);
+		gl.useProgram(program);
 
-    const render = () => {
-      const now = performance.now();
-      const dt = (now - last) / 1000;
-      last = now;
+		const render = () => {
+			const now = performance.now();
+			const dt = (now - last) / 1000;
+			last = now;
 
-      const s = live.current;
-      // pxSize is in CSS px; the drawing buffer is DPR-scaled, so scale to match
-      // the visual cell size the user dialed in.
-      const pxBuffer = Math.max(1, s.pxSize * dpr);
-      if (!s.paused) clock += dt * s.speed;
+			const s = live.current;
+			// pxSize is in CSS px; the drawing buffer is DPR-scaled, so scale to match
+			// the visual cell size the user dialed in.
+			const pxBuffer = Math.max(1, s.pxSize * dpr);
+			if (!s.paused) clock += dt * s.speed;
 
-      frames += 1;
-      if (now - fpsWindowStart >= 500) {
-        fps = Math.round((frames * 1000) / (now - fpsWindowStart));
-        frames = 0;
-        fpsWindowStart = now;
-      }
+			frames += 1;
+			if (now - fpsWindowStart >= 500) {
+				fps = Math.round((frames * 1000) / (now - fpsWindowStart));
+				frames = 0;
+				fpsWindowStart = now;
+			}
 
-      sizeTo();
-      gl.clear(gl.COLOR_BUFFER_BIT);
+			sizeTo();
+			gl.clear(gl.COLOR_BUFFER_BIT);
 
-      gl.uniform1f(u.time, clock);
-      gl.uniform2f(u.resolution, canvas.width, canvas.height);
-      gl.uniform4fv(u.colorBack, hexToRgba(s.colorBack));
-      gl.uniform4fv(u.colorFront, hexToRgba(s.colorFront));
-      gl.uniform1f(u.shape, DitheringShapes[s.shape]);
-      gl.uniform1f(u.type, DitheringTypes[s.type]);
-      gl.uniform1f(u.pxSize, pxBuffer);
+			gl.uniform1f(u.time, clock);
+			gl.uniform2f(u.resolution, canvas.width, canvas.height);
+			gl.uniform4fv(u.colorBack, hexToRgba(s.colorBack));
+			gl.uniform4fv(u.colorFront, hexToRgba(s.colorFront));
+			gl.uniform1f(u.shape, DitheringShapes[s.shape]);
+			gl.uniform1f(u.type, DitheringTypes[s.type]);
+			gl.uniform1f(u.pxSize, pxBuffer);
 
-      gl.drawArrays(gl.TRIANGLES, 0, 6);
+			gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-      s.onTelemetry?.({
-        fps,
-        time: clock,
-        width: canvas.width,
-        height: canvas.height,
-        cols: Math.round(canvas.width / pxBuffer),
-        rows: Math.round(canvas.height / pxBuffer),
-      });
+			s.onTelemetry?.({
+				fps,
+				time: clock,
+				width: canvas.width,
+				height: canvas.height,
+				cols: Math.round(canvas.width / pxBuffer),
+				rows: Math.round(canvas.height / pxBuffer),
+			});
 
-      rafRef.current = requestAnimationFrame(render);
-    };
-    render();
+			rafRef.current = requestAnimationFrame(render);
+		};
+		render();
 
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      window.removeEventListener("resize", sizeTo);
-      gl.deleteProgram(program);
-      gl.deleteBuffer(buffer);
-    };
-  }, []);
+		return () => {
+			if (rafRef.current) cancelAnimationFrame(rafRef.current);
+			window.removeEventListener("resize", sizeTo);
+			gl.deleteProgram(program);
+			gl.deleteBuffer(buffer);
+		};
+	}, []);
 
-  return (
-    <div className={cn("absolute inset-0 overflow-hidden", className)}>
-      <canvas ref={canvasRef} className="dither-canvas block h-full w-full" aria-hidden="true" />
-      {glError && (
-        <div className="absolute inset-0 grid place-items-center px-6 text-center">
-          <p className="font-mono text-sm text-ash">
-            WebGL2 is unavailable in this browser, so the dithering shader can&rsquo;t run.
-          </p>
-        </div>
-      )}
-    </div>
-  );
+	return (
+		<div className={cn("absolute inset-0 overflow-hidden", className)}>
+			<canvas
+				ref={canvasRef}
+				className="dither-canvas block h-full w-full"
+				aria-hidden="true"
+			/>
+			{glError && (
+				<div className="absolute inset-0 grid place-items-center px-6 text-center">
+					<p className="font-mono text-sm text-ash">
+						WebGL2 is unavailable in this browser, so the dithering shader
+						can&rsquo;t run.
+					</p>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default DitherStage;

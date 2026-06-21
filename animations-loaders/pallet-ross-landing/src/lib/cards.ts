@@ -2,7 +2,9 @@
 
 /** Easing tokens used throughout the page. */
 export const smoothEase: [number, number, number, number] = [0.22, 1, 0.36, 1];
-export const hoverEase: [number, number, number, number] = [0.34, 1.56, 0.64, 1];
+export const hoverEase: [number, number, number, number] = [
+	0.34, 1.56, 0.64, 1,
+];
 
 /** Fixed hero row baseline for the Section 1 fan (px from the top of the viewport). */
 export const HERO_ROW_Y = 522;

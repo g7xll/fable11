@@ -142,7 +142,10 @@ export function MatrixPanel({ params }: MatrixPanelProps) {
 	const N = meta.matrix ? meta.matrix.length : 0;
 
 	return (
-		<section id="matrix" className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8">
+		<section
+			id="matrix"
+			className="relative border-t border-[var(--line)] px-5 py-24 sm:px-8"
+		>
 			<div className="mx-auto max-w-6xl">
 				<Reveal className="mb-12 max-w-2xl">
 					<span className="font-mono text-xs uppercase tracking-[0.2em] text-rose">
@@ -152,10 +155,11 @@ export function MatrixPanel({ params }: MatrixPanelProps) {
 						How a field becomes a bit.
 					</h2>
 					<p className="mt-4 font-body text-paper-dim">
-						Each shape gives every pixel a brightness from 0 to 1. Dithering decides{" "}
-						<em>on or off</em> by comparing that brightness to a threshold that varies
-						with screen position — so flat tones break into stable patterns instead of
-						banding. This panel shows the exact threshold source the shader is using{" "}
+						Each shape gives every pixel a brightness from 0 to 1. Dithering
+						decides <em>on or off</em> by comparing that brightness to a
+						threshold that varies with screen position — so flat tones break
+						into stable patterns instead of banding. This panel shows the exact
+						threshold source the shader is using{" "}
 						<span className="text-paper">right now</span>.
 					</p>
 				</Reveal>
@@ -190,8 +194,9 @@ export function MatrixPanel({ params }: MatrixPanelProps) {
 									Tonal ramp · dithered live
 								</span>
 								<p className="mt-1 font-mono text-[11px] text-paper-faint">
-									A smooth 0→1 gradient, thresholded by the matrix at the current{" "}
-									<code className="text-paper">pxSize</code> and colours.
+									A smooth 0→1 gradient, thresholded by the matrix at the
+									current <code className="text-paper">pxSize</code> and
+									colours.
 								</p>
 							</div>
 							<DitherRamp params={params} />
@@ -206,7 +211,8 @@ export function MatrixPanel({ params }: MatrixPanelProps) {
 								<div>
 									<span className="text-paper-faint">// dither</span>
 									<br />
-									res = <span className="text-rose">step</span>(.5, value + d - .5);
+									res = <span className="text-rose">step</span>(.5, value + d -
+									.5);
 								</div>
 							</div>
 						</div>

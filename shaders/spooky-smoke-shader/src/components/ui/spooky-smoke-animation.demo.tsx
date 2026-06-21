@@ -5,11 +5,11 @@ import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 // two supported usages: the default gray vapour and a custom-coloured field.
 
 const Default = () => {
-  return <SmokeBackground />;
+	return <SmokeBackground />;
 };
 
 const Customized = () => {
-  return <SmokeBackground smokeColor="#FF0000" />;
+	return <SmokeBackground smokeColor="#FF0000" />;
 };
 
 export { Default, Customized };

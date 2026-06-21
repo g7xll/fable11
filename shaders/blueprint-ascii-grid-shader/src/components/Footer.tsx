@@ -23,8 +23,8 @@ export function Footer() {
 						</a>
 						<p className="mt-4 font-body text-sm leading-relaxed text-ink-dim">
 							A deep-navy WebGL2 blueprint grid with ASCII stamps — one drop-in{" "}
-							<code className="code-chip">@/components/ui</code> file for any shadcn
-							project.
+							<code className="code-chip">@/components/ui</code> file for any
+							shadcn project.
 						</p>
 					</div>
 

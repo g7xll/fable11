@@ -230,7 +230,8 @@ function NoiseParticles({ count, mousePosition }: NoiseParticlesProps) {
 
 				positions[i3] += (Math.random() - 0.5) * 0.02;
 				positions[i3 + 1] += (Math.random() - 0.5) * 0.02;
-				positions[i3 + 2] += Math.sin(state.clock.elapsedTime * 3 + i * 0.1) * 0.01;
+				positions[i3 + 2] +=
+					Math.sin(state.clock.elapsedTime * 3 + i * 0.1) * 0.01;
 
 				const mouseInfluence =
 					1 /
@@ -320,7 +321,9 @@ export function GlitchText({
 					.split("")
 					.map((char) => {
 						if (Math.random() > 1 - glitchIntensity * 0.2) {
-							return glitchChars[Math.floor(Math.random() * glitchChars.length)];
+							return glitchChars[
+								Math.floor(Math.random() * glitchChars.length)
+							];
 						}
 						return char;
 					})
