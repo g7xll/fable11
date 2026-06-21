@@ -1,10 +1,6 @@
-# Atelier Archive
+# Atelier Archive — Quiet-Luxury Architectural Furniture Catalog (Vanilla HTML + CSS + JS)
 
-A quiet-luxury, catalog-driven design system styled after high-end architectural magazines. It reads as a single vertically-scrolling "magazine spread" for a fictional furniture house, **Atelier Archive** — built on a cream off-white page (`#fdfbf9`) framed by vertical 1px page borders within a 1440px max width, with a subtle neutral border-grid that reinforces the archival feel.
-
-Typography pairs a light, expressive serif (Zodiak, with Cormorant Garamond as the vendored analog) for headings — italic emphasis words throughout — against a clean grotesque sans (General Sans / Hanken Grotesk) for UI labels in 10px uppercase wide tracking. Imagery is procedurally generated SVG, desaturated and passed through a light grayscale to unify mixed sources.
-
-Animations are slow and atmospheric: 1.2s fade-in reveals driven by IntersectionObserver, 2s image hover scales, animated 1px underline CTAs, a white slide-up overlay on the material grid, and a faint→black italic transition on the interactive room index.
+A single-page, vertically-scrolling magazine-spread landing page for a fictional furniture house styled after high-end architectural publications — cream off-white background (`#fdfbf9`), vertical 1px page borders at 1440px max width, and a neutral border-grid that reinforces the archival feel. Typography pairs Cormorant Garamond (vendored as "Zodiak", light 300/400 with italics) for editorial headings with Hanken Grotesk (vendored as "General Sans") for 10px uppercase wide-tracked UI labels. All imagery is procedurally generated SVG — architectural interiors, material close-ups, and sculptural objects — desaturated with `grayscale(0.15)` to unify them. Animations are slow and atmospheric: 1.2s IntersectionObserver fade-in reveals, 2s image hover scales, animated 1px underline CTAs, white slide-up overlays on the material grid, and faint-to-black italic transitions on the interactive room index. Generated with Claude Fable 5.
 
 ## Run
 
@@ -15,3 +11,7 @@ python3 -m http.server 8000
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Templates](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

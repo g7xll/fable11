@@ -1,15 +1,6 @@
-# fluid-swirl-shader — FLUX PIGMENT LAB
+# Fluid Swirl Shader — FLUX Pigment Lab (React + TypeScript + Raw WebGL + Tailwind CSS)
 
-A self-contained shader experiment that integrates the **`FluidSwirl`** React
-component (a procedural WebGL fragment field that folds **three pigments** into
-an endless paint vortex) into a polished **pigment-mixing console** — drag to
-steer the spin, re-mix the three colours live, and watch a rolling oscilloscope
-of the field's _actual_ brightness sampled straight off the GL framebuffer.
-
-> **FLUX** — _Three pigments, one vortex, decided on the GPU._ The integration
-> prompt ships a full-viewport swirl in cyan/rose/gold; here it becomes a live
-> console: swap each pigment, push contrast and spin, freeze the flow, flip on a
-> kaleidoscopic polar warp, and read real luma off the framebuffer.
+A self-contained WebGL shader experiment integrating the `FluidSwirl` component — a procedural fragment field that folds three pigments into an endless paint vortex — into a polished pigment-mixing console called FLUX. Drag to steer the spin, re-mix the three colours live, push contrast and spin, freeze the flow, or flip on a kaleidoscopic polar warp. A rolling oscilloscope panel reads real luminance directly off the GL framebuffer via `readPixels` — nothing is faked. Fully procedural, no image assets required. Generated with Claude Fable 5.
 
 ## What's here
 
@@ -129,3 +120,7 @@ raw WebGL.
 
 Component: the **`FluidSwirl`** fluid-swirl shader from the integration prompt
 (a "Mainframe / cosmic spin" style ordered paint field).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

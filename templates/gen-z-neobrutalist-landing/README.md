@@ -1,10 +1,6 @@
-# flok — Gen-Z Neo-Brutalist Landing
+# flok — Gen-Z Neo-Brutalist Social App Landing Page (Space Grotesk, DM Sans, Vanilla JS)
 
-An expressive, playful neo-brutalist landing page for a fictional Gen-Z social app, **flok**. The look is high-contrast and anti-corporate: a saturated tri-color palette (acid green `#CCFF00`, electric purple `#7000FF`, hot pink `#FF0099`) against deep black, mostly lowercase UI, 4px black borders, hard 6px offset shadows (no blur), and elements rotated ±3 degrees for a "placed" sticker feel.
-
-Type is Space Grotesk for tight bold headlines and DM Sans for casual body. The asymmetrical, modular layout runs from a floating sticky nav pill, through an acid-green two-column hero with a gradient-text headline, a tilted brutalist phone mockup, and floating emoji stickers; a slanted black marquee; a 12-column bento feature grid with spanning cards and an embedded mini-dashboard; a brutalist `<details>` FAQ; a hot-pink giant CTA; and a footer with a `10vw` ghost wordmark.
-
-Animations lean bouncy on `cubic-bezier(0.175, 0.885, 0.32, 1.275)`: press-into-shadow card/button hovers, a wobble-on-hover button, infinite floating stickers, the scrolling marquee, and staggered pop-in reveals. Fonts are vendored locally.
+An expressive, playful neo-brutalist landing page for the fictional Gen-Z social app **flok**. The high-contrast, anti-corporate design uses a saturated tri-color palette (acid green `#CCFF00`, electric purple `#7000FF`, hot pink `#FF0099`) against deep black, mostly lowercase UI, 4px black borders, hard 6px offset shadows with no blur, and elements rotated ±3 degrees for a "placed" sticker feel — an ideal Gen-Z app marketing template. Space Grotesk drives tight bold headlines and DM Sans handles casual body text; the asymmetrical, modular layout runs from a floating sticky nav pill, through an acid-green two-column hero with gradient-text headline and tilted brutalist phone mockup surrounded by floating emoji stickers, a slanted black marquee, a 12-column bento feature grid with spanning cards and an embedded mini-dashboard, a brutalist `<details>` FAQ accordion, a hot-pink giant CTA section, and a footer with a `10vw` ghost wordmark. Generated with Claude Fable 5.
 
 ## Run
 
@@ -15,3 +11,7 @@ python3 -m http.server 8000
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Templates](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

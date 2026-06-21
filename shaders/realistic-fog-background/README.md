@@ -1,9 +1,6 @@
-# HAAR — Realistic Fog Background
+# HAAR — Realistic Fog Background — WebGL GLSL fBm Sea Fog Instrument (React + Vite + Tailwind CSS v4)
 
-A shadcn-style integration of the prompt's **realistic-fog-background** component — a
-WebGL fragment-shader fog (six octaves of domain-warped fBm noise on a single full-screen
-quad, with a cursor "lighthouse beam" glow) — dropped into `@/components/ui` and framed as
-a **sea-fog observation instrument**.
+A shadcn-style integration of a WebGL GLSL realistic fog background component — six octaves of domain-warped fBm noise on a single full-screen quad, with a cursor "lighthouse beam" glow — framed as a sea-fog observation instrument named HAAR (after the cold North Sea haar fog). A visibility gauge driven by actual mean shader luminance sampled live from the framebuffer reports runway visual range in metres; the cursor beam sweeps the needle toward the amber hazard end as it lights the fog. A control deck promotes shader constants to faders and ships five patch presets spanning MIST through THICK FOG. Fully procedural — no image assets. Generated with Claude Fable 5.
 
 > *haar* — the cold sea fog that rolls in off the North Sea.
 
@@ -43,4 +40,6 @@ npm run build    # tsc -b && vite build
 npm run verify   # headless Playwright checks (needs a running dev server on $URL)
 ```
 
-Part of the [claude-directory](../../README.md).
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

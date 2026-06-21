@@ -1,8 +1,6 @@
-# SkyElite — Private Jet Hero
+# SkyElite — Private Jet Hero Section (React + TypeScript + Tailwind CSS)
 
-A premium private jet landing page hero section. Full-viewport video background,
-glass mobile dropdown, overlapping two-line headline ("Premium." / "Accessible."),
-and a staggered page-load reveal.
+A premium private-jet landing page hero section featuring a full-viewport looping video background, glass mobile dropdown navigation, and an overlapping two-line headline ("Premium." / "Accessible.") with a staggered page-load reveal. Designed with a calm, light aesthetic for luxury travel and charter aviation use cases. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -23,3 +21,7 @@ npm test          # vitest spec-compliance suite
 ```
 
 See `prompt.md` for the original experiment prompt.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

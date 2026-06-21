@@ -1,16 +1,6 @@
-# ARCWAVE — Electric Waves Shader
+# ARCWAVE — Electric Waves GLSL Shader Instrument (React + TypeScript + Three.js + Tailwind CSS v4)
 
-An integration of the prompt's `colorful-wave-pattern-1.tsx` (`ElectricWavesShader`)
-into a real **shadcn-style, Tailwind CSS v4, TypeScript** Vite project — then dressed
-up as a small signal instrument, **ARCWAVE**.
-
-The fragment shader is the hero: stacked sine fields fold across one full-screen quad
-and pile into the red, green and blue channels — additive interference, pure math on
-the GPU, no textures or video. Around it sits dark "instrument glass" chrome that
-borrows the same three channels as its only accent: a brand bar, viewfinder corner
-brackets, CRT scanlines, a sweeping scope line, the component's own five-slider control
-deck, and the signature element — a **live telemetry HUD** (FPS, uptime, drawing-buffer
-resolution, R/G/B channels) fed straight off a render loop.
+An integration of the `ElectricWavesShader` component into a polished signal instrument called ARCWAVE. The GLSL fragment shader stacks sine fields across a full-screen orthographic quad, folding additive interference into the red, green, and blue channels — pure GPU math, no textures or video. Around it sits dark "instrument glass" chrome: a brand bar, viewfinder corner brackets, CRT scanlines, a sweeping scope line, a five-slider control deck, and a live telemetry HUD (FPS, uptime, drawing-buffer resolution, R/G/B channels) fed straight from the render loop. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -91,3 +81,7 @@ npm run preview &   # serves dist on :4173
 npm run verify      # headless Chromium: WebGL paint, live animation, the five
                     # controls, HUD ticks, no-scroll, system fonts, desktop + mobile
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

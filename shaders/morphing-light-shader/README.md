@@ -1,18 +1,6 @@
-# Morphing Light Shader
+# Morphing Light Shader — Interferometry Fringe GLSL Background (React + Three.js + Vite + Tailwind CSS)
 
-A faithful integration of the brief's **`MorphingLight`** React component — a
-Three.js fragment shader that paints radially symmetric **morphing interference
-fringes** (a pink↔cyan spectrum bent around the optical axis) on a single
-full-screen quad — reframed as **FRINGE**, a *tabletop interferometer*. The
-shader is the live observation window; everything around it is a calm, precise
-instrument console: a left rail of **beam faders**, a **source bank**, and a
-live **detector** strip that reads the shader's own per-frame state back off the
-GPU.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
-project structure, exactly as the prompt requires. The component drops into
-`@/components/ui/morphing-light` and is consumed verbatim — `<MorphingLight />`
-with no props renders byte-for-byte the original shader.
+A Three.js fragment shader painting radially symmetric morphing interference fringes (pink-to-cyan spectrum bent around the optical axis) on a full-screen quad, reframed as **FRINGE** — a tabletop interferometer instrument console. The live observation window is the shader; a left rail of beam faders, a source bank, and a live detector strip that reads per-frame GPU state compose a calm, precise instrument interface. Built with React + TypeScript + Vite + Tailwind CSS on a shadcn project structure. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -71,3 +59,7 @@ npm install three @types/three   # the component's only runtime dependency
 
 Fully self-contained. The visual is 100% procedural (no images), and the three
 fonts are vendored locally. No remote dependencies at runtime.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

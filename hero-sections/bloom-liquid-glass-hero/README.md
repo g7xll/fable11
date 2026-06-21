@@ -1,8 +1,6 @@
-# Bloom — Liquid Glass Hero
+# Bloom — Liquid Glass Hero (React + TypeScript + Vite + Tailwind CSS)
 
-Full-screen hero landing page for **Bloom**, an AI-powered plant/floral design
-platform. A liquid glass morphism UI floats above a looping botanical video
-background — strict grayscale, no colored accents.
+Full-screen hero landing page for **Bloom**, an AI-powered plant and floral design platform. A two-tier liquid glass morphism UI floats above a looping botanical video background in a strict grayscale palette — no colored accents. The left panel hosts the main glass slab and CTA; the right panel (desktop only) shows floating widget cards. Staggered `animate-rise` page-load reveals are disabled under `prefers-reduced-motion`. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -33,3 +31,7 @@ npm run preview   # serve the build
 npm run generate:assets  # regenerate public/logo.png + src/assets/hero-flowers.png
 node scripts/verify.mjs  # headless Playwright verification against the build
 ```
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,8 +1,6 @@
-# Celestial Matrix Shader
+# Celestial Matrix Shader — Interactive Digital Rain WebGL Background with Cursor Warp (React + Three.js + Tailwind)
 
-An interactive **Three.js / WebGL** "Celestial Matrix" shader background — a
-blue-to-green digital rain that bends around the cursor through a gravitational
-warp — framed inside a deep-space **signal console**.
+An interactive Three.js / WebGL fragment shader rendering a blue-to-green digital rain field that bends around the cursor through a gravitational warp — framed inside a deep-space signal console with live telemetry and cursor-tracking reticle. The verbatim shadcn `@/components/ui` drop-in makes the shader's hidden cursor interaction legible through a HUD reporting render rate, feed time, and warp coordinates live from the GPU loop — suited to hero sections, dashboards, or interactive landing pages. Generated with Claude Fable 5.
 
 The shader component is the verbatim drop-in from the integration brief
 (`src/components/ui/martrix-shader.tsx`), placed in the shadcn `components/ui`
@@ -35,3 +33,7 @@ npm run verify     # headless Chromium checks (canvas, warp, freeze)
 - **Recalibrate** — resets the shader clock to zero.
 
 Everything is self-contained and runs offline — no remote assets.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

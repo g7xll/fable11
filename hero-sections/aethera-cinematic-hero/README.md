@@ -1,17 +1,6 @@
-# Aethera — Cinematic Hero
+# Aethera — Cinematic Video Hero Section (React + Vite + Tailwind CSS v4)
 
-Fullscreen single-page hero section with a looping video background.
-React + Vite + Tailwind CSS v4 + TypeScript.
-
-The background video does not use the native `loop` attribute — a
-`requestAnimationFrame` loop in `src/components/VideoBackground.tsx`
-samples `currentTime`/`duration` every frame and drives opacity:
-fade-in over the first 0.5s, fade-out over the final 0.5s, and on
-`ended` it snaps to opacity 0, waits 100ms, rewinds, and replays.
-
-Type system: Instrument Serif (display) + Inter (body), imported in
-`src/styles/fonts.css`. Theme tokens and the `fade-rise` entrance
-choreography live in `src/styles/theme.css`.
+Fullscreen single-page hero section for the fictional studio brand "Aethera," pairing a monochrome editorial layout with a looping background video that custom-fades in and out at each playthrough. Features a glassmorphic navigation bar, Instrument Serif editorial headline with italicized emphasis, staggered `fade-rise` entrance animations, and a light/dark mode toggle that swaps three CSS palette tokens to invert the whole page with a 0.5s transition. Ideal as a cinematic landing page or creative studio hero. Generated with Claude Fable 5.
 
 ## Dark mode
 
@@ -56,3 +45,7 @@ toggle dark → dwell → toggle back. Requires ffmpeg on `PATH`.
 npm run build
 node scripts/record-demo.mjs   # writes demo.mp4
 ```
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

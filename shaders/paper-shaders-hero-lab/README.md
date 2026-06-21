@@ -1,21 +1,6 @@
-# Paper Shaders // Hero Lab
+# Paper Shaders Hero Lab — Interactive Mesh Gradient Shader Hero with Control Deck (React + Vite + Tailwind CSS + @paper-design/shaders-react)
 
-A runnable, self-contained integration of the prompt's `shaders-hero-section.tsx`
-— the 21st.dev **"Beautiful Shader Experiences"** hero whose background is two
-stacked `@paper-design/shaders-react` **`MeshGradient`** layers, with a rainbow
-**`PulsingBorder`** ring and an orbiting marquee in the corner. Instead of
-dropping the component on a blank page, it's framed as a dark **instrument
-console**: the live hero sits behind a registration-bracketed, scanlined plate,
-and a **Lab** view swaps in a control deck that drives the shader's *actual*
-uniforms — colour stops, base/wire speed, distortion, swirl, wire opacity,
-wireframe on/off, pulse speed and glow — in real time, with a tabbed dock that
-documents the install, the full props API, a live copy-paste usage snippet, the
-shadcn `components/ui` story, and the expected responsive behaviour.
-
-The prompt's component is integrated **verbatim** at
-`src/components/ui/shaders-hero-section.tsx` (the shadcn path), and the prompt's
-`demo.tsx` composition (`ShaderBackground` › `Header` + `HeroContent` +
-`PulsingCircle`) is reproduced as the lab's live specimen.
+A full-bleed, above-the-fold landing hero that frames the 21st.dev "Beautiful Shader Experiences" component — two stacked `@paper-design/shaders-react` `MeshGradient` layers, a rainbow `PulsingBorder` ring, and an orbiting marquee — as a dark instrument console. A tabbed Lab view exposes live GLSL controls (colour stops, base/wire speed, distortion, swirl, wire opacity, wireframe, pulse speed, glow) and documents the props API, install snippet, and responsive behaviour in real time. The hero is GPU-procedural: no images, no external network calls, fully offline. Generated with Claude Fable 5.
 
 ## The integration questions, answered
 
@@ -188,3 +173,7 @@ wordmark uses the vendored Instrument Serif face, all **three** shader canvases
 view reveals the deck, a palette preset re-tints the live shader (canvas pixels
 change), the Base Speed fader sweeps `0.00 → 2.00`, the wireframe toggle flips,
 the docs dock renders the Props API table, and **no page or console errors fire**.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

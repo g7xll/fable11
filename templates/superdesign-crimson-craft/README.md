@@ -1,8 +1,6 @@
-# Superdesign Crimson Craft — Dark Luxury Service Landing
+# Superdesign Crimson Craft — Dark Luxury Car Restoration Landing Page (HTML + CSS + Vanilla JS)
 
-A premium, long-form landing page for a high-ticket classic/exotic car restoration studio, built on a "dark luxury" theme: crimson (`#E11D48`), off-black (`#121212`), and white. Headlines use Cal Sans (weight 700–900, tight tracking) with Poppins for body. Visual depth comes from deep glassmorphism (`backdrop-filter: blur(16px)`), subtle `rgba(255,255,255,0.08)` borders, and a crimson-to-dark-red gradient on major CTA sections. Reveal-on-scroll uses `cubic-bezier(0.4, 0, 0.2, 1)` with a 30px Y offset.
-
-Sections run: a sticky glass header, a 95vh hero with an urgency badge and social-proof avatar stack, a four-column trust bar with hover tooltips, an asymmetric services grid (sticky left column + `<details>` accordion cards), a horizontal-scrolling portfolio of 50/50 before/after transformation cards with a floating glass ROI badge on hover, a three-column testimonials grid, and a high-impact gradient final CTA. A fixed floating status indicator uses a pulsing green dot. Reduced-motion is respected.
+A premium long-form landing page template for a high-ticket classic and exotic car restoration studio, built in a "dark luxury" design language ideal for luxury service businesses, premium agencies, and high-end product pages. Crimson (`#E11D48`), off-black (`#121212`), and white form the color palette; Cal Sans bold headlines pair with Poppins body text; visual depth comes from deep glassmorphism (`backdrop-filter: blur(16px)`) and subtle `rgba(255,255,255,0.08)` borders. Sections include a sticky glass header, a 95vh hero with an urgency badge and social-proof avatar stack, a four-column trust bar with hover tooltips, an asymmetric services grid with sticky sidebar and `<details>` accordion cards, a horizontal-scrolling before/after portfolio with floating glass ROI badges, a testimonials grid, and a high-impact crimson-gradient final CTA — all delivered as a self-contained static site with no build step. Generated with Claude Fable 5.
 
 ## Run
 
@@ -13,3 +11,7 @@ python3 -m http.server 8000
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Templates](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

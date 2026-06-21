@@ -1,16 +1,6 @@
-# Waves Shader · OSCILLON
+# Waves Shader Oscilloscope — Coswarp Interference Field with Signal Analyzer Console (React + Three.js + Tailwind CSS)
 
-A faithful integration of the verbatim **`ShaderComponent`** — a black-and-white
-**coswarp interference field** (warped concentric wave bands) rendered on a
-single full-screen Three.js quad — wrapped in a distinctive *waveform
-observation deck*. The shader is the live trace; everything around it (corner
-**reticles**, a phosphor **live-trace readout**, a **channel legend**, and a
-bottom **scope deck** with a phase meter) is a calm, opinionated signal-analyzer
-console that frames the field as something under measurement.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
-project structure, exactly as the prompt requires. The component drops into
-`@/components/ui/waves-shader` and is consumed **verbatim**.
+A full-screen black-and-white coswarp interference field rendered on a single Three.js quad, integrated as a shadcn/Tailwind/TypeScript drop-in component and framed as a phosphor waveform observation deck. The shader produces warped concentric wave bands via multi-octave coswarp domain distortion; the surrounding console treats it as a signal under measurement — corner reticles, a phosphor live-trace readout tracking elapsed time and frame rate from the same `requestAnimationFrame` clock, a channel legend labeling the field's component bands, and a bottom scope deck with amplitude, sweep rate, phase-lock meter, and a phosphor sweep head. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -149,3 +139,7 @@ components use. No shader, uniform, or animation logic was changed.
 The brief's minimal `demo.tsx` (`<ShaderComponent />` full-bleed) is preserved
 verbatim as [`src/demo.tsx`](./src/demo.tsx) (`DemoOne`); the richer observation
 deck in [`src/App.tsx`](./src/App.tsx) is what the app renders.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

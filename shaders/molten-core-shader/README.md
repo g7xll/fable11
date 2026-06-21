@@ -1,15 +1,6 @@
-# Molten Core Shader
+# Molten Core Shader — Procedural FBM Lava Background with Telemetry HUD (React + Three.js + Vite + Tailwind CSS)
 
-A faithful integration of the `MoltenCoreShader` React component — a procedural
-**FBM lava** fragment shader rendered full-viewport with Three.js — wrapped in a
-distinctive *foundry core monitor* showcase. The shader is the fixed background;
-everything over it (a charred instrument frame, a slow scanning reticle, a live
-**core-temperature telemetry** panel, a base-color toggle, and a melt-intensity
-dial) is a calm metallurgical HUD that reads real state off the GPU and steers
-the shader's `theme` and `intensity` uniforms.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** following the **shadcn**
-project structure, exactly as the prompt requires.
+A full-viewport procedural lava GLSL fragment shader rendered via Three.js, wrapped in a *foundry core monitor* showcase. The shader is the fixed background; a charred instrument frame, scanning reticle, live **core-temperature telemetry** panel, base-color toggle, and melt-intensity dial compose a calm metallurgical HUD that reads real GPU state and steers the shader's `theme` and `intensity` uniforms. Built with React + TypeScript + Vite + Tailwind CSS on a shadcn project structure. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -143,3 +134,7 @@ src/
   App.tsx · main.tsx · index.css
   fonts/                       # vendored woff2 (offline)
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

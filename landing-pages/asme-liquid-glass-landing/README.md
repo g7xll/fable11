@@ -1,9 +1,6 @@
-# Asme — Liquid Glass Landing
+# Asme — Liquid Glass Dark Landing Page (React + TypeScript + Vite + Tailwind CSS + Framer Motion)
 
-A pixel-spec recreation of a dark, cinematic single-page landing site ("Asme") built with
-**React + TypeScript + Vite + Tailwind CSS + framer-motion + lucide-react**.
-
-The full originating prompt is preserved verbatim in [`prompt.md`](./prompt.md).
+A pixel-spec, dark-themed single-page marketing landing site for **Asme**, a fictional knowledge and insights platform, featuring a signature reusable `.liquid-glass` surface treatment — luminosity-blended translucent fill, 4px backdrop blur, inset top highlight, and a masked `::before` gradient border — applied consistently across the navbar pill, email capture, buttons, cards, and icon chips. The full-viewport hero loops a locally vendored `.mp4` video via a vanilla `requestAnimationFrame` opacity crossfade (fade in on `canplay`, fade out at 0.55s remaining, 100ms gap restart). Four scroll-triggered sections animate in with Framer Motion `useInView`: About, Featured Video, Innovation × Vision (video + two columns sliding from opposite sides), and Services (two glass cards with hover-zoom video). Instrument Serif display type sits against pure black throughout. Generated with Claude Fable 5.
 
 ## Highlights
 
@@ -41,3 +38,7 @@ assertions: rendered copy of all five sections, all five video URLs and their lo
 wiring, Instrument Serif on the headline, `.liquid-glass` computed styles (blur, inset
 shadow, `::before` gradient border at 1.4px), scroll-triggered animations settling at
 opacity 1, console-error cleanliness, and mobile-viewport visibility rules.
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

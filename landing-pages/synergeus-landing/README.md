@@ -1,9 +1,6 @@
-# Synergeus Landing Page
+# Synergeus — AI Fintech Landing Page (React 18 + Vite + TypeScript + Tailwind CSS)
 
-A pixel-faithful build of the **Synergeus** AI-fintech landing page — a dark,
-cinematic marketing page composed of three scroll-revealed sections. Built to a
-detailed spec with meticulous attention to typography, motion timing, glass
-surfaces, and SVG construction.
+**Synergeus** is a pixel-faithful dark, cinematic marketing landing page for an AI-powered personal finance platform. The page is composed of three scroll-revealed sections — a video hero, an analytics showcase, and an AI intelligence feature grid — with meticulous attention to typography, motion timing, glass surfaces, and SVG construction. A striking fintech UI landing page suited to AI advisor, wealth management, and financial SaaS products. Generated with Claude Fable 5.
 
 ## Tech stack
 
@@ -51,3 +48,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # type-check + production bundle
 ```
+
+---
+
+Part of the [Landing pages](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,14 +1,6 @@
-# shader-plasma-grid-background
+# PlasmaSignal — WebGL Plasma-Grid Background Shader Component for shadcn (React + TypeScript + Raw WebGL)
 
-**PLASMASIGNAL** — a showcase for `shader-background.tsx`, the drop-in WebGL plasma-grid
-background from the integration brief, set up inside a real shadcn-structured Vite +
-TypeScript + Tailwind app.
-
-The warping violet field is a single fragment shader (~90 lines of GLSL, one draw call).
-The page treats it like a live instrument: a "Signal Lab" readout with an oscilloscope
-HUD pulling real `iTime` / FPS / `iResolution` from the running WebGL context, and a
-control deck of faders that promote the shader's baked-in constants to live uniforms so
-you can re-tint and re-shape the field in real time.
+A shadcn-structured Vite + TypeScript + Tailwind showcase for `shader-background.tsx`, a drop-in raw WebGL plasma-grid background component. The warping violet field is a single GLSL fragment shader (~90 lines, one draw call): animated grid lines with sinusoidal warp, flowing plasma curves, and orbiting highlight circles. The project frames it as a "Signal Lab" — a live oscilloscope HUD pulls real `iTime`, FPS, and `iResolution` from the running WebGL context, and a control deck of faders promotes the shader's baked-in constants to live uniforms so you can re-tint and re-shape the field in real time. Generated with Claude Fable 5.
 
 ## What's in `components/ui`
 
@@ -33,3 +25,7 @@ React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui structure (`@/components/ui`
 `@/lib/utils`), Lucide icons, raw WebGL. Fonts (Space Grotesk / Space Mono / Inter) and
 all imagery (Unsplash) are vendored locally under `public/fonts` and `assets/` — the
 project runs fully offline.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

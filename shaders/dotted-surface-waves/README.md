@@ -1,10 +1,6 @@
-# Dotted Surface — three.js wave field
+# Dotted Surface Waves — Three.js Animated Dot Lattice Background (React + TypeScript + Three.js + Tailwind CSS)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `dotted-surface.tsx` component — a full-viewport `three.js` `Points` lattice
-(40 × 60 = 2,400 dots) whose Y is displaced by two crossing sine waves — and composes a quiet
-"field generator" showcase around it with a live **theme toggle** so a viewer sees both the
-dark (light dots) and light (dark dots) palettes.
+A full-viewport Three.js `Points` lattice (40 × 60 = 2,400 dots) whose Y position is displaced by two crossing sine waves, creating a mesmerising animated dot field. Wrapped in a "field generator" showcase with a live dark/light theme toggle that swaps the dot colour palette (light dots on dark, dark dots on light). Ideal as a hero section background or ambient landing page visual. Generated with Claude Fable 5.
 
 ![demo](./demo.mp4)
 
@@ -77,3 +73,7 @@ fatal console/page errors, the three.js `<canvas>` mounts full-viewport and **pa
 on a dark ground), the centred heading / brand / telemetry render, Geist Mono is applied, and then
 **flips the theme via the real toggle** and asserts the field re-renders markedly brighter (dark dots
 on a light ground). It finishes with a mobile pass (heading visible, no overflow).
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).
