@@ -1,19 +1,6 @@
-# Crystal Voronoi Shader
+# Crystal Voronoi Shader — Interactive WebGL Voronoi Lattice Crystallography Lab (React + TypeScript + Vite + Tailwind CSS)
 
-A faithful integration of the prompt's `InteractiveShader` (`crystal-shader.tsx`)
-— a raw-**WebGL** fragment shader that draws a **two-pass, warped Voronoi
-lattice** with a cursor-driven repel field — wrapped in a distinctive
-*crystallography specimen station* showcase.
-
-The shader **is** the specimen: a fixed, full-viewport WebGL field. Everything
-over it (a caliper frame, a counter-rotating **goniometer reticle**, a live
-**specimen read-out**, and a four-axis **calibration deck**) is a calm
-mineralogy-lab HUD that reads real state straight off the GPU and steers the
-shader's four uniforms — `cellDensity`, `animationSpeed`, `warpFactor`,
-`mouseInfluence` — exactly the props the prompt's `demo.tsx` exposes.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** on the **shadcn**
-project structure, exactly as the prompt requires.
+Crystal Voronoi Shader is a React + TypeScript + Vite + Tailwind CSS integration of a raw WebGL fragment shader that draws a two-pass, warped Voronoi lattice with a cursor-driven repel field — framed as a *Cryolite Lab* crystallography specimen station. The shader is the specimen: a fixed, full-viewport WebGL field producing a cyan-to-ice-to-violet spectral cast on obsidian, coloured by `0.5 + 0.5*cos(t*0.5 + vec3(0,0.2,0.4))`. Layered above it is a caliper frame, a counter-rotating goniometer reticle, a live specimen read-out (real FPS meter, centre-pixel luminance read back via `gl.readPixels`, spectral RGB live from the GPU), and a four-axis calibration deck controlling `cellDensity`, `animationSpeed`, `warpFactor`, and `mouseInfluence`. Type is Fraunces (display serif for the hero lockup), Inter (body), and Space Mono (telemetry) — all vendored locally as woff2 for offline operation. Icons from `lucide-react`. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -167,3 +154,7 @@ src/
   fonts/                       # vendored woff2 (offline)
 scripts/verify.mjs             # headless CLI verification
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

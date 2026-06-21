@@ -1,17 +1,6 @@
-# Warp · DITHER LAB
+# Warp Dither Lab — 1-Bit WebGL2 Dithering Shader with Live Console (React + WebGL2 + Tailwind CSS)
 
-A shadcn-style integration of the **`DitheringShader`** WebGL2 component
-([designali-in/dithering-shader](https://github.com/designali-in)) — a single
-full-screen quad that renders seven procedural shape fields and thresholds them
-to one bit through **random** or **Bayer 2×2 / 4×4 / 8×8** ordered dithering.
-
-The brief's `demo.tsx` is the canonical **Warp** field (orange `#ff6600` over
-navy `#000033`, `4×4` dither). Here it becomes the headline of a live **1-bit
-CRT console**: a full-bleed responsive hero, a driving deck wired straight to
-the component's props, a click-to-apply shape library, animated Bayer-matrix
-explainers, and a props/uniforms API that mirrors the hero in real time.
-
-![Warp dithering shader demo](./demo.mp4)
+A full-screen 1-bit dithering shader rendered via a raw WebGL2 fragment shader, integrated as a shadcn/Tailwind/TypeScript drop-in component and presented as a live CRT console. The shader renders seven procedural shape fields (simplex noise, warp, dots, sine wave, ripple, swirl, sphere) and thresholds them to one bit through random or Bayer 2×2/4×4/8×8 ordered dithering; the demo configuration features the Warp field (orange `#ff6600` over navy `#000033`, 4×4 dither). Every shader prop is wired live via an on-screen console, a click-to-apply shape library mounts live WebGL2 canvases, and Bayer-matrix explainers animate inline. Generated with Claude Fable 5.
 
 ## Highlights
 
@@ -71,5 +60,4 @@ live canvases, and that the page logs no console errors.
 
 ---
 
-Built with **Claude Fable 5** as a [claude-directory](../../README.md) shader
-experiment. Component © [designali-in](https://github.com/designali-in).
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

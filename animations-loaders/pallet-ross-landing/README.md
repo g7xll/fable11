@@ -1,11 +1,6 @@
-# Pallet Ross — scroll-driven artist marketplace landing
+# Pallet Ross — Scroll-Driven Artist Marketplace Landing Page (React + Vite + Framer Motion)
 
-A single-page, scroll-driven landing page for the fictional artist marketplace
-**Pallet Ross**. Seven artwork cards perform a choreographed intro (a lead card
-rises, flies to the right, then sweeps left while the rest reveal in its wake),
-then become scroll-linked: as you scroll they gather into one centered stack,
-descend together, fan out into a diagonal cascade ladder, and lock in place
-anchored to Section 2.
+A single-page, scroll-driven landing page for the fictional artist marketplace **Pallet Ross**. Seven artwork cards perform a choreographed intro — a lead card rises, flies to the right, then sweeps left while the rest reveal in its wake — then become scroll-linked: as you scroll they gather into one centered stack, descend together, fan out into a diagonal cascade ladder, and lock in place anchored to Section 2. Three full-height sections cover Hero, E-Commerce, and a Class page with an autoplay banner carousel. Framer Motion's `useScroll` and `useTransform` power the entire scroll-linked card choreography, including a precise `lockProgress` anchor computed from the Section 2 DOM position. An off-white `#F2F2F0` page background, Inter Tight typography, and a teal/red/blue accent palette give the marketplace a clean editorial feel. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -47,3 +42,7 @@ All assets are vendored locally for offline use:
   (originally from `qclay.design/lovable/pallet/`).
 - `public/fonts/inter-tight-latin.woff2` — self-hosted Inter Tight (variable,
   latin subset) so the page needs no network at runtime.
+
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

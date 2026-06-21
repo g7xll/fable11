@@ -1,18 +1,6 @@
-# warp-drive-shader-bridge
+# Warp Drive Shader Bridge — Hyperspace Tunnel WebGL Shader with Starship Console (React + Three.js + Tailwind CSS)
 
-A self-contained, runnable showcase that integrates the prompt's **Warp Drive**
-WebGL shader — a pointer-steered hyperspace tunnel — as a drop-in component for
-**shadcn + Tailwind + TypeScript** projects. The brief's exact
-`<WarpDriveShader />` runs fixed behind the page as the canopy view; everything
-in front is a starship-bridge console that reads the shader's own live state and
-tells the integration story the prompt asks for: where the component lives
-(`@/components/ui`), why that folder matters, and how to use it.
-
-This adapts the prompt's "integrate this component into a shadcn/Tailwind/TS
-codebase" task into a complete build. The component is pasted verbatim into
-`@/components/ui/warp-drive-shader.tsx` (typed for the TS project, with the
-GLSL untouched); the exact `DemoOne` usage from the prompt is reproduced in the
-on-page Usage section.
+A full-screen pointer-steered hyperspace tunnel WebGL shader integrated as a shadcn/Tailwind/TypeScript drop-in, presented as an immersive starship-bridge navigation console. The `<WarpDriveShader />` component renders a chromatic-aberration tunnel effect via Three.js GLSL — red/green/blue filaments converging on a vanishing point, steered by `iMouse` — fixed behind a cold-cockpit UI. The signature NavReticle gauge locks to the tunnel's vanishing point with a heading needle, warp-factor dial, and amber FPS indicator, all driven by the shader's per-frame `onFrame` callback. A helm console surfaces live `iTime`/`iMouse`/`iResolution` uniforms and a warp throttle. Generated with Claude Fable 5.
 
 ## Design
 
@@ -90,4 +78,6 @@ npm run verify   # headless Chromium checks (see below)
 
 All 12 checks pass.
 
-> Part of the [claude-directory](../../README.md) · [shaders](../README.md).
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

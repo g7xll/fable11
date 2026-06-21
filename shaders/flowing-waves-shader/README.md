@@ -1,19 +1,6 @@
-# Flowing Waves Shader
+# Flowing Waves Shader — Interactive Cosine Wave Fragment Shader (React + TypeScript + Vite + Tailwind CSS)
 
-A faithful integration of the prompt's `InteractiveWaveShader` React component —
-an interactive **Three.js fragment-shader wave field** (a nine-iteration cosine
-displacement that ripples across one full-screen quad) — wrapped in a
-distinctive *tidal field observatory* showcase. The shader is the fixed
-background; everything over it (a scoped instrument frame, a slow sonar sweep, a
-live **buoy telemetry** panel, a sea-state mode selector, a center-clarity
-toggle, and an amplitude dial) is a calm oceanographic HUD that reads real state
-off the GPU and steers the shader's `mode`, `dimmingDisabled`, and `intensity`
-uniforms.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** following the **shadcn**
-project structure, exactly as the prompt requires. The original plain-JS
-component (untyped refs and event handlers) has been ported to clean, fully
-typed TypeScript.
+A full-viewport interactive Three.js fragment-shader wave field — a nine-iteration cosine displacement rippling across a full-screen quad — wrapped in a tidal field observatory showcase. The shader is the ambient background; layered over it is a live "Meridian Tidal Lab" oceanographic HUD with a buoy telemetry panel (significant wave height, wave period, turbulence index), a sea-state mode selector, a center-clarity toggle, and an amplitude dial. GPU luminance is sampled via `gl.readPixels` to drive real telemetry — nothing faked. Built following the shadcn component structure with full TypeScript typing. Generated with Claude Fable 5.
 
 ```bash
 npm install
@@ -155,3 +142,7 @@ src/
   App.tsx · main.tsx · index.css
   fonts/                         # vendored woff2 (offline)
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

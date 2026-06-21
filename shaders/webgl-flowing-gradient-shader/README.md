@@ -1,16 +1,6 @@
-# PRISMA — WebGL Flowing-Gradient Shader
+# PRISMA Shader Lab — WebGL Flowing-Gradient Shader (React + Vite + Tailwind CSS v4 + Raw WebGL)
 
-An integration of the prompt's `shader-animation.tsx` into a real **shadcn-style,
-Tailwind CSS v4, TypeScript** Vite project — then dressed up as a small generative
-graphics tool, **PRISMA · Shader Lab**.
-
-The fragment shader is the hero: four fractal layers fold into one another every
-frame, tinted by a cosine palette and rippled by the cursor — pure math compiled to
-the GPU, no images or video. Around it sits monochrome glass chrome so the shader is
-the only source of color: a brand bar, viewfinder corner brackets, a control rail
-(layers / glow / speed + the prompt's Interactive/Static and a Pause toggle), and the
-signature element — a **live telemetry HUD** (FPS, elapsed time, drawing-buffer
-resolution, normalized cursor) fed straight off the render loop.
+A full-screen WebGL generative graphics tool built as a shadcn-structured React app, showcasing a GLSL fragment shader that folds four fractal layers with a cosine palette and cursor-driven ripples — pure GPU math, no images or video. The surrounding UI is monochrome glass chrome: a brand bar, viewfinder corner brackets, a control rail (layers, glow, speed, interactive/static toggle, and pause), and a live telemetry HUD displaying FPS, elapsed time, drawing-buffer resolution, and normalized cursor position — all fed straight from the WebGL render loop. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -79,3 +69,7 @@ npm run preview &   # serves dist on :4173
 npm run verify      # headless Playwright: WebGL paint, HUD ticks, controls, pause,
                     # cursor toggle, no-scroll, vendored fonts, desktop + mobile
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

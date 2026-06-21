@@ -1,18 +1,6 @@
-# Dither Press // hero-dithering-card
+# Dither Press — Hero Dithering Card (@paper-design/shaders-react + React + Tailwind CSS)
 
-`DITHER · PRESS` — a **print-house proof room** built around a verbatim shadcn
-`components/ui` card. The brief's `CTASection` drops in untouched: a
-transparent-backed **`Dithering`** shader (from `@paper-design/shaders-react`)
-lays Pantone-orange ink under an editorial headline and a CTA. Instead of the
-usual bare component on a blank page, the card is mounted on a **press bed** —
-crop marks at the corners, an engraved registration grid, a half-tone dot field,
-a rotating loupe reticle, and a live telemetry strip that reads ink coverage
-straight off the plate.
-
-It's the runnable, self-contained delivery of a component-integration prompt:
-the component is copied **verbatim** into `src/components/ui/hero-dithering-card.tsx`,
-the brief's `demo.tsx` sits beside it, and the surrounding page documents how to
-install it, why it belongs in `components/ui`, and what every shader prop does.
+A print-house proof room built around a shadcn `components/ui` dithering shader card from `@paper-design/shaders-react`. The `CTASection` component drops in untouched — a transparent-backed `Dithering` shader with Pantone-orange ink under an editorial headline and CTA — then is mounted on a press bed with crop marks, an engraved registration grid, a half-tone dot field, a rotating loupe reticle, and a live telemetry strip that reads ink coverage directly off the plate. A second live shader plate is wired to a full control rack. Generated with Claude Fable 5.
 
 ## The proof, framed
 
@@ -96,3 +84,7 @@ frame-to-frame), the press telemetry advances, the speed fader sweeps
 integration/source/API sections render, and no page/console errors fire. It
 falls back to a pre-installed Chromium when the Playwright build can't be
 downloaded.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

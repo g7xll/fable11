@@ -1,10 +1,6 @@
-# Kinetic Orange
+# Kinetic Orange — Digital Brutalist Agency Landing Page (Archivo Black, Space Mono, CSS Marquee)
 
-A digital-first brutalist agency / portfolio landing page for a fictional studio, **Superdesign®**, that uses heavy typography and continuous motion to create urgency. It holds a strict three-color system — electric orange (`#FF4D00`), black, and white — with thick 2px borders, skewed sections, looping marquees, and no gradients or soft pastels.
-
-Type pairs a heavy black-weight display face (Archivo Black, always uppercase, tight tracking, 0.85–0.9 leading) with Space Mono for metadata and UI labels and Inter for body. The single vertically-scrolling page runs: a floating black pill nav, a typographic hero on orange with a `16vw` "SUPER / DESIGN" headline and a metadata row, a `skewY(-2deg)` black marquee band with two counter-scrolling text rows, a dark vertical service list, a giant "Let's Talk" CTA, and a footer.
-
-Signature components include a rotating circular "scroll down" SVG indicator (360° over 12s) and brutalist service rows whose titles translate +16px and reveal a rotating orange arrow on hover. Marquees and the spin loop seamlessly; selection color flips black/orange and scrollbars are hidden.
+A single-page brutalist agency landing for a fictional studio, **Superdesign®**, built on a strict three-color system — electric orange (`#FF4D00`), black, and white — with heavy uppercase typography, continuous marquee motion, thick 2px borders, and no gradients or soft shadows. Archivo Black (always uppercase, 900 weight, tight tracking, 0.85–0.9 leading) pairs with Space Mono for metadata and Inter for body copy. Sections flow from a fixed floating black pill nav through a typographic hero at `16vw`, a `skewY(-2deg)` black marquee band with counter-scrolling rows, a dark vertical service list, a giant "Let's Talk" CTA, and a footer. Generated with Claude Fable 5.
 
 ## Run
 
@@ -15,3 +11,7 @@ python3 -m http.server 8000
 ```
 
 See `prompt.md` for the full build spec; `demo.mp4` shows it in motion.
+
+---
+
+Part of the [Templates](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

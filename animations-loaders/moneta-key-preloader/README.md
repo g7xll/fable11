@@ -1,14 +1,6 @@
-# Moneta Key — Cinematic Preloader
+# Moneta Key — Cinematic Full-Viewport Preloader (React + Vite + Framer Motion + Canvas 2D)
 
-A single-page, full-viewport cinematic preloader screen for **Moneta Key**. One
-fixed full-screen overlay (`z-index: 9999`) on a near-black navy background
-(`#080B14`), where a 1394 × 938 design canvas is uniformly scaled to fit the
-viewport (object-fit `contain` behaviour) while edge ornaments stay pinned to
-the real viewport corners.
-
-It is a pure idle loader: progress climbs from 0 → 100 in irregular, realistic
-chunks (bursts, stalls and crawls), and **never exits** — once it reaches 100 it
-simply rests there with every loop still running.
+A single-page, full-viewport cinematic preloader screen for **Moneta Key**, rendered as a fixed full-screen overlay on a near-black navy background (`#080B14`). A 1394×938 design canvas is uniformly scaled to fit the viewport (object-fit `contain` behaviour) while edge ornaments stay pinned to the real viewport corners. The preloader is a pure idle loader: progress climbs from 0 → 100 in irregular, realistic chunks (bursts, stalls and crawls) and never exits — once it reaches 100 it simply rests there with every loop still running. Features a glowing 3D sphere with color-dodge blend, a flowing dashed SVG orbit line with a vertical fade mask, twinkling particle dots, a wave-cut animated logo mask, a canvas-based curved 0–100 number arc, and a Mexican-wave bouncing dot row. All external assets and the Inter Tight font are vendored under `public/` for fully offline operation. Generated with Claude Fable 5.
 
 ## What's on screen
 
@@ -54,3 +46,7 @@ npm install
 npm run dev      # http://localhost:5173
 npm run build    # type-check + production build
 ```
+
+---
+
+Part of the [Animations & loaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,17 +1,6 @@
-# Jessi.cv // paper-shader-resume-hero
+# Jessi.cv — Paper Shader Resume Hero with Dithering (React + Vite + Tailwind CSS v4 + paper-design/shaders-react)
 
-A **shadcn `components/ui` integration** of the prompt's
-`portfolio-hero-with-paper-shaders` component — a split-screen designer résumé
-whose right half is a live **`Dithering`** shader from
-[`@paper-design/shaders-react`](https://github.com/paper-design/shaders). The
-component drops into `src/components/ui` **verbatim**, and the surrounding page
-frames it as a **darkroom proof**: the as-shipped component sits in a
-crop-marked plate, an "ink console" promotes every shader prop to a live fader,
-and a documentary dock explains how to install it, why it belongs in
-`components/ui`, and what each `Dithering` prop does.
-
-Part of the [claude-directory](../../README.md). Built as a Fable 5 experiment;
-verified headlessly from the CLI; fonts vendored locally; fully offline.
+A shadcn `components/ui` integration of a split-screen designer résumé hero whose right half is a live **`Dithering`** shader from `@paper-design/shaders-react`. The component drops in verbatim and the surrounding page frames it as a **darkroom proof**: the as-shipped component sits in a crop-marked plate, an "ink console" promotes every shader prop to a live fader, and a documentary dock explains installation, placement in `components/ui`, and each `Dithering` prop. A perfect portfolio hero or "about" splash with a procedural ink visual — no stock photography required. Generated with Claude Fable 5.
 
 ## The proof, as-shipped
 
@@ -122,3 +111,7 @@ story section is present; and no page/console errors fire.
 
 React 19 · TypeScript · Vite · Tailwind CSS v4 · `@paper-design/shaders-react`
 (`Dithering`) · shadcn/ui structure · Lucide.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

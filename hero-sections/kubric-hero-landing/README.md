@@ -1,8 +1,6 @@
-# Kubric™ Hero Landing
+# Kubric™ Hero Landing — Dark Cinematic Hero with Animated SVG Logo (TanStack Start + React 19 + Tailwind v4)
 
-A single-page, desktop-only dark hero landing for the fictional studio **Kubric™**,
-built on **TanStack Start v1 + React 19 + Vite 7 + Tailwind v4** with file-based
-routing. Everything reveals on first load once the background video is ready.
+A single-page, desktop-only dark hero landing for the fictional studio **Kubric™**, built on **TanStack Start v1 + React 19 + Vite 7 + Tailwind v4** with file-based routing. Features a looping background video with a progressive 8-layer `backdrop-filter` blur at the bottom, an animated SVG logo with arc stroke-dashoffset reveals, a glass nav pill, a character-by-character headline reveal, a vertical right-side section nav, and a white "About us" card. Everything animates in on first load once the background video is ready. Generated with Claude Fable 5.
 
 ![Kubric hero](./demo.mp4)
 
@@ -54,3 +52,7 @@ npm run verify     # headless Playwright structure / behavior checks
 ```
 
 > Desktop-only: `html { min-width: 1024px }`. Designed for ≥1024px viewports.
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

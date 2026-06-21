@@ -1,22 +1,6 @@
-# Interactive Flux Shader
+# Interactive Flux Shader — Cursor-Reactive WebGL FBM Field Synthesizer (React + TypeScript + WebGL2)
 
-A faithful integration of the prompt's `interactive-shader` React component — a
-full-screen **WebGL fractal-noise (FBM) field** whose hue, speed, intensity and
-complexity are live uniforms and whose flow warps toward the cursor — re-framed
-as **FLUX·01, a Eurorack-style "field synthesizer."** The verbatim component
-lives in `@/components/ui`; everything around it is the module's faceplate: the
-four shader parameters become engraved aluminium faders, the field sits in a
-recessed scope window framed by a tracking crosshair reticle, and a live
-telemetry stack reads the field's real per-frame output straight off the GPU.
-
-Built with **React + TypeScript + Vite + Tailwind CSS** following the **shadcn**
-project structure, exactly as the prompt requires.
-
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # tsc -b && vite build
-```
+A full-screen WebGL2 fractal-noise (FBM) field whose hue, speed, intensity, and complexity are live uniforms and whose flow warps toward the cursor — integrated as a shadcn `@/components/ui` component and framed as **FLUX·01**, a Eurorack-style "field synthesizer." The four shader parameters become engraved aluminium faders, the generative field sits in a recessed scope window with a tracking crosshair reticle, and a live telemetry stack reads per-frame GPU output via `gl.readPixels`. Built with React, TypeScript, Vite, and Tailwind CSS following the shadcn project structure, with no external rendering dependency — raw WebGL2 only. Generated with Claude Fable 5.
 
 ## Design notes
 
@@ -172,3 +156,7 @@ src/
   App.tsx · main.tsx · index.css
   fonts/                       # vendored variable woff2 (offline)
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

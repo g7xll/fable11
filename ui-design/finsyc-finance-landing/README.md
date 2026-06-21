@@ -1,12 +1,6 @@
-# Finsyc — Finance Management Landing Page
+# Finsyc — Finance Management Landing Page (React + Vite + Tailwind CSS + Framer Motion)
 
-A full, multi-section **finance-management landing page** for the fictional fintech
-**Finsyc**, applied verbatim from a 10-component template. Built with React + Vite +
-Tailwind CSS, Framer Motion, and lucide-react. Part of the
-[claude-directory](../../README.md).
-
-> Generated with Claude Fable 5. The originating prompt is preserved verbatim
-> (uppercased) in [`prompt.md`](./prompt.md).
+A full, multi-section **finance-management landing page** for the fictional fintech **Finsyc**, applied verbatim from a 10-component template. A polished fintech UI with animated soft-gradient video backgrounds, Playfair-italic accent typography, count-up metrics, product mockup carousels, and an integrations diagram — built with React, Vite, Tailwind CSS, Framer Motion, and lucide-react. Generated with Claude Fable 5.
 
 ## What's inside
 
@@ -74,3 +68,7 @@ node scripts/verify.mjs --url http://localhost:5199/
 
 [`demo.mp4`](./demo.mp4) is a headless scroll-through recorded with the repo's
 `scripts/record-demos` recorder.
+
+---
+
+Part of the [UI design](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

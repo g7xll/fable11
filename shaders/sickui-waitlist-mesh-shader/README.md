@@ -1,13 +1,6 @@
-# SickUI — Waitlist (mesh-gradient shader)
+# SickUI Waitlist — Mesh-Gradient Shader Launch Page (React 19 + @paper-design/shaders-react + Tailwind CSS v4)
 
-A runnable, self-contained **shadcn-style integration** of the prompt's
-`background-shader.tsx` — a waitlist launch page whose backdrop is a flowing
-`@paper-design/shaders-react` **`MeshGradient`** in deep editorial blues. The
-prompt's component is copied **verbatim** into the shadcn `components/ui` path,
-and the bare "We are launching SickUI soon!" headline it ships is grown into a
-real product launch page: a glass email-capture card with validation and a
-success state, animated social proof, a "what's shipping" feature grid, plus nav
-and footer — all sitting on the same living shader the component defines.
+A shadcn-style waitlist launch page whose backdrop is a flowing `@paper-design/shaders-react` `MeshGradient` in deep editorial blues. The verbatim `background-shader.tsx` component is copied into `src/components/ui/` and the bare launch headline is grown into a real product launch page: a frosted-glass email-capture card with validation and success state, animated social proof, a "what's shipping" feature grid, plus nav and footer — all sitting on the same living mesh-gradient shader. Built with React 19, TypeScript, Vite 7, and Tailwind CSS v4 in a shadcn-structured project. Generated with Claude Fable 5.
 
 ## The integration, exactly as asked
 
@@ -134,3 +127,7 @@ vendored font, the `MeshGradient` canvas mounts with a real WebGL context, all
 five vendored avatars load, the waitlist form rejects an invalid email and
 accepts a valid one (reaching the success state), the feature grid renders, the
 page is scrollable, and no page/console errors fire.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

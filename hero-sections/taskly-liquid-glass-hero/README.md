@@ -1,6 +1,6 @@
-# Taskly — Liquid Glass Hero
+# Taskly — Liquid Glass Hero Section (React + TypeScript + Tailwind CSS + Vite)
 
-High-fidelity "liquid glass" landing hero for a task-management SaaS, built with Vite + React + TypeScript + Tailwind.
+A high-fidelity "liquid glass" landing hero for a task-management SaaS, combining a frosted-glass sticky navbar, a glassmorphic primary CTA, and a vivid color-graded "glassy orb" video on the right — all set against a pure-white page with a soft layered blue gradient glow. Fully responsive, transitioning from a single-column mobile layout to a dual-column desktop layout. Generated with Claude Fable 5.
 
 ## What's in it
 
@@ -23,3 +23,7 @@ npm run build     # tsc + vite build
 npm run preview   # serve dist on :4173
 npm run verify    # headless Playwright checks against :4173
 ```
+
+---
+
+Part of the [Hero sections](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

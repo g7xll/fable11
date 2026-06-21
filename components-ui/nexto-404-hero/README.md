@@ -1,8 +1,6 @@
-# nexto-404-hero
+# Nexto 404 Hero — Full-Viewport "Page Not Found" Page (React + Vite + Tailwind CSS)
 
-A full-viewport (100vh, no scroll) 404 "Page Not Found" hero page for the
-fictional **nexto.** brand — built with React + Vite + Tailwind CSS, DM Sans
-(variable font) and Google Material Symbols Rounded.
+A full-viewport 404 "Page Not Found" hero page for the fictional **nexto.** brand, featuring a layered alien-spaceship PNG over a soft gradient background, floating gradient Material Symbols icons, bottom-pinned navigation cards, and a hamburger-to-X mobile overlay — all locked to `100vh` with zero scroll. The visual style pairs DM Sans variable font with gradient-clipped icon decorations and a dashed-gradient navbar border. Use case: branded error pages and empty-state landing views. Generated with Claude Fable 5.
 
 ## Highlights
 
@@ -26,3 +24,7 @@ npm run dev      # dev server
 npm run build    # type-check + production build
 npm run preview  # serve the production build
 ```
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

@@ -1,13 +1,6 @@
-# thermal-shader-imaging
+# Thermal Shader Imaging — Apple-Style Interactive Thermal Imaging Effect (three.js, React, TypeScript)
 
-A self-contained, runnable integration of the prompt's **`ThermalEffect`** — an
-Apple-style thermal-imaging shader that paints a live, pointer-reactive heat
-gradient _inside a logo's alpha mask_ — into a shadcn + Tailwind + TypeScript
-project. The component (a three.js renderer with a ping-pong "draw" pass for
-mouse heat and a 7-stop thermal LUT) is dropped in **verbatim** under
-`@/components/ui`; the page around it is the showcase the brief asks for: where
-the component lives, why that folder matters, the props API, the palette, and
-how to use it.
+A pointer-reactive thermal imaging shader showcase — branded "THERMA — Thermal Imaging Bay" — that paints a live, animated heat gradient inside logo alpha masks using a 7-stop thermal LUT (`#000000 → #073dff → #53d5fd → #fefcdd → #ffec6a → #f9d400 → #a61904`). The `ThermalEffect` component integrates verbatim under `@/components/ui` using a three.js ping-pong draw renderer; holding and dragging any viewport pumps heat into the mask, which cools when released. The graphite instrument UI includes corner-bracketed viewports, scanlines, a reticle crosshair, and a live telemetry HUD with sensor clock and measured frame rate. All logo masks are generated procedurally as canvas data URLs — no network requests, no asset files. Generated with Claude Fable 5.
 
 ## Design
 
@@ -111,3 +104,7 @@ fetched over the network.
 `ThermalEffect` component from the integration brief (Apple-style thermal
 imaging effect, originally from [Dalim UI](https://github.com/dalim-in/dalim)),
 preserved verbatim in `prompt.md`.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

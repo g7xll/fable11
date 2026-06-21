@@ -1,34 +1,6 @@
-# Crystalline Cube Shader
+# Crystalline Cube Shader — Interactive WebGL Ray-Marched SDF Gem Viewer (React, TypeScript, GLSL, shadcn/ui)
 
-An interactive WebGL ray-marched crystalline cube — a sine-carved SDF box lit by
-a mouse-driven key light and tinted by an Inigo-Quilez procedural palette —
-integrated as a shadcn `@/components/ui` component and framed as a **lapidary
-analysis bench**.
-
-The shader component from the prompt is integrated **verbatim** (vertex/fragment
-GLSL, ray-march loop, mouse handling, resize and cleanup unchanged) at
-`src/components/ui/crystalline-cube.tsx`, the canonical shadcn `@/components/ui`
-location. It is wrapped in deliberate instrument chrome:
-
-- **Specimen window** — the verbatim `InteractiveShader` fills the viewport as
-  the specimen under the loupe; an honest "loupe offline" panel shows instead
-  when the browser has no WebGL context.
-- **Reticle / registration frame** — corner brackets, a sweeping hairline scan
-  line, grain and edge vignettes so the chrome stays legible over the crystal.
-- **Facet console (signature element)** — the component's four props
-  (`complexity`, `colorShift`, `lightIntensity`, `mouseInfluence`) are exposed
-  as calibrated faders with live values and gemological labels (lattice
-  complexity, dispersion, loupe gain, light parallax).
-- **Specimen catalog** — four presets (Aurora Quartz, Vermilion Garnet, Fissure
-  Beryl, Glacier Spinel) that snap all four props at once; a manual tweak drops
-  back to a "Custom cut".
-- **Telemetry strip** — render FPS, derived facet count, refractive index and
-  estimated weight, plus a bench clock, all read off the live parameters.
-
-Palette and type stay cool and analytical on purpose — the warm, shifting colour
-comes entirely from the crystal. Type pairing: Fraunces (display) · Space Grotesk
-(body) · Space Mono (data). Icons from `lucide-react`. The entrance reveal and
-scan line respect `prefers-reduced-motion`.
+An interactive WebGL ray-marched crystalline cube rendered entirely on the GPU — a sine-carved SDF box lit by a mouse-driven key light and tinted by an Inigo-Quilez procedural palette — packaged as a shadcn `@/components/ui` component and framed as a lapidary analysis bench with live specimen presets, a facet console, and a telemetry strip. The shader's four props (`complexity`, `colorShift`, `lightIntensity`, `mouseInfluence`) are exposed as calibrated faders with gemological labels, and four crystal presets (Aurora Quartz, Vermilion Garnet, Fissure Beryl, Glacier Spinel) snap all parameters at once. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -76,3 +48,7 @@ npm run verify    # headless Playwright checks against the preview server
 - **The reference demo** — the prompt's minimal slider demo is preserved as
   `src/components/demo.tsx` as a known-good copy-paste starting point; the
   polished bench in `src/App.tsx` is what the app renders.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

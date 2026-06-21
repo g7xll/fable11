@@ -1,24 +1,6 @@
-# Hex Shield Shader
+# Hex Shield Shader — Animated Hexagonal Dome Deflector with GLSL Ray-Accumulation (React, Three.js, @react-three/fiber)
 
-An animated full-screen **hex-sphere** shield — a 100-step fragment shader that
-folds a mirrored hexagonal lattice onto a sphere distortion, accumulates a
-glowing cyan→violet arc field, and tonemaps it with `tanh` — framed inside the
-**AEGIS deflector-array diagnostics console**.
-
-The shader is the verbatim drop-in from the integration brief
-(`src/components/ui/shield-shader.tsx`, a `three` + `@react-three/fiber`
-fullscreen quad), placed in the shadcn `components/ui` folder and imported
-through the `@/` alias exactly as the brief expects. A typed, instrument-driven
-sibling (`src/components/ui/aegis-shield.tsx`) runs the **same GLSL** but
-promotes every baked constant — dome bias, curvature, hex scale, drift, edge
-gain, arc gain, falloff and the arc tint — to a live uniform, adds a soft
-cursor "impact" light and a freeze control, and taps the field's per-frame
-state back out through an `onFrame` callback.
-
-> The shield is a single hex sphere behind glass — move your cursor over the
-> dome to light an impact point, switch deflector profiles to change its
-> regime, and freeze the field to hold a frame. Every readout (shield clock,
-> render rate, impact charge, integrity) is sampled straight off the GPU loop.
+An animated fullscreen WebGL shader that ray-accumulates 100 steps through a mirrored hexagonal lattice folded onto a sphere distortion, producing a glowing cyan-to-violet arc field tonemapped with `tanh` — framed as the AEGIS deflector-array diagnostics console with a cursor-tracked impact reticle, live field-calibration faders, deflector-profile presets, shield-integrity gauge, and GPU-sampled telemetry. The shader runs via Three.js and `@react-three/fiber` on a fullscreen quad, placed at the canonical `@/components/ui/shield-shader` location. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -105,3 +87,7 @@ shadcn's `components.json` resolves the `ui` alias to `components/ui`. The
 pasted import is `@/components/ui/shield-shader`, so the file must live there or
 the alias won't resolve, and keeping primitives in `components/ui` lets
 `shadcn add` drop siblings beside it without collisions.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

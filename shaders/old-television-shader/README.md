@@ -1,14 +1,6 @@
-# Old Television Shader
+# Old Television Shader — Analog CRT Static GLSL Background (React Three Fiber + drei + Vite + Tailwind CSS)
 
-A faithful integration of the brief's `WaveShaderMaterial` React component — a
-**react-three-fiber** fragment shader where flowing sines and a 4-octave fractal
-noise (fbm) mix two colours into rolling **analog snow** on one drei
-`shaderMaterial` quad — wrapped in a distinctive **Cathode Vault** broadcast
-showcase. The shader is the **live picture tube** of a vintage CRT cabinet;
-everything around it (scanline / shadow-mask / vignette glass, a self-typing
-on-screen channel readout, six tunable channel presets, faders, toggles, and a
-phosphor **signal meter**) is a calm broadcast control desk that steers the
-component's props and reads its *real* per-frame state back off the GPU.
+A React Three Fiber fragment shader where flowing sines and a 4-octave fractal noise (FBM) mix two colours into rolling analog snow on a drei `shaderMaterial` quad, wrapped in a **Cathode Vault** broadcast showcase. The shader is the live picture tube of a vintage CRT cabinet; scanline/shadow-mask/vignette glass, a self-typing on-screen channel readout, six tunable channel presets, faders, toggles, and a phosphor signal meter compose a calm broadcast control desk. Built with React + TypeScript + Vite + Tailwind CSS on a shadcn project structure. Generated with Claude Fable 5.
 
 > The component file is named `old-television-shader.tsx`, and the inline
 > comments mislabel its colours "orange / pink" — but the actual uniforms are
@@ -175,3 +167,7 @@ src/
   App.tsx · main.tsx · index.css
   fonts/                          # vendored woff2 (offline)
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

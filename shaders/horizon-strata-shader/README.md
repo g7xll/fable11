@@ -1,48 +1,6 @@
-# STRATA — Horizon Field Scanner
+# STRATA — Horizon Field Scanner WebGL2 Shader (React, TypeScript, Vite, Tailwind CSS)
 
-The prompt's `lab.tsx` WebGL2 component — a single fullscreen fragment-shader pass
-that ray-marches forward through space folded into repeating **horizon strata**
-(`p.y = abs(mod(d - 2.0, 4.0) - 2.0)`) over a cosine-tube ground plane
-(`length(cos(p.xz)) - 0.4`), flown toward the vanishing point (`p.z -= t`) and
-tone-mapped with `tanh`. It is integrated at the canonical shadcn
-`@/components/ui` location and framed as a deep-field **stratigraphy scanner**.
-
-The component is preserved faithfully at `src/components/ui/lab.tsx` — the GLSL
-(`SHADER_SRC` / `VERT_SRC`), the fullscreen-triangle vertex buffer, the uniform
-wiring (`iResolution` / `iTime` / `iFrame` / `iMouse`), the mouse handlers, the
-`ResizeObserver`, the `requestAnimationFrame` loop and the full WebGL teardown are
-byte-for-byte the brief's original. The only changes to the paste are **additive,
-opt-in props** that never touch the draw path:
-
-- `paused` — freezes the march clock so the strata corridor holds its current frame;
-- `onSample` — fires ~2×/second with the shader's own `iTime` / `iFrame` / fps so
-  the host page can drive telemetry without re-reading the GPU;
-- `fill` — lets the canvas fill its parent (`100%/100%`) instead of the original
-  `100vw/100vh`, so it can be framed inside the lab.
-
-With no props (`<Component />`, exactly the brief's `demo.tsx`) it behaves
-identically to the original fixed-background paste.
-
-The chrome reads the field as a survey instrument:
-
-- **Right-edge stratigraphy gauge (signature element)** — a fixed tick ladder
-  whose cyan reticle rides the fractional part of the strata count, so it
-  physically tracks the shader's marching cadence (one full sweep per horizon band,
-  `layers = depth / 4` matching the GLSL `mod(…, 4.0)` fold) rather than running a
-  decorative timer.
-- **Chromatic-split wordmark** — `STRATA` set in Space Grotesk with a cyan/amber
-  separation that echoes the shader's own luminance banding.
-- **Live layer readout + telemetry rail** — a floating panel counts strata crossed,
-  and the bottom bar reports the shader's real per-frame state sampled off the GPU
-  loop (field depth, frame counter, smoothed render FPS) alongside the static pass
-  facts (`GLSL · 30 STEPS`, `TANH · /400`).
-- **Hold / Resume control** — drives the component's `paused` prop directly,
-  freezing and resuming the field (gauge, layer count and telemetry stay in sync).
-
-A horizon vignette, faint CRT scanlines and a slow scan-sweep bar read the whole
-thing as a deep-field survey display. A **CSS-strata fallback** renders banded
-horizon lines if WebGL2 is unavailable, so the page never goes blank. All entrance
-reveals and the sweep respect `prefers-reduced-motion`.
+A WebGL2 fragment shader that ray-marches 30 steps through repeating horizon strata folded with `mod(d − 2.0, 4.0) − 2.0` over a cosine-tube ground plane, flown toward the vanishing point and tonemapped with `tanh` — framed as a deep-field stratigraphy scanner with a chromatic-split wordmark, a real-time stratigraphy gauge that tracks the shader's marching cadence, live layer readout, GPU-sampled telemetry rail, hold/resume field control, and a CSS fallback for environments without WebGL2. Generated with Claude Fable 5.
 
 ## Stack
 
@@ -99,3 +57,7 @@ npm run preview   # serve the production build
 - **Best place to use it** — as a full-bleed hero / landing background, a loading
   or "system online" backdrop, or a section divider where a living, depth-marching
   texture is wanted behind foreground content.
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

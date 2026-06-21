@@ -1,18 +1,6 @@
-# Shader Spectral Clock — SPECTRA CLOCK
+# Shader Spectral Clock — WebGL Spectral-Field Clock with Live Telemetry (React + TypeScript + Vite + Tailwind CSS v4)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `shader-clock.tsx` component — a raw **WebGL** spectral-field shader (an eight-iteration
-cosine/sine domain warp coloured by a wavelength→RGB spectrum) with a live clock, editable location
-and °C/°F toggle floating over it — and frames it as **SPECTRA CLOCK**, a shadcn-style component lab.
-
-The live shader fills the hero stage. Over it floats a frosted clock card, a **live telemetry HUD**
-that reads the shader's own per-frame state (its `iTime`, measured FPS, and the centre-pixel colour
-read straight back off the GPU), plus a viewfinder reticle and a cursor crosshair. A **control deck**
-promotes the four numbers the brief baked into its GLSL (`for(i<8)`, `p *= 2.0`, `p.y * 50.0`, the
-`iTime` clock) to live uniforms, and a **world-preset bank** snaps the field — and the clock's city,
-zone and mock temperature — to six cities at once. Below the fold is the integration story: an
-anatomy walkthrough, the five integration-brief questions answered, a props API, copyable source
-tabs, and the **verbatim** `demo.tsx` embedded untouched.
+A self-contained React + TypeScript + Vite + Tailwind CSS v4 project integrating `shader-clock.tsx` — a raw WebGL spectral-field shader that maps wavelength-to-RGB colour through an eight-iteration cosine/sine domain warp — framed as **SPECTRA CLOCK**, a shadcn-style component lab. The live shader fills the hero stage; over it floats a frosted clock card with editable location and °C/°F temperature toggle, a live telemetry HUD reading `iTime`, measured FPS, and the centre-pixel colour straight off the GPU, plus a viewfinder reticle and cursor crosshair. A control deck promotes the four GLSL constants to live uniforms and a world-preset bank snaps the field and clock to six cities at once. Generated with Claude Fable 5.
 
 ![demo](./demo.mp4)
 
@@ -112,3 +100,7 @@ The skyline preset stills are regenerated deterministically with:
 ```bash
 node scripts/gen-assets.mjs    # writes assets/images/*.jpg
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

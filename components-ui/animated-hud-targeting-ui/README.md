@@ -1,22 +1,6 @@
-# Animated HUD Targeting UI
+# Animated HUD Targeting UI — Avionics Fire-Control Display (React + Vite + Framer Motion + Tailwind CSS)
 
-A **fire-control targeting display** built around the prompt's two primitives —
-`TargetingUI` (an animated SVG reticle that draws itself in: rounded scanner combs,
-diagonal sight lines, dual counter-rotating rings, chamber inserts and a bracketed
-center system) and `HudFrame` (a full-screen chamfered, notched clip-path frame).
-
-Instead of dropping the reticle on flat grey, this showcase runs it as a live
-avionics sensor display: vendored recon stills are framed by the HUD, and a small
-**acquisition state machine** sweeps the system through
-`SCANNING → ACQUIRING → TRACKING → LOCKED`. Each phase re-tints the reticle and
-re-draws it, telemetry ticks toward each target's track data, four L-brackets snap
-inward on lock, and the whole instrument speaks in one cold cyan/white palette with a
-single warm **amber** signal reserved for the moment of lock.
-
-The component lives in `src/components/ui/animated-hud-targeting-ui.tsx` and is consumed
-from `src/App.tsx` through the `@/components/ui/...` alias — exactly the shadcn-style
-integration the prompt asked for. The pasted source is preserved **verbatim**; all of the
-mission logic is in the showcase around it.
+A fire-control targeting display built around two shadcn-integrated primitives — `TargetingUI` (an animated SVG reticle that draws itself in: rounded scanner combs, diagonal sight lines, dual counter-rotating rings, chamber inserts and a bracketed center system) and `HudFrame` (a full-screen chamfered, notched clip-path frame). Instead of dropping the reticle on a flat background, this showcase runs it as a live avionics sensor display: vendored recon stills are framed by the HUD, and a small **acquisition state machine** sweeps the system through `SCANNING → ACQUIRING → TRACKING → LOCKED`. Each phase re-tints the reticle and re-draws it, telemetry ticks toward each target's track data, four L-brackets snap inward on lock, and the whole instrument speaks in one cold cyan/white palette with a single warm amber signal reserved for the moment of lock. Component lives in `src/components/ui/` as a shadcn-style primitive. Generated with Claude Fable 5.
 
 ## Run it
 
@@ -114,3 +98,7 @@ npm install framer-motion next-themes lucide-react
 ## Stack
 
 React 18, TypeScript, Vite 6, Tailwind CSS v4, Framer Motion, next-themes, lucide-react.
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

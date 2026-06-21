@@ -1,16 +1,6 @@
-# Hive — Noise Field
+# Hive — Noise Field Shader Lab (WebGL2, React, TypeScript, Tailwind CSS v4)
 
-A self-contained **React + TypeScript + Vite + Tailwind CSS v4** project that integrates the
-provided `hive.tsx` component — a raw **WebGL2** fragment shader that raymarches a 20-step noise
-field and tints it with a warm amber&nbsp;&rarr;&nbsp;magenta cosine spectrum, flowing right to
-left — and frames it as **HIVE**, a shadcn-style component lab.
-
-The live shader is mounted **unedited** as a fixed, full-viewport background. Floating over it: a
-frosted-glass hero, a compact **shader-spec HUD** (the component exposes no live stats, so the HUD
-surfaces the shader's real shape — its two uniforms, raymarch step count and DPR clamp — rather than
-faking telemetry), and an integration ticker. Below the fold is the full integration story — the
-shadcn drop-in path, the default component/style paths, why `components/ui` matters, from-scratch
-setup, copyable source, a render-pipeline walkthrough, and a props/state/assets Q&A.
+A full-viewport WebGL2 fragment shader component that raymarches a 20-step noise field and tints it with a warm amber-to-magenta cosine spectrum flowing right to left — integrated as HIVE, a shadcn-style component lab with a frosted-glass hero, shader-spec HUD surfacing real uniforms and raymarch step count, and a full integration guide covering setup, the `components/ui` alias, and render-pipeline walkthrough. Generated with Claude Fable 5.
 
 ![demo](./demo.mp4)
 
@@ -99,3 +89,7 @@ browser download). The script resolves it from the shared demo recorder under
 # from the project folder, with Playwright resolvable:
 URL=http://localhost:5314/ node scripts/verify.mjs
 ```
+
+---
+
+Part of the [Shaders](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).

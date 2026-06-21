@@ -1,9 +1,6 @@
-# Sixsense — Reference Finder
+# Sixsense Reference Finder — Glassy AI Reference-Finder UI (React + Vite + Framer Motion + Tailwind CSS)
 
-A pixel-faithful recreation of the Sixsense "Let's find the right references for
-your work" page: a glassy AI reference-finder built on a React + Vite +
-TypeScript + Tailwind (shadcn-ui base) stack with `framer-motion` and
-`lucide-react`. The whole page lives in `src/pages/Index.tsx` + `src/index.css`.
+A pixel-faithful recreation of the Sixsense "Let's find the right references for your work" page — a glassy AI reference-finder interface built on React + Vite + TypeScript + Tailwind CSS (shadcn-ui base) with Framer Motion and lucide-react. The design pairs animated canvas pixel-grid backgrounds, layered SVG folder/light stacks, floating reference cards with spring physics, and a glass prompt box with an infinite typewriter and a spinning conic-gradient send button. Use case: AI-powered creative research tools and prompt-input landing pages. Generated with Claude Fable 5.
 
 ## What's in it
 
@@ -41,3 +38,7 @@ npm run build     # type-check + production build
 npm run preview   # serve the production build
 npm run verify    # headless Playwright checks against the preview server
 ```
+
+---
+
+Part of the [Components & UI](../) collection in the [claude-directory](../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).
