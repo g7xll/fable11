@@ -1,12 +1,12 @@
-import Button from "./components/Button";
-import TestimonialSection from "./components/TestimonialSection";
-import PricingSection from "./components/PricingSection";
-import TestimonialCarousel from "./components/TestimonialCarousel";
-import ProjectsSection from "./components/ProjectsSection";
-import PartnerSection from "./components/PartnerSection";
-import Footer from "./components/Footer";
-import CopyrightBar from "./components/CopyrightBar";
 import BottomNav from "./components/BottomNav";
+import Button from "./components/Button";
+import CopyrightBar from "./components/CopyrightBar";
+import Footer from "./components/Footer";
+import PartnerSection from "./components/PartnerSection";
+import PricingSection from "./components/PricingSection";
+import ProjectsSection from "./components/ProjectsSection";
+import TestimonialCarousel from "./components/TestimonialCarousel";
+import TestimonialSection from "./components/TestimonialSection";
 import { useInViewAnimation } from "./hooks/useInViewAnimation";
 
 const MARQUEE_IMAGES = [

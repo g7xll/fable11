@@ -1,4 +1,4 @@
-import { PRESETS, type FieldPreset } from "@/lib/field";
+import { type FieldPreset, PRESETS } from "@/lib/field";
 
 interface PresetBankProps {
 	activeCode: string | null;

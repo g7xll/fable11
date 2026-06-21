@@ -1,24 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
-	Rocket,
-	Gauge,
-	Power,
-	Pause,
+	Crosshair,
 	FolderTree,
+	Gauge,
 	HelpCircle,
 	PackageCheck,
-	Terminal,
+	Pause,
+	Power,
 	Radio,
-	Crosshair,
+	Rocket,
+	Terminal,
 } from "lucide-react";
-import { Component, type StarshipProps } from "@/components/ui/starship-shader";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { CodeBlock } from "@/components/code-block";
 import {
 	Bracket,
-	VelocityLadder,
-	Readout,
 	Fader,
+	Readout,
+	VelocityLadder,
 } from "@/components/helm-instruments";
-import { CodeBlock } from "@/components/code-block";
+import { Component, type StarshipProps } from "@/components/ui/starship-shader";
 
 /* ------------------------------------------------------------------ *
  * HELM-9 · FTL Navigation Console

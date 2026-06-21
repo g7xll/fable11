@@ -1,5 +1,5 @@
-import { cn } from "@/lib/utils";
 import type { DitheringType } from "@/components/ui/dithering-shader";
+import { cn } from "@/lib/utils";
 
 /**
  * The page's signature: the ordered-dither threshold matrices, drawn straight

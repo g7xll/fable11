@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Activity,
 	CloudFog,
@@ -12,9 +11,10 @@ import {
 	Waves,
 	Wind,
 } from "lucide-react";
-import { GLSLHills } from "@/components/ui/glsl-hills";
-import { CornerBrackets } from "@/components/corner-brackets";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { CodeBlock } from "@/components/code-block";
+import { CornerBrackets } from "@/components/corner-brackets";
+import { GLSLHills } from "@/components/ui/glsl-hills";
 import { VisibilityGauge } from "@/components/visibility-gauge";
 import { cn } from "@/lib/utils";
 import {

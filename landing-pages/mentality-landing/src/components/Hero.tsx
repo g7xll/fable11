@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { motion } from "motion/react";
+import { useState } from "react";
 
 const VIDEO_SRC =
 	"/assets/hf_20260603_132049_036591b8-6e92-4760-b94c-a7ea6eef315c.mp4";

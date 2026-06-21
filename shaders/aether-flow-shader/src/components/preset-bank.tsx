@@ -1,4 +1,4 @@
-import { PRESETS, type AetherPreset } from "@/lib/presets";
+import { type AetherPreset, PRESETS } from "@/lib/presets";
 import { cn } from "@/lib/utils";
 
 interface PresetBankProps {

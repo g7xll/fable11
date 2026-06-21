@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import type React from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
 
 interface ThermalEffectProps {
 	width?: number;
@@ -146,13 +147,13 @@ class ThermalEffectEngine implements Disposable {
 		const uniforms = this.thermalMaterial.getUniforms?.();
 		const texWidth =
 			(this.maskTexture.image && (this.maskTexture.image as any).width) ||
-			(this.maskTexture.userData && this.maskTexture.userData.width) ||
+			this.maskTexture.userData?.width ||
 			512;
 		const glowRadiusUV = 10 / Math.max(1, texWidth);
-		if (uniforms && uniforms.glowRadius) {
+		if (uniforms?.glowRadius) {
 			uniforms.glowRadius.value = glowRadiusUV;
 		}
-		if (uniforms && uniforms.glowIntensity) {
+		if (uniforms?.glowIntensity) {
 			uniforms.glowIntensity.value = 0.7;
 		}
 	}

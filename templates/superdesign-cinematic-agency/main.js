@@ -20,12 +20,12 @@ function computePrice(millions) {
 }
 
 function fmt(n) {
-	return "$" + Math.round(n).toLocaleString("en-US");
+	return `$${Math.round(n).toLocaleString("en-US")}`;
 }
 
 function render() {
 	const millions = parseFloat(slider.value);
-	let monthly = computePrice(millions);
+	const monthly = computePrice(millions);
 
 	if (mode === "yearly") {
 		const yearly = monthly * 12 * 0.8; // 20% annual discount
@@ -38,7 +38,7 @@ function render() {
 
 	const billable = Math.max(0, millions - 1);
 	const per1k = billable === 0 ? 0 : 0.28;
-	subEl.textContent = "$" + per1k.toFixed(2) + " per 1K events";
+	subEl.textContent = `$${per1k.toFixed(2)} per 1K events`;
 
 	// fill track left of thumb with purple
 	const pct = ((millions - 1) / (20 - 1)) * 100;

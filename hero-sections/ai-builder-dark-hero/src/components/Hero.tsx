@@ -1,7 +1,7 @@
-import { useEffect, useRef } from "react";
 import Hls from "hls.js";
-import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
+import { motion } from "motion/react";
+import { useEffect, useRef } from "react";
 
 const VIDEO_SRC =
 	"https://stream.mux.com/T6oQJQ02cQ6N01TR6iHwZkKFkbepS34dkkIc9iukgy400g.m3u8";
@@ -40,7 +40,6 @@ function BackgroundVideo() {
 			loop
 			playsInline
 			poster={POSTER_SRC}
-			aria-hidden="true"
 			className="absolute inset-0 h-full w-full object-cover opacity-60"
 		/>
 	);

@@ -940,15 +940,15 @@ a {
 /* ============ REDUCED MOTION ============ */
 @media (prefers-reduced-motion: reduce) {
 	* {
-		animation: none !important;
+		animation: none;
 	}
 	[data-reveal] {
-		opacity: 1 !important;
-		transform: none !important;
+		opacity: 1;
+		transform: none;
 	}
 	.tag {
-		opacity: 1 !important;
-		transform: none !important;
+		opacity: 1;
+		transform: none;
 	}
 	html {
 		scroll-behavior: auto;

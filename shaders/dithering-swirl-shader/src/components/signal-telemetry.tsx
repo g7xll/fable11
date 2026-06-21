@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Activity, Gauge, Radio } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 interface SignalTelemetryProps {

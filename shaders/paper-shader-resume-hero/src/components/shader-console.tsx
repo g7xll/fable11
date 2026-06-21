@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
 import { Dithering } from "@paper-design/shaders-react";
 import { Gauge, Grid2x2, Palette, RotateCcw, Waves } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { useMemo, useState } from "react";
 import { useStudioClock } from "@/lib/useStudioClock";
+import { cn } from "@/lib/utils";
 
 /** Relative luminance (0–1, Rec.601) of an `hsl(h, s%, l%)` string — used to
  *  report the configured front-ink's brightness. Returns 0 if unparseable. */

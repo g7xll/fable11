@@ -5,7 +5,7 @@ const io = new IntersectionObserver(
 	(entries) => {
 		entries.forEach((e) => {
 			if (e.isIntersecting) {
-				e.target.style.transitionDelay = (e.target.dataset.delay || 0) + "ms";
+				e.target.style.transitionDelay = `${e.target.dataset.delay || 0}ms`;
 				e.target.classList.add("in");
 				io.unobserve(e.target);
 			}
@@ -25,7 +25,7 @@ const target = new Date(
 );
 const pad = (n) => String(n).padStart(2, "0");
 function tick() {
-	let s = Math.max(0, (target - Date.now()) / 1000);
+	const s = Math.max(0, (target - Date.now()) / 1000);
 	const d = Math.floor(s / 86400);
 	const h = Math.floor((s % 86400) / 3600);
 	const m = Math.floor((s % 3600) / 60);
@@ -72,7 +72,7 @@ if (form) {
 	form.addEventListener("submit", (ev) => {
 		ev.preventDefault();
 		const email = document.getElementById("beta-email");
-		if (email && email.value) {
+		if (email?.value) {
 			note.textContent = "✓ Received. We will be in touch.";
 			note.classList.add("form-success");
 			email.value = "";

@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
 
 const VIDEO_SRC =
 	"/assets/hf_20260510_060007_60275ce7-030c-4668-a160-8f364ec537d3.mp4";

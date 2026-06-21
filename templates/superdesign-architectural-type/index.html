@@ -153,13 +153,13 @@ body.loaded .nav,body.loaded .cmd,body.loaded .bento,body.loaded .footer{opacity
   .cell{height:38vw;min-height:160px;}
   .cell.c1,.cell.c2,.cell.c3{border-right:none;}
   .cmd{grid-template-columns:1fr;height:auto;}
-  .cmd > *{border-right:none!important;}
+  .cmd > *{border-right:none;}
   .cmd .c-email{padding:22px 24px;}
   .cmd .c-join button{padding:22px 0;}
   .cmd .c-time{padding:22px 0;}
   .cmd .c-labels{padding:22px 24px;}
   .bento{grid-template-columns:1fr;}
-  .card{height:auto;min-height:300px;border-right:none!important;}
+  .card{height:auto;min-height:300px;border-right:none;}
   .card:not(:last-child){border-bottom:.5px solid var(--hair);}
   .footer{flex-direction:column;gap:10px;}
   .nav .brand .ver{display:none;}
@@ -258,11 +258,11 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
-window.addEventListener('load', function(){
-  requestAnimationFrame(function(){ document.body.classList.add('loaded'); });
+window.addEventListener('load', ()=> {
+  requestAnimationFrame(()=> { document.body.classList.add('loaded'); });
 });
 // fallback in case load already fired
-setTimeout(function(){ document.body.classList.add('loaded'); }, 200);
+setTimeout(()=> { document.body.classList.add('loaded'); }, 200);
 </script>
 </body>
 </html>

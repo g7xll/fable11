@@ -1,9 +1,9 @@
 import { CircleDot, Crosshair, SignalHigh } from "lucide-react";
-import { ShaderComponent } from "@/components/ui/waves-shader";
-import { ReticleFrame } from "@/components/reticle";
-import { Readout } from "@/components/readout";
 import { ChannelLegend } from "@/components/channel-legend";
+import { Readout } from "@/components/readout";
+import { ReticleFrame } from "@/components/reticle";
 import { ScopeDeck } from "@/components/scope-deck";
+import { ShaderComponent } from "@/components/ui/waves-shader";
 import { useSignalClock } from "@/lib/use-signal-clock";
 
 /**

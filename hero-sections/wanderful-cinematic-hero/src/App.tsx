@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import VideoBackground from "./components/VideoBackground";
+import BottomBlock from "./components/BottomBlock";
 import Header from "./components/Header";
 import HeroHeadline from "./components/HeroHeadline";
-import BottomBlock from "./components/BottomBlock";
+import VideoBackground from "./components/VideoBackground";
 
 export default function App() {
 	const [mounted, setMounted] = useState(false);

@@ -14,9 +14,9 @@ import {
 	Sparkles,
 	Waves,
 } from "lucide-react";
-import WavyBackground from "@/components/ui/blue-meshy-background";
 import { CodeBlock } from "@/components/code-block";
 import { SectionHeader } from "@/components/section";
+import WavyBackground from "@/components/ui/blue-meshy-background";
 
 // Served from public/img — referenced by URL (no import needed for public assets).
 const useOcean = "/img/use-ocean.jpg";

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ShaderCanvas, ControlSlider } from "@/components/ui/aether-flow";
+import { ControlSlider, ShaderCanvas } from "@/components/ui/aether-flow";
 
 /**
  * DemoOne — the minimal integration example from the brief, ported to TS.

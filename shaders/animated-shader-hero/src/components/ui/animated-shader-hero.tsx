@@ -1,4 +1,5 @@
-import React, { useRef, useEffect } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 /**
  * animated-shader-hero.tsx
@@ -434,7 +435,7 @@ void main(){gl_Position=position;}`;
 			pointersRef.current = null;
 		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [resize, loop]);
 
 	return canvasRef;
 };

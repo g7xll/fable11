@@ -124,7 +124,7 @@
 		.animate-hud-in,
 		.animate-ignite-pulse,
 		.animate-flicker {
-			animation: none !important;
+			animation: none;
 		}
 	}
 }

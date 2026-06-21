@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
 import { Activity, Clock, Cpu, Grid3x3, Maximize2, Waves } from "lucide-react";
+import type { ReactNode } from "react";
 import { useTelemetry } from "@/hooks/useTelemetry";
-import { SHAPES, TYPES } from "@/lib/shader-meta";
 import type { LiveParams, Size } from "@/lib/shader-meta";
+import { SHAPES, TYPES } from "@/lib/shader-meta";
 
 function Readout({
 	icon,

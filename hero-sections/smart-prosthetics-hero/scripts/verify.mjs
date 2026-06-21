@@ -1,9 +1,10 @@
 /* CLI verification: serves the production build and asserts the rendered
    page matches the spec using headless Chromium. */
-import { chromium } from "playwright";
+
+import { existsSync, readFileSync } from "node:fs";
 import { createServer } from "node:http";
-import { readFileSync, existsSync } from "node:fs";
-import { join, extname } from "node:path";
+import { extname, join } from "node:path";
+import { chromium } from "playwright";
 
 const DIST = join(import.meta.dirname, "..", "dist");
 const MIME = {

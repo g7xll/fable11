@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { ChevronDown, Infinity, Menu, X } from "lucide-react";
+import { useState } from "react";
 
 const BG_VIDEO =
 	"/assets/hf_20260511_230229_7c9bc431-46cf-489a-948d-e8144d8eb5d4.mp4";

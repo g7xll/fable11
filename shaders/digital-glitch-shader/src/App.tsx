@@ -1,20 +1,20 @@
 import {
-	useState,
+	Activity,
+	Circle,
+	Palette,
+	Power,
+	Radio,
+	RotateCcw,
+	Waves,
+} from "lucide-react";
+import {
+	type ReactNode,
 	useCallback,
 	useEffect,
-	useRef,
 	useMemo,
-	type ReactNode,
+	useRef,
+	useState,
 } from "react";
-import {
-	Radio,
-	Power,
-	RotateCcw,
-	Activity,
-	Waves,
-	Palette,
-	Circle,
-} from "lucide-react";
 import ShaderCanvas, {
 	type ShaderCanvasProps,
 } from "@/components/ui/digital-glitch";

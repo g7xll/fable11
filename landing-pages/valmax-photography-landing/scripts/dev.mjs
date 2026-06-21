@@ -15,10 +15,10 @@
  * Any extra CLI args (e.g. `--port 5199 --strictPort` passed by the recorder)
  * are forwarded straight to `vite preview`.
  */
-import { spawnSync, spawn } from "node:child_process";
+import { spawn, spawnSync } from "node:child_process";
 import { existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const root = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const serverBundle = path.join(root, "dist", "server", "server.js");

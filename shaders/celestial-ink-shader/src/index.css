@@ -222,6 +222,6 @@ input[type="range"].fader::-moz-range-thumb {
 	.reticle-spin-rev,
 	.breathe,
 	.rise {
-		animation: none !important;
+		animation: none;
 	}
 }

@@ -1040,8 +1040,8 @@ img {
 }
 @media (prefers-reduced-motion: reduce) {
 	* {
-		animation-duration: 0.001ms !important;
-		animation-iteration-count: 1 !important;
+		animation-duration: 0.001ms;
+		animation-iteration-count: 1;
 	}
 	.reveal {
 		opacity: 1;

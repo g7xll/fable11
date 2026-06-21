@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { ArrowUpRight, Award, Crown, X } from "lucide-react";
+import { useState } from "react";
 
 const VIDEO_URL =
 	"/assets/hf_20260606_154941_df1a96e1-a06f-450c-bd02-d863414cc1a0.mp4";

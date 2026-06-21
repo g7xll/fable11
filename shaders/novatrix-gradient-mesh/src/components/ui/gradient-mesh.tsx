@@ -1,6 +1,7 @@
 "use client";
-import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
-import React, { useEffect, useRef } from "react";
+import { Color, Mesh, Program, Renderer, Triangle } from "ogl";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 // Vertex shader
 const vert = `
@@ -222,6 +223,7 @@ export function GradientMesh(props: NovatrixProps): React.ReactElement {
 		waveAmp,
 		waveFreq,
 		waveSpeed,
+		grain,
 	]);
 
 	return (

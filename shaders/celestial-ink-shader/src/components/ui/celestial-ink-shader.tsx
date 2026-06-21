@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 /**
@@ -240,7 +241,7 @@ const CelestialInkShader: React.FC<CelestialInkShaderProps> = ({
 			renderer.setAnimationLoop(null);
 
 			const canvas = renderer.domElement;
-			if (canvas && canvas.parentNode) {
+			if (canvas?.parentNode) {
 				canvas.parentNode.removeChild(canvas);
 			}
 

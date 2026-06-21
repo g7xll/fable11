@@ -13,8 +13,8 @@
  * Run: node scripts/gen-avatars.mjs   (writes assets/avatars/*.svg)
  */
 import { mkdirSync, writeFileSync } from "node:fs";
-import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const OUT = join(__dirname, "..", "assets", "avatars");

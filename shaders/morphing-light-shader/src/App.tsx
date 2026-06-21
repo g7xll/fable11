@@ -1,15 +1,15 @@
-import { useCallback, useRef, useState } from "react";
 import { Aperture, Crosshair, Pause, Play, Radio } from "lucide-react";
-import { MorphingLight } from "@/components/ui/morphing-light";
+import { useCallback, useRef, useState } from "react";
 import { Controls } from "@/components/controls";
 import { PresetBank } from "@/components/preset-bank";
-import { Telemetry } from "@/components/telemetry";
 import { Reticle } from "@/components/reticle";
+import { Telemetry } from "@/components/telemetry";
+import { MorphingLight } from "@/components/ui/morphing-light";
 import {
-	PRESETS,
-	statesMatch,
 	type FringePreset,
 	type FringeState,
+	PRESETS,
+	statesMatch,
 } from "@/lib/presets";
 
 /** Corner bracket — frames the live field as something under observation. */

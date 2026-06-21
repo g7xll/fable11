@@ -1,19 +1,19 @@
-import { useCallback, useState } from "react";
 import { ArrowDown, Github, Grid2x2, Layers, SquareCode } from "lucide-react";
-import { ResponsiveDither } from "@/components/responsive-dither";
-import { Hud } from "@/components/hud";
-import { ControlRail } from "@/components/control-rail";
-import { ShapeLibrary } from "@/components/shape-library";
-import { DitherMatrices } from "@/components/dither-matrices";
-import { PropApi } from "@/components/prop-api";
-import { IntegrationDocs } from "@/components/integration-docs";
+import { useCallback, useState } from "react";
 import { CornerBrackets, SectionHeading } from "@/components/chrome";
-import { DEMO_PARAMS, SHAPES } from "@/lib/shader-meta";
-import type { LiveParams, Size } from "@/lib/shader-meta";
+import { ControlRail } from "@/components/control-rail";
+import { DitherMatrices } from "@/components/dither-matrices";
+import { Hud } from "@/components/hud";
+import { IntegrationDocs } from "@/components/integration-docs";
+import { PropApi } from "@/components/prop-api";
+import { ResponsiveDither } from "@/components/responsive-dither";
+import { ShapeLibrary } from "@/components/shape-library";
 import type {
 	DitheringShape,
 	DitheringType,
 } from "@/components/ui/dithering-shader";
+import type { LiveParams, Size } from "@/lib/shader-meta";
+import { DEMO_PARAMS, SHAPES } from "@/lib/shader-meta";
 
 const RANDOM_BACKS = ["#000033", "#04050b", "#0b0220", "#001018", "#120016"];
 const RANDOM_FRONTS = [

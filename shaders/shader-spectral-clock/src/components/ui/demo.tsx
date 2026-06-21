@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { ShaderBackground } from "@/components/ui/shader-clock";
-import { TimeDisplay } from "@/components/ui/shader-clock";
+import { useEffect, useState } from "react";
+import { ShaderBackground, TimeDisplay } from "@/components/ui/shader-clock";
 
 export default function App() {
 	const [showInfo, setShowInfo] = useState<boolean>(false);

@@ -1,5 +1,5 @@
-import { useState, type CSSProperties, type ReactNode } from "react";
 import { Check, Copy } from "lucide-react";
+import { type CSSProperties, type ReactNode, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /* ---------- Fader (labeled range) ---------- */

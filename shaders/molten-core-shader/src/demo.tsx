@@ -1,10 +1,10 @@
-import { useCallback, useRef, useState } from "react";
 import { Flame } from "lucide-react";
+import { useCallback, useRef, useState } from "react";
+import { CoreTelemetry } from "@/components/core-telemetry";
+import { IntensityDial, ThemeToggle } from "@/components/forge-controls";
 import MoltenCoreShader, {
 	type MoltenCoreTheme,
 } from "@/components/ui/molten-core-shader";
-import { CoreTelemetry } from "@/components/core-telemetry";
-import { IntensityDial, ThemeToggle } from "@/components/forge-controls";
 
 /**
  * DemoOne — the integration the prompt asks for. The molten-core shader is the

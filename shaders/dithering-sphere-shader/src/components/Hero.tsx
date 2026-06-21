@@ -2,7 +2,7 @@ import { ArrowDownRight, Copy } from "lucide-react";
 
 import { DitheringStage } from "@/components/DitheringStage";
 import type { FrameClock } from "@/hooks/useFrameClock";
-import { SHAPE_BY_KEY, TYPE_BY_KEY, type Params } from "@/lib/dithering";
+import { type Params, SHAPE_BY_KEY, TYPE_BY_KEY } from "@/lib/dithering";
 
 type HeroProps = {
 	params: Params;

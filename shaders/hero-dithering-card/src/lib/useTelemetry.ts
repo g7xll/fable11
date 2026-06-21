@@ -1,4 +1,4 @@
-import { useEffect, useRef, type RefObject } from "react";
+import { type RefObject, useEffect, useRef } from "react";
 
 export interface PressTelemetry {
 	fpsRef: RefObject<HTMLSpanElement | null>;

@@ -13,7 +13,7 @@
  *
  * Exits non-zero on any failure.
  */
-import { spawn, execSync } from "node:child_process";
+import { execSync, spawn } from "node:child_process";
 import { chromium } from "playwright";
 
 const PORT = 4321;

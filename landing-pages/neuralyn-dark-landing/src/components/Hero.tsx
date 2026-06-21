@@ -1,9 +1,9 @@
-import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import logo from "@/assets/logo.png";
+import { useRef } from "react";
 import heroDashboard from "@/assets/hero-dashboard.png";
+import logo from "@/assets/logo.png";
+import { Button } from "@/components/ui/button";
 
 const VIDEO_URL =
 	"/assets/hf_20260307_083826_e938b29f-a43a-41ec-a153-3d4730578ab8.mp4";

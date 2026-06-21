@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
 	Calendar,
 	ChevronLeft,
@@ -11,6 +10,7 @@ import {
 	User,
 	X,
 } from "lucide-react";
+import { useState } from "react";
 
 const VIDEO_SRC =
 	"/assets/hf_20260406_094145_4a271a6c-3869-4f1c-8aa7-aeb0cb227994.mp4";

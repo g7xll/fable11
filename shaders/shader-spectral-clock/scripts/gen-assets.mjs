@@ -10,10 +10,10 @@
 //   CHROME_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
 //   NODE_PATH=../../scripts/record-demos/node_modules \
 //     node scripts/gen-assets.mjs
-import { mkdirSync } from "fs";
-import { fileURLToPath } from "url";
-import { dirname, join } from "path";
-import { createRequire } from "module";
+import { mkdirSync } from "node:fs";
+import { createRequire } from "node:module";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 // Resolve Playwright from the repo's record-demos toolchain (or an env override)
 // without needing it as a project dependency.
@@ -104,7 +104,7 @@ const H = 400;
 
 // Deterministic PRNG so every regeneration is identical.
 function mulberry32(seed) {
-	return function () {
+	return () => {
 		seed |= 0;
 		seed = (seed + 0x6d2b79f5) | 0;
 		let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);

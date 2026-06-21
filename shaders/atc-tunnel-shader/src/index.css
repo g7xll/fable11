@@ -130,7 +130,7 @@
 		.animate-hud-in,
 		.animate-aperture-pulse,
 		.animate-signal-flicker {
-			animation: none !important;
+			animation: none;
 		}
 	}
 }

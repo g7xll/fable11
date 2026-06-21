@@ -1,11 +1,11 @@
-import { useState } from "react";
 import { Sparkles } from "lucide-react";
-import MeshBackdrop from "@/components/MeshBackdrop";
-import SiteNav from "@/components/SiteNav";
-import WaitlistForm from "@/components/WaitlistForm";
-import SocialProof from "@/components/SocialProof";
+import { useState } from "react";
 import FeatureStrip from "@/components/FeatureStrip";
+import MeshBackdrop from "@/components/MeshBackdrop";
 import SiteFooter from "@/components/SiteFooter";
+import SiteNav from "@/components/SiteNav";
+import SocialProof from "@/components/SocialProof";
+import WaitlistForm from "@/components/WaitlistForm";
 
 const BASE_SIGNUPS = 2847;
 

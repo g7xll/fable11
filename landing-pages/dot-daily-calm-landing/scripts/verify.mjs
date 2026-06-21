@@ -141,8 +141,7 @@ try {
 	);
 	check(
 		"Video autoplay/loop/muted/playsInline/object-cover",
-		video &&
-			video.autoplay &&
+		video?.autoplay &&
 			video.loop &&
 			video.muted &&
 			video.playsInline &&

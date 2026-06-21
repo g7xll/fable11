@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
+	Activity,
 	Cpu,
+	Crosshair,
 	Pause,
 	Play,
 	RotateCcw,
-	Activity,
-	Crosshair,
 	Waves,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CyberneticGridShader, {
 	type ShaderTelemetry,
 } from "@/components/ui/cybernetic-grid-shader";

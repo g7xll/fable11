@@ -162,10 +162,10 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.reveal,
 	.scope-reveal {
-		animation: none !important;
+		animation: none;
 	}
 	.radar-sweep {
-		display: none !important;
+		display: none;
 	}
 }
 

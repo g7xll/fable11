@@ -12,6 +12,7 @@
 //      and RESUME restarts it (frames differ again) — driving the shader's `paused`;
 //   5. the host telemetry spans advance (iFrame / altitude sampled off the loop).
 import { createRequire } from "node:module";
+
 const require = createRequire(import.meta.url);
 const pwPath =
 	process.env.PLAYWRIGHT_PATH ||
@@ -49,7 +50,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
 page.on("console", (m) => {
 	if (m.type() === "error" && !/favicon/i.test(m.text())) errors.push(m.text());
 });
-page.on("pageerror", (e) => errors.push("pageerror: " + e.message));
+page.on("pageerror", (e) => errors.push(`pageerror: ${e.message}`));
 
 await page.goto(URL, { waitUntil: "load" });
 await page.waitForTimeout(1600); // let the loop run + telemetry sample
@@ -193,7 +194,7 @@ let allPass = true;
 for (const c of checks) {
 	const tag = c.pass ? "PASS" : "FAIL";
 	if (!c.pass) allPass = false;
-	console.log(`[${tag}] ${c.name}${c.detail ? "  — " + c.detail : ""}`);
+	console.log(`[${tag}] ${c.name}${c.detail ? `  — ${c.detail}` : ""}`);
 }
 console.log(allPass ? "\nALL CHECKS PASSED" : "\nSOME CHECKS FAILED");
 process.exit(allPass ? 0 : 1);

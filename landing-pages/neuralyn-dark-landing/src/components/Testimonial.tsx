@@ -1,10 +1,10 @@
-import { useRef } from "react";
 import {
+	type MotionValue,
 	motion,
 	useScroll,
 	useTransform,
-	type MotionValue,
 } from "framer-motion";
+import { useRef } from "react";
 import quoteSymbol from "@/assets/quote-symbol.png";
 import avatar from "@/assets/testimonial-avatar.png";
 

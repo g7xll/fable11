@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Check, Copy } from "lucide-react";
+import { useState } from "react";
 
 /* A small monospace code surface. Content is passed as a plain string so we
    never fight JSX escaping for braces / angle brackets / quotes, and the copy

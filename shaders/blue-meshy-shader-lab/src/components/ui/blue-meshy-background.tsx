@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 // Zoom factor for the visual pattern.
@@ -351,7 +352,7 @@ export default function WavyBackground({
 		const uResolutionLoc = gl.getUniformLocation(program, "uResolution");
 		const uTimeLoc = gl.getUniformLocation(program, "uTime");
 
-		let startTime = performance.now();
+		const startTime = performance.now();
 
 		// Track the animation frame so the loop can be cancelled on unmount. Without
 		// this, React 18 StrictMode's mount→unmount→remount in development leaves the

@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 
 // --- FRAGMENT SHADER ---
 // We add a `u_color` uniform to accept a color from our component.

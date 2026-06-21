@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import { Activity } from "lucide-react";
+import { useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface PigmentTraceProps {

@@ -1,8 +1,4 @@
 import { useMemo } from "react";
-import { ThermalEffect } from "@/components/ui/thermal-shader";
-import { buildThermalMasks, type ThermalMask } from "@/lib/logo-masks";
-import { useTelemetry } from "@/lib/use-telemetry";
-import { TelemetryHud } from "@/components/telemetry-hud";
 import {
 	HowToUseSection,
 	IntegrationSection,
@@ -11,6 +7,10 @@ import {
 	SiteFooter,
 	WhyComponentsUiSection,
 } from "@/components/showcase-sections";
+import { TelemetryHud } from "@/components/telemetry-hud";
+import { ThermalEffect } from "@/components/ui/thermal-shader";
+import { buildThermalMasks, type ThermalMask } from "@/lib/logo-masks";
+import { useTelemetry } from "@/lib/use-telemetry";
 
 /** A framed live viewport: corner brackets, reticle, label — and a real canvas. */
 function Specimen({

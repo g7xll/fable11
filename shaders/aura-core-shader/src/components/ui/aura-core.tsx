@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // --- OGL Library Inlined ---
 // To resolve the import error, the necessary classes from the OGL library
@@ -90,7 +90,7 @@ class Geometry {
 		};
 		this.instancedCount = 0;
 
-		for (let key in attributes) {
+		for (const key in attributes) {
 			this.addAttribute(key, attributes[key]);
 		}
 	}

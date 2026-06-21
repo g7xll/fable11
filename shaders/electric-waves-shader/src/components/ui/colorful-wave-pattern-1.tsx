@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 
 const ElectricWavesShader = () => {
@@ -137,7 +138,7 @@ const ElectricWavesShader = () => {
 			material.dispose();
 			renderer.dispose();
 		};
-	}, []);
+	}, [brightness, waveCount, frequency, colorSeparation, amplitude]);
 
 	// Control panel styles
 	const controlPanelStyle: React.CSSProperties = {

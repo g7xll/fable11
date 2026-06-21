@@ -236,6 +236,6 @@
 	.signal-sweep::after,
 	.pulse-dot,
 	.rise {
-		animation: none !important;
+		animation: none;
 	}
 }

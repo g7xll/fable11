@@ -1,4 +1,4 @@
-import { PRESETS, type FringePreset } from "@/lib/presets";
+import { type FringePreset, PRESETS } from "@/lib/presets";
 
 interface PresetBankProps {
 	activeId: string | null;

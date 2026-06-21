@@ -1,12 +1,12 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import MenuBar from "./components/MenuBar";
-import InboxMockup from "./components/InboxMockup";
 import FeatureTriage from "./components/FeatureTriage";
-import LogoCloud from "./components/LogoCloud";
-import Testimonials from "./components/Testimonials";
-import Pricing from "./components/Pricing";
 import FinalCTA from "./components/FinalCTA";
+import Hero from "./components/Hero";
+import InboxMockup from "./components/InboxMockup";
+import LogoCloud from "./components/LogoCloud";
+import MenuBar from "./components/MenuBar";
+import Navbar from "./components/Navbar";
+import Pricing from "./components/Pricing";
+import Testimonials from "./components/Testimonials";
 
 const VIDEO_URL =
 	"/assets/hf_20260508_064122_c4750c0e-7476-4b44-94a2-a85a65c63bf2.mp4";

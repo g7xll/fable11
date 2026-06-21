@@ -1,7 +1,7 @@
-import { useRef } from "react";
-import type { CSSProperties } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
 import type { MotionValue } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import type { CSSProperties } from "react";
+import { useRef } from "react";
 
 interface AnimatedTextProps {
 	text: string;

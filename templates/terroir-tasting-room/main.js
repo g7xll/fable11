@@ -1,7 +1,5 @@
 /* TERROIR — reveals + case builder utility */
-(function () {
-	"use strict";
-
+(() => {
 	/* ---------- section reveal (800ms, 20px Y) ---------- */
 	const io = new IntersectionObserver(
 		(entries) => {
@@ -81,8 +79,8 @@
 
 	function sync() {
 		const t = total();
-		fill.style.width = Math.min((t / CAP) * 100, 100) + "%";
-		read.textContent = t + "/" + CAP;
+		fill.style.width = `${Math.min((t / CAP) * 100, 100)}%`;
+		read.textContent = `${t}/${CAP}`;
 		grid.querySelectorAll(".case-card").forEach((card) => {
 			const id = card.dataset.id;
 			card.querySelector(".q-val").textContent = qty.get(id);

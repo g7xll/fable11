@@ -1,5 +1,5 @@
+import { Activity, Crosshair, Radio, Waves } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import { Radio, Crosshair, Waves, Activity } from "lucide-react";
 import LivingNebulaShader, {
 	type NebulaFrameState,
 } from "@/components/ui/living-nebula";

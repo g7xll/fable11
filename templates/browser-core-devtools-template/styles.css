@@ -1281,10 +1281,10 @@ details.faq .ans code {
 @media (prefers-reduced-motion: reduce) {
 	.demo-cursor,
 	.ver-dot {
-		animation: none !important;
+		animation: none;
 	}
 	.reveal {
-		opacity: 1 !important;
-		animation: none !important;
+		opacity: 1;
+		animation: none;
 	}
 }

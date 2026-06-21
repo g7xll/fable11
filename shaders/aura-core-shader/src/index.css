@@ -289,6 +289,6 @@ body {
 @media (prefers-reduced-motion: reduce) {
 	.reticle-ring,
 	.live-dot {
-		animation: none !important;
+		animation: none;
 	}
 }

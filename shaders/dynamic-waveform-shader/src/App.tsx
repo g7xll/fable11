@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
 	Activity,
 	AudioWaveform,
@@ -9,6 +8,7 @@ import {
 	Sliders,
 	Waves,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ShaderCanvas from "@/components/ui/dynamic-waveform";
 
 // ── Signal channels (the prompt's DEFAULT_PROPS + PRESETS, reframed) ─────────
@@ -228,7 +228,7 @@ export default function App() {
 		// Probe gain modulates the effective deflection, like u_mouse_distortion.
 		const probe = 1 + (probeRef.current - 0.5) * props.mouseDistortion;
 		setTrace(Math.abs(sum * probe) * 1000);
-	}, [props.complexity, props.amplitude, props.mouseDistortion, fps]);
+	}, [props.complexity, props.amplitude, props.mouseDistortion]);
 
 	const applyChannel = useCallback((channel: Channel) => {
 		setProps(channel.settings);

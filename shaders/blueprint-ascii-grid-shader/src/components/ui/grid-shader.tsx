@@ -337,7 +337,7 @@ export default function GridShader({
 			if (canvas.width !== w || canvas.height !== h) {
 				canvas.width = w;
 				canvas.height = h;
-				gl!.viewport(0, 0, w, h);
+				gl?.viewport(0, 0, w, h);
 			}
 		}
 		function scheduleSize() {
@@ -521,7 +521,6 @@ export default function GridShader({
 	return (
 		<canvas
 			ref={canvasRef}
-			aria-hidden="true"
 			className={cn(
 				fixed ? "fixed inset-0 -z-10 h-full w-full" : "h-full w-full",
 				className,

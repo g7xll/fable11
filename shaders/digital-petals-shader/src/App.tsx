@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
+	Clock3,
 	Flower2,
 	Pause,
 	Play,
 	RotateCcw,
 	Sparkles,
-	Clock3,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import DigitalPetalsShader, {
 	type PetalTelemetry,
 } from "@/components/ui/digital-petals-shader";

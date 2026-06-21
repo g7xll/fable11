@@ -12,10 +12,11 @@
  *
  * Usage: node verify.mjs   (run `npm run build` first, or it builds for you)
  */
-import { chromium } from "playwright";
-import { spawn, execSync } from "node:child_process";
+
+import { execSync, spawn } from "node:child_process";
 import { existsSync } from "node:fs";
 import net from "node:net";
+import { chromium } from "playwright";
 
 const PORT = Number(process.env.VERIFY_PORT) || 47318;
 const BASE = `http://127.0.0.1:${PORT}/`;
@@ -44,7 +45,7 @@ const fail = [];
 const check = (name, ok, detail = "") => {
 	(ok ? pass : fail).push(name + (detail ? ` — ${detail}` : ""));
 	console.log(
-		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  (" + detail + ")" : ""}`,
+		`${ok ? "PASS" : "FAIL"}  ${name}${detail ? `  (${detail})` : ""}`,
 	);
 };
 
@@ -215,7 +216,7 @@ try {
 	await browser.close();
 } catch (err) {
 	console.error("VERIFY ERROR:", err);
-	fail.push("harness: " + err.message);
+	fail.push(`harness: ${err.message}`);
 } finally {
 	if (browser) await browser.close().catch(() => {});
 	server.kill("SIGTERM");
@@ -223,7 +224,7 @@ try {
 
 console.log(`\n${pass.length} passed, ${fail.length} failed`);
 if (fail.length) {
-	console.log("FAILURES:\n - " + fail.join("\n - "));
+	console.log(`FAILURES:\n - ${fail.join("\n - ")}`);
 	process.exit(1);
 }
 console.log("ALL CHECKS PASSED ✓");

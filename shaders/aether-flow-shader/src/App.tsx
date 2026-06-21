@@ -1,10 +1,10 @@
+import { Crosshair, Hexagon, Wind } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Wind, Crosshair, Hexagon } from "lucide-react";
-import { ShaderCanvas, type ShaderProps } from "@/components/ui/aether-flow";
 import { ChannelRail } from "@/components/channel-rail";
 import { PresetBank } from "@/components/preset-bank";
 import { Telemetry } from "@/components/telemetry";
-import { PRESETS, type AetherPreset } from "@/lib/presets";
+import { ShaderCanvas, type ShaderProps } from "@/components/ui/aether-flow";
+import { type AetherPreset, PRESETS } from "@/lib/presets";
 
 /* Reticle bracket — drawn at each corner of the observation window so the live
    field reads as something under instrument observation, not a stock hero. */

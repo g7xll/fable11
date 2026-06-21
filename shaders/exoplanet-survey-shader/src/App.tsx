@@ -1,15 +1,15 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
-	Telescope,
-	Orbit,
 	CloudFog,
-	Sparkles,
-	Shuffle,
-	RotateCcw,
-	Gauge,
-	Timer,
 	Compass,
+	Gauge,
+	Orbit,
+	RotateCcw,
+	Shuffle,
+	Sparkles,
+	Telescope,
+	Timer,
 } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ShaderCanvas, {
 	type SphereTelemetry,
 } from "@/components/ui/celestial-sphere-shader";
@@ -185,7 +185,7 @@ export default function App() {
 	const spectral = useMemo(() => spectralClass(props.color2), [props.color2]);
 	const rotDeg = ((tele.rotation * 180) / Math.PI) % 360;
 	const designation = activePreset
-		? PRESETS.find((p) => p.name === activePreset)!.designation
+		? PRESETS.find((p) => p.name === activePreset)?.designation
 		: `CS-${props.color2.replace("#", "").toUpperCase()}`;
 
 	return (

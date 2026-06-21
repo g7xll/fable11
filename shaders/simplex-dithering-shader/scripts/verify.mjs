@@ -17,9 +17,10 @@
  * Browser resolution: prefer a binary under PLAYWRIGHT_BROWSERS_PATH /
  * /opt/pw-browsers (pre-installed in CI), else Playwright's managed Chromium.
  */
-import { chromium } from "playwright";
+
 import { existsSync, readdirSync } from "node:fs";
 import path from "node:path";
+import { chromium } from "playwright";
 
 const BASE_URL = process.env.VERIFY_URL ?? "http://localhost:4173";
 let failures = 0;
@@ -122,7 +123,7 @@ const glSample = await canvas.first().evaluate((el) => {
 	const h = el.height;
 	const px = new Uint8Array(4 * w * h);
 	gl.readPixels(0, 0, w, h, gl.RGBA, gl.UNSIGNED_BYTE, px);
-	let lum = 0;
+	let _lum = 0;
 	let maxChan = 0;
 	let nonBlack = 0;
 	let rSum = 0;
@@ -133,7 +134,7 @@ const glSample = await canvas.first().evaluate((el) => {
 		const r = px[i];
 		const g = px[i + 1];
 		const b = px[i + 2];
-		lum += r + g + b;
+		_lum += r + g + b;
 		maxChan = Math.max(maxChan, r, g, b);
 		if (r + g + b > 24) nonBlack += 1;
 		rSum += r;

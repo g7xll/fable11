@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Activity, Cpu, Sun, Waves } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 interface TelemetryProps {
 	/** Live FPS, sampled by the parent off the shader's own rAF clock. */

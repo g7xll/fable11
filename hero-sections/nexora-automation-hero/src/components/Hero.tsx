@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
-import { Button } from "./ui/button";
 import DashboardPreview from "./DashboardPreview";
+import { Button } from "./ui/button";
 
 const VIDEO_URL =
 	"/assets/hf_20260319_015952_e1deeb12-8fb7-4071-a42a-60779fc64ab6.mp4";
@@ -22,7 +22,6 @@ export default function Hero() {
 				muted
 				loop
 				playsInline
-				aria-hidden="true"
 			/>
 
 			<div className="relative z-10 flex w-full flex-col items-center">

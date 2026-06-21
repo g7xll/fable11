@@ -332,7 +332,6 @@ const ShaderBackgroundPro = ({
 	return (
 		<canvas
 			ref={canvasRef}
-			aria-hidden="true"
 			className={cn(
 				fixed ? "fixed inset-0 -z-10 h-full w-full" : "h-full w-full",
 				className,

@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { Boxes, FolderTree, Terminal, Wand2 } from "lucide-react";
+import { useState } from "react";
 import { CodeBlock } from "./CodeBlock";
 
 type Tab = "install" | "props" | "usage" | "why";

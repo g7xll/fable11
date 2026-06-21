@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import { Quote } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
 
 const PARALLAX_MAX_OFFSET = 200;

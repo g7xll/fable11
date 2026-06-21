@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { HeroStage } from "@/components/lab/HeroStage";
 import {
 	ControlDeck,
 	DEFAULT_UNIFORMS,
 	type Uniforms,
 } from "@/components/lab/ControlDeck";
-import { ContentSections } from "@/components/lab/Sections";
+import { HeroStage } from "@/components/lab/HeroStage";
 import { WORLD_PRESETS, type WorldPreset } from "@/components/lab/presets";
+import { ContentSections } from "@/components/lab/Sections";
 
 export default function App() {
 	const [uniforms, setUniforms] = useState<Uniforms>(DEFAULT_UNIFORMS);

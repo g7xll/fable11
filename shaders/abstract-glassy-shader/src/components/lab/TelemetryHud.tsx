@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState, type MutableRefObject } from "react";
 import { Activity } from "lucide-react";
+import { type MutableRefObject, useEffect, useRef, useState } from "react";
 import type {
 	ShaderSettings,
 	ShaderStats,

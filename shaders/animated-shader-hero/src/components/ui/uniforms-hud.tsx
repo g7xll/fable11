@@ -1,4 +1,4 @@
-import { Activity, Move3d, MousePointer2 } from "lucide-react";
+import { Activity, MousePointer2, Move3d } from "lucide-react";
 
 export interface UniformState {
 	time: number;

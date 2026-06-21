@@ -1,12 +1,13 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import type React from "react";
+import { useEffect, useRef, useState } from "react";
 import * as THREE from "three";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { ShaderPass } from "three/addons/postprocessing/ShaderPass.js";
-import gsap from "gsap";
+import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
 import { Navbar } from "@/components/ui/mini-navbar";
 
 export type HeroWaveProps = {
@@ -417,7 +418,7 @@ export function HeroWave({
 		}
 
 		function setupQuickSetters() {
-			const u = (instancedBars!.material as THREE.ShaderMaterial)
+			const u = (instancedBars?.material as THREE.ShaderMaterial)
 				.uniforms as any;
 			setMouseNDC = gsap.quickSetter(u.uMouseClipX, "value") as any;
 			setSmoothSpeed = gsap.quickSetter(u.uSmoothSpeed, "value") as any;
@@ -512,7 +513,7 @@ export function HeroWave({
 
 			for (let i = 0; i < currentBarCount; i++) {
 				const dx = Math.abs(mouseWorldX - (barCenters as Float32Array)[i]);
-				const hit = dx < mDist ? 1.0 - Math.pow(dx / mDist, fall) : 0.0;
+				const hit = dx < mDist ? 1.0 - (dx / mDist) ** fall : 0.0;
 
 				const targetAdd = hit * smoothSpeed;
 				const add = targetAdd * addEase;
@@ -535,7 +536,7 @@ export function HeroWave({
 
 			const waveWidth = cameraWidth;
 			const span = waveWidth + EXTEND_LEFT_PX;
-			let barCount = Math.min(
+			const barCount = Math.min(
 				MAX_BARS,
 				Math.max(
 					1,
@@ -548,7 +549,7 @@ export function HeroWave({
 				barCount > 1 ? (span - barCount * FIXED_BAR_WIDTH) / (barCount - 1) : 0;
 			currentBarCount = barCount;
 
-			const totalW = span;
+			const _totalW = span;
 			const startX = -waveWidth / 2 - EXTEND_LEFT_PX;
 			const instCnt = barCount * 2;
 			barCenters = new Float32Array(barCount);
@@ -703,7 +704,7 @@ export function HeroWave({
 
 			const waveWidth = cameraWidth;
 			const span = waveWidth + EXTEND_LEFT_PX;
-			let barCount = Math.min(
+			const barCount = Math.min(
 				MAX_BARS,
 				Math.max(
 					1,
@@ -719,12 +720,12 @@ export function HeroWave({
 				currentBarCount = barCount;
 				createInstancedBars();
 			} else {
-				const totW = span;
+				const _totW = span;
 				const startX = -waveWidth / 2 - EXTEND_LEFT_PX;
-				const aX = instancedBars!.geometry.getAttribute(
+				const aX = instancedBars?.geometry.getAttribute(
 					"aXPos",
 				) as THREE.InstancedBufferAttribute;
-				const aT = instancedBars!.geometry.getAttribute(
+				const aT = instancedBars?.geometry.getAttribute(
 					"aPosNorm",
 				) as THREE.InstancedBufferAttribute;
 
@@ -864,7 +865,7 @@ export function HeroWave({
 				}
 			} catch {}
 		};
-	}, []);
+	}, [extendLeftPx]);
 
 	return (
 		<section

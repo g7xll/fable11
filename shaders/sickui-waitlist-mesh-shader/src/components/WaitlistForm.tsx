@@ -1,5 +1,5 @@
-import { useState, type FormEvent } from "react";
 import { ArrowRight, Check, Loader2, Mail, PartyPopper } from "lucide-react";
+import { type FormEvent, useState } from "react";
 import { cn, isValidEmail } from "@/lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";

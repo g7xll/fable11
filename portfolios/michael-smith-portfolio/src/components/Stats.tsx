@@ -28,7 +28,7 @@ const StatValue = ({ value, suffix }: { value: number; suffix: string }) => {
 		const tick = (now: number) => {
 			if (start === null) start = now;
 			const progress = Math.min((now - start) / COUNT_DURATION, 1);
-			const eased = 1 - Math.pow(1 - progress, 3);
+			const eased = 1 - (1 - progress) ** 3;
 			setDisplay(Math.round(eased * value));
 			if (progress < 1) raf = requestAnimationFrame(tick);
 		};

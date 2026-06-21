@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from "react";
 import {
 	Boxes,
+	Code2,
+	Layers,
 	MousePointer2,
 	Palette,
 	Wand2,
-	Code2,
-	Layers,
 } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 /* ---------------------------------------------------------------------------

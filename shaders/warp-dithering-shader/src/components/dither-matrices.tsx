@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
-import { TYPES } from "@/lib/shader-meta";
-import type { TypeInfo } from "@/lib/shader-meta";
 import type { DitheringType } from "@/components/ui/dithering-shader";
+import type { TypeInfo } from "@/lib/shader-meta";
+import { TYPES } from "@/lib/shader-meta";
+import { cn } from "@/lib/utils";
 
 // Deterministic hash so the "random" tile renders a stable noise field.
 function hash(i: number): number {

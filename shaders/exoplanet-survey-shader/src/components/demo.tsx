@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useCallback, useState } from "react";
 import ShaderCanvas from "@/components/ui/celestial-sphere-shader";
 
 /**

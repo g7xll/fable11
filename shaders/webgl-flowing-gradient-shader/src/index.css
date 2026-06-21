@@ -179,7 +179,7 @@
 @media (prefers-reduced-motion: reduce) {
 	.grad-text,
 	.animate-rise {
-		animation: none !important;
+		animation: none;
 	}
 	.grad-text {
 		color: var(--color-indigo);

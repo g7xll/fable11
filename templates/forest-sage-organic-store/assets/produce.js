@@ -1,6 +1,6 @@
 /* Inline SVG produce illustrations — vendored, fully offline.
    Each returns an SVG string used as floating organic cards / product imagery. */
-window.PRODUCE = (function () {
+window.PRODUCE = (() => {
 	const card = (bg, inner) =>
 		`<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" role="img">
       <defs>
@@ -42,7 +42,7 @@ window.PRODUCE = (function () {
 		body: `
     <g transform="translate(200 250)" stroke="#2f5722" stroke-width="6" fill="#83a95f">
       ${Array.from({ length: 9 }, (_, i) => {
-				const a = ((-120 + i * 30) * Math.PI) / 180;
+				const _a = ((-120 + i * 30) * Math.PI) / 180;
 				return `<g transform="rotate(${-120 + i * 30})"><path d="M0 0 C 30 -50 30 -150 0 -210 C -30 -150 -30 -50 0 0 Z" fill="${i % 2 ? "#9bbf6e" : "#6f9650"}"/>
         <line x1="0" y1="0" x2="0" y2="-200"/></g>`;
 			}).join("")}

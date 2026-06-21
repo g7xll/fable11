@@ -1,10 +1,10 @@
-import { useRef } from "react";
 import {
 	motion,
+	useMotionTemplate,
 	useMotionValue,
 	useSpring,
-	useMotionTemplate,
 } from "framer-motion";
+import { useRef } from "react";
 
 type Side = "left" | "right";
 

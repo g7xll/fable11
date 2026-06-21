@@ -1,4 +1,3 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
 	ArrowDownRight,
 	Box,
@@ -14,12 +13,13 @@ import {
 	Triangle,
 	Waves,
 } from "lucide-react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { CodeBlock } from "@/components/code-block";
+import { CornerBrackets } from "@/components/corner-brackets";
+import { SurveyHud } from "@/components/survey-hud";
 import GenerativeMountainScene, {
 	type MountainSceneFrame,
 } from "@/components/ui/mountain-scene";
-import { SurveyHud } from "@/components/survey-hud";
-import { CornerBrackets } from "@/components/corner-brackets";
-import { CodeBlock } from "@/components/code-block";
 import {
 	COMPONENT_SOURCE,
 	DEMO_SOURCE,

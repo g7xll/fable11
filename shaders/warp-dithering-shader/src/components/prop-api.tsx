@@ -1,5 +1,5 @@
-import { PROP_SPECS } from "@/lib/shader-meta";
 import type { LiveParams, Size } from "@/lib/shader-meta";
+import { PROP_SPECS } from "@/lib/shader-meta";
 
 function liveValue(name: string, params: LiveParams, size: Size): string {
 	switch (name) {

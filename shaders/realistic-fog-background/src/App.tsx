@@ -1,4 +1,3 @@
-import { useCallback, useRef, useState } from "react";
 import {
 	Activity,
 	ArrowDown,
@@ -11,11 +10,12 @@ import {
 	Waves,
 	Wind,
 } from "lucide-react";
-import MistField, { type MistSample } from "@/components/ui/mist-field";
-import VisibilityGauge from "@/components/lab/VisibilityGauge";
+import { useCallback, useRef, useState } from "react";
 import ControlDeck from "@/components/lab/ControlDeck";
 import { DEFAULT_PARAMS, type FogParams } from "@/components/lab/presets";
+import VisibilityGauge from "@/components/lab/VisibilityGauge";
 import demoSource from "@/components/ui/demo.tsx?raw";
+import MistField, { type MistSample } from "@/components/ui/mist-field";
 
 const USAGE = `import MistBackground from "@/components/ui/demo";
 

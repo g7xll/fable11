@@ -147,7 +147,7 @@ export function ParticleHero({
 				cancelAnimationFrame(animationRef.current);
 			}
 		};
-	}, []);
+	}, [initParticles, animate]);
 
 	const toggleGoldMode = () => {
 		setIsGoldMode((prev) => {

@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
 import Hls from "hls.js";
+import { useEffect, useRef, useState } from "react";
 
 /**
  * Public HLS test streams, tried in order. The first one that produces

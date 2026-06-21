@@ -235,7 +235,7 @@ check(
 	'"and" is italicized with spacing',
 	await desktop.evaluate(() => {
 		const em = document.querySelector("h1 em");
-		if (!em || em.textContent !== "and") return false;
+		if (em?.textContent !== "and") return false;
 		const s = getComputedStyle(em);
 		return (
 			s.fontStyle === "italic" &&

@@ -51,7 +51,7 @@ let exitCode = 0;
 try {
 	const up = await waitForServer(URL);
 	if (!up) {
-		console.error("Dev server never came up.\n" + devLog);
+		console.error(`Dev server never came up.\n${devLog}`);
 		process.exit(5);
 	}
 
@@ -127,41 +127,44 @@ try {
 	//    preserveDrawingBuffer — the screenshot is the composited, presented frame).
 	const shot = await page.locator("canvas").first().screenshot();
 	await page.screenshot({ path: "/tmp/gridline-hero.png" });
-	const px = await page.evaluate(async (dataUrl) => {
-		const img = new Image();
-		await new Promise((res, rej) => {
-			img.onload = () => res(null);
-			img.onerror = rej;
-			img.src = dataUrl;
-		});
-		const cv = document.createElement("canvas");
-		cv.width = img.naturalWidth;
-		cv.height = img.naturalHeight;
-		const ctx = cv.getContext("2d");
-		if (!ctx) return null;
-		ctx.drawImage(img, 0, 0);
-		let r = 0,
-			g = 0,
-			b = 0,
-			n = 0;
-		const pts = [
-			[0.5, 0.5],
-			[0.25, 0.3],
-			[0.75, 0.7],
-			[0.15, 0.8],
-			[0.85, 0.2],
-		];
-		for (const [fx, fy] of pts) {
-			const x = Math.floor(cv.width * fx);
-			const y = Math.floor(cv.height * fy);
-			const d = ctx.getImageData(x, y, 1, 1).data;
-			r += d[0];
-			g += d[1];
-			b += d[2];
-			n++;
-		}
-		return { r: r / n, g: g / n, b: b / n };
-	}, "data:image/png;base64," + shot.toString("base64"));
+	const px = await page.evaluate(
+		async (dataUrl) => {
+			const img = new Image();
+			await new Promise((res, rej) => {
+				img.onload = () => res(null);
+				img.onerror = rej;
+				img.src = dataUrl;
+			});
+			const cv = document.createElement("canvas");
+			cv.width = img.naturalWidth;
+			cv.height = img.naturalHeight;
+			const ctx = cv.getContext("2d");
+			if (!ctx) return null;
+			ctx.drawImage(img, 0, 0);
+			let r = 0,
+				g = 0,
+				b = 0,
+				n = 0;
+			const pts = [
+				[0.5, 0.5],
+				[0.25, 0.3],
+				[0.75, 0.7],
+				[0.15, 0.8],
+				[0.85, 0.2],
+			];
+			for (const [fx, fy] of pts) {
+				const x = Math.floor(cv.width * fx);
+				const y = Math.floor(cv.height * fy);
+				const d = ctx.getImageData(x, y, 1, 1).data;
+				r += d[0];
+				g += d[1];
+				b += d[2];
+				n++;
+			}
+			return { r: r / n, g: g / n, b: b / n };
+		},
+		`data:image/png;base64,${shot.toString("base64")}`,
+	);
 	const bright = px ? (px.r + px.g + px.b) / 3 : 0;
 	check(
 		!!px && bright > 6,
@@ -185,7 +188,7 @@ try {
 		`No console errors${errors.length ? `: ${errors.slice(0, 3).join(" | ")}` : ""}`,
 	);
 } catch (e) {
-	fail.push("Threw: " + (e?.message ?? String(e)));
+	fail.push(`Threw: ${e?.message ?? String(e)}`);
 	exitCode = 1;
 } finally {
 	if (browser) await browser.close();
@@ -193,7 +196,7 @@ try {
 }
 
 console.log("\n— Gridline shader verification —");
-for (const p of pass) console.log("  ✓ " + p);
-for (const f of fail) console.log("  ✗ " + f);
+for (const p of pass) console.log(`  ✓ ${p}`);
+for (const f of fail) console.log(`  ✗ ${f}`);
 console.log(`\n${pass.length} passed, ${fail.length} failed.`);
 process.exit(fail.length ? 1 : exitCode);

@@ -274,11 +274,7 @@ check(
 			svg.querySelector("linearGradient") !== null &&
 			paths.some((p) => p.getAttribute("fill")?.includes("url(#"));
 		const stroke = paths.find((p) => p.getAttribute("stroke-width") === "1.5");
-		return (
-			hasGradient &&
-			stroke !== undefined &&
-			stroke.getAttribute("d").includes("C")
-		);
+		return hasGradient && stroke?.getAttribute("d").includes("C");
 	}),
 );
 

@@ -1,5 +1,5 @@
-import { WebGLShader } from "@/components/ui/web-gl-shader";
 import { LiquidButton } from "@/components/ui/liquid-glass-button";
+import { WebGLShader } from "@/components/ui/web-gl-shader";
 
 export default function DemoOne() {
 	return (

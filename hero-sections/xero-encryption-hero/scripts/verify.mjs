@@ -203,7 +203,7 @@ if (mobile.beamDRecomputed === checks.beamD)
 if (errors.length) failures.push(`console/page errors: ${errors.join(" | ")}`);
 
 if (failures.length) {
-	console.error("\nFAILURES:\n- " + failures.join("\n- "));
+	console.error(`\nFAILURES:\n- ${failures.join("\n- ")}`);
 	process.exit(1);
 }
 console.log("\nALL CHECKS PASSED");

@@ -1,6 +1,6 @@
-import VideoBackground from "./components/VideoBackground";
-import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
+import Navbar from "./components/Navbar";
+import VideoBackground from "./components/VideoBackground";
 
 export default function App() {
 	return (

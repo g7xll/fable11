@@ -215,7 +215,7 @@
 		.animate-hud-in,
 		.animate-signal-flicker,
 		.animate-scan-sweep {
-			animation: none !important;
+			animation: none;
 		}
 	}
 }

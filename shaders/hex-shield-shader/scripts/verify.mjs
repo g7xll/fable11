@@ -18,7 +18,7 @@
  *
  * Exits non-zero on any failure so it can gate the build.
  */
-import { spawn, execSync } from "node:child_process";
+import { execSync, spawn } from "node:child_process";
 import { existsSync, readdirSync } from "node:fs";
 import { chromium } from "playwright";
 

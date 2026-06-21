@@ -1,6 +1,7 @@
-import React, { useMemo, useRef, useEffect } from "react";
+import { Canvas, type MeshProps, useFrame, useThree } from "@react-three/fiber";
+import type React from "react";
+import { useEffect, useMemo, useRef } from "react";
 import * as THREE from "three";
-import { Canvas, useFrame, useThree, type MeshProps } from "@react-three/fiber";
 
 const vertexShader = `
   varying vec2 vUv;
@@ -358,105 +359,136 @@ function VolumetricBeamsShader({
 			uVignette: { value: vignette },
 			uBgColor: { value: new THREE.Vector3().fromArray(bgColor) },
 		}),
-		[],
+		[
+			speed,
+			lightColor,
+			lightIntensity,
+			maxDist,
+			mouseInfluence,
+			stepMax,
+			stepMin,
+			stripeAmp,
+			stripeFreq,
+			stripeJitter,
+			stripeSharp,
+			stripeSpeed,
+			tint,
+			twistDepth,
+			vignette,
+			grainAmount,
+			volSteps,
+			gamma,
+			fov,
+			falloff,
+			exposure,
+			density,
+			beamRotation,
+			cameraRadius,
+			beamHalfAngle,
+			autoRotateSpeed,
+			bgColor,
+			beamEdgeSoft,
+			beamCount,
+			anisotropy,
+		],
 	);
 
 	// Sync prop changes -> uniforms
 	useEffect(() => {
 		uniforms.uSpeed.value = speed;
-	}, [speed]);
+	}, [speed, uniforms.uSpeed]);
 	useEffect(() => {
 		uniforms.uRadius.value = cameraRadius;
-	}, [cameraRadius]);
+	}, [cameraRadius, uniforms.uRadius]);
 	useEffect(() => {
 		uniforms.uFov.value = fov;
-	}, [fov]);
+	}, [fov, uniforms.uFov]);
 	useEffect(() => {
 		uniforms.uMouseInfluence.value = mouseInfluence;
-	}, [mouseInfluence]);
+	}, [mouseInfluence, uniforms.uMouseInfluence]);
 	useEffect(() => {
 		uniforms.uAutoRotateSpeed.value = autoRotateSpeed;
-	}, [autoRotateSpeed]);
+	}, [autoRotateSpeed, uniforms.uAutoRotateSpeed]);
 
 	useEffect(() => {
 		uniforms.uBeamCount.value = beamCount;
-	}, [beamCount]);
+	}, [beamCount, uniforms.uBeamCount]);
 	useEffect(() => {
 		uniforms.uHalfAngle.value = beamHalfAngle;
-	}, [beamHalfAngle]);
+	}, [beamHalfAngle, uniforms.uHalfAngle]);
 	useEffect(() => {
 		uniforms.uEdgeSoft.value = beamEdgeSoft;
-	}, [beamEdgeSoft]);
+	}, [beamEdgeSoft, uniforms.uEdgeSoft]);
 	useEffect(() => {
 		uniforms.uBeamRot.value = beamRotation;
-	}, [beamRotation]);
+	}, [beamRotation, uniforms.uBeamRot]);
 	useEffect(() => {
 		uniforms.uTwistDepth.value = twistDepth;
-	}, [twistDepth]);
+	}, [twistDepth, uniforms.uTwistDepth]);
 
 	useEffect(() => {
 		uniforms.uDensity.value = density;
-	}, [density]);
+	}, [density, uniforms.uDensity]);
 	useEffect(() => {
 		uniforms.uFalloff.value = falloff;
-	}, [falloff]);
+	}, [falloff, uniforms.uFalloff]);
 	useEffect(() => {
 		uniforms.uAniso.value = anisotropy;
-	}, [anisotropy]);
+	}, [anisotropy, uniforms.uAniso]);
 	useEffect(() => {
 		uniforms.uLightIntensity.value = lightIntensity;
-	}, [lightIntensity]);
+	}, [lightIntensity, uniforms.uLightIntensity]);
 	useEffect(() => {
 		uniforms.uLightColor.value.fromArray(lightColor);
-	}, [lightColor]);
+	}, [lightColor, uniforms.uLightColor.value.fromArray]);
 	useEffect(() => {
 		uniforms.uTint.value.fromArray(tint);
-	}, [tint]);
+	}, [tint, uniforms.uTint.value.fromArray]);
 
 	useEffect(() => {
 		uniforms.uStripeFreq.value = stripeFreq;
-	}, [stripeFreq]);
+	}, [stripeFreq, uniforms.uStripeFreq]);
 	useEffect(() => {
 		uniforms.uStripeAmp.value = stripeAmp;
-	}, [stripeAmp]);
+	}, [stripeAmp, uniforms.uStripeAmp]);
 	useEffect(() => {
 		uniforms.uStripeSharp.value = stripeSharp;
-	}, [stripeSharp]);
+	}, [stripeSharp, uniforms.uStripeSharp]);
 	useEffect(() => {
 		uniforms.uStripeSpeed.value = stripeSpeed;
-	}, [stripeSpeed]);
+	}, [stripeSpeed, uniforms.uStripeSpeed]);
 	useEffect(() => {
 		uniforms.uStripeJit.value = stripeJitter;
-	}, [stripeJitter]);
+	}, [stripeJitter, uniforms.uStripeJit]);
 
 	useEffect(() => {
 		uniforms.uVolSteps.value = volSteps;
-	}, [volSteps]);
+	}, [volSteps, uniforms.uVolSteps]);
 	useEffect(() => {
 		uniforms.uStepMin.value = stepMin;
-	}, [stepMin]);
+	}, [stepMin, uniforms.uStepMin]);
 	useEffect(() => {
 		uniforms.uStepMax.value = stepMax;
-	}, [stepMax]);
+	}, [stepMax, uniforms.uStepMax]);
 	useEffect(() => {
 		uniforms.uMaxDist.value = maxDist;
-	}, [maxDist]);
+	}, [maxDist, uniforms.uMaxDist]);
 
 	useEffect(() => {
 		uniforms.uExposure.value = exposure;
-	}, [exposure]);
+	}, [exposure, uniforms.uExposure]);
 	useEffect(() => {
 		uniforms.uGamma.value = gamma;
-	}, [gamma]);
+	}, [gamma, uniforms.uGamma]);
 	useEffect(() => {
 		uniforms.uGrainAmount.value = grainAmount;
-	}, [grainAmount]);
+	}, [grainAmount, uniforms.uGrainAmount]);
 	useEffect(() => {
 		uniforms.uVignette.value = vignette;
-	}, [vignette]);
+	}, [vignette, uniforms.uVignette]);
 	useEffect(() => {
 		uniforms.uBgColor.value.fromArray(bgColor);
-	}, [bgColor]);
+	}, [bgColor, uniforms.uBgColor.value.fromArray]);
 
 	useFrame((state) => {
 		const dpr = gl.getPixelRatio();

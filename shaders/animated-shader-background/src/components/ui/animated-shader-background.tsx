@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import * as THREE from "three";
 import {
+	Brain,
+	ChevronDown,
 	Infinity as InfinityIcon,
+	Play,
 	Rocket,
 	Shield,
-	Brain,
-	Play,
-	ChevronDown,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import * as THREE from "three";
 
 /* ===========================================================================
    ShaderCanvas

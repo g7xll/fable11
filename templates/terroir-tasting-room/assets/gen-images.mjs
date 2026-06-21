@@ -3,9 +3,10 @@
 // rich, grainy, gradient-mesh "photographs" locally with sharp. Each evokes a
 // wine/terroir subject (vineyard rows, cellar, pour, bottle still-life) using
 // layered radial/linear gradients, soft blobs, and a film-grain turbulence.
+
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 import sharp from "sharp";
-import path from "path";
-import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUT = path.join(__dirname, "img");

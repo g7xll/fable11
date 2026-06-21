@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import { Asterisk, MoveDown, Wind } from "lucide-react";
+import { useEffect, useState } from "react";
 import { SmokeBackground } from "@/components/ui/spooky-smoke-animation";
 import { VapourConsole } from "@/components/VapourConsole";
 import { useTunedColor } from "@/hooks/useTunedColor";

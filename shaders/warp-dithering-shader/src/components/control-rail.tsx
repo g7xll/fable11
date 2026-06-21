@@ -1,11 +1,11 @@
 import { Dices, RotateCcw, SlidersHorizontal } from "lucide-react";
-import { cn } from "@/lib/utils";
-import { SHAPES, TYPES } from "@/lib/shader-meta";
 import type {
 	DitheringShape,
 	DitheringType,
 } from "@/components/ui/dithering-shader";
 import type { LiveParams } from "@/lib/shader-meta";
+import { SHAPES, TYPES } from "@/lib/shader-meta";
+import { cn } from "@/lib/utils";
 
 interface ControlRailProps {
 	params: LiveParams;

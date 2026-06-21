@@ -1,5 +1,5 @@
-import type { CSSProperties } from "react";
 import { motion } from "motion/react";
+import type { CSSProperties } from "react";
 import AppleButton from "./AppleButton";
 
 const EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];

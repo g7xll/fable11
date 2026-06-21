@@ -1,7 +1,5 @@
 /* ===== Superdesign — Modern Atmospheric ===== */
-(function () {
-	"use strict";
-
+(() => {
 	/* ---------- inline SVG icon helpers ---------- */
 	const svg = (vb, body, cls) =>
 		`<svg viewBox="${vb}" fill="currentColor" xmlns="http://www.w3.org/2000/svg" class="${cls || ""}">${body}</svg>`;
@@ -131,7 +129,7 @@
 		{ rootMargin: "-45% 0px -45% 0px", threshold: 0 },
 	);
 	feats.forEach((f) => spyObserver.observe(f));
-	spyLinks[0] && spyLinks[0].classList.add("active");
+	spyLinks[0]?.classList.add("active");
 
 	/* ---------- testimonials ---------- */
 	const testimonials = [
@@ -254,7 +252,7 @@
 			});
 			if (!isOpen) {
 				item.classList.add("open");
-				panel.style.maxHeight = panel.scrollHeight + "px";
+				panel.style.maxHeight = `${panel.scrollHeight}px`;
 			}
 		});
 	});

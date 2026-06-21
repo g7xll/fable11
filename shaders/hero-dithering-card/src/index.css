@@ -296,6 +296,6 @@ body {
 	.reg-spin,
 	.animate-ping,
 	.animate-pulse {
-		animation: none !important;
+		animation: none;
 	}
 }

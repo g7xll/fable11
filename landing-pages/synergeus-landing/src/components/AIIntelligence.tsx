@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 import { ASSETS } from "../lib/assets";
 import CategorizationTree from "./CategorizationTree";
 

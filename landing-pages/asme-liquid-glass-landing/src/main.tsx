@@ -1,6 +1,6 @@
+import { MotionConfig } from "framer-motion";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { MotionConfig } from "framer-motion";
 import Index from "./pages/Index";
 import "./index.css";
 

@@ -1,6 +1,6 @@
 import { Gauge, Layers, Waves } from "lucide-react";
-import { cn } from "@/lib/utils";
 import type { SignalSample } from "@/lib/use-signal-clock";
+import { cn } from "@/lib/utils";
 
 /** A labelled value cell with a unit, mono numerals. */
 function Cell({

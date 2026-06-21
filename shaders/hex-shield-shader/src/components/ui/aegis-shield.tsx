@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
 import { useMemo, useRef } from "react";
+import * as THREE from "three";
+import { cn } from "@/lib/utils";
 
 /**
  * AegisShield — the typed, instrument-driven sibling of the brief's verbatim
@@ -194,7 +194,18 @@ function ShieldField({
 		// Built once; values are mutated each frame below so changes are live and
 		// never trigger a material rebuild / flash.
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-		[],
+		[
+			state.tint,
+			state.hexScale,
+			state.falloff,
+			state.hexEdge,
+			state.drift,
+			size.width,
+			state.gain,
+			state.domeBias,
+			state.curve,
+			size.height,
+		],
 	);
 
 	useFrame(({ clock }) => {

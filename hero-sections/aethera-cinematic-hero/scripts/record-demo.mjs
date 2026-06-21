@@ -10,9 +10,8 @@
  * Prereq: `npm run build` first, plus ffmpeg on PATH.
  * Usage:   node scripts/record-demo.mjs
  */
-import { spawn } from "node:child_process";
-import { execFileSync } from "node:child_process";
-import { readdirSync, rmSync, mkdirSync, statSync } from "node:fs";
+import { execFileSync, spawn } from "node:child_process";
+import { mkdirSync, readdirSync, rmSync, statSync } from "node:fs";
 import path from "node:path";
 import { chromium } from "playwright";
 
@@ -57,9 +56,7 @@ try {
 	});
 	const page = await ctx.newPage();
 	await page.goto(URL, { waitUntil: "load" });
-	await page
-		.evaluate(() => document.fonts && document.fonts.ready)
-		.catch(() => {});
+	await page.evaluate(() => document.fonts?.ready).catch(() => {});
 	await sleep(2500); // let the hero settle + video fade in
 
 	const toggle = page.locator("[data-theme-toggle]");

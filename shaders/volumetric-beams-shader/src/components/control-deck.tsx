@@ -1,6 +1,6 @@
-import { Aperture, Gauge, Orbit, Film, RotateCcw } from "lucide-react";
-import type { BeamParams } from "@/lib/presets";
+import { Aperture, Film, Gauge, Orbit, RotateCcw } from "lucide-react";
 import { Fader } from "@/components/fader";
+import type { BeamParams } from "@/lib/presets";
 
 interface ControlDeckProps {
 	params: BeamParams;

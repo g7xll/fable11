@@ -1,13 +1,13 @@
-import { useEffect, useRef } from "react";
 import {
-	Terminal,
-	FolderTree,
+	ArrowUpRight,
 	Boxes,
+	Code2,
+	FolderTree,
 	Gauge,
 	Hand,
-	Code2,
-	ArrowUpRight,
+	Terminal,
 } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 /** Reveal-on-scroll wrapper using IntersectionObserver. */
 function Reveal({
@@ -122,16 +122,16 @@ export function IntegrationSection() {
 							title="terminal"
 							badge="setup"
 							lines={[
-								<>{c.com("# 1 — scaffold a shadcn + Tailwind + TS project")}</>,
+								c.com("# 1 — scaffold a shadcn + Tailwind + TS project"),
 								<>
 									{c.fn("npx")} shadcn@latest {c.kw("init")}
 								</>,
 								<> </>,
-								<>{c.com("# 2 — drop the hero into the ui folder")}</>,
+								c.com("# 2 — drop the hero into the ui folder"),
 								<>{c.fn("cp")} animated-shader-hero.tsx \</>,
 								<>{"   "}src/components/ui/</>,
 								<> </>,
-								<>{c.com("# that's it — WebGL2 ships inside the file")}</>,
+								c.com("# that's it — WebGL2 ships inside the file"),
 							]}
 						/>
 					</Reveal>
@@ -178,7 +178,7 @@ export function IntegrationSection() {
 									{"  "}
 									{c.punc(")")}
 								</>,
-								<>{c.punc("}")}</>,
+								c.punc("}"),
 							]}
 						/>
 					</Reveal>

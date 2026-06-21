@@ -1,13 +1,13 @@
-import type { CSSProperties, ReactNode } from "react";
 import {
 	ArrowRight,
 	Facebook,
-	Twitter,
 	Instagram,
-	Youtube,
 	Linkedin,
 	Music2,
+	Twitter,
+	Youtube,
 } from "lucide-react";
+import type { CSSProperties, ReactNode } from "react";
 
 const displayFont: CSSProperties = { fontFamily: "'Instrument Serif', serif" };
 

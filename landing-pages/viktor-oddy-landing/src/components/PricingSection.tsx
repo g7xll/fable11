@@ -1,5 +1,5 @@
-import Button from "./Button";
 import { useInViewAnimation } from "../hooks/useInViewAnimation";
+import Button from "./Button";
 
 const BOOK_URL = "https://halaskastudio.com/./book";
 

@@ -1,6 +1,6 @@
-import { CSSProperties } from "react";
-import { motion, Variants } from "framer-motion";
-import { ArrowRightCircle, Zap, LockKeyhole, Fingerprint } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
+import { ArrowRightCircle, Fingerprint, LockKeyhole, Zap } from "lucide-react";
+import type { CSSProperties } from "react";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

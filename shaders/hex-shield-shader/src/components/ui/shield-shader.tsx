@@ -1,7 +1,7 @@
-import { cn } from "@/lib/utils";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import * as THREE from "three";
 import { useMemo, useRef } from "react";
+import * as THREE from "three";
+import { cn } from "@/lib/utils";
 
 function FullscreenShader() {
 	const materialRef = useRef<THREE.ShaderMaterial>(null!);

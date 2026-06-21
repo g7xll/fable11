@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
 	Aperture,
 	Gauge,
@@ -8,13 +7,14 @@ import {
 	Play,
 	Zap,
 } from "lucide-react";
+import { type ReactNode, useEffect, useRef, useState } from "react";
+import { BayerMatrix } from "@/components/bayer-matrix";
+import { SignalTelemetry } from "@/components/signal-telemetry";
 import {
 	DitheringShader,
 	type DitheringShape,
 	type DitheringType,
 } from "@/components/ui/dithering-shader";
-import { SignalTelemetry } from "@/components/signal-telemetry";
-import { BayerMatrix } from "@/components/bayer-matrix";
 import { cn } from "@/lib/utils";
 
 const SHAPES: readonly DitheringShape[] = [

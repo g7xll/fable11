@@ -94,7 +94,7 @@ function StyleCarouselCard() {
 			setActive((a) => (a + 1) % len);
 		}, 2800);
 		return () => clearInterval(id);
-	}, [len]);
+	}, []);
 
 	const half = Math.floor(len / 2);
 

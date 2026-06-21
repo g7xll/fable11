@@ -1,5 +1,5 @@
 // ===== Scroll reveal =====
-(function () {
+(() => {
 	const reveals = document.querySelectorAll(".reveal");
 	// stagger grid children
 	document
@@ -7,7 +7,7 @@
 		.forEach((grid) => {
 			Array.from(grid.children).forEach((child, i) => {
 				if (child.classList.contains("reveal"))
-					child.style.transitionDelay = i * 80 + "ms";
+					child.style.transitionDelay = `${i * 80}ms`;
 			});
 		});
 	const io = new IntersectionObserver(
@@ -25,7 +25,7 @@
 })();
 
 // ===== KPI count-up =====
-(function () {
+(() => {
 	function format(v, dec) {
 		return (dec ? v.toFixed(dec) : Math.floor(v)).toLocaleString(undefined, {
 			minimumFractionDigits: dec,
@@ -39,7 +39,7 @@
 			start = performance.now();
 		function step(now) {
 			const p = Math.min((now - start) / dur, 1);
-			const eased = 1 - Math.pow(1 - p, 4);
+			const eased = 1 - (1 - p) ** 4;
 			el.textContent = format(target * eased, dec);
 			if (p < 1) requestAnimationFrame(step);
 			else el.textContent = format(target, dec);
@@ -77,7 +77,7 @@ document.querySelectorAll(".faq-q").forEach((btn) => {
 		});
 		if (!open) {
 			item.classList.add("open");
-			ans.style.maxHeight = ans.scrollHeight + "px";
+			ans.style.maxHeight = `${ans.scrollHeight}px`;
 		}
 	});
 });

@@ -1,13 +1,13 @@
-import { useCallback, useEffect, useRef, useState } from "react";
 import {
+	Activity,
+	Compass,
+	Crosshair,
 	Droplet,
 	Pause,
 	Play,
 	RotateCcw,
-	Crosshair,
-	Compass,
-	Activity,
 } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CelestialInkShader, {
 	type InkFrame,
 } from "@/components/ui/celestial-ink-shader";
