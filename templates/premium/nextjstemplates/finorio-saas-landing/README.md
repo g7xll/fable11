@@ -1,5 +1,7 @@
 # Finorio — Finance SaaS Landing Page Template Clone (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A self-contained, pixel-faithful clone of the **Finorio** finance / money-management SaaS marketing template, rebuilt as plain HTML, CSS, and vanilla JavaScript with **no build step**. It pairs a light lavender / off-white palette and a rounded geometric display font ("Stack Sans Text") with a floating pill navbar, phone-mockup hero, soft gradient feature cards, a monthly/annually pricing toggle, a testimonial grid, an FAQ accordion, and a lavender CTA panel — across seven full pages. All assets (font, webp imagery, inline logo/badge SVGs) are vendored locally so the site runs completely offline. Generated with Claude Fable 5.
 
 ## Pages

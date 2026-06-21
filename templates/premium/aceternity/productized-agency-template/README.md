@@ -1,5 +1,7 @@
 # Productized Agency Template — Aceternity Landing Page Clone (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A faithful, same-to-same clone of the Aceternity "Productized Agency" template, rebuilt as a self-contained static site in plain HTML, CSS, and vanilla JavaScript with no build step. This eleven-page agency marketing site — home, work, products, pricing, a blog index, and six blog article pages — recreates the warm editorial aesthetic (bone `#F0EFEC` background, signature yellow `#FFCC00` accent, dark glowing hero) along with the sticky "Chat with Alex" nav, bento feature grids, comparison table, FAQ accordions, logo marquee, and testimonial sections. The original is a Next.js + Tailwind CSS v4 app using Framer Motion; this clone preserves the Tailwind-compiled stylesheet and class-driven markup, self-hosts the Inter and DM Mono fonts, vendors all images locally so it runs offline, and replaces Framer Motion with an IntersectionObserver reveal system plus native CSS for accordions, marquees, tabs, and hover states. Generated with Claude Fable 5.
 
 ## Run
