@@ -1,5 +1,7 @@
 # Sidefolio — Developer Portfolio Website Template Clone (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A faithful, pixel-level clone of the "Sidefolio" developer portfolio template, rebuilt as a self-contained static website in plain HTML, CSS, and vanilla JavaScript with no build step and all assets vendored locally so it runs offline. This light-theme portfolio is built around a fixed left sidebar (avatar, name and role, outline-icon navigation, socials, and a dark "Read Resume" pill button with an animated sky-glow hover) and a white rounded content panel, spanning all 14 pages of the template: home, about, projects list, four project detail pages, articles/blog list, four blog articles, contact, and resume. It uses the Cal Sans display font with a gradient-clipped heading treatment and Inter for body copy, staggered card entrance animations driven by IntersectionObserver, copy-to-clipboard code blocks on blog posts, and a mobile sidebar overlay toggle. Generated with Claude Fable 5.
 
 ## Run
