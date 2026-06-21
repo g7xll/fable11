@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Carrington Journal — Carrington Law</title>
+
+  <!-- Fuse.js -->
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --accent-900: #0c0a09;
+      --accent-800: #1c1917;
+      --accent-600: #44403c;
+      --accent-400: #a8a29e;
+      --base-800: #292524;
+      --base-600: #57534e;
+      --base-400: #a8a29e;
+      --base-200: #e7e5e4;
+      --base-100: #f5f5f4;
+      --secondary-400: #fbbf24;
+      --secondary-500: #f59e0b;
+      --white: #ffffff;
+      --page-bg: #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--page-bg);
+      color: var(--base-800);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { display: block; max-width: 100%; }
+
+    /* ============================================================
+       NAV
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: #ffffff;
+      border-bottom: 1px solid var(--base-200);
+    }
+
+    .nav-inner {
+      max-width: 120rem;
+      margin: 0 auto;
+      padding: 0 2rem;
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    /* Logo */
+    .nav-logo a {
+      display: flex;
+      align-items: center;
+    }
+
+    /* Left group */
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    /* Desktop right links */
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-800);
+      text-decoration: none;
+      transition: color 0.15s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--base-600); }
+
+    /* Explore button */
+    .explore-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-800);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem 0.5rem;
+      border-radius: 0.25rem;
+      transition: color 0.15s;
+    }
+    .explore-btn:hover { color: var(--base-600); }
+
+    .explore-btn svg { transition: transform 0.2s; }
+    .mega-wrap:hover .explore-btn svg { transform: rotate(180deg); }
+
+    /* Nav actions */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .search-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      background: var(--accent-800);
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .search-btn:hover { background: var(--accent-600); }
+
+    .buy-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-800);
+      background: var(--base-200);
+      border: none;
+      border-radius: 0.25rem;
+      padding: 0.375rem 0.875rem;
+      cursor: pointer;
+      transition: background 0.15s;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+    }
+    .buy-btn:hover { background: #d6d3d1; }
+
+    /* Mobile hamburger */
+    .hamburger-btn {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      color: var(--base-800);
+    }
+
+    /* ============================================================
+       MEGA MENU
+    ============================================================ */
+    .mega-wrap {
+      position: relative;
+    }
+
+    .mega-panel {
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: -2rem;
+      width: 56rem;
+      background: var(--accent-900);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, visibility 0.2s;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+
+    .mega-wrap:hover .mega-panel {
+      visibility: visible;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mega-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .mega-col {
+      padding: 0 1.25rem;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .mega-col:first-child { padding-left: 0; }
+    .mega-col:last-child { padding-right: 0; border-right: none; }
+
+    .mega-col-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--secondary-400);
+      margin-bottom: 0.75rem;
+    }
+
+    .mega-col-title {
+      font-family: 'Newsreader', serif;
+      font-size: 1rem;
+      color: #ffffff;
+      margin-top: 0.75rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .mega-col-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--base-600);
+      line-height: 1.5;
+      margin-bottom: 0.75rem;
+    }
+
+    .mega-col-contact {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--base-400);
+      line-height: 1.8;
+    }
+    .mega-col-contact a {
+      color: var(--base-400);
+      transition: color 0.15s;
+    }
+    .mega-col-contact a:hover { color: var(--secondary-500); }
+
+    .mega-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mega-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-200);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mega-links a:hover { color: var(--secondary-500); }
+
+    .mega-post {
+      margin-bottom: 0.875rem;
+      padding-bottom: 0.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .mega-post:last-of-type { border-bottom: none; }
+
+    .mega-post-date {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      color: var(--base-600);
+      margin-bottom: 0.2rem;
+    }
+
+    .mega-post-title {
+      font-family: 'Newsreader', serif;
+      font-size: 0.875rem;
+      color: var(--base-200);
+      line-height: 1.3;
+    }
+    .mega-post-title a { color: inherit; transition: color 0.15s; }
+    .mega-post-title a:hover { color: var(--secondary-500); }
+
+    .mega-all-link {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--secondary-400);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mega-all-link:hover { color: var(--secondary-500); text-decoration: underline; }
+
+    .mega-hero-img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      display: block;
+    }
+
+    /* ============================================================
+       MOBILE MENU
+    ============================================================ */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 4rem; left: 0; right: 0;
+      z-index: 99;
+      background: var(--accent-900);
+      padding: 1.5rem 1.5rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      max-height: calc(100vh - 4rem);
+      overflow-y: auto;
+    }
+
+    .mobile-menu.open { display: block; }
+
+    .mobile-menu-links {
+      list-style: none;
+      text-align: right;
+      margin-bottom: 1.5rem;
+    }
+    .mobile-menu-links li { padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .mobile-menu-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--base-200);
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+    .mobile-menu-links a:hover { color: var(--secondary-400); }
+
+    .mobile-menu-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+    }
+
+    .mobile-cta-primary {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--accent-900);
+      background: var(--secondary-400);
+      padding: 0.625rem 1.25rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .mobile-cta-primary:hover { background: var(--secondary-500); }
+
+    .mobile-cta-secondary {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--base-200);
+      background: rgba(255,255,255,0.08);
+      padding: 0.625rem 1.25rem;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .mobile-cta-secondary:hover { background: rgba(255,255,255,0.14); }
+
+    .mobile-contact {
+      text-align: right;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-400);
+      line-height: 1.8;
+    }
+    .mobile-contact a { color: var(--base-400); transition: color 0.15s; }
+    .mobile-contact a:hover { color: var(--secondary-400); }
+
+    /* ============================================================
+       SEARCH MODAL
+    ============================================================ */
+    .search-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(0,0,0,0.65);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 6rem;
+    }
+    .search-overlay.open { display: flex; }
+
+    .search-modal {
+      background: #ffffff;
+      border-radius: 0.75rem;
+      width: 100%;
+      max-width: 42rem;
+      margin: 0 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+    }
+
+    .search-modal-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem 1.25rem;
+      border-bottom: 1px solid var(--base-200);
+    }
+
+    #searchInput {
+      flex: 1;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      color: var(--base-800);
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+    #searchInput::placeholder { color: var(--base-400); }
+
+    #clearSearch {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--base-400);
+      display: none;
+      padding: 0.25rem;
+      line-height: 1;
+    }
+    #clearSearch.visible { display: block; }
+
+    #searchResults {
+      max-height: 28rem;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 0.875rem 1.25rem;
+      border-bottom: 1px solid var(--base-100);
+      text-decoration: none;
+      transition: background 0.1s;
+    }
+    .search-result-item:hover { background: var(--base-100); }
+    .search-result-item:last-child { border-bottom: none; }
+
+    .search-result-section {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--secondary-400);
+    }
+
+    .search-result-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--base-800);
+      font-weight: 500;
+    }
+
+    .search-result-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8125rem;
+      color: var(--base-600);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search-empty {
+      padding: 2.5rem 1.25rem;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9375rem;
+      color: var(--base-400);
+    }
+
+    .search-hint {
+      padding: 0.75rem 1.25rem;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      color: var(--base-400);
+      border-top: 1px solid var(--base-200);
+    }
+
+    /* ============================================================
+       PAGE HEADER
+    ============================================================ */
+    .page-header {
+      padding: 8rem 6rem 4rem;
+      background: var(--page-bg);
+      border-bottom: 1px solid var(--base-200);
+    }
+
+    /* ============================================================
+       BLOG GRID
+    ============================================================ */
+    .page-section {
+      padding: 4rem 6rem;
+      background: var(--page-bg);
+    }
+
+    .blog-grid {
+      max-width: 120rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .blog-card {
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .blog-card:hover { transform: translateY(-2px); }
+
+    .blog-card-image-wrap {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      border-radius: 0.5rem;
+    }
+
+    .blog-card:hover .blog-card-image-wrap img {
+      transform: scale(1.03);
+    }
+
+    .read-more-link:hover { text-decoration: underline; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer-link {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      color: var(--base-400);
+      text-decoration: none;
+      line-height: 2;
+      transition: color 0.2s;
+    }
+    .footer-link:hover { color: var(--base-200); }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .blog-grid { grid-template-columns: repeat(2, 1fr) !important; }
+      .nav-right { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-right { display: none; }
+      .hamburger-btn { display: flex; }
+      .mega-wrap { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr !important; }
+    }
+
+    @media (max-width: 640px) {
+      .blog-grid { grid-template-columns: 1fr !important; }
+      .page-section { padding: 4rem 1.5rem !important; }
+      .page-header { padding: 6rem 1.5rem 3rem !important; }
+      .footer-inner-pad { padding: 3rem 1.5rem 1.5rem !important; }
+      .footer-bottom-pad { padding: 1rem 1.5rem !important; }
+      .footer-grid { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav class="nav">
+    <div class="nav-inner">
+
+      <!-- Logo -->
+      <div class="nav-logo">
+        <a href="index.html" aria-label="Carrington Law home">
+          <svg width="110" height="16" viewBox="0 0 652 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M49.5015 24.6135C48.7695 19.3065 46.97 15.2805 44.103 12.5355C41.236 9.72948 37.515 8.32648 32.94 8.32648C29.707 8.32648 26.8095 9.05848 24.2475 10.5225C21.7465 11.9255 19.6115 13.8775 17.8425 16.3785C16.1345 18.8185 14.823 21.6855 13.908 24.9795C12.993 28.2125 12.5355 31.6895 12.5355 35.4105C12.5355 40.8395 13.3895 45.628 15.0975 49.776C16.8665 53.924 19.3065 57.1875 22.4175 59.5665C25.5895 61.9455 29.28 63.135 33.489 63.135C37.393 63.135 41.236 62.1895 45.018 60.2985C48.861 58.3465 52.033 55.6015 54.534 52.0635L58.2855 55.449C55.4185 59.353 52.3685 62.342 49.1355 64.416C45.9025 66.429 42.7305 67.8015 39.6195 68.5335C36.5695 69.2655 33.794 69.6315 31.293 69.6315C26.596 69.6315 22.326 68.808 18.483 67.161C14.701 65.453 11.407 63.135 8.60102 60.207C5.85602 57.218 3.72102 53.7715 2.19602 49.8675C0.732019 45.9025 1.86283e-05 41.6325 1.86283e-05 37.0575C1.86283e-05 32.8485 0.640519 28.7005 1.92152 24.6135C3.26352 20.5265 5.24602 16.836 7.86902 13.542C10.553 10.248 13.908 7.62498 17.934 5.67298C21.96 3.65998 26.6265 2.65348 31.9335 2.65348C34.6175 2.65348 37.4235 3.08048 40.3515 3.93448C43.2795 4.72748 46.0245 5.91698 48.5865 7.50298L48.2205 3.29398H54.534V24.6135H49.5015ZM89.888 68.1675C89.705 67.2525 89.583 66.49 89.522 65.88C89.522 65.209 89.4915 64.4465 89.4305 63.5925C87.3565 65.6665 85.13 67.1915 82.751 68.1675C80.433 69.1435 78.0235 69.6315 75.5225 69.6315C71.3745 69.6315 68.172 68.503 65.915 66.246C63.719 63.989 62.621 61.2135 62.621 57.9195C62.621 54.9915 63.414 52.521 65 50.508C66.586 48.434 68.66 46.7565 71.222 45.4755C73.784 44.1335 76.6205 43.127 79.7315 42.456C82.8425 41.724 85.923 41.3275 88.973 41.2665V36.234C88.973 34.465 88.7595 32.8485 88.3325 31.3845C87.9665 29.8595 87.265 28.67 86.228 27.816C85.191 26.901 83.666 26.4435 81.653 26.4435C80.311 26.5045 78.9385 26.8095 77.5355 27.3585C76.1935 27.8465 75.126 28.6395 74.333 29.7375C74.821 30.2865 75.126 30.8965 75.248 31.5675C75.37 32.1775 75.431 32.7265 75.431 33.2145C75.431 34.3125 75.004 35.4715 74.15 36.6915C73.296 37.8505 71.9235 38.3995 70.0325 38.3385C68.3855 38.2775 67.1045 37.698 66.1895 36.6C65.3355 35.502 64.9085 34.1905 64.9085 32.6655C64.9085 30.3475 65.732 28.3345 67.379 26.6265C69.087 24.8575 71.3745 23.485 74.2415 22.509C77.1085 21.472 80.311 20.9535 83.849 20.9535C89.095 20.9535 93.121 22.326 95.927 25.071C98.733 27.816 100.106 32.208 100.045 38.247C100.045 40.382 100.045 42.334 100.045 44.103C100.045 45.811 100.014 47.5495 99.953 49.3185C99.953 51.0265 99.953 52.948 99.953 55.083C99.953 55.998 99.9225 57.157 99.8615 58.56C99.8005 59.902 99.709 61.244 99.587 62.586C100.685 62.464 101.783 62.403 102.881 62.403C104.04 62.342 104.986 62.281 105.718 62.22V68.1675H89.888ZM88.8815 46.665C87.0515 46.787 85.252 47.092 83.483 47.58C81.714 48.007 80.128 48.617 78.725 49.41C77.322 50.203 76.1935 51.2095 75.3395 52.4295C74.5465 53.5885 74.1805 54.9305 74.2415 56.4555C74.3025 58.3465 74.9125 59.7495 76.0715 60.6645C77.2305 61.5185 78.5725 61.9455 80.0975 61.9455C81.8665 61.9455 83.4525 61.5795 84.8555 60.8475C86.3195 60.1155 87.6615 59.1395 88.8815 57.9195C88.8815 57.3095 88.8815 56.669 88.8815 55.998C88.8815 55.327 88.8815 54.656 88.8815 53.985C88.8815 53.131 88.8815 52.0635 88.8815 50.7825C88.8815 49.5015 88.8815 48.129 88.8815 46.665ZM111.343 63.318C113.112 63.318 114.363 62.952 115.095 62.22C115.827 61.427 116.284 60.329 116.467 58.926C116.65 57.523 116.742 55.937 116.742 54.168V36.966C116.742 35.868 116.772 34.709 116.833 33.489C116.894 32.269 116.986 31.0185 117.108 29.7375C116.071 29.7985 114.942 29.8595 113.722 29.9205C112.502 29.9205 111.496 29.951 110.703 30.012V24.156H114.088C116.528 24.156 118.572 23.8815 120.219 23.3325C121.866 22.7225 123.025 22.1125 123.696 21.5025H127.539C127.661 22.2345 127.752 23.3935 127.813 24.9795C127.874 26.5655 127.905 28.1515 127.905 29.7375C129.308 27.9075 130.772 26.352 132.297 25.071C133.822 23.729 135.377 22.7225 136.963 22.0515C138.61 21.3195 140.288 20.9535 141.996 20.9535C143.948 20.9535 145.656 21.5025 147.12 22.6005C148.645 23.6985 149.407 25.4675 149.407 27.9075C149.407 28.7005 149.194 29.5545 148.767 30.4695C148.401 31.3845 147.791 32.147 146.937 32.757C146.144 33.367 145.046 33.672 143.643 33.672C142.362 33.672 141.142 33.2755 139.983 32.4825C138.885 31.6285 138.305 30.2865 138.244 28.4565C136.963 28.3955 135.621 28.853 134.218 29.829C132.876 30.805 131.656 31.9945 130.558 33.3975C129.46 34.8005 128.606 36.234 127.996 37.698L128.088 55.083C128.088 56.059 128.057 57.2485 127.996 58.6515C127.935 59.9935 127.844 61.305 127.722 62.586C128.698 62.464 129.735 62.403 130.833 62.403C131.931 62.342 132.846 62.3115 133.578 62.3115V68.1675H111.343V63.318ZM393.698 69.6315C389.367 69.6315 385.433 68.686 381.895 66.795C378.357 64.843 375.551 62.1285 373.477 58.6515C371.464 55.1135 370.457 50.996 370.457 46.299C370.457 41.358 371.494 36.966 373.568 33.123C375.642 29.28 378.418 26.291 381.895 24.156C385.433 22.021 389.306 20.9535 393.515 20.9535C397.846 20.9535 401.75 21.9295 405.227 23.8815C408.704 25.8335 411.449 28.548 413.462 32.025C415.536 35.502 416.573 39.6195 416.573 44.3775C416.573 49.3795 415.567 53.802 413.554 57.645C411.602 61.427 408.887 64.3855 405.41 66.5205C401.994 68.5945 398.09 69.6315 393.698 69.6315ZM628.882 69.6315C624.551 69.6315 620.616 68.686 617.078 66.795C613.54 64.843 610.734 62.1285 608.66 58.6515C606.647 55.1135 605.641 50.996 605.641 46.299C605.641 41.358 606.678 36.966 608.752 33.123C610.826 29.28 613.601 26.291 617.078 24.156C620.616 22.021 624.49 20.9535 628.699 20.9535C633.03 20.9535 636.934 21.9295 640.411 23.8815C643.888 25.8335 646.633 28.548 648.646 32.025C650.72 35.502 651.757 39.6195 651.757 44.3775C651.757 49.3795 650.75 53.802 648.737 57.645C646.785 61.427 644.071 64.3855 640.594 66.5205C637.178 68.5945 633.274 69.6315 628.882 69.6315Z" fill="#292524"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Left: Explore + desktop links -->
+      <div class="nav-left">
+        <!-- Explore mega menu -->
+        <div class="mega-wrap">
+          <button class="explore-btn" aria-haspopup="true" aria-expanded="false">
+            Explore
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+              <path d="M2 4L6 8L10 4" stroke="#292524" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Mega Panel -->
+          <div class="mega-panel" role="menu">
+            <div class="mega-grid">
+              <!-- Col 1: About -->
+              <div class="mega-col">
+                <img
+                  src="assets/images/heroImage.DIhpdHPp_2si2Gr.webp"
+                  alt="Carrington Law"
+                  class="mega-hero-img"
+                  loading="lazy"
+                  onerror="this.style.background='#292524'"
+                />
+                <p class="mega-col-title">About Carrington Law</p>
+                <p class="mega-col-desc">Strategic legal counsel and unwavering advocacy for clients across all practice areas.</p>
+                <div class="mega-col-contact">
+                  <a href="mailto:carrington@example.com">carrington@example.com</a><br>
+                  <a href="tel:5551234567">(555) 123-4567</a><br>
+                  <span>New York, NY</span>
+                </div>
+              </div>
+
+              <!-- Col 2: Explore links -->
+              <div class="mega-col">
+                <p class="mega-col-label">Explore</p>
+                <ul class="mega-links">
+                  <li><a href="index.html#practice-areas">Practice Areas</a></li>
+                  <li><a href="cases.html">Cases</a></li>
+                  <li><a href="team.html">Our Attorneys</a></li>
+                  <li><a href="blog.html">Journal</a></li>
+                  <li><a href="careers.html">Careers</a></li>
+                  <li><a href="press-and-media.html">Press &amp; Media</a></li>
+                  <li><a href="offices.html">Offices</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </div>
+
+              <!-- Col 3: Insights -->
+              <div class="mega-col">
+                <p class="mega-col-label">Insights</p>
+                <div class="mega-post">
+                  <p class="mega-post-date">Nov 1, 2025</p>
+                  <p class="mega-post-title"><a href="blog/posts/1.html">Carrington law firm secures landmark victory in corporate litigation</a></p>
+                </div>
+                <div class="mega-post">
+                  <p class="mega-post-date">Oct 15, 2025</p>
+                  <p class="mega-post-title"><a href="blog/posts/2.html">Carrington Attorneys Featured in National Law Review</a></p>
+                </div>
+                <a href="blog.html" class="mega-all-link">Explore all insights →</a>
+              </div>
+
+              <!-- Col 4: Featured Case -->
+              <div class="mega-col">
+                <p class="mega-col-label">Featured Case</p>
+                <div class="mega-post">
+                  <p class="mega-post-date">Corporate Litigation</p>
+                  <p class="mega-post-title"><a href="cases.html">Acme Acquires Beta</a></p>
+                </div>
+                <p class="mega-col-desc" style="margin-top:0.5rem">A landmark acquisition case demonstrating Carrington's expertise in corporate law.</p>
+                <a href="cases.html" class="mega-all-link">View all cases →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop right links -->
+      <div class="nav-right">
+        <a href="index.html" class="nav-link">Overview</a>
+        <a href="cases.html" class="nav-link">Results</a>
+        <a href="team.html" class="nav-link">Our Attorneys</a>
+        <a href="index.html#practice-areas" class="nav-link">Practice Areas</a>
+        <a href="offices.html" class="nav-link">Offices</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </div>
+
+      <!-- Nav actions -->
+      <div class="nav-actions">
+        <!-- Search button -->
+        <button id="searchButton" class="search-btn" aria-label="Open search">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="6.5" cy="6.5" r="5" stroke="#ffffff" stroke-width="1.5"/>
+            <path d="M10.5 10.5L14 14" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+
+        <!-- Buy button -->
+        <a href="https://lexingtonthemes.com" class="buy-btn" target="_blank" rel="noopener noreferrer">
+          Buy Carrington
+        </a>
+
+        <!-- Mobile hamburger -->
+        <button class="hamburger-btn" data-menu-button aria-label="Open menu" aria-expanded="false">
+          <span data-burger>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M3 5H17M3 10H17M3 15H17" stroke="#292524" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span data-close style="display:none">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M5 5L15 15M15 5L5 15" stroke="#292524" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+      </div>
+
+    </div><!-- /nav-inner -->
+
+    <!-- Mobile menu -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-menu-links">
+        <li><a href="index.html">Overview</a></li>
+        <li><a href="cases.html">Results</a></li>
+        <li><a href="team.html">Our Attorneys</a></li>
+        <li><a href="index.html#practice-areas">Practice Areas</a></li>
+        <li><a href="blog.html">Journal</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="press-and-media.html">Press &amp; Media</a></li>
+        <li><a href="offices.html">Offices</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="mobile-menu-ctas">
+        <a href="contact.html" class="mobile-cta-primary">Free Consultation</a>
+        <a href="https://lexingtonthemes.com" class="mobile-cta-secondary" target="_blank" rel="noopener noreferrer">Buy Carrington</a>
+      </div>
+      <div class="mobile-contact">
+        <a href="mailto:carrington@example.com">carrington@example.com</a><br>
+        <a href="tel:5551234567">(555) 123-4567</a><br>
+        <span style="color:var(--base-600)">123 Main Street, New York, NY</span>
+      </div>
+    </div>
+
+  </nav><!-- /nav -->
+
+  <!-- ============================================================
+       SEARCH MODAL
+  ============================================================ -->
+  <div id="searchModal" class="search-overlay" role="dialog" aria-modal="true" aria-label="Search">
+    <div class="search-modal">
+      <div class="search-modal-header">
+        <!-- Search icon -->
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="flex-shrink:0;color:var(--base-400)">
+          <circle cx="6.5" cy="6.5" r="5" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M10.5 10.5L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search articles, press, careers..."
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button id="clearSearch" aria-label="Clear search">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M3 3L11 11M11 3L3 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="searchResults">
+        <p class="search-empty">Type to search across all content</p>
+      </div>
+      <div class="search-hint">
+        Press <kbd style="background:var(--base-100);border:1px solid var(--base-200);border-radius:0.2rem;padding:0.1rem 0.35rem;font-size:0.7rem">Esc</kbd> to close &nbsp;&nbsp;
+        <kbd style="background:var(--base-100);border:1px solid var(--base-200);border-radius:0.2rem;padding:0.1rem 0.35rem;font-size:0.7rem">⌘K</kbd> to open
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       MAIN
+  ============================================================ -->
+  <main>
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div style="max-width:120rem;margin:0 auto">
+        <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;font-family:'Inter',sans-serif;margin-bottom:0.75rem">Our Insights</p>
+        <h1 style="font-family:'Newsreader',serif;font-size:3rem;color:#292524;font-weight:400;line-height:1.1;margin-bottom:1rem">The Carrington Journal</h1>
+        <p style="font-size:1rem;color:#57534e;max-width:36rem;margin-top:1rem;line-height:1.625;font-family:'Inter',sans-serif">Stay informed with the latest legal insights, firm news, and thought leadership from the attorneys at Carrington Law.</p>
+      </div>
+    </div>
+
+    <!-- Blog Grid -->
+    <div class="page-section">
+      <div class="blog-grid">
+
+        <!-- Post 1 -->
+        <article class="blog-card">
+          <a href="blog/posts/1.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/1.DxCwH9ZN_25C5YJ.webp"
+                alt="Carrington law firm secures landmark victory in corporate litigation"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Nov 1, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/1.html" style="text-decoration:none;color:inherit">Carrington law firm secures landmark victory in corporate litigation</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm wins a precedent-setting corporate litigation case, strengthening business law standards in New York.</p>
+            <a href="blog/posts/1.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 2 -->
+        <article class="blog-card">
+          <a href="blog/posts/2.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/2.DbuyqhKp_Z28MFcq.webp"
+                alt="Carrington Attorneys Featured in National Law Review"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Oct 15, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/2.html" style="text-decoration:none;color:inherit">Carrington Attorneys Featured in National Law Review</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm's attorneys are recognized for their expertise in the National Law Review's annual spotlight.</p>
+            <a href="blog/posts/2.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 3 -->
+        <article class="blog-card">
+          <a href="blog/posts/3.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/3.BkcFI3Sl_1CVyxQ.webp"
+                alt="Carrington Law Expands Practice Areas"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Sep 28, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/3.html" style="text-decoration:none;color:inherit">Carrington Law Expands Practice Areas</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm announces the expansion of its practice areas to better serve clients in emerging legal fields.</p>
+            <a href="blog/posts/3.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 4 -->
+        <article class="blog-card">
+          <a href="blog/posts/4.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/4.BWsxvRXE_1hm0sW.webp"
+                alt="Carrington Hosts Annual Legal Innovation Summit"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Aug 20, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/4.html" style="text-decoration:none;color:inherit">Carrington Hosts Annual Legal Innovation Summit</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm hosts its annual summit, bringing together thought leaders to discuss the future of legal innovation.</p>
+            <a href="blog/posts/4.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 5 -->
+        <article class="blog-card">
+          <a href="blog/posts/5.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/5.BR4xiWyj_fHYkV.webp"
+                alt="Carrington Law Partners with Local Nonprofits"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Jul 10, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/5.html" style="text-decoration:none;color:inherit">Carrington Law Partners with Local Nonprofits</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm partners with local nonprofits to provide pro bono legal services and support community initiatives.</p>
+            <a href="blog/posts/5.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 6 -->
+        <article class="blog-card">
+          <a href="blog/posts/6.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/6.BIubUlFe_25v9Fj.webp"
+                alt="Carrington Law Celebrates 25 Years of Excellence"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">Jun 5, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/6.html" style="text-decoration:none;color:inherit">Carrington Law Celebrates 25 Years of Excellence</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm marks its 25th anniversary, reflecting on decades of legal achievements and client service.</p>
+            <a href="blog/posts/6.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+        <!-- Post 7 -->
+        <article class="blog-card">
+          <a href="blog/posts/7.html">
+            <div class="blog-card-image-wrap">
+              <img
+                src="assets/images/7.Uf-JtLiv_Z1IwkYL.webp"
+                alt="Carrington Law Launches New Internship Program"
+                style="width:100%;height:100%;object-fit:cover;border-radius:0.5rem;transition:transform 0.3s ease;"
+                onerror="this.style.background='#e7e5e4'"
+                loading="lazy"
+              >
+            </div>
+          </a>
+          <div style="padding:1.25rem 0">
+            <p style="color:#fbbf24;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;font-family:'Inter',sans-serif;margin-bottom:0.5rem">May 12, 2025</p>
+            <h2 style="font-family:'Newsreader',serif;font-size:1.375rem;color:#292524;font-weight:400;line-height:1.3;margin-bottom:0.75rem">
+              <a href="blog/posts/7.html" style="text-decoration:none;color:inherit">Carrington Law Launches New Internship Program</a>
+            </h2>
+            <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;margin-bottom:1rem">Carrington Law Firm introduces a new internship program to mentor aspiring attorneys and foster professional growth.</p>
+            <a href="blog/posts/7.html" style="font-size:0.875rem;color:#292524;text-decoration:none;font-family:'Inter',sans-serif" class="read-more-link">Read More →</a>
+          </div>
+        </article>
+
+      </div><!-- /blog-grid -->
+    </div><!-- /page-section -->
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer style="background:#0c0a09;color:#e7e5e4;">
+    <div style="max-width:120rem;margin:0 auto;padding:4rem 6rem 2rem" class="footer-inner-pad">
+
+      <!-- Footer logo -->
+      <div style="margin-bottom:2.5rem">
+        <a href="index.html" aria-label="Carrington Law home">
+          <svg width="120" height="18" viewBox="0 0 652 93" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M49.5015 24.6135C48.7695 19.3065 46.97 15.2805 44.103 12.5355C41.236 9.72948 37.515 8.32648 32.94 8.32648C29.707 8.32648 26.8095 9.05848 24.2475 10.5225C21.7465 11.9255 19.6115 13.8775 17.8425 16.3785C16.1345 18.8185 14.823 21.6855 13.908 24.9795C12.993 28.2125 12.5355 31.6895 12.5355 35.4105C12.5355 40.8395 13.3895 45.628 15.0975 49.776C16.8665 53.924 19.3065 57.1875 22.4175 59.5665C25.5895 61.9455 29.28 63.135 33.489 63.135C37.393 63.135 41.236 62.1895 45.018 60.2985C48.861 58.3465 52.033 55.6015 54.534 52.0635L58.2855 55.449C55.4185 59.353 52.3685 62.342 49.1355 64.416C45.9025 66.429 42.7305 67.8015 39.6195 68.5335C36.5695 69.2655 33.794 69.6315 31.293 69.6315C26.596 69.6315 22.326 68.808 18.483 67.161C14.701 65.453 11.407 63.135 8.60102 60.207C5.85602 57.218 3.72102 53.7715 2.19602 49.8675C0.732019 45.9025 1.86283e-05 41.6325 1.86283e-05 37.0575C1.86283e-05 32.8485 0.640519 28.7005 1.92152 24.6135C3.26352 20.5265 5.24602 16.836 7.86902 13.542C10.553 10.248 13.908 7.62498 17.934 5.67298C21.96 3.65998 26.6265 2.65348 31.9335 2.65348C34.6175 2.65348 37.4235 3.08048 40.3515 3.93448C43.2795 4.72748 46.0245 5.91698 48.5865 7.50298L48.2205 3.29398H54.534V24.6135H49.5015ZM89.888 68.1675C89.705 67.2525 89.583 66.49 89.522 65.88C89.522 65.209 89.4915 64.4465 89.4305 63.5925C87.3565 65.6665 85.13 67.1915 82.751 68.1675C80.433 69.1435 78.0235 69.6315 75.5225 69.6315C71.3745 69.6315 68.172 68.503 65.915 66.246C63.719 63.989 62.621 61.2135 62.621 57.9195C62.621 54.9915 63.414 52.521 65 50.508C66.586 48.434 68.66 46.7565 71.222 45.4755C73.784 44.1335 76.6205 43.127 79.7315 42.456C82.8425 41.724 85.923 41.3275 88.973 41.2665V36.234C88.973 34.465 88.7595 32.8485 88.3325 31.3845C87.9665 29.8595 87.265 28.67 86.228 27.816C85.191 26.901 83.666 26.4435 81.653 26.4435C80.311 26.5045 78.9385 26.8095 77.5355 27.3585C76.1935 27.8465 75.126 28.6395 74.333 29.7375C74.821 30.2865 75.126 30.8965 75.248 31.5675C75.37 32.1775 75.431 32.7265 75.431 33.2145C75.431 34.3125 75.004 35.4715 74.15 36.6915C73.296 37.8505 71.9235 38.3995 70.0325 38.3385C68.3855 38.2775 67.1045 37.698 66.1895 36.6C65.3355 35.502 64.9085 34.1905 64.9085 32.6655C64.9085 30.3475 65.732 28.3345 67.379 26.6265C69.087 24.8575 71.3745 23.485 74.2415 22.509C77.1085 21.472 80.311 20.9535 83.849 20.9535C89.095 20.9535 93.121 22.326 95.927 25.071C98.733 27.816 100.106 32.208 100.045 38.247C100.045 40.382 100.045 42.334 100.045 44.103C100.045 45.811 100.014 47.5495 99.953 49.3185C99.953 51.0265 99.953 52.948 99.953 55.083C99.953 55.998 99.9225 57.157 99.8615 58.56C99.8005 59.902 99.709 61.244 99.587 62.586C100.685 62.464 101.783 62.403 102.881 62.403C104.04 62.342 104.986 62.281 105.718 62.22V68.1675H89.888ZM88.8815 46.665C87.0515 46.787 85.252 47.092 83.483 47.58C81.714 48.007 80.128 48.617 78.725 49.41C77.322 50.203 76.1935 51.2095 75.3395 52.4295C74.5465 53.5885 74.1805 54.9305 74.2415 56.4555C74.3025 58.3465 74.9125 59.7495 76.0715 60.6645C77.2305 61.5185 78.5725 61.9455 80.0975 61.9455C81.8665 61.9455 83.4525 61.5795 84.8555 60.8475C86.3195 60.1155 87.6615 59.1395 88.8815 57.9195C88.8815 57.3095 88.8815 56.669 88.8815 55.998C88.8815 55.327 88.8815 54.656 88.8815 53.985C88.8815 53.131 88.8815 52.0635 88.8815 50.7825C88.8815 49.5015 88.8815 48.129 88.8815 46.665ZM111.343 63.318C113.112 63.318 114.363 62.952 115.095 62.22C115.827 61.427 116.284 60.329 116.467 58.926C116.65 57.523 116.742 55.937 116.742 54.168V36.966C116.742 35.868 116.772 34.709 116.833 33.489C116.894 32.269 116.986 31.0185 117.108 29.7375C116.071 29.7985 114.942 29.8595 113.722 29.9205C112.502 29.9205 111.496 29.951 110.703 30.012V24.156H114.088C116.528 24.156 118.572 23.8815 120.219 23.3325C121.866 22.7225 123.025 22.1125 123.696 21.5025H127.539C127.661 22.2345 127.752 23.3935 127.813 24.9795C127.874 26.5655 127.905 28.1515 127.905 29.7375C129.308 27.9075 130.772 26.352 132.297 25.071C133.822 23.729 135.377 22.7225 136.963 22.0515C138.61 21.3195 140.288 20.9535 141.996 20.9535C143.948 20.9535 145.656 21.5025 147.12 22.6005C148.645 23.6985 149.407 25.4675 149.407 27.9075C149.407 28.7005 149.194 29.5545 148.767 30.4695C148.401 31.3845 147.791 32.147 146.937 32.757C146.144 33.367 145.046 33.672 143.643 33.672C142.362 33.672 141.142 33.2755 139.983 32.4825C138.885 31.6285 138.305 30.2865 138.244 28.4565C136.963 28.3955 135.621 28.853 134.218 29.829C132.876 30.805 131.656 31.9945 130.558 33.3975C129.46 34.8005 128.606 36.234 127.996 37.698L128.088 55.083C128.088 56.059 128.057 57.2485 127.996 58.6515C127.935 59.9935 127.844 61.305 127.722 62.586C128.698 62.464 129.735 62.403 130.833 62.403C131.931 62.342 132.846 62.3115 133.578 62.3115V68.1675H111.343V63.318ZM393.698 69.6315C389.367 69.6315 385.433 68.686 381.895 66.795C378.357 64.843 375.551 62.1285 373.477 58.6515C371.464 55.1135 370.457 50.996 370.457 46.299C370.457 41.358 371.494 36.966 373.568 33.123C375.642 29.28 378.418 26.291 381.895 24.156C385.433 22.021 389.306 20.9535 393.515 20.9535C397.846 20.9535 401.75 21.9295 405.227 23.8815C408.704 25.8335 411.449 28.548 413.462 32.025C415.536 35.502 416.573 39.6195 416.573 44.3775C416.573 49.3795 415.567 53.802 413.554 57.645C411.602 61.427 408.887 64.3855 405.41 66.5205C401.994 68.5945 398.09 69.6315 393.698 69.6315ZM628.882 69.6315C624.551 69.6315 620.616 68.686 617.078 66.795C613.54 64.843 610.734 62.1285 608.66 58.6515C606.647 55.1135 605.641 50.996 605.641 46.299C605.641 41.358 606.678 36.966 608.752 33.123C610.826 29.28 613.601 26.291 617.078 24.156C620.616 22.021 624.49 20.9535 628.699 20.9535C633.03 20.9535 636.934 21.9295 640.411 23.8815C643.888 25.8335 646.633 28.548 648.646 32.025C650.72 35.502 651.757 39.6195 651.757 44.3775C651.757 49.3795 650.75 53.802 648.737 57.645C646.785 61.427 644.071 64.3855 640.594 66.5205C637.178 68.5945 633.274 69.6315 628.882 69.6315Z" fill="#e7e5e4"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Footer columns grid -->
+      <div class="footer-grid" style="display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:0">
+
+        <!-- Col 1: About -->
+        <div>
+          <h3 style="font-family:'Newsreader',serif;font-size:1.125rem;color:#ffffff;font-weight:400;margin-bottom:0.75rem">Carrington Law</h3>
+          <p style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#57534e;line-height:1.625;max-width:24rem">Providing strategic legal counsel and unwavering advocacy for our clients across all practice areas.</p>
+        </div>
+
+        <!-- Col 2: Practice Areas -->
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#a8a29e;margin-bottom:1rem">Practice Areas</h4>
+          <nav aria-label="Practice areas links">
+            <a href="index.html#practice-areas" class="footer-link">Corporate Law</a>
+            <a href="index.html#practice-areas" class="footer-link">Litigation</a>
+            <a href="index.html#practice-areas" class="footer-link">Employment Law</a>
+            <a href="index.html#practice-areas" class="footer-link">Intellectual Property</a>
+            <a href="index.html#practice-areas" class="footer-link">Family Law</a>
+            <a href="index.html#practice-areas" class="footer-link">Criminal Defense</a>
+          </nav>
+        </div>
+
+        <!-- Col 3: Company -->
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#a8a29e;margin-bottom:1rem">Company</h4>
+          <nav aria-label="Company links">
+            <a href="index.html" class="footer-link">About</a>
+            <a href="team.html" class="footer-link">Our Attorneys</a>
+            <a href="cases.html" class="footer-link">Cases</a>
+            <a href="blog.html" class="footer-link">Blog</a>
+            <a href="careers.html" class="footer-link">Careers</a>
+            <a href="press-and-media.html" class="footer-link">Press &amp; Media</a>
+            <a href="offices.html" class="footer-link">Offices</a>
+            <a href="contact.html" class="footer-link">Contact</a>
+          </nav>
+        </div>
+
+        <!-- Col 4: Contact -->
+        <div>
+          <h4 style="font-family:'Inter',sans-serif;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:#a8a29e;margin-bottom:1rem">Contact</h4>
+          <div style="display:flex;flex-direction:column;gap:0.25rem">
+            <a href="mailto:carrington@example.com" class="footer-link">carrington@example.com</a>
+            <a href="tel:5551234567" class="footer-link">(555) 123-4567</a>
+            <span style="font-family:'Inter',sans-serif;font-size:0.875rem;color:#a8a29e;line-height:1.8">123 Main Street<br>New York, NY</span>
+          </div>
+        </div>
+
+      </div><!-- /footer-grid -->
+
+      <!-- Footer bottom bar -->
+      <div class="footer-bottom-pad" style="border-top:1px solid rgba(255,255,255,0.1);margin-top:3rem;padding-top:1.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem">
+        <p style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#57534e">
+          &copy; 2025 Carrington Law. All rights reserved.
+        </p>
+        <div style="display:flex;align-items:center;gap:1.5rem">
+          <a href="privacy.html" style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#57534e;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#a8a29e'" onmouseout="this.style.color='#57534e'">Privacy</a>
+          <a href="terms.html" style="font-family:'Inter',sans-serif;font-size:0.75rem;color:#57534e;text-decoration:none;transition:color 0.2s" onmouseover="this.style.color='#a8a29e'" onmouseout="this.style.color='#57534e'">Terms</a>
+        </div>
+      </div>
+
+    </div><!-- /max-width container -->
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    /* ---- Mobile menu toggle ---- */
+    (function() {
+      var btn = document.querySelector('[data-menu-button]');
+      var menu = document.getElementById('mobile-menu');
+      var burger = document.querySelector('[data-burger]');
+      var closeIcon = document.querySelector('[data-close]');
+
+      if (!btn || !menu) return;
+
+      btn.addEventListener('click', function() {
+        var isOpen = menu.classList.toggle('open');
+        btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menu.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+        if (burger) burger.style.display = isOpen ? 'none' : 'inline';
+        if (closeIcon) closeIcon.style.display = isOpen ? 'inline' : 'none';
+      });
+    })();
+
+    /* ---- Fuse.js search ---- */
+    (function() {
+      var searchButton = document.getElementById('searchButton');
+      var searchModal  = document.getElementById('searchModal');
+      var searchInput  = document.getElementById('searchInput');
+      var searchResults = document.getElementById('searchResults');
+      var clearSearch  = document.getElementById('clearSearch');
+
+      var items = [
+        {title:"Carrington law firm secures landmark victory in corporate litigation",description:"Carrington Law Firm wins a precedent-setting corporate litigation case, strengthening business law standards in New York.",date:"2025-11-01T00:00:00.000Z",url:"blog/posts/1.html",section:"Blog"},
+        {title:"Carrington Attorneys Featured in National Law Review",description:"Carrington Law Firm's attorneys are recognized for their expertise in the National Law Review's annual spotlight.",date:"2025-10-15T00:00:00.000Z",url:"blog/posts/2.html",section:"Blog"},
+        {title:"Carrington Law Expands Practice Areas",description:"Carrington Law Firm announces the expansion of its practice areas to better serve clients in emerging legal fields.",date:"2025-09-28T00:00:00.000Z",url:"blog/posts/3.html",section:"Blog"},
+        {title:"Carrington Hosts Annual Legal Innovation Summit",description:"Carrington Law Firm hosts its annual summit, bringing together thought leaders to discuss the future of legal innovation.",date:"2025-08-20T00:00:00.000Z",url:"blog/posts/4.html",section:"Blog"},
+        {title:"Carrington Law Partners with Local Nonprofits",description:"Carrington Law Firm partners with local nonprofits to provide pro bono legal services and support community initiatives.",date:"2025-07-10T00:00:00.000Z",url:"blog/posts/5.html",section:"Blog"},
+        {title:"Carrington Law Celebrates 25 Years of Excellence",description:"Carrington Law Firm marks its 25th anniversary, reflecting on decades of legal achievements and client service.",date:"2025-06-05T00:00:00.000Z",url:"blog/posts/6.html",section:"Blog"},
+        {title:"Carrington Law Launches New Internship Program",description:"Carrington Law Firm introduces a new internship program to mentor aspiring attorneys and foster professional growth.",date:"2025-05-12T00:00:00.000Z",url:"blog/posts/7.html",section:"Blog"},
+        {title:"Carrington law expands corporate practice with new strategic partnerships",description:"Carrington Law announces strategic partnerships with leading corporations.",date:"2024-12-15T00:00:00.000Z",url:"press-and-media.html",section:"Press Release"},
+        {title:"Carrington law opens new chicago office to better serve midwest clients",description:"Carrington Law announces the opening of its new Chicago office.",date:"2024-09-15T00:00:00.000Z",url:"press-and-media.html",section:"Press Release"},
+        {title:"Carrington law recognized as top litigation firm by legal 500",description:"Carrington Law receives prestigious recognition from Legal 500.",date:"2024-11-28T00:00:00.000Z",url:"press-and-media.html",section:"Press Release"},
+        {title:"Carrington law launches pro bono initiative for underserved communities",description:"Carrington Law announces comprehensive pro bono program.",date:"2024-10-20T00:00:00.000Z",url:"press-and-media.html",section:"Press Release"},
+        {title:"Associate Attorney (M&A)",description:"Join our expanding M&A team supporting complex cross-border transactions.",date:"2025-08-01T00:00:00.000Z",url:"careers.html",section:"Career"},
+        {title:"Family Law Associate",description:"Handle divorce, custody, and family law matters with compassion and expertise.",date:"2025-10-01T00:00:00.000Z",url:"careers.html",section:"Career"},
+        {title:"Intellectual Property Paralegal",description:"Support IP attorneys with patent, trademark, and copyright matters.",date:"2025-10-05T00:00:00.000Z",url:"careers.html",section:"Career"},
+        {title:"Senior Corporate Counsel",description:"Lead corporate legal strategy and compliance for our expanding client portfolio.",date:"2025-09-15T00:00:00.000Z",url:"careers.html",section:"Career"},
+        {title:"Senior Litigation Associate",description:"Handle complex civil litigation matters and represent clients in court.",date:"2025-09-20T00:00:00.000Z",url:"careers.html",section:"Career"}
+      ];
+
+      // Initialise Fuse after the script loads
+      var fuse = null;
+      function initFuse() {
+        if (typeof Fuse === 'undefined') return;
+        fuse = new Fuse(items, {
+          keys: ['title', 'description', 'section'],
+          threshold: 0.35,
+          includeScore: true
+        });
+      }
+
+      // Try to init immediately; if Fuse isn't ready yet, wait
+      if (typeof Fuse !== 'undefined') {
+        initFuse();
+      } else {
+        document.addEventListener('DOMContentLoaded', initFuse);
+      }
+
+      function openModal() {
+        searchModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() { searchInput.focus(); }, 50);
+      }
+
+      function closeModal() {
+        searchModal.classList.remove('open');
+        document.body.style.overflow = '';
+        searchInput.value = '';
+        clearSearch.classList.remove('visible');
+        renderEmpty();
+      }
+
+      function renderEmpty() {
+        searchResults.innerHTML = '<p class="search-empty">Type to search across all content</p>';
+      }
+
+      function renderResults(results) {
+        if (results.length === 0) {
+          searchResults.innerHTML = '<p class="search-empty">No results found</p>';
+          return;
+        }
+        var html = results.map(function(r) {
+          var item = r.item;
+          var dateStr = '';
+          if (item.date) {
+            try {
+              dateStr = new Date(item.date).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+            } catch(e) {}
+          }
+          return '<a href="' + item.url + '" class="search-result-item">' +
+            '<span class="search-result-section">' + (item.section || '') + (dateStr ? ' &middot; ' + dateStr : '') + '</span>' +
+            '<span class="search-result-title">' + item.title + '</span>' +
+            '<span class="search-result-desc">' + item.description + '</span>' +
+            '</a>';
+        }).join('');
+        searchResults.innerHTML = html;
+      }
+
+      if (searchButton) {
+        searchButton.addEventListener('click', openModal);
+      }
+
+      if (searchModal) {
+        searchModal.addEventListener('click', function(e) {
+          if (e.target === searchModal) closeModal();
+        });
+      }
+
+      if (clearSearch) {
+        clearSearch.addEventListener('click', function() {
+          searchInput.value = '';
+          clearSearch.classList.remove('visible');
+          renderEmpty();
+          searchInput.focus();
+        });
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          var val = searchInput.value.trim();
+          if (val) {
+            clearSearch.classList.add('visible');
+          } else {
+            clearSearch.classList.remove('visible');
+          }
+          if (!val) { renderEmpty(); return; }
+          if (!fuse) { initFuse(); }
+          if (!fuse) { renderEmpty(); return; }
+          var results = fuse.search(val);
+          renderResults(results);
+        });
+      }
+
+      /* ---- Keyboard shortcuts ---- */
+      document.addEventListener('keydown', function(e) {
+        // Escape: close modal or mobile menu
+        if (e.key === 'Escape') {
+          if (searchModal && searchModal.classList.contains('open')) {
+            closeModal();
+          } else {
+            var menu = document.getElementById('mobile-menu');
+            var btn = document.querySelector('[data-menu-button]');
+            if (menu && menu.classList.contains('open')) {
+              menu.classList.remove('open');
+              if (btn) btn.setAttribute('aria-expanded', 'false');
+              menu.setAttribute('aria-hidden', 'true');
+              var burger = document.querySelector('[data-burger]');
+              var closeIcon = document.querySelector('[data-close]');
+              if (burger) burger.style.display = 'inline';
+              if (closeIcon) closeIcon.style.display = 'none';
+            }
+          }
+          return;
+        }
+        // Cmd+K or / to open search (unless typing in an input)
+        var tag = (e.target || {}).tagName;
+        var inInput = tag === 'INPUT' || tag === 'TEXTAREA' || (e.target || {}).isContentEditable;
+        if ((e.key === 'k' && (e.metaKey || e.ctrlKey)) || (e.key === '/' && !inInput)) {
+          e.preventDefault();
+          if (searchModal && !searchModal.classList.contains('open')) {
+            openModal();
+          }
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
