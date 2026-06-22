@@ -1,5 +1,7 @@
 # Oatmeal — SaaS Marketing Kit Template Clone (HTML + CSS + Vanilla JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A self-contained, pixel-faithful clone of the Tailwind Plus "Oatmeal" SaaS marketing kit in its olive + Instrument Serif theme, rebuilt as plain HTML, CSS, and vanilla JavaScript with no build step. This warm, editorial multi-page website template spans 13 pages — three home layouts, three about layouts, three pricing layouts, two privacy-policy layouts, and two 404 pages — sharing a centered top nav and a four-column footer, with all fonts (Inter + Instrument Serif) and imagery vendored locally so it runs fully offline. A small vanilla-JS shim (`assets/js/oatmeal.js`) reimplements the original's `command` / `commandfor` invoker behaviors — a native `<dialog>` mobile menu, FAQ disclosures, Monthly/Yearly pricing tabs, and a click-to-copy code snippet — and adds an IntersectionObserver entrance-reveal system. Built with HTML + CSS + vanilla JS. Generated with Claude Fable 5.
 
 ## Run
