@@ -55,8 +55,11 @@
       if (!panel || panel.getAttribute("role") !== "menu") {
         panel = document.createElement("div");
         panel.setAttribute("role", "menu");
+        // Positioned via JS (fixed) against the button's rect so it always
+        // right-aligns directly under the Account trigger, exactly like the
+        // original Headless UI <MenuItems anchor="bottom end">.
         panel.className =
-          "absolute right-0 top-full mt-1 z-20 min-w-38 rounded-lg bg-white/75 p-0.5 shadow-sm outline outline-gray-950/5 backdrop-blur-sm dark:bg-gray-950/75 dark:outline-white/10";
+          "fixed z-50 min-w-38 rounded-lg bg-white/75 p-1 shadow-lg outline outline-gray-950/5 backdrop-blur-sm dark:bg-gray-950/75 dark:outline-white/10";
         panel.innerHTML = [
           ["Settings", "#"],
           ["Support", "#"],
@@ -68,13 +71,20 @@
           )
           .join("");
         panel.hidden = true;
-        btn.insertAdjacentElement("afterend", panel);
-        // make the parent positioned
-        const host = btn.parentElement;
-        if (getComputedStyle(host).position === "static") host.style.position = "relative";
+        document.body.appendChild(panel);
       }
 
+      const position = () => {
+        const r = btn.getBoundingClientRect();
+        // bottom-end: panel's right edge aligns with the button's right edge,
+        // top of panel sits just below the button (mt-2 ~= 8px).
+        panel.style.top = `${Math.round(r.bottom + 8)}px`;
+        // use right offset from viewport's right edge for true right-alignment
+        panel.style.right = `${Math.round(window.innerWidth - r.right)}px`;
+        panel.style.left = "auto";
+      };
       const open = () => {
+        position();
         panel.hidden = false;
         btn.setAttribute("aria-expanded", "true");
       };
@@ -82,6 +92,8 @@
         panel.hidden = true;
         btn.setAttribute("aria-expanded", "false");
       };
+      window.addEventListener("resize", () => { if (!panel.hidden) position(); });
+      window.addEventListener("scroll", () => { if (!panel.hidden) position(); }, { passive: true });
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         panel.hidden ? open() : close();
