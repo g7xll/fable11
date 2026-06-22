@@ -96,5 +96,10 @@
       if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+  var reveals = document.querySelectorAll(".reveal");
+  reveals.forEach(function (el) { io.observe(el); });
+  // Fallback: never leave content permanently hidden (e.g. no-scroll, prerender, reduced motion)
+  setTimeout(function () {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }, 1200);
 })();

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>(function(){try{var t=localStorage.getItem("plasma-theme");if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.classList.toggle("light",t==="light");}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("plasma-theme")||"dark";document.documentElement.classList.toggle("light",t==="light");}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CRM &amp; CSV — Plasma Docs</title>
 <meta name="description" content="Learn how to manage and import CRM data using CSV files for efficient data processing.">

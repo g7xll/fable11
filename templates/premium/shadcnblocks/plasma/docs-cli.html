@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<script>(function(){try{var t=localStorage.getItem("plasma-theme");if(!t)t=matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.classList.toggle("light",t==="light");}catch(e){}})();</script>
+<script>(function(){try{var t=localStorage.getItem("plasma-theme")||"dark";document.documentElement.classList.toggle("light",t==="light");}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>CLI — Plasma Docs</title>
 <meta name="description" content="Master the command-line interface and available commands for efficient development.">
