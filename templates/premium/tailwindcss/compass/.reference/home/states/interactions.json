@@ -1,0 +1,17 @@
+[
+  {
+    "name": "account-dropdown",
+    "trigger": "button:has-text(\"Account\")",
+    "menuHTML": "<div class=\"min-w-38 rounded-lg bg-white/75 p-0.5 shadow-sm outline outline-gray-950/5 backdrop-blur-sm [--anchor-gap:--spacing(1)] [--anchor-offset:--spacing(1)] dark:bg-gray-950/75 dark:outline-white/10\" tabindex=\"0\" data-floating-ui-focusable=\"\" data-anchor=\"bottom end\" aria-labelledby=\"headlessui-menu-button-_R_7jiluivb_\" id=\"headlessui-menu-items-_R_bjiluivb_\" role=\"menu\" data-headlessui-state=\"open\" data-open=\"\" style=\"position: absolute; left: 1268px; top: 44px; --button-width: 70px; overflow: auto; max-width: 1440px; max-height: min(var(--anchor-max-height, 100vh), 856px);\"><a class=\"block rounded-md px-3 py-0.5 text-sm/7 text-gray-950 focus:outline-none data-focus:bg-blue-500 data-focus:text-white dark:text-white\" id=\"headlessui-menu-item-_r_0_\" role=\"menuitem\" tabindex=\"-1\" data-headlessui-state=\"\" href=\"#\">Settings</a><a class=\"block rounded-md px-3 py-0.5 text-sm/7 text-gray-950 focus:outline-none data-focus:bg-blue-500 data-focus:text-white dark:text-white\" id=\"headlessui-menu-item-_r_1_\" role=\"menuitem\" tabindex=\"-1\" data-headlessui-state=\"\" href=\"#\">Support</a><a class=\"block rounded-md px-3 py-0.5 text-sm/7 text-gray-950 focus:outline-none data-focus:bg-blue-500 data-focus:text-white dark:text-white\" id=\"headlessui-menu-item-_r_2_\" role=\"menuitem\" tabindex=\"-1\" data-headlessui-state=\"\" href=\"/login\">Sign out</a></div>"
+  },
+  {
+    "name": "sidebar-collapse",
+    "trigger": "nav[aria-label=\"Course\"] button",
+    "before": null,
+    "after": ""
+  },
+  {
+    "name": "sidebar-collapse",
+    "error": "TimeoutError: locator.click: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('nav[aria-label=\"Course\"] button').first()\u001b[22m\n\u001b[2m    - locator resolved to <button type=\"button\" data-headlessui-state=\"\" class=\"relative *:relative before:absolute before:top-1/2 before:left-1/2 before:size-8 before:-translate-1/2 before:rounded-md before:bg-white/75 before:backdrop-blur-sm dark:before:bg-gray-950/75 data-hover:before:bg-gray-950/5 dark:data-hover:before:bg-white/5 focus:outline-hidden data-focus:before:outline-2 data-focus:before:outline-blue-700 data-focus:before:outline-solid\">…</button>\u001b[22m\n\u001b[2m  - attempting click action\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m    - waiting 20ms\u001b[22m\n\u001b[2m    2 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m      - element is not visible\u001b[22m\n\u001b[2m    - retrying click action\u001b[22m\n\u001b[2m      - waiting 100ms\u001b[22m\n\u001b[2m    58 × waiting for element to be visible, enabled and stable\u001b[22m\n\u001b[2m       - element is not visible\u001b[22m\n\u001b[2m     - retrying click action\u001b[22m\n\u001b[2m       - waiting 500ms\u001b[22m\n"
+  }
+]
