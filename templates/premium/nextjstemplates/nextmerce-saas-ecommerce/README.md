@@ -1,5 +1,7 @@
 # NextMerce — SaaS E-commerce Storefront Template Clone (Vanilla HTML/CSS/JS + Swiper)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A self-contained, pixel-faithful clone of the NextMerce e-commerce template — a bright, conversion-focused online-electronics storefront — rebuilt as a static multi-page site in plain HTML, CSS and vanilla JavaScript (with Swiper for carousels), runnable offline with no build step. It reproduces the full storefront across 18 pages: a rich home page (hero carousel, category circles, new arrivals, promo banners, best sellers, a live countdown CTA, testimonials, newsletter), shop listings with and without a filter sidebar, category and popular listings, a product-details page (gallery + tabs + recently-viewed carousel), cart, checkout, wishlist, a blog (grid / grid-with-sidebar / details / details-with-sidebar), contact, sign in, sign up, mail-success and a 404 page — along with shared sticky header, nav dropdowns, slide-in mini-cart, quick-view modal, quantity steppers, tabs and hover/entrance interactions. The design language is airy modern SaaS-commerce: white surfaces, deep navy ink (#1C274C), a signature indigo-blue primary (#3C50E0), rounded corners and soft card shadows. Generated with Claude Fable 5.
 
 ## Run
