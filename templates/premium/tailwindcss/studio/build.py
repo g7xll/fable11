@@ -120,6 +120,9 @@ def transform(slug, outfile):
     # 4) rewrite direct _next/static/media occurrences anywhere left (e.g. inline svg <use>, style url())
     doc = doc.replace("/_next/static/media/", f"{prefix}assets/media/")
 
+    # 4b) vendored favicon (the Next.js streamed head leaks a /favicon.ico link)
+    doc = re.sub(r'href="/favicon\.ico[^"]*"', f'href="{prefix}assets/favicon.ico"', doc)
+
     # 5) rewrite internal navigation hrefs (path -> local file)
     def fix_href(m):
         url = html.unescape(m.group(1))
