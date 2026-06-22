@@ -1,0 +1,163 @@
+[
+ {
+  "ref": "home",
+  "slug": "index",
+  "type": "home",
+  "out": "index.html",
+  "title": "Compass - The Ultimate Guide to Navigating Uncertainty"
+ },
+ {
+  "ref": "landscape-of-choice",
+  "slug": "landscape-of-choice",
+  "type": "article",
+  "out": "landscape-of-choice.html",
+  "title": "The Landscape of Choice - Compass"
+ },
+ {
+  "ref": "paradox-of-agency",
+  "slug": "paradox-of-agency",
+  "type": "article",
+  "out": "paradox-of-agency.html",
+  "title": "The Paradox of Agency - Compass"
+ },
+ {
+  "ref": "liberation-from-regret",
+  "slug": "liberation-from-regret",
+  "type": "article",
+  "out": "liberation-from-regret.html",
+  "title": "Liberation from Regret - Compass"
+ },
+ {
+  "ref": "recognizing-patterns",
+  "slug": "recognizing-patterns",
+  "type": "article",
+  "out": "recognizing-patterns.html",
+  "title": "Recognizing Patterns - Compass"
+ },
+ {
+  "ref": "values-and-goals",
+  "slug": "values-and-goals",
+  "type": "article",
+  "out": "values-and-goals.html",
+  "title": "Values and Goals - Compass"
+ },
+ {
+  "ref": "mapping-causal-factors",
+  "slug": "mapping-causal-factors",
+  "type": "article",
+  "out": "mapping-causal-factors.html",
+  "title": "Mapping the Causal Factors - Compass"
+ },
+ {
+  "ref": "reframing-uncertainty",
+  "slug": "reframing-uncertainty",
+  "type": "article",
+  "out": "reframing-uncertainty.html",
+  "title": "Reframing Uncertainty as Agency - Compass"
+ },
+ {
+  "ref": "decision-paralysis",
+  "slug": "decision-paralysis",
+  "type": "article",
+  "out": "decision-paralysis.html",
+  "title": "Overcoming Decision Paralysis - Compass"
+ },
+ {
+  "ref": "path-of-least-resistance",
+  "slug": "path-of-least-resistance",
+  "type": "article",
+  "out": "path-of-least-resistance.html",
+  "title": "Perceiving the Path of Least Resistance - Compass"
+ },
+ {
+  "ref": "surrendering-outcome",
+  "slug": "surrendering-outcome",
+  "type": "article",
+  "out": "surrendering-outcome.html",
+  "title": "Surrendering to the Outcome - Compass"
+ },
+ {
+  "ref": "widening-field-of-view",
+  "slug": "widening-field-of-view",
+  "type": "article",
+  "out": "widening-field-of-view.html",
+  "title": "Widening Your Field of View - Compass"
+ },
+ {
+  "ref": "dealing-with-coincidence",
+  "slug": "dealing-with-coincidence",
+  "type": "article",
+  "out": "dealing-with-coincidence.html",
+  "title": "Dealing with Coincidence - Compass"
+ },
+ {
+  "ref": "forgiving-others",
+  "slug": "forgiving-others",
+  "type": "article",
+  "out": "forgiving-others.html",
+  "title": "Forgiving Others - Compass"
+ },
+ {
+  "ref": "anxiety-messages",
+  "slug": "anxiety-messages",
+  "type": "article",
+  "out": "anxiety-messages.html",
+  "title": "What Anxiety Is Trying to Tell You - Compass"
+ },
+ {
+  "ref": "maintaining-self",
+  "slug": "maintaining-self",
+  "type": "article",
+  "out": "maintaining-self.html",
+  "title": "Maintaining a Sense of Self - Compass"
+ },
+ {
+  "ref": "reframing-achievement",
+  "slug": "reframing-achievement",
+  "type": "article",
+  "out": "reframing-achievement.html",
+  "title": "Reframing Achievement and Failure - Compass"
+ },
+ {
+  "ref": "surrendering-to-success",
+  "slug": "surrendering-to-success",
+  "type": "article",
+  "out": "surrendering-to-success.html",
+  "title": "Surrendering to Success - Compass"
+ },
+ {
+  "ref": "giving-credit",
+  "slug": "giving-credit",
+  "type": "article",
+  "out": "giving-credit.html",
+  "title": "Giving Credit Where it's Due - Compass"
+ },
+ {
+  "ref": "unburden-accountability",
+  "slug": "unburden-accountability",
+  "type": "article",
+  "out": "unburden-accountability.html",
+  "title": "Unburden Yourself from Accountability - Compass"
+ },
+ {
+  "ref": "writing-autobiography",
+  "slug": "writing-autobiography",
+  "type": "article",
+  "out": "writing-autobiography.html",
+  "title": "Exercise: Writing your autobiography - Compass"
+ },
+ {
+  "ref": "interviews",
+  "slug": "interviews",
+  "type": "interviews",
+  "out": "interviews.html",
+  "title": "Interviews - Compass"
+ },
+ {
+  "ref": "resources",
+  "slug": "resources",
+  "type": "resources",
+  "out": "resources.html",
+  "title": "Resources - Compass"
+ }
+]
