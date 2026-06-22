@@ -1,11 +1,11 @@
 /* Renders a single blog article. Expects window.ARTICLE_SLUG. */
 
 const LOREM_BODY = [
-  "Velit cillum fugiat proident pariatur anim proident laborum incididunt magna in labore adipisicing veniam quis. Ut et exercitation dolor in enim quis. Et est excepteur exercitation voluptate in qui duis nulla in anim ut commodo deserunt nisi. Dolor pariatur irure occaecat Lorem mollit veniam adipisicing.",
-  "Deserunt qui ea do et laborum ad id. Tempor laborum aute fugiat tempor eu. Amet sint sint proident pariatur eiusmod mollit excepteur excepteur. Dolore cillum nulla enim tempor ad.",
-  "Laborum quis proident ut anim consectetur. Consequat fugiat eiusmod qui officia duis eu minim cillum do qui. Sunt sit veniam minim ad id sunt magna est enim.",
-  "Consectetur est sunt minim culpa quis aute officia incididunt ea laboris nulla officia dolor. Cupidatat cupidatat esse veniam cillum labore ullamco aliqua ex. Cillum incididunt ipsum laborum dolor enim incididunt consectetur id consectetur magna. Consequat mollit non ea cupidatat exercitation. Consequat reprehenderit eiusmod nisi ea esse id ut est consequat eu aliqua do quis.",
-  "Occaecat commodo velit ea consectetur ut sit. Duis eiusmod ad tempor nisi magna dolore incididunt ea dolore. Commodo proident eiusmod consequat cupidatat consectetur adipisicing dolor commodo tempor labore non dolore Lorem consectetur.",
+	"Velit cillum fugiat proident pariatur anim proident laborum incididunt magna in labore adipisicing veniam quis. Ut et exercitation dolor in enim quis. Et est excepteur exercitation voluptate in qui duis nulla in anim ut commodo deserunt nisi. Dolor pariatur irure occaecat Lorem mollit veniam adipisicing.",
+	"Deserunt qui ea do et laborum ad id. Tempor laborum aute fugiat tempor eu. Amet sint sint proident pariatur eiusmod mollit excepteur excepteur. Dolore cillum nulla enim tempor ad.",
+	"Laborum quis proident ut anim consectetur. Consequat fugiat eiusmod qui officia duis eu minim cillum do qui. Sunt sit veniam minim ad id sunt magna est enim.",
+	"Consectetur est sunt minim culpa quis aute officia incididunt ea laboris nulla officia dolor. Cupidatat cupidatat esse veniam cillum labore ullamco aliqua ex. Cillum incididunt ipsum laborum dolor enim incididunt consectetur id consectetur magna. Consequat mollit non ea cupidatat exercitation. Consequat reprehenderit eiusmod nisi ea esse id ut est consequat eu aliqua do quis.",
+	"Occaecat commodo velit ea consectetur ut sit. Duis eiusmod ad tempor nisi magna dolore incididunt ea dolore. Commodo proident eiusmod consequat cupidatat consectetur adipisicing dolor commodo tempor labore non dolore Lorem consectetur.",
 ];
 
 const CLEAN_CODE = `import React from "react";
@@ -44,10 +44,10 @@ export const BoxesContainer = () => {
 };`;
 
 function esc(s) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+	return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 function codeBlock(file, code) {
-  return `
+	return `
   <div class="codeblock">
     <div class="codeblock__bar">
       <span class="codeblock__file">${file}</span>
@@ -59,29 +59,34 @@ function codeBlock(file, code) {
 
 // per-article body (faithful to source: clean-code + dark-mode carry code, others are prose)
 function bodyFor(slug) {
-  if (slug === "clean-code") {
-    return (
-      `<p>${LOREM_BODY[0]}</p><p>${LOREM_BODY[1]}</p><p>${LOREM_BODY[2]}</p><p>${LOREM_BODY[3]}</p><p>${LOREM_BODY[4]}</p>` +
-      `<h3 class="cal" style="font-size:1.125rem;margin:2rem 0 0.5rem">Code Snippet</h3>` +
-      codeBlock("BoxesContainer.tsx", CLEAN_CODE)
-    );
-  }
-  if (slug === "dark-mode-with-nextjs") {
-    return (
-      `<p>${LOREM_BODY[0]}</p><p>${LOREM_BODY[1]}</p>` +
-      codeBlock("ThemeProvider.tsx", `import { ThemeProvider } from "next-themes";\n\nexport function Providers({ children }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      {children}\n    </ThemeProvider>\n  );\n}`) +
-      `<p>${LOREM_BODY[2]}</p><p>${LOREM_BODY[3]}</p><p>${LOREM_BODY[4]}</p>`
-    );
-  }
-  // prose-only articles
-  return LOREM_BODY.concat(LOREM_BODY.slice(0, 3)).map((p) => `<p>${p}</p>`).join("");
+	if (slug === "clean-code") {
+		return (
+			`<p>${LOREM_BODY[0]}</p><p>${LOREM_BODY[1]}</p><p>${LOREM_BODY[2]}</p><p>${LOREM_BODY[3]}</p><p>${LOREM_BODY[4]}</p>` +
+			`<h3 class="cal" style="font-size:1.125rem;margin:2rem 0 0.5rem">Code Snippet</h3>` +
+			codeBlock("BoxesContainer.tsx", CLEAN_CODE)
+		);
+	}
+	if (slug === "dark-mode-with-nextjs") {
+		return (
+			`<p>${LOREM_BODY[0]}</p><p>${LOREM_BODY[1]}</p>` +
+			codeBlock(
+				"ThemeProvider.tsx",
+				`import { ThemeProvider } from "next-themes";\n\nexport function Providers({ children }) {\n  return (\n    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>\n      {children}\n    </ThemeProvider>\n  );\n}`,
+			) +
+			`<p>${LOREM_BODY[2]}</p><p>${LOREM_BODY[3]}</p><p>${LOREM_BODY[4]}</p>`
+		);
+	}
+	// prose-only articles
+	return LOREM_BODY.concat(LOREM_BODY.slice(0, 3))
+		.map((p) => `<p>${p}</p>`)
+		.join("");
 }
 
 const ART_DATES = {
-  "clean-code": "August 18, 2023",
-  "how-to-win-clients": "August 18, 2023",
-  "tailwindcss-tips-and-tricks": "August 18, 2023",
-  "dark-mode-with-nextjs": "April 19, 2023",
+	"clean-code": "August 18, 2023",
+	"how-to-win-clients": "August 18, 2023",
+	"tailwindcss-tips-and-tricks": "August 18, 2023",
+	"dark-mode-with-nextjs": "April 19, 2023",
 };
 
 const a = window.ARTICLES.find((x) => x.slug === window.ARTICLE_SLUG);
