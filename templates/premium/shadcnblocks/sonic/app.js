@@ -68,11 +68,22 @@
   /* ---- Scroll reveal ---- */
   const reveals = document.querySelectorAll('.reveal');
   if (reveals.length) {
-    const io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(r => io.observe(r));
+    if (!('IntersectionObserver' in window)) {
+      reveals.forEach(r => r.classList.add('in'));
+    } else {
+      const io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+      reveals.forEach(r => io.observe(r));
+      // Failsafe: guarantee no element stays permanently hidden if the
+      // observer never fires for it (fast scroll, full-page capture, etc).
+      // Above-fold items still animate via the observer; this only rescues
+      // anything still hidden a moment after the page settles.
+      const failsafe = () => document.querySelectorAll('.reveal:not(.in)').forEach(r => r.classList.add('in'));
+      window.addEventListener('load', () => setTimeout(failsafe, 1200));
+      setTimeout(failsafe, 2500);
+    }
   }
 })();

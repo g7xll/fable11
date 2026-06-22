@@ -305,7 +305,7 @@ body.menu-open .mobile-menu .panel { transform: translateX(0); }
 .cta-inner { display: grid; gap: 2rem; align-items: center; grid-template-columns: 1fr; padding: 3rem; }
 @media (min-width: 900px) { .cta-inner { grid-template-columns: 1fr 1fr; padding: 4rem; } }
 .cta-band h2 { font-size: clamp(2rem,4vw,3rem); margin-bottom: 1rem; }
-.cta-band .rounded-img { aspect-ratio: 4/3; }
+.cta-band h3 { font-size: clamp(1.25rem,2vw,1.6rem); }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--footer-bg); color: var(--footer-foreground); position: relative; overflow: hidden; margin-top: 4rem; }
