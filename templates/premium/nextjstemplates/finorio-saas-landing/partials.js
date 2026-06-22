@@ -1,8 +1,8 @@
 // ===== Finorio clone — shared partials & data injection =====
 (function () {
-  "use strict";
+	"use strict";
 
-  const FOOTER = `
+	const FOOTER = `
   <footer class="site-footer">
     <div class="container">
       <div class="footer-top">
@@ -53,7 +53,7 @@
     </div>
   </footer>`;
 
-  const CTA = `
+	const CTA = `
   <section class="cta-section reveal">
     <div class="container">
       <div class="cta">
@@ -69,31 +69,63 @@
     </div>
   </section>`;
 
-  const footerSlot = document.getElementById("footer-slot");
-  if (footerSlot) footerSlot.outerHTML = FOOTER;
-  const ctaSlot = document.getElementById("cta-slot");
-  if (ctaSlot) ctaSlot.outerHTML = CTA;
+	const footerSlot = document.getElementById("footer-slot");
+	if (footerSlot) footerSlot.outerHTML = FOOTER;
+	const ctaSlot = document.getElementById("cta-slot");
+	if (ctaSlot) ctaSlot.outerHTML = CTA;
 
-  // ---- Pricing plans ----
-  const PLANS = [
-    {
-      name: "Free Plan", monthly: "$0.00", annual: "$0.00", desc: "Simple features to begin.", featured: false,
-      feats: [["Dashboard", 1], ["Basic statistics", 1], ["QR payments", 1], ["Standard security", 1], ["1 card storage", 0]],
-    },
-    {
-      name: "Professional", monthly: "$6.99", annual: "$5.59", desc: "Smart tools, unlimited access.", featured: true, popular: true,
-      feats: [["Everything in Free", 1], ["Unlimited cards", 1], ["Advanced insights", 1], ["Priority syncing", 1], ["Scheduled transfers", 0]],
-    },
-    {
-      name: "Enterprise", monthly: "$11.99", annual: "$9.59", desc: "Maximum features, zero limits.", featured: false,
-      feats: [["Everything in Pro", 1], ["Family mode", 1], ["Custom categories", 1], ["Export reports", 1], ["Smart budgeting", 0]],
-    },
-  ];
-  const CHECK = `<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
-  const CHECK_GRAY = `<svg class="check gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
-  const plansEl = document.getElementById("plans");
-  if (plansEl) {
-    plansEl.innerHTML = PLANS.map((p, i) => `
+	// ---- Pricing plans ----
+	const PLANS = [
+		{
+			name: "Free Plan",
+			monthly: "$0.00",
+			annual: "$0.00",
+			desc: "Simple features to begin.",
+			featured: false,
+			feats: [
+				["Dashboard", 1],
+				["Basic statistics", 1],
+				["QR payments", 1],
+				["Standard security", 1],
+				["1 card storage", 0],
+			],
+		},
+		{
+			name: "Professional",
+			monthly: "$6.99",
+			annual: "$5.59",
+			desc: "Smart tools, unlimited access.",
+			featured: true,
+			popular: true,
+			feats: [
+				["Everything in Free", 1],
+				["Unlimited cards", 1],
+				["Advanced insights", 1],
+				["Priority syncing", 1],
+				["Scheduled transfers", 0],
+			],
+		},
+		{
+			name: "Enterprise",
+			monthly: "$11.99",
+			annual: "$9.59",
+			desc: "Maximum features, zero limits.",
+			featured: false,
+			feats: [
+				["Everything in Pro", 1],
+				["Family mode", 1],
+				["Custom categories", 1],
+				["Export reports", 1],
+				["Smart budgeting", 0],
+			],
+		},
+	];
+	const CHECK = `<svg class="check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+	const CHECK_GRAY = `<svg class="check gray" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+	const plansEl = document.getElementById("plans");
+	if (plansEl) {
+		plansEl.innerHTML = PLANS.map(
+			(p, i) => `
       <div class="plan ${p.featured ? "featured" : ""} reveal" data-delay="${i * 90}">
         <div class="plan-head">
           <span class="plan-name">${p.name}</span>
@@ -105,23 +137,40 @@
         <ul class="plan-feats">
           ${p.feats.map(([t, on]) => `<li class="${on ? "" : "dim"}">${on ? CHECK : CHECK_GRAY}${t}</li>`).join("")}
         </ul>
-      </div>`).join("");
-  }
+      </div>`,
+		).join("");
+	}
 
-  // ---- Testimonials ----
-  const T = [
-    { title: "Saved more than $150 in a month.", body: "Managing my income from multiple clients used to be chaotic. This app gives me a clean dashboard where I can see everything in one place.", name: "Alex Morgan", img: "alex-morgon" },
-    { title: "Faster payments with QR.", body: "The QR payment feature is a lifesaver. Instead of sending bank details every time, customers just scan and pay instantly. It reduced my payment delays by 80%.", name: "Sofia Ramirez", img: "sofia-ramirez" },
-    { title: "Smooth card management.", body: "I've tried many budgeting apps, but most were either too complicated or ugly. This one is different. The card management system is super clean.", name: "Daniel Kim", img: "daniel-kim" },
-  ];
-  const QUOTE = `<img class="quote-icon" src="assets/images/quote.svg" alt="" />`;
-  const STARS = `<span class="stars">${'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.9.62-5.2 4.6 1.55 6.76L12 17.27 5.85 20.84 7.4 14.08 2.2 9.48l6.9-.62L12 2z"/></svg>'.repeat(5)}</span>`;
-  const testiEl = document.getElementById("testimonials");
-  if (testiEl) {
-    const order = [0, 1, 2, 1, 2, 0];
-    testiEl.innerHTML = order.map((idx, i) => {
-      const t = T[idx];
-      return `<div class="testi reveal" data-delay="${(i % 3) * 90}">
+	// ---- Testimonials ----
+	const T = [
+		{
+			title: "Saved more than $150 in a month.",
+			body: "Managing my income from multiple clients used to be chaotic. This app gives me a clean dashboard where I can see everything in one place.",
+			name: "Alex Morgan",
+			img: "alex-morgon",
+		},
+		{
+			title: "Faster payments with QR.",
+			body: "The QR payment feature is a lifesaver. Instead of sending bank details every time, customers just scan and pay instantly. It reduced my payment delays by 80%.",
+			name: "Sofia Ramirez",
+			img: "sofia-ramirez",
+		},
+		{
+			title: "Smooth card management.",
+			body: "I've tried many budgeting apps, but most were either too complicated or ugly. This one is different. The card management system is super clean.",
+			name: "Daniel Kim",
+			img: "daniel-kim",
+		},
+	];
+	const QUOTE = `<img class="quote-icon" src="assets/images/quote.svg" alt="" />`;
+	const STARS = `<span class="stars">${'<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.26 6.9.62-5.2 4.6 1.55 6.76L12 17.27 5.85 20.84 7.4 14.08 2.2 9.48l6.9-.62L12 2z"/></svg>'.repeat(5)}</span>`;
+	const testiEl = document.getElementById("testimonials");
+	if (testiEl) {
+		const order = [0, 1, 2, 1, 2, 0];
+		testiEl.innerHTML = order
+			.map((idx, i) => {
+				const t = T[idx];
+				return `<div class="testi reveal" data-delay="${(i % 3) * 90}">
         ${QUOTE}
         <h4>${t.title}</h4>
         <p>${t.body}</p>
@@ -130,20 +179,38 @@
           ${STARS}
         </div>
       </div>`;
-    }).join("");
-  }
+			})
+			.join("");
+	}
 
-  // ---- FAQ ----
-  const FAQ = [
-    { q: "What is Finorio?", a: "Finorio helps startups and creators build beautiful landing pages, manage tasks, and grow faster — all from one dashboard.", open: true },
-    { q: "Do I need to code?", a: "No, Finorio is a drag-and-drop builder that allows you to create landing pages and manage tasks without any coding knowledge." },
-    { q: "Can I use my own domain?", a: "Yes, you can use your own domain with Finorio. You can also use a custom subdomain." },
-    { q: "How secure is Finorio?", a: "Your data is encrypted, protected, and always under your control — with enterprise-grade security." },
-    { q: "Is there a free plan?", a: "Yes, Finorio offers a free plan that includes 10 landing pages and 10 tasks." },
-  ];
-  const faqEl = document.getElementById("faq");
-  if (faqEl) {
-    faqEl.innerHTML = FAQ.map((f) => `
+	// ---- FAQ ----
+	const FAQ = [
+		{
+			q: "What is Finorio?",
+			a: "Finorio helps startups and creators build beautiful landing pages, manage tasks, and grow faster — all from one dashboard.",
+			open: true,
+		},
+		{
+			q: "Do I need to code?",
+			a: "No, Finorio is a drag-and-drop builder that allows you to create landing pages and manage tasks without any coding knowledge.",
+		},
+		{
+			q: "Can I use my own domain?",
+			a: "Yes, you can use your own domain with Finorio. You can also use a custom subdomain.",
+		},
+		{
+			q: "How secure is Finorio?",
+			a: "Your data is encrypted, protected, and always under your control — with enterprise-grade security.",
+		},
+		{
+			q: "Is there a free plan?",
+			a: "Yes, Finorio offers a free plan that includes 10 landing pages and 10 tasks.",
+		},
+	];
+	const faqEl = document.getElementById("faq");
+	if (faqEl) {
+		faqEl.innerHTML = FAQ.map(
+			(f) => `
       <div class="faq-item ${f.open ? "open" : ""}">
         <button class="faq-q">
           <span>${f.q}</span>
@@ -153,6 +220,7 @@
           </span>
         </button>
         <div class="faq-a"><div class="faq-a-inner">${f.a}</div></div>
-      </div>`).join("");
-  }
+      </div>`,
+		).join("");
+	}
 })();
