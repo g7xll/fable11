@@ -12,7 +12,7 @@ THE HOME PAGE OPENS WITH A FULL-WIDTH DARK SLATE-900 HERO — A GRADIENT WORDMAR
 
 THIS CLONE PRESERVES THE COMPILED TAILWIND CSS V4 STYLESHEET (OBFUSCATED UTILITY CLASSES, SLATE RAMP, SKY ACCENT) AND THE EXACT RENDERED MARKUP, SELF-HOSTS ITS INTER + LEXEND FONTS, AND REPLACES THE PROPRIETARY NEXT + HEADLESS-UI + FRAMER-MOTION RUNTIME WITH A SMALL VANILLA-JS SHIM THAT REIMPLEMENTS THE SAME BEHAVIOURS (THEME LISTBOX WITH `localStorage`, MOBILE NAV SLIDE-OVER, SEARCH MODAL OVERLAY, SIDEBAR SCROLL-SPY WITH SLIDING SECTION HIGHLIGHT, TOC SCROLL-SPY).
 
-THE BUILD SPANS 21 PAGES — THE **GETTING STARTED** HOME PLUS 20 `/docs/*` ARTICLE PAGES ACROSS FIVE NAV SECTIONS (INTRODUCTION, CORE CONCEPTS, ADVANCED GUIDES, API REFERENCE, CONTRIBUTING). EACH DOC PAGE SHARES THE SAME SHELL, DIFFERING IN TITLE, ACTIVE NAV STATE, AND PREV/NEXT PAGER.
+THE BUILD SPANS 20 PAGES — THE **GETTING STARTED** HOME PLUS 19 `/docs/*` ARTICLE PAGES ACROSS FIVE NAV SECTIONS (INTRODUCTION, CORE CONCEPTS, ADVANCED GUIDES, API REFERENCE, CONTRIBUTING). EACH DOC PAGE SHARES THE SAME SHELL, DIFFERING IN TITLE, ACTIVE NAV STATE, AND PREV/NEXT PAGER.
 
 ## STYLE
 
@@ -68,7 +68,7 @@ THE BUILD SPANS 21 PAGES — THE **GETTING STARTED** HOME PLUS 20 `/docs/*` ARTI
 
 ### PAGES
 - **GETTING STARTED / HOME (`index`)** — DARK HERO (gradient headline, lead, button pair, dot-grid SVG + blur glows + `cache-advance.config.js` code panel) ABOVE THE DOCS SHELL; ARTICLE EYEBROW "Introduction" + H1 "Getting started"; LEAD; QUICK-LINK 2×2 CARD GRID (Installation / Architecture guide / Plugins / API reference, gradient-icon SVGs, hover gradient border); PROSE SECTIONS (**QUICK START** → Installing dependencies / Configuring the library, with shell + JS code blocks and an amber "Oh no!" callout; **BASIC USAGE** → Your first cache / Clearing the cache / Adding middleware; **GETTING HELP** → Submit an issue / Join the community); NEXT → Installation PAGER; STICKY TOC.
-- **DOC ARTICLE PAGES (20×, `/docs/<slug>`)** — SHARED SHELL (header + sidebar + content + TOC); ARTICLE EYEBROW (section name) + H1 (page title); LEAD; PROSE BODY WITH H2/H3 HEADINGS, PARAGRAPHS, A SYNTAX-HIGHLIGHTED CODE BLOCK, AND `<hr>` DIVIDERS (lorem-ipsum copy matching the original); PREV/NEXT PAGER LINKING ADJACENT NAV ENTRIES; STICKY TOC BUILT FROM THE PAGE HEADINGS.
+- **DOC ARTICLE PAGES (19×, `/docs/<slug>`)** — SHARED SHELL (header + sidebar + content + TOC); ARTICLE EYEBROW (section name) + H1 (page title); LEAD; PROSE BODY WITH H2/H3 HEADINGS, PARAGRAPHS, A SYNTAX-HIGHLIGHTED CODE BLOCK, AND `<hr>` DIVIDERS (lorem-ipsum copy matching the original); PREV/NEXT PAGER LINKING ADJACENT NAV ENTRIES; STICKY TOC BUILT FROM THE PAGE HEADINGS.
   - SLUGS: `installation`, `understanding-caching`, `predicting-user-behavior`, `basics-of-time-travel`, `introduction-to-string-theory`, `the-butterfly-effect`, `writing-plugins`, `neuralink-integration`, `temporal-paradoxes`, `testing`, `compile-time-caching`, `predictive-data-generation`, `cacheadvance-predict`, `cacheadvance-flush`, `cacheadvance-revert`, `cacheadvance-regret`, `how-to-contribute`, `architecture-guide`, `design-principles`.
 
 ### FOOTER
