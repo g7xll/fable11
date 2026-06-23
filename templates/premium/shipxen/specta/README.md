@@ -1,5 +1,7 @@
 # Specta — AI Video-Editing SaaS Landing Page Template Clone (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 Specta is a self-contained, pixel-faithful clone of the dark "Specta" marketing landing page template for a fictional AI-powered video-editing SaaS. It is a single-page template built with plain HTML, CSS, and vanilla JavaScript — no build step, all assets vendored locally, and it runs fully offline. The page ships dark by default with a light/dark theme toggle (driven by CSS custom properties and `localStorage`), and features a sticky nav, a gradient hero headline with a framed autoplay product video, an infinite logo and testimonial ticker marquee, scroll-in reveal animations via `IntersectionObserver`, alternating feature sections, a monetize card grid, a testimonial grid on a pink gradient panel, and a multi-column footer. Generated with Claude Fable 5.
 
 ## Run
