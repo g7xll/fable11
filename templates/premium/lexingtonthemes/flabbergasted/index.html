@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flabbergasted — Because you're too smart for slow, Fake-Sounding AI</title>
+  <meta name="description" content="Runs on brain-melting math you'll never have to touch. Built for devs who ship, not just talk.">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* page-specific */
+    .hero-glow {
+      position: absolute; inset: 0;
+      max-width: 32rem; margin-inline: auto;
+      background: rgba(255,255,255,0.3);
+      filter: blur(40px);
+      animation: pulse 2s cubic-bezier(.4,0,.6,1) infinite;
+    }
+    @keyframes pulse {
+      0%,100%{ opacity:1 }
+      50%{ opacity:.5 }
+    }
+    .textarea-chat {
+      resize: none;
+      scrollbar-width: none;
+    }
+    .textarea-chat::-webkit-scrollbar { display: none; }
+    .voice-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem;
+      border-bottom: 1px solid #fff;
+      background: var(--color-base-900);
+    }
+    .integration-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      background: var(--color-base-900);
+      aspect-ratio: 1;
+    }
+    .integration-card img {
+      width: 2rem; height: 2rem;
+      filter: grayscale(1);
+      transition: filter 300ms;
+    }
+    @media (min-width: 1024px) { .integration-card img { width: 3rem; height: 3rem; } }
+    .integration-card:hover img { filter: grayscale(0); }
+    .integration-card a.overlay { position: absolute; inset: 0; z-index: 10; }
+
+    /* pricing */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+    }
+    @media (min-width: 640px) { .pricing-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 768px) { .pricing-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .pricing-grid { grid-template-columns: repeat(5, 1fr); } }
+
+    .pricing-card {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background: var(--color-base-900);
+    }
+    .pricing-card-top {
+      position: sticky;
+      top: 6.25rem;
+      z-index: 50;
+      background: var(--color-base-900);
+    }
+    .pricing-mesh-bar { height: 4px; margin: 1rem -1rem; }
+
+    /* testimonial slider */
+    .testimonial-img {
+      width: 100%;
+      aspect-ratio: 8/10;
+      object-fit: cover;
+      object-position: center;
+    }
+    .testimonial-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+      height: 50%;
+      bottom: 0;
+      top: auto;
+      backdrop-filter: blur(32px);
+    }
+
+    /* blog preview */
+    .blog-preview-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      overflow: hidden;
+    }
+    .blog-preview-card a.overlay { position: absolute; inset: 0; z-index: 10; }
+
+    /* keen slider nav */
+    .slider-section { position: relative; }
+    .slider-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .slider-nav button {
+      width: 2.75rem; height: 2.75rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--color-base-800);
+      color: #fff;
+      transition: background 500ms;
+    }
+    .slider-nav button:hover { background: var(--color-base-700); }
+
+    /* bg-stripes for integration cards */
+    .bg-stripes {
+      background-image: repeating-linear-gradient(45deg, var(--color-base-800) 0px, var(--color-base-800) 1px, transparent 1px, transparent 8px);
+    }
+
+    /* check icon */
+    .check-icon { width: 1rem; height: 1rem; flex-shrink: 0; color: var(--color-base-500); }
+
+    /* footer stripe banner */
+    .footer-stripe {
+      margin-top: 3rem;
+      padding: 5rem;
+      clip-path: inset(0);
+    }
+  </style>
+</head>
+<body style="background-color: var(--color-base-950);">
+
+<!-- Navigation -->
+<div id="nav-wrapper">
+  <div class="nav-inner">
+    <div class="nav-row">
+      <div class="nav-brand">
+        <a href="index.html" class="logo-link">
+          <span class="sr-only">Go to homepage</span>
+          <svg class="logo" viewBox="0 0 124 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#c1)">
+              <ellipse cx="22.9" cy="32.9" rx="22.9" ry="32.9" transform="matrix(0.688 -0.726 -0.726 -0.688 39.7 98.5)" fill="currentColor" fill-opacity="0.37"/>
+              <ellipse cx="91.5" cy="59.2" rx="22.9" ry="32.9" transform="rotate(-133.4 91.5 59.2)" fill="currentColor" fill-opacity="0.37"/>
+              <ellipse opacity="0.7" cx="16.8" cy="32.8" rx="16.8" ry="32.8" transform="matrix(-0.96 0.281 0.281 0.96 49.1 23.6)" fill="currentColor"/>
+              <ellipse opacity="0.7" cx="80.9" cy="60.2" rx="16.8" ry="32.8" transform="rotate(16.3 80.9 60.2)" fill="currentColor"/>
+            </g>
+            <defs><clipPath id="c1"><rect width="123.93" height="117.997" fill="white"/></clipPath></defs>
+          </svg>
+          Flabbergasted
+        </a>
+        <button id="menu-toggle" aria-label="Open menu">
+          <svg width="16" height="16" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            <path id="close-icon" style="display:none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <nav id="nav-menu">
+        <button id="menu-close" aria-label="Close menu">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+            <path d="M18 6l-12 12"/><path d="M6 6l12 12"/>
+          </svg>
+        </button>
+        <div class="nav-links-inner">
+          <div class="nav-accent-stripe" aria-hidden="true"></div>
+          <a href="index.html" class="nav-logo-mobile">
+            <svg style="height:3rem; color:#fff" viewBox="0 0 124 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#c2)">
+                <ellipse cx="22.9" cy="32.9" rx="22.9" ry="32.9" transform="matrix(0.688 -0.726 -0.726 -0.688 39.7 98.5)" fill="currentColor" fill-opacity="0.37"/>
+                <ellipse cx="91.5" cy="59.2" rx="22.9" ry="32.9" transform="rotate(-133.4 91.5 59.2)" fill="currentColor" fill-opacity="0.37"/>
+                <ellipse opacity="0.7" cx="16.8" cy="32.8" rx="16.8" ry="32.8" transform="matrix(-0.96 0.281 0.281 0.96 49.1 23.6)" fill="currentColor"/>
+                <ellipse opacity="0.7" cx="80.9" cy="60.2" rx="16.8" ry="32.8" transform="rotate(16.3 80.9 60.2)" fill="currentColor"/>
+              </g>
+              <defs><clipPath id="c2"><rect width="123.93" height="117.997" fill="white"/></clipPath></defs>
+            </svg>
+          </a>
+          <div class="nav-links">
+            <a href="system/overview.html">Overview</a>
+            <a href="blog/home.html">Blog</a>
+            <a href="https://lexingtonthemes.com/templates/flabbergasted" target="_blank" rel="noopener">Buy Flabbergasted</a>
+          </div>
+          <div class="nav-cta">
+            <a href="forms/sign-in.html" class="btn btn-base btn-sm">Get started</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<!-- Page wrapper -->
+<div class="page-wrapper">
+  <main>
+
+    <!-- ── HERO ─────────────────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad" style="position:relative; padding-top:8rem; padding-bottom:3rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <!-- bottom stripe -->
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);height:6rem;margin-top:auto;margin-inline:-1px;border-top:1px solid var(--color-base-800);pointer-events:none;"></div>
+
+        <div style="position:relative;text-align:center;text-wrap:balance;">
+          <h1 class="font-display" style="font-size:clamp(2.25rem,5vw,3.75rem);line-height:1.1;color:#fff;letter-spacing:-0.025em;">
+            Because you're too smart for slow, Fake-Sounding AI
+          </h1>
+          <p style="font-size:1rem;max-width:36rem;margin:1rem auto 0;color:var(--color-base-400);">
+            Runs on brain-melting math you'll never have to touch. Built for devs who ship, not just talk.
+          </p>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:0.5rem;margin-top:2rem;">
+            <a href="#" class="btn btn-mesh btn-sm">Get started</a>
+            <a href="#" class="btn btn-base btn-sm">Read the docs</a>
+          </div>
+        </div>
+
+        <!-- Chat textarea card -->
+        <div style="position:relative;margin-top:2rem;">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <div style="position:relative;max-width:32rem;margin-inline:auto;padding:0.5rem;border-radius:0.5rem;background:var(--color-base-900);box-shadow:0 25px 50px -12px rgba(0,0,0,.5);">
+            <textarea class="textarea-chat input" rows="4" placeholder="Type something... or don't. I'm not your boss." style="height:auto;padding:1rem;font-family:'Geist Mono',monospace;font-size:.875rem;line-height:1.5;background:transparent;border-color:transparent;box-shadow:none;color:#fff;resize:none;"></textarea>
+            <div style="display:grid;grid-template-columns:1fr;gap:0.25rem;">
+              <div style="display:flex;flex-wrap:wrap;gap:0.25rem;">
+                <button class="btn btn-base btn-sm" style="flex:1;">Say something smart</button>
+                <button class="btn btn-base btn-sm" style="flex:1;">Try to be funny</button>
+                <button class="btn btn-base btn-sm" style="flex:1;">Fake a meeting</button>
+                <button class="btn btn-icon btn-base" title="Send">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="12" height="12"><path d="M7 4v16l13-8z"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── LOGOS MARQUEE ──────────────────────────────────────────────────── -->
+    <section>
+      <div style="position:relative;overflow:hidden;">
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);margin-inline:-1px;pointer-events:none;"></div>
+        <div style="position:relative;display:flex;align-items:center;padding-block:2rem;overflow:hidden;">
+          <div class="marquee-track">
+            <img src="assets/logos/b1.svg" alt="Brand 1" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b2.svg" alt="Brand 2" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b3.svg" alt="Brand 3" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b4.svg" alt="Brand 4" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b5.svg" alt="Brand 5" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b6.svg" alt="Brand 6" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b7.svg" alt="Brand 7" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b8.svg" alt="Brand 8" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b9.svg" alt="Brand 9" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b10.svg" alt="Brand 10" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b11.svg" alt="Brand 11" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <img src="assets/logos/b12.svg" alt="Brand 12" width="200" height="100" style="height:1rem;filter:invert(1);" loading="lazy">
+            <!-- duplicate for seamless loop -->
+            <img src="assets/logos/b1.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b2.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b3.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b4.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b5.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b6.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b7.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b8.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b9.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b10.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b11.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+            <img src="assets/logos/b12.svg" alt="" width="200" height="100" style="height:1rem;filter:invert(1);" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FEATURES 4-COL ─────────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);height:20%;margin-top:auto;margin-inline:-1px;border-top:1px solid var(--color-base-800);pointer-events:none;"></div>
+        <div style="position:relative;max-width:32rem;margin-inline:auto;text-align:center;text-wrap:balance;">
+          <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">
+            Actually understands you in real time, no awkward pauses, no blank stares
+          </h2>
+          <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">
+            It doesn't just keep up — it dominates. Complex addresses? Weird phone numbers? Random acronyms no one should be saying out loud? All handled without flinching.
+          </p>
+        </div>
+        <div style="position:relative;margin-top:3rem;display:grid;grid-template-columns:repeat(1,1fr);gap:1px;" class="feature-grid">
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+            <div class="aspect-12\/8 bg-accent-horizontal-stripes"></div>
+            <div style="height:100%;padding:1rem;padding-bottom:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Poop Mode (aka Smelly Chaos)</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">Blow things up without consequences. Simulate everything, send nothing.</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+            <div class="aspect-12\/8 bg-base-horizontal-stripes"></div>
+            <div style="height:100%;padding:1rem;padding-bottom:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Webhooks That Actually Work</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">We ping your server the second something happens — delivery, open, click, bounce, interpretive dance.</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+            <div class="aspect-12\/8 bg-light-horizontal-stripes"></div>
+            <div style="height:100%;padding:1rem;padding-bottom:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Blink-and-you'll-miss-it speed</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">Flabbergasted responds faster than you can regret your last input.</p>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;">
+            <div class="aspect-12\/8 bg-meshPurple"></div>
+            <div style="height:100%;padding:1rem;padding-bottom:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Doesn't butcher your address</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">From "4B Elm St." to international phone numbers, it nails the details like it's been stalking your mailbox.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── VOICE CLONING ───────────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);height:25%;margin-top:auto;margin-inline:-1px;border-top:1px solid var(--color-base-800);pointer-events:none;"></div>
+        <div style="position:relative;max-width:32rem;text-wrap:balance;">
+          <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">
+            Clones your voice so well it's borderline unsettling
+          </h2>
+          <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">
+            We're talking high-fidelity, freakishly accurate voice cloning that sounds like you — or whoever you want — down to the weird little inflections.
+          </p>
+        </div>
+        <div style="position:relative;display:flex;flex-direction:column;margin-top:3rem;gap:1rem;">
+          <div class="voice-row">
+            <div>
+              <h3 style="font-size:1rem;color:#fff;">Normal</h3>
+              <p style="font-size:.75rem;margin-top:0.5rem;color:var(--color-base-400);text-wrap:balance;">The original voice — clean, clear, and disturbingly accurate.</p>
+            </div>
+            <button class="btn btn-base" style="width:2.75rem;height:2.75rem;flex-shrink:0;" onclick="playAudio(0)" aria-label="Play normal">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M7 4v16l13-8z"/></svg>
+            </button>
+          </div>
+          <div class="voice-row">
+            <div>
+              <h3 style="font-size:1rem;color:#fff;">Chipmunk</h3>
+              <p style="font-size:.75rem;margin-top:0.5rem;color:var(--color-base-400);text-wrap:balance;">A helium-fueled voice that sounds like it just inhaled a balloon.</p>
+            </div>
+            <button class="btn btn-base" style="width:2.75rem;height:2.75rem;flex-shrink:0;" onclick="playAudio(7)" aria-label="Play chipmunk">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M7 4v16l13-8z"/></svg>
+            </button>
+          </div>
+          <div class="voice-row">
+            <div>
+              <h3 style="font-size:1rem;color:#fff;">Deep</h3>
+              <p style="font-size:.75rem;margin-top:0.5rem;color:var(--color-base-400);text-wrap:balance;">Sounds like it belongs in a movie trailer. Gritty, bold, and over it.</p>
+            </div>
+            <button class="btn btn-base" style="width:2.75rem;height:2.75rem;flex-shrink:0;" onclick="playAudio(-5)" aria-label="Play deep">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M7 4v16l13-8z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── MAGIC / PRIVACY TWO-COL ─────────────────────────────────────────── -->
+    <section>
+      <div style="position:relative;text-align:center;border-top:1px solid var(--color-base-800);display:grid;grid-template-columns:1fr;" class="two-col-section">
+        <div style="display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--color-base-900);">
+          <div style="padding:1.5rem;padding-top:6rem;">
+            <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Talk goes in. Magic comes out</h2>
+            <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Powered by a brainy, low-latency model stack we built so you don't have to Google what "state space" means</p>
+          </div>
+          <div class="aspect-12\/8 bg-accent-vertical-stripes" style="margin-inline:-1px;padding:1rem;"></div>
+        </div>
+        <div style="display:flex;flex-direction:column;height:100%;overflow:hidden;background:var(--color-base-900);">
+          <div style="padding:1.5rem;padding-top:6rem;">
+            <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Fully Private (like, actually)</h2>
+            <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Your data stays locked down — nothing leaks, nothing leaves. Not even for "just a little training.</p>
+          </div>
+          <div class="aspect-12\/8 bg-meshMagenta" style="margin-inline:-1px;padding:1rem;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BRAINWAVES SECTION ──────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <div style="position:relative;max-width:32rem;text-wrap:balance;">
+          <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Brainwaves in a Box</h2>
+          <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Real-time, on-device intelligence without the PhD. We did the hard math so your app doesn't have to.</p>
+          <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;margin-top:2rem;">
+            <a href="#" class="btn btn-mesh btn-sm">Get started</a>
+            <a href="#" class="btn btn-base btn-sm">Read the docs</a>
+          </div>
+        </div>
+        <div style="position:relative;margin-top:0;display:grid;grid-template-columns:repeat(1,1fr);gap:1px;" id="brainwaves-grid">
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;overflow:hidden;">
+            <div style="height:100%;display:flex;flex-direction:column;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Streaming at the Speed of "Wait, Already?"</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">Sub-200ms latency so your UX doesn't feel like dial-up.</p>
+            </div>
+            <div class="aspect-12\/8 bg-base-vertical-stripes" style="margin-inline:-1px;"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;overflow:hidden;">
+            <div style="height:100%;display:flex;flex-direction:column;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Models That Don't Phone Home</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">Runs entirely on-device. No cloud, no drama, no questionable ToS.</p>
+            </div>
+            <div class="aspect-12\/8 bg-meshYellow" style="margin-inline:-1px;"></div>
+          </div>
+          <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;overflow:hidden;">
+            <div style="height:100%;display:flex;flex-direction:column;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <h3 style="font-size:1rem;color:#fff;">Fine-tuned on Weird Stuff</h3>
+              <p style="font-size:.875rem;margin-top:0.5rem;color:var(--color-base-400);">Because real data is messy. Ours handles it like a champ.</p>
+            </div>
+            <div class="aspect-12\/8 bg-accent-horizontal-stripes" style="margin-inline:-1px;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── INTEGRATIONS PREVIEW ────────────────────────────────────────────── -->
+    <section>
+      <div style="border-top:1px solid var(--color-base-800);position:relative;">
+        <div style="display:grid;grid-template-columns:1fr;gap:1px;" id="integrations-preview">
+          <div style="padding:2rem;text-wrap:balance;">
+            <h2 class="font-display" style="max-width:24rem;font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Integration, minus the headache</h2>
+            <a href="integrations/home.html" class="btn btn-accent btn-sm" style="margin-top:2rem;display:inline-flex;">See all integrations</a>
+          </div>
+          <div style="padding:2rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/3.html" title="Behance" aria-label="Behance"></a>
+              <img src="assets/integrations/3.svg" alt="Behance" width="48" height="48">
+            </div>
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/19.html" title="Chrome" aria-label="Chrome"></a>
+              <img src="assets/integrations/19.svg" alt="Chrome" width="48" height="48">
+            </div>
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/5.html" title="Discord" aria-label="Discord"></a>
+              <img src="assets/integrations/5.svg" alt="Discord" width="48" height="48">
+            </div>
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/12.html" title="Facebook" aria-label="Facebook"></a>
+              <img src="assets/integrations/12.svg" alt="Facebook" width="48" height="48">
+            </div>
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/15.html" title="Firebase" aria-label="Firebase"></a>
+              <img src="assets/integrations/15.svg" alt="Firebase" width="48" height="48">
+            </div>
+            <div class="integration-card bg-stripes">
+              <a class="overlay" href="integrations/6.html" title="GIPHY" aria-label="GIPHY"></a>
+              <img src="assets/integrations/6.svg" alt="GIPHY" width="48" height="48">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TESTIMONIALS CAROUSEL ──────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-accent-vertical-stripes);display:none;height:100%;margin-inline:-1px;pointer-events:none;" id="testimonial-stripe"></div>
+        <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+          <div style="max-width:32rem;text-wrap:balance;">
+            <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Customers obsessed enough to let us quote them</h2>
+            <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Real words from people who actually use the thing and haven't stopped yet.</p>
+          </div>
+          <div class="slider-nav">
+            <button id="keen-slider-prev" aria-label="Previous slide">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M15 6l-6 6l6 6"/></svg>
+            </button>
+            <button id="keen-slider-next" aria-label="Next slide">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+            </button>
+          </div>
+        </div>
+        <!-- Slider -->
+        <div style="position:relative;width:100%;margin-top:3rem;overflow:hidden;">
+          <div id="keen-slider" class="keen-slider">
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/1.svg" alt="Attentive" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Attentive</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;" class="bg-meshLightBlue" style="mix-blend-mode:hard-light;"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Attentive's approach to personalized messaging, combined with its advanced automation and data-driven insights, has been incredibly valuable."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Attentive's case study</p>
+                    <a href="customers/1.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Attentive">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/2.svg" alt="Exabeam" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Exabeam</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;mix-blend-mode:hard-light;" class="bg-meshRainbow"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Exabeam's approach to tailored compliance, combined with how they've integrated security intelligence and automation into a seamless platform, has been incredibly valuable."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Exabeam's case study</p>
+                    <a href="customers/2.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Exabeam">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/3.svg" alt="Databricks" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Databricks</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;mix-blend-mode:hard-light;" class="bg-meshYellow"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Databricks' unified approach to data and AI, combined with its lakehouse architecture, has fundamentally transformed how we process and analyze large-scale datasets."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Databricks' case study</p>
+                    <a href="customers/3.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Databricks">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/4.svg" alt="Brex" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Brex</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;mix-blend-mode:hard-light;" class="bg-meshPurple"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Brex's modern approach to financial services, combined with its powerful spend management tools, has streamlined our entire finance operations."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Brex's case study</p>
+                    <a href="customers/4.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Brex">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/5.svg" alt="Airbnb" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Airbnb</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;mix-blend-mode:hard-light;" class="bg-meshMagenta"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Airbnb's innovative platform approach, combined with its global reach and trust-building features, has completely changed how travelers find unique accommodations."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Airbnb's case study</p>
+                    <a href="customers/5.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Airbnb">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <article class="keen-slider__slide" style="position:relative;display:flex;flex-direction:column;width:100%;height:100%;">
+              <div style="position:relative;">
+                <img src="assets/team/6.svg" alt="Cisco" class="testimonial-img" width="1000" height="1250" style="width:100%;aspect-ratio:8/10;object-fit:cover;">
+                <span style="position:absolute;top:1rem;left:1rem;font-size:1.25rem;font-weight:500;color:#fff;">Cisco</span>
+                <div style="position:absolute;inset:0;z-index:10;pointer-events:none;mix-blend-mode:hard-light;" class="bg-meshGreen"></div>
+                <div class="testimonial-overlay">
+                  <p style="font-size:clamp(1rem,2vw,1.5rem);font-style:italic;font-weight:500;color:var(--color-base-900);mix-blend-mode:difference;margin-top:0.5rem;">
+                    "Cisco's end-to-end networking solutions, combined with their advanced security infrastructure, has made our enterprise-grade communications both reliable and secure."
+                  </p>
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:0.5rem;margin-top:1rem;">
+                    <p style="font-size:.875rem;font-weight:500;color:var(--color-base-900);">Read Cisco's case study</p>
+                    <a href="customers/6.html" class="btn btn-base" style="width:2.25rem;height:2.25rem;" title="Cisco">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M9 6l6 6l-6 6"/></svg>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRICING ─────────────────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-accent-vertical-stripes);display:none;height:100%;margin-inline:-1px;pointer-events:none;width:50%;margin-left:auto;" id="pricing-stripe"></div>
+        <div style="position:relative;max-width:28rem;text-wrap:balance;">
+          <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">Pricing for whatever stage you're pretending to be at</h2>
+          <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Free if you're just tinkering. Paid when things get accidentally serious.</p>
+          <!-- Toggle -->
+          <div style="position:relative;display:inline-flex;justify-content:center;padding:0.375rem;margin-top:2rem;border-radius:9999px;border:1px solid var(--color-base-800);background:var(--color-base-800);gap:1rem;overflow:hidden;">
+            <div id="toggle-slider" style="position:absolute;inset:0;width:50%;border-radius:9999px;background:var(--color-base-900);transition:transform 200ms ease-in-out;"></div>
+            <button id="monthly-btn" class="pricing-toggle-btn active" type="button" onclick="setPricing('monthly')">Monthly</button>
+            <button id="annual-btn" class="pricing-toggle-btn" type="button" onclick="setPricing('annual')">Annual</button>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-grid" style="gap:1px;">
+        <!-- Play -->
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <h3 style="font-size:1rem;font-weight:500;margin-top:1.25rem;color:#fff;">Play</h3>
+            <p style="font-size:1.25rem;font-weight:500;display:flex;align-items:baseline;letter-spacing:-0.05em;margin-top:2rem;color:#fff;">
+              <span class="pricing-amount" data-monthly="$0" data-annual="$0">$0</span>
+              <span style="font-size:.875rem;margin-left:0.25rem;font-weight:400;letter-spacing:normal;color:var(--color-base-500);">
+                <span class="monthly-text">/month</span>
+                <span class="annual-text" style="display:none;">/annually</span>
+              </span>
+            </p>
+            <p style="font-size:.875rem;margin-top:0.5rem;text-wrap:balance;color:var(--color-base-500);">For testing. Or trolling. Up to you.</p>
+            <div class="pricing-mesh-bar bg-meshLightBlue"></div>
+            <button class="btn btn-base" style="width:100%;height:2.5rem;margin-top:2rem;">Try it free</button>
+          </div>
+          <div style="margin-top:1rem;">
+            <p style="font-size:.75rem;font-family:'Geist Mono',monospace;text-transform:uppercase;color:var(--color-base-500);">This plan includes</p>
+            <ul style="display:flex;flex-direction:column;margin-top:1rem;gap:0.75rem;font-size:.875rem;color:#fff;list-style:none;">
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>500 voice runs</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>1 sample voice</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>No support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Solo -->
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <h3 style="font-size:1rem;font-weight:500;margin-top:1.25rem;color:#fff;">Solo</h3>
+            <p style="font-size:1.25rem;font-weight:500;display:flex;align-items:baseline;letter-spacing:-0.05em;margin-top:2rem;color:#fff;">
+              <span class="pricing-amount" data-monthly="$19.00" data-annual="$14.00">$19.00</span>
+              <span style="font-size:.875rem;margin-left:0.25rem;font-weight:400;letter-spacing:normal;color:var(--color-base-500);">
+                <span class="monthly-text">/month</span>
+                <span class="annual-text" style="display:none;">/annually</span>
+              </span>
+            </p>
+            <p style="font-size:.875rem;margin-top:0.5rem;text-wrap:balance;color:var(--color-base-500);">For indie devs who want voices that don't suck.</p>
+            <div class="pricing-mesh-bar bg-meshRainbow"></div>
+            <button class="btn btn-base" style="width:100%;height:2.5rem;margin-top:2rem;">Get started</button>
+          </div>
+          <div style="margin-top:1rem;">
+            <p style="font-size:.75rem;font-family:'Geist Mono',monospace;text-transform:uppercase;color:var(--color-base-500);">This plan includes</p>
+            <ul style="display:flex;flex-direction:column;margin-top:1rem;gap:0.75rem;font-size:.875rem;color:#fff;list-style:none;">
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>5,000 runs</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>3 custom voices</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Email support</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>API access</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Team -->
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <h3 style="font-size:1rem;font-weight:500;margin-top:1.25rem;color:#fff;">Team</h3>
+            <p style="font-size:1.25rem;font-weight:500;display:flex;align-items:baseline;letter-spacing:-0.05em;margin-top:2rem;color:#fff;">
+              <span class="pricing-amount" data-monthly="$49.00" data-annual="$39.00">$49.00</span>
+              <span style="font-size:.875rem;margin-left:0.25rem;font-weight:400;letter-spacing:normal;color:var(--color-base-500);">
+                <span class="monthly-text">/month</span>
+                <span class="annual-text" style="display:none;">/annually</span>
+              </span>
+            </p>
+            <p style="font-size:.875rem;margin-top:0.5rem;text-wrap:balance;color:var(--color-base-500);">For teams that need to ship weird voices at scale.</p>
+            <div class="pricing-mesh-bar bg-meshGreen"></div>
+            <button class="btn btn-accent" style="width:100%;height:2.5rem;margin-top:2rem;">Get started</button>
+          </div>
+          <div style="margin-top:1rem;">
+            <p style="font-size:.75rem;font-family:'Geist Mono',monospace;text-transform:uppercase;color:var(--color-base-500);">This plan includes</p>
+            <ul style="display:flex;flex-direction:column;margin-top:1rem;gap:0.75rem;font-size:.875rem;color:#fff;list-style:none;">
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>50,000 runs</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Unlimited voices</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Priority support</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Advanced analytics</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Team collaboration</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Studio -->
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <h3 style="font-size:1rem;font-weight:500;margin-top:1.25rem;color:#fff;">Studio</h3>
+            <p style="font-size:1.25rem;font-weight:500;display:flex;align-items:baseline;letter-spacing:-0.05em;margin-top:2rem;color:#fff;">
+              <span class="pricing-amount" data-monthly="$129.00" data-annual="$99.00">$129.00</span>
+              <span style="font-size:.875rem;margin-left:0.25rem;font-weight:400;letter-spacing:normal;color:var(--color-base-500);">
+                <span class="monthly-text">/month</span>
+                <span class="annual-text" style="display:none;">/annually</span>
+              </span>
+            </p>
+            <p style="font-size:.875rem;margin-top:0.5rem;text-wrap:balance;color:var(--color-base-500);">For the real professionals in the room.</p>
+            <div class="pricing-mesh-bar bg-meshPurple"></div>
+            <button class="btn btn-base" style="width:100%;height:2.5rem;margin-top:2rem;">Get started</button>
+          </div>
+          <div style="margin-top:1rem;">
+            <p style="font-size:.75rem;font-family:'Geist Mono',monospace;text-transform:uppercase;color:var(--color-base-500);">This plan includes</p>
+            <ul style="display:flex;flex-direction:column;margin-top:1rem;gap:0.75rem;font-size:.875rem;color:#fff;list-style:none;">
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Unlimited runs</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>White-label output</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Dedicated support</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- Enterprise -->
+        <div class="pricing-card">
+          <div class="pricing-card-top">
+            <h3 style="font-size:1rem;font-weight:500;margin-top:1.25rem;color:#fff;">Enterprise</h3>
+            <p style="font-size:1.25rem;font-weight:500;display:flex;align-items:baseline;letter-spacing:-0.05em;margin-top:2rem;color:#fff;">
+              <span class="pricing-amount" data-monthly="Custom" data-annual="Custom">Custom</span>
+            </p>
+            <p style="font-size:.875rem;margin-top:0.5rem;text-wrap:balance;color:var(--color-base-500);">Let's talk. Bring your lawyer.</p>
+            <div class="pricing-mesh-bar bg-meshMagenta"></div>
+            <button class="btn btn-base" style="width:100%;height:2.5rem;margin-top:2rem;">Contact us</button>
+          </div>
+          <div style="margin-top:1rem;">
+            <p style="font-size:.75rem;font-family:'Geist Mono',monospace;text-transform:uppercase;color:var(--color-base-500);">This plan includes</p>
+            <ul style="display:flex;flex-direction:column;margin-top:1rem;gap:0.75rem;font-size:.875rem;color:#fff;list-style:none;">
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Everything in Studio</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>Custom SLAs</span>
+              </li>
+              <li style="display:flex;align-items:flex-start;gap:0.5rem;">
+                <svg class="check-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5l10 -10"/></svg>
+                <span>On-prem deployment</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── BLOG PREVIEW ────────────────────────────────────────────────────── -->
+    <section>
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:2rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <div style="position:relative;display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+          <div style="max-width:32rem;text-wrap:balance;">
+            <h2 class="font-display" style="font-size:clamp(1.5rem,3.5vw,2.25rem);color:#fff;line-height:1.2;">From the blog, probably</h2>
+            <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Hot takes, lukewarm insights, and the occasional actually useful post.</p>
+          </div>
+          <a href="blog/home.html" class="btn btn-base btn-sm">Read all posts</a>
+        </div>
+        <div style="position:relative;margin-top:3rem;display:grid;grid-template-columns:repeat(1,1fr);gap:1px;border-top:1px solid var(--color-base-800);" id="blog-preview">
+          <div class="blog-preview-card">
+            <a class="overlay" href="blog/posts/1.html"></a>
+            <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <p style="font-size:.75rem;color:var(--color-base-500);">June 02, 2025</p>
+              <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Future of Renewable Energy: Innovations and Challenges</h3>
+              <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the latest advancements in renewable energy and the challenges that lie ahead for a sustainable future.</p>
+            </div>
+            <div class="aspect-12\/8 bg-light-horizontal-stripes" style="margin-inline:-0;"></div>
+          </div>
+          <div class="blog-preview-card">
+            <a class="overlay" href="blog/posts/2.html"></a>
+            <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <p style="font-size:.75rem;color:var(--color-base-500);">June 01, 2025</p>
+              <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Biggest Sports Moments of 2025</h3>
+              <p style="font-size:.875rem;color:var(--color-base-400);">A look at the most exciting and unforgettable moments in sports for 2025.</p>
+            </div>
+            <div class="aspect-12\/8 bg-base-vertical-stripes" style="margin-inline:-0;"></div>
+          </div>
+          <div class="blog-preview-card">
+            <a class="overlay" href="blog/posts/3.html"></a>
+            <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+              <p style="font-size:.75rem;color:var(--color-base-500);">May 30, 2025</p>
+              <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">Top Finance Trends in 2025</h3>
+              <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the latest advancements and trends in technology for 2025.</p>
+            </div>
+            <div class="aspect-12\/8 bg-meshPurple" style="margin-inline:-0;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── NEWSLETTER ──────────────────────────────────────────────────────── -->
+    <section style="overflow:hidden;">
+      <div class="section-pad section-border-t" style="position:relative;padding-top:6rem;padding-bottom:5rem;overflow:hidden;">
+        <div aria-hidden="true" style="position:absolute;bottom:-7.5rem;left:2rem;height:25rem;width:100%;background-image:var(--bg-base-horizontal-stripes);pointer-events:none;display:none;" id="newsletter-stripe"></div>
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);margin-inline:-1px;pointer-events:none;"></div>
+        <div style="position:relative;display:grid;grid-template-columns:1fr;gap:2rem;align-items:flex-end;" id="newsletter-grid">
+          <div style="text-wrap:balance;">
+            <h2 style="font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:500;letter-spacing:-0.025em;color:#fff;line-height:1.2;">Subscribe, unless you hate fun</h2>
+            <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-300);">Get the latest posts, updates, and half-decent advice — straight to your inbox. No spam. Just vibes.</p>
+          </div>
+          <form style="display:flex;flex-direction:column;gap:0.5rem;">
+            <label for="nl-email" class="sr-only">Email Address</label>
+            <input id="nl-email" name="email" type="email" placeholder="you@example.com" class="input">
+            <button class="btn btn-accent btn-sm" style="width:100%;justify-content:center;" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div style="position:relative;padding-bottom:6rem;gap:2rem;display:grid;grid-template-columns:1fr;">
+      <div style="color:#fff;">
+        <a href="index.html" style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;color:#fff;">
+          <svg style="height:1.5rem;" viewBox="0 0 124 118" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#fc1)">
+              <ellipse cx="22.9" cy="32.9" rx="22.9" ry="32.9" transform="matrix(0.688 -0.726 -0.726 -0.688 39.7 98.5)" fill="currentColor" fill-opacity="0.37"/>
+              <ellipse cx="91.5" cy="59.2" rx="22.9" ry="32.9" transform="rotate(-133.4 91.5 59.2)" fill="currentColor" fill-opacity="0.37"/>
+              <ellipse opacity="0.7" cx="16.8" cy="32.8" rx="16.8" ry="32.8" transform="matrix(-0.96 0.281 0.281 0.96 49.1 23.6)" fill="currentColor"/>
+              <ellipse opacity="0.7" cx="80.9" cy="60.2" rx="16.8" ry="32.8" transform="rotate(16.3 80.9 60.2)" fill="currentColor"/>
+            </g>
+            <defs><clipPath id="fc1"><rect width="123.93" height="117.997" fill="white"/></clipPath></defs>
+          </svg>
+          Flabbergasted
+        </a>
+        <p style="margin-top:0.25rem;font-size:.875rem;font-weight:400;color:var(--color-base-500);text-wrap:balance;">Premium multipage themes crafted with Astro and Tailwind CSS</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;" id="footer-links">
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">Navigation</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="system/overview.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Overview</a></li>
+            <li><a href="system/buttons.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Buttons</a></li>
+            <li><a href="system/links.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Links</a></li>
+            <li><a href="system/colors.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Colors</a></li>
+            <li><a href="system/typography.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Typography</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">Stay updated</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="https://www.lexingtonthemes.com/legal/license" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">License</a></li>
+            <li><a href="https://www.lexingtonthemes.com/documentation" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Documentation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">Socials</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="https://twitter.com/lexingtonthemes" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">@lexingtonthemes</a></li>
+            <li><a href="https://twitter.com/Mike_Andreuzza" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">@Mike_Andreuzza</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">More Themes</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="https://lexingtonthemes.com/" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Lexington Themes</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-light-vertical-stripes footer-stripe" style="padding:5rem;margin-top:3rem;"></div>
+  </div>
+</footer>
+
+<!-- Keen Slider JS -->
+<script src="https://cdn.jsdelivr.net/npm/keen-slider@6.8.6/keen-slider.min.js"></script>
+
+<script>
+/* ── Mobile Navigation ─────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', () => {
+  const toggle = document.getElementById('menu-toggle');
+  const close  = document.getElementById('menu-close');
+  const menu   = document.getElementById('nav-menu');
+  const menuIcon = document.getElementById('menu-icon');
+  const closeIcon = document.getElementById('close-icon');
+
+  function openMenu() {
+    menu.classList.add('open');
+    menuIcon.style.display = 'none';
+    closeIcon.style.display = '';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    menu.classList.remove('open');
+    menuIcon.style.display = '';
+    closeIcon.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+  toggle?.addEventListener('click', openMenu);
+  close?.addEventListener('click', closeMenu);
+});
+
+/* ── Voice Pitch ───────────────────────────────────────────────────────── */
+let audioSrc = null, audioCtx = null;
+async function playAudio(semitones) {
+  if (audioSrc) { try { audioSrc.stop(); } catch(e){} }
+  if (audioCtx) { audioCtx.close(); }
+  // Demo: play a short beep to show interaction (no actual audio file)
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  const baseFreq = 440;
+  osc.frequency.value = baseFreq * Math.pow(2, semitones / 12);
+  osc.type = 'sine';
+  gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + 0.8);
+}
+
+/* ── Pricing Toggle ────────────────────────────────────────────────────── */
+function setPricing(mode) {
+  const monthly = document.getElementById('monthly-btn');
+  const annual  = document.getElementById('annual-btn');
+  const slider  = document.getElementById('toggle-slider');
+  const amounts = document.querySelectorAll('.pricing-amount');
+  const monthlyTexts = document.querySelectorAll('.monthly-text');
+  const annualTexts  = document.querySelectorAll('.annual-text');
+
+  if (mode === 'monthly') {
+    monthly.classList.add('active');
+    annual.classList.remove('active');
+    slider.style.transform = 'translateX(0)';
+    amounts.forEach(el => { el.textContent = el.dataset.monthly; });
+    monthlyTexts.forEach(el => { el.style.display = 'inline'; });
+    annualTexts.forEach(el => { el.style.display = 'none'; });
+  } else {
+    annual.classList.add('active');
+    monthly.classList.remove('active');
+    slider.style.transform = 'translateX(100%)';
+    amounts.forEach(el => { el.textContent = el.dataset.annual; });
+    monthlyTexts.forEach(el => { el.style.display = 'none'; });
+    annualTexts.forEach(el => { el.style.display = 'inline'; });
+  }
+}
+
+/* ── Testimonials Slider ───────────────────────────────────────────────── */
+window.addEventListener('load', () => {
+  if (typeof KeenSlider === 'undefined') return;
+  const slider = new KeenSlider('#keen-slider', {
+    slides: { perView: 1.2, spacing: 1 },
+    breakpoints: {
+      '(min-width: 640px)': { slides: { perView: 1.5, spacing: 1 } },
+      '(min-width: 1024px)': { slides: { perView: 2.2, spacing: 1 } },
+    },
+  });
+  document.getElementById('keen-slider-prev')?.addEventListener('click', () => slider.prev());
+  document.getElementById('keen-slider-next')?.addEventListener('click', () => slider.next());
+});
+
+/* ── Responsive grid adjustments ───────────────────────────────────────── */
+function applyResponsiveGrids() {
+  const w = window.innerWidth;
+  // Feature grid
+  const fg = document.querySelector('.feature-grid');
+  if (fg) fg.style.gridTemplateColumns = w >= 1024 ? 'repeat(4,1fr)' : w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+  // Brainwaves grid
+  const bg = document.getElementById('brainwaves-grid');
+  if (bg) bg.style.gridTemplateColumns = w >= 1024 ? 'repeat(3,1fr)' : w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+  // Blog preview
+  const bp = document.getElementById('blog-preview');
+  if (bp) bp.style.gridTemplateColumns = w >= 1024 ? 'repeat(3,1fr)' : w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+  // Integrations preview
+  const ip = document.getElementById('integrations-preview');
+  if (ip) ip.style.gridTemplateColumns = w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+  // Two col
+  const tc = document.querySelector('.two-col-section');
+  if (tc) tc.style.gridTemplateColumns = w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+  // Footer links
+  const fl = document.getElementById('footer-links');
+  if (fl) fl.style.gridTemplateColumns = w >= 1024 ? 'repeat(4,1fr)' : 'repeat(2,1fr)';
+  // Newsletter
+  const nl = document.getElementById('newsletter-grid');
+  if (nl) nl.style.gridTemplateColumns = w >= 1024 ? 'repeat(3,1fr) 2fr' : 'repeat(1,1fr)';
+  // Footer top section
+  const ft = document.querySelector('.footer-inner > div');
+  if (ft) ft.style.gridTemplateColumns = w >= 1024 ? 'repeat(3,1fr)' : 'repeat(1,1fr)';
+  // Pricing stripe visible on lg+
+  const ps = document.getElementById('pricing-stripe');
+  if (ps) ps.style.display = w >= 1024 ? 'block' : 'none';
+  const ts = document.getElementById('testimonial-stripe');
+  if (ts) ts.style.display = w >= 1024 ? 'block' : 'none';
+  const ns = document.getElementById('newsletter-stripe');
+  if (ns) ns.style.display = w >= 1024 ? 'block' : 'none';
+}
+applyResponsiveGrids();
+window.addEventListener('resize', applyResponsiveGrids);
+</script>
+</body>
+</html>
