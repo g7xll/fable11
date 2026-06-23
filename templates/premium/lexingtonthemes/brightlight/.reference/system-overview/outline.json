@@ -1,0 +1,467 @@
+{
+  "fonts": [
+    "Geist, sans-serif",
+    "\"Noto Serif\", serif"
+  ],
+  "imgs": [],
+  "links": [
+    {
+      "t": "Go to homepage",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Go to homepage",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Overview",
+      "h": "https://brightlight-astro.pages.dev/system/overview"
+    },
+    {
+      "t": "Blog",
+      "h": "https://brightlight-astro.pages.dev/blog"
+    },
+    {
+      "t": "Buy Brightlight",
+      "h": "https://lexingtonthemes.com/templates/brightlight"
+    },
+    {
+      "t": "Sign in",
+      "h": "https://brightlight-astro.pages.dev/sign-in"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Home 2",
+      "h": "https://brightlight-astro.pages.dev/index-two"
+    },
+    {
+      "t": "About",
+      "h": "https://brightlight-astro.pages.dev/about"
+    },
+    {
+      "t": "404",
+      "h": "https://brightlight-astro.pages.dev/404"
+    },
+    {
+      "t": "Contact",
+      "h": "https://brightlight-astro.pages.dev/contact"
+    },
+    {
+      "t": "Signin",
+      "h": "https://brightlight-astro.pages.dev/sign-in"
+    },
+    {
+      "t": "Sign up",
+      "h": "https://brightlight-astro.pages.dev/sign-up"
+    },
+    {
+      "t": "Links",
+      "h": "https://brightlight-astro.pages.dev/system/links"
+    },
+    {
+      "t": "Buttons",
+      "h": "https://brightlight-astro.pages.dev/system/buttons"
+    },
+    {
+      "t": "Colors",
+      "h": "https://brightlight-astro.pages.dev/system/colors"
+    },
+    {
+      "t": "Typography",
+      "h": "https://brightlight-astro.pages.dev/system/typography"
+    },
+    {
+      "t": "License",
+      "h": "https://lexingtonthemes.com/legal/license"
+    },
+    {
+      "t": "Docs",
+      "h": "https://lexingtonthemes.com/documentation"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/blog"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/1"
+    },
+    {
+      "t": "Tag index",
+      "h": "https://brightlight-astro.pages.dev/blog/tags"
+    },
+    {
+      "t": "Tag Category",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/health"
+    },
+    {
+      "t": "RSS",
+      "h": "https://brightlight-astro.pages.dev/rss.xml"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/helpcenter"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/helpcenter/1"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/infopages/terms"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/integrations"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/integrations/1"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/changelog"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/changelog/1"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/team"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/team/jordan-wells"
+    },
+    {
+      "t": "Home",
+      "h": "https://brightlight-astro.pages.dev/customers/home"
+    },
+    {
+      "t": "Details",
+      "h": "https://brightlight-astro.pages.dev/customers/1"
+    },
+    {
+      "t": "Go to homepageBrightlight",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Overview",
+      "h": "https://brightlight-astro.pages.dev/system/overview"
+    },
+    {
+      "t": "Buttons",
+      "h": "https://brightlight-astro.pages.dev/system/buttons"
+    },
+    {
+      "t": "Links",
+      "h": "https://brightlight-astro.pages.dev/system/links"
+    },
+    {
+      "t": "Colors",
+      "h": "https://brightlight-astro.pages.dev/system/colors"
+    },
+    {
+      "t": "Typography",
+      "h": "https://brightlight-astro.pages.dev/system/typography"
+    },
+    {
+      "t": "License",
+      "h": "https://www.lexingtonthemes.com/legal/license"
+    },
+    {
+      "t": "Documentation",
+      "h": "https://www.lexingtonthemes.com/documentation"
+    },
+    {
+      "t": "@lexingtonthemes",
+      "h": "https://twitter.com/lexingtonthemes"
+    },
+    {
+      "t": "@Mike_Andreuzza",
+      "h": "https://twitter.com/Mike_Andreuzza"
+    },
+    {
+      "t": "Lexington Themes",
+      "h": "https://lexingtonthemes.com/"
+    }
+  ],
+  "nodes": [
+    {
+      "tag": "BODY",
+      "cls": "relative flex flex-col bg-white min-h-svh",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgb(255, 255, 255)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 1089
+    },
+    {
+      "tag": "DIV",
+      "cls": "fixed inset-x-0 top-0 z-50 w-full mx-auto bg-white border-b border-dashed border",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgb(255, 255, 255)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 65
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Go to homepageGo to homepageOverviewBlog\n              Buy B",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "16px",
+      "w": 1024,
+      "h": 64
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative flex flex-col md:items-center md:justify-between md:flex-row",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 32
+    },
+    {
+      "tag": "DIV",
+      "cls": "flex flex-row items-center justify-between",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 25,
+      "h": 24
+    },
+    {
+      "tag": "NAV",
+      "cls": "fixed inset-0 flex flex-col justify-between h-full py-12 bg-white opacity-0 poin",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 312,
+      "h": 32
+    },
+    {
+      "tag": "MAIN",
+      "cls": "grow",
+      "text": "Overview\n      \n  \n\n      \n  \n  Static\n  \n\n  \n  Landing Page",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 820
+    },
+    {
+      "tag": "SECTION",
+      "cls": "",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 820
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Overview\n      \n  \n\n      \n  \n  Static\n  \n\n  \n  Landing Page",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "128px 16px 16px",
+      "w": 1024,
+      "h": 820
+    },
+    {
+      "tag": "H1",
+      "cls": "text-2xl  sm:text-2xl md:text-3xl lg:text-4xl font-serif font-medium tracking-ti",
+      "text": "Overview",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "\"Noto Serif\"",
+      "fs": "36px",
+      "fw": "500",
+      "ls": "-0.9px",
+      "lh": "40px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 40
+    },
+    {
+      "tag": "DIV",
+      "cls": "flex flex-col mt-12 gap-12",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 588
+    },
+    {
+      "tag": "FOOTER",
+      "cls": "border-t border-base-200 border-dashed",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 269
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Go to homepageBrightlightPremium multipage themes crafted wi",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "48px 16px",
+      "w": 1024,
+      "h": 268
+    },
+    {
+      "tag": "DIV",
+      "cls": "xl:grid xl:grid-cols-3 xl:gap-8",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 172
+    },
+    {
+      "tag": "DIV",
+      "cls": "text-black",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 309,
+      "h": 172
+    },
+    {
+      "tag": "DIV",
+      "cls": "md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-8 xl:col-span-2",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 649,
+      "h": 172
+    }
+  ]
+}

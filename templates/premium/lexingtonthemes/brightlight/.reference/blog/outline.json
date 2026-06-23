@@ -1,0 +1,506 @@
+{
+  "fonts": [
+    "Geist, sans-serif",
+    "\"Noto Serif\", serif"
+  ],
+  "imgs": [
+    "https://brightlight-astro.pages.dev/src/images/blog/10.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/9.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/4.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/7.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/6.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/5.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/4.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/3.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/2.jpg",
+    "https://brightlight-astro.pages.dev/src/images/blog/1.jpg"
+  ],
+  "links": [
+    {
+      "t": "Go to homepage",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Go to homepage",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Overview",
+      "h": "https://brightlight-astro.pages.dev/system/overview"
+    },
+    {
+      "t": "Blog",
+      "h": "https://brightlight-astro.pages.dev/blog"
+    },
+    {
+      "t": "Buy Brightlight",
+      "h": "https://lexingtonthemes.com/templates/brightlight"
+    },
+    {
+      "t": "Sign in",
+      "h": "https://brightlight-astro.pages.dev/sign-in"
+    },
+    {
+      "t": "innovations",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/innovations"
+    },
+    {
+      "t": "sports",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/sports"
+    },
+    {
+      "t": "innovation",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/innovation"
+    },
+    {
+      "t": "markets",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/markets"
+    },
+    {
+      "t": "opportunities",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/opportunities"
+    },
+    {
+      "t": "challenges",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/challenges"
+    },
+    {
+      "t": "strategy",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/strategy"
+    },
+    {
+      "t": "trends",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/trends"
+    },
+    {
+      "t": "economy",
+      "h": "https://brightlight-astro.pages.dev/blog/tags/economy"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/10"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/9"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/8"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/7"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/6"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/5"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/4"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/3"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/2"
+    },
+    {
+      "t": "",
+      "h": "https://brightlight-astro.pages.dev/blog/posts/1"
+    },
+    {
+      "t": "Go to homepageBrightlight",
+      "h": "https://brightlight-astro.pages.dev/"
+    },
+    {
+      "t": "Overview",
+      "h": "https://brightlight-astro.pages.dev/system/overview"
+    },
+    {
+      "t": "Buttons",
+      "h": "https://brightlight-astro.pages.dev/system/buttons"
+    },
+    {
+      "t": "Links",
+      "h": "https://brightlight-astro.pages.dev/system/links"
+    },
+    {
+      "t": "Colors",
+      "h": "https://brightlight-astro.pages.dev/system/colors"
+    },
+    {
+      "t": "Typography",
+      "h": "https://brightlight-astro.pages.dev/system/typography"
+    },
+    {
+      "t": "License",
+      "h": "https://www.lexingtonthemes.com/legal/license"
+    },
+    {
+      "t": "Documentation",
+      "h": "https://www.lexingtonthemes.com/documentation"
+    },
+    {
+      "t": "@lexingtonthemes",
+      "h": "https://twitter.com/lexingtonthemes"
+    },
+    {
+      "t": "@Mike_Andreuzza",
+      "h": "https://twitter.com/Mike_Andreuzza"
+    },
+    {
+      "t": "Lexington Themes",
+      "h": "https://lexingtonthemes.com/"
+    }
+  ],
+  "nodes": [
+    {
+      "tag": "BODY",
+      "cls": "relative flex flex-col bg-white min-h-svh",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgb(255, 255, 255)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 2761
+    },
+    {
+      "tag": "DIV",
+      "cls": "fixed inset-x-0 top-0 z-50 w-full mx-auto bg-white border-b border-dashed border",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgb(255, 255, 255)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 65
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Go to homepageGo to homepageOverviewBlog\n              Buy B",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "16px",
+      "w": 1024,
+      "h": 64
+    },
+    {
+      "tag": "DIV",
+      "cls": "relative flex flex-col md:items-center md:justify-between md:flex-row",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 32
+    },
+    {
+      "tag": "DIV",
+      "cls": "flex flex-row items-center justify-between",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 25,
+      "h": 24
+    },
+    {
+      "tag": "NAV",
+      "cls": "fixed inset-0 flex flex-col justify-between h-full py-12 bg-white opacity-0 poin",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 312,
+      "h": 32
+    },
+    {
+      "tag": "MAIN",
+      "cls": "grow",
+      "text": "Thoughts, Typed Loudly\n        \n  \n\n  \n  \n          Unfilter",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 2492
+    },
+    {
+      "tag": "SECTION",
+      "cls": "",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 2019
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Thoughts, Typed Loudly\n        \n  \n\n  \n  \n          Unfilter",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "128px 16px 16px",
+      "w": 1024,
+      "h": 2019
+    },
+    {
+      "tag": "DIV",
+      "cls": "max-w-xl text-balance",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 576,
+      "h": 104
+    },
+    {
+      "tag": "DIV",
+      "cls": "flex items-center mt-8 gap-2",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 36
+    },
+    {
+      "tag": "DIV",
+      "cls": "mt-12 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 gap-y-24",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 1655
+    },
+    {
+      "tag": "SECTION",
+      "cls": "border-t border-base-200 border-dashed",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 473
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Email, But Actually Good\n        \n  \n\n  \n  \n          No set",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "16px",
+      "w": 1024,
+      "h": 472
+    },
+    {
+      "tag": "DIV",
+      "cls": "p-8 py-24 text-center rounded-xl bg-accsandent-50 bg-sand-100",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "oklch(0.9703 0.007 88.64)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "12px",
+      "pad": "96px 32px",
+      "w": 990,
+      "h": 440
+    },
+    {
+      "tag": "FOOTER",
+      "cls": "border-t border-base-200 border-dashed",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 1440,
+      "h": 269
+    },
+    {
+      "tag": "DIV",
+      "cls": "mx-auto  2xl:max-w-6xl 2xl:px-12 w-full  max-w-5xl border-x border-base-200 bord",
+      "text": "Go to homepageBrightlightPremium multipage themes crafted wi",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "",
+      "radius": "0px",
+      "pad": "48px 16px",
+      "w": 1024,
+      "h": 268
+    },
+    {
+      "tag": "DIV",
+      "cls": "xl:grid xl:grid-cols-3 xl:gap-8",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 990,
+      "h": 172
+    },
+    {
+      "tag": "DIV",
+      "cls": "text-black",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 309,
+      "h": 172
+    },
+    {
+      "tag": "DIV",
+      "cls": "md:grid md:grid-cols-2 xl:grid-cols-4 md:gap-8 xl:col-span-2",
+      "text": "",
+      "color": "rgb(0, 0, 0)",
+      "bg": "rgba(0, 0, 0, 0)",
+      "font": "Geist",
+      "fs": "16px",
+      "fw": "400",
+      "ls": "normal",
+      "lh": "24px",
+      "border": "0px solid rgb(0, 0, 0)",
+      "radius": "0px",
+      "pad": "0px",
+      "w": 649,
+      "h": 172
+    }
+  ]
+}
