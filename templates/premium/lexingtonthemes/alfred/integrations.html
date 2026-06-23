@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integrations — Alfred</title>
+  <meta name="description" content="Connect Alfred with your favorite tools and services.">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="inner">
+    <div class="nav-bar">
+      <div class="nav-brand-row">
+        <a href="./index.html" class="nav-logo" aria-label="Alfred home">
+          <svg viewBox="0 0 125 126" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 33.1V92C0 110.3 14.7881 125.1 33.0735 125.1H91.9265C110.212 125.1 125 110.3 125 92V33.1C125 14.8 110.212 0 91.9265 0H33.0735C14.7881 0.1 0 14.9 0 33.1ZM33.1734 116.8C19.3844 116.8 8.1934 105.6 8.1934 91.8C8.1934 78 19.3844 66.8 33.1734 66.8C46.9624 66.8 58.1534 78 58.1534 91.8C58.1534 105.6 46.9624 116.8 33.1734 116.8ZM33.1734 58.3C19.3844 58.3 8.1934 47.1 8.1934 33.3C8.1934 19.5 19.3844 8.3 33.1734 8.3C46.9624 8.3 58.1534 19.5 58.1534 33.3C58.1534 47.1 46.9624 58.3 33.1734 58.3ZM91.6267 116.8C77.8377 116.8 66.6466 105.6 66.6466 91.8C66.6466 78 77.8377 66.8 91.6267 66.8C105.416 66.8 116.607 78 116.607 91.8C116.607 105.6 105.416 116.8 91.6267 116.8ZM91.6267 58.3C77.8377 58.3 66.6466 47.1 66.6466 33.3C66.6466 19.5 77.8377 8.3 91.6267 8.3C105.416 8.3 116.607 19.5 116.607 33.3C116.607 47.1 105.416 58.3 91.6267 58.3Z" fill="white"/></svg>
+        </a>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation">
+          <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path id="menuIcon" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path><path id="closeIcon" class="hidden" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+      <nav id="navMenu" role="navigation" aria-label="Main navigation">
+        <div class="nav-dropdown">
+          <button class="nav-btn dropdown-toggle" data-menu-button="menu-overview">Overview</button>
+          <div id="menu-overview" class="dropdown-menu"><ul role="menu">
+            <li><a href="./system/overview.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">A</span></div><span>All pages</span></a></li>
+            <li><a href="./system/colors.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Colors</span></a></li>
+            <li><a href="./system/links.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">L</span></div><span>Links</span></a></li>
+            <li><a href="./system/buttons.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">B</span></div><span>Buttons</span></a></li>
+            <li><a href="./system/typography.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">T</span></div><span>Typography</span></a></li>
+          </ul></div>
+        </div>
+        <div class="nav-dropdown">
+          <button class="nav-btn dropdown-toggle" data-menu-button="menu-company">Company</button>
+          <div id="menu-company" class="dropdown-menu"><ul role="menu">
+            <li><a href="./about.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">A</span></div><span>About</span></a></li>
+            <li><a href="./pricing.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">P</span></div><span>Pricing</span></a></li>
+            <li><a href="./customers.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Customers</span></a></li>
+            <li><a href="./changelog.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Changelog</span></a></li>
+            <li><a href="./integrations.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">I</span></div><span>Integrations</span></a></li>
+            <li><a href="./helpcenter.html" class="dropdown-item"><div class="menu-icon"><span class="menu-letter">H</span></div><span>Help Center</span></a></li>
+          </ul></div>
+        </div>
+        <a href="./blog.html" class="nav-btn nav-link-news">News</a>
+        <a href="./forms/sign-in.html" class="nav-btn">Log in</a>
+        <a href="#" class="nav-btn nav-btn-dark">Buy Alfred</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<main>
+
+<section style="padding-top:12rem;padding-bottom:4rem;">
+  <div class="container">
+    <h1 class="h1" style="max-width:28rem;">Connect everything you love</h1>
+    <p class="body-lg" style="margin-top:1rem;color:var(--color-base-600);max-width:36rem;">Alfred integrates with the tools your team already uses. No API degree required.</p>
+    <div style="margin-top:4rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;">
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/1.D45DDal3_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Slack</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Get Alfred notifications in Slack</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/2.Cbz7OPAf_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">GitHub</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Link commits to tasks automatically</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/3.CF6UXvNM_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Figma</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Embed designs directly in your workspace</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/4.B8DtyTZ9_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Notion</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Sync notes and docs two-way</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/5.DbMDv5E0_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Linear</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Keep issues in sync with Alfred tasks</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/6.CL7J6ZRd_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Zapier</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Connect to 5,000+ apps with no code</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/7.Bw3WX_25_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Jira</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Two-way sync with Jira issues</p>
+        </div>
+      </div>
+      <div style="outline:1px solid var(--color-base-200);padding:1.5rem;display:flex;flex-direction:column;gap:1rem;transition:outline-color 0.2s;" onmouseenter="this.style.outlineColor='#000'" onmouseleave="this.style.outlineColor='var(--color-base-200)'">
+        <img src="assets/images/8.Bh6b-ZkR_Z24yQ9g.svg" alt="Integration" style="height:2rem;object-fit:contain;margin-right:auto;">
+        <div>
+          <h3 style="font-size:0.875rem;font-weight:600;color:var(--color-base-800);">Google Drive</h3>
+          <p style="font-size:0.75rem;color:var(--color-base-500);margin-top:0.25rem;">Access your Drive files in Alfred</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <svg viewBox="0 0 125 126" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:2rem;height:2rem;padding:0.25rem;"><path d="M0 33.1V92C0 110.3 14.7881 125.1 33.0735 125.1H91.9265C110.212 125.1 125 110.3 125 92V33.1C125 14.8 110.212 0 91.9265 0H33.0735C14.7881 0.1 0 14.9 0 33.1ZM33.1734 116.8C19.3844 116.8 8.1934 105.6 8.1934 91.8C8.1934 78 19.3844 66.8 33.1734 66.8C46.9624 66.8 58.1534 78 58.1534 91.8C58.1534 105.6 46.9624 116.8 33.1734 116.8ZM33.1734 58.3C19.3844 58.3 8.1934 47.1 8.1934 33.3C8.1934 19.5 19.3844 8.3 33.1734 8.3C46.9624 8.3 58.1534 19.5 58.1534 33.3C58.1534 47.1 46.9624 58.3 33.1734 58.3ZM91.6267 116.8C77.8377 116.8 66.6466 105.6 66.6466 91.8C66.6466 78 77.8377 66.8 91.6267 66.8C105.416 66.8 116.607 78 116.607 91.8C116.607 105.6 105.416 116.8 91.6267 116.8ZM91.6267 58.3C77.8377 58.3 66.6466 47.1 66.6466 33.3C66.6466 19.5 77.8377 8.3 91.6267 8.3C105.416 8.3 116.607 19.5 116.607 33.3C116.607 47.1 105.416 58.3 91.6267 58.3Z" fill="white"/></svg>
+        Alfred
+      </div>
+      <p>The last business platform you'll ever need.</p>
+    </div>
+    <div class="footer-links">
+      <h3>Navigation</h3>
+      <ul>
+        <li><a href="./system/overview.html">Overview</a></li>
+        <li><a href="./system/colors.html">Colors</a></li>
+        <li><a href="./system/buttons.html">Buttons</a></li>
+        <li><a href="./system/typography.html">Typography</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="./about.html">About</a></li>
+        <li><a href="./pricing.html">Pricing</a></li>
+        <li><a href="./customers.html">Customers</a></li>
+        <li><a href="./changelog.html">Changelog</a></li>
+        <li><a href="./blog.html">Blog</a></li>
+        <li><a href="./integrations.html">Integrations</a></li>
+        <li><a href="./helpcenter.html">Help Center</a></li>
+        <li><a href="./legal/privacy.html">Privacy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Alfred. All rights reserved.</span>
+    <a href="./legal/privacy.html" style="color:var(--color-base-500);">Privacy Statement</a>
+  </div>
+</footer>
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  const t=document.getElementById('navToggle'),m=document.getElementById('navMenu'),i=document.getElementById('menuIcon'),c=document.getElementById('closeIcon');
+  if(t&&m){t.addEventListener('click',()=>{const o=m.classList.contains('open');m.classList.toggle('open',!o);if(i)i.classList.toggle('hidden',!o);if(c)c.classList.toggle('hidden',o);});document.addEventListener('keydown',e=>{if(e.key==='Escape'&&m.classList.contains('open')){m.classList.remove('open');if(i)i.classList.remove('hidden');if(c)c.classList.add('hidden');}});}
+  document.querySelectorAll('.dropdown-toggle').forEach(b=>{const id=b.dataset.menuButton,mn=document.getElementById(id);if(!mn)return;b.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();const w=mn.classList.contains('open');document.querySelectorAll('.dropdown-menu').forEach(d=>d.classList.remove('open'));if(!w)mn.classList.add('open');});});
+  document.addEventListener('click',e=>{if(!e.target.closest('.dropdown-toggle')&&!e.target.closest('.dropdown-menu'))document.querySelectorAll('.dropdown-menu').forEach(d=>d.classList.remove('open'));});
+});
+</script>
+<style>
+.dropdown-item{display:flex;align-items:center;gap:0.5rem;width:100%;font-size:0.875rem;font-weight:500;color:inherit;transition:color 0.2s;padding-right:1rem;}
+.dropdown-item:hover{color:var(--color-base-600);}
+.dropdown-item .menu-icon{padding:0.625rem;transition:background 0.3s;flex-shrink:0;}
+.dropdown-item:hover .menu-icon{background:#000;color:#fff;}
+</style>
+</body>
+</html>

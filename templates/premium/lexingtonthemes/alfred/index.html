@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alfred — The last business platform you'll ever need</title>
+  <meta name="description" content="Alfred is the all-in-one business platform for modern teams. Collaboration, calendars, file management, integrations, and more.">
+  <link rel="preconnect" href="https://rsms.me/">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="stylesheet" href="assets/css/keen-slider.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="inner">
+    <div class="nav-bar">
+      <div class="nav-brand-row">
+        <a href="index.html" class="nav-logo" aria-label="Alfred home">
+          <svg viewBox="0 0 125 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 33.1V92C0 110.3 14.7881 125.1 33.0735 125.1H91.9265C110.212 125.1 125 110.3 125 92V33.1C125 14.8 110.212 0 91.9265 0H33.0735C14.7881 0.1 0 14.9 0 33.1ZM33.1734 116.8C19.3844 116.8 8.1934 105.6 8.1934 91.8C8.1934 78 19.3844 66.8 33.1734 66.8C46.9624 66.8 58.1534 78 58.1534 91.8C58.1534 105.6 46.9624 116.8 33.1734 116.8ZM33.1734 58.3C19.3844 58.3 8.1934 47.1 8.1934 33.3C8.1934 19.5 19.3844 8.3 33.1734 8.3C46.9624 8.3 58.1534 19.5 58.1534 33.3C58.1534 47.1 46.9624 58.3 33.1734 58.3ZM91.6267 116.8C77.8377 116.8 66.6466 105.6 66.6466 91.8C66.6466 78 77.8377 66.8 91.6267 66.8C105.416 66.8 116.607 78 116.607 91.8C116.607 105.6 105.416 116.8 91.6267 116.8ZM91.6267 58.3C77.8377 58.3 66.6466 47.1 66.6466 33.3C66.6466 19.5 77.8377 8.3 91.6267 8.3C105.416 8.3 116.607 19.5 116.607 33.3C116.607 47.1 105.416 58.3 91.6267 58.3Z" fill="white"/>
+          </svg>
+        </a>
+        <button class="nav-hamburger" id="navToggle" aria-label="Toggle navigation menu">
+          <span class="sr-only">Toggle navigation</span>
+          <svg stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path id="menuIcon" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            <path id="closeIcon" class="hidden" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <nav id="navMenu" role="navigation" aria-label="Main navigation">
+        <!-- Overview dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-btn dropdown-toggle" data-menu-button="menu-overview" aria-haspopup="true" aria-expanded="false">Overview</button>
+          <div id="menu-overview" class="dropdown-menu">
+            <ul role="menu">
+              <li role="none"><a href="system/overview.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">A</span></div><span>All pages</span></a></li>
+              <li role="none"><a href="system/colors.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Colors</span></a></li>
+              <li role="none"><a href="system/links.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">L</span></div><span>Links</span></a></li>
+              <li role="none"><a href="system/buttons.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">B</span></div><span>Buttons</span></a></li>
+              <li role="none"><a href="system/typography.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">T</span></div><span>Typography</span></a></li>
+              <li role="none" style="position:relative;">
+                <button class="submenu-toggle" data-flyout="flyout-resources">
+                  <span style="padding-left:0.625rem;">Resources</span>
+                  <div class="arrow-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon size-4"><path d="M9 6l6 6l-6 6"/></svg>
+                  </div>
+                </button>
+                <div id="flyout-resources" class="flyout-menu">
+                  <ul role="menu">
+                    <li role="none"><a href="https://lexingtonthemes.com/legal/license/" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter" style="border-radius:9999px;border:1px solid currentColor;">L</span></div><span>License</span></a></li>
+                    <li role="none"><a href="https://lexingtonthemes.com/documentation/" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter" style="border-radius:9999px;border:1px solid currentColor;">D</span></div><span>Documentation</span></a></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Company dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-btn dropdown-toggle" data-menu-button="menu-company" aria-haspopup="true" aria-expanded="false">Company</button>
+          <div id="menu-company" class="dropdown-menu">
+            <ul role="menu">
+              <li role="none"><a href="about.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">A</span></div><span>About</span></a></li>
+              <li role="none"><a href="pricing.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">P</span></div><span>Pricing</span></a></li>
+              <li role="none"><a href="customers.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Customers</span></a></li>
+              <li role="none"><a href="changelog.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">C</span></div><span>Changelog</span></a></li>
+              <li role="none"><a href="integrations.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">I</span></div><span>Integrations</span></a></li>
+              <li role="none"><a href="helpcenter.html" class="dropdown-item" role="menuitem"><div class="menu-icon"><span class="menu-letter">H</span></div><span>Help Center</span></a></li>
+            </ul>
+          </div>
+        </div>
+
+        <a href="blog.html" class="nav-btn nav-link-news">News</a>
+        <a href="forms/sign-in.html" class="nav-btn">Log in</a>
+        <a href="#" class="nav-btn nav-btn-dark">Buy Alfred</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section style="padding-top:12rem;padding-bottom:2rem;overflow:hidden;">
+    <div class="container">
+      <h1 class="h1" style="max-width:28rem;">The last business platform you'll ever need</h1>
+
+      <!-- Brand logo marquee -->
+      <div class="marquee-wrap" style="margin-top:3rem;">
+        <div class="marquee-track">
+          <img src="assets/images/1.BnXTG6NZ_Z24yQ9g.svg" alt="Brand 1" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/2.oTTzyA9m_Z24yQ9g.svg" alt="Brand 2" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/3.DlRY-_Rq_Z24yQ9g.svg" alt="Brand 3" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/6.DGrNAA1t_Z24yQ9g.svg" alt="Brand 4" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/3.DlRY-_Rq_Z24yQ9g.svg" alt="Brand 5" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/6.DGrNAA1t_Z24yQ9g.svg" alt="Brand 6" height="32" style="height:2rem;flex-shrink:0;">
+          <!-- Duplicated for seamless loop -->
+          <img src="assets/images/1.BnXTG6NZ_Z24yQ9g.svg" alt="Brand 1" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/2.oTTzyA9m_Z24yQ9g.svg" alt="Brand 2" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/3.DlRY-_Rq_Z24yQ9g.svg" alt="Brand 3" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/6.DGrNAA1t_Z24yQ9g.svg" alt="Brand 4" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/3.DlRY-_Rq_Z24yQ9g.svg" alt="Brand 5" height="32" style="height:2rem;flex-shrink:0;">
+          <img src="assets/images/6.DGrNAA1t_Z24yQ9g.svg" alt="Brand 6" height="32" style="height:2rem;flex-shrink:0;">
+        </div>
+      </div>
+
+      <div style="margin-top:3rem;">
+        <img src="assets/images/dashboard.Cv8JaaBK_EwRqb.webp" alt="Alfred Dashboard" style="width:100%;" loading="eager">
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAMWORK SECTION (blue) -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="feature-box bg-blue-50">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4" style="align-items:flex-end;">
+          <div>
+            <div class="letter-badge" style="background:var(--color-blue-800);">M</div>
+            <h2 class="h2" style="margin-top:2rem;color:var(--color-blue-800);">Making teamwork slightly less painful</h2>
+          </div>
+          <p class="body-lg" style="color:var(--color-base-600);grid-column:span 2;grid-column-start:3;">
+            No more "who edited this?" panic. Just smooth, drama-free workflows that actually help your team get stuff done—for once.
+          </p>
+        </div>
+        <div style="margin-top:3rem;">
+          <img src="assets/images/teamDashboard.DVk36FkE_ZCc1v3.webp" alt="Team Dashboard" style="width:100%;" loading="lazy">
+        </div>
+        <div class="grid grid-cols-1 gap-8" style="margin-top:3rem;grid-template-columns:repeat(1,1fr);">
+          <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:2rem;">
+            <div>
+              <h3 class="h3" style="color:var(--color-blue-800);">Invite your chaos crew</h3>
+              <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Wrangle your team into one place and pretend it's organized. Real-time updates keep everyone from screaming.</p>
+            </div>
+            <div>
+              <h3 class="h3" style="color:var(--color-blue-800);">Edit together (without fighting)</h3>
+              <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">No more endless file versions like 'final-FINAL-v3'. Everyone edits the same thing. Like magic. Or witchcraft.</p>
+            </div>
+            <div>
+              <h3 class="h3" style="color:var(--color-blue-800);">Feedback without the awkward</h3>
+              <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Drop comments, ask questions, and critique stuff—without the passive-aggressive email chains.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDAR SECTION (rose) -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="feature-box bg-rose-50">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4" style="align-items:flex-end;">
+          <div>
+            <div class="letter-badge" style="background:var(--color-rose-800);">C</div>
+            <h2 class="h2" style="margin-top:2rem;color:var(--color-rose-900);">Calendar that doesn´t flake</h2>
+          </div>
+          <p class="body-lg" style="color:var(--color-base-600);grid-column:span 2;grid-column-start:3;">
+            No more "who edited this?" panic. Just smooth, drama-free workflows that actually help your team get stuff done—for once.
+          </p>
+        </div>
+        <div style="margin-top:3rem;">
+          <img src="assets/images/calendarDashboard.CQCmUX03_VA96U.webp" alt="Calendar Dashboard" style="width:100%;" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOOLS GRID SECTION -->
+  <section class="section-pad-lg">
+    <div class="container">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-4" style="align-items:flex-end;">
+        <div>
+          <h2 class="h2" style="color:var(--color-base-800);">Tools that actually pull their weight</h2>
+        </div>
+        <p class="body-lg" style="color:var(--color-base-600);grid-column:span 2;grid-column-start:3;">
+          Ditch the fluff. Get the stuff that helps you move faster, think smarter, and actually get things done.
+        </p>
+      </div>
+
+      <!-- 6-column grid -->
+      <div class="tools-grid-6col" style="margin-top:3rem;display:grid;grid-template-columns:repeat(1,1fr);gap:2rem;">
+        <!-- Data card (col 3) -->
+        <div class="feature-box bg-teal-100" style="overflow:hidden;">
+          <h3 class="h3" style="color:var(--color-teal-950);">Data that actually does something</h3>
+          <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Stop squinting at charts. Make faster, smarter decisions with insights that actually matter to your business.</p>
+          <div style="margin-top:3rem;margin-right:-4rem;overflow:hidden;">
+            <div style="border-top:1px solid var(--color-base-200);">
+              <div style="padding:1.5rem;background:#fff;border-bottom:1px solid var(--color-base-200);">
+                <p style="font-size:0.75rem;color:var(--color-base-500);">Churn Rate</p>
+                <p style="font-size:1.5rem;font-weight:500;color:var(--color-base-800);">4.7%</p>
+                <p style="font-size:0.875rem;color:var(--color-red-600);">-0.9% from last month</p>
+              </div>
+              <div style="padding:1.5rem;background:#fff;border-bottom:1px solid var(--color-base-200);">
+                <p style="font-size:0.75rem;color:var(--color-base-500);">Net Promoter Score</p>
+                <p style="font-size:1.5rem;font-weight:500;color:var(--color-base-800);">67</p>
+                <p style="font-size:0.875rem;color:var(--color-green-700);">Holding steady</p>
+              </div>
+              <div style="padding:1.5rem;background:#fff;">
+                <p style="font-size:0.75rem;color:var(--color-base-500);">Avg. Page Load Time</p>
+                <p style="font-size:1.5rem;font-weight:500;color:var(--color-base-800);">1.3s</p>
+                <p style="font-size:0.875rem;color:var(--color-green-700);">Improved by 200ms</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Collaboration card (col 3) -->
+        <div class="feature-box" style="background:var(--color-purple-50);overflow:hidden;">
+          <h3 class="h3" style="color:var(--color-purple-900);">Teamwork, minus the chaos</h3>
+          <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Ping less, achieve more. Real-time updates and shared progress that don't require a group therapy session.</p>
+          <div style="margin-top:3rem;margin-right:-4rem;">
+            <div style="padding:2rem;background:#fff;">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                  <p style="font-size:0.875rem;font-weight:500;color:var(--color-base-600);">Project Progress</p>
+                  <span style="font-size:0.875rem;color:var(--color-base-500);">72%</span>
+                </div>
+                <div class="progress-bar"><div class="progress-fill" style="width:72%;background:var(--color-purple-400);"></div></div>
+              </div>
+              <div style="margin-top:2rem;display:flex;flex-direction:column;gap:0.75rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon size-4"><path d="M5 12l5 5l10 -10"/></svg>
+                  <p style="font-size:0.875rem;color:var(--color-base-500);"><span style="font-weight:500;color:var(--color-base-950);">Taylor</span> marked <span style="font-weight:500;color:var(--color-base-950);">Onboarding flow</span> as complete</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon size-4"><path d="M12 15h-6.5a2.5 2.5 0 1 1 0 -5h.5"/><path d="M15 12v6.5a2.5 2.5 0 1 1 -5 0v-.5"/><path d="M12 9h6.5a2.5 2.5 0 1 1 0 5h-.5"/><path d="M9 12v-6.5a2.5 2.5 0 0 1 5 0v.5"/></svg>
+                  <p style="font-size:0.875rem;color:var(--color-base-500);"><span style="font-weight:500;color:var(--color-base-950);">Dev team</span> updated <span style="font-weight:500;color:var(--color-base-950);">API docs</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Files card (col 2) -->
+        <div class="feature-box" style="background:var(--color-blue-50);overflow:hidden;">
+          <h3 class="h3" style="color:var(--color-blue-900);">Your files, your clones</h3>
+          <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Copy what works. Ditch the repetitive setup and get straight to the productive part.</p>
+          <div style="margin-top:3rem;margin-right:-4rem;">
+            <div style="display:flex;flex-direction:column;gap:0.25rem;">
+              <div style="background:#fff;padding:1rem;display:flex;flex-direction:column;gap:1rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <div style="display:flex;align-items:center;justify-content:center;width:2rem;height:2rem;background:var(--color-base-50);color:var(--color-base-500);border-radius:0.375rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon size-4"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;font-weight:500;color:var(--color-base-600);">Cloned File</p>
+                    <p style="font-size:0.6rem;color:var(--color-base-500);">Created 3 days ago</p>
+                  </div>
+                </div>
+                <div>
+                  <p style="font-size:0.75rem;color:var(--color-base-500);">Clone #1</p>
+                  <p style="font-size:0.875rem;font-weight:500;color:var(--color-base-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">/final-final-final.docx</p>
+                </div>
+              </div>
+              <div style="background:#fff;padding:1rem;display:flex;flex-direction:column;gap:1rem;">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                  <div style="display:flex;align-items:center;justify-content:center;width:2rem;height:2rem;background:var(--color-base-50);color:var(--color-base-500);border-radius:0.375rem;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon size-4"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z"/></svg>
+                  </div>
+                  <div>
+                    <p style="font-size:0.75rem;font-weight:500;color:var(--color-base-600);">Cloned File</p>
+                    <p style="font-size:0.6rem;color:var(--color-base-500);">Created 2 minutes ago</p>
+                  </div>
+                </div>
+                <div>
+                  <p style="font-size:0.75rem;color:var(--color-base-500);">Clone #2</p>
+                  <p style="font-size:0.875rem;font-weight:500;color:var(--color-base-800);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">/final-final-final-final.docx</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shortcuts card (col 2) -->
+        <div class="feature-box" style="background:var(--color-rose-50);overflow:hidden;">
+          <h3 class="h3" style="color:var(--color-rose-900);">Shortcuts that don't suck</h3>
+          <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Click less, do more. Access everything important without turning it into a treasure hunt.</p>
+          <div style="margin-top:3rem;margin-right:-4rem;">
+            <div style="display:flex;flex-direction:column;gap:0.25rem;">
+              <div style="display:flex;gap:0.25rem;">
+                <button style="background:#fff;padding:0.5rem;font-size:0.75rem;border-radius:0.25rem;color:var(--color-base-500);">esc</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;">F1</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;">F2</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;">F3</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;">F4</button>
+              </div>
+              <div style="display:flex;gap:0.25rem;">
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">§</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">1</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">2</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">3</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">4</button>
+              </div>
+              <div style="display:flex;gap:0.25rem;">
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;outline:1px solid transparent;transition:outline-color 0.3s;" class="key-q">Q</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">W</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">E</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">R</button>
+                <button style="background:#fff;padding:0.5rem;font-size:0.65rem;border-radius:0.25rem;aspect-ratio:1;">T</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Integrations card (col 2) -->
+        <div class="feature-box" style="background:var(--color-yellow-50);overflow:hidden;">
+          <h3 class="h3" style="color:var(--color-yellow-900);">Integrations that don't break</h3>
+          <p class="body-lg" style="margin-top:0.5rem;color:var(--color-base-600);">Plug into your favorite tools without needing an API degree. Everything just works.</p>
+          <div style="margin-top:3rem;margin-right:-4rem;">
+            <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:0.25rem;">
+              <img src="assets/images/1.D45DDal3_Z24yQ9g.svg" alt="Integration 1" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/2.Cbz7OPAf_Z24yQ9g.svg" alt="Integration 2" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/3.CF6UXvNM_Z24yQ9g.svg" alt="Integration 3" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/4.B8DtyTZ9_Z24yQ9g.svg" alt="Integration 4" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/5.DbMDv5E0_Z24yQ9g.svg" alt="Integration 5" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/6.CL7J6ZRd_Z24yQ9g.svg" alt="Integration 6" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/7.Bw3WX_25_Z24yQ9g.svg" alt="Integration 7" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/8.Bh6b-ZkR_Z24yQ9g.svg" alt="Integration 8" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/9.jBiAVTmK_Z24yQ9g.svg" alt="Integration 9" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+              <img src="assets/images/10.C7jUu9Fy_Z24yQ9g.svg" alt="Integration 10" style="padding:1.5rem;background:#fff;aspect-ratio:1;width:100%;object-fit:contain;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES TABS (green) -->
+  <section class="section-pad">
+    <div class="container">
+      <div class="feature-box bg-green-50">
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-4" style="align-items:flex-end;">
+          <div>
+            <div class="letter-badge" style="background:var(--color-green-800);">C</div>
+            <h2 class="h2" style="margin-top:2rem;color:var(--color-green-900);">Tools built for whatever today throws at you</h2>
+          </div>
+          <p class="body-lg" style="color:var(--color-base-600);grid-column:span 2;grid-column-start:3;">
+            Whether you're planning, building, or just trying to make it through Monday, we've got a feature (or five) to make it suck less.
+          </p>
+        </div>
+
+        <div class="features-grid" style="margin-top:3rem;display:grid;grid-template-columns:repeat(1,1fr);gap:2rem;align-items:center;">
+          <!-- Tab buttons -->
+          <div style="display:flex;flex-direction:column;gap:2rem;">
+            <button class="tab-btn active" data-tab="feature1" style="text-align:left;width:100%;cursor:pointer;transition:opacity 0.3s;">
+              <h3 class="h3" style="color:var(--color-green-900);">Plays nice with the tools you already tolerate</h3>
+              <p style="font-size:1rem;margin-top:1rem;color:var(--color-green-800);">Boost your workflow without blowing up your setup. Everything connects, nothing breaks (hopefully).</p>
+            </button>
+            <button class="tab-btn" data-tab="feature2" style="text-align:left;width:100%;cursor:pointer;transition:opacity 0.3s;opacity:0.5;">
+              <h3 class="h3" style="color:var(--color-green-900);">Reports that don't need a decoder ring</h3>
+              <p style="font-size:1rem;margin-top:1rem;color:var(--color-green-800);">Get the data you need without drowning in spreadsheets. One dashboard to see it all.</p>
+            </button>
+            <button class="tab-btn" data-tab="feature3" style="text-align:left;width:100%;cursor:pointer;transition:opacity 0.3s;opacity:0.5;">
+              <h3 class="h3" style="color:var(--color-green-900);">Security that doesn't keep you up at night</h3>
+              <p style="font-size:1rem;margin-top:1rem;color:var(--color-green-800);">Enterprise-grade protection without the enterprise-grade headache. Your data, locked down.</p>
+            </button>
+          </div>
+
+          <!-- Tab panels -->
+          <div>
+            <div id="feature1" class="tab-panel active">
+              <img src="assets/images/dashboard.Cv8JaaBK_EwRqb.webp" alt="Integrations" style="width:100%;">
+            </div>
+            <div id="feature2" class="tab-panel">
+              <img src="assets/images/teamDashboard.DVk36FkE_ZCc1v3.webp" alt="Reports" style="width:100%;">
+            </div>
+            <div id="feature3" class="tab-panel">
+              <img src="assets/images/calendarDashboard.CQCmUX03_VA96U.webp" alt="Security" style="width:100%;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS (dark) -->
+  <section class="section-pad" style="background:var(--color-base-950);color:#fff;">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:repeat(1,1fr);gap:2rem;padding:3rem 0;">
+        <div>
+          <blockquote style="font-size:1.25rem;font-weight:500;line-height:1.6;color:#fff;">"Alfred completely changed how our team works together. We went from total chaos to actually shipping on time."</blockquote>
+          <div style="margin-top:1.5rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2.5rem;height:2.5rem;background:var(--color-base-700);border-radius:9999px;"></div>
+            <div>
+              <p style="font-weight:500;font-size:0.875rem;">Sarah Chen</p>
+              <p style="font-size:0.75rem;color:var(--color-base-400);">CTO at Meridian</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <blockquote style="font-size:1.25rem;font-weight:500;line-height:1.6;color:#fff;">"The integrations alone saved us 10+ hours a week. And the calendar actually works. Revolutionary, honestly."</blockquote>
+          <div style="margin-top:1.5rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2.5rem;height:2.5rem;background:var(--color-base-700);border-radius:9999px;"></div>
+            <div>
+              <p style="font-weight:500;font-size:0.875rem;">Marcus Rivera</p>
+              <p style="font-size:0.75rem;color:var(--color-base-400);">Head of Ops at Vertex</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <blockquote style="font-size:1.25rem;font-weight:500;line-height:1.6;color:#fff;">"Finally, a platform that doesn't assume I have an engineering degree. Our whole team was onboarded in one afternoon."</blockquote>
+          <div style="margin-top:1.5rem;display:flex;align-items:center;gap:0.75rem;">
+            <div style="width:2.5rem;height:2.5rem;background:var(--color-base-700);border-radius:9999px;"></div>
+            <div>
+              <p style="font-weight:500;font-size:0.875rem;">Priya Patel</p>
+              <p style="font-size:0.75rem;color:var(--color-base-400);">CEO at Luminary</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TEASER -->
+  <section class="section-pad-lg">
+    <div class="container">
+      <div style="text-align:center;max-width:42rem;margin:0 auto;">
+        <h2 class="h2" style="color:var(--color-base-800);">Simple pricing, no surprises</h2>
+        <p class="body-lg" style="margin-top:1rem;color:var(--color-base-600);">One plan that does it all. No hidden fees, no feature gates, no tears.</p>
+        <div style="margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+          <a href="pricing.html" class="btn btn-primary">See pricing</a>
+          <a href="forms/book-demo.html" class="btn btn-outline">Book a demo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-pad" style="background:var(--color-base-950);color:#fff;">
+    <div class="container" style="text-align:center;padding-top:4rem;padding-bottom:4rem;">
+      <h2 style="font-size:2.25rem;font-weight:500;letter-spacing:-0.025em;color:#fff;">Ready to stop suffering?</h2>
+      <p class="body-lg" style="margin-top:1rem;color:var(--color-base-400);">Join thousands of teams who traded chaos for Alfred.</p>
+      <div style="margin-top:2rem;display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
+        <a href="#" style="display:inline-flex;align-items:center;justify-content:center;height:2.75rem;padding:0.75rem 1.5rem;background:#fff;color:#000;font-size:0.875rem;font-weight:500;transition:background 0.2s;">Get started free</a>
+        <a href="forms/book-demo.html" style="display:inline-flex;align-items:center;justify-content:center;height:2.75rem;padding:0.75rem 1.5rem;outline:1px solid var(--color-base-600);color:#fff;font-size:0.875rem;font-weight:500;transition:outline-color 0.2s;">Book a demo →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-wrap">
+        <svg viewBox="0 0 125 126" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 33.1V92C0 110.3 14.7881 125.1 33.0735 125.1H91.9265C110.212 125.1 125 110.3 125 92V33.1C125 14.8 110.212 0 91.9265 0H33.0735C14.7881 0.1 0 14.9 0 33.1ZM33.1734 116.8C19.3844 116.8 8.1934 105.6 8.1934 91.8C8.1934 78 19.3844 66.8 33.1734 66.8C46.9624 66.8 58.1534 78 58.1534 91.8C58.1534 105.6 46.9624 116.8 33.1734 116.8ZM33.1734 58.3C19.3844 58.3 8.1934 47.1 8.1934 33.3C8.1934 19.5 19.3844 8.3 33.1734 8.3C46.9624 8.3 58.1534 19.5 58.1534 33.3C58.1534 47.1 46.9624 58.3 33.1734 58.3ZM91.6267 116.8C77.8377 116.8 66.6466 105.6 66.6466 91.8C66.6466 78 77.8377 66.8 91.6267 66.8C105.416 66.8 116.607 78 116.607 91.8C116.607 105.6 105.416 116.8 91.6267 116.8ZM91.6267 58.3C77.8377 58.3 66.6466 47.1 66.6466 33.3C66.6466 19.5 77.8377 8.3 91.6267 8.3C105.416 8.3 116.607 19.5 116.607 33.3C116.607 47.1 105.416 58.3 91.6267 58.3Z" fill="white"/>
+        </svg>
+        Alfred
+      </div>
+      <p>The last business platform you'll ever need.</p>
+    </div>
+    <div class="footer-links">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="about.html">About</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="customers.html">Customers</a></li>
+        <li><a href="changelog.html">Changelog</a></li>
+        <li><a href="blog.html">Blog</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="integrations.html">Integrations</a></li>
+        <li><a href="helpcenter.html">Help Center</a></li>
+        <li><a href="forms/sign-in.html">Sign in</a></li>
+        <li><a href="legal/privacy.html">Privacy</a></li>
+        <li><a href="https://twitter.com/lexingtonthemes">@lexingtonthemes</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Alfred. All rights reserved.</span>
+    <a href="legal/privacy.html" style="color:var(--color-base-500);transition:color 0.2s;">Privacy Statement</a>
+  </div>
+</footer>
+
+<script>
+// Nav behavior inline for zero-dependency operation
+document.addEventListener('DOMContentLoaded', function () {
+  const navToggle = document.getElementById('navToggle');
+  const navMenu = document.getElementById('navMenu');
+  const menuIcon = document.getElementById('menuIcon');
+  const closeIcon = document.getElementById('closeIcon');
+
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navMenu.classList.contains('open');
+      navMenu.classList.toggle('open', !isOpen);
+      if (menuIcon) menuIcon.classList.toggle('hidden', !isOpen);
+      if (closeIcon) closeIcon.classList.toggle('hidden', isOpen);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        if (menuIcon) menuIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+      }
+    });
+  }
+
+  document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+    const menuId = btn.dataset.menuButton;
+    const menu = document.getElementById(menuId);
+    if (!menu) return;
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const wasOpen = menu.classList.contains('open');
+      document.querySelectorAll('.dropdown-menu').forEach(m => m.classList.remove('open'));
+      document.querySelectorAll('.flyout-menu').forEach(m => m.classList.remove('open'));
+      if (!wasOpen) menu.classList.add('open');
+    });
+  });
+
+  document.querySelectorAll('[data-flyout]').forEach(btn => {
+    const targetId = btn.dataset.flyout;
+    const target = document.getElementById(targetId);
+    if (!target) return;
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const wasOpen = target.classList.contains('open');
+      document.querySelectorAll('.flyout-menu').forEach(m => m.classList.remove('open'));
+      if (!wasOpen) target.classList.add('open');
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.dropdown-toggle') && !e.target.closest('.dropdown-menu') && !e.target.closest('[data-flyout]') && !e.target.closest('.flyout-menu')) {
+      document.querySelectorAll('.dropdown-menu, .flyout-menu').forEach(m => m.classList.remove('open'));
+    }
+  });
+
+  // Tabs
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabPanels = document.querySelectorAll('.tab-panel');
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      tabBtns.forEach(b => { b.classList.remove('active'); b.style.opacity = '0.5'; });
+      tabPanels.forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      btn.style.opacity = '1';
+      const panel = document.getElementById(target);
+      if (panel) panel.classList.add('active');
+    });
+  });
+});
+</script>
+
+<style>
+/* Dropdown item row */
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: inherit;
+  transition: color 0.2s;
+  padding-right: 1rem;
+}
+.dropdown-item:hover { color: var(--color-base-600); }
+.dropdown-item .menu-icon { padding: 0.625rem; transition: background 0.3s; flex-shrink: 0; }
+.dropdown-item:hover .menu-icon { background: #000; color: #fff; }
+
+/* Tab panel */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* Large grid on desktop */
+@media (min-width: 1024px) {
+  .tools-grid-6col { grid-template-columns: repeat(6, 1fr) !important; }
+  .tools-grid-6col .feature-box:nth-child(1) { grid-column: span 3; }
+  .tools-grid-6col .feature-box:nth-child(2) { grid-column: span 3; }
+  .tools-grid-6col .feature-box:nth-child(3) { grid-column: span 2; }
+  .tools-grid-6col .feature-box:nth-child(4) { grid-column: span 2; }
+  .tools-grid-6col .feature-box:nth-child(5) { grid-column: span 2; }
+  .features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; align-items: center; }
+}
+@media (min-width: 768px) {
+  .md-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; align-items: flex-end; }
+  .md-col-span-2-start-3 { grid-column: 3 / span 2; }
+  .footer-3col { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+
+</body>
+</html>
