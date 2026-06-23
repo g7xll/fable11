@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — Flabbergasted</title>
+  <link rel="preconnect" href="https://rsms.me/"><link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.min.js"></script>
+  <style>
+    .blog-card { position:relative;display:flex;flex-direction:column;justify-content:space-between;height:100%;overflow:hidden; }
+    .blog-card a.overlay { position:absolute;inset:0;z-index:10; }
+    .tag-pill { display:inline-flex;align-items:center;padding:0.375rem 1.5rem;border-radius:9999px;background:var(--color-base-800);color:var(--color-base-500);font-size:.75rem;font-weight:500;white-space:nowrap;transition:background 300ms,color 300ms; }
+    .tag-pill:hover { background:var(--color-base-700); color:#fff; }
+    #searchModal { display:none; position:fixed;inset:0;z-index:50;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px); }
+    #searchModal.open { display:flex;align-items:flex-start;justify-content:center;padding-top:4rem;padding-inline:1rem; }
+    #search-box { width:100%;max-width:42rem;background:var(--color-base-900);box-shadow:0 25px 50px -12px rgba(0,0,0,.5); }
+  </style>
+</head>
+<body style="background-color:var(--color-base-950);">
+
+<div id="nav-wrapper"><div class="nav-inner"><div class="nav-row">
+  <div class="nav-brand">
+    <a href="../index.html" class="logo-link"><span class="sr-only">Go to homepage</span><svg class="logo" viewBox="0 0 124 118" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#c1)"><ellipse cx="22.9" cy="32.9" rx="22.9" ry="32.9" transform="matrix(0.688 -0.726 -0.726 -0.688 39.7 98.5)" fill="currentColor" fill-opacity="0.37"/><ellipse cx="91.5" cy="59.2" rx="22.9" ry="32.9" transform="rotate(-133.4 91.5 59.2)" fill="currentColor" fill-opacity="0.37"/><ellipse opacity="0.7" cx="16.8" cy="32.8" rx="16.8" ry="32.8" transform="matrix(-0.96 0.281 0.281 0.96 49.1 23.6)" fill="currentColor"/><ellipse opacity="0.7" cx="80.9" cy="60.2" rx="16.8" ry="32.8" transform="rotate(16.3 80.9 60.2)" fill="currentColor"/></g><defs><clipPath id="c1"><rect width="123.93" height="117.997" fill="white"/></clipPath></defs></svg>Flabbergasted</a>
+    <button id="menu-toggle" aria-label="Open menu"><svg width="16" height="16" stroke="currentColor" fill="none" viewBox="0 0 24 24"><path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/><path id="close-icon" style="display:none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg></button>
+  </div>
+  <nav id="nav-menu">
+    <button id="menu-close" aria-label="Close menu"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M18 6l-12 12"/><path d="M6 6l12 12"/></svg></button>
+    <div class="nav-links-inner">
+      <div class="nav-accent-stripe" aria-hidden="true"></div>
+      <div class="nav-links">
+        <a href="../system/overview.html">Overview</a>
+        <a href="home.html">Blog</a>
+        <a href="https://lexingtonthemes.com/templates/flabbergasted" target="_blank" rel="noopener">Buy Flabbergasted</a>
+      </div>
+      <div class="nav-cta"><a href="../forms/sign-in.html" class="btn btn-base btn-sm">Get started</a></div>
+    </div>
+  </nav>
+</div></div></div>
+
+<!-- Search Modal -->
+<div id="searchModal" role="dialog" aria-modal="true">
+  <div id="search-box" onclick="event.stopPropagation()">
+    <div style="padding:1rem;position:relative;">
+      <input type="text" id="searchInput" placeholder="Search posts..." class="input" style="height:2.25rem;">
+      <div id="searchResults" style="display:flex;flex-direction:column;width:100%;margin-top:0.5rem;max-height:20rem;overflow-y:auto;" class="scrollbar-hide"></div>
+    </div>
+  </div>
+</div>
+
+<div class="page-wrapper">
+  <main>
+    <!-- Header -->
+    <section>
+      <div style="position:relative;padding:2rem;padding-top:8rem;padding-bottom:3rem;">
+        <div class="corner-cross corner-tr" aria-hidden="true"></div>
+        <div class="corner-cross corner-tl" aria-hidden="true"></div>
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-accent-vertical-stripes);width:50%;margin-left:auto;pointer-events:none;display:none;" id="blog-stripe"></div>
+        <div style="position:relative;max-width:28rem;text-wrap:balance;">
+          <h1 style="font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:500;letter-spacing:-0.025em;color:#fff;">The Blog, because opinions need a home...</h1>
+          <p style="font-size:1rem;margin-top:1rem;color:var(--color-base-500);">Hot takes, lukewarm insights, and the occasional actually useful post — scroll at your own risk.</p>
+        </div>
+      </div>
+      <!-- Search + Tags bar -->
+      <div style="display:flex;align-items:center;gap:0.5rem;border-top:1px solid var(--color-base-800);padding:1rem 2rem;">
+        <button id="searchButton" aria-label="Search posts" style="display:flex;align-items:center;justify-content:center;padding:0.5rem;border-radius:9999px;background:var(--color-base-800);color:#fff;border:none;cursor:pointer;transition:background 300ms;flex-shrink:0;" onmouseover="this.style.background='var(--color-accent-500)'" onmouseout="this.style.background='var(--color-base-800)'">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"/><path d="M21 21l-6-6"/></svg>
+        </button>
+        <div style="display:flex;gap:0.5rem;overflow-x:auto;padding-block:0.5rem;" class="scrollbar-hide">
+          <a href="#energy" class="tag-pill">energy</a>
+          <a href="#moments" class="tag-pill">moments</a>
+          <a href="#innovation" class="tag-pill">innovation</a>
+          <a href="#challenges" class="tag-pill">challenges</a>
+          <a href="#finance" class="tag-pill">finance</a>
+          <a href="#economy" class="tag-pill">economy</a>
+          <a href="#issues" class="tag-pill">issues</a>
+          <a href="#strategy" class="tag-pill">strategy</a>
+          <a href="#audio" class="tag-pill">audio</a>
+        </div>
+      </div>
+      <!-- Posts grid -->
+      <div id="posts-grid" style="display:grid;grid-template-columns:repeat(1,1fr);gap:1px;border-top:1px solid var(--color-base-800);">
+        <div class="blog-card">
+          <a class="overlay" href="posts/1.html" title="The Future of Renewable Energy"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">June 02, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Future of Renewable Energy: Innovations and Challenges</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the latest advancements in renewable energy and the challenges that lie ahead for a sustainable future.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-light-horizontal-stripes"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/2.html" title="The Biggest Sports Moments of 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">June 01, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Biggest Sports Moments of 2025</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">A look at the most exciting and unforgettable moments in sports for 2025, from record-breaking performances to championship victories.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-base-vertical-stripes"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/3.html" title="Top Finance Trends in 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 30, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">Top Finance Trends in 2025: Innovations Shaping the Future</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the latest advancements and trends in technology for 2025, from AI breakthroughs to cybersecurity developments.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-meshPurple"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/4.html" title="Finances in 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 29, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">Finances in 2025: Challenges and Innovations</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the latest advancements, challenges, and breakthroughs in global health for 2025.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-accent-horizontal-stripes"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/5.html" title="Financial Trends in 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 28, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">Financial Trends in 2025: Navigating an Evolving Market</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Analyzing the key financial trends, investment strategies, and market developments shaping the global financial landscape in 2025.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-light-vertical-stripes"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/6.html" title="The Global Economic Outlook for 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 27, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Global Economic Outlook for 2025: Challenges and Opportunities</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Examining the key economic trends, challenges, and opportunities shaping the global economy in 2025.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-meshGreen"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/7.html" title="The Political Landscape of 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 26, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Political Landscape of 2025: Key Issues and Challenges</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Analyzing the major political developments and challenges shaping global politics in 2025, from elections to policy shifts.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-meshMagenta"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/8.html" title="The Future of Business: Key Strategies for 2025"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 25, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">The Future of Business: Key Strategies for 2025</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Examining the major trends and strategies shaping the business landscape in 2025.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-accent-vertical-stripes"></div>
+        </div>
+        <div class="blog-card">
+          <a class="overlay" href="posts/9.html" title="Europe's Shifting Landscape"></a>
+          <div style="display:flex;flex-direction:column;height:100%;padding:1rem;padding-top:6rem;background:var(--color-base-900);">
+            <p style="font-size:.75rem;color:var(--color-base-500);">May 24, 2025</p>
+            <h3 style="font-size:1rem;color:#fff;margin-top:2rem;">Europe's Shifting Landscape: Key Political and Economic Trends</h3>
+            <p style="font-size:.875rem;color:var(--color-base-400);">Exploring the major political and economic changes shaping Europe in 2025.</p>
+          </div>
+          <div style="aspect-ratio:12/8;padding:1rem;margin-inline:-0px;" class="bg-base-horizontal-stripes"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section style="overflow:hidden;">
+      <div style="padding:2rem;border-top:1px solid var(--color-base-800);position:relative;overflow:hidden;padding-bottom:5rem;">
+        <div aria-hidden="true" style="position:absolute;inset:0;background-image:var(--bg-base-vertical-stripes);margin-inline:-1px;pointer-events:none;"></div>
+        <div style="position:relative;display:grid;grid-template-columns:1fr;gap:2rem;align-items:flex-end;" id="blog-newsletter">
+          <div style="text-wrap:balance;max-width:36rem;">
+            <h2 style="font-size:clamp(1.5rem,3.5vw,2.25rem);font-weight:500;letter-spacing:-0.025em;color:#fff;">Subscribe, unless you hate fun</h2>
+            <p style="font-size:1.125rem;margin-top:1rem;color:var(--color-base-300);">Get the latest posts, updates, and half-decent advice — straight to your inbox. No spam. Just vibes.</p>
+          </div>
+          <form style="display:flex;flex-direction:column;gap:0.5rem;" onsubmit="return false;">
+            <label for="nl-email" class="sr-only">Email Address</label>
+            <input id="nl-email" name="email" type="email" placeholder="you@example.com" class="input">
+            <button class="btn btn-accent btn-sm" style="width:100%;justify-content:center;" type="submit">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div style="position:relative;padding-bottom:6rem;gap:2rem;display:grid;grid-template-columns:1fr;" id="blog-footer">
+      <div style="color:#fff;">
+        <a href="../index.html" style="display:flex;align-items:center;gap:0.5rem;font-size:.875rem;color:#fff;"><svg style="height:1.5rem;" viewBox="0 0 124 118" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#fc1)"><ellipse cx="22.9" cy="32.9" rx="22.9" ry="32.9" transform="matrix(0.688 -0.726 -0.726 -0.688 39.7 98.5)" fill="currentColor" fill-opacity="0.37"/><ellipse cx="91.5" cy="59.2" rx="22.9" ry="32.9" transform="rotate(-133.4 91.5 59.2)" fill="currentColor" fill-opacity="0.37"/><ellipse opacity="0.7" cx="16.8" cy="32.8" rx="16.8" ry="32.8" transform="matrix(-0.96 0.281 0.281 0.96 49.1 23.6)" fill="currentColor"/><ellipse opacity="0.7" cx="80.9" cy="60.2" rx="16.8" ry="32.8" transform="rotate(16.3 80.9 60.2)" fill="currentColor"/></g><defs><clipPath id="fc1"><rect width="123.93" height="117.997" fill="white"/></clipPath></defs></svg>Flabbergasted</a>
+        <p style="margin-top:0.25rem;font-size:.875rem;color:var(--color-base-500);text-wrap:balance;">Premium multipage themes crafted with Astro and Tailwind CSS</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;">
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">Navigation</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="../system/overview.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Overview</a></li>
+            <li><a href="../system/buttons.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Buttons</a></li>
+            <li><a href="../system/links.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Links</a></li>
+            <li><a href="../system/colors.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Colors</a></li>
+            <li><a href="../system/typography.html" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">Typography</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-display" style="font-size:1rem;color:#fff;">Socials</h3>
+          <ul style="margin-top:0.5rem;list-style:none;display:flex;flex-direction:column;gap:0.25rem;font-size:.875rem;color:var(--color-base-600);">
+            <li><a href="https://twitter.com/lexingtonthemes" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">@lexingtonthemes</a></li>
+            <li><a href="https://twitter.com/Mike_Andreuzza" target="_blank" rel="noopener" style="transition:color 300ms;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color=''">@Mike_Andreuzza</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="bg-light-vertical-stripes" style="padding:5rem;margin-top:3rem;clip-path:inset(0);"></div>
+  </div>
+</footer>
+
+<script>
+// Nav
+document.addEventListener('DOMContentLoaded',()=>{
+  const t=document.getElementById('menu-toggle'),c=document.getElementById('menu-close'),m=document.getElementById('nav-menu');
+  t?.addEventListener('click',()=>{m.classList.add('open');document.body.style.overflow='hidden';});
+  c?.addEventListener('click',()=>{m.classList.remove('open');document.body.style.overflow='';});
+  // Responsive
+  function applyGrid() {
+    const w = window.innerWidth;
+    const pg = document.getElementById('posts-grid');
+    if (pg) pg.style.gridTemplateColumns = w >= 1024 ? 'repeat(3,1fr)' : w >= 768 ? 'repeat(2,1fr)' : 'repeat(1,1fr)';
+    const bn = document.getElementById('blog-newsletter');
+    if (bn) bn.style.gridTemplateColumns = w >= 1024 ? '2fr 1fr' : '1fr';
+    const bf = document.getElementById('blog-footer');
+    if (bf) bf.style.gridTemplateColumns = w >= 1024 ? '1fr 2fr' : '1fr';
+    const bs = document.getElementById('blog-stripe');
+    if (bs) bs.style.display = w >= 1024 ? 'block' : 'none';
+  }
+  applyGrid();
+  window.addEventListener('resize', applyGrid);
+});
+
+// Search
+const posts = [
+  {title:"Global Economic Shifts: What to Expect in 2025",description:"An analysis of the major economic trends shaping the world in 2025.",slug:"1"},
+  {title:"The Future of Renewable Energy: Innovations and Challenges",description:"Exploring the latest advancements in renewable energy.",slug:"2"},
+  {title:"Europe's Shifting Landscape: Key Political and Economic Trends",description:"Exploring the major political and economic changes shaping Europe in 2025.",slug:"3"},
+  {title:"The Future of Business: Key Strategies for 2025",description:"Examining the major trends and strategies shaping the business landscape in 2025.",slug:"4"},
+  {title:"The Political Landscape of 2025: Key Issues and Challenges",description:"Analyzing the major political developments and challenges shaping global politics in 2025.",slug:"5"},
+  {title:"The Global Economic Outlook for 2025: Challenges and Opportunities",description:"Examining the key economic trends, challenges, and opportunities shaping the global economy in 2025.",slug:"6"},
+  {title:"Financial Trends in 2025: Navigating an Evolving Market",description:"Analyzing the key financial trends and market developments.",slug:"7"},
+  {title:"Finances in 2025: Challenges and Innovations",description:"Exploring the latest advancements, challenges, and breakthroughs in global health for 2025.",slug:"8"},
+  {title:"Top Finance Trends in 2025: Innovations Shaping the Future",description:"Exploring the latest advancements and trends in technology for 2025.",slug:"9"},
+  {title:"The Biggest Sports Moments of 2025",description:"A look at the most exciting and unforgettable moments in sports for 2025.",slug:"10"},
+];
+
+window.addEventListener('load',()=>{
+  const searchBtn = document.getElementById('searchButton');
+  const modal = document.getElementById('searchModal');
+  const input = document.getElementById('searchInput');
+  const results = document.getElementById('searchResults');
+  
+  const fuse = new Fuse(posts, { keys:['title','description'], threshold:0.3, includeMatches:true });
+  
+  searchBtn?.addEventListener('click', ()=>{ modal.classList.add('open'); document.body.style.overflow='hidden'; setTimeout(()=>input?.focus(),100); });
+  modal?.addEventListener('click', e=>{ if(e.target===modal){ modal.classList.remove('open'); document.body.style.overflow=''; input.value=''; results.innerHTML=''; }});
+  
+  input?.addEventListener('input', e=>{
+    const val = e.target.value;
+    if(!val.trim()){ results.innerHTML=''; return; }
+    const res = fuse.search(val).slice(0,5);
+    if(!res.length){ results.innerHTML='<div style="padding:1rem;font-size:.875rem;color:#fff;">No results found</div>'; return; }
+    results.innerHTML = res.map(r=>`<a href="posts/${r.item.slug}.html" style="display:block;margin:0.25rem;padding:1rem;border-bottom:1px solid var(--color-base-800);" onmouseover="this.querySelector('h3').style.color='oklch(69% .147 297.95)'" onmouseout="this.querySelector('h3').style.color='#fff'"><h3 style="font-size:.875rem;font-weight:500;color:#fff;transition:color 300ms;">${r.item.title}</h3><p style="margin-top:0.5rem;font-size:.875rem;color:var(--color-base-500);">${r.item.description}</p></a>`).join('');
+  });
+  
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape'&&modal.classList.contains('open')){ modal.classList.remove('open'); document.body.style.overflow=''; input.value=''; results.innerHTML=''; }});
+});
+</script>
+</body></html>
