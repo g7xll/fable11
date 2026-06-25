@@ -1,5 +1,7 @@
 # Streamer — Lexington Themes
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful HTML/CSS/JS clone of the **Streamer** template by [Lexington Themes](https://lexingtonthemes.com/viewports/streamer) — a music and indie media platform with blog, podcast, jobs, authors, pricing, and a full design system.
 
 ## Pages (14)
