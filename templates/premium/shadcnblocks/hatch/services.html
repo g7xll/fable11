@@ -1,51 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Services — Hatch</title>
-<meta name="description" content="Brand, UX & web, product design, and Framer development for founders and teams.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<script>try{var t=localStorage.getItem('hatch-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}</script>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div data-promo></div>
-<div data-header></div>
-<main>
-  <section class="page-hero"><div class="container reveal">
-    <span class="eyebrow">Services</span>
-    <h1 class="serif">Design help, scoped the way you need it.</h1>
-    <p>From a single brand sprint to an ongoing product partnership—clear deliverables, honest timelines, and work that ships.</p>
-  </div></section>
-  <section style="padding-top:0"><div class="container"><div class="svc-grid" style="margin-top:0">
-      <a class="svc-card reveal" href="services-brand-design.html">
-        <img class="svc-icon" src="assets/images/services/noun-star-7745963.svg" alt="">
-        <span class="eyebrow">Brand</span>
-        <h3 class="serif">Brand Design</h3><p class="muted">Complete visual identity systems that make your brand memorable—logo, color, typography, and standards that scale across web and print.</p>
-        <span class="btn btn-outline" style="margin-top:1.25rem">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-      </a>
-      <a class="svc-card reveal" href="services-web-design-ux.html">
-        <img class="svc-icon" src="assets/images/services/noun-semicircles-8294628.svg" alt="">
-        <span class="eyebrow">UX & Web</span>
-        <h3 class="serif">Web Design & UX</h3><p class="muted">Beautiful, conversion-focused websites that feel effortless to use—research-led UX, polished UI, and pages built to convert.</p>
-        <span class="btn btn-outline" style="margin-top:1.25rem">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-      </a>
-      <a class="svc-card reveal" href="services-product-design.html">
-        <img class="svc-icon" src="assets/images/services/noun-sparkle-7746005.svg" alt="">
-        <span class="eyebrow">Product</span>
-        <h3 class="serif">Product Design</h3><p class="muted">Scalable component libraries and product flows for consistent, efficient UI design—from MVP to mature design system.</p>
-        <span class="btn btn-outline" style="margin-top:1.25rem">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-      </a>
-      <a class="svc-card reveal" href="services-framer-development.html">
-        <img class="svc-icon" src="assets/images/services/noun-half-circles-7745954.svg" alt="">
-        <span class="eyebrow">Build</span>
-        <h3 class="serif">Framer Development</h3><p class="muted">Interactive sites built fast without compromising quality—pixel-perfect Framer builds with smooth motion and a CMS your team can run.</p>
-        <span class="btn btn-outline" style="margin-top:1.25rem">Learn more <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
-      </a>
-  </div></div></section>
-</main>
-<div data-footer></div>
-<script src="app.js"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Services — Hatch</title>
+		<meta
+			name="description"
+			content="Brand, UX & web, product design, and Framer development for founders and teams."
+		>
+		<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+		<script>
+		try {
+			var t =
+				localStorage.getItem("hatch-theme") ||
+				(matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+			document.documentElement.classList.toggle("dark", t === "dark");
+		} catch (e) {}
+		</script>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div data-promo></div>
+		<div data-header></div>
+		<main>
+			<section class="page-hero">
+				<div class="container reveal">
+					<span class="eyebrow">Services</span>
+					<h1 class="serif">Design help, scoped the way you need it.</h1>
+					<p>
+						From a single brand sprint to an ongoing product partnership—clear
+						deliverables, honest timelines, and work that ships.
+					</p>
+				</div>
+			</section>
+			<section style="padding-top:0">
+				<div class="container">
+					<div class="svc-grid" style="margin-top:0">
+						<a class="svc-card reveal" href="services-brand-design.html">
+							<img
+								class="svc-icon"
+								src="assets/images/services/noun-star-7745963.svg"
+								alt=""
+							>
+							<span class="eyebrow">Brand</span>
+							<h3 class="serif">Brand Design</h3>
+							<p class="muted">
+								Complete visual identity systems that make your brand
+								memorable—logo, color, typography, and standards that scale
+								across web and print.
+							</p>
+							<span class="btn btn-outline" style="margin-top:1.25rem"
+								>Learn more
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14" />
+									<path d="m12 5 7 7-7 7" />
+								</svg></span
+							>
+						</a>
+						<a class="svc-card reveal" href="services-web-design-ux.html">
+							<img
+								class="svc-icon"
+								src="assets/images/services/noun-semicircles-8294628.svg"
+								alt=""
+							>
+							<span class="eyebrow">UX & Web</span>
+							<h3 class="serif">Web Design & UX</h3>
+							<p class="muted">
+								Beautiful, conversion-focused websites that feel effortless to
+								use—research-led UX, polished UI, and pages built to convert.
+							</p>
+							<span class="btn btn-outline" style="margin-top:1.25rem"
+								>Learn more
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14" />
+									<path d="m12 5 7 7-7 7" />
+								</svg></span
+							>
+						</a>
+						<a class="svc-card reveal" href="services-product-design.html">
+							<img
+								class="svc-icon"
+								src="assets/images/services/noun-sparkle-7746005.svg"
+								alt=""
+							>
+							<span class="eyebrow">Product</span>
+							<h3 class="serif">Product Design</h3>
+							<p class="muted">
+								Scalable component libraries and product flows for consistent,
+								efficient UI design—from MVP to mature design system.
+							</p>
+							<span class="btn btn-outline" style="margin-top:1.25rem"
+								>Learn more
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14" />
+									<path d="m12 5 7 7-7 7" />
+								</svg></span
+							>
+						</a>
+						<a class="svc-card reveal" href="services-framer-development.html">
+							<img
+								class="svc-icon"
+								src="assets/images/services/noun-half-circles-7745954.svg"
+								alt=""
+							>
+							<span class="eyebrow">Build</span>
+							<h3 class="serif">Framer Development</h3>
+							<p class="muted">
+								Interactive sites built fast without compromising
+								quality—pixel-perfect Framer builds with smooth motion and a CMS
+								your team can run.
+							</p>
+							<span class="btn btn-outline" style="margin-top:1.25rem"
+								>Learn more
+								<svg
+									width="16"
+									height="16"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14" />
+									<path d="m12 5 7 7-7 7" />
+								</svg></span
+							>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div data-footer></div>
+		<script src="app.js"></script>
+	</body>
 </html>

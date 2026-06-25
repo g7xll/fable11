@@ -1,261 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Pocket - Invest at the perfect time.</title>
-<meta name="description" content="By leveraging insights from our network of industry insiders, you'll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses." />
-<link rel="stylesheet" href="assets/css/tokens.css" />
-<link rel="stylesheet" href="assets/css/home.css" />
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pocket - Invest at the perfect time.</title>
+		<meta
+			name="description"
+			content="By leveraging insights from our network of industry insiders, you'll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses."
+		>
+		<link rel="stylesheet" href="assets/css/tokens.css">
+		<link rel="stylesheet" href="assets/css/home.css">
+	</head>
+	<body>
+		<!-- ===== HEADER ===== -->
+		<header class="header">
+			<nav class="container">
+				<div class="header__inner">
+					<div class="header__left">
+						<a href="index.html" class="logo" aria-label="Home">
+							<span class="logo__mark" data-logo></span>
+							<span class="logo__word">Pocket</span>
+						</a>
+						<div class="header__nav">
+							<a href="#features">Features</a>
+							<a href="#reviews">Reviews</a>
+							<a href="#pricing">Pricing</a>
+							<a href="#faqs">FAQs</a>
+						</div>
+					</div>
+					<div class="header__right">
+						<a href="login.html" class="header__login">Log in</a>
+						<a href="#" class="btn btn--dark">Download</a>
+						<div class="mobilenav">
+							<button
+								class="hamburger"
+								aria-label="Toggle site navigation"
+								aria-expanded="false"
+							>
+								<svg
+									class="bars"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								>
+									<path d="M3 6h18M3 12h18M3 18h18" />
+								</svg>
+								<svg
+									class="x"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+								>
+									<path d="M6 6l12 12M18 6L6 18" />
+								</svg>
+							</button>
+							<div class="mobilenav__backdrop"></div>
+							<div class="mobilenav__panel">
+								<a href="#features">Features</a>
+								<a href="#reviews">Reviews</a>
+								<a href="#pricing">Pricing</a>
+								<a href="#faqs">FAQs</a>
+								<hr>
+								<a href="login.html">Log in</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</header>
 
-<!-- ===== HEADER ===== -->
-<header class="header">
-  <nav class="container">
-    <div class="header__inner">
-      <div class="header__left">
-        <a href="index.html" class="logo" aria-label="Home">
-          <span class="logo__mark" data-logo></span>
-          <span class="logo__word">Pocket</span>
-        </a>
-        <div class="header__nav">
-          <a href="#features">Features</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faqs">FAQs</a>
-        </div>
-      </div>
-      <div class="header__right">
-        <a href="login.html" class="header__login">Log in</a>
-        <a href="#" class="btn btn--dark">Download</a>
-        <div class="mobilenav">
-          <button class="hamburger" aria-label="Toggle site navigation" aria-expanded="false">
-            <svg class="bars" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
-            <svg class="x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
-          </button>
-          <div class="mobilenav__backdrop"></div>
-          <div class="mobilenav__panel">
-            <a href="#features">Features</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faqs">FAQs</a>
-            <hr />
-            <a href="login.html">Log in</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </nav>
-</header>
+		<main>
+			<!-- ===== HERO ===== -->
+			<section class="hero">
+				<div class="container">
+					<div class="hero__inner">
+						<div class="hero__text">
+							<h1 class="hero__title">Invest at the perfect time.</h1>
+							<p class="hero__lead">
+								By leveraging insights from our network of industry insiders,
+								you'll know exactly when to buy to maximize profit, and exactly
+								when to sell to avoid painful losses.
+							</p>
+							<div class="hero__cta">
+								<a
+									href="#"
+									class="appstore"
+									aria-label="Download on the App Store"
+								>
+									<svg viewBox="0 0 24 24" fill="currentColor">
+										<path
+											d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"
+										/>
+									</svg>
+									<span class="appstore__txt"
+										><small>Download on the</small
+										><strong>App Store</strong></span
+									>
+								</a>
+								<a
+									href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+									class="watch"
+								>
+									<svg viewBox="0 0 24 24" fill="none">
+										<circle
+											cx="12"
+											cy="12"
+											r="11"
+											stroke="currentColor"
+											stroke-width="1.5"
+										/>
+										<path
+											d="M9.75 15.02V8.98a.5.5 0 0 1 .76-.43l5.04 3.02a.5.5 0 0 1 0 .86l-5.04 3.02a.5.5 0 0 1-.76-.43z"
+											fill="currentColor"
+										/>
+									</svg>
+									Watch the video
+								</a>
+							</div>
+							<div class="hero__logos">
+								<p>As featured in</p>
+								<ul class="logo-cloud" data-logos></ul>
+							</div>
+						</div>
+						<div class="hero__phone">
+							<svg
+								class="bg-illus"
+								viewBox="0 0 1026 1026"
+								fill="none"
+								aria-hidden="true"
+								data-bgillus
+							></svg>
+							<div class="phone-wrap">
+								<div class="phone">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="demo"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 
-<main>
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="container">
-    <div class="hero__inner">
-      <div class="hero__text">
-        <h1 class="hero__title">Invest at the perfect time.</h1>
-        <p class="hero__lead">By leveraging insights from our network of industry insiders, you'll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses.</p>
-        <div class="hero__cta">
-          <a href="#" class="appstore" aria-label="Download on the App Store">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"/></svg>
-            <span class="appstore__txt"><small>Download on the</small><strong>App Store</strong></span>
-          </a>
-          <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="watch">
-            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" stroke="currentColor" stroke-width="1.5"/><path d="M9.75 15.02V8.98a.5.5 0 0 1 .76-.43l5.04 3.02a.5.5 0 0 1 0 .86l-5.04 3.02a.5.5 0 0 1-.76-.43z" fill="currentColor"/></svg>
-            Watch the video
-          </a>
-        </div>
-        <div class="hero__logos">
-          <p>As featured in</p>
-          <ul class="logo-cloud" data-logos></ul>
-        </div>
-      </div>
-      <div class="hero__phone">
-        <svg class="bg-illus" viewBox="0 0 1026 1026" fill="none" aria-hidden="true" data-bgillus></svg>
-        <div class="phone-wrap">
-          <div class="phone">
-            <img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" />
-            <div class="phone__screen" data-screen="demo"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+			<!-- ===== PRIMARY FEATURES ===== -->
+			<section id="features" class="pfeat section reveal">
+				<div class="container">
+					<div class="pfeat__head">
+						<h2>Every feature you need to win. Try it for yourself.</h2>
+						<p>
+							Pocket was built for investors like you who play by their own
+							rules and aren't going to let SEC regulations get in the way of
+							their dreams. If other investing tools are afraid to build it,
+							Pocket has it.
+						</p>
+					</div>
 
-<!-- ===== PRIMARY FEATURES ===== -->
-<section id="features" class="pfeat section reveal">
-  <div class="container">
-    <div class="pfeat__head">
-      <h2>Every feature you need to win. Try it for yourself.</h2>
-      <p>Pocket was built for investors like you who play by their own rules and aren't going to let SEC regulations get in the way of their dreams. If other investing tools are afraid to build it, Pocket has it.</p>
-    </div>
+					<!-- desktop -->
+					<div class="pfeat__grid">
+						<div class="pfeat__phone">
+							<svg
+								class="bg-illus"
+								viewBox="0 0 1026 1026"
+								fill="none"
+								aria-hidden="true"
+								data-bgillus
+							></svg>
+							<div class="pfeat__screens phone-wrap">
+								<div class="phone pfeat__screen active" data-feat="0">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="invite"></div>
+								</div>
+								<div class="phone pfeat__screen" data-feat="1">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="stocks"></div>
+								</div>
+								<div class="phone pfeat__screen" data-feat="2">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="invest"></div>
+								</div>
+							</div>
+						</div>
+						<div class="pfeat__tabs" role="tablist">
+							<button
+								class="pfeat__tab"
+								role="tab"
+								aria-selected="true"
+								data-tab="0"
+							>
+								<svg
+									class="ficon"
+									viewBox="0 0 32 32"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<rect x="9" y="2" width="14" height="28" rx="3" />
+									<path d="M13 26h6" />
+								</svg>
+								<h3>Invite friends for better returns</h3>
+								<p>
+									For every friend you invite to Pocket, you get insider
+									notifications 5 seconds sooner. And it's 10 seconds if you
+									invite an insider.
+								</p>
+							</button>
+							<button
+								class="pfeat__tab"
+								role="tab"
+								aria-selected="false"
+								data-tab="1"
+							>
+								<svg
+									class="ficon"
+									viewBox="0 0 32 32"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<rect x="8" y="2" width="16" height="28" rx="3" />
+								</svg>
+								<h3>Notifications on stock dips</h3>
+								<p>
+									Get a push notification every time we find out something
+									that's going to lower the share price on your holdings so you
+									can sell before the information hits the public markets.
+								</p>
+							</button>
+							<button
+								class="pfeat__tab"
+								role="tab"
+								aria-selected="false"
+								data-tab="2"
+							>
+								<svg
+									class="ficon"
+									viewBox="0 0 32 32"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<rect x="6" y="4" width="14" height="24" rx="3" />
+									<path d="M24 10v12" />
+								</svg>
+								<h3>Invest what you want</h3>
+								<p>
+									We hide your stock purchases behind thousands of anonymous
+									trading accounts, so suspicious activity can never be traced
+									back to you.
+								</p>
+							</button>
+						</div>
+					</div>
 
-    <!-- desktop -->
-    <div class="pfeat__grid">
-      <div class="pfeat__phone">
-        <svg class="bg-illus" viewBox="0 0 1026 1026" fill="none" aria-hidden="true" data-bgillus></svg>
-        <div class="pfeat__screens phone-wrap">
-          <div class="phone pfeat__screen active" data-feat="0"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="invite"></div></div>
-          <div class="phone pfeat__screen" data-feat="1"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="stocks"></div></div>
-          <div class="phone pfeat__screen" data-feat="2"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="invest"></div></div>
-        </div>
-      </div>
-      <div class="pfeat__tabs" role="tablist">
-        <button class="pfeat__tab" role="tab" aria-selected="true" data-tab="0">
-          <svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="14" height="28" rx="3"/><path d="M13 26h6"/></svg>
-          <h3>Invite friends for better returns</h3>
-          <p>For every friend you invite to Pocket, you get insider notifications 5 seconds sooner. And it's 10 seconds if you invite an insider.</p>
-        </button>
-        <button class="pfeat__tab" role="tab" aria-selected="false" data-tab="1">
-          <svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="16" height="28" rx="3"/></svg>
-          <h3>Notifications on stock dips</h3>
-          <p>Get a push notification every time we find out something that's going to lower the share price on your holdings so you can sell before the information hits the public markets.</p>
-        </button>
-        <button class="pfeat__tab" role="tab" aria-selected="false" data-tab="2">
-          <svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="14" height="24" rx="3"/><path d="M24 10v12"/></svg>
-          <h3>Invest what you want</h3>
-          <p>We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.</p>
-        </button>
-      </div>
-    </div>
+					<!-- mobile -->
+					<div class="pfeat__carousel">
+						<div class="pfeat__slides">
+							<div class="pfeat__slide">
+								<div class="card">
+									<svg
+										class="ficon"
+										viewBox="0 0 32 32"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<rect x="9" y="2" width="14" height="28" rx="3" />
+										<path d="M13 26h6" />
+									</svg>
+									<h3>Invite friends for better returns</h3>
+									<p>
+										For every friend you invite to Pocket, you get insider
+										notifications 5 seconds sooner. And it's 10 seconds if you
+										invite an insider.
+									</p>
+								</div>
+								<div class="phone">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="invite"></div>
+								</div>
+							</div>
+							<div class="pfeat__slide">
+								<div class="card">
+									<svg
+										class="ficon"
+										viewBox="0 0 32 32"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<rect x="8" y="2" width="16" height="28" rx="3" />
+									</svg>
+									<h3>Notifications on stock dips</h3>
+									<p>
+										Get a push notification every time we find out something
+										that's going to lower the share price on your holdings so
+										you can sell before the information hits the public markets.
+									</p>
+								</div>
+								<div class="phone">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="stocks"></div>
+								</div>
+							</div>
+							<div class="pfeat__slide">
+								<div class="card">
+									<svg
+										class="ficon"
+										viewBox="0 0 32 32"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<rect x="6" y="4" width="14" height="24" rx="3" />
+										<path d="M24 10v12" />
+									</svg>
+									<h3>Invest what you want</h3>
+									<p>
+										We hide your stock purchases behind thousands of anonymous
+										trading accounts, so suspicious activity can never be traced
+										back to you.
+									</p>
+								</div>
+								<div class="phone">
+									<img
+										class="phone__frame"
+										src="assets/img/phone-frame.svg"
+										alt=""
+										aria-hidden="true"
+									>
+									<div class="phone__screen" data-screen="invest"></div>
+								</div>
+							</div>
+						</div>
+						<div class="pfeat__dots">
+							<button
+								class="on"
+								data-dot="0"
+								aria-label="Go to slide 1"
+							></button>
+							<button data-dot="1" aria-label="Go to slide 2"></button>
+							<button data-dot="2" aria-label="Go to slide 3"></button>
+						</div>
+					</div>
+				</div>
+			</section>
 
-    <!-- mobile -->
-    <div class="pfeat__carousel">
-      <div class="pfeat__slides">
-        <div class="pfeat__slide">
-          <div class="card"><svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="2" width="14" height="28" rx="3"/><path d="M13 26h6"/></svg><h3>Invite friends for better returns</h3><p>For every friend you invite to Pocket, you get insider notifications 5 seconds sooner. And it's 10 seconds if you invite an insider.</p></div>
-          <div class="phone"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="invite"></div></div>
-        </div>
-        <div class="pfeat__slide">
-          <div class="card"><svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="2" width="16" height="28" rx="3"/></svg><h3>Notifications on stock dips</h3><p>Get a push notification every time we find out something that's going to lower the share price on your holdings so you can sell before the information hits the public markets.</p></div>
-          <div class="phone"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="stocks"></div></div>
-        </div>
-        <div class="pfeat__slide">
-          <div class="card"><svg class="ficon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="4" width="14" height="24" rx="3"/><path d="M24 10v12"/></svg><h3>Invest what you want</h3><p>We hide your stock purchases behind thousands of anonymous trading accounts, so suspicious activity can never be traced back to you.</p></div>
-          <div class="phone"><img class="phone__frame" src="assets/img/phone-frame.svg" alt="" aria-hidden="true" /><div class="phone__screen" data-screen="invest"></div></div>
-        </div>
-      </div>
-      <div class="pfeat__dots">
-        <button class="on" data-dot="0" aria-label="Go to slide 1"></button>
-        <button data-dot="1" aria-label="Go to slide 2"></button>
-        <button data-dot="2" aria-label="Go to slide 3"></button>
-      </div>
-    </div>
-  </div>
-</section>
+			<!-- ===== SECONDARY FEATURES ===== -->
+			<section class="sfeat section reveal">
+				<div class="container">
+					<div class="sfeat__head">
+						<h2>Now is the time to build your portfolio.</h2>
+						<p>
+							With typical market returns, you have to start young to secure
+							your future. With Pocket, it's never too late to build your nest
+							egg.
+						</p>
+					</div>
+					<ul class="sfeat__grid" data-sfeat></ul>
+				</div>
+			</section>
 
-<!-- ===== SECONDARY FEATURES ===== -->
-<section class="sfeat section reveal">
-  <div class="container">
-    <div class="sfeat__head">
-      <h2>Now is the time to build your portfolio.</h2>
-      <p>With typical market returns, you have to start young to secure your future. With Pocket, it's never too late to build your nest egg.</p>
-    </div>
-    <ul class="sfeat__grid" data-sfeat></ul>
-  </div>
-</section>
+			<!-- ===== CTA ===== -->
+			<section class="cta section reveal">
+				<div class="container">
+					<h2>Get your first tips today</h2>
+					<p>
+						It takes 30 seconds to sign up. Download the app and create an
+						account today and we'll send you a tip guaranteed to double your
+						first investment.
+					</p>
+					<div class="cta__btn">
+						<a href="#" class="appstore" aria-label="Download the app">
+							<svg viewBox="0 0 24 24" fill="currentColor">
+								<path
+									d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"
+								/>
+							</svg>
+							<span class="appstore__txt"
+								><small>Download the</small><strong>app</strong></span
+							>
+						</a>
+					</div>
+				</div>
+			</section>
 
-<!-- ===== CTA ===== -->
-<section class="cta section reveal">
-  <div class="container">
-    <h2>Get your first tips today</h2>
-    <p>It takes 30 seconds to sign up. Download the app and create an account today and we'll send you a tip guaranteed to double your first investment.</p>
-    <div class="cta__btn">
-      <a href="#" class="appstore" aria-label="Download the app">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"/></svg>
-        <span class="appstore__txt"><small>Download the</small><strong>app</strong></span>
-      </a>
-    </div>
-  </div>
-</section>
+			<!-- ===== REVIEWS ===== -->
+			<section id="reviews" class="reviews section reveal">
+				<div class="container">
+					<div class="reviews__head">
+						<h2>Everyone is changing their life with Pocket.</h2>
+						<p>
+							Thousands of people have doubled their net-worth in the last 30
+							days.
+						</p>
+					</div>
+					<div class="reviews__cols" data-reviews></div>
+				</div>
+			</section>
 
-<!-- ===== REVIEWS ===== -->
-<section id="reviews" class="reviews section reveal">
-  <div class="container">
-    <div class="reviews__head">
-      <h2>Everyone is changing their life with Pocket.</h2>
-      <p>Thousands of people have doubled their net-worth in the last 30 days.</p>
-    </div>
-    <div class="reviews__cols" data-reviews></div>
-  </div>
-</section>
+			<!-- ===== PRICING ===== -->
+			<section id="pricing" class="pricing section reveal">
+				<div class="container">
+					<div class="pricing__head">
+						<h2>Flat pricing, no management fees.</h2>
+						<p>
+							Whether you're one person trying to get ahead or a big firm trying
+							to take over the world, we've got a plan for you.
+						</p>
+					</div>
+					<div class="toggle__wrap">
+						<div class="toggle" data-period="monthly" role="radiogroup">
+							<span class="toggle__pill"></span>
+							<button
+								role="radio"
+								aria-checked="true"
+								data-period-btn="monthly"
+							>
+								Monthly
+							</button>
+							<button
+								role="radio"
+								aria-checked="false"
+								data-period-btn="annually"
+							>
+								Annually
+							</button>
+						</div>
+					</div>
+					<div class="plans" data-plans></div>
+				</div>
+			</section>
 
-<!-- ===== PRICING ===== -->
-<section id="pricing" class="pricing section reveal">
-  <div class="container">
-    <div class="pricing__head">
-      <h2>Flat pricing, no management fees.</h2>
-      <p>Whether you're one person trying to get ahead or a big firm trying to take over the world, we've got a plan for you.</p>
-    </div>
-    <div class="toggle__wrap">
-      <div class="toggle" data-period="monthly" role="radiogroup">
-        <span class="toggle__pill"></span>
-        <button role="radio" aria-checked="true" data-period-btn="monthly">Monthly</button>
-        <button role="radio" aria-checked="false" data-period-btn="annually">Annually</button>
-      </div>
-    </div>
-    <div class="plans" data-plans></div>
-  </div>
-</section>
+			<!-- ===== FAQS ===== -->
+			<section id="faqs" class="faqs section reveal">
+				<div class="container">
+					<div class="faqs__head">
+						<h2>Frequently asked questions</h2>
+						<p>
+							If you have anything else you want to ask,
+							<a href="mailto:info@example.com">reach out to us</a>.
+						</p>
+					</div>
+					<div class="faqs__grid" data-faqs></div>
+				</div>
+			</section>
+		</main>
 
-<!-- ===== FAQS ===== -->
-<section id="faqs" class="faqs section reveal">
-  <div class="container">
-    <div class="faqs__head">
-      <h2>Frequently asked questions</h2>
-      <p>If you have anything else you want to ask, <a href="mailto:info@example.com">reach out to us</a>.</p>
-    </div>
-    <div class="faqs__grid" data-faqs></div>
-  </div>
-</section>
-</main>
+		<!-- ===== FOOTER ===== -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer__top">
+					<div class="footer__cols">
+						<div>
+							<a href="index.html" class="logo" aria-label="Home"
+								><span class="logo__mark" data-logo></span
+								><span class="logo__word">Pocket</span></a
+							>
+							<p class="footer__tagline">Invest at the perfect time.</p>
+							<nav class="footer__nav" style="margin-top:1.5rem">
+								<a href="#features">Features</a>
+								<a href="#reviews">Reviews</a>
+								<a href="#pricing">Pricing</a>
+								<a href="#faqs">FAQs</a>
+							</nav>
+						</div>
+						<div class="qr-card">
+							<img
+								src="assets/img/qr-code.svg"
+								alt="QR code to download the app"
+							>
+							<div>
+								<p style="font-weight:600;color:var(--gray-900)">
+									Download the app
+								</p>
+								<p>Scan the QR code to download the app from the App Store.</p>
+							</div>
+						</div>
+						<div class="newsletter">
+							<h3>Join our newsletter</h3>
+							<p>We'll send you a nice letter once per week. No spam.</p>
+							<form class="newsletter__form" onsubmit="return false">
+								<input
+									type="email"
+									aria-label="Email address"
+									placeholder="Email address"
+								>
+								<button type="submit" aria-label="Join newsletter">
+									<svg
+										viewBox="0 0 16 16"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+									>
+										<path d="M3 8h10M9 4l4 4-4 4" />
+									</svg>
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="footer__bottom">
+					<p class="footer__copy">© Copyright 2026. All rights reserved.</p>
+					<div class="footer__badges">
+						<a href="#" class="appstore" aria-label="Download on the App Store">
+							<svg viewBox="0 0 24 24" fill="currentColor">
+								<path
+									d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"
+								/>
+							</svg>
+							<span class="appstore__txt"
+								><small>Download on the</small><strong>App Store</strong></span
+							>
+						</a>
+					</div>
+				</div>
+			</div>
+		</footer>
 
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__top">
-      <div class="footer__cols">
-        <div>
-          <a href="index.html" class="logo" aria-label="Home"><span class="logo__mark" data-logo></span><span class="logo__word">Pocket</span></a>
-          <p class="footer__tagline">Invest at the perfect time.</p>
-          <nav class="footer__nav" style="margin-top:1.5rem">
-            <a href="#features">Features</a>
-            <a href="#reviews">Reviews</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faqs">FAQs</a>
-          </nav>
-        </div>
-        <div class="qr-card">
-          <img src="assets/img/qr-code.svg" alt="QR code to download the app" />
-          <div><p style="font-weight:600;color:var(--gray-900)">Download the app</p><p>Scan the QR code to download the app from the App Store.</p></div>
-        </div>
-        <div class="newsletter">
-          <h3>Join our newsletter</h3>
-          <p>We'll send you a nice letter once per week. No spam.</p>
-          <form class="newsletter__form" onsubmit="return false">
-            <input type="email" aria-label="Email address" placeholder="Email address" />
-            <button type="submit" aria-label="Join newsletter">
-              <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <p class="footer__copy">© Copyright 2026. All rights reserved.</p>
-      <div class="footer__badges">
-        <a href="#" class="appstore" aria-label="Download on the App Store">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 1.43c0 1.14-.493 2.27-1.177 3.08-.744.9-1.99 1.57-2.987 1.57-.12 0-.23-.02-.3-.03-.01-.06-.04-.22-.04-.39 0-1.15.572-2.27 1.206-2.98.804-.94 2.142-1.64 3.248-1.68.03.13.05.28.05.43zm4.565 15.71c-.03.07-.463 1.58-1.518 3.12-.945 1.34-1.94 2.71-3.43 2.71-1.517 0-1.9-.88-3.63-.88-1.698 0-2.302.91-3.67.91-1.377 0-2.332-1.26-3.428-2.8-1.287-1.82-2.323-4.63-2.323-7.28 0-4.28 2.797-6.55 5.552-6.55 1.448 0 2.675.95 3.6.95.865 0 2.222-1.01 3.902-1.01.613 0 2.886.06 4.374 2.19-.13.09-2.383 1.37-2.383 4.19 0 3.26 2.854 4.42 2.984 4.46z"/></svg>
-          <span class="appstore__txt"><small>Download on the</small><strong>App Store</strong></span>
-        </a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script src="assets/js/main.js"></script>
-</body>
+		<script src="assets/js/main.js"></script>
+	</body>
 </html>
