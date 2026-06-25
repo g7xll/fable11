@@ -1,31 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Building Scalable Design Systems with React and Tailwind | Dillion Verma</title>
-<link rel="icon" href="./assets/img/me.png" />
-<link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-<main>
-  <article class="post-page">
-    <a class="back-link blur-fade" href="./blog.html"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to blog</a>
-    <h1 class="blur-fade" data-delay="0.04">Building Scalable Design Systems with React and Tailwind</h1>
-    <div class="post-meta blur-fade" data-delay="0.06">2024-12-01</div>
-    <div class="prose blur-fade" data-delay="0.08"><p>Design systems are the backbone of consistent user interfaces. Here's how to build one that scales.</p>
-<h2>Why Design Systems Matter</h2>
-<p>A well-crafted design system provides:</p>
-<ul>
-<li><strong>Consistency</strong> across all products</li>
-<li><strong>Faster development</strong> with reusable components</li>
-<li><strong>Better collaboration</strong> between designers and developers</li>
-<li><strong>Reduced technical debt</strong> over time</li>
-</ul>
-<h2>Core Principles</h2>
-<h3>1. Start with Tokens</h3>
-<p>Design tokens are the atomic values of your system:</p>
-<div class="group relative rounded-xl overflow-hidden border border-border"><pre class="p-0! m-0! overflow-x-auto"><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">tokens.ts</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-typescript"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> tokens</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			Building Scalable Design Systems with React and Tailwind | Dillion Verma
+		</title>
+		<link rel="icon" href="./assets/img/me.png">
+		<link rel="stylesheet" href="./styles.css">
+	</head>
+	<body>
+		<main>
+			<article class="post-page">
+				<a class="back-link blur-fade" href="./blog.html"
+					><svg
+						viewBox="0 0 24 24"
+						width="14"
+						height="14"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<line x1="19" y1="12" x2="5" y2="12" />
+						<polyline points="12 19 5 12 12 5" />
+					</svg>
+					Back to blog</a
+				>
+				<h1 class="blur-fade" data-delay="0.04">
+					Building Scalable Design Systems with React and Tailwind
+				</h1>
+				<div class="post-meta blur-fade" data-delay="0.06">2024-12-01</div>
+				<div class="prose blur-fade" data-delay="0.08">
+					<p>
+						Design systems are the backbone of consistent user interfaces.
+						Here's how to build one that scales.
+					</p>
+					<h2>Why Design Systems Matter</h2>
+					<p>A well-crafted design system provides:</p>
+					<ul>
+						<li><strong>Consistency</strong> across all products</li>
+						<li>
+							<strong>Faster development</strong>
+							with reusable components
+						</li>
+						<li>
+							<strong>Better collaboration</strong>
+							between designers and developers
+						</li>
+						<li><strong>Reduced technical debt</strong> over time</li>
+					</ul>
+					<h2>Core Principles</h2>
+					<h3>1. Start with Tokens</h3>
+					<p>Design tokens are the atomic values of your system:</p>
+					<div
+						class="group relative rounded-xl overflow-hidden border border-border"
+					>
+						<pre
+							class="p-0! m-0! overflow-x-auto"
+						><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">tokens.ts</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-typescript"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> tokens</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  colors: {</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    primary: {</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">      50</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'#eff6ff'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
@@ -52,10 +86,16 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    full: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">'9999px'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  },</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">} </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">as</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> const</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
-<span class="line"></span></code></div></pre></div>
-<h3>2. Build Primitive Components</h3>
-<p>Start with the basics:</p>
-<div class="group relative rounded-xl overflow-hidden border border-border"><pre class="p-0! m-0! overflow-x-auto"><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">Button.tsx</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-tsx"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { cva, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> VariantProps } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "class-variance-authority"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+<span class="line"></span></code></div></pre>
+					</div>
+					<h3>2. Build Primitive Components</h3>
+					<p>Start with the basics:</p>
+					<div
+						class="group relative rounded-xl overflow-hidden border border-border"
+					>
+						<pre
+							class="p-0! m-0! overflow-x-auto"
+						><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">Button.tsx</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-tsx"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> { cva, </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">type</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> VariantProps } </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> "class-variance-authority"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">const</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF"> buttonVariants</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> =</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> cva</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">(</span></span>
 <span class="line"><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">  "inline-flex items-center justify-center rounded-md font-medium transition-colors"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
@@ -88,23 +128,71 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    &lt;</span><span style="--shiki-light:#22863A;--shiki-dark:#85E89D">button</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> className</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">buttonVariants</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">({ variant, size, className })} {</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">...</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">props} /&gt;</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  );</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
-<span class="line"></span></code></div></pre></div>
-<h2>Component Composition</h2>
-<p>Build complex components from primitives:</p>
-<div class="my-6 border border-border rounded-xl overflow-hidden"><div class="w-full overflow-x-auto"><table class="m-0! w-full min-w-full border-separate border-spacing-0"><thead><tr><th>Level</th><th>Examples</th><th>Purpose</th></tr></thead><tbody><tr><td>Tokens</td><td>Colors, spacing, typography</td><td>Foundation</td></tr><tr><td>Primitives</td><td>Button, Input, Badge</td><td>Building blocks</td></tr><tr><td>Patterns</td><td>Card, Modal, Dropdown</td><td>Common UI patterns</td></tr><tr><td>Templates</td><td>PageHeader, Sidebar</td><td>Layout structures</td></tr></tbody></table></div></div>
-<h2>Documentation is Key</h2>
-<blockquote>
-<p>"A design system without documentation is just a component library."</p>
-</blockquote>
-<p>Every component should include:</p>
-<ol>
-<li><strong>Usage examples</strong> - Show common use cases</li>
-<li><strong>Props documentation</strong> - Explain all options</li>
-<li><strong>Accessibility notes</strong> - ARIA labels, keyboard nav</li>
-<li><strong>Do's and Don'ts</strong> - Guide proper usage</li>
-</ol>
-<h2>Versioning Strategy</h2>
-<div class="group relative rounded-xl overflow-hidden border border-border"><pre class="p-0! m-0! overflow-x-auto"><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">package.json</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-json"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
+<span class="line"></span></code></div></pre>
+					</div>
+					<h2>Component Composition</h2>
+					<p>Build complex components from primitives:</p>
+					<div class="my-6 border border-border rounded-xl overflow-hidden">
+						<div class="w-full overflow-x-auto">
+							<table
+								class="m-0! w-full min-w-full border-separate border-spacing-0"
+							>
+								<thead>
+									<tr>
+										<th>Level</th>
+										<th>Examples</th>
+										<th>Purpose</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Tokens</td>
+										<td>Colors, spacing, typography</td>
+										<td>Foundation</td>
+									</tr>
+									<tr>
+										<td>Primitives</td>
+										<td>Button, Input, Badge</td>
+										<td>Building blocks</td>
+									</tr>
+									<tr>
+										<td>Patterns</td>
+										<td>Card, Modal, Dropdown</td>
+										<td>Common UI patterns</td>
+									</tr>
+									<tr>
+										<td>Templates</td>
+										<td>PageHeader, Sidebar</td>
+										<td>Layout structures</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<h2>Documentation is Key</h2>
+					<blockquote>
+						<p>
+							"A design system without documentation is just a component
+							library."
+						</p>
+					</blockquote>
+					<p>Every component should include:</p>
+					<ol>
+						<li><strong>Usage examples</strong> - Show common use cases</li>
+						<li><strong>Props documentation</strong> - Explain all options</li>
+						<li>
+							<strong>Accessibility notes</strong>
+							- ARIA labels, keyboard nav
+						</li>
+						<li><strong>Do's and Don'ts</strong> - Guide proper usage</li>
+					</ol>
+					<h2>Versioning Strategy</h2>
+					<div
+						class="group relative rounded-xl overflow-hidden border border-border"
+					>
+						<pre
+							class="p-0! m-0! overflow-x-auto"
+						><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">package.json</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-json"><span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">{</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "name"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"@company/design-system"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "version"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"2.1.0"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">,</span></span>
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">  "peerDependencies"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: {</span></span>
@@ -112,27 +200,38 @@
 <span class="line"><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF">    "tailwindcss"</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">"^3.0.0"</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  }</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
-<span class="line"></span></code></div></pre></div>
-<p>Use semantic versioning:</p>
-<ul>
-<li><strong>Major</strong>: Breaking changes</li>
-<li><strong>Minor</strong>: New features (backward compatible)</li>
-<li><strong>Patch</strong>: Bug fixes</li>
-</ul>
-<h2>Conclusion</h2>
-<p>Building a design system is an investment that pays dividends in:</p>
-<ul>
-<li>Developer productivity</li>
-<li>Design consistency</li>
-<li>User experience</li>
-<li>Team collaboration</li>
-</ul>
-<p>Start small, iterate often, and document everything.</p></div>
-    <div class="next-nav blur-fade"><a class="next-card" href="./blog-remote-work-productivity.html"><div class="lbl">Next</div><div class="ttl">Mastering Remote Work: Productivity Tips from a Digital Nomad</div></a></div>
-  </article>
-</main>
-<div id="dock-mount"></div>
-<script src="./dock.js"></script>
-<script src="./script.js"></script>
-</body>
+<span class="line"></span></code></div></pre>
+					</div>
+					<p>Use semantic versioning:</p>
+					<ul>
+						<li><strong>Major</strong>: Breaking changes</li>
+						<li><strong>Minor</strong>: New features (backward compatible)</li>
+						<li><strong>Patch</strong>: Bug fixes</li>
+					</ul>
+					<h2>Conclusion</h2>
+					<p>
+						Building a design system is an investment that pays dividends in:
+					</p>
+					<ul>
+						<li>Developer productivity</li>
+						<li>Design consistency</li>
+						<li>User experience</li>
+						<li>Team collaboration</li>
+					</ul>
+					<p>Start small, iterate often, and document everything.</p>
+				</div>
+				<div class="next-nav blur-fade">
+					<a class="next-card" href="./blog-remote-work-productivity.html"
+						><div class="lbl">Next</div>
+						<div class="ttl">
+							Mastering Remote Work: Productivity Tips from a Digital Nomad
+						</div></a
+					>
+				</div>
+			</article>
+		</main>
+		<div id="dock-mount"></div>
+		<script src="./dock.js"></script>
+		<script src="./script.js"></script>
+	</body>
 </html>

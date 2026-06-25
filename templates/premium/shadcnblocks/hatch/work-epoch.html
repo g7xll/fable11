@@ -1,63 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Epoch — Hatch</title>
-<meta name="description" content="Brand and digital launch for a premium everyday watch—positioning, D2C site, and campaign visuals I art-directed alongside the founder.">
-<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<script>try{var t=localStorage.getItem('hatch-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light');document.documentElement.classList.toggle('dark',t==='dark')}catch(e){}</script>
-<link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<div data-promo></div>
-<div data-header></div>
-<main>
-  <section class="page-hero"><div class="container reveal">
-    <a class="btn btn-outline" href="work.html" style="margin-bottom:2rem"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Back</a>
-    <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap">
-      <h1 class="serif">Epoch</h1>
-      <a class="btn btn-primary" href="contact.html">View live <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    </div>
-    <p style="margin-top:1.25rem">Brand and digital launch for a premium everyday watch—positioning, D2C site, and campaign visuals I art-directed alongside the founder.</p>
-    <div class="meta-row">
-      <div class="item"><div class="k">Role</div><div class="v">Freelance Brand & Product Designer</div></div>
-      <div class="item"><div class="k">Timeline</div><div class="v">6 weeks</div></div>
-      <div class="item"><div class="k">Focus</div><div class="v">Watch, D2C, Launch</div></div>
-    </div>
-  </div></section>
-  <section style="padding-top:0"><div class="container reveal">
-    <img class="cover-img" src="assets/images/work/epoch-cover.jpg" alt="Epoch cover">
-  </div></section>
-  <section style="padding-top:0"><div class="container">
-    <div class="prose reveal">
-      <h2 class="serif">The Challenge</h2><p>The founder had a beautiful watch prototype and studio photography, but no coherent story: the brand felt generic next to other microbrands, and the first site draft read like a spec sheet. They needed a premium-but-approachable voice, a clear “why now,” and a digital experience that matched the tactility of the product.</p>
-      <h2 class="serif">What I Did</h2><p>I led positioning workshops, locked the name Epoch, and built a visual system around soft metallics and confident whitespace—not loud, but memorable. I designed the full D2C flow (home, product, story, checkout-adjacent trust blocks) and wrote art-direction notes so their photographer and dev partner could ship a cohesive launch.</p>
-    </div>
-    <div class="gallery reveal">
-      <img src="assets/images/work/epoch-gallery-1.jpg" alt="Epoch gallery 1">
-      <img src="assets/images/work/epoch-gallery-2.jpg" alt="Epoch gallery 2">
-    </div>
-  </div></section>
-  <section class="process"><div class="container">
-    <div class="section-head reveal"><span class="eyebrow">More work</span><h2 class="serif">Keep exploring.</h2></div>
-    <div class="work-grid" style="margin-top:2.5rem">
-      <a class="work-card reveal" href="work-cove.html">
-        <div class="thumb"><img src="assets/images/work/cove-cover.jpg" alt="Cove"><div class="overlay"><span>View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></div></div>
-        <h3 class="serif">Cove</h3><p>Packaging and Shopify visuals for a small-batch organic coconut oil brand—earthy, trustworthy, and shelf-ready without looking like every other jar on the aisle.</p>
-      </a>
-      <a class="work-card reveal" href="work-ripple.html">
-        <div class="thumb"><img src="assets/images/work/ripple-cover.jpg" alt="Ripple"><div class="overlay"><span>View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></div></div>
-        <h3 class="serif">Ripple</h3><p>Brand world for a low-ABV sparkling spritzer—label system, flavor architecture, and a launch site that feels like summer without looking like soda.</p>
-      </a>
-      <a class="work-card reveal" href="work-pace.html">
-        <div class="thumb"><img src="assets/images/work/pace-cover.jpg" alt="Pace"><div class="overlay"><span>View project <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></div></div>
-        <h3 class="serif">Pace</h3><p>Identity and campaign landing for an independent running shoe—performance story, lookbook structure, and web UI that sells emotion as much as tech.</p>
-      </a>
-    </div>
-  </div></section>
-</main>
-<div data-footer></div>
-<script src="app.js"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Epoch — Hatch</title>
+		<meta
+			name="description"
+			content="Brand and digital launch for a premium everyday watch—positioning, D2C site, and campaign visuals I art-directed alongside the founder."
+		>
+		<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+		<script>
+		try {
+			var t =
+				localStorage.getItem("hatch-theme") ||
+				(matchMedia("(prefers-color-scheme:dark)").matches ? "dark" : "light");
+			document.documentElement.classList.toggle("dark", t === "dark");
+		} catch (e) {}
+		</script>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<div data-promo></div>
+		<div data-header></div>
+		<main>
+			<section class="page-hero">
+				<div class="container reveal">
+					<a class="btn btn-outline" href="work.html" style="margin-bottom:2rem"
+						><svg
+							width="16"
+							height="16"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="m12 19-7-7 7-7" />
+							<path d="M19 12H5" />
+						</svg>
+						Back</a
+					>
+					<div
+						style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap"
+					>
+						<h1 class="serif">Epoch</h1>
+						<a class="btn btn-primary" href="contact.html"
+							>View live
+							<svg
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M5 12h14" />
+								<path d="m12 5 7 7-7 7" />
+							</svg></a
+						>
+					</div>
+					<p style="margin-top:1.25rem">
+						Brand and digital launch for a premium everyday watch—positioning,
+						D2C site, and campaign visuals I art-directed alongside the founder.
+					</p>
+					<div class="meta-row">
+						<div class="item">
+							<div class="k">Role</div>
+							<div class="v">Freelance Brand & Product Designer</div>
+						</div>
+						<div class="item">
+							<div class="k">Timeline</div>
+							<div class="v">6 weeks</div>
+						</div>
+						<div class="item">
+							<div class="k">Focus</div>
+							<div class="v">Watch, D2C, Launch</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section style="padding-top:0">
+				<div class="container reveal">
+					<img
+						class="cover-img"
+						src="assets/images/work/epoch-cover.jpg"
+						alt="Epoch cover"
+					>
+				</div>
+			</section>
+			<section style="padding-top:0">
+				<div class="container">
+					<div class="prose reveal">
+						<h2 class="serif">The Challenge</h2>
+						<p>
+							The founder had a beautiful watch prototype and studio
+							photography, but no coherent story: the brand felt generic next to
+							other microbrands, and the first site draft read like a spec
+							sheet. They needed a premium-but-approachable voice, a clear “why
+							now,” and a digital experience that matched the tactility of the
+							product.
+						</p>
+						<h2 class="serif">What I Did</h2>
+						<p>
+							I led positioning workshops, locked the name Epoch, and built a
+							visual system around soft metallics and confident whitespace—not
+							loud, but memorable. I designed the full D2C flow (home, product,
+							story, checkout-adjacent trust blocks) and wrote art-direction
+							notes so their photographer and dev partner could ship a cohesive
+							launch.
+						</p>
+					</div>
+					<div class="gallery reveal">
+						<img
+							src="assets/images/work/epoch-gallery-1.jpg"
+							alt="Epoch gallery 1"
+						>
+						<img
+							src="assets/images/work/epoch-gallery-2.jpg"
+							alt="Epoch gallery 2"
+						>
+					</div>
+				</div>
+			</section>
+			<section class="process">
+				<div class="container">
+					<div class="section-head reveal">
+						<span class="eyebrow">More work</span>
+						<h2 class="serif">Keep exploring.</h2>
+					</div>
+					<div class="work-grid" style="margin-top:2.5rem">
+						<a class="work-card reveal" href="work-cove.html">
+							<div class="thumb">
+								<img src="assets/images/work/cove-cover.jpg" alt="Cove">
+								<div class="overlay">
+									<span
+										>View project
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<path d="M5 12h14" />
+											<path d="m12 5 7 7-7 7" />
+										</svg></span
+									>
+								</div>
+							</div>
+							<h3 class="serif">Cove</h3>
+							<p>
+								Packaging and Shopify visuals for a small-batch organic coconut
+								oil brand—earthy, trustworthy, and shelf-ready without looking
+								like every other jar on the aisle.
+							</p>
+						</a>
+						<a class="work-card reveal" href="work-ripple.html">
+							<div class="thumb">
+								<img src="assets/images/work/ripple-cover.jpg" alt="Ripple">
+								<div class="overlay">
+									<span
+										>View project
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<path d="M5 12h14" />
+											<path d="m12 5 7 7-7 7" />
+										</svg></span
+									>
+								</div>
+							</div>
+							<h3 class="serif">Ripple</h3>
+							<p>
+								Brand world for a low-ABV sparkling spritzer—label system,
+								flavor architecture, and a launch site that feels like summer
+								without looking like soda.
+							</p>
+						</a>
+						<a class="work-card reveal" href="work-pace.html">
+							<div class="thumb">
+								<img src="assets/images/work/pace-cover.jpg" alt="Pace">
+								<div class="overlay">
+									<span
+										>View project
+										<svg
+											width="16"
+											height="16"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										>
+											<path d="M5 12h14" />
+											<path d="m12 5 7 7-7 7" />
+										</svg></span
+									>
+								</div>
+							</div>
+							<h3 class="serif">Pace</h3>
+							<p>
+								Identity and campaign landing for an independent running
+								shoe—performance story, lookbook structure, and web UI that
+								sells emotion as much as tech.
+							</p>
+						</a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<div data-footer></div>
+		<script src="app.js"></script>
+	</body>
 </html>

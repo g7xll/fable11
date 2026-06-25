@@ -1,339 +1,823 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>SkyAgent</title>
-<meta name="description" content="AI assistant designed to streamline your digital workflows and handle mundane tasks, so you can focus on what truly matters." />
-<link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-<div class="frame">
-  <div class="guide l"></div>
-  <div class="guide r"></div>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>SkyAgent</title>
+		<meta
+			name="description"
+			content="AI assistant designed to streamline your digital workflows and handle mundane tasks, so you can focus on what truly matters."
+		>
+		<link rel="stylesheet" href="./styles.css">
+	</head>
+	<body>
+		<div class="frame">
+			<div class="guide l"></div>
+			<div class="guide r"></div>
 
-  <!-- NAVBAR -->
-  <div class="nav-wrap" id="navWrap">
-    <nav class="navbar">
-      <a href="#hero" class="brand">
-        <span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span>
-        SkyAgent
-      </a>
-      <div class="nav-links">
-        <a href="#hero">Home</a>
-        <a href="#bento">How it Works</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-      </div>
-      <div class="nav-right">
-        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-        </button>
-        <a href="#" class="nav-login">Log in</a>
-        <a href="#" class="btn btn-primary">Try for free</a>
-        <button class="icon-btn hamburger" id="hamburger" aria-label="Menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-      </div>
-    </nav>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#hero">Home</a>
-    <a href="#bento">How it Works</a>
-    <a href="#features">Features</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#" class="btn btn-primary" style="width:100%;margin-top:8px;">Try for free</a>
-  </div>
+			<!-- NAVBAR -->
+			<div class="nav-wrap" id="navWrap">
+				<nav class="navbar">
+					<a href="#hero" class="brand">
+						<span class="logo"
+							><svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2.2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="m5 12 7-7 7 7" />
+								<path d="M12 19V5" />
+							</svg></span
+						>
+						SkyAgent
+					</a>
+					<div class="nav-links">
+						<a href="#hero">Home</a>
+						<a href="#bento">How it Works</a>
+						<a href="#features">Features</a>
+						<a href="#pricing">Pricing</a>
+					</div>
+					<div class="nav-right">
+						<button class="icon-btn" id="themeToggle" aria-label="Toggle theme">
+							<svg
+								class="icon-sun"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="12" r="4" />
+								<path
+									d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+								/>
+							</svg>
+							<svg
+								class="icon-moon"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+							</svg>
+						</button>
+						<a href="#" class="nav-login">Log in</a>
+						<a href="#" class="btn btn-primary">Try for free</a>
+						<button class="icon-btn hamburger" id="hamburger" aria-label="Menu">
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+							>
+								<path d="M4 6h16M4 12h16M4 18h16" />
+							</svg>
+						</button>
+					</div>
+				</nav>
+			</div>
+			<div class="mobile-menu" id="mobileMenu">
+				<a href="#hero">Home</a>
+				<a href="#bento">How it Works</a>
+				<a href="#features">Features</a>
+				<a href="#pricing">Pricing</a>
+				<a href="#" class="btn btn-primary" style="width:100%;margin-top:8px;"
+					>Try for free</a
+				>
+			</div>
 
-  <main>
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="inner">
-        <div class="badge"><span class="dot"></span> Introducing custom automations</div>
-        <h1>Meet your AI Agent<br />Streamline your workflow</h1>
-        <p class="sub">AI assistant designed to streamline your digital workflows and handle mundane tasks, so you can focus on what truly matters</p>
-        <div class="cta-row">
-          <a href="#" class="btn btn-primary">Try for Free <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <a href="#" class="btn btn-outline">Log in</a>
-        </div>
-        <div class="globe-wrap">
-          <div class="globe">
-            <svg class="globe-grid" viewBox="0 0 200 200">
-              <defs><clipPath id="sph"><circle cx="100" cy="100" r="98"/></clipPath></defs>
-              <g clip-path="url(#sph)" class="globe-rot">
-                <ellipse cx="100" cy="100" rx="98" ry="22" /><ellipse cx="100" cy="100" rx="98" ry="48" /><ellipse cx="100" cy="100" rx="98" ry="74" /><ellipse cx="100" cy="100" rx="98" ry="98" />
-                <ellipse cx="100" cy="100" rx="22" ry="98" /><ellipse cx="100" cy="100" rx="48" ry="98" /><ellipse cx="100" cy="100" rx="74" ry="98" />
-              </g>
-            </svg>
-            <span class="globe-dot" style="top:30%;left:38%"></span>
-            <span class="globe-dot" style="top:46%;left:62%"></span>
-            <span class="globe-dot" style="top:62%;left:44%"></span>
-            <span class="globe-dot" style="top:38%;left:54%"></span>
-          </div>
-        </div>
-      </div>
-    </section>
+			<main>
+				<!-- HERO -->
+				<section class="hero" id="hero">
+					<div class="inner">
+						<div class="badge">
+							<span class="dot"></span>
+							Introducing custom automations
+						</div>
+						<h1>Meet your AI Agent<br>Streamline your workflow</h1>
+						<p class="sub">
+							AI assistant designed to streamline your digital workflows and
+							handle mundane tasks, so you can focus on what truly matters
+						</p>
+						<div class="cta-row">
+							<a href="#" class="btn btn-primary"
+								>Try for Free
+								<svg
+									class="arrow"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14M12 5l7 7-7 7" />
+								</svg></a
+							>
+							<a href="#" class="btn btn-outline">Log in</a>
+						</div>
+						<div class="globe-wrap">
+							<div class="globe">
+								<svg class="globe-grid" viewBox="0 0 200 200">
+									<defs>
+										<clipPath id="sph">
+											<circle cx="100" cy="100" r="98" />
+										</clipPath>
+									</defs>
+									<g clip-path="url(#sph)" class="globe-rot">
+										<ellipse cx="100" cy="100" rx="98" ry="22" />
+										<ellipse cx="100" cy="100" rx="98" ry="48" />
+										<ellipse cx="100" cy="100" rx="98" ry="74" />
+										<ellipse cx="100" cy="100" rx="98" ry="98" />
+										<ellipse cx="100" cy="100" rx="22" ry="98" />
+										<ellipse cx="100" cy="100" rx="48" ry="98" />
+										<ellipse cx="100" cy="100" rx="74" ry="98" />
+									</g>
+								</svg>
+								<span class="globe-dot" style="top:30%;left:38%"></span>
+								<span class="globe-dot" style="top:46%;left:62%"></span>
+								<span class="globe-dot" style="top:62%;left:44%"></span>
+								<span class="globe-dot" style="top:38%;left:54%"></span>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <!-- LOGOS -->
-    <section class="logos">
-      <div class="inner">
-        <p class="label">Trusted by fast-growing startups</p>
-        <div class="logo-row mono">
-          <span>Acme</span><span>Quantum</span><span>Echo</span><span>Celestial</span><span>Pulse</span><span>Apex</span>
-        </div>
-      </div>
-    </section>
+				<!-- LOGOS -->
+				<section class="logos">
+					<div class="inner">
+						<p class="label">Trusted by fast-growing startups</p>
+						<div class="logo-row mono">
+							<span>Acme</span><span>Quantum</span><span>Echo</span
+							><span>Celestial</span><span>Pulse</span><span>Apex</span>
+						</div>
+					</div>
+				</section>
 
-    <!-- BENTO -->
-    <section id="bento">
-      <div class="sec-head reveal">
-        <p class="eyebrow">AI-Powered Automation</p>
-        <h2>Empower Your Workflow with AI</h2>
-        <p>Ask your AI Agent for real-time collaboration, seamless integrations, and actionable insights to streamline your operations.</p>
-      </div>
-      <div class="bento-grid">
-        <div class="bento-card reveal">
-          <div class="bento-visual"><div class="chat-bubble">Hey, I need help scheduling a team meeting that works well for everyone. Any suggestions for finding an optimal time slot?</div></div>
-          <div class="bento-body">
-            <h3>Real-time AI Collaboration</h3>
-            <p>Experience real-time assistance. Ask your AI Agent to coordinate tasks, answer questions, and maintain team alignment.</p>
-            <a href="#" class="learn-more">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="bento-card reveal">
-          <div class="bento-visual">
-            <div class="orbit">
-              <div class="center"><svg viewBox="0 0 24 24" width="24" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 12 7-7 7 7M12 19V5"/></svg></div>
-              <div class="node" style="left:0;top:10px;">Slack</div>
-              <div class="node" style="right:0;top:10px;">Drive</div>
-              <div class="node" style="left:10px;bottom:0;">Figma</div>
-              <div class="node" style="right:10px;bottom:0;">Notion</div>
-            </div>
-          </div>
-          <div class="bento-body">
-            <h3>Seamless Integrations</h3>
-            <p>Unite your favorite tools for effortless connectivity. Boost productivity through interconnected workflows.</p>
-            <a href="#" class="learn-more">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="bento-card reveal">
-          <div class="bento-visual">
-            <div class="calendar">
-              <div class="row"><div class="cell"></div><div class="cell">Tue</div><div class="cell">Wed</div><div class="cell">Thu</div><div class="cell">Fri</div><div class="cell">Sat</div></div>
-              <div class="row"><div class="cell">12 AM</div><div class="cell"></div><div class="cell"><div class="ev">Sync</div></div><div class="cell"></div><div class="cell"><div class="ev">Plan</div></div><div class="cell"></div></div>
-              <div class="row"><div class="cell">1 PM</div><div class="cell"><div class="ev">Demo</div></div><div class="cell"></div><div class="cell"></div><div class="cell"></div><div class="cell"></div></div>
-            </div>
-          </div>
-          <div class="bento-body">
-            <h3>Instant Insight Reporting</h3>
-            <p>Transform raw data into clear insights in seconds. Empower smarter decisions with real-time, always-learning intelligence.</p>
-            <a href="#" class="learn-more">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-        <div class="bento-card reveal">
-          <div class="bento-visual">
-            <div class="tasks">
-              <div class="task done"><span class="box"></span> Bento grid</div>
-              <div class="task done"><span class="box"></span> Landing Page</div>
-              <div class="task"><span class="box"></span> <span class="add">+ Add Task</span></div>
-            </div>
-          </div>
-          <div class="bento-body">
-            <h3>Smart Automation</h3>
-            <p>Set it, forget it. Your AI Agent tackles repetitive tasks so you can focus on strategy, innovation, and growth.</p>
-            <a href="#" class="learn-more">Learn More <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          </div>
-        </div>
-      </div>
-    </section>
+				<!-- BENTO -->
+				<section id="bento">
+					<div class="sec-head reveal">
+						<p class="eyebrow">AI-Powered Automation</p>
+						<h2>Empower Your Workflow with AI</h2>
+						<p>
+							Ask your AI Agent for real-time collaboration, seamless
+							integrations, and actionable insights to streamline your
+							operations.
+						</p>
+					</div>
+					<div class="bento-grid">
+						<div class="bento-card reveal">
+							<div class="bento-visual">
+								<div class="chat-bubble">
+									Hey, I need help scheduling a team meeting that works well for
+									everyone. Any suggestions for finding an optimal time slot?
+								</div>
+							</div>
+							<div class="bento-body">
+								<h3>Real-time AI Collaboration</h3>
+								<p>
+									Experience real-time assistance. Ask your AI Agent to
+									coordinate tasks, answer questions, and maintain team
+									alignment.
+								</p>
+								<a href="#" class="learn-more"
+									>Learn More
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M5 12h14M12 5l7 7-7 7" />
+									</svg></a
+								>
+							</div>
+						</div>
+						<div class="bento-card reveal">
+							<div class="bento-visual">
+								<div class="orbit">
+									<div class="center">
+										<svg
+											viewBox="0 0 24 24"
+											width="24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+										>
+											<path d="m5 12 7-7 7 7M12 19V5" />
+										</svg>
+									</div>
+									<div class="node" style="left:0;top:10px;">Slack</div>
+									<div class="node" style="right:0;top:10px;">Drive</div>
+									<div class="node" style="left:10px;bottom:0;">Figma</div>
+									<div class="node" style="right:10px;bottom:0;">Notion</div>
+								</div>
+							</div>
+							<div class="bento-body">
+								<h3>Seamless Integrations</h3>
+								<p>
+									Unite your favorite tools for effortless connectivity. Boost
+									productivity through interconnected workflows.
+								</p>
+								<a href="#" class="learn-more"
+									>Learn More
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M5 12h14M12 5l7 7-7 7" />
+									</svg></a
+								>
+							</div>
+						</div>
+						<div class="bento-card reveal">
+							<div class="bento-visual">
+								<div class="calendar">
+									<div class="row">
+										<div class="cell"></div>
+										<div class="cell">Tue</div>
+										<div class="cell">Wed</div>
+										<div class="cell">Thu</div>
+										<div class="cell">Fri</div>
+										<div class="cell">Sat</div>
+									</div>
+									<div class="row">
+										<div class="cell">12 AM</div>
+										<div class="cell"></div>
+										<div class="cell"><div class="ev">Sync</div></div>
+										<div class="cell"></div>
+										<div class="cell"><div class="ev">Plan</div></div>
+										<div class="cell"></div>
+									</div>
+									<div class="row">
+										<div class="cell">1 PM</div>
+										<div class="cell"><div class="ev">Demo</div></div>
+										<div class="cell"></div>
+										<div class="cell"></div>
+										<div class="cell"></div>
+										<div class="cell"></div>
+									</div>
+								</div>
+							</div>
+							<div class="bento-body">
+								<h3>Instant Insight Reporting</h3>
+								<p>
+									Transform raw data into clear insights in seconds. Empower
+									smarter decisions with real-time, always-learning
+									intelligence.
+								</p>
+								<a href="#" class="learn-more"
+									>Learn More
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M5 12h14M12 5l7 7-7 7" />
+									</svg></a
+								>
+							</div>
+						</div>
+						<div class="bento-card reveal">
+							<div class="bento-visual">
+								<div class="tasks">
+									<div class="task done">
+										<span class="box"></span>
+										Bento grid
+									</div>
+									<div class="task done">
+										<span class="box"></span>
+										Landing Page
+									</div>
+									<div class="task">
+										<span class="box"></span>
+										<span class="add">+ Add Task</span>
+									</div>
+								</div>
+							</div>
+							<div class="bento-body">
+								<h3>Smart Automation</h3>
+								<p>
+									Set it, forget it. Your AI Agent tackles repetitive tasks so
+									you can focus on strategy, innovation, and growth.
+								</p>
+								<a href="#" class="learn-more"
+									>Learn More
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M5 12h14M12 5l7 7-7 7" />
+									</svg></a
+								>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <!-- QUOTE -->
-    <section class="quote">
-      <div class="bg"></div>
-      <div class="inner">
-        <blockquote>"SkyAgent has transformed our daily operations. Tasks that once consumed hours now complete in moments, freeing our team to focus on creativity and strategic growth."</blockquote>
-        <div class="who">Alex Johnson</div>
-        <div class="role">CTO, Innovatech</div>
-      </div>
-    </section>
+				<!-- QUOTE -->
+				<section class="quote">
+					<div class="bg"></div>
+					<div class="inner">
+						<blockquote>
+							"SkyAgent has transformed our daily operations. Tasks that once
+							consumed hours now complete in moments, freeing our team to focus
+							on creativity and strategic growth."
+						</blockquote>
+						<div class="who">Alex Johnson</div>
+						<div class="role">CTO, Innovatech</div>
+					</div>
+				</section>
 
-    <!-- HOW IT WORKS -->
-    <section id="features">
-      <div class="sec-head reveal">
-        <p class="eyebrow">How it works</p>
-        <h2>Simple. Seamless. Smart.</h2>
-        <p>Discover how SkyAgent transforms your commands into action in four easy steps</p>
-      </div>
-      <div class="how-grid">
-        <div class="steps" id="steps">
-          <div class="step open">
-            <div class="step-head"><span class="step-num">1</span><h3>Ask Your AI Agent Directly</h3></div>
-            <div class="step-body"><p>Speak or type your command—let SkyAgent capture your intent. Your request instantly sets the process in motion.</p></div>
-          </div>
-          <div class="step">
-            <div class="step-head"><span class="step-num">2</span><h3>Let SkyAgent Process It</h3></div>
-            <div class="step-body"><p>We prioritize the needs and preferences of our users in our design process.</p></div>
-          </div>
-          <div class="step">
-            <div class="step-head"><span class="step-num">3</span><h3>Receive Instant, Actionable Results</h3></div>
-            <div class="step-body"><p>Our features seamlessly integrate with your existing systems for a smooth experience.</p></div>
-          </div>
-          <div class="step">
-            <div class="step-head"><span class="step-num">4</span><h3>Continuous Improvement</h3></div>
-            <div class="step-body"><p>We are constantly updating and improving our features to provide the best experience.</p></div>
-          </div>
-        </div>
-        <div class="how-visual">
-          <div class="ring" style="width:60%;height:60%;"></div>
-          <div class="ring" style="width:85%;height:85%;"></div>
-          <div class="core"><svg viewBox="0 0 24 24" width="32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
-        </div>
-      </div>
-    </section>
+				<!-- HOW IT WORKS -->
+				<section id="features">
+					<div class="sec-head reveal">
+						<p class="eyebrow">How it works</p>
+						<h2>Simple. Seamless. Smart.</h2>
+						<p>
+							Discover how SkyAgent transforms your commands into action in four
+							easy steps
+						</p>
+					</div>
+					<div class="how-grid">
+						<div class="steps" id="steps">
+							<div class="step open">
+								<div class="step-head">
+									<span class="step-num">1</span>
+									<h3>Ask Your AI Agent Directly</h3>
+								</div>
+								<div class="step-body">
+									<p>
+										Speak or type your command—let SkyAgent capture your intent.
+										Your request instantly sets the process in motion.
+									</p>
+								</div>
+							</div>
+							<div class="step">
+								<div class="step-head">
+									<span class="step-num">2</span>
+									<h3>Let SkyAgent Process It</h3>
+								</div>
+								<div class="step-body">
+									<p>
+										We prioritize the needs and preferences of our users in our
+										design process.
+									</p>
+								</div>
+							</div>
+							<div class="step">
+								<div class="step-head">
+									<span class="step-num">3</span>
+									<h3>Receive Instant, Actionable Results</h3>
+								</div>
+								<div class="step-body">
+									<p>
+										Our features seamlessly integrate with your existing systems
+										for a smooth experience.
+									</p>
+								</div>
+							</div>
+							<div class="step">
+								<div class="step-head">
+									<span class="step-num">4</span>
+									<h3>Continuous Improvement</h3>
+								</div>
+								<div class="step-body">
+									<p>
+										We are constantly updating and improving our features to
+										provide the best experience.
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="how-visual">
+							<div class="ring" style="width:60%;height:60%;"></div>
+							<div class="ring" style="width:85%;height:85%;"></div>
+							<div class="core">
+								<svg
+									viewBox="0 0 24 24"
+									width="32"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M12 8V4H8" />
+									<rect width="16" height="12" x="4" y="8" rx="2" />
+									<path d="M2 14h2M20 14h2M15 13v2M9 13v2" />
+								</svg>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <!-- SECURE GROWTH -->
-    <section>
-      <div class="sec-head reveal">
-        <p class="eyebrow">Security &amp; Scale</p>
-        <h2>Built for Secure Growth</h2>
-        <p>Where advanced security meets seamless scalability—designed to protect your data and empower your growth.</p>
-      </div>
-      <div class="secure-grid">
-        <div class="secure-card reveal">
-          <div class="secure-visual"><svg class="shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></div>
-          <div class="bento-body">
-            <h3>Advanced Task Security</h3>
-            <p>Safeguard your tasks with state-of-art encryption and secure access to your workflow data.</p>
-          </div>
-        </div>
-        <div class="secure-card reveal">
-          <div class="secure-visual"><div class="sun-rays" id="sunRays"><div class="sun"></div></div></div>
-          <div class="bento-body">
-            <h3>Scalable for Teams</h3>
-            <p>Grow with your team. Track tasks across multiple workspaces and all team members.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+				<!-- SECURE GROWTH -->
+				<section>
+					<div class="sec-head reveal">
+						<p class="eyebrow">Security &amp; Scale</p>
+						<h2>Built for Secure Growth</h2>
+						<p>
+							Where advanced security meets seamless scalability—designed to
+							protect your data and empower your growth.
+						</p>
+					</div>
+					<div class="secure-grid">
+						<div class="secure-card reveal">
+							<div class="secure-visual">
+								<svg
+									class="shield"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="1.6"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path
+										d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"
+									/>
+									<path d="m9 12 2 2 4-4" />
+								</svg>
+							</div>
+							<div class="bento-body">
+								<h3>Advanced Task Security</h3>
+								<p>
+									Safeguard your tasks with state-of-art encryption and secure
+									access to your workflow data.
+								</p>
+							</div>
+						</div>
+						<div class="secure-card reveal">
+							<div class="secure-visual">
+								<div class="sun-rays" id="sunRays"><div class="sun"></div></div>
+							</div>
+							<div class="bento-body">
+								<h3>Scalable for Teams</h3>
+								<p>
+									Grow with your team. Track tasks across multiple workspaces
+									and all team members.
+								</p>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <!-- PRICING -->
-    <section class="pricing" id="pricing">
-      <div class="inner">
-        <div class="sec-head reveal" style="padding-bottom:0;">
-          <p class="eyebrow">Pricing</p>
-          <h2>Pricing that scales with you</h2>
-          <p>Whichever plan you pick, it's free until you love your docs. That's our promise.</p>
-        </div>
-        <div class="toggle-wrap">
-          <div class="seg" id="seg">
-            <div class="pill"></div>
-            <button class="active" data-period="month">Monthly</button>
-            <button data-period="year">Yearly</button>
-          </div>
-          <span class="save-badge">-20%</span>
-        </div>
-        <div class="price-grid">
-          <div class="price-card reveal">
-            <div class="pname">Free</div>
-            <div class="price-amt">$0 <span>/ month</span></div>
-            <div class="muted-text">Perfect for individual users</div>
-            <a href="#" class="btn btn-outline">Start Free</a>
-            <div class="feat-label">Everything in Pro +</div>
-            <ul class="feat-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Custom domain</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>SEO-optimizations</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Auto-generated API docs</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Built-in components library</li>
-            </ul>
-          </div>
-          <div class="price-card featured reveal">
-            <div class="pname">Startup <span class="popular-tag">Popular</span></div>
-            <div class="price-amt" data-month="$12" data-year="$10">$12 <span>/ month</span></div>
-            <div class="muted-text">Ideal for professionals and small teams</div>
-            <a href="#" class="btn" style="background:var(--secondary);color:#fff;">Upgrade to Pro</a>
-            <div class="feat-label">Everything in Pro +</div>
-            <ul class="feat-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Custom domain</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>SEO-optimizations</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Auto-generated API docs</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Built-in components library</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>E-commerce integration</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>User authentication system</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Multi-language support</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Real-time collaboration tools</li>
-            </ul>
-          </div>
-          <div class="price-card reveal">
-            <div class="pname">Enterprise</div>
-            <div class="price-amt" data-month="$24" data-year="$20">$24 <span>/ month</span></div>
-            <div class="muted-text">Best for large teams and enterprise-level organizations</div>
-            <a href="#" class="btn btn-dark">Contact Sales</a>
-            <div class="feat-label">Everything in Pro +</div>
-            <ul class="feat-list">
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Custom domain</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>SEO-optimizations</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Auto-generated API docs</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Built-in components librarys</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 7"/></svg>Real-time collaboration tools</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+				<!-- PRICING -->
+				<section class="pricing" id="pricing">
+					<div class="inner">
+						<div class="sec-head reveal" style="padding-bottom:0;">
+							<p class="eyebrow">Pricing</p>
+							<h2>Pricing that scales with you</h2>
+							<p>
+								Whichever plan you pick, it's free until you love your docs.
+								That's our promise.
+							</p>
+						</div>
+						<div class="toggle-wrap">
+							<div class="seg" id="seg">
+								<div class="pill"></div>
+								<button class="active" data-period="month">Monthly</button>
+								<button data-period="year">Yearly</button>
+							</div>
+							<span class="save-badge">-20%</span>
+						</div>
+						<div class="price-grid">
+							<div class="price-card reveal">
+								<div class="pname">Free</div>
+								<div class="price-amt">$0 <span>/ month</span></div>
+								<div class="muted-text">Perfect for individual users</div>
+								<a href="#" class="btn btn-outline">Start Free</a>
+								<div class="feat-label">Everything in Pro +</div>
+								<ul class="feat-list">
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Custom domain
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>SEO-optimizations
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Auto-generated API docs
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Built-in components library
+									</li>
+								</ul>
+							</div>
+							<div class="price-card featured reveal">
+								<div class="pname">
+									Startup <span class="popular-tag">Popular</span>
+								</div>
+								<div class="price-amt" data-month="$12" data-year="$10">
+									$12 <span>/ month</span>
+								</div>
+								<div class="muted-text">
+									Ideal for professionals and small teams
+								</div>
+								<a
+									href="#"
+									class="btn"
+									style="background:var(--secondary);color:#fff;"
+									>Upgrade to Pro</a
+								>
+								<div class="feat-label">Everything in Pro +</div>
+								<ul class="feat-list">
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Custom domain
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>SEO-optimizations
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Auto-generated API docs
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Built-in components library
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>E-commerce integration
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>User authentication system
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Multi-language support
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Real-time collaboration tools
+									</li>
+								</ul>
+							</div>
+							<div class="price-card reveal">
+								<div class="pname">Enterprise</div>
+								<div class="price-amt" data-month="$24" data-year="$20">
+									$24 <span>/ month</span>
+								</div>
+								<div class="muted-text">
+									Best for large teams and enterprise-level organizations
+								</div>
+								<a href="#" class="btn btn-dark">Contact Sales</a>
+								<div class="feat-label">Everything in Pro +</div>
+								<ul class="feat-list">
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Custom domain
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>SEO-optimizations
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Auto-generated API docs
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Built-in components librarys
+									</li>
+									<li>
+										<svg
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="3"
+										>
+											<path d="M5 12l5 5L20 7" />
+										</svg>Real-time collaboration tools
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</section>
 
-    <!-- TESTIMONIAL WALL -->
-    <section class="wall">
-      <div class="inner">
-        <div class="sec-head reveal" style="padding-bottom:0;">
-          <p class="eyebrow">Testimonials</p>
-          <h2>Empower Your Workflow with AI</h2>
-          <p>Ask your AI Agent for real-time collaboration, seamless integrations, and actionable insights to streamline your operations.</p>
-        </div>
-        <div class="cols" id="wallCols"></div>
-      </div>
-    </section>
+				<!-- TESTIMONIAL WALL -->
+				<section class="wall">
+					<div class="inner">
+						<div class="sec-head reveal" style="padding-bottom:0;">
+							<p class="eyebrow">Testimonials</p>
+							<h2>Empower Your Workflow with AI</h2>
+							<p>
+								Ask your AI Agent for real-time collaboration, seamless
+								integrations, and actionable insights to streamline your
+								operations.
+							</p>
+						</div>
+						<div class="cols" id="wallCols"></div>
+					</div>
+				</section>
 
-    <!-- FAQ -->
-    <section class="faq">
-      <div class="inner">
-        <div class="sec-head reveal" style="padding-bottom:0;">
-          <p class="eyebrow">FAQ</p>
-          <h2>Frequently Asked Questions</h2>
-          <p>Answers to common questions about SkyAgent and its features. If you have any other questions, please don't hesitate to contact us.</p>
-        </div>
-        <div class="faq-list" id="faqList"></div>
-      </div>
-    </section>
+				<!-- FAQ -->
+				<section class="faq">
+					<div class="inner">
+						<div class="sec-head reveal" style="padding-bottom:0;">
+							<p class="eyebrow">FAQ</p>
+							<h2>Frequently Asked Questions</h2>
+							<p>
+								Answers to common questions about SkyAgent and its features. If
+								you have any other questions, please don't hesitate to contact
+								us.
+							</p>
+						</div>
+						<div class="faq-list" id="faqList"></div>
+					</div>
+				</section>
 
-    <!-- CTA -->
-    <section class="cta">
-      <div class="inner">
-        <div class="cta-banner">
-          <div class="bg"></div>
-          <h2>Automate. Simplify. Thrive</h2>
-          <p>Start Your 30-Day Free Trial Today</p>
-          <a href="#" class="btn">Get Started Now <svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-          <p class="fine">Cancel anytime, no questions asked</p>
-        </div>
-      </div>
-    </section>
-  </main>
+				<!-- CTA -->
+				<section class="cta">
+					<div class="inner">
+						<div class="cta-banner">
+							<div class="bg"></div>
+							<h2>Automate. Simplify. Thrive</h2>
+							<p>Start Your 30-Day Free Trial Today</p>
+							<a href="#" class="btn"
+								>Get Started Now
+								<svg
+									class="arrow"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="M5 12h14M12 5l7 7-7 7" />
+								</svg></a
+							>
+							<p class="fine">Cancel anytime, no questions asked</p>
+						</div>
+					</div>
+				</section>
+			</main>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="inner">
-      <div class="about">
-        <a href="#hero" class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></span> SkyAgent</a>
-        <p>AI assistant designed to streamline your digital workflows and handle mundane tasks, so you can focus on what truly matters</p>
-      </div>
-      <div class="col"><h4>Company</h4><a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a><a href="#">Story</a></div>
-      <div class="col"><h4>Products</h4><a href="#">Company</a><a href="#">Product</a><a href="#">Press</a><a href="#">More</a></div>
-      <div class="col"><h4>Resources</h4><a href="#">Press</a><a href="#">Careers</a><a href="#">Newsletters</a><a href="#">More</a></div>
-      <div class="col"><h4>More</h4><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a></div>
-    </div>
-  </footer>
-</div>
-<script src="./app.js"></script>
-</body>
+			<!-- FOOTER -->
+			<footer class="footer">
+				<div class="inner">
+					<div class="about">
+						<a href="#hero" class="brand"
+							><span class="logo"
+								><svg
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2.2"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+								>
+									<path d="m5 12 7-7 7 7" />
+									<path d="M12 19V5" />
+								</svg></span
+							>
+							SkyAgent</a
+						>
+						<p>
+							AI assistant designed to streamline your digital workflows and
+							handle mundane tasks, so you can focus on what truly matters
+						</p>
+					</div>
+					<div class="col">
+						<h4>Company</h4>
+						<a href="#">About</a><a href="#">Contact</a><a href="#">Blog</a
+						><a href="#">Story</a>
+					</div>
+					<div class="col">
+						<h4>Products</h4>
+						<a href="#">Company</a><a href="#">Product</a><a href="#">Press</a
+						><a href="#">More</a>
+					</div>
+					<div class="col">
+						<h4>Resources</h4>
+						<a href="#">Press</a><a href="#">Careers</a
+						><a href="#">Newsletters</a><a href="#">More</a>
+					</div>
+					<div class="col">
+						<h4>More</h4>
+						<a href="#">Terms</a><a href="#">Privacy</a><a href="#">Cookies</a>
+					</div>
+				</div>
+			</footer>
+		</div>
+		<script src="./app.js"></script>
+	</body>
 </html>

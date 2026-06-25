@@ -1,25 +1,27 @@
 /* ===== Metafi clone — shared chrome + interactions ===== */
 (function () {
-  const NAV = [
-    ["Features", "features.html"],
-    ["Integrations", "integrations.html"],
-    ["About Us", "about.html"],
-    ["Pricing", "pricing.html"],
-    ["Blog", "blog.html"],
-    ["Contact", "contact.html"],
-  ];
-  const here = (location.pathname.split("/").pop() || "index.html");
+	const NAV = [
+		["Features", "features.html"],
+		["Integrations", "integrations.html"],
+		["About Us", "about.html"],
+		["Pricing", "pricing.html"],
+		["Blog", "blog.html"],
+		["Contact", "contact.html"],
+	];
+	const here = location.pathname.split("/").pop() || "index.html";
 
-  const sun = '<svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
-  const moon = '<svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
+	const sun =
+		'<svg class="sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>';
+	const moon =
+		'<svg class="moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>';
 
-  const brand = (mark) =>
-    `<a class="brand" href="index.html"><img class="logo-mark" src="assets/images/layout/logo-single.svg" alt=""><span>Metafi</span></a>`;
+	const brand = (mark) =>
+		`<a class="brand" href="index.html"><img class="logo-mark" src="assets/images/layout/logo-single.svg" alt=""><span>Metafi</span></a>`;
 
-  // ---- Header ----
-  const header = document.createElement("header");
-  header.className = "site-header";
-  header.innerHTML = `
+	// ---- Header ----
+	const header = document.createElement("header");
+	header.className = "site-header";
+	header.innerHTML = `
     <div class="container">
       ${brand()}
       <nav class="nav">
@@ -39,12 +41,12 @@
       <a class="btn btn-outline" href="login.html">Login</a>
       <a class="btn btn-primary" href="signup.html">Get Started</a>
     </nav>`;
-  document.body.prepend(header);
+	document.body.prepend(header);
 
-  // ---- Footer ----
-  const footer = document.createElement("footer");
-  footer.className = "site-footer";
-  footer.innerHTML = `
+	// ---- Footer ----
+	const footer = document.createElement("footer");
+	footer.className = "site-footer";
+	footer.innerHTML = `
     <div class="container">
       <div class="footer-grid">
         <div class="footer-brand">
@@ -84,70 +86,85 @@
         <span>Clone built for study. Original by Shadcnblocks.</span>
       </div>
     </div>`;
-  document.body.append(footer);
+	document.body.append(footer);
 
-  // ---- Theme toggle ----
-  const root = document.documentElement;
-  const toggle = header.querySelector(".theme-toggle");
-  const apply = (t) => { root.classList.toggle("dark", t === "dark"); };
-  toggle.addEventListener("click", () => {
-    const next = root.classList.contains("dark") ? "light" : "dark";
-    apply(next);
-    try { localStorage.setItem("metafi-theme", next); } catch (e) {}
-  });
+	// ---- Theme toggle ----
+	const root = document.documentElement;
+	const toggle = header.querySelector(".theme-toggle");
+	const apply = (t) => {
+		root.classList.toggle("dark", t === "dark");
+	};
+	toggle.addEventListener("click", () => {
+		const next = root.classList.contains("dark") ? "light" : "dark";
+		apply(next);
+		try {
+			localStorage.setItem("metafi-theme", next);
+		} catch (e) {}
+	});
 
-  // ---- Mobile menu ----
-  const ham = header.querySelector(".hamburger");
-  const mnav = header.querySelector(".mobile-nav");
-  ham.addEventListener("click", () => mnav.classList.toggle("open"));
+	// ---- Mobile menu ----
+	const ham = header.querySelector(".hamburger");
+	const mnav = header.querySelector(".mobile-nav");
+	ham.addEventListener("click", () => mnav.classList.toggle("open"));
 
-  // ---- Accordion (FAQ etc.) ----
-  document.querySelectorAll("[data-accordion]").forEach((acc) => {
-    acc.querySelectorAll(".acc-item").forEach((item) => {
-      const trigger = item.querySelector(".acc-trigger");
-      const panel = item.querySelector(".acc-panel");
-      trigger.addEventListener("click", () => {
-        const open = item.classList.contains("open");
-        if (!acc.hasAttribute("data-multi"))
-          acc.querySelectorAll(".acc-item.open").forEach((o) => {
-            o.classList.remove("open");
-            o.querySelector(".acc-panel").style.maxHeight = null;
-          });
-        item.classList.toggle("open", !open);
-        panel.style.maxHeight = open ? null : panel.scrollHeight + "px";
-      });
-    });
-  });
+	// ---- Accordion (FAQ etc.) ----
+	document.querySelectorAll("[data-accordion]").forEach((acc) => {
+		acc.querySelectorAll(".acc-item").forEach((item) => {
+			const trigger = item.querySelector(".acc-trigger");
+			const panel = item.querySelector(".acc-panel");
+			trigger.addEventListener("click", () => {
+				const open = item.classList.contains("open");
+				if (!acc.hasAttribute("data-multi"))
+					acc.querySelectorAll(".acc-item.open").forEach((o) => {
+						o.classList.remove("open");
+						o.querySelector(".acc-panel").style.maxHeight = null;
+					});
+				item.classList.toggle("open", !open);
+				panel.style.maxHeight = open ? null : panel.scrollHeight + "px";
+			});
+		});
+	});
 
-  // ---- Pricing toggle (monthly/annual) ----
-  document.querySelectorAll("[data-billing-toggle]").forEach((t) => {
-    const apply = (annual) => {
-      document.querySelectorAll("[data-price]").forEach((el) => {
-        el.textContent = el.getAttribute(annual ? "data-annual" : "data-price");
-      });
-      document.querySelectorAll(".bill-period").forEach((el) => {
-        el.textContent = annual ? " Per user / billed yearly" : " Per user / billed monthly";
-      });
-    };
-    apply(t.getAttribute("aria-checked") === "true");
-    t.addEventListener("click", () => {
-      const annual = t.getAttribute("aria-checked") !== "true";
-      t.setAttribute("aria-checked", String(annual));
-      apply(annual);
-    });
-  });
+	// ---- Pricing toggle (monthly/annual) ----
+	document.querySelectorAll("[data-billing-toggle]").forEach((t) => {
+		const apply = (annual) => {
+			document.querySelectorAll("[data-price]").forEach((el) => {
+				el.textContent = el.getAttribute(annual ? "data-annual" : "data-price");
+			});
+			document.querySelectorAll(".bill-period").forEach((el) => {
+				el.textContent = annual
+					? " Per user / billed yearly"
+					: " Per user / billed monthly";
+			});
+		};
+		apply(t.getAttribute("aria-checked") === "true");
+		t.addEventListener("click", () => {
+			const annual = t.getAttribute("aria-checked") !== "true";
+			t.setAttribute("aria-checked", String(annual));
+			apply(annual);
+		});
+	});
 
-  // ---- Scroll reveal (fail-open: reveal anything already past, never trap content hidden) ----
-  const reveals = document.querySelectorAll(".reveal");
-  const io = new IntersectionObserver(
-    (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }),
-    { threshold: 0.08, rootMargin: "0px 0px -8% 0px" }
-  );
-  reveals.forEach((el) => {
-    // already in/above viewport on load -> show immediately, no animation flash
-    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("in");
-    else io.observe(el);
-  });
-  // safety net: if anything is still hidden after load (e.g. headless capture), reveal it
-  window.addEventListener("load", () => setTimeout(() => reveals.forEach((el) => el.classList.add("in")), 1200));
+	// ---- Scroll reveal (fail-open: reveal anything already past, never trap content hidden) ----
+	const reveals = document.querySelectorAll(".reveal");
+	const io = new IntersectionObserver(
+		(entries) =>
+			entries.forEach((e) => {
+				if (e.isIntersecting) {
+					e.target.classList.add("in");
+					io.unobserve(e.target);
+				}
+			}),
+		{ threshold: 0.08, rootMargin: "0px 0px -8% 0px" },
+	);
+	reveals.forEach((el) => {
+		// already in/above viewport on load -> show immediately, no animation flash
+		if (el.getBoundingClientRect().top < window.innerHeight)
+			el.classList.add("in");
+		else io.observe(el);
+	});
+	// safety net: if anything is still hidden after load (e.g. headless capture), reveal it
+	window.addEventListener("load", () =>
+		setTimeout(() => reveals.forEach((el) => el.classList.add("in")), 1200),
+	);
 })();

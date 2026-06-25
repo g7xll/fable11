@@ -40,9 +40,14 @@
 			toggle.addEventListener("click", function () {
 				setNav(!mnav.classList.contains("open"));
 			});
-		if (overlay) overlay.addEventListener("click", function () { setNav(false); });
+		if (overlay)
+			overlay.addEventListener("click", function () {
+				setNav(false);
+			});
 		mnav.querySelectorAll("[data-mobile-nav-panel] a").forEach(function (a) {
-			a.addEventListener("click", function () { setNav(false); });
+			a.addEventListener("click", function () {
+				setNav(false);
+			});
 		});
 		document.addEventListener("keydown", function (e) {
 			if (e.key === "Escape") setNav(false);
@@ -71,7 +76,9 @@
 		buildFuse();
 		modal.classList.add("open");
 		document.body.style.overflow = "hidden";
-		setTimeout(function () { if (input) input.focus(); }, 50);
+		setTimeout(function () {
+			if (input) input.focus();
+		}, 50);
 	}
 	function closeSearch() {
 		if (!modal) return;
@@ -86,8 +93,7 @@
 	function render(list) {
 		if (!results) return;
 		if (!list.length) {
-			results.innerHTML =
-				'<div class="search-empty">No results found.</div>';
+			results.innerHTML = '<div class="search-empty">No results found.</div>';
 			results.classList.remove("hidden");
 			return;
 		}
@@ -116,7 +122,10 @@
 	if (closeBtn) closeBtn.addEventListener("click", closeSearch);
 	if (modal)
 		modal.addEventListener("click", function (e) {
-			if (e.target === modal || e.target.closest(".search-modal__wrap") === e.target)
+			if (
+				e.target === modal ||
+				e.target.closest(".search-modal__wrap") === e.target
+			)
 				closeSearch();
 		});
 	if (input)
@@ -156,9 +165,11 @@
 					}
 				});
 			},
-			{ rootMargin: "0px 0px 80px 0px", threshold: 0.01 }
+			{ rootMargin: "0px 0px 80px 0px", threshold: 0.01 },
 		);
-		reveals.forEach(function (el) { io.observe(el); });
+		reveals.forEach(function (el) {
+			io.observe(el);
+		});
 		// Safety: ensure any still-hidden reveal becomes visible (covers full-page
 		// captures / no-scroll contexts) so content is never permanently hidden.
 		window.addEventListener("load", function () {
@@ -169,7 +180,9 @@
 			}, 1200);
 		});
 	} else {
-		reveals.forEach(function (el) { el.classList.add("in"); });
+		reveals.forEach(function (el) {
+			el.classList.add("in");
+		});
 	}
 
 	/* ---------- TOC active state ---------- */
@@ -185,12 +198,14 @@
 			function (entries) {
 				entries.forEach(function (en) {
 					if (en.isIntersecting) {
-						tocLinks.forEach(function (a) { a.classList.remove("active"); });
+						tocLinks.forEach(function (a) {
+							a.classList.remove("active");
+						});
 						if (map[en.target.id]) map[en.target.id].classList.add("active");
 					}
 				});
 			},
-			{ rootMargin: "-20% 0px -70% 0px" }
+			{ rootMargin: "-20% 0px -70% 0px" },
 		);
 		Object.keys(map).forEach(function (id) {
 			so.observe(document.getElementById(id));

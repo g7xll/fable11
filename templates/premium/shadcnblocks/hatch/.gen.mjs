@@ -2,12 +2,16 @@
 import fs from "fs";
 import vm from "vm";
 const dir = decodeURIComponent(new URL(".", import.meta.url).pathname);
-const ctx = {window:{}}; vm.createContext(ctx);
-vm.runInContext(fs.readFileSync(dir+"work-data.js","utf8"), ctx);
-const WORK = ctx.window.HATCH_WORK, SERVICES = ctx.window.HATCH_SERVICES;
+const ctx = { window: {} };
+vm.createContext(ctx);
+vm.runInContext(fs.readFileSync(dir + "work-data.js", "utf8"), ctx);
+const WORK = ctx.window.HATCH_WORK,
+	SERVICES = ctx.window.HATCH_SERVICES;
 
-const arrow = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
-const back = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>';
+const arrow =
+	'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+const back =
+	'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>';
 
 const page = (title, desc, body) => `<!DOCTYPE html>
 <html lang="en">
@@ -33,28 +37,45 @@ ${body}
 `;
 
 // ---- WORK INDEX ----
-const workCards = WORK.map(w=>`      <a class="work-card reveal" href="work-${w.slug}.html">
+const workCards = WORK.map(
+	(w) => `      <a class="work-card reveal" href="work-${w.slug}.html">
         <div class="thumb"><img src="assets/images/work/${w.slug}-cover.jpg" alt="${w.title}"><div class="overlay"><span>View project ${arrow}</span></div></div>
         <h3 class="serif">${w.title}</h3><p>${w.blurb}</p>
-      </a>`).join("\n");
-fs.writeFileSync(dir+"work.html", page("Work","Selected freelance design case studies — branding, packaging, and web.",
-`  <section class="page-hero"><div class="container reveal">
+      </a>`,
+).join("\n");
+fs.writeFileSync(
+	dir + "work.html",
+	page(
+		"Work",
+		"Selected freelance design case studies — branding, packaging, and web.",
+		`  <section class="page-hero"><div class="container reveal">
     <span class="eyebrow">Selected work</span>
     <h1 class="serif">Projects I'm proud to have shipped.</h1>
     <p>A mix of brand, packaging, and product work for founders and teams who care about the details.</p>
   </div></section>
   <section style="padding-top:0"><div class="container"><div class="work-grid">
 ${workCards}
-  </div></div></section>`));
+  </div></div></section>`,
+	),
+);
 
 // ---- WORK DETAIL ----
-WORK.forEach(w=>{
-  const more = WORK.filter(x=>x.slug!==w.slug).slice(0,3).map(x=>`      <a class="work-card reveal" href="work-${x.slug}.html">
+WORK.forEach((w) => {
+	const more = WORK.filter((x) => x.slug !== w.slug)
+		.slice(0, 3)
+		.map(
+			(x) => `      <a class="work-card reveal" href="work-${x.slug}.html">
         <div class="thumb"><img src="assets/images/work/${x.slug}-cover.jpg" alt="${x.title}"><div class="overlay"><span>View project ${arrow}</span></div></div>
         <h3 class="serif">${x.title}</h3><p>${x.blurb}</p>
-      </a>`).join("\n");
-  fs.writeFileSync(dir+`work-${w.slug}.html`, page(w.title, w.blurb,
-`  <section class="page-hero"><div class="container reveal">
+      </a>`,
+		)
+		.join("\n");
+	fs.writeFileSync(
+		dir + `work-${w.slug}.html`,
+		page(
+			w.title,
+			w.blurb,
+			`  <section class="page-hero"><div class="container reveal">
     <a class="btn btn-outline" href="work.html" style="margin-bottom:2rem">${back} Back</a>
     <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap">
       <h1 class="serif">${w.title}</h1>
@@ -85,35 +106,58 @@ WORK.forEach(w=>{
     <div class="work-grid" style="margin-top:2.5rem">
 ${more}
     </div>
-  </div></section>`));
+  </div></section>`,
+		),
+	);
 });
 
 // ---- SERVICES INDEX ----
-const svcCards = SERVICES.map(s=>`      <a class="svc-card reveal" href="services-${s.slug}.html">
+const svcCards = SERVICES.map(
+	(s) => `      <a class="svc-card reveal" href="services-${s.slug}.html">
         <img class="svc-icon" src="assets/images/services/${s.icon}.svg" alt="">
         <span class="eyebrow">${s.eyebrow}</span>
         <h3 class="serif">${s.title}</h3><p class="muted">${s.desc}</p>
         <span class="btn btn-outline" style="margin-top:1.25rem">Learn more ${arrow}</span>
-      </a>`).join("\n");
-fs.writeFileSync(dir+"services.html", page("Services","Brand, UX & web, product design, and Framer development for founders and teams.",
-`  <section class="page-hero"><div class="container reveal">
+      </a>`,
+).join("\n");
+fs.writeFileSync(
+	dir + "services.html",
+	page(
+		"Services",
+		"Brand, UX & web, product design, and Framer development for founders and teams.",
+		`  <section class="page-hero"><div class="container reveal">
     <span class="eyebrow">Services</span>
     <h1 class="serif">Design help, scoped the way you need it.</h1>
     <p>From a single brand sprint to an ongoing product partnership—clear deliverables, honest timelines, and work that ships.</p>
   </div></section>
   <section style="padding-top:0"><div class="container"><div class="svc-grid" style="margin-top:0">
 ${svcCards}
-  </div></div></section>`));
+  </div></div></section>`,
+	),
+);
 
 // ---- SERVICE DETAIL ----
-SERVICES.forEach(s=>{
-  const groups = s.groups.map(g=>`        <div class="svc-group reveal"><h3 class="serif">${g[0]}</h3><ul>${g[1].map(i=>`<li>${i}</li>`).join("")}</ul></div>`).join("\n");
-  const feat = WORK.slice(0,3).map(x=>`      <a class="work-card reveal" href="work-${x.slug}.html">
+SERVICES.forEach((s) => {
+	const groups = s.groups
+		.map(
+			(g) =>
+				`        <div class="svc-group reveal"><h3 class="serif">${g[0]}</h3><ul>${g[1].map((i) => `<li>${i}</li>`).join("")}</ul></div>`,
+		)
+		.join("\n");
+	const feat = WORK.slice(0, 3)
+		.map(
+			(x) => `      <a class="work-card reveal" href="work-${x.slug}.html">
         <div class="thumb"><img src="assets/images/work/${x.slug}-cover.jpg" alt="${x.title}"><div class="overlay"><span>View project ${arrow}</span></div></div>
         <h3 class="serif">${x.title}</h3><p>${x.blurb}</p>
-      </a>`).join("\n");
-  fs.writeFileSync(dir+`services-${s.slug}.html`, page(s.title, s.desc,
-`  <section class="page-hero"><div class="container reveal">
+      </a>`,
+		)
+		.join("\n");
+	fs.writeFileSync(
+		dir + `services-${s.slug}.html`,
+		page(
+			s.title,
+			s.desc,
+			`  <section class="page-hero"><div class="container reveal">
     <a class="btn btn-outline" href="services.html" style="margin-bottom:2rem">${back} Back</a>
     <span class="eyebrow">${s.eyebrow}</span>
     <h1 class="serif">${s.title}</h1>
@@ -137,19 +181,50 @@ ${groups}
     <div class="work-grid" style="margin-top:2.5rem">
 ${feat}
     </div>
-  </div></section>`));
+  </div></section>`,
+		),
+	);
 });
 
 // ---- ABOUT ----
 const timeline = [
-  ["2015 – 2016","Started Freelancing","Began taking on small web design projects while learning the fundamentals. Quickly realized I loved solving complex problems through design."],
-  ["2016 – 2017","Joined Design Team At Early-Stage Startup","Wore many hats—product design, brand identity, marketing site. Grew the company from 5 to 50 people and shipped features millions use today."],
-  ["2017 – 2019","Led Design At Series B SaaS Company","Built the design systems that scaled to 500K+ users. Mentored junior designers and established processes that stuck."],
-  ["2019 – 2021","Shipped Products For Growing Teams","Partnered with founders to launch new features, refine onboarding, and turn rough ideas into shippable, measurable products."],
-  ["2021 – Now","Independent Design Partner","Freelancing full-time with startups and agencies—brand, web, and product work, end to end, with a calm and reliable process."]
-].map(t=>`        <div class="tl-item reveal"><div class="tl-year mono">${t[0]}</div><div class="tl-body"><h3 class="serif">${t[1]}</h3><p>${t[2]}</p></div></div>`).join("\n");
-fs.writeFileSync(dir+"about.html", page("About","Freelance product designer with 8+ years across startups, agencies, and Fortune 500 teams.",
-`  <section class="page-hero"><div class="container reveal">
+	[
+		"2015 – 2016",
+		"Started Freelancing",
+		"Began taking on small web design projects while learning the fundamentals. Quickly realized I loved solving complex problems through design.",
+	],
+	[
+		"2016 – 2017",
+		"Joined Design Team At Early-Stage Startup",
+		"Wore many hats—product design, brand identity, marketing site. Grew the company from 5 to 50 people and shipped features millions use today.",
+	],
+	[
+		"2017 – 2019",
+		"Led Design At Series B SaaS Company",
+		"Built the design systems that scaled to 500K+ users. Mentored junior designers and established processes that stuck.",
+	],
+	[
+		"2019 – 2021",
+		"Shipped Products For Growing Teams",
+		"Partnered with founders to launch new features, refine onboarding, and turn rough ideas into shippable, measurable products.",
+	],
+	[
+		"2021 – Now",
+		"Independent Design Partner",
+		"Freelancing full-time with startups and agencies—brand, web, and product work, end to end, with a calm and reliable process.",
+	],
+]
+	.map(
+		(t) =>
+			`        <div class="tl-item reveal"><div class="tl-year mono">${t[0]}</div><div class="tl-body"><h3 class="serif">${t[1]}</h3><p>${t[2]}</p></div></div>`,
+	)
+	.join("\n");
+fs.writeFileSync(
+	dir + "about.html",
+	page(
+		"About",
+		"Freelance product designer with 8+ years across startups, agencies, and Fortune 500 teams.",
+		`  <section class="page-hero"><div class="container reveal">
     <span class="eyebrow">About me</span>
     <h1 class="serif">I create digital products that solve real problems for real people.</h1>
   </div></section>
@@ -166,11 +241,17 @@ fs.writeFileSync(dir+"about.html", page("About","Freelance product designer with
     <div class="timeline" style="margin-top:2.5rem">
 ${timeline}
     </div>
-  </div></section>`));
+  </div></section>`,
+	),
+);
 
 // ---- CONTACT ----
-fs.writeFileSync(dir+"contact.html", page("Contact","Ready to start your next project? Get in touch and let's create something great.",
-`  <section class="page-hero"><div class="container reveal">
+fs.writeFileSync(
+	dir + "contact.html",
+	page(
+		"Contact",
+		"Ready to start your next project? Get in touch and let's create something great.",
+		`  <section class="page-hero"><div class="container reveal">
     <span class="eyebrow">Contact us</span>
     <h1 class="serif">Let's work together</h1>
     <p>Ready to start your next project? Get in touch and let's create something great.</p>
@@ -198,11 +279,15 @@ fs.writeFileSync(dir+"contact.html", page("Contact","Ready to start your next pr
       <button class="btn btn-primary" type="submit">Send message ${arrow}</button>
       <p class="sent muted" hidden style="font-size:.85rem">Thanks — this is a demo form, no message was sent.</p>
     </form>
-  </div></section>`));
+  </div></section>`,
+	),
+);
 
 // ---- 404 (subscribe + book route to 404 in source) ----
-const notFound = page("404","The page you're looking for doesn't exist or has been moved.",
-`  <section style="min-height:60vh;display:flex;align-items:center"><div class="container text-center reveal" style="max-width:560px">
+const notFound = page(
+	"404",
+	"The page you're looking for doesn't exist or has been moved.",
+	`  <section style="min-height:60vh;display:flex;align-items:center"><div class="container text-center reveal" style="max-width:560px">
     <span class="eyebrow">Oops!</span>
     <h1 class="serif" style="font-size:clamp(4rem,12vw,7rem);margin:1rem 0">404</h1>
     <p class="lead" style="margin-bottom:2rem">The page you're looking for doesn't exist or has been moved.</p>
@@ -210,9 +295,10 @@ const notFound = page("404","The page you're looking for doesn't exist or has be
       <a class="btn btn-primary" href="index.html">Back to Home ${arrow}</a>
       <a class="btn btn-outline" href="contact.html">Contact Support</a>
     </div>
-  </div></section>`);
-fs.writeFileSync(dir+"subscribe.html", notFound);
-fs.writeFileSync(dir+"book.html", notFound);
-fs.writeFileSync(dir+"404.html", notFound);
+  </div></section>`,
+);
+fs.writeFileSync(dir + "subscribe.html", notFound);
+fs.writeFileSync(dir + "book.html", notFound);
+fs.writeFileSync(dir + "404.html", notFound);
 
 console.log("generated pages");

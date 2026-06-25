@@ -1,53 +1,146 @@
 <!DOCTYPE html>
 <html lang="en" class="light">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>21 Best React Landing Page Templates To Inspire Yours - Magic UI Blog</title>
-<meta name="description" content="Discover stunning React landing page templates and learn the design principles that make them convert visitors into customers." />
-<link rel="icon" href="../assets/magicui-logo.png" />
-<link rel="stylesheet" href="../styles.css" />
-</head>
-<body>
-<header class="site-header">
-  <div class="bar">
-    <div style="display:flex"><a class="logo" href="../index.html"><img src="../assets/magicui-logo.png" alt="Magic UI" /></a></div>
-    <nav>
-      <button class="theme-toggle" aria-label="Toggle theme" onclick="window.__toggleTheme()">
-        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
-        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-      </button>
-    </nav>
-  </div>
-</header>
-<div class="page-wrap">
-  <div class="gradient-banner"><canvas></canvas></div>
-  <div class="article-header">
-    <div class="inner">
-      <div class="meta-row">
-        <a class="back-btn" href="../index.html" aria-label="Back to all articles">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-        </a>
-        <div style="display:flex;flex-wrap:wrap;gap:0.75rem"><span class="chip">Landing Page Examples</span><span class="chip">React</span><span class="chip">Templates</span></div>
-        <time class="muted" style="font-weight:500">November 22, 2024</time>
-      </div>
-      <h1>21 Best React Landing Page Templates To Inspire Yours</h1>
-      <p class="excerpt">Discover stunning React landing page templates and learn the design principles that make them convert visitors into customers.</p>
-    </div>
-  </div>
-  <div class="article-shell">
-    <div class="article-frame"></div>
-    <main class="article-main">
-      <div class="hero"><img src="../assets/thumbnails/react-landing-page-templates.jpg" alt="21 Best React Landing Page Templates To Inspire Yours" /></div>
-      <div class="article-cols">
-        <div class="prose-col">
-          <article class="prose">
-<p>A well-designed landing page can be the difference between a visitor and a customer. In the competitive digital landscape, your landing page needs to capture attention instantly, communicate value clearly, and guide users toward action.</p>
-<div><div><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=900&amp;auto=format&amp;fit=crop&amp;q=60" alt="Landing Page Design"></div></div>
-<h2 id="essential-landing-page-elements">Essential Landing Page Elements<svg class="anchor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></h2>
-<h3 id="hero-section">Hero Section</h3>
-<p>Your hero section has seconds to make an impression. It should clearly communicate your value proposition.</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>export</span><span> default</span><span> function</span><span> HeroSection</span><span>() {</span></span>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>
+			21 Best React Landing Page Templates To Inspire Yours - Magic UI Blog
+		</title>
+		<meta
+			name="description"
+			content="Discover stunning React landing page templates and learn the design principles that make them convert visitors into customers."
+		>
+		<link rel="icon" href="../assets/magicui-logo.png">
+		<link rel="stylesheet" href="../styles.css">
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="bar">
+				<div style="display:flex">
+					<a class="logo" href="../index.html"
+						><img src="../assets/magicui-logo.png" alt="Magic UI"></a
+					>
+				</div>
+				<nav>
+					<button
+						class="theme-toggle"
+						aria-label="Toggle theme"
+						onclick="window.__toggleTheme()"
+					>
+						<svg
+							class="sun"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="4" />
+							<path
+								d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+							/>
+						</svg>
+						<svg
+							class="moon"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+						</svg>
+					</button>
+				</nav>
+			</div>
+		</header>
+		<div class="page-wrap">
+			<div class="gradient-banner"><canvas></canvas></div>
+			<div class="article-header">
+				<div class="inner">
+					<div class="meta-row">
+						<a
+							class="back-btn"
+							href="../index.html"
+							aria-label="Back to all articles"
+						>
+							<svg
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="m15 18-6-6 6-6" />
+							</svg>
+						</a>
+						<div style="display:flex;flex-wrap:wrap;gap:0.75rem">
+							<span class="chip">Landing Page Examples</span
+							><span class="chip">React</span
+							><span class="chip">Templates</span>
+						</div>
+						<time class="muted" style="font-weight:500">November 22, 2024</time>
+					</div>
+					<h1>21 Best React Landing Page Templates To Inspire Yours</h1>
+					<p class="excerpt">
+						Discover stunning React landing page templates and learn the design
+						principles that make them convert visitors into customers.
+					</p>
+				</div>
+			</div>
+			<div class="article-shell">
+				<div class="article-frame"></div>
+				<main class="article-main">
+					<div class="hero">
+						<img
+							src="../assets/thumbnails/react-landing-page-templates.jpg"
+							alt="21 Best React Landing Page Templates To Inspire Yours"
+						>
+					</div>
+					<div class="article-cols">
+						<div class="prose-col">
+							<article class="prose">
+								<p>
+									A well-designed landing page can be the difference between a
+									visitor and a customer. In the competitive digital landscape,
+									your landing page needs to capture attention instantly,
+									communicate value clearly, and guide users toward action.
+								</p>
+								<div>
+									<div>
+										<img
+											src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=900&amp;auto=format&amp;fit=crop&amp;q=60"
+											alt="Landing Page Design"
+										>
+									</div>
+								</div>
+								<h2 id="essential-landing-page-elements">
+									Essential Landing Page Elements<svg
+										class="anchor-icon"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+										<path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+									</svg>
+								</h2>
+								<h3 id="hero-section">Hero Section</h3>
+								<p>
+									Your hero section has seconds to make an impression. It should
+									clearly communicate your value proposition.
+								</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>export</span><span> default</span><span> function</span><span> HeroSection</span><span>() {</span></span>
 <span><span>  return</span><span> (</span></span>
 <span><span>    &lt;</span><span>section</span><span> className</span><span>=</span><span>"bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20"</span><span>&gt;</span></span>
 <span><span>      &lt;</span><span>div</span><span> className</span><span>=</span><span>"container mx-auto px-4 text-center"</span><span>&gt;</span></span>
@@ -69,10 +162,18 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h3 id="social-proof">Social Proof</h3>
-<p>Build trust with testimonials, logos, and statistics:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>interface</span><span> Testimonial</span><span> {</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h3 id="social-proof">Social Proof</h3>
+								<p>Build trust with testimonials, logos, and statistics:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>interface</span><span> Testimonial</span><span> {</span></span>
 <span><span>  name</span><span>:</span><span> string</span><span>;</span></span>
 <span><span>  role</span><span>:</span><span> string</span><span>;</span></span>
 <span><span>  company</span><span>:</span><span> string</span><span>;</span></span>
@@ -114,11 +215,30 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h2 id="conversion-optimization-strategies">Conversion Optimization Strategies<svg class="anchor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></h2>
-<h3 id="clear-call-to-action">Clear Call-to-Action</h3>
-<p>Make your CTA impossible to miss:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>export</span><span> default</span><span> function</span><span> CTASection</span><span>() {</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h2 id="conversion-optimization-strategies">
+									Conversion Optimization Strategies<svg
+										class="anchor-icon"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+										<path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+									</svg>
+								</h2>
+								<h3 id="clear-call-to-action">Clear Call-to-Action</h3>
+								<p>Make your CTA impossible to miss:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>export</span><span> default</span><span> function</span><span> CTASection</span><span>() {</span></span>
 <span><span>  return</span><span> (</span></span>
 <span><span>    &lt;</span><span>section</span><span> className</span><span>=</span><span>"bg-gray-900 text-white py-20"</span><span>&gt;</span></span>
 <span><span>      &lt;</span><span>div</span><span> className</span><span>=</span><span>"container mx-auto px-4 text-center"</span><span>&gt;</span></span>
@@ -138,10 +258,18 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h3 id="features-section">Features Section</h3>
-<p>Highlight key benefits with visual hierarchy:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>interface</span><span> Feature</span><span> {</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h3 id="features-section">Features Section</h3>
+								<p>Highlight key benefits with visual hierarchy:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>interface</span><span> Feature</span><span> {</span></span>
 <span><span>  icon</span><span>:</span><span> React</span><span>.</span><span>ComponentType</span><span>;</span></span>
 <span><span>  title</span><span>:</span><span> string</span><span>;</span></span>
 <span><span>  description</span><span>:</span><span> string</span><span>;</span></span>
@@ -174,11 +302,30 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h2 id="advanced-techniques">Advanced Techniques<svg class="anchor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></h2>
-<h3 id="interactive-elements">Interactive Elements</h3>
-<p>Add engaging interactions to increase time on page:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>import</span><span> { useState } </span><span>from</span><span> "react"</span><span>;</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h2 id="advanced-techniques">
+									Advanced Techniques<svg
+										class="anchor-icon"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+										<path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+									</svg>
+								</h2>
+								<h3 id="interactive-elements">Interactive Elements</h3>
+								<p>Add engaging interactions to increase time on page:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>import</span><span> { useState } </span><span>from</span><span> "react"</span><span>;</span></span>
 <span></span>
 <span><span>export</span><span> default</span><span> function</span><span> InteractiveDemo</span><span>() {</span></span>
 <span><span>  const</span><span> [</span><span>activeTab</span><span>, </span><span>setActiveTab</span><span>] </span><span>=</span><span> useState</span><span>(</span><span>0</span><span>);</span></span>
@@ -239,10 +386,18 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h3 id="animated-statistics">Animated Statistics</h3>
-<p>Show impressive numbers with animated counters:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>import</span><span> { useState, useEffect, useRef } </span><span>from</span><span> "react"</span><span>;</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h3 id="animated-statistics">Animated Statistics</h3>
+								<p>Show impressive numbers with animated counters:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>import</span><span> { useState, useEffect, useRef } </span><span>from</span><span> "react"</span><span>;</span></span>
 <span></span>
 <span><span>export</span><span> default</span><span> function</span><span> AnimatedStats</span><span>() {</span></span>
 <span><span>  const</span><span> [</span><span>counts</span><span>, </span><span>setCounts</span><span>] </span><span>=</span><span> useState</span><span>([</span><span>0</span><span>, </span><span>0</span><span>, </span><span>0</span><span>]);</span></span>
@@ -307,10 +462,29 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h2 id="mobile-optimization">Mobile Optimization<svg class="anchor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></h2>
-<p>Ensure your landing page works perfectly on mobile:</p>
-<figure><div><button type="button" aria-label="Copy Text"></button></div><div><pre><code><span><span>export</span><span> default</span><span> function</span><span> MobileOptimizedHero</span><span>() {</span></span>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h2 id="mobile-optimization">
+									Mobile Optimization<svg
+										class="anchor-icon"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+										<path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+									</svg>
+								</h2>
+								<p>Ensure your landing page works perfectly on mobile:</p>
+								<figure>
+									<div>
+										<button type="button" aria-label="Copy Text"></button>
+									</div>
+									<div>
+										<pre
+										><code><span><span>export</span><span> default</span><span> function</span><span> MobileOptimizedHero</span><span>() {</span></span>
 <span><span>  return</span><span> (</span></span>
 <span><span>    &lt;</span><span>section</span><span> className</span><span>=</span><span>"bg-gradient-to-r from-purple-600 to-blue-600 text-white"</span><span>&gt;</span></span>
 <span><span>      &lt;</span><span>div</span><span> className</span><span>=</span><span>"container mx-auto px-4 py-12 lg:py-20"</span><span>&gt;</span></span>
@@ -343,53 +517,168 @@
 <span><span>      &lt;/</span><span>div</span><span>&gt;</span></span>
 <span><span>    &lt;/</span><span>section</span><span>&gt;</span></span>
 <span><span>  );</span></span>
-<span><span>}</span></span></code></pre></div></figure>
-<h2 id="conclusion">Conclusion<svg class="anchor-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg></h2>
-<p>Creating effective React landing pages requires combining compelling design with technical excellence. Focus on clear messaging, strong visual hierarchy, and smooth user experience to maximize conversions.</p>
-<p>Remember to test different variations, optimize for mobile, and continuously iterate based on user feedback and analytics data.</p>
-          </article>
-        </div>
-        <aside class="sidebar">
-          <div class="sticky">
-            <div class="author-card">
-              <img class="avatar" src="../assets/arghya.png" alt="Arghya Das" />
-              <div><h3>Arghya Das</h3><p>Design System Engineer</p></div>
-            </div>
-            <div class="toc-card">
-              <h4>On this page</h4>
-              <nav><ul><li><button data-target="essential-landing-page-elements">Essential Landing Page Elements</button></li><li><button data-target="conversion-optimization-strategies">Conversion Optimization Strategies</button></li><li><button data-target="advanced-techniques">Advanced Techniques</button></li><li><button data-target="mobile-optimization">Mobile Optimization</button></li><li><button data-target="conclusion">Conclusion</button></li></ul></nav>
-            </div>
-            <div class="pro-card">
-              <div class="stack">
-                <img src="../assets/magicui-pro.png" alt="Magic UI Pro" />
-                <div><h3>Try Magic UI Pro</h3><p>Magic UI Pro is a design system for building beautiful and responsive web applications.</p></div>
-              </div>
-            </div>
-          </div>
-        </aside>
-      </div>
-      <div class="read-more">
-        <section><div class="inner">
-          <h2>Read more</h2>
-          <div class="related-list">
-<a class="related" href="react-native-libraries.html">
-  <div class="rthumb"><img src="../assets/thumbnails/react-native-libraries.jpg" alt="21 Best React Native Libraries You Should Know About" /></div>
-  <div class="rbody"><h3>21 Best React Native Libraries You Should Know About</h3><p>Explore essential React Native libraries that will streamline your mobile app development and enhance functionality.</p><time>November 20, 2024</time></div>
-</a>
-<a class="related" href="react-portfolio-templates.html">
-  <div class="rthumb"><img src="../assets/thumbnails/react-portfolio-templates.jpg" alt="Looking For A React Portfolio Template? 19 Best React Portfolio Templates" /></div>
-  <div class="rbody"><h3>Looking For A React Portfolio Template? 19 Best React Portfolio Templates</h3><p>Discover the best React portfolio templates to showcase your work professionally and land your dream job or clients.</p><time>November 18, 2024</time></div>
-</a>
-          </div>
-        </div></section>
-      </div>
-    </main>
-  </div>
-  <button class="toc-fab" aria-label="Table of contents">
-    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-  </button>
-  <footer class="site-footer"><div class="inner"><p>© 2026 Your Company. All rights reserved.</p></div></footer>
-</div>
-<script src="../script.js"></script>
-</body>
+<span><span>}</span></span></code></pre>
+									</div>
+								</figure>
+								<h2 id="conclusion">
+									Conclusion<svg
+										class="anchor-icon"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+									>
+										<path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1" />
+										<path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1" />
+									</svg>
+								</h2>
+								<p>
+									Creating effective React landing pages requires combining
+									compelling design with technical excellence. Focus on clear
+									messaging, strong visual hierarchy, and smooth user experience
+									to maximize conversions.
+								</p>
+								<p>
+									Remember to test different variations, optimize for mobile,
+									and continuously iterate based on user feedback and analytics
+									data.
+								</p>
+							</article>
+						</div>
+						<aside class="sidebar">
+							<div class="sticky">
+								<div class="author-card">
+									<img
+										class="avatar"
+										src="../assets/arghya.png"
+										alt="Arghya Das"
+									>
+									<div>
+										<h3>Arghya Das</h3>
+										<p>Design System Engineer</p>
+									</div>
+								</div>
+								<div class="toc-card">
+									<h4>On this page</h4>
+									<nav>
+										<ul>
+											<li>
+												<button data-target="essential-landing-page-elements">
+													Essential Landing Page Elements
+												</button>
+											</li>
+											<li>
+												<button
+													data-target="conversion-optimization-strategies"
+												>
+													Conversion Optimization Strategies
+												</button>
+											</li>
+											<li>
+												<button data-target="advanced-techniques">
+													Advanced Techniques
+												</button>
+											</li>
+											<li>
+												<button data-target="mobile-optimization">
+													Mobile Optimization
+												</button>
+											</li>
+											<li>
+												<button data-target="conclusion">Conclusion</button>
+											</li>
+										</ul>
+									</nav>
+								</div>
+								<div class="pro-card">
+									<div class="stack">
+										<img src="../assets/magicui-pro.png" alt="Magic UI Pro">
+										<div>
+											<h3>Try Magic UI Pro</h3>
+											<p>
+												Magic UI Pro is a design system for building beautiful
+												and responsive web applications.
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</aside>
+					</div>
+					<div class="read-more">
+						<section>
+							<div class="inner">
+								<h2>Read more</h2>
+								<div class="related-list">
+									<a class="related" href="react-native-libraries.html">
+										<div class="rthumb">
+											<img
+												src="../assets/thumbnails/react-native-libraries.jpg"
+												alt="21 Best React Native Libraries You Should Know About"
+											>
+										</div>
+										<div class="rbody">
+											<h3>
+												21 Best React Native Libraries You Should Know About
+											</h3>
+											<p>
+												Explore essential React Native libraries that will
+												streamline your mobile app development and enhance
+												functionality.
+											</p>
+											<time>November 20, 2024</time>
+										</div>
+									</a>
+									<a class="related" href="react-portfolio-templates.html">
+										<div class="rthumb">
+											<img
+												src="../assets/thumbnails/react-portfolio-templates.jpg"
+												alt="Looking For A React Portfolio Template? 19 Best React Portfolio Templates"
+											>
+										</div>
+										<div class="rbody">
+											<h3>
+												Looking For A React Portfolio Template? 19 Best React
+												Portfolio Templates
+											</h3>
+											<p>
+												Discover the best React portfolio templates to showcase
+												your work professionally and land your dream job or
+												clients.
+											</p>
+											<time>November 18, 2024</time>
+										</div>
+									</a>
+								</div>
+							</div>
+						</section>
+					</div>
+				</main>
+			</div>
+			<button class="toc-fab" aria-label="Table of contents">
+				<svg
+					viewBox="0 0 24 24"
+					width="20"
+					height="20"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+				>
+					<line x1="8" y1="6" x2="21" y2="6" />
+					<line x1="8" y1="12" x2="21" y2="12" />
+					<line x1="8" y1="18" x2="21" y2="18" />
+					<line x1="3" y1="6" x2="3.01" y2="6" />
+					<line x1="3" y1="12" x2="3.01" y2="12" />
+					<line x1="3" y1="18" x2="3.01" y2="18" />
+				</svg>
+			</button>
+			<footer class="site-footer">
+				<div class="inner">
+					<p>© 2026 Your Company. All rights reserved.</p>
+				</div>
+			</footer>
+		</div>
+		<script src="../script.js"></script>
+	</body>
 </html>

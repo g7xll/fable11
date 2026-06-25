@@ -1,22 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>10 Next.js Performance Tips for Production Apps | Dillion Verma</title>
-<link rel="icon" href="./assets/img/me.png" />
-<link rel="stylesheet" href="./styles.css" />
-</head>
-<body>
-<main>
-  <article class="post-page">
-    <a class="back-link blur-fade" href="./blog.html"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to blog</a>
-    <h1 class="blur-fade" data-delay="0.04">10 Next.js Performance Tips for Production Apps</h1>
-    <div class="post-meta blur-fade" data-delay="0.06">2024-12-05</div>
-    <div class="prose blur-fade" data-delay="0.08"><p>Performance isn't optional—it's a feature. Here are battle-tested tips for optimizing Next.js apps.</p>
-<h1>2. Optimize Images</h1>
-<p>Always use <code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">next/image</code></p>
-<div class="group relative rounded-xl overflow-hidden border border-border"><pre class="p-0! m-0! overflow-x-auto"><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-3" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-tsx"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> Image </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'next/image'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			10 Next.js Performance Tips for Production Apps | Dillion Verma
+		</title>
+		<link rel="icon" href="./assets/img/me.png">
+		<link rel="stylesheet" href="./styles.css">
+	</head>
+	<body>
+		<main>
+			<article class="post-page">
+				<a class="back-link blur-fade" href="./blog.html"
+					><svg
+						viewBox="0 0 24 24"
+						width="14"
+						height="14"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<line x1="19" y1="12" x2="5" y2="12" />
+						<polyline points="12 19 5 12 12 5" />
+					</svg>
+					Back to blog</a
+				>
+				<h1 class="blur-fade" data-delay="0.04">
+					10 Next.js Performance Tips for Production Apps
+				</h1>
+				<div class="post-meta blur-fade" data-delay="0.06">2024-12-05</div>
+				<div class="prose blur-fade" data-delay="0.08">
+					<p>
+						Performance isn't optional—it's a feature. Here are battle-tested
+						tips for optimizing Next.js apps.
+					</p>
+					<h1>2. Optimize Images</h1>
+					<p>
+						Always use
+						<code
+							class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+							>next/image</code
+						>
+					</p>
+					<div
+						class="group relative rounded-xl overflow-hidden border border-border"
+					>
+						<pre
+							class="p-0! m-0! overflow-x-auto"
+						><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-3" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-tsx"><span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">import</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> Image </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">from</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> 'next/image'</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">export</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583"> function</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> Hero</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">() {</span></span>
 <span class="line"><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">  return</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8"> (</span></span>
@@ -31,23 +65,102 @@
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">    /&gt;</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">  );</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">}</span></span>
-<span class="line"></span></code></div></pre></div>
-<h2>4. Implement Proper Caching</h2>
-<div class="my-6 border border-border rounded-xl overflow-hidden"><div class="w-full overflow-x-auto"><table class="m-0! w-full min-w-full border-separate border-spacing-0"><thead><tr><th>Strategy</th><th>Use Case</th><th>TTL</th></tr></thead><tbody><tr><td><code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">force-cache</code></td><td>Static data</td><td>Forever</td></tr><tr><td><code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">revalidate: 3600</code></td><td>Semi-static</td><td>1 hour</td></tr><tr><td><code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">revalidate: 60</code></td><td>Frequently updated</td><td>1 minute</td></tr><tr><td><code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">no-store</code></td><td>Real-time data</td><td>Never cache</td></tr></tbody></table></div></div>
-<h2>5. Minimize Client Components</h2>
-<p>Every <code class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90">'use client'</code> directive adds to your JavaScript bundle. Keep client components small and focused:</p>
-<h2>6. Bundle Analysis</h2>
-<div class="group relative rounded-xl overflow-hidden border border-border"><pre class="p-0! m-0! overflow-x-auto"><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">terminal</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-bash"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Install analyzer</span></span>
+<span class="line"></span></code></div></pre>
+					</div>
+					<h2>4. Implement Proper Caching</h2>
+					<div class="my-6 border border-border rounded-xl overflow-hidden">
+						<div class="w-full overflow-x-auto">
+							<table
+								class="m-0! w-full min-w-full border-separate border-spacing-0"
+							>
+								<thead>
+									<tr>
+										<th>Strategy</th>
+										<th>Use Case</th>
+										<th>TTL</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<code
+												class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+												>force-cache</code
+											>
+										</td>
+										<td>Static data</td>
+										<td>Forever</td>
+									</tr>
+									<tr>
+										<td>
+											<code
+												class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+												>revalidate: 3600</code
+											>
+										</td>
+										<td>Semi-static</td>
+										<td>1 hour</td>
+									</tr>
+									<tr>
+										<td>
+											<code
+												class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+												>revalidate: 60</code
+											>
+										</td>
+										<td>Frequently updated</td>
+										<td>1 minute</td>
+									</tr>
+									<tr>
+										<td>
+											<code
+												class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+												>no-store</code
+											>
+										</td>
+										<td>Real-time data</td>
+										<td>Never cache</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<h2>5. Minimize Client Components</h2>
+					<p>
+						Every
+						<code
+							class="px-1.5 py-0.5 rounded-md bg-muted/60 dark:bg-muted/40 text-sm font-mono text-foreground/90"
+							>'use client'</code
+						>
+						directive adds to your JavaScript bundle. Keep client components
+						small and focused:
+					</p>
+					<h2>6. Bundle Analysis</h2>
+					<div
+						class="group relative rounded-xl overflow-hidden border border-border"
+					>
+						<pre
+							class="p-0! m-0! overflow-x-auto"
+						><div class="p-3 text-xs font-medium border-b border-border rounded-t-xl bg-muted/50 text-foreground">terminal</div><button class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 bg-background hover:bg-accent hover:text-accent-foreground absolute size-8 text-primary cursor-pointer right-3 opacity-100 lg:opacity-0 lg:group-hover:opacity-100 transition-opacity rounded-md border border-border shadow-none top-13" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-copy size-4" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button><div class="p-3"><code class="shiki language-bash"><span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Install analyzer</span></span>
 <span class="line"><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0">npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> @next/bundle-analyzer</span></span>
 <span class="line"></span>
 <span class="line"><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D"># Run analysis</span></span>
 <span class="line"><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8">ANALYZE</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583">=</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF">true</span><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0"> npm</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> run</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF"> build</span></span>
-<span class="line"></span></code></div></pre></div></div>
-    <div class="next-nav blur-fade"><a class="next-card" href="./blog-building-design-systems.html"><div class="lbl">Next</div><div class="ttl">Building Scalable Design Systems with React and Tailwind</div></a></div>
-  </article>
-</main>
-<div id="dock-mount"></div>
-<script src="./dock.js"></script>
-<script src="./script.js"></script>
-</body>
+<span class="line"></span></code></div></pre>
+					</div>
+				</div>
+				<div class="next-nav blur-fade">
+					<a class="next-card" href="./blog-building-design-systems.html"
+						><div class="lbl">Next</div>
+						<div class="ttl">
+							Building Scalable Design Systems with React and Tailwind
+						</div></a
+					>
+				</div>
+			</article>
+		</main>
+		<div id="dock-mount"></div>
+		<script src="./dock.js"></script>
+		<script src="./script.js"></script>
+	</body>
 </html>
