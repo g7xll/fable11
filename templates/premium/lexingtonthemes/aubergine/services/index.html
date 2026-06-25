@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Services — Aubergine</title>
+		<meta
+			name="description"
+			content="Full-service design and development — from UI/UX and product design to 3D, motion, and design systems."
+		>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+			href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap"
+			rel="stylesheet"
+		>
+		<link
+			href="https://api.fontshare.com/v2/css?f[]=clash-display@1&display=swap"
+			rel="stylesheet"
+		>
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<link rel="stylesheet" href="../styles.css">
+	</head>
+	<body>
+		<div class="grid-bg" aria-hidden="true">
+			<svg xmlns="http://www.w3.org/2000/svg">
+				<defs>
+					<pattern
+						id="grid-pattern"
+						width="32"
+						height="32"
+						patternUnits="userSpaceOnUse"
+						x="50%"
+						y="100%"
+						patternTransform="translate(0 -1)"
+					>
+						<path d="M0 32V.5H32" fill="none" stroke="currentColor"></path>
+					</pattern>
+				</defs>
+				<rect width="100%" height="100%" fill="url(#grid-pattern)"></rect>
+			</svg>
+		</div>
+
+		<button
+			type="button"
+			id="searchButton"
+			class="search-btn"
+			aria-label="Search posts"
+		>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 256 256"
+				fill="currentColor"
+			>
+				<path
+					d="M229.66,218.34l-50.07-50.07a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.31ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
+				></path>
+			</svg>
+		</button>
+
+		<div id="searchModal" class="search-modal" role="dialog" aria-modal="true">
+			<div class="search-modal-wrap">
+				<div class="search-overlay" id="modalOverlay"></div>
+				<div class="search-inner">
+					<input
+						type="text"
+						id="searchInput"
+						placeholder="Search posts..."
+						autocomplete="off"
+					>
+					<div id="searchResults" class="scrollbar-hide"></div>
+				</div>
+			</div>
+		</div>
+
+		<div id="nav-wrapper">
+			<div id="nav-container">
+				<div class="nav-inner">
+					<div class="nav-brand">
+						<a href="../index.html" aria-label="Homepage">
+							<svg
+								class="logo-svg"
+								viewBox="0 0 126 126"
+								fill="none"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									d="M61.3444 77.0485L54.0444 116.449C53.2444 120.949 56.6443 125.049 61.1443 125.049H64.4444C68.9444 125.049 72.4444 120.949 71.5444 116.449L64.2444 77.0485C63.9444 75.4485 61.6444 75.4485 61.3444 77.0485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M67.5443 76.3485L76.8443 115.349C77.9443 119.749 82.7443 122.149 86.8443 120.249L89.8443 118.949C93.9443 117.149 95.4443 111.949 92.8443 108.249L70.1443 75.2486C69.2443 73.8486 67.1443 74.7485 67.5443 76.3485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M72.9445 73.1486L97.3444 104.949C100.144 108.549 105.444 108.749 108.444 105.349L110.644 102.849C113.644 99.4485 112.944 94.1485 109.044 91.8485L74.8444 70.9485C73.4444 70.1485 71.9445 71.8486 72.9445 73.1486Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M76.5443 68.0485L111.744 87.2485C115.744 89.4485 120.744 87.4485 122.144 83.1485L123.144 80.0485C124.544 75.7485 121.644 71.2485 117.144 70.6485L77.4444 65.4485C75.8444 65.1485 75.1443 67.2485 76.5443 68.0485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M77.8444 61.9485L117.844 65.1486C122.344 65.5486 126.144 61.6486 125.644 57.1486L125.344 53.8485C124.844 49.3485 120.444 46.3486 116.044 47.6486L77.5444 59.0485C75.9444 59.5485 76.2444 61.8485 77.8444 61.9485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M76.4444 55.8485L114.244 42.5485C118.544 41.0485 120.344 36.0485 118.144 32.0485L116.444 29.1486C114.144 25.2486 108.944 24.3485 105.444 27.2485L74.9444 53.3485C73.8444 54.3485 74.9444 56.3485 76.4444 55.8485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M72.7444 50.8485L101.844 23.2486C105.144 20.1486 104.744 14.7486 101.144 12.1486L98.4445 10.2486C94.7445 7.54856 89.5444 8.94857 87.6444 12.9486L70.4445 49.1486C69.7445 50.5486 71.5444 51.9485 72.7444 50.8485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M67.3444 47.7485L82.7444 10.7485C84.4444 6.54854 81.9444 1.84851 77.5444 0.848515L74.3444 0.148564C69.9444 -0.751436 65.7444 2.54853 65.6444 7.04853L64.6444 47.1486C64.4444 48.7486 66.6444 49.2485 67.3444 47.7485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M61.0444 47.1486L60.0444 7.04853C59.9444 2.54853 55.7444 -0.751436 51.3444 0.148564L48.1444 0.848515C43.7444 1.74851 41.2444 6.54854 42.9444 10.7485L58.3444 47.7485C58.9444 49.2485 61.1444 48.7486 61.0444 47.1486Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M55.1444 49.1485L37.9444 12.9485C36.0444 8.84853 30.8444 7.54851 27.1444 10.2485L24.4444 12.1485C20.7444 14.8485 20.4444 20.1485 23.7444 23.2485L52.8444 50.8485C54.0444 51.9485 55.8444 50.5485 55.1444 49.1485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M50.5444 53.3485L20.0444 27.2485C16.6444 24.3485 11.3444 25.2486 9.04443 29.1486L7.34441 32.0485C5.04441 35.9485 6.94444 40.9485 11.2444 42.5485L49.0444 55.8485C50.6444 56.3485 51.7444 54.3485 50.5444 53.3485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M48.0443 59.0485L9.64435 47.6486C5.34435 46.3486 0.844327 49.3485 0.344327 53.8485L0.0443394 57.1486C-0.455661 61.6486 3.34433 65.4486 7.84433 65.1486L47.8443 61.9485C49.3443 61.8485 49.6443 59.5485 48.0443 59.0485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M48.1444 65.3485L8.44435 70.5485C3.94435 71.1485 1.04435 75.6485 2.44435 79.9485L3.44435 83.0485C4.84435 87.3485 9.84434 89.3486 13.8443 87.1486L49.0444 67.9485C50.4444 67.2485 49.7444 65.1485 48.1444 65.3485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M50.7444 71.0485L16.5444 91.9486C12.6444 94.3486 11.9444 99.6486 14.9444 102.949L17.1444 105.449C20.1444 108.849 25.5444 108.649 28.2444 105.049L52.6444 73.2485C53.6444 71.8485 52.1444 70.1485 50.7444 71.0485Z"
+									fill="currentColor"
+								/>
+								<path
+									d="M55.3443 75.1486L32.6443 108.149C30.0443 111.849 31.5443 117.049 35.6443 118.849L38.6443 120.149C42.7443 121.949 47.5443 119.649 48.6443 115.249L57.9443 76.2485C58.4443 74.7485 56.3443 73.8486 55.3443 75.1486Z"
+									fill="currentColor"
+								/>
+							</svg>
+						</a>
+						<button
+							class="nav-toggle"
+							id="nav-toggle"
+							aria-label="Toggle navigation"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 256 256"
+								fill="currentColor"
+								style="width:1.25rem;height:1.25rem"
+							>
+								<path
+									d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
+								></path>
+							</svg>
+						</button>
+					</div>
+					<nav id="nav-menu">
+						<a href="../work/index.html" class="nav-link">Work</a>
+						<a href="index.html" class="nav-link">Services</a>
+						<a href="../blog/index.html" class="nav-link">Blog</a>
+						<a href="../team/index.html" class="nav-link">Team</a>
+						<a href="../system/overview.html" class="nav-link">Overview</a>
+						<a
+							href="https://lexingtonthemes.com/templates/aubergine"
+							class="btn btn-accent btn-md"
+							>Buy Aubergine</a
+						>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<main style="position:relative;flex:1;">
+			<section class="page-hero">
+				<div class="container">
+					<div data-aos="fade-down" data-aos-duration="1200">
+						<p
+							style="text-transform:uppercase;letter-spacing:.1em;color:var(--color-accent-300);margin-bottom:1rem;font-size:.75rem;"
+						>
+							What we offer
+						</p>
+						<h1 class="heading-xl">Our services</h1>
+						<p class="hero-sub mt-4">
+							End-to-end design and development, delivered as a subscription.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- Services detail -->
+			<section>
+				<div class="container" style="padding-bottom:6rem;">
+					<div data-aos="fade-up">
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">UI/UX Design</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									We design interfaces that balance beauty with function. Our
+									process starts with understanding your users — their goals,
+									frustrations, and mental models — and works outward to create
+									experiences that feel intuitive from the first click. We
+									deliver wireframes, interactive prototypes, and polished
+									high-fidelity designs, all in Figma with organized components
+									and a handoff-ready structure.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Deliverables include: user flows, wireframes, UI components,
+									prototype links, and Figma source files.
+								</p>
+							</div>
+						</div>
+
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">Product Design</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									Product design is about more than interfaces — it's about
+									solving the right problems in the right ways. We help you
+									define product strategy, map user journeys, and design systems
+									that scale with your business. Whether you're launching a new
+									product or evolving an existing one, we bring strategic
+									thinking to every stage.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Deliverables include: product strategy docs, journey maps,
+									feature specs, and full UI deliverables.
+								</p>
+							</div>
+						</div>
+
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">3D Design</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									Three-dimensional design adds a layer of depth and realism
+									that flat design simply can't match. We create product
+									renders, hero illustrations, and 3D brand assets that give
+									your visual identity a premium, forward-looking feel. Our 3D
+									work is optimized for web and available as still images,
+									animated sequences, or interactive WebGL experiences.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Deliverables include: PNG/WebP renders, animated GIFs/MP4s,
+									and GLTF files for interactive 3D.
+								</p>
+							</div>
+						</div>
+
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">Web Development</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									We build fast, accessible, and maintainable web applications
+									using modern frameworks. Our development work is always paired
+									with the design — we don't just implement specs, we actively
+									participate in the design-to-code process to ensure the final
+									product matches the vision exactly. Performance, SEO, and
+									accessibility are non-negotiable requirements.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Tech stack: Next.js, React, Astro, TypeScript, Tailwind CSS,
+									deployed to Vercel or your platform of choice.
+								</p>
+							</div>
+						</div>
+
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">Design Systems</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									A great design system is an investment that pays dividends
+									every time your team ships a feature. We build token-based
+									design systems in Figma, complete with components, variants,
+									documentation, and usage guidelines. We ensure your system
+									works for both design and development, with CSS variables or
+									Tailwind tokens that keep code and design in sync.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Deliverables include: Figma component library, design tokens,
+									documentation site, and developer handoff guide.
+								</p>
+							</div>
+						</div>
+
+						<div class="service-row">
+							<div>
+								<div class="service-icon" style="margin-bottom:1rem;">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+										stroke="currentColor"
+										stroke-width="1.5"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"
+										/>
+									</svg>
+								</div>
+								<h2 class="service-row-title">Motion Design</h2>
+							</div>
+							<div>
+								<p class="service-row-desc">
+									Animation is a communication tool. When done well, it guides
+									attention, provides feedback, and makes your interface feel
+									alive. We design motion at every scale — from
+									micro-interactions that acknowledge a user's action, to hero
+									animations that set the tone for your brand. All animations
+									are implemented with performance in mind, using CSS animations
+									or Framer Motion.
+								</p>
+								<p class="service-row-desc" style="margin-top:1rem;">
+									Deliverables include: After Effects source files, Lottie JSON
+									exports, Framer Motion component code, and GIF/MP4 previews.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- FAQ -->
+			<section>
+				<div class="container py-24" style="padding-top:0;">
+					<div class="section-header" data-aos="fade-up">
+						<h2 class="heading-lg">Common questions</h2>
+					</div>
+					<div class="faq-list mt-12" data-aos="fade-up">
+						<div class="faq-item">
+							<button class="faq-question">
+								Can I request any type of design work?
+								<svg
+									class="faq-icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+							<div class="faq-answer">
+								<p>
+									Yes! As long as it falls within our service areas (UI/UX,
+									product design, 3D, web development, design systems, motion
+									design), you can request it. Some tasks we don't do include
+									print design, illustration, logo design, and video production
+									— but we'll always let you know upfront if something falls
+									outside our scope.
+								</p>
+							</div>
+						</div>
+						<div class="faq-item">
+							<button class="faq-question">
+								How do I submit a design request?
+								<svg
+									class="faq-icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+							<div class="faq-answer">
+								<p>
+									After subscribing, you'll get access to our client portal
+									where you can submit requests, track progress, leave feedback,
+									and download completed work. We use Linear for task
+									management, so you always have visibility into exactly where
+									things stand. Most clients also get a shared Slack channel for
+									quick communication.
+								</p>
+							</div>
+						</div>
+						<div class="faq-item">
+							<button class="faq-question">
+								What if I don't like the output?
+								<svg
+									class="faq-icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+							<div class="faq-answer">
+								<p>
+									We offer unlimited revisions on all work. If you're not happy,
+									tell us specifically what to change and we'll revise until you
+									are. In the rare case where a project has gone completely
+									off-track, we'll start fresh. Our goal is 100% satisfaction on
+									every deliverable — we've maintained a 98% client satisfaction
+									rate since founding.
+								</p>
+							</div>
+						</div>
+						<div class="faq-item">
+							<button class="faq-question">
+								Do you work with agencies or only direct clients?
+								<svg
+									class="faq-icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+							<div class="faq-answer">
+								<p>
+									We work with both. Many agencies use us as a white-label
+									design and development partner — we deliver the work under
+									their brand, they deliver it to their clients. If you're an
+									agency, ask us about our agency partnership program with
+									volume discounts and priority scheduling.
+								</p>
+							</div>
+						</div>
+						<div class="faq-item">
+							<button class="faq-question">
+								Is there a minimum commitment?
+								<svg
+									class="faq-icon"
+									xmlns="http://www.w3.org/2000/svg"
+									fill="none"
+									viewBox="0 0 24 24"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										d="M12 4.5v15m7.5-7.5h-15"
+									/>
+								</svg>
+							</button>
+							<div class="faq-answer">
+								<p>
+									No minimum commitment — all plans are month-to-month. You can
+									cancel, pause, or upgrade at any time. We believe the work
+									should speak for itself, and clients should stay because they
+									love the results, not because they're locked in.
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<div class="container">
+				<div class="footer-inner">
+					<a href="../index.html" aria-label="Homepage">
+						<svg
+							class="logo-svg"
+							style="height:1.5rem;"
+							viewBox="0 0 126 126"
+							fill="none"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								d="M61.3444 77.0485L54.0444 116.449C53.2444 120.949 56.6443 125.049 61.1443 125.049H64.4444C68.9444 125.049 72.4444 120.949 71.5444 116.449L64.2444 77.0485C63.9444 75.4485 61.6444 75.4485 61.3444 77.0485Z"
+								fill="currentColor"
+							/>
+							<path
+								d="M55.3443 75.1486L32.6443 108.149C30.0443 111.849 31.5443 117.049 35.6443 118.849L38.6443 120.149C42.7443 121.949 47.5443 119.649 48.6443 115.249L57.9443 76.2485C58.4443 74.7485 56.3443 73.8486 55.3443 75.1486Z"
+								fill="currentColor"
+							/>
+						</svg>
+					</a>
+					<nav class="footer-links">
+						<a href="../work/index.html" class="footer-link">Work</a>
+						<a href="index.html" class="footer-link">Services</a>
+						<a href="../blog/index.html" class="footer-link">Blog</a>
+						<a href="../team/index.html" class="footer-link">Team</a>
+						<a href="../system/overview.html" class="footer-link">Overview</a>
+					</nav>
+					<p class="footer-copy">
+						&copy; 2026 Aubergine Studio. All rights reserved.
+					</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.basic.min.js"
+		></script>
+		<script>
+		(function () {
+			AOS.init({ duration: 400, easing: "ease", once: true });
+			const navContainer = document.getElementById("nav-container");
+			window.addEventListener("scroll", () =>
+				navContainer.classList.toggle("expanded", window.pageYOffset > 50),
+			);
+			document
+				.getElementById("nav-toggle")
+				.addEventListener("click", () =>
+					document.getElementById("nav-menu").classList.toggle("open"),
+				);
+			const posts = [
+				{
+					title: "The 3-Day Productized Website Sprint",
+					pubDate: "2026-01-01",
+					description:
+						"How we ship a production-ready marketing site in 72 hours.",
+					slug: "1",
+				},
+				{
+					title: "Onboarding Clients in 24 Hours",
+					pubDate: "2026-01-02",
+					description: "A repeatable intake playbook.",
+					slug: "2",
+				},
+				{
+					title: "Async Collaboration for Productized Builds",
+					pubDate: "2026-01-03",
+					description: "The rituals and cadences we use.",
+					slug: "3",
+				},
+				{
+					title: "Measuring ROI on Productized Design",
+					pubDate: "2026-01-04",
+					description: "Simple metrics to prove the value.",
+					slug: "4",
+				},
+				{
+					title: "Pricing a Productized Service with Confidence",
+					pubDate: "2026-01-05",
+					description: "A lightweight pricing ladder.",
+					slug: "5",
+				},
+				{
+					title: "The Maintenance Blueprint for Productized Sites",
+					pubDate: "2026-01-06",
+					description: "Keep shipped work fast and consistent.",
+					slug: "6",
+				},
+			];
+			window.addEventListener("load", () => {
+				const fuse = new Fuse(posts, {
+					keys: ["title", "description"],
+					threshold: 0.3,
+				});
+				const searchButton = document.getElementById("searchButton");
+				const searchModal = document.getElementById("searchModal");
+				const modalOverlay = document.getElementById("modalOverlay");
+				const searchInput = document.getElementById("searchInput");
+				const searchResults = document.getElementById("searchResults");
+				function openSearch(e) {
+					e.preventDefault();
+					searchModal.classList.add("open");
+					document.body.style.overflow = "hidden";
+					setTimeout(() => searchInput.focus(), 100);
+				}
+				function closeSearch() {
+					searchModal.classList.remove("open");
+					document.body.style.overflow = "";
+					searchInput.value = "";
+					searchResults.innerHTML = "";
+					searchResults.classList.remove("visible");
+				}
+				function renderResults(results) {
+					if (!searchInput.value.trim()) {
+						searchResults.innerHTML = "";
+						searchResults.classList.remove("visible");
+						return;
+					}
+					if (!results.length) {
+						searchResults.innerHTML =
+							'<div class="search-empty">Nothing found.</div>';
+						searchResults.classList.add("visible");
+						return;
+					}
+					searchResults.innerHTML = results
+						.map(
+							(r) =>
+								`<a href="../blog/index.html" class="search-result-item"><p class="search-result-date">${new Date(r.item.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" })}</p><h3 class="search-result-title">${r.item.title}</h3><p class="search-result-desc">${r.item.description}</p></a>`,
+						)
+						.join("");
+					searchResults.classList.add("visible");
+				}
+				searchButton.addEventListener("click", openSearch);
+				modalOverlay.addEventListener("click", closeSearch);
+				searchInput.addEventListener("input", (e) =>
+					renderResults(
+						e.target.value.trim() ? fuse.search(e.target.value) : [],
+					),
+				);
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape") closeSearch();
+				});
+			});
+			document.querySelectorAll(".faq-question").forEach((btn) => {
+				btn.addEventListener("click", () => {
+					const item = btn.closest(".faq-item");
+					const isOpen = item.classList.contains("open");
+					document
+						.querySelectorAll(".faq-item")
+						.forEach((i) => i.classList.remove("open"));
+					if (!isOpen) item.classList.add("open");
+				});
+			});
+		})();
+		</script>
+	</body>
+</html>
