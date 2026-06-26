@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Introduction to Next.js — John MacTavish</title>
+		<script>
+		(function () {
+			var theme = localStorage.getItem("theme");
+			if (theme === "dark") {
+				document.documentElement.setAttribute("data-theme", "dark");
+			}
+		})();
+		</script>
+		<link rel="stylesheet" href="tokens.css">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<!-- Floating Nav -->
+		<nav class="nav-floating" aria-label="Main navigation">
+			<div class="nav-inner">
+				<a href="index.html" class="nav-avatar">
+					<img src="assets/avatar.webp" alt="John MacTavish">
+				</a>
+				<div class="nav-links">
+					<a href="about.html" class="nav-link">About</a>
+					<a href="projects.html" class="nav-link">Projects</a>
+					<a href="blog.html" class="nav-link active">Blog</a>
+					<a href="contact.html" class="nav-link">Contact</a>
+				</div>
+				<div class="nav-spacer"></div>
+				<button
+					class="theme-toggle"
+					id="themeToggle"
+					aria-label="Toggle dark mode"
+				>
+					<svg
+						class="icon-sun"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<circle cx="12" cy="12" r="5" />
+						<line x1="12" y1="1" x2="12" y2="3" />
+						<line x1="12" y1="21" x2="12" y2="23" />
+						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+						<line x1="1" y1="12" x2="3" y2="12" />
+						<line x1="21" y1="12" x2="23" y2="12" />
+						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+					</svg>
+					<svg
+						class="icon-moon"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+					</svg>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Page Layout -->
+		<div class="page-wrapper">
+			<div class="content-outer">
+				<div class="stripe-left" aria-hidden="true"></div>
+				<main class="content-panel">
+					<!-- Next.js Banner -->
+					<div class="blog-banner">
+						<div>
+							<div class="blog-breadcrumb">
+								<a href="blog.html">Blog</a>
+								/ Introduction to Next.js
+							</div>
+							<div class="blog-banner-title">
+								The React Framework for Production
+							</div>
+							<div class="blog-banner-sub">
+								Next.js gives you the best developer experience with all the
+								features you need for production: hybrid static &amp; server
+								rendering, TypeScript support, smart bundling, route
+								pre-fetching, and more.
+							</div>
+						</div>
+						<a href="#" class="blog-banner-btn">Get started for free →</a>
+					</div>
+
+					<!-- Blog Post -->
+					<article class="blog-post">
+						<h1>Introduction to Next.js</h1>
+						<div class="blog-post-meta">
+							Friday, September 15, 2023 · 8 min read
+						</div>
+
+						<p>
+							Next.js has become the go-to React framework for building
+							production-ready web applications. It extends React with powerful
+							features like server-side rendering, static site generation, and
+							an intuitive file-based routing system. In this introduction,
+							we'll cover the fundamentals and help you understand why Next.js
+							has become so popular.
+						</p>
+
+						<h2>What is Next.js?</h2>
+						<p>
+							Next.js is an open-source React framework created by Vercel that
+							enables functionality such as server-side rendering and generating
+							static websites. It provides a production-ready foundation so you
+							can focus on building your product instead of configuring your
+							toolchain.
+						</p>
+						<p>
+							Unlike plain React, Next.js handles the complex configuration of
+							Webpack, Babel, and other build tools for you. It also provides
+							built-in performance optimizations like image optimization, font
+							optimization, and automatic code splitting.
+						</p>
+
+						<h2>Key Features</h2>
+
+						<h3>Rendering Options</h3>
+						<p>
+							Next.js supports multiple rendering strategies, and you can even
+							mix and match them within the same application:
+						</p>
+						<ul>
+							<li>
+								<strong>Static Site Generation (SSG)</strong>
+								— pages are pre-rendered at build time, resulting in fast load
+								times and easy CDN caching
+							</li>
+							<li>
+								<strong>Server-Side Rendering (SSR)</strong>
+								— pages are rendered on each request, ideal for dynamic data
+								that changes frequently
+							</li>
+							<li>
+								<strong>Incremental Static Regeneration (ISR)</strong>
+								— combines SSG with the ability to revalidate and regenerate
+								pages after deployment
+							</li>
+							<li>
+								<strong>Client-Side Rendering (CSR)</strong>
+								— traditional React rendering in the browser, useful for highly
+								interactive UIs
+							</li>
+						</ul>
+						<pre><code>// Static Site Generation
+export async function getStaticProps() {
+  const data = await fetchData();
+  return { props: { data } };
+}
+
+// Server-Side Rendering
+export async function getServerSideProps(context) {
+  const data = await fetchData(context.params.id);
+  return { props: { data } };
+}
+
+// Incremental Static Regeneration
+export async function getStaticProps() {
+  return {
+    props: { data },
+    revalidate: 60 // seconds
+  };
+}</code></pre>
+
+						<h3>File-based Routing</h3>
+						<p>
+							Next.js uses a file-system based router. Files placed inside the
+							<code>pages/</code> (or <code>app/</code> with the App Router)
+							directory automatically become routes. This eliminates the need
+							for manual route configuration.
+						</p>
+						<pre><code>pages/
+  index.js       → /
+  about.js       → /about
+  blog/
+    index.js     → /blog
+    [slug].js    → /blog/:slug
+  api/
+    hello.js     → /api/hello</code></pre>
+
+						<h3>API Routes</h3>
+						<p>
+							Next.js allows you to build your API directly inside your Next.js
+							app. Files placed in <code>pages/api/</code> become API endpoints,
+							eliminating the need for a separate backend server for many use
+							cases.
+						</p>
+						<pre><code>// pages/api/users.js
+export default function handler(req, res) {
+  if (req.method === 'GET') {
+    const users = db.getUsers();
+    res.status(200).json(users);
+  } else if (req.method === 'POST') {
+    const user = db.createUser(req.body);
+    res.status(201).json(user);
+  }
+}</code></pre>
+
+						<h3>Built-in Optimizations</h3>
+						<p>
+							Next.js comes with several automatic performance optimizations out
+							of the box:
+						</p>
+						<ul>
+							<li>
+								<strong>Image Optimization</strong>
+								— the <code>next/image</code> component automatically optimizes
+								images on demand, serving them in modern formats like WebP and
+								AVIF
+							</li>
+							<li>
+								<strong>Font Optimization</strong>
+								— <code>next/font</code> automatically self-hosts and optimizes
+								Google Fonts with zero layout shift
+							</li>
+							<li>
+								<strong>Script Optimization</strong>
+								— the <code>next/script</code> component lets you control when
+								third-party scripts load
+							</li>
+							<li>
+								<strong>Automatic Code Splitting</strong>
+								— each page only loads the JavaScript it needs, reducing initial
+								bundle size
+							</li>
+						</ul>
+
+						<h2>Getting Started</h2>
+						<p>
+							Creating a new Next.js project is straightforward with the CLI:
+						</p>
+						<pre><code>npx create-next-app@latest my-app
+cd my-app
+npm run dev</code></pre>
+						<p>
+							This creates a new Next.js application with TypeScript support,
+							ESLint, and Tailwind CSS configured out of the box. Visit
+							<code>http://localhost:3000</code> to see your app running.
+						</p>
+
+						<p>
+							Next.js is the right choice for most React projects. Whether
+							you're building a blog, an e-commerce store, a SaaS application,
+							or a marketing site, Next.js has the rendering strategy, routing
+							capabilities, and optimizations you need to ship fast,
+							production-quality applications.
+						</p>
+					</article>
+
+					<!-- Footer -->
+					<footer class="footer">
+						<span class="footer-text">Built with love by Manu Arora</span>
+						<div class="footer-links">
+							<a
+								href="https://x.com"
+								class="footer-link"
+								aria-label="X / Twitter"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.631 5.903-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+									/>
+								</svg>
+							</a>
+							<a
+								href="https://linkedin.com"
+								class="footer-link"
+								aria-label="LinkedIn"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+									/>
+								</svg>
+							</a>
+							<a
+								href="https://github.com"
+								class="footer-link"
+								aria-label="GitHub"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+									/>
+								</svg>
+							</a>
+						</div>
+					</footer>
+				</main>
+				<div class="stripe-right" aria-hidden="true"></div>
+			</div>
+		</div>
+
+		<script>
+		document
+			.getElementById("themeToggle")
+			.addEventListener("click", function () {
+				var html = document.documentElement;
+				if (html.getAttribute("data-theme") === "dark") {
+					html.removeAttribute("data-theme");
+					localStorage.setItem("theme", "light");
+				} else {
+					html.setAttribute("data-theme", "dark");
+					localStorage.setItem("theme", "dark");
+				}
+			});
+		</script>
+	</body>
+</html>
