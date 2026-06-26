@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Sign Up — Playful</title>
+		<link rel="stylesheet" href="css/styles.css">
+	</head>
+	<body>
+		<div class="signup-page">
+			<!-- CENTERED LOGO HEADER -->
+			<a href="index.html" class="signup-logo">
+				<svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+					<path
+						d="M13 2L4.09 12.11C3.73 12.54 3.55 12.76 3.55 13C3.55 13.24 3.73 13.46 4.09 13.89L4.5 14.39C4.86 14.82 5.04 15.04 5.28 15.04C5.52 15.04 5.7 14.82 6.06 14.39L13 6L20 14.39C20.36 14.82 20.54 15.04 20.78 15.04C21.02 15.04 21.2 14.82 21.56 14.39L21.97 13.89C22.33 13.46 22.51 13.24 22.51 13C22.51 12.76 22.33 12.54 21.97 12.11L13 2Z"
+						fill="white"
+					/>
+					<path
+						d="M13 10L6.5 17.89C6.14 18.32 5.96 18.54 5.96 18.78C5.96 19.02 6.14 19.24 6.5 19.67L6.91 20.17C7.27 20.6 7.45 20.82 7.69 20.82C7.93 20.82 8.11 20.6 8.47 20.17L13 14.7L17.53 20.17C17.89 20.6 18.07 20.82 18.31 20.82C18.55 20.82 18.73 20.6 19.09 20.17L19.5 19.67C19.86 19.24 20.04 19.02 20.04 18.78C20.04 18.54 19.86 18.32 19.5 17.89L13 10Z"
+						fill="white"
+					/>
+				</svg>
+				Playful
+			</a>
+
+			<!-- SIGN-UP CARD -->
+			<div class="signup-card">
+				<h1>Sign up for an account</h1>
+				<p class="subtitle">
+					Start recording interviews for free. No credit card required.
+				</p>
+
+				<form onsubmit="return false;">
+					<div class="form-group">
+						<label for="fullName">Full Name</label>
+						<input
+							type="text"
+							id="fullName"
+							class="form-input"
+							placeholder="Manu Arora"
+							autocomplete="name"
+						>
+					</div>
+
+					<div class="form-group">
+						<label for="email">Email Address</label>
+						<input
+							type="email"
+							id="email"
+							class="form-input"
+							placeholder="hello@johndoe.com"
+							autocomplete="email"
+						>
+					</div>
+
+					<div class="form-group" style="margin-bottom:24px;">
+						<label for="password">Password</label>
+						<input
+							type="password"
+							id="password"
+							class="form-input"
+							placeholder="Create a strong password"
+							autocomplete="new-password"
+						>
+					</div>
+
+					<button type="submit" class="btn-black">Submit</button>
+				</form>
+
+				<p
+					style="text-align:center;font-size:14px;color:#6B7280;margin-top:16px;"
+				>
+					Already have an account?
+					<a
+						href="#"
+						style="color:#25A18E;font-weight:600;text-decoration:none;"
+						>Sign in</a
+					>
+				</p>
+
+				<div class="divider">
+					<span>Or continue with</span>
+				</div>
+
+				<button class="btn-black" style="gap:10px;">
+					<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+						<path
+							d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
+						/>
+					</svg>
+					Github
+				</button>
+
+				<p class="terms-text">
+					By signing up, you agree to our
+					<a href="#">Terms of Service</a>
+					and <a href="#">Privacy Policy</a>. We'll occasionally send you
+					account related emails.
+				</p>
+			</div>
+
+			<!-- Bottom spacing -->
+			<div style="height: 40px;"></div>
+		</div>
+	</body>
+</html>
