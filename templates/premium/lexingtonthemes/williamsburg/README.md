@@ -1,5 +1,7 @@
 # Williamsburg — Lexington Themes E-Commerce Template
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful static clone of the Williamsburg premium e-commerce template from [Lexington Themes](https://lexingtonthemes.com/). Built with Inter and Instrument Serif fonts, Tailwind CSS utility classes, and Keen Slider for carousels.
 
 ## Pages
