@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Projects — John MacTavish</title>
+		<script>
+		(function () {
+			var theme = localStorage.getItem("theme");
+			if (theme === "dark") {
+				document.documentElement.setAttribute("data-theme", "dark");
+			}
+		})();
+		</script>
+		<link rel="stylesheet" href="tokens.css">
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<!-- Floating Nav -->
+		<nav class="nav-floating" aria-label="Main navigation">
+			<div class="nav-inner">
+				<a href="index.html" class="nav-avatar">
+					<img src="assets/avatar.webp" alt="John MacTavish">
+				</a>
+				<div class="nav-links">
+					<a href="about.html" class="nav-link">About</a>
+					<a href="projects.html" class="nav-link active">Projects</a>
+					<a href="blog.html" class="nav-link">Blog</a>
+					<a href="contact.html" class="nav-link">Contact</a>
+				</div>
+				<div class="nav-spacer"></div>
+				<button
+					class="theme-toggle"
+					id="themeToggle"
+					aria-label="Toggle dark mode"
+				>
+					<svg
+						class="icon-sun"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<circle cx="12" cy="12" r="5" />
+						<line x1="12" y1="1" x2="12" y2="3" />
+						<line x1="12" y1="21" x2="12" y2="23" />
+						<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+						<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+						<line x1="1" y1="12" x2="3" y2="12" />
+						<line x1="21" y1="12" x2="23" y2="12" />
+						<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+						<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+					</svg>
+					<svg
+						class="icon-moon"
+						xmlns="http://www.w3.org/2000/svg"
+						fill="none"
+						viewBox="0 0 24 24"
+						stroke="currentColor"
+						stroke-width="2"
+					>
+						<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+					</svg>
+				</button>
+			</div>
+		</nav>
+
+		<!-- Page Layout -->
+		<div class="page-wrapper">
+			<div class="content-outer">
+				<div class="stripe-left" aria-hidden="true"></div>
+				<main class="content-panel">
+					<!-- Page Hero -->
+					<section class="page-hero">
+						<h1>Projects</h1>
+						<p>
+							I'm a passionate software engineer dedicated to crafting elegant
+							solutions for complex problems. With expertise in full-stack
+							development, I enjoy building user-centric applications that make
+							a difference.
+						</p>
+					</section>
+
+					<!-- Projects Grid -->
+					<section class="section-divider">
+						<h2 class="section-title">I love building things.</h2>
+						<div class="projects-grid">
+							<div class="project-card">
+								<div class="project-card-image">
+									<img src="assets/macbook-scroll.png" alt="Macbook Mockup">
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Macbook Mockup</div>
+									<div class="project-card-desc">
+										A mockup of a Macbook that showcases the product and its
+										features
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span class="badge-icon" style="background:#06b6d4;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+													/>
+												</svg>
+											</span>
+											React
+										</span>
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Next.js
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#0ea5e9;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+													/>
+												</svg>
+											</span>
+											Tailwind
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="project-card">
+								<div class="project-card-image">
+									<img
+										src="assets/animated-testimonials.webp"
+										alt="Instant Feedback"
+									>
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Instant Feedback</div>
+									<div class="project-card-desc">
+										An interactive feedback system that provides instant
+										responses to user actions
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span class="badge-icon" style="background:#42b883;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M24 1.61h-9.94L12 5.16 9.94 1.61H0l12 20.78zM2.17 3.88l7.03 12.19-7.03-12.19zm19.66 0l-7.03 12.19 7.03-12.19z"
+													/>
+												</svg>
+											</span>
+											Vue
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#0ea5e9;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+													/>
+												</svg>
+											</span>
+											Tailwind
+										</span>
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Next.js
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="project-card">
+								<div class="project-card-image">
+									<img src="assets/apple-cards-carousel.png" alt="Apple Clone">
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Apple Clone</div>
+									<div class="project-card-desc">
+										A clone of Apple's website that showcases their products and
+										services
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span class="badge-icon" style="background:#06b6d4;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+													/>
+												</svg>
+											</span>
+											React
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#42b883;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M24 1.61h-9.94L12 5.16 9.94 1.61H0l12 20.78zM2.17 3.88l7.03 12.19-7.03-12.19zm19.66 0l-7.03 12.19 7.03-12.19z"
+													/>
+												</svg>
+											</span>
+											Vue
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#0ea5e9;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+													/>
+												</svg>
+											</span>
+											Tailwind
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="project-card">
+								<div class="project-card-image">
+									<img
+										src="assets/background-lines.webp"
+										alt="Flight Simulator"
+									>
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Flight Simulator</div>
+									<div class="project-card-desc">
+										A flight simulator that allows you to experience the thrill
+										of flying a professional airplane.
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span class="badge-icon" style="background:#06b6d4;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+													/>
+												</svg>
+											</span>
+											React
+										</span>
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Next.js
+										</span>
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#f7df1e;display:flex;align-items:center;justify-content:center;"
+											>
+												<span style="font-size:8px;font-weight:700;color:#000;"
+													>JS</span
+												>
+											</span>
+											JS
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="project-card">
+								<div class="project-card-image">
+									<img src="assets/floating-dock.png" alt="Portfolio Website">
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Portfolio Website</div>
+									<div class="project-card-desc">
+										A comprehensive portfolio website showcasing my products and
+										professional experience.
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Next.js
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#06b6d4;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+													/>
+												</svg>
+											</span>
+											React
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#0ea5e9;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+													/>
+												</svg>
+											</span>
+											Tailwind
+										</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="project-card">
+								<div class="project-card-image">
+									<img src="assets/hero-sections.webp" alt="Blog Platform">
+								</div>
+								<div class="project-card-body">
+									<div class="project-card-title">Blog Platform</div>
+									<div class="project-card-desc">
+										A full-featured blogging platform with markdown support
+										displaying my products and programming ideas
+									</div>
+									<div class="badges">
+										<span class="badge">
+											<span
+												class="badge-icon"
+												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Next.js
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#0ea5e9;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"
+													/>
+												</svg>
+											</span>
+											Tailwind
+										</span>
+										<span class="badge">
+											<span class="badge-icon" style="background:#06b6d4;">
+												<svg
+													width="10"
+													height="10"
+													viewBox="0 0 24 24"
+													fill="white"
+												>
+													<path
+														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+													/>
+												</svg>
+											</span>
+											React
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Footer -->
+					<footer class="footer">
+						<span class="footer-text">Built with love by Manu Arora</span>
+						<div class="footer-links">
+							<a
+								href="https://x.com"
+								class="footer-link"
+								aria-label="X / Twitter"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.261 5.631 5.903-5.631zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+									/>
+								</svg>
+							</a>
+							<a
+								href="https://linkedin.com"
+								class="footer-link"
+								aria-label="LinkedIn"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+									/>
+								</svg>
+							</a>
+							<a
+								href="https://github.com"
+								class="footer-link"
+								aria-label="GitHub"
+							>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+								>
+									<path
+										d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"
+									/>
+								</svg>
+							</a>
+						</div>
+					</footer>
+				</main>
+				<div class="stripe-right" aria-hidden="true"></div>
+			</div>
+		</div>
+
+		<script>
+		document
+			.getElementById("themeToggle")
+			.addEventListener("click", function () {
+				var html = document.documentElement;
+				if (html.getAttribute("data-theme") === "dark") {
+					html.removeAttribute("data-theme");
+					localStorage.setItem("theme", "light");
+				} else {
+					html.setAttribute("data-theme", "dark");
+					localStorage.setItem("theme", "dark");
+				}
+			});
+		</script>
+	</body>
+</html>
