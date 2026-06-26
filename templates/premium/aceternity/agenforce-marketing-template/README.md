@@ -2,7 +2,7 @@
 
 [![Watch Demo](./poster.jpg)](./demo.mp4)
 
-Agenforce is a full multi-page marketing site for an AI agent platform, cloned pixel-faithfully from the Aceternity UI Pro Agenforce template. It ships a home page, dedicated pricing page, login, and signup — all built as plain HTML, CSS, and vanilla JavaScript with no build tools required. Standout techniques include CSS 3D perspective transforms for layered hero screenshots and tilted feature cards, a `@keyframes orbit` animation that revolves brand logos around a center hub, Intersection Observer scroll-triggered logo fade-ins with blur, a typewriter animation in the activity log, an FAQ accordion with `max-height` transitions, and a mobile sidebar drawer. Fonts (Manrope for headings, Inter for body) and all images are served locally. Generated with Claude Fable 5.
+Agenforce is a full multi-page marketing site for an AI agent platform, cloned pixel-faithfully from the Aceternity UI Pro Agenforce template. It ships a home page, dedicated pricing page, login, and signup — all built as plain HTML, CSS, and vanilla JavaScript with no build tools required. Standout techniques include CSS 3D perspective transforms for layered hero screenshots and tilted feature cards, a `@keyframes orbit` animation that revolves brand logos around a center hub, Intersection Observer scroll-triggered logo fade-ins with blur, a typewriter animation in the activity log, an FAQ accordion with `max-height` transitions, and a mobile sidebar drawer. Fonts (Manrope for headings, Inter for body) and all images are served locally.
 
 ## Pages
 
@@ -42,4 +42,4 @@ Original design: [Agenforce Marketing Template](https://ui.aceternity.com/templa
 
 ---
 
-Part of the [Templates](../) collection in the [claude-directory](../../../) — an open-source gallery of AI-generated UI built with Claude Fable 5. [Browse the live gallery](https://pulkitxm.com/claude-directory).
+Part of the [Templates](../) collection in the [fable](../../../) gallery. [Browse the live gallery](https://pulkitxm.com/claude-directory).
