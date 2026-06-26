@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Contact — Every AI</title>
+		<meta
+			name="description"
+			content="Reach out to us and we will get back to you at the speed of light."
+		>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+	<body>
+		<!-- ======================================================
+     NAVBAR
+     ====================================================== -->
+		<nav class="navbar" id="navbar">
+			<div class="navbar-inner">
+				<a href="index.html" class="logo">
+					<div class="logo-mark"></div>
+					<span class="logo-text">Every AI</span>
+				</a>
+				<div class="nav-links">
+					<a href="pricing.html">Pricing</a>
+					<a href="blog.html">Blog</a>
+					<a href="contact.html" class="nav-active">Contact</a>
+				</div>
+				<div class="nav-actions">
+					<button
+						class="theme-toggle"
+						id="themeToggle"
+						aria-label="Toggle theme"
+					>
+						<svg
+							class="icon-sun"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<circle cx="12" cy="12" r="5" />
+							<line x1="12" y1="1" x2="12" y2="3" />
+							<line x1="12" y1="21" x2="12" y2="23" />
+							<line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+							<line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+							<line x1="1" y1="12" x2="3" y2="12" />
+							<line x1="21" y1="12" x2="23" y2="12" />
+							<line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+							<line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+						</svg>
+						<svg
+							class="icon-moon"
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="currentColor"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						>
+							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+						</svg>
+					</button>
+					<a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+					<a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+				</div>
+				<button class="hamburger" id="hamburger" aria-label="Open menu">
+					<svg
+						xmlns="http://www.w3.org/2000/svg"
+						viewBox="0 0 24 24"
+						fill="none"
+						stroke="currentColor"
+						stroke-width="2"
+						stroke-linecap="round"
+						stroke-linejoin="round"
+					>
+						<line x1="3" y1="6" x2="21" y2="6" />
+						<line x1="3" y1="12" x2="21" y2="12" />
+						<line x1="3" y1="18" x2="21" y2="18" />
+					</svg>
+				</button>
+			</div>
+			<div class="mobile-menu" id="mobileMenu">
+				<a href="pricing.html">Pricing</a>
+				<a href="blog.html">Blog</a>
+				<a href="contact.html" class="nav-active">Contact</a>
+				<div class="mobile-menu-actions">
+					<a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+					<a href="signup.html" class="btn btn-primary btn-sm">Sign Up</a>
+				</div>
+			</div>
+		</nav>
+
+		<!-- ======================================================
+     CONTACT SECTION
+     ====================================================== -->
+		<section class="contact-section">
+			<div class="container">
+				<div class="contact-grid">
+					<!-- Form Column -->
+					<div class="contact-form-col">
+						<h1>Contact Us</h1>
+						<p>
+							Reach out to us and we will get back to you at the speed of light.
+						</p>
+						<form class="contact-form" onsubmit="return false;">
+							<div class="form-group">
+								<label for="fullName">Full Name</label>
+								<input type="text" id="fullName" placeholder="John Doe">
+							</div>
+							<div class="form-group">
+								<label for="email">Email address</label>
+								<input type="email" id="email" placeholder="john@example.com">
+							</div>
+							<div class="form-group">
+								<label for="company">Company</label>
+								<input type="text" id="company" placeholder="Anthropic">
+							</div>
+							<div class="form-group">
+								<label for="message">Message</label>
+								<textarea
+									id="message"
+									rows="5"
+									placeholder="Tell us what you need..."
+								></textarea>
+							</div>
+							<button type="submit" class="btn btn-primary btn-full">
+								Submit →
+							</button>
+						</form>
+					</div>
+
+					<!-- Info Column -->
+					<div class="contact-info-col">
+						<h2>Every AI is used by thousands of users</h2>
+						<p>
+							We are used by thousands of users all over the world. Our users
+							love us because we are the best in the market. Not because we paid
+							them to say that. Mostly.
+						</p>
+						<div class="contact-stats">
+							<div class="stat">
+								<div class="stat-number">10,000+</div>
+								<div class="stat-label">Happy Users</div>
+							</div>
+							<div class="stat">
+								<div class="stat-number">99.9%</div>
+								<div class="stat-label">Uptime</div>
+							</div>
+							<div class="stat">
+								<div class="stat-number">500M+</div>
+								<div class="stat-label">API Requests</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- ======================================================
+     FOOTER
+     ====================================================== -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-top">
+					<div class="footer-brand">
+						<a href="index.html" class="logo">
+							<div class="logo-mark"></div>
+							<span class="logo-text">Every AI</span>
+						</a>
+						<p class="footer-copy">© 2024 Every Labs All rights reserved</p>
+					</div>
+					<div class="footer-links">
+						<div class="footer-col">
+							<a href="pricing.html">Pricing</a>
+							<a href="blog.html">Blog</a>
+							<a href="contact.html">Contact</a>
+						</div>
+						<div class="footer-col">
+							<a href="#">Privacy Policy</a>
+							<a href="#">Terms of Service</a>
+							<a href="#">Refund Policy</a>
+						</div>
+						<div class="footer-col">
+							<a
+								href="https://twitter.com/mannupaaji"
+								target="_blank"
+								rel="noopener"
+								>Twitter</a
+							>
+							<a
+								href="https://linkedin.com/in/manuarora28"
+								target="_blank"
+								rel="noopener"
+								>LinkedIn</a
+							>
+							<a
+								href="https://github.com/manuarora700"
+								target="_blank"
+								rel="noopener"
+								>GitHub</a
+							>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="footer-giant-text">EVERY AI</div>
+		</footer>
+
+		<script>
+		(function () {
+			var stored = localStorage.getItem("theme");
+			if (
+				stored === "dark" ||
+				(!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
+			) {
+				document.documentElement.classList.add("dark");
+			}
+		})();
+
+		document
+			.getElementById("themeToggle")
+			.addEventListener("click", function () {
+				document.documentElement.classList.toggle("dark");
+				localStorage.setItem(
+					"theme",
+					document.documentElement.classList.contains("dark")
+						? "dark"
+						: "light",
+				);
+			});
+
+		window.addEventListener("scroll", function () {
+			document
+				.getElementById("navbar")
+				.classList.toggle("scrolled", window.scrollY > 10);
+		});
+
+		document.getElementById("hamburger").addEventListener("click", function () {
+			document.getElementById("mobileMenu").classList.toggle("open");
+		});
+		</script>
+	</body>
+</html>
