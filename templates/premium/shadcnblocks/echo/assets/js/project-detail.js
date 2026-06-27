@@ -40,7 +40,7 @@ window.PROJECT_DETAIL = {
 			"Implemented offline-first architecture with automatic sync",
 			"Created a plugin system for extending functionality",
 		],
-		more: ["happy-stats", "echo-ui"],
+		more: ["happy-stats", "streamline"],
 	},
 	"happy-stats": {
 		title: "Happy Stats",
@@ -58,10 +58,10 @@ window.PROJECT_DETAIL = {
 		highlights: [
 			"Built a modular charting system using Recharts for clean, customizable visuals",
 			"Designed a real-time update flow powered by Supabase subscriptions",
-			"Implemented role-based dashboards for teams and individuals",
-			"Optimized rendering for large datasets without sacrificing speed",
+			"Implemented role-based dashboards for teams and solo developers",
+			"Optimized queries for large datasets using PostgreSQL window functions",
 		],
-		more: ["cactus-plant", "justos"],
+		more: ["justos", "neobase"],
 	},
 	"cactus-plant": {
 		title: "Cactus Plant",
@@ -82,7 +82,7 @@ window.PROJECT_DETAIL = {
 			"Created an efficient binary protocol reducing bandwidth by 70%",
 			"Designed horizontal scaling architecture supporting 100k+ concurrent users",
 		],
-		more: ["echo-ui", "happy-stats"],
+		more: ["neobase", "sonic"],
 	},
 };
 
@@ -97,28 +97,40 @@ document.addEventListener("DOMContentLoaded", () => {
 	byId("d-title").textContent = d.title;
 	byId("d-intro").textContent = d.intro;
 	const projMeta = window.DATA.projects.find((p) => p.slug === slug);
-	byId("d-cover").src =
-		P +
-		"assets/" +
-		(projMeta ? projMeta.cover : "images/projects/" + slug + "/cover.webp");
-	byId("d-body").textContent = d.body;
+	const coverSrc = projMeta
+		? projMeta.cover
+		: "images/projects/" + slug + "/cover.webp";
+	const coverImg = byId("d-cover");
+	coverImg.src = P + "assets/" + coverSrc;
+	if (coverSrc.endsWith(".svg")) coverImg.classList.add("logo-cover");
 
 	// stack
 	byId("d-stack").innerHTML = window.STACK_ICONS.map(
 		(s) => `<span class="stack-icon">${s}</span>`,
 	).join("");
 
-	// showcase blocks alternate single + grid
+	// showcase: shots 0+1 full-width | body | shots 2+3 two-column | shot 4 full-width
 	const sc = byId("d-showcase");
-	let html = "";
-	d.shots.forEach((n, i) => {
-		const cap = d.captions[i] || "";
-		html += `<div class="reveal" style="margin-top:${i === 0 ? 0 : "1.5rem"}">
+	const mk = (n, cap, mt) => `<div class="reveal" style="margin-top:${mt}">
       <div class="showcase-img" style="aspect-ratio:16/9"><img src="${P}assets/images/projects/${slug}/${n}.webp" alt="${cap}" loading="lazy"/></div>
       <p class="showcase-caption">${cap}</p>
     </div>`;
-	});
+	let html = "";
+	if (d.shots[0]) html += mk(d.shots[0], d.captions[0] || "", 0);
+	if (d.shots[1]) html += mk(d.shots[1], d.captions[1] || "", "1.5rem");
+	html += `<p class="detail-intro reveal" style="margin-top:2.5rem">${d.body}</p>`;
+	if (d.shots[2] || d.shots[3]) {
+		html += `<div class="showcase-grid" style="margin-top:1.5rem">`;
+		if (d.shots[2])
+			html += `<div class="reveal"><div class="showcase-img" style="aspect-ratio:16/9"><img src="${P}assets/images/projects/${slug}/${d.shots[2]}.webp" alt="${d.captions[2] || ""}" loading="lazy"/></div><p class="showcase-caption">${d.captions[2] || ""}</p></div>`;
+		if (d.shots[3])
+			html += `<div class="reveal"><div class="showcase-img" style="aspect-ratio:16/9"><img src="${P}assets/images/projects/${slug}/${d.shots[3]}.webp" alt="${d.captions[3] || ""}" loading="lazy"/></div><p class="showcase-caption">${d.captions[3] || ""}</p></div>`;
+		html += `</div>`;
+	}
+	if (d.shots[4]) html += mk(d.shots[4], d.captions[4] || "", "1.5rem");
 	sc.innerHTML = html;
+	if (byId("d-body")) byId("d-body").style.display = "none";
+	if (window.observeReveals) window.observeReveals();
 
 	// highlights
 	byId("d-highlights").innerHTML = d.highlights

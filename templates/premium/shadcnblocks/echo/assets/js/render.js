@@ -9,14 +9,11 @@
 	}
 
 	function cardHTML(p) {
-		const initial = p.title.charAt(0);
+		const logoClass = p.cover.endsWith(".svg") ? ' class="logo-cover"' : "";
 		return `<a class="project-card" href="${projectHref(p)}" data-cats="${p.cats.join(",")}">
-      <div class="cover"><img src="${P}assets/${p.cover}" alt="${p.title}" loading="lazy" /></div>
+      <div class="cover"><img src="${P}assets/${p.cover}" alt="${p.title}" loading="lazy"${logoClass} /></div>
       <div class="meta">
-        <span class="dot">${initial}</span>
-        <div>
-          <div class="title">${p.title}</div>
-        </div>
+        <div class="title">${p.title}</div>
       </div>
       <div class="subtitle">${p.subtitle}</div>
     </a>`;
