@@ -1,0 +1,5 @@
+frames: 1 chosen area: 9423612 url: http://localhost:8899/index.html
+fonts: [ 'Inter, -apple-system, "system-ui", "Segoe UI", sans-serif' ]
+nodes: 24 imgs: 15
+css bytes: 19746 linked css: 2 scripts: 0
+hover states captured: 10

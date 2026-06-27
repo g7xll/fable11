@@ -426,6 +426,59 @@ main {
 		0 0 0 1px rgba(255, 255, 255, 0.2) inset,
 		0 4px 12px rgba(0, 0, 0, 0.15);
 }
+.tile-lime {
+	background: linear-gradient(to bottom, #9ae600, #5ea500);
+	box-shadow:
+		0 0 0 2px #7ccf00,
+		0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+		0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.tile-rose {
+	background: linear-gradient(to bottom, #ff637e, #ec003f);
+	box-shadow:
+		0 0 0 2px #ff2056,
+		0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+		0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.tile-fuchsia {
+	background: linear-gradient(to bottom, #ed6aff, #c800de);
+	box-shadow:
+		0 0 0 2px #e12afb,
+		0 0 0 1px rgba(255, 255, 255, 0.2) inset,
+		0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ---------- "Things I focus on" (sponsor) ---------- */
+.focus-list {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+.focus-item {
+	display: flex;
+	flex-direction: column;
+}
+.focus-head {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 0.5rem;
+}
+.focus-name {
+	color: var(--foreground);
+	font-weight: 500;
+	text-wrap: balance;
+}
+.focus-desc {
+	color: rgba(87, 83, 78, 0.7);
+	margin-top: 0.5rem;
+	font-size: 0.875rem;
+}
+:root.dark .focus-desc,
+[data-theme="dark"] .focus-desc {
+	color: rgba(168, 162, 158, 0.7);
+}
 
 /* ---------- "Things I do" / "Work with me" items ---------- */
 .do-list {

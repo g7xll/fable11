@@ -6,7 +6,7 @@ A pixel-faithful clone of the **Minimalist Portfolio Template** by Manu Arora (A
 
 ## Features
 
-- **4 fully reproduced pages** — Home, Tweets (masonry card grid), Inspiration (curated list), Blog (with live search filter)
+- **5 fully reproduced pages** — Home, Tweets (masonry card grid), Inspiration (curated list), Blog (with live search filter), Sponsor
 - **Minimalist design** — light stone (#fafaf9) background, Schibsted Grotesk typeface, dotted SVG underlines and dividers throughout
 - **Theme toggle** — light/dark mode switcher (settings gear icon, top-right), persisted to `localStorage`, `prefers-color-scheme` honoured on first load
 - **Colored icon tiles** — gradient-background app icon tiles (blue, orange, red, green, violet, purple, yellow, indigo, emerald) with inset ring shadows for "Things I do", "Companies I've worked with", and "Work with me" sections
@@ -23,6 +23,7 @@ A pixel-faithful clone of the **Minimalist Portfolio Template** by Manu Arora (A
 | `tweets.html` | Tweets — masonry grid of tweet cards |
 | `inspiration.html` | Inspiration — curated list of people and tools |
 | `blog.html` | Blog — searchable list of posts |
+| `sponsor.html` | Sponsor — things I focus on, companies I've worked with |
 
 ## Run Locally
 

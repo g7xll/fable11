@@ -10,6 +10,8 @@ A pixel-faithful, self-contained clone of the **Foxtrot SaaS Marketing Template*
 |------|-------------|
 | `index.html` | Home / landing page — hero, features, testimonials, pricing, CTA |
 | `blogs.html` | Blog listing — two blog post cards with thumbnails |
+| `blog-what-is-a-website-template.html` | Blog post — "What is a website template" article with hero image, author, prose, and code snippet |
+| `blog-what-is-a-blog-anyway.html` | Blog post — "What is a blog anyway" article with hero image, author, and prose |
 | `signup.html` | Sign-up form — email/password fields + social sign-in options |
 
 ## Features Reproduced
