@@ -5,11 +5,14 @@
 		'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>';
 
 	function resumeCard(d, i) {
+		const companyInner = d.href
+			? `<a class="resume-company-link" href="${d.href}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${d.company}</a>`
+			: d.company;
 		return `<div class="resume-card blur-fade" data-delay="${(i * 0.04).toFixed(2)}" aria-expanded="false">
       <img class="resume-logo" src="./assets/img/${d.logo}" alt="${d.company}" />
       <div class="resume-body">
         <div class="resume-head-row">
-          <div class="resume-company">${d.company} ${chevron}</div>
+          <div class="resume-company">${companyInner} ${chevron}</div>
           <div class="resume-date">${d.start} - ${d.end}</div>
         </div>
         <div class="resume-role">${d.role}</div>
@@ -25,7 +28,7 @@
 	document.getElementById("work").innerHTML = DATA.work
 		.map(resumeCard)
 		.join("");
-	document.getElementById("education").innerHTML = DATA.education
+	document.getElementById("education-list").innerHTML = DATA.education
 		.map(resumeCard)
 		.join("");
 	document.getElementById("skills").innerHTML = DATA.skills

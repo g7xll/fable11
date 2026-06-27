@@ -12,6 +12,11 @@
 		<link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
+		<div class="flickering-grid-wrapper">
+			<div class="flickering-grid-mask">
+				<canvas id="flickering-grid"></canvas>
+			</div>
+		</div>
 		<main>
 			<!-- HERO -->
 			<section class="section hero">
@@ -59,7 +64,7 @@
 			<!-- EDUCATION -->
 			<section class="section" id="education">
 				<h2 class="section-title blur-fade">Education</h2>
-				<div class="resume-list" id="education"></div>
+				<div class="resume-list" id="education-list"></div>
 			</section>
 
 			<!-- SKILLS -->
@@ -116,5 +121,6 @@
 		<script src="./dock.js"></script>
 		<script src="./home.js"></script>
 		<script src="./script.js"></script>
+		<script src="./flickering-grid.js"></script>
 	</body>
 </html>
