@@ -264,7 +264,7 @@ button {
 	line-height: 1.2;
 }
 
-.hero-h1 .gradient-text {
+.gradient-text {
 	background: var(--gradient-accent);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -549,7 +549,6 @@ button {
 	font-size: 2.25rem;
 	text-align: center;
 	color: var(--color-slate-700);
-	text-transform: capitalize;
 }
 
 .work-section-sub {
@@ -1072,12 +1071,13 @@ button {
 	max-width: 42rem;
 	margin-left: auto;
 	margin-right: auto;
-	text-align: center;
+	text-align: left;
 	padding-bottom: 2.5rem;
 }
 
 .blog-header-title {
 	font-size: 1.875rem;
+	line-height: 2.25rem;
 	font-weight: 500;
 	letter-spacing: -0.025em;
 	color: var(--color-gray-900);
@@ -1086,6 +1086,7 @@ button {
 .blog-header-sub {
 	margin-top: 0.5rem;
 	font-size: 1.125rem;
+	line-height: 1.75rem;
 	color: var(--color-gray-600);
 }
 
@@ -1196,6 +1197,10 @@ button {
 	.blog-header {
 		padding-top: 2.5rem;
 		padding-bottom: 5rem;
+	}
+
+	.blog-header-inner {
+		text-align: center;
 	}
 }
 

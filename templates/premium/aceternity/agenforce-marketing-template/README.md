@@ -31,6 +31,7 @@ Then open `http://localhost:8080` in a browser. Alternatively open `index.html` 
 - **Intersection Observer logos** — logo cloud items animate in with opacity + blur + translateY as they scroll into view; the initial state is visible so the page renders correctly without JS.
 - **Typewriter effect** — activity-log descriptions reveal one character at a time using `@keyframes fadeInChar` on each `<span>` with a staggered `animation-delay`.
 - **Crosshatch background** — role-based access bento cells use `repeating-linear-gradient` for the hatched pattern texture.
+- **Light / dark theme** — a footer sun/moon toggle switches the whole site between light and dark via a `.dark` design-token override, persists the choice in `localStorage`, and applies it in a no-flash inline boot script before first paint.
 
 ## Build spec and demo
 

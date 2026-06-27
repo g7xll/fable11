@@ -177,85 +177,75 @@
 		}
 
 		.events-list {
-			display: flex;
-			flex-direction: column;
-			gap: 32px;
-			margin-top: 64px;
+			max-width: 768px;
+			margin: 80px auto 0;
 		}
 		.event-card {
 			display: flex;
 			flex-direction: row;
-			gap: 32px;
-			background: var(--bg-card);
-			border: 1px solid var(--border-color);
-			border-radius: 20px;
-			overflow: hidden;
-			transition: border-color 0.2s;
-		}
-		.event-card:hover {
-			border-color: var(--border-subtle);
+			gap: 16px;
+			margin-bottom: 80px;
+			align-items: flex-start;
 		}
 		.event-img {
 			flex-shrink: 0;
-			width: 280px;
+			width: 288px;
 		}
 		.event-img img {
 			width: 100%;
-			height: 100%;
+			border-radius: 6px;
+			aspect-ratio: 16 / 9;
 			object-fit: cover;
 			display: block;
-			min-height: 180px;
 		}
 		.event-body {
 			flex: 1;
-			padding: 28px 28px 28px 0;
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
 		}
 		.event-source {
-			display: inline-block;
-			background: rgba(6, 182, 212, 0.1);
-			color: var(--accent-cyan);
-			font-size: 11px;
-			font-weight: 600;
-			letter-spacing: 0.08em;
-			text-transform: uppercase;
-			padding: 4px 10px;
-			border-radius: 6px;
-			border: 1px solid rgba(6, 182, 212, 0.2);
-			margin-bottom: 12px;
+			position: relative;
+			display: block;
+			color: var(--text-subtle);
+			font-size: 14px;
+			padding-left: 16px;
+			margin-bottom: 16px;
+		}
+		.event-source::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 2px;
+			background: var(--bg-card);
 		}
 		.event-title {
 			font-weight: 700;
-			font-size: 18px;
-			color: var(--text-primary);
+			font-size: 20px;
+			letter-spacing: -0.01em;
+			color: var(--text-secondary);
 			line-height: 1.3;
+			margin-bottom: 8px;
 		}
 		.event-desc {
 			color: var(--text-muted);
 			font-size: 14px;
 			line-height: 1.7;
-			margin-top: 10px;
 		}
 		.event-link {
-			display: inline-flex;
-			align-items: center;
-			gap: 6px;
-			margin-top: 20px;
-			color: var(--accent-cyan);
+			display: inline-block;
+			margin-top: 8px;
+			color: var(--text-subtle);
 			font-size: 14px;
-			font-weight: 500;
-			transition: opacity 0.15s;
+			transition: color 0.2s;
 		}
-		.event-link:hover {
-			opacity: 0.8;
+		.event-card:hover .event-link {
+			color: var(--accent-cyan);
 		}
 		.event-link svg {
-			transition: transform 0.15s;
-		}
-		.event-link:hover svg {
-			transform: translateX(2px);
+			display: inline-block;
+			vertical-align: middle;
+			margin-bottom: 2px;
+			margin-right: 4px;
 		}
 
 		/* FOOTER */
@@ -360,13 +350,7 @@
 			}
 			.event-img {
 				width: 100%;
-			}
-			.event-img img {
-				height: 200px;
-				min-height: unset;
-			}
-			.event-body {
-				padding: 20px;
+				margin-bottom: 16px;
 			}
 		}
 		</style>
@@ -384,7 +368,7 @@
 					<a href="projects.html" class="nav-link">Projects</a>
 					<a href="contributions.html" class="nav-link">Contributions</a>
 					<a href="blogs.html" class="nav-link">Blogs</a>
-					<a href="events.html" class="nav-link active">Events</a>
+					<a href="events.html" class="nav-link">Events</a>
 					<button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
@@ -417,7 +401,11 @@
 
 		<!-- EVENTS PAGE -->
 		<section class="events-page">
-			<h1>I speak at conferences about how PHP is the best</h1>
+			<h1>
+				I speak at conferences about how<span style="color:#06b6d4">
+					PHP is the best</span
+				>
+			</h1>
 			<p class="sub-text">
 				I don't understand why people are after Angular and React when PHP is
 				still the OG of web development. I've been building a lot of things,
@@ -427,179 +415,171 @@
 
 			<div class="events-list">
 				<!-- Event 1 -->
-				<div class="event-card">
+				<a
+					href="https://www.youtube.com/watch?v=viXpJ5Xwtfs"
+					target="_blank"
+					rel="noopener"
+					class="event-card"
+				>
 					<div class="event-img">
 						<img
-							src="https://img.youtube.com/vi/viXpJ5Xwtfs/maxresdefault.jpg"
+							src="assets/images/events/viXpJ5Xwtfs.jpg"
 							alt="Components Of A Great Portfolio Website"
-							onerror="this.style.background='#27272a';this.style.minHeight='180px';"
+							onerror="this.onerror=null;this.src='assets/images/events/yKVCl1jFkQQ.jpg';"
 						>
 					</div>
 					<div class="event-body">
 						<span class="event-source">codementor.io</span>
-						<h2 class="event-title">Components Of A Great Portfolio Website</h2>
+						<h4 class="event-title">Components Of A Great Portfolio Website</h4>
 						<p class="event-desc">
 							I talk about how to create a targeted website to land more job
 							interviews and freelance clients with all the other things that
 							matter. Hosted on codementor.
 						</p>
-						<a
-							href="https://www.youtube.com/watch?v=viXpJ5Xwtfs"
-							target="_blank"
-							rel="noopener"
-							class="event-link"
-						>
-							Watch Video
+						<span class="event-link">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
 								stroke="currentColor"
-								width="16"
-								height="16"
+								fill="currentColor"
+								stroke-width="0"
+								viewBox="0 0 1024 1024"
+								width="14"
+								height="14"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+									d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"
 								/>
 							</svg>
-						</a>
+							Watch Video
+						</span>
 					</div>
-				</div>
+				</a>
 
 				<!-- Event 2 -->
-				<div class="event-card">
+				<a
+					href="https://www.youtube.com/watch?v=yKVCl1jFkQQ"
+					target="_blank"
+					rel="noopener"
+					class="event-card"
+				>
 					<div class="event-img">
 						<img
-							src="https://img.youtube.com/vi/yKVCl1jFkQQ/maxresdefault.jpg"
+							src="assets/images/events/yKVCl1jFkQQ.jpg"
 							alt="Crafting The Perfect Portfolio Website For Developers"
-							onerror="this.style.background='#27272a';this.style.minHeight='180px';"
+							onerror="this.onerror=null;this.src='assets/images/events/yKVCl1jFkQQ.jpg';"
 						>
 					</div>
 					<div class="event-body">
 						<span class="event-source">roc8.careers</span>
-						<h2 class="event-title">
+						<h4 class="event-title">
 							Crafting The Perfect Portfolio Website For Developers
-						</h2>
+						</h4>
 						<p class="event-desc">
 							Talked about how to effectively utilise a portfolio website to put
 							yourself in the best position to win.
 						</p>
-						<a
-							href="https://www.youtube.com/watch?v=yKVCl1jFkQQ"
-							target="_blank"
-							rel="noopener"
-							class="event-link"
-						>
-							Watch Video
+						<span class="event-link">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
 								stroke="currentColor"
-								width="16"
-								height="16"
+								fill="currentColor"
+								stroke-width="0"
+								viewBox="0 0 1024 1024"
+								width="14"
+								height="14"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+									d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"
 								/>
 							</svg>
-						</a>
+							Watch Video
+						</span>
 					</div>
-				</div>
+				</a>
 
 				<!-- Event 3 -->
-				<div class="event-card">
+				<a
+					href="https://www.youtube.com/watch?v=sZA-WrS39KI&t=19s"
+					target="_blank"
+					rel="noopener"
+					class="event-card"
+				>
 					<div class="event-img">
 						<img
-							src="https://img.youtube.com/vi/sZA-WrS39KI/maxresdefault.jpg"
+							src="assets/images/events/sZA-WrS39KI.jpg"
 							alt="How To Use Algochurn To Clear Technical Interviews"
-							onerror="this.style.background='#27272a';this.style.minHeight='180px';"
+							onerror="this.onerror=null;this.src='assets/images/events/yKVCl1jFkQQ.jpg';"
 						>
 					</div>
 					<div class="event-body">
 						<span class="event-source">Youtube</span>
-						<h2 class="event-title">
+						<h4 class="event-title">
 							How To Use Algochurn To Clear Technical Interviews With Ease.
-						</h2>
+						</h4>
 						<p class="event-desc">
 							Algochurn is a free resource that helps front-end developers
 							practice machine coding questions. Here I talk about how to
 							effectively make use of Algochurn.
 						</p>
-						<a
-							href="https://www.youtube.com/watch?v=sZA-WrS39KI&t=19s"
-							target="_blank"
-							rel="noopener"
-							class="event-link"
-						>
-							Watch Video
+						<span class="event-link">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
 								stroke="currentColor"
-								width="16"
-								height="16"
+								fill="currentColor"
+								stroke-width="0"
+								viewBox="0 0 1024 1024"
+								width="14"
+								height="14"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+									d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"
 								/>
 							</svg>
-						</a>
+							Watch Video
+						</span>
 					</div>
-				</div>
+				</a>
 
 				<!-- Event 4 -->
-				<div class="event-card">
+				<a
+					href="https://www.youtube.com/watch?v=uncrKqVtgrc"
+					target="_blank"
+					rel="noopener"
+					class="event-card"
+				>
 					<div class="event-img">
 						<img
-							src="https://img.youtube.com/vi/oSIoGFM3bLs/maxresdefault.jpg"
-							alt="How To Use Debouncing In JavaScript"
-							onerror="this.style.background='#27272a';this.style.minHeight='180px';"
+							src="assets/images/events/uncrKqVtgrc.jpg"
+							alt="How To Implement Debouncing In React"
+							onerror="this.onerror=null;this.src='assets/images/events/yKVCl1jFkQQ.jpg';"
 						>
 					</div>
 					<div class="event-body">
 						<span class="event-source">Youtube</span>
-						<h2 class="event-title">How To Use Debouncing In JavaScript</h2>
+						<h4 class="event-title">How To Implement Debouncing In React.</h4>
 						<p class="event-desc">
 							Debouncing is a method of preventing a function from being invoked
 							too often. In this video, I talk about how to create a custom
 							debounce function from scratch.
 						</p>
-						<a
-							href="https://www.youtube.com/watch?v=oSIoGFM3bLs"
-							target="_blank"
-							rel="noopener"
-							class="event-link"
-						>
-							Watch Video
+						<span class="event-link">
 							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								fill="none"
-								viewBox="0 0 24 24"
-								stroke-width="1.5"
 								stroke="currentColor"
-								width="16"
-								height="16"
+								fill="currentColor"
+								stroke-width="0"
+								viewBox="0 0 1024 1024"
+								width="14"
+								height="14"
+								xmlns="http://www.w3.org/2000/svg"
 							>
 								<path
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+									d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm144.1 454.9L437.7 677.8a8.02 8.02 0 0 1-12.7-6.5V353.7a8 8 0 0 1 12.7-6.5L656.1 506a7.9 7.9 0 0 1 0 12.9z"
 								/>
 							</svg>
-						</a>
+							Watch Video
+						</span>
 					</div>
-				</div>
+				</a>
 			</div>
 		</section>
 
