@@ -93,10 +93,24 @@
 			{ threshold: 0, rootMargin: "0px 0px -5% 0px" },
 		);
 		reveals.forEach((r) => io.observe(r));
+		// reveal anything already in/above the viewport on load so no section
+		// is ever stuck hidden (also covers no-scroll / full-page renders)
+		function revealInView() {
+			reveals.forEach(function (r) {
+				const rect = r.getBoundingClientRect();
+				if (rect.top < window.innerHeight * 1.05) {
+					r.classList.add("in");
+					io.unobserve(r);
+				}
+			});
+		}
+		revealInView();
+		window.addEventListener("scroll", revealInView, { passive: true });
+		window.addEventListener("resize", revealInView, { passive: true });
 		// failsafe: nothing stays hidden if the observer misses fast scrolls
 		setTimeout(function () {
 			reveals.forEach((r) => r.classList.add("in"));
-		}, 4000);
+		}, 1200);
 	} else {
 		reveals.forEach((r) => r.classList.add("in"));
 	}
