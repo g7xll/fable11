@@ -4,6 +4,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Team — Aubergine</title>
+		<meta
+			name="description"
+			content="Get to know out powerful team. A team to have next to you all day everyday."
+		>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link
@@ -17,25 +21,57 @@
 		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 		<link rel="stylesheet" href="../styles.css">
 		<style>
-		.spin-hover:hover {
-			animation: spin 1s linear infinite;
+		.team-people-grid {
+			display: grid;
+			grid-template-columns: 1fr;
+			gap: 1rem;
+			margin-top: 6rem;
 		}
-		@keyframes spin {
-			to {
-				transform: rotate(360deg);
+		@media (min-width: 768px) {
+			.team-people-grid {
+				grid-template-columns: repeat(2, 1fr);
 			}
+		}
+		@media (min-width: 1024px) {
+			.team-people-grid {
+				grid-template-columns: repeat(3, 1fr);
+			}
+		}
+		.team-person {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+			height: 100%;
+			text-align: center;
+		}
+		.team-person-img {
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+			border-radius: 0.75rem;
+			box-shadow: var(--shadow-massive);
+			aspect-ratio: 1 / 1;
+			object-fit: cover;
+			flex-shrink: 0;
+		}
+		.team-person-name {
+			font-size: 1.5rem;
+			margin-top: 3rem;
+			font-weight: 500;
+			line-height: 1.5;
+			color: #fff;
+		}
+		.team-person-role {
+			font-size: 1rem;
+			margin-top: 1rem;
+			color: var(--color-base-300);
 		}
 		</style>
 	</head>
-	<body class="flex flex-col bg-base-900 min-h-dvh">
-		<div
-			class="absolute inset-x-0 top-0 h-96 rotate-180 text-base-400/20 opacity-60"
-			style="-webkit-mask-image:linear-gradient(to bottom,transparent,white);mask-image:linear-gradient(to bottom,transparent,white);"
-		>
-			<svg
-				class="absolute inset-0 w-full h-full"
-				xmlns="http://www.w3.org/2000/svg"
-			>
+	<body>
+		<!-- Grid background -->
+		<div class="grid-bg" aria-hidden="true">
+			<svg xmlns="http://www.w3.org/2000/svg">
 				<defs>
 					<pattern
 						id="grid-pattern"
@@ -53,191 +89,48 @@
 			</svg>
 		</div>
 
+		<!-- Search button -->
 		<button
 			type="button"
 			id="searchButton"
+			class="search-btn"
 			aria-label="Search posts"
-			class="fixed bottom-6 right-6 z-[60] flex items-center justify-center size-9 rounded-lg text-accent-950 bg-linear-to-tr/oklch from-accent-500 via-accent-400 to-accent-300 hover:to-accent-400 shadow-big cursor-pointer"
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				viewBox="0 0 256 256"
 				fill="currentColor"
-				class="icon size-5"
 			>
 				<path
-					d="M233,147.24,191.43,52.6a6,6,0,0,0-1.25-1.83,30,30,0,0,0-42.42,0A6,6,0,0,0,146,55V82H110V55a6,6,0,0,0-1.76-4.25,30,30,0,0,0-42.42,0,6,6,0,0,0-1.25,1.83L23,147.24A46,46,0,1,0,110,168V94h36v74a46,46,0,1,0,87-20.76ZM64,202a34,34,0,1,1,34-34A34,34,0,0,1,64,202Zm0-80a45.77,45.77,0,0,0-18.55,3.92L75.06,58.54A18,18,0,0,1,98,57.71V137A45.89,45.89,0,0,0,64,122Zm94-64.28a18,18,0,0,1,22.94.83l29.61,67.37A45.9,45.9,0,0,0,158,137ZM192,202a34,34,0,1,1,34-34A34,34,0,0,1,192,202Z"
+					d="M229.66,218.34l-50.07-50.07a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.31ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"
 				></path>
 			</svg>
 		</button>
 
-		<div
-			id="searchModal"
-			class="fixed inset-0 z-50 overflow-y-auto hidden"
-			role="dialog"
-			aria-modal="true"
-		>
-			<div class="min-h-screen px-4 text-center">
-				<div
-					class="fixed inset-0 bg-base-950/50 backdrop-blur transition-opacity"
-					id="modalOverlay"
-				></div>
-				<div
-					class="inline-block w-full max-w-2xl px-8 mb-8 mt-12 lg:mt-48 relative p-8 bg-gradient-to-tr from-base-950 to-base-700 border-base-800 rounded-3xl shadow-massive text-left align-middle transition-all transform outline-1 outline-base-800"
-				>
-					<div class="hidden">
-						<button
-							type="button"
-							id="closeSearch"
-							class="text-base-400 hover:text-base-500 cursor-pointer ml-auto"
-							aria-label="Close search"
-						>
-							&#x2715;
-						</button>
-					</div>
+		<!-- Search modal -->
+		<div id="searchModal" class="search-modal" role="dialog" aria-modal="true">
+			<div class="search-modal-wrap">
+				<div class="search-overlay" id="modalOverlay"></div>
+				<div class="search-inner">
 					<input
 						type="text"
 						id="searchInput"
 						placeholder="Search posts..."
-						class="block w-full h-12 px-3 py-2 mt-2 border rounded-md appearance-none bg-base-900 border-base-800 focus:bg-base-900 focus:border-accent-300 focus:outline-none focus:ring-accent-300 placeholder-base-500 sm:text-sm text-accent-300"
+						autocomplete="off"
 					>
-					<div
-						id="searchResults"
-						class="max-h-96 overflow-y-auto bg-base-900 overflow-hidden w-full divide-y divide-base-900 rounded-2xl mt-2 hidden"
-					></div>
+					<div id="searchResults" class="scrollbar-hide"></div>
 				</div>
 			</div>
 		</div>
 
-		<script>
-		(function () {
-			const posts = [
-				{
-					title: "The 3-Day Productized Website Sprint",
-					pubDate: "2026-01-01T00:00:00.000Z",
-					description:
-						"How we ship a production-ready marketing site in 72 hours with a fixed scope, clear roles, and zero back-and-forth.",
-					slug: "1",
-				},
-				{
-					title: "Onboarding Clients in 24 Hours",
-					pubDate: "2026-01-02T00:00:00.000Z",
-					description:
-						"A repeatable intake playbook that moves prospects from curious to ready-to-build in one day.",
-					slug: "2",
-				},
-				{
-					title: "Async Collaboration for Productized Builds",
-					pubDate: "2026-01-03T00:00:00.000Z",
-					description:
-						"The rituals, tools, and cadences we use to keep builds moving without endless meetings.",
-					slug: "3",
-				},
-				{
-					title: "Measuring ROI on Productized Design",
-					pubDate: "2026-01-04T00:00:00.000Z",
-					description:
-						"Simple metrics to prove the value of a fixed-scope design engagement without drowning in dashboards.",
-					slug: "4",
-				},
-				{
-					title: "Pricing a Productized Service with Confidence",
-					pubDate: "2026-01-05T00:00:00.000Z",
-					description:
-						"A lightweight pricing ladder that keeps margins healthy and clients decisive.",
-					slug: "5",
-				},
-				{
-					title: "The Maintenance Blueprint for Productized Sites",
-					pubDate: "2026-01-06T00:00:00.000Z",
-					description:
-						"Keep shipped work fast, secure, and consistent with a lightweight monthly plan.",
-					slug: "6",
-				},
-			];
-			window.addEventListener("load", () => {
-				const sb = document.getElementById("searchButton"),
-					sm = document.getElementById("searchModal"),
-					mo = document.getElementById("modalOverlay"),
-					si = document.getElementById("searchInput"),
-					sr = document.getElementById("searchResults"),
-					cs = document.getElementById("closeSearch");
-				const fuse = new Fuse(posts, {
-					keys: ["title", "description", "pubDate"],
-					threshold: 0.3,
-					includeMatches: true,
-				});
-				sr.classList.add("hidden");
-				function open(e) {
-					e.preventDefault();
-					e.stopPropagation();
-					sm.classList.remove("hidden");
-					document.body.style.overflow = "hidden";
-					setTimeout(() => si.focus(), 100);
-				}
-				function close(e) {
-					if (e) {
-						e.preventDefault();
-						e.stopPropagation();
-					}
-					sm.classList.add("hidden");
-					document.body.style.overflow = "";
-					si.value = "";
-					sr.innerHTML = "";
-					sr.classList.add("hidden");
-				}
-				function render(r) {
-					if (!si.value.trim()) {
-						sr.innerHTML = "";
-						sr.classList.add("hidden");
-						return;
-					}
-					if (!r.length) {
-						sr.innerHTML =
-							'<div class="p-4"><h3 class="font-medium text-base text-base-500">There\'s nothing here,...</h3></div>';
-						sr.classList.remove("hidden");
-						return;
-					}
-					sr.innerHTML = r
-						.map(
-							(x) =>
-								`<a href="../blog/posts/${x.item.slug}.html" class="block p-8 duration-300 hover:bg-white/5"><p class="text-xs text-base-500">${new Date(x.item.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" })}</p><h3 class="font-medium text-sm mt-2 text-white">${x.item.title}</h3><p class="text-base-500 text-xs">${x.item.description}</p></a>`,
-						)
-						.join("");
-					sr.classList.remove("hidden");
-				}
-				sb.addEventListener("click", open);
-				sb.addEventListener("touchend", open);
-				cs.addEventListener("click", close);
-				cs.addEventListener("touchend", close);
-				mo.addEventListener("click", close);
-				mo.addEventListener("touchend", close);
-				si.addEventListener("input", (e) => {
-					const v = e.target.value.trim();
-					render(v ? fuse.search(v) : []);
-				});
-				document.addEventListener("keydown", (e) => {
-					if (e.key === "Escape" && !sm.classList.contains("hidden")) close();
-				});
-			});
-		})();
-		</script>
-
-		<div id="nav-wrapper" class="fixed inset-x-0 z-50 top-2 lg:top-8">
-			<div
-				id="nav-container"
-				class="px-8 mx-auto transition-all duration-1000 ease-in-out transform lg:max-w-xl"
-			>
-				<div
-					class="relative flex flex-col w-full p-2 mx-auto border backdrop-blur-xl backdrop-filter bg-base-900/60 border-base-800 md:flex-row md:items-center md:justify-between lg:rounded-2xl rounded-xl shadow-massive"
-				>
-					<div
-						class="flex flex-row items-center justify-between md:justify-start"
-					>
-						<a href="../index.html" aria-label="Homepage"
-							><span class="sr-only">Home</span
-							><svg
-								class="h-8 text-white"
+		<!-- Nav -->
+		<div id="nav-wrapper">
+			<div id="nav-container">
+				<div class="nav-inner">
+					<div class="nav-brand">
+						<a href="../index.html" aria-label="Homepage">
+							<svg
+								class="logo-svg"
 								viewBox="0 0 126 126"
 								fill="none"
 								xmlns="http://www.w3.org/2000/svg"
@@ -302,158 +195,71 @@
 									d="M55.3443 75.1486L32.6443 108.149C30.0443 111.849 31.5443 117.049 35.6443 118.849L38.6443 120.149C42.7443 121.949 47.5443 119.649 48.6443 115.249L57.9443 76.2485C58.4443 74.7485 56.3443 73.8486 55.3443 75.1486Z"
 									fill="currentColor"
 								/>
-							</svg></a
-						>
+							</svg>
+						</a>
 						<button
-							class="flex relative transition text-center font-medium items-center shadow-massive justify-center duration-300 ease-in-out hover:shadow-none outline focus:outline-offset-4 focus-visible:outline-none focus:outline-2 text-white hover:text-accent-300 bg-base-900 hover:bg-base-800 focus:outline-base-700 outline-base-800 size-9 text-sm rounded-lg md:hidden"
+							class="nav-toggle"
 							id="nav-toggle"
-							aria-label="Toggle navigation menu"
+							aria-label="Toggle navigation"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 256 256"
 								fill="currentColor"
-								class="icon size-5"
+								style="width:1.25rem;height:1.25rem"
 							>
 								<path
-									d="M70,60A10,10,0,1,1,60,50,10,10,0,0,1,70,60Zm58-10a10,10,0,1,0,10,10A10,10,0,0,0,128,50Zm68,20a10,10,0,1,0-10-10A10,10,0,0,0,196,70ZM60,118a10,10,0,1,0,10,10A10,10,0,0,0,60,118Zm68,0a10,10,0,1,0,10,10A10,10,0,0,0,128,118Zm68,0a10,10,0,1,0,10,10A10,10,0,0,0,196,118ZM60,186a10,10,0,1,0,10,10A10,10,0,0,0,60,186Zm68,0a10,10,0,1,0,10,10A10,10,0,0,0,128,186Zm68,0a10,10,0,1,0,10,10A10,10,0,0,0,196,186Z"
+									d="M224,128a8,8,0,0,1-8,8H40a8,8,0,0,1,0-16H216A8,8,0,0,1,224,128ZM40,72H216a8,8,0,0,0,0-16H40a8,8,0,0,0,0,16ZM216,184H40a8,8,0,0,0,0,16H216a8,8,0,0,0,0-16Z"
 								></path>
 							</svg>
 						</button>
 					</div>
-					<nav
-						id="nav-menu"
-						class="flex-col justify-center flex-grow hidden py-12 md:flex-row md:flex md:items-end md:py-0"
-					>
-						<ul
-							class="items-center justify-center text-center list-none gap-y-6 md:gap-3 flex flex-col md:flex-row md:ml-auto md:text-left"
+					<nav id="nav-menu">
+						<a href="../work/index.html" class="nav-link">Work</a>
+						<a href="../index.html#services" class="nav-link">Services</a>
+						<a href="../blog/index.html" class="nav-link">Blog</a>
+						<a href="../team/index.html" class="nav-link">Team</a>
+						<a href="../system/overview.html" class="nav-link">Overview</a>
+						<a
+							href="https://lexingtonthemes.com/templates/aubergine"
+							class="btn btn-accent btn-md"
+							>Buy Aubergine</a
 						>
-							<li>
-								<a
-									href="../work/index.html"
-									class="text-sm text-white hover:text-accent-300"
-									>Work</a
-								>
-							</li>
-							<li>
-								<a
-									href="../index.html#services"
-									class="text-sm text-white hover:text-accent-300"
-									>Services</a
-								>
-							</li>
-							<li>
-								<a
-									href="../blog/index.html"
-									class="text-sm text-white hover:text-accent-300"
-									>Blog</a
-								>
-							</li>
-							<li>
-								<a
-									href="../team/index.html"
-									class="text-sm text-white hover:text-accent-300"
-									>Team</a
-								>
-							</li>
-							<li>
-								<a
-									href="../system/overview.html"
-									class="text-sm text-white hover:text-accent-300"
-									>Overview</a
-								>
-							</li>
-							<li class="flex justify-center">
-								<a
-									href="https://lexingtonthemes.com/templates/aubergine"
-									class="flex relative transition text-center font-medium items-center shadow-massive justify-center duration-300 ease-in-out hover:shadow-none outline focus:outline-offset-4 focus-visible:outline-none focus:outline-2 text-accent-950 bg-linear-to-tr/oklch from-accent-500 via-accent-400 to-accent-300 hover:to-accent-400 focus:outline-accent-300 outline-accent-400 h-9 px-6 py-2 text-sm rounded-lg"
-									>Buy Aubergine</a
-								>
-							</li>
-						</ul>
 					</nav>
 				</div>
 			</div>
 		</div>
 
-		<script>
-		document.addEventListener("DOMContentLoaded", () => {
-			let e = document.getElementById("nav-container"),
-				t = document.getElementById("nav-toggle"),
-				n = document.getElementById("nav-menu"),
-				a = false;
-			window.addEventListener("scroll", () => {
-				let top = window.pageYOffset <= 50;
-				if (e) {
-					if (top) {
-						e.classList.remove("max-w-2xl");
-						e.classList.add("lg:max-w-xl");
-					} else {
-						e.classList.add("max-w-2xl");
-						e.classList.remove("lg:max-w-xl");
-					}
-				}
-			});
-			if (t)
-				t.addEventListener("click", () => {
-					a = !a;
-					if (n) {
-						if (a) {
-							n.classList.remove("hidden");
-							n.classList.add("flex");
-						} else {
-							n.classList.add("hidden");
-							n.classList.remove("flex");
-						}
-					}
-				});
-		});
-		</script>
-
-		<main class="relative grow">
+		<main style="position:relative;flex:1;">
 			<section>
-				<div class="px-8 mx-auto md:px-12 lg:px-36 max-w-7xl pb-12 pt-48">
+				<div class="container" style="padding-top:12rem;padding-bottom:3rem;">
 					<div
-						class="mx-auto text-center"
+						class="hero-content"
 						data-aos="fade-down"
-						data-aos-duration="3000"
+						data-aos-duration="1500"
 					>
-						<h1
-							class="text-4xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-display"
-						>
-							Get to know out<span class="md:block text-base-400"
-								>powerful team.</span
-							>
+						<h1 class="heading-xl">
+							Get to know out<span class="text-dim-block">powerful team.</span>
 						</h1>
-						<p class="text-base mt-4 text-base-300">
-							A team to have next to you all day everyday.
-						</p>
+						<p class="hero-sub">A team to have next to you all day everyday.</p>
 					</div>
-					<ul
-						role="list"
-						class="grid grid-cols-1 gap-4 mt-24 md:grid-cols-2 lg:grid-cols-3"
-					>
+
+					<ul role="list" class="team-people-grid">
 						<li>
 							<a
 								href="../team/1.html"
 								title="Michel Andreuzza"
 								aria-label="Michel Andreuzza"
-								class="flex flex-col justify-between h-full text-center group"
+								class="team-person"
 							>
 								<img
 									src="../assets/images/team-2.webp"
 									alt="Michel Andreuzza"
 									loading="lazy"
-									width="200"
-									height="200"
-									class="object-cover w-full mx-auto rounded-xl shadow-massive aspect-square shrink-0"
+									class="team-person-img"
 								>
-								<h3
-									class="text-xl sm:text-xl md:text-2xl mt-12 text-sm font-medium leading-6 text-white"
-								>
-									Michel Andreuzza
-								</h3>
-								<p class="text-base mt-4 text-base-300">Graphic Designer</p>
+								<h3 class="team-person-name">Michel Andreuzza</h3>
+								<p class="team-person-role">Graphic Designer</p>
 							</a>
 						</li>
 						<li>
@@ -461,22 +267,16 @@
 								href="../team/2.html"
 								title="Sofia Alvarez"
 								aria-label="Sofia Alvarez"
-								class="flex flex-col justify-between h-full text-center group"
+								class="team-person"
 							>
 								<img
 									src="../assets/images/team-1.webp"
 									alt="Sofia Alvarez"
 									loading="lazy"
-									width="200"
-									height="200"
-									class="object-cover w-full mx-auto rounded-xl shadow-massive aspect-square shrink-0"
+									class="team-person-img"
 								>
-								<h3
-									class="text-xl sm:text-xl md:text-2xl mt-12 text-sm font-medium leading-6 text-white"
-								>
-									Sofia Alvarez
-								</h3>
-								<p class="text-base mt-4 text-base-300">Content Strategist</p>
+								<h3 class="team-person-name">Sofia Alvarez</h3>
+								<p class="team-person-role">Content Strategist</p>
 							</a>
 						</li>
 						<li>
@@ -484,22 +284,16 @@
 								href="../team/3.html"
 								title="Lucas Martin"
 								aria-label="Lucas Martin"
-								class="flex flex-col justify-between h-full text-center group"
+								class="team-person"
 							>
 								<img
 									src="../assets/images/team-3.webp"
 									alt="Lucas Martin"
 									loading="lazy"
-									width="200"
-									height="200"
-									class="object-cover w-full mx-auto rounded-xl shadow-massive aspect-square shrink-0"
+									class="team-person-img"
 								>
-								<h3
-									class="text-xl sm:text-xl md:text-2xl mt-12 text-sm font-medium leading-6 text-white"
-								>
-									Lucas Martin
-								</h3>
-								<p class="text-base mt-4 text-base-300">Web Developer</p>
+								<h3 class="team-person-name">Lucas Martin</h3>
+								<p class="team-person-role">Web Developer</p>
 							</a>
 						</li>
 					</ul>
@@ -508,12 +302,10 @@
 		</main>
 
 		<footer>
-			<div
-				class="px-8 mx-auto md:px-12 lg:px-36 max-w-7xl py-24 lg:text-center"
-			>
-				<a href="../index.html"
-					><svg
-						class="h-24 text-white ease-in-out transform lg:mx-auto spin-hover"
+			<div class="container py-24" style="text-align:center;">
+				<a href="../index.html" aria-label="Homepage">
+					<svg
+						class="footer-logo-spin"
 						viewBox="0 0 126 126"
 						fill="none"
 						xmlns="http://www.w3.org/2000/svg"
@@ -578,66 +370,167 @@
 							d="M55.3443 75.1486L32.6443 108.149C30.0443 111.849 31.5443 117.049 35.6443 118.849L38.6443 120.149C42.7443 121.949 47.5443 119.649 48.6443 115.249L57.9443 76.2485C58.4443 74.7485 56.3443 73.8486 55.3443 75.1486Z"
 							fill="currentColor"
 						/>
-					</svg></a
-				>
-				<p class="text-sm mt-12 text-base-400 text-balance">
-					Designed and built in the &#197;land Islands<br>by Michael Andreuzza.
+					</svg>
+				</a>
+				<p class="footer-attribution">
+					Designed and built in the Åland Islands<br>by Michael Andreuzza.
 				</p>
-				<nav
-					class="flex flex-col mt-8 gap-y-2 lg:gap-8 lg:justify-center md:flex-row"
-				>
-					<a
-						class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-base-300 transition-colors delay-150 hover:text-white hover:delay-[0ms] hover:bg-base-900"
-						href="../system/overview.html"
-						><span class="relative z-10">Overview</span></a
+				<nav class="footer-system-links">
+					<a href="../system/overview.html" class="footer-system-link"
+						><span>Overview</span></a
 					>
-					<a
-						class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-base-300 transition-colors delay-150 hover:text-white hover:delay-[0ms] hover:bg-base-900"
-						href="../system/typography.html"
-						><span class="relative z-10">Typography</span></a
+					<a href="../system/typography.html" class="footer-system-link"
+						><span>Typography</span></a
 					>
-					<a
-						class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-base-300 transition-colors delay-150 hover:text-white hover:delay-[0ms] hover:bg-base-900"
-						href="../system/buttons.html"
-						><span class="relative z-10">Buttons</span></a
+					<a href="../system/buttons.html" class="footer-system-link"
+						><span>Buttons</span></a
 					>
-					<a
-						class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-base-300 transition-colors delay-150 hover:text-white hover:delay-[0ms] hover:bg-base-900"
-						href="../system/colors.html"
-						><span class="relative z-10">Colors</span></a
+					<a href="../system/colors.html" class="footer-system-link"
+						><span>Colors</span></a
 					>
-					<a
-						class="relative -my-2 -mx-3 rounded-lg px-3 py-2 text-sm text-base-300 transition-colors delay-150 hover:text-white hover:delay-[0ms] hover:bg-base-900"
-						href="../system/links.html"
-						><span class="relative z-10">Links</span></a
+					<a href="../system/links.html" class="footer-system-link"
+						><span>Links</span></a
 					>
 				</nav>
-				<div class="pb-12 mt-24 lg:mx-auto lg:text-center border-base-800">
-					<p class="text-sm text-base-300">
-						&#169; Copyright <span>2025</span>. All rights reserved.
-					</p>
+				<div class="footer-copy-bottom">
+					<p>&copy; Copyright <span>2025</span>. All rights reserved.</p>
 				</div>
 			</div>
 		</footer>
 
-		<script
-			src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"
-		></script>
 		<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-		<script>
-		AOS.init();
-		</script>
 		<script
-			src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"
-			crossorigin="anonymous"
-			referrerpolicy="no-referrer"
+			src="https://cdn.jsdelivr.net/npm/fuse.js@7.0.0/dist/fuse.basic.min.js"
 		></script>
 		<script>
-		VanillaTilt.init(document.querySelectorAll(".tilt-card"), {
-			max: 35,
-			speed: 2500,
-			transition: true,
-		});
+		(function () {
+			AOS.init({
+				duration: 600,
+				easing: "ease",
+				once: true,
+				offset: 50,
+				disable: false,
+			});
+
+			const navContainer = document.getElementById("nav-container");
+			window.addEventListener("scroll", () => {
+				if (window.pageYOffset > 50) {
+					navContainer.classList.add("expanded");
+				} else {
+					navContainer.classList.remove("expanded");
+				}
+			});
+
+			const navToggle = document.getElementById("nav-toggle");
+			const navMenu = document.getElementById("nav-menu");
+			navToggle.addEventListener("click", () => {
+				navMenu.classList.toggle("open");
+			});
+
+			const posts = [
+				{
+					title: "The 3-Day Productized Website Sprint",
+					pubDate: "2026-01-01",
+					description:
+						"How we ship a production-ready marketing site in 72 hours with a fixed scope, clear roles, and zero back-and-forth.",
+					slug: "1",
+				},
+				{
+					title: "Onboarding Clients in 24 Hours",
+					pubDate: "2026-01-02",
+					description:
+						"A repeatable intake playbook that moves prospects from curious to ready-to-build in one day.",
+					slug: "2",
+				},
+				{
+					title: "Async Collaboration for Productized Builds",
+					pubDate: "2026-01-03",
+					description:
+						"The rituals, tools, and cadences we use to keep builds moving without endless meetings.",
+					slug: "3",
+				},
+				{
+					title: "Measuring ROI on Productized Design",
+					pubDate: "2026-01-04",
+					description:
+						"Simple metrics to prove the value of a fixed-scope design engagement without drowning in dashboards.",
+					slug: "4",
+				},
+				{
+					title: "Pricing a Productized Service with Confidence",
+					pubDate: "2026-01-05",
+					description:
+						"A lightweight pricing ladder that keeps margins healthy and clients decisive.",
+					slug: "5",
+				},
+				{
+					title: "The Maintenance Blueprint for Productized Sites",
+					pubDate: "2026-01-06",
+					description:
+						"Keep shipped work fast, secure, and consistent with a lightweight monthly plan.",
+					slug: "6",
+				},
+			];
+
+			window.addEventListener("load", () => {
+				const searchButton = document.getElementById("searchButton");
+				const searchModal = document.getElementById("searchModal");
+				const modalOverlay = document.getElementById("modalOverlay");
+				const searchInput = document.getElementById("searchInput");
+				const searchResults = document.getElementById("searchResults");
+
+				const fuse = new Fuse(posts, {
+					keys: ["title", "description", "pubDate"],
+					threshold: 0.3,
+					includeMatches: true,
+				});
+
+				function openSearch(e) {
+					e.preventDefault();
+					e.stopPropagation();
+					searchModal.classList.add("open");
+					document.body.style.overflow = "hidden";
+					setTimeout(() => searchInput.focus(), 100);
+				}
+				function closeSearch() {
+					searchModal.classList.remove("open");
+					document.body.style.overflow = "";
+					searchInput.value = "";
+					searchResults.innerHTML = "";
+					searchResults.classList.remove("visible");
+				}
+				function renderResults(results) {
+					if (!searchInput.value.trim()) {
+						searchResults.innerHTML = "";
+						searchResults.classList.remove("visible");
+						return;
+					}
+					if (results.length === 0) {
+						searchResults.innerHTML =
+							'<div class="search-empty">Nothing found for that search.</div>';
+						searchResults.classList.add("visible");
+						return;
+					}
+					searchResults.innerHTML = results
+						.map(
+							(r) =>
+								`<a href="../blog/index.html" class="search-result-item"><p class="search-result-date">${new Date(r.item.pubDate).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "2-digit" })}</p><h3 class="search-result-title">${r.item.title}</h3><p class="search-result-desc">${r.item.description}</p></a>`,
+						)
+						.join("");
+					searchResults.classList.add("visible");
+				}
+
+				searchButton.addEventListener("click", openSearch);
+				modalOverlay.addEventListener("click", closeSearch);
+				searchInput.addEventListener("input", (e) => {
+					const v = e.target.value.trim();
+					renderResults(v ? fuse.search(v) : []);
+				});
+				document.addEventListener("keydown", (e) => {
+					if (e.key === "Escape") closeSearch();
+				});
+			});
+		})();
 		</script>
 	</body>
 </html>
