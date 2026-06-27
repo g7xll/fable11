@@ -10,6 +10,14 @@
 			name="description"
 			content="Deploy AI agents that plan, act through your tools, and report outcomes—without changing how your teams work."
 		>
+		<script>
+		(function () {
+			try {
+				var t = localStorage.getItem("theme");
+				if (t === "dark") document.documentElement.classList.add("dark");
+			} catch (e) {}
+		})();
+		</script>
 		<link rel="stylesheet" href="assets/css/styles.css">
 	</head>
 	<body>
@@ -2004,7 +2012,6 @@
 										stroke="currentColor"
 										stroke-width="2.5"
 									>
-										<path d="M12 5l0 14" />
 										<path d="M5 12l14 0" />
 									</svg>
 								</span>
@@ -2028,7 +2035,6 @@
 										stroke="currentColor"
 										stroke-width="2.5"
 									>
-										<path d="M12 5l0 14" />
 										<path d="M5 12l14 0" />
 									</svg>
 								</span>
@@ -2052,7 +2058,6 @@
 										stroke="currentColor"
 										stroke-width="2.5"
 									>
-										<path d="M12 5l0 14" />
 										<path d="M5 12l14 0" />
 									</svg>
 								</span>
@@ -2077,7 +2082,6 @@
 										stroke="currentColor"
 										stroke-width="2.5"
 									>
-										<path d="M12 5l0 14" />
 										<path d="M5 12l14 0" />
 									</svg>
 								</span>
@@ -2100,7 +2104,6 @@
 										stroke="currentColor"
 										stroke-width="2.5"
 									>
-										<path d="M12 5l0 14" />
 										<path d="M5 12l14 0" />
 									</svg>
 								</span>
@@ -2136,87 +2139,12 @@
 						<span class="navbar-logo-text">Agenforce</span>
 					</a>
 					<h3>Safe, observable, outcome-driven AI</h3>
-					<p>
-						Deploy AI agents that plan, act through your tools, and report
-						outcomes—without changing how your teams work.
-					</p>
 					<a
 						href="signup.html"
 						class="btn btn-primary"
 						style="padding:0.625rem 1.25rem;"
 						>Start a 30-day trial</a
 					>
-					<div class="footer-socials">
-						<a href="#" class="footer-social-icon" aria-label="Twitter">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="18"
-								height="18"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-								<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-							</svg>
-						</a>
-						<a href="#" class="footer-social-icon" aria-label="LinkedIn">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="18"
-								height="18"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
-								/>
-								<path d="M8 11l0 5" />
-								<path d="M8 8l0 .01" />
-								<path d="M12 16l0 -5" />
-								<path d="M16 16v-3a2 2 0 0 0 -4 0" />
-							</svg>
-						</a>
-						<a href="#" class="footer-social-icon" aria-label="GitHub">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="18"
-								height="18"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path
-									d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5"
-								/>
-							</svg>
-						</a>
-						<a href="#" class="footer-social-icon" aria-label="Discord">
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								width="18"
-								height="18"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-							>
-								<path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
-								<path d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
-								<path
-									d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.67 -3.333 -3c-.635 -1.33 -.635 -2.667 0 -4c.635 -1.333 2.09 -2.333 3.833 -3h6.664c1.743 .667 3.198 1.667 3.833 3c.635 1.333 .635 2.67 0 4c-.635 1.33 -1.904 3 -3.333 3c-.476 0 -1.832 -2 -1.832 -3"
-								/>
-								<path d="M7 9.001c.5 -1 1.5 -2 3 -2.5c.5 -.25 1.5 -.5 2 -.5" />
-								<path
-									d="M17 9.001c-.5 -1 -1.5 -2 -3 -2.5c-.5 -.25 -1.5 -.5 -2 -.5"
-								/>
-							</svg>
-						</a>
-					</div>
 				</div>
 
 				<div class="footer-col">
@@ -2249,7 +2177,7 @@
 						<input
 							class="newsletter-input"
 							type="email"
-							placeholder="your@email.com"
+							placeholder="Your email"
 							aria-label="Email address"
 						>
 						<button class="newsletter-submit" aria-label="Subscribe">
@@ -2275,9 +2203,117 @@
 				<p class="footer-copyright">
 					© 2026 Agenforce AI. All rights reserved.
 				</p>
-				<div class="footer-links">
-					<a href="#">Privacy Policy</a>
-					<a href="#">Terms of Service</a>
+				<div class="footer-bottom-right">
+					<div class="footer-links">
+						<a href="#">Privacy Policy</a>
+						<a href="#">Terms of Service</a>
+					</div>
+					<div class="footer-social-row">
+						<button
+							class="theme-toggle"
+							id="themeToggle"
+							aria-label="Toggle theme"
+						>
+							<svg
+								class="icon-sun"
+								xmlns="http://www.w3.org/2000/svg"
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<circle cx="12" cy="12" r="4" />
+								<path
+									d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+								/>
+							</svg>
+							<svg
+								class="icon-moon"
+								xmlns="http://www.w3.org/2000/svg"
+								width="14"
+								height="14"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							>
+								<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+							</svg>
+						</button>
+						<div class="footer-socials">
+							<a href="#" class="footer-social-icon" aria-label="Twitter">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+									<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+								</svg>
+							</a>
+							<a href="#" class="footer-social-icon" aria-label="LinkedIn">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path
+										d="M4 4m0 2a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2z"
+									/>
+									<path d="M8 11l0 5" />
+									<path d="M8 8l0 .01" />
+									<path d="M12 16l0 -5" />
+									<path d="M16 16v-3a2 2 0 0 0 -4 0" />
+								</svg>
+							</a>
+							<a href="#" class="footer-social-icon" aria-label="Instagram">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<rect x="2" y="2" width="20" height="20" rx="5" />
+									<circle cx="12" cy="12" r="4" />
+									<circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" />
+								</svg>
+							</a>
+							<a href="#" class="footer-social-icon" aria-label="Discord">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									width="18"
+									height="18"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<path d="M8 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+									<path d="M14 12a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" />
+									<path
+										d="M8.5 17c0 1 -1.356 3 -1.832 3c-1.429 0 -2.698 -1.67 -3.333 -3c-.635 -1.33 -.635 -2.667 0 -4c.635 -1.333 2.09 -2.333 3.833 -3h6.664c1.743 .667 3.198 1.667 3.833 3c.635 1.333 .635 2.67 0 4c-.635 1.33 -1.904 3 -3.333 3c-.476 0 -1.832 -2 -1.832 -3"
+									/>
+								</svg>
+							</a>
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -2318,6 +2354,17 @@
 		menuBtn.addEventListener("click", openMenu);
 		closeMenuBtn.addEventListener("click", closeMenu);
 		sidebarOverlay.addEventListener("click", closeMenu);
+
+		// Theme toggle
+		const themeToggle = document.getElementById("themeToggle");
+		if (themeToggle) {
+			themeToggle.addEventListener("click", () => {
+				const isDark = document.documentElement.classList.toggle("dark");
+				try {
+					localStorage.setItem("theme", isDark ? "dark" : "light");
+				} catch (e) {}
+			});
+		}
 
 		// Close menu on nav link click
 		mobileSidebar
