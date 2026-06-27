@@ -1079,9 +1079,9 @@
 
 		.pricing-card-inner {
 			background: var(--bg-card);
+			border: 1px solid var(--border-color);
 			border-radius: 16px;
 			padding: 24px;
-			flex: 1;
 			display: flex;
 			flex-direction: column;
 		}
@@ -1090,60 +1090,98 @@
 			background: var(--color-neutral-950);
 		}
 
+		.pricing-head {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+		}
+
 		.pricing-plan-name {
 			font-size: 1rem;
 			font-weight: 600;
 			color: var(--text-primary);
-			margin-bottom: 4px;
+		}
+
+		.pricing-badge {
+			background: var(--text-primary);
+			color: var(--bg-page);
+			font-size: 0.75rem;
+			font-weight: 500;
+			padding: 4px 12px;
+			border-radius: 9999px;
 		}
 
 		.pricing-plan-price {
-			font-size: 2.25rem;
-			font-weight: 700;
+			display: flex;
+			align-items: flex-end;
+			gap: 4px;
+			margin: 20px 0 0;
 			color: var(--text-primary);
-			margin: 8px 0;
 		}
 
-		.pricing-plan-price span {
+		.pricing-plan-price .cur {
 			font-size: 1rem;
-			font-weight: 400;
+			font-weight: 600;
+			align-self: flex-end;
+			margin-bottom: 10px;
 			color: var(--text-muted);
 		}
 
-		.pricing-plan-desc {
-			font-size: 0.875rem;
-			color: var(--text-secondary);
-			line-height: 1.6;
-			margin-bottom: 24px;
+		.pricing-plan-price .amt {
+			font-size: 4rem;
+			font-weight: 700;
+			line-height: 0.9;
 		}
 
-		.pricing-divider {
-			height: 1px;
-			background: var(--border-color);
-			margin: 20px 0;
+		.pricing-plan-price .per {
+			font-size: 0.875rem;
+			font-weight: 400;
+			color: var(--text-muted);
+			margin-bottom: 8px;
 		}
 
 		.pricing-features {
 			display: flex;
 			flex-direction: column;
-			gap: 12px;
-			flex: 1;
+			gap: 14px;
+			padding: 32px 8px 8px;
 		}
 
 		.pricing-feature {
 			display: flex;
 			align-items: flex-start;
-			gap: 8px;
+			gap: 10px;
 			font-size: 0.875rem;
-			color: var(--text-secondary);
+			color: var(--text-primary);
 		}
 
 		.pricing-feature svg {
-			width: 16px;
-			height: 16px;
+			width: 18px;
+			height: 18px;
 			flex-shrink: 0;
-			color: var(--color-emerald-500);
-			margin-top: 2px;
+			color: var(--text-primary);
+			margin-top: 1px;
+		}
+
+		.pricing-feature.is-included svg {
+			color: #0a91eb;
+		}
+
+		.pricing-plus {
+			display: flex;
+			align-items: center;
+			gap: 12px;
+			color: var(--text-muted);
+			font-size: 1rem;
+			margin: 4px 0;
+		}
+
+		.pricing-plus::before,
+		.pricing-plus::after {
+			content: "";
+			flex: 1;
+			height: 1px;
+			background: var(--border-color);
 		}
 
 		.pricing-btn {
@@ -1156,17 +1194,24 @@
 			font-weight: 600;
 			text-align: center;
 			cursor: pointer;
+			border: none;
 			transition:
 				transform var(--transition-default),
-				opacity var(--transition-default);
-			background: var(--text-primary);
-			color: var(--bg-page);
+				box-shadow var(--transition-default);
+			background: linear-gradient(
+				to bottom,
+				oklch(0.623 0.214 259.815),
+				oklch(0.488 0.243 264.376)
+			);
+			color: var(--color-white);
+			box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 			font-family: var(--font-sans);
 		}
 
 		.pricing-btn:hover {
-			opacity: 0.85;
 			transform: translateY(-1px);
+			box-shadow: 0 6px 16px
+				color-mix(in srgb, oklch(0.55 0.23 262) 35%, transparent);
 		}
 
 		/* =============================================
@@ -1251,42 +1296,51 @@
 		.cta-social-text {
 			font-size: 0.875rem;
 			color: var(--text-secondary);
+			margin-top: 8px;
+		}
+
+		.cta-stars {
+			display: inline-flex;
+			align-items: center;
+			gap: 2px;
+			color: #f59e0b;
+		}
+
+		.cta-stars svg {
+			width: 18px;
+			height: 18px;
 		}
 
 		.btn-gradient {
 			display: inline-flex;
 			align-items: center;
 			gap: 8px;
-			margin-top: 24px;
-			padding: 8px 16px;
+			padding: 10px 18px;
+			border: none;
 			border-radius: 8px;
 			font-size: 1rem;
-			font-weight: 400;
+			font-weight: 500;
 			background: linear-gradient(
-				to bottom right,
-				var(--color-black),
-				var(--color-neutral-700)
+				to bottom,
+				oklch(0.623 0.214 259.815),
+				oklch(0.488 0.243 264.376)
 			);
 			color: var(--color-white);
 			cursor: pointer;
+			box-shadow: 0 4px 14px
+				color-mix(in srgb, oklch(0.55 0.23 262) 30%, transparent);
 			transition:
 				transform var(--transition-default),
-				opacity var(--transition-default);
+				box-shadow var(--transition-default);
 			font-family: var(--font-sans);
-		}
-
-		html.dark .btn-gradient {
-			background: linear-gradient(
-				to bottom right,
-				var(--color-white),
-				var(--color-neutral-300)
-			);
-			color: var(--color-black);
+			position: relative;
+			z-index: 1;
 		}
 
 		.btn-gradient:hover {
-			opacity: 0.85;
 			transform: translateY(-1px);
+			box-shadow: 0 8px 22px
+				color-mix(in srgb, oklch(0.55 0.23 262) 40%, transparent);
 		}
 
 		.btn-gradient svg {
@@ -1483,7 +1537,7 @@
 
 				<div class="navbar-actions">
 					<a
-						href="/login"
+						href="login.html"
 						style="font-size:14px;font-weight:500;color:var(--color-neutral-600);padding:8px 8px;transition:color var(--transition-default);"
 						>Login</a
 					>
@@ -1857,12 +1911,13 @@
 								You are running out of copy for your website, we can generate
 								copy for you.
 							</p>
-							<div class="copy-card-visual">
-								<div class="copy-skeleton"></div>
-								<div class="copy-skeleton"></div>
-								<div class="copy-skeleton"></div>
-								<div class="copy-skeleton"></div>
-								<div class="copy-skeleton"></div>
+							<div class="dashboard-img-wrap" style="max-height: 220px;">
+								<img
+									src="assets/dashboard-new.webp"
+									alt="Analytics dashboard"
+									loading="lazy"
+									style="width:100%; height:100%; object-fit:cover; object-position:top; border-radius:12px;"
+								>
 							</div>
 						</div>
 					</div>
@@ -1885,216 +1940,222 @@
 					<!-- Hobby -->
 					<div class="pricing-card reveal">
 						<div class="pricing-card-inner">
-							<div class="pricing-plan-name">Hobby</div>
-							<div class="pricing-plan-price">$0 <span>/ month</span></div>
-							<p class="pricing-plan-desc">
-								Perfect for side projects and personal experiments.
-							</p>
-							<div class="pricing-divider"></div>
-							<ul class="pricing-features">
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Access to basic analytics reports
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Up to 10,000 data points per month
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Email support
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Community forum access
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Cancel anytime
-								</li>
-							</ul>
+							<div class="pricing-head">
+								<span class="pricing-plan-name">Hobby</span>
+							</div>
+							<div class="pricing-plan-price">
+								<span class="cur">$</span><span class="amt">99</span
+								><span class="per">/month</span>
+							</div>
 							<button class="pricing-btn">Get Hobby</button>
 						</div>
+						<ul class="pricing-features">
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Access to basic analytics reports
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Up to 10,000 data points per month
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Email support
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Community forum access
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Cancel anytime
+							</li>
+						</ul>
 					</div>
 
 					<!-- Starter -->
 					<div class="pricing-card reveal">
 						<div class="pricing-card-inner">
-							<div class="pricing-plan-name">Starter</div>
-							<div class="pricing-plan-price">$49 <span>/ month</span></div>
-							<p class="pricing-plan-desc">
-								Great for growing teams and small businesses.
-							</p>
-							<div class="pricing-divider"></div>
-							<ul class="pricing-features">
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Advanced analytics dashboard
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Customizable reports and charts
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Real-time data tracking
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Integration with third-party tools
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Everything in Hobby Plan
-								</li>
-							</ul>
+							<div class="pricing-head">
+								<span class="pricing-plan-name">Starter</span>
+								<span class="pricing-badge">Featured</span>
+							</div>
+							<div class="pricing-plan-price">
+								<span class="cur">$</span><span class="amt">299</span
+								><span class="per">/month</span>
+							</div>
 							<button class="pricing-btn">Get Starter</button>
 						</div>
+						<ul class="pricing-features">
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Advanced analytics dashboard
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Customizable reports and charts
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Real-time data tracking
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Integration with third-party tools
+							</li>
+							<li class="pricing-plus">+</li>
+							<li class="pricing-feature is-included">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Everything in Hobby Plan
+							</li>
+						</ul>
 					</div>
 
 					<!-- Pro -->
 					<div class="pricing-card reveal">
 						<div class="pricing-card-inner">
-							<div class="pricing-plan-name">Pro</div>
-							<div class="pricing-plan-price">$99 <span>/ month</span></div>
-							<p class="pricing-plan-desc">
-								For enterprises and power users who need everything.
-							</p>
-							<div class="pricing-divider"></div>
-							<ul class="pricing-features">
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Unlimited data storage
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Customizable dashboards
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Advanced data segmentation
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Real-time data processing
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									AI-powered insights and recommendations
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Everything in Hobby Plan
-								</li>
-								<li class="pricing-feature">
-									<svg viewBox="0 0 20 20" fill="currentColor">
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									Everything in Pro Plan
-								</li>
-							</ul>
+							<div class="pricing-head">
+								<span class="pricing-plan-name">Pro</span>
+							</div>
+							<div class="pricing-plan-price">
+								<span class="cur">$</span><span class="amt">1490</span
+								><span class="per">/month</span>
+							</div>
 							<button class="pricing-btn">Get Pro</button>
 						</div>
+						<ul class="pricing-features">
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Unlimited data storage
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Customizable dashboards
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Advanced data segmentation
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Real-time data processing
+							</li>
+							<li class="pricing-feature">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								AI-powered insights and recommendations
+							</li>
+							<li class="pricing-plus">+</li>
+							<li class="pricing-feature is-included">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Everything in Hobby Plan
+							</li>
+							<li class="pricing-feature is-included">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										fill-rule="evenodd"
+										d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+										clip-rule="evenodd"
+									/>
+								</svg>
+								Everything in Pro Plan
+							</li>
+						</ul>
 					</div>
 				</div>
 			</section>
@@ -2122,9 +2183,45 @@
 								<img src="assets/avatar4.jpg" alt="User avatar">
 								<img src="assets/avatar5.jpg" alt="User avatar">
 							</div>
-							<span class="cta-social-text">Trusted by 27,000+ developers</span>
+							<div class="cta-stars" aria-label="5 star rating">
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.064 9.79c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.518-4.674z"
+									/>
+								</svg>
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.064 9.79c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.518-4.674z"
+									/>
+								</svg>
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.064 9.79c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.518-4.674z"
+									/>
+								</svg>
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.064 9.79c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.518-4.674z"
+									/>
+								</svg>
+								<svg viewBox="0 0 20 20" fill="currentColor">
+									<path
+										d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.064 9.79c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.518-4.674z"
+									/>
+								</svg>
+							</div>
 						</div>
+						<span class="cta-social-text">Trusted by 27,000+ developers</span>
+					</div>
 
+					<div
+						class="reveal cta-right"
+						style="flex: 1; display: flex; align-items: center; justify-content: center; position: relative;"
+					>
+						<!-- Decorative element -->
+						<div
+							style="position: absolute; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--color-orange-500) 18%, transparent), transparent 70%); filter: blur(40px);"
+						></div>
 						<button class="btn-gradient" onclick="alert('Book a call')">
 							Book a call
 							<svg
@@ -2138,16 +2235,6 @@
 								<path d="M5 12h14M12 5l7 7-7 7" />
 							</svg>
 						</button>
-					</div>
-
-					<div
-						class="reveal"
-						style="flex: 1; display: flex; align-items: center; justify-content: center;"
-					>
-						<!-- Decorative element -->
-						<div
-							style="width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, color-mix(in srgb, var(--color-orange-500) 15%, transparent), transparent 70%); filter: blur(40px);"
-						></div>
 					</div>
 				</div>
 			</section>
@@ -2204,8 +2291,8 @@
 					<div class="footer-col">
 						<p class="footer-col-title">Register</p>
 						<ul>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">Login</a></li>
+							<li><a href="login.html">Sign Up</a></li>
+							<li><a href="login.html">Login</a></li>
 							<li><a href="#">Book a demo</a></li>
 						</ul>
 					</div>
