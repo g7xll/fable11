@@ -289,14 +289,17 @@
 		.nav-login-link {
 			font-size: 0.875rem;
 			font-weight: 500;
-			color: var(--brand);
+			color: var(--muted);
 			text-decoration: none;
 			padding: 0.375rem 0.75rem;
 			border-radius: 0.375rem;
-			transition: background 0.15s;
+			transition:
+				color 0.15s,
+				background 0.15s;
 		}
 
 		.nav-login-link:hover {
+			color: var(--fg);
 			background: rgba(30, 144, 255, 0.08);
 		}
 
@@ -961,43 +964,6 @@
 				<div class="nav-right">
 					<a href="login.html" class="nav-login-link">Login</a>
 					<a href="#" class="btn-primary-nav">Try for free</a>
-					<button
-						class="theme-toggle"
-						id="theme-toggle-nav"
-						aria-label="Toggle theme"
-					>
-						<svg
-							class="theme-sun"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<circle cx="12" cy="12" r="4" />
-							<path
-								d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
-							/>
-						</svg>
-						<svg
-							class="theme-moon"
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						>
-							<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-						</svg>
-					</button>
 				</div>
 
 				<button class="nav-hamburger" id="hamburger-btn" aria-label="Open menu">
@@ -1331,10 +1297,10 @@
 
 		document
 			.getElementById("theme-toggle-nav")
-			.addEventListener("click", toggleTheme);
+			?.addEventListener("click", toggleTheme);
 		document
 			.getElementById("theme-toggle-footer")
-			.addEventListener("click", toggleTheme);
+			?.addEventListener("click", toggleTheme);
 
 		// Nav scroll
 		var navbar = document.getElementById("navbar");
