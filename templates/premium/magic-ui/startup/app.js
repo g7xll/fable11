@@ -9,14 +9,6 @@ if (header) {
 	onScroll();
 }
 
-// Top announcement bar dismiss
-const topbarClose = document.querySelector(".topbar .close");
-if (topbarClose) {
-	topbarClose.addEventListener("click", () =>
-		topbarClose.closest(".topbar").classList.add("hidden"),
-	);
-}
-
 // Mobile menu toggle
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");
@@ -24,6 +16,28 @@ if (hamburger && mobileMenu) {
 	hamburger.addEventListener("click", () =>
 		mobileMenu.classList.toggle("open"),
 	);
+}
+
+// Retina dot-grid background canvas
+const bgCanvas = document.getElementById("bg-canvas");
+if (bgCanvas) {
+	const ctx = bgCanvas.getContext("2d");
+	function drawDots() {
+		bgCanvas.width = bgCanvas.offsetWidth;
+		bgCanvas.height = bgCanvas.offsetHeight;
+		ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+		const gap = 20;
+		ctx.fillStyle = "rgba(255,255,255,0.12)";
+		for (let x = 0; x <= bgCanvas.width; x += gap) {
+			for (let y = 0; y <= bgCanvas.height; y += gap) {
+				ctx.beginPath();
+				ctx.arc(x, y, 0.6, 0, Math.PI * 2);
+				ctx.fill();
+			}
+		}
+	}
+	drawDots();
+	window.addEventListener("resize", drawDots);
 }
 
 // Pricing annual/monthly toggle

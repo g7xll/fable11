@@ -232,11 +232,11 @@ const DATA = {
 			links: [
 				{
 					type: "Streamer Source",
-					href: "https://github.com/dillionverma/RTSPStreamer",
+					href: "https://github.com/justinmichaud/htn2017",
 				},
 				{
 					type: "Client Source",
-					href: "https://github.com/dillionverma/VirtualRealityServer",
+					href: "https://github.com/dillionverma/RTSPClient",
 				},
 			],
 		},
@@ -247,8 +247,8 @@ const DATA = {
 			img: "hack-the-6ix.jpg",
 			desc: "Developed an open platform for people shipping items to same place to combine shipping costs and save money.",
 			links: [
-				{ type: "Source", href: "https://github.com/dillionverma/ship-it" },
-				{ type: "Site", href: "https://devpost.com/software/ship-it-9o0ne1" },
+				{ type: "Source", href: "https://github.com/ShareShip/ShareShip" },
+				{ type: "Site", href: "https://share-ship.herokuapp.com/" },
 			],
 		},
 		{
@@ -260,7 +260,7 @@ const DATA = {
 			links: [
 				{
 					type: "Source",
-					href: "https://github.com/nsagirian/facebook-detective",
+					href: "https://github.com/nsagirlfriend/nsagirlfriend",
 				},
 			],
 		},
@@ -273,11 +273,11 @@ const DATA = {
 			links: [
 				{
 					type: "Article",
-					href: "https://syncedreview.com/2017/08/26/global-ai-hackathon-in-toronto/",
+					href: "https://syncedreview.com/2017/06/26/global-ai-hackathon-in-toronto/",
 				},
 				{
-					type: "GitHub",
-					href: "https://github.com/Marcus-Forte/emotion-based-difficulty",
+					type: "Source",
+					href: "https://github.com/TinySamosas/",
 				},
 			],
 		},
@@ -305,7 +305,10 @@ const DATA = {
 			img: "make-school-hackathon.png",
 			desc: "Improved PocketDoc and submitted to online competition",
 			links: [
-				{ type: "Medium Article", href: "https://medium.com/make-school/" },
+				{
+					type: "Medium Article",
+					href: "https://medium.com/make-school/the-winners-of-make-schools-student-app-competition-2017-a6b0e72f190a",
+				},
 				{
 					type: "Devpost",
 					href: "https://devpost.com/software/pocketdoc-react-native",
@@ -313,6 +316,10 @@ const DATA = {
 				{
 					type: "YouTube",
 					href: "https://www.youtube.com/watch?v=XwFdn5Rmx68",
+				},
+				{
+					type: "Source",
+					href: "https://github.com/dillionverma/pocketdoc-react-native",
 				},
 			],
 		},
@@ -336,7 +343,11 @@ const DATA = {
 				},
 				{
 					type: "YouTube",
-					href: "https://www.youtube.com/watch?v=K93fEcMixv4",
+					href: "https://www.youtube.com/watch?v=XwFdn5Rmx68",
+				},
+				{
+					type: "Source",
+					href: "https://github.com/dillionverma/pocketdoc-react-native",
 				},
 			],
 		},
@@ -368,15 +379,15 @@ const DATA = {
 			title: "StartHacks I",
 			location: "Waterloo, Ontario",
 			img: "starthacks.png",
-			desc: "Developed Recipic, a mobile app which allows you to take pictures of ingredients around your house, and it will recognize those ingredients using ClarifAI image recognition API and return possible recipes to make. Recipic recieved 1st place at the hackathon for best pitch and hack.",
+			desc: "Developed at StartHacks 2017, Recipic is a mobile app which allows you to take pictures of ingredients around your house, and it will recognize those ingredients using ClarifAI image recognition API and return possible recipes to make. Recipic recieved 1st place at the hackathon for best pitch and hack.",
 			links: [
 				{
 					type: "Source (Mobile)",
-					href: "https://github.com/mattcrann/recipic-ionic",
+					href: "https://github.com/mattBlackDesign/recipic-ionic",
 				},
 				{
 					type: "Source (Server)",
-					href: "https://github.com/H4WK10/recipic-server",
+					href: "https://github.com/mattBlackDesign/recipic-rails",
 				},
 			],
 		},
@@ -389,11 +400,11 @@ const DATA = {
 			links: [
 				{
 					type: "Source (Mobile)",
-					href: "https://github.com/dillionverma/QHacks-2017",
+					href: "https://github.com/dillionverma/human-huntr-react-native",
 				},
 				{
 					type: "Source (API)",
-					href: "https://github.com/dillionverma/QHacks-2017-server",
+					href: "https://github.com/mattBlackDesign/human-huntr-rails",
 				},
 			],
 		},
@@ -404,7 +415,10 @@ const DATA = {
 			img: "terrible-hacks-v.png",
 			desc: "Developed a mock of Windows 11 with interesting notifications and functionality",
 			links: [
-				{ type: "Source", href: "https://github.com/justin-tan/terible_hacks" },
+				{
+					type: "Source",
+					href: "https://github.com/justinmichaud/TerribleHacks2016-Windows11",
+				},
 			],
 		},
 		{
