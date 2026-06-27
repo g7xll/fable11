@@ -75,8 +75,8 @@
 					<div class="blog-banner">
 						<div>
 							<div class="blog-breadcrumb">
-								<a href="blog.html">Blog</a>
-								/ Introduction to Next.js
+								NEW · Next.js 10 — Image Optimization, Internationalization,
+								Analytics, and more. Read →
 							</div>
 							<div class="blog-banner-title">
 								The React Framework for Production
@@ -85,176 +85,64 @@
 								Next.js gives you the best developer experience with all the
 								features you need for production: hybrid static &amp; server
 								rendering, TypeScript support, smart bundling, route
-								pre-fetching, and more.
+								pre-fetching, and more. No config needed.
+							</div>
+							<div class="mt-4">
+								<a href="#" class="blog-banner-btn">Start Learning</a>
+								<a href="#" class="blog-banner-btn" style="margin-left: 8px;"
+									>Documentation</a
+								>
 							</div>
 						</div>
-						<a href="#" class="blog-banner-btn">Get started for free →</a>
 					</div>
 
 					<!-- Blog Post -->
 					<article class="blog-post">
 						<h1>Introduction to Next.js</h1>
-						<div class="blog-post-meta">
-							Friday, September 15, 2023 · 8 min read
-						</div>
-
 						<p>
-							Next.js has become the go-to React framework for building
-							production-ready web applications. It extends React with powerful
-							features like server-side rendering, static site generation, and
-							an intuitive file-based routing system. In this introduction,
-							we'll cover the fundamentals and help you understand why Next.js
-							has become so popular.
+							Next.js has revolutionized the way developers build React
+							applications by providing a robust framework that addresses many
+							common challenges in modern web development.
 						</p>
-
 						<h2>What is Next.js?</h2>
 						<p>
-							Next.js is an open-source React framework created by Vercel that
-							enables functionality such as server-side rendering and generating
-							static websites. It provides a production-ready foundation so you
-							can focus on building your product instead of configuring your
-							toolchain.
+							Next.js is a React framework that enables functionality such as
+							server-side rendering, static site generation, and API routes.
+							Created by Vercel, it simplifies the development process while
+							offering powerful features out of the box.
 						</p>
-						<p>
-							Unlike plain React, Next.js handles the complex configuration of
-							Webpack, Babel, and other build tools for you. It also provides
-							built-in performance optimizations like image optimization, font
-							optimization, and automatic code splitting.
-						</p>
-
 						<h2>Key Features</h2>
-
-						<h3>Rendering Options</h3>
+						<h3>1. Rendering Options</h3>
 						<p>
-							Next.js supports multiple rendering strategies, and you can even
-							mix and match them within the same application:
+							Next.js offers multiple rendering strategies: Server-Side
+							Rendering (SSR), Static Site Generation (SSG), and Client-Side
+							Rendering. This flexibility allows developers to choose the best
+							approach for each page.
 						</p>
-						<ul>
-							<li>
-								<strong>Static Site Generation (SSG)</strong>
-								— pages are pre-rendered at build time, resulting in fast load
-								times and easy CDN caching
-							</li>
-							<li>
-								<strong>Server-Side Rendering (SSR)</strong>
-								— pages are rendered on each request, ideal for dynamic data
-								that changes frequently
-							</li>
-							<li>
-								<strong>Incremental Static Regeneration (ISR)</strong>
-								— combines SSG with the ability to revalidate and regenerate
-								pages after deployment
-							</li>
-							<li>
-								<strong>Client-Side Rendering (CSR)</strong>
-								— traditional React rendering in the browser, useful for highly
-								interactive UIs
-							</li>
-						</ul>
-						<pre><code>// Static Site Generation
-export async function getStaticProps() {
-  const data = await fetchData();
-  return { props: { data } };
-}
-
-// Server-Side Rendering
-export async function getServerSideProps(context) {
-  const data = await fetchData(context.params.id);
-  return { props: { data } };
-}
-
-// Incremental Static Regeneration
-export async function getStaticProps() {
-  return {
-    props: { data },
-    revalidate: 60 // seconds
-  };
-}</code></pre>
-
-						<h3>File-based Routing</h3>
+						<h3>2. File-based Routing</h3>
 						<p>
-							Next.js uses a file-system based router. Files placed inside the
-							<code>pages/</code>
-							(or <code>app/</code> with the App Router) directory automatically
-							become routes. This eliminates the need for manual route
-							configuration.
+							The framework implements an intuitive file-based routing system.
+							Simply create a file in the pages directory, and it automatically
+							becomes a route in your application.
 						</p>
-						<pre><code>pages/
-  index.js       → /
-  about.js       → /about
-  blog/
-    index.js     → /blog
-    [slug].js    → /blog/:slug
-  api/
-    hello.js     → /api/hello</code></pre>
-
-						<h3>API Routes</h3>
+						<h3>3. API Routes</h3>
 						<p>
-							Next.js allows you to build your API directly inside your Next.js
-							app. Files placed in <code>pages/api/</code> become API endpoints,
-							eliminating the need for a separate backend server for many use
-							cases.
+							Next.js allows you to build API endpoints within your application
+							using the same file-based routing system, making it a complete
+							full-stack solution.
 						</p>
-						<pre><code>// pages/api/users.js
-export default function handler(req, res) {
-  if (req.method === 'GET') {
-    const users = db.getUsers();
-    res.status(200).json(users);
-  } else if (req.method === 'POST') {
-    const user = db.createUser(req.body);
-    res.status(201).json(user);
-  }
-}</code></pre>
-
-						<h3>Built-in Optimizations</h3>
+						<h3>4. Built-in Optimizations</h3>
 						<p>
-							Next.js comes with several automatic performance optimizations out
-							of the box:
+							Image optimization, code splitting, and bundle optimization come
+							pre-configured, ensuring your application performs well without
+							additional setup.
 						</p>
-						<ul>
-							<li>
-								<strong>Image Optimization</strong>
-								— the <code>next/image</code> component automatically optimizes
-								images on demand, serving them in modern formats like WebP and
-								AVIF
-							</li>
-							<li>
-								<strong>Font Optimization</strong>
-								— <code>next/font</code> automatically self-hosts and optimizes
-								Google Fonts with zero layout shift
-							</li>
-							<li>
-								<strong>Script Optimization</strong>
-								— the <code>next/script</code> component lets you control when
-								third-party scripts load
-							</li>
-							<li>
-								<strong>Automatic Code Splitting</strong>
-								— each page only loads the JavaScript it needs, reducing initial
-								bundle size
-							</li>
-						</ul>
-
 						<h2>Getting Started</h2>
 						<p>
-							Creating a new Next.js project is straightforward with the CLI:
-						</p>
-						<pre><code>npx create-next-app@latest my-app
-cd my-app
-npm run dev</code></pre>
-						<p>
-							This creates a new Next.js application with TypeScript support,
-							ESLint, and Tailwind CSS configured out of the box. Visit
-							<code>http://localhost:3000</code>
-							to see your app running.
-						</p>
-
-						<p>
-							Next.js is the right choice for most React projects. Whether
-							you're building a blog, an e-commerce store, a SaaS application,
-							or a marketing site, Next.js has the rendering strategy, routing
-							capabilities, and optimizations you need to ship fast,
-							production-quality applications.
+							Next.js provides an excellent developer experience with minimal
+							configuration. Whether you're building a blog, e-commerce site, or
+							complex web application, Next.js offers the tools to create fast,
+							SEO-friendly, and user-friendly experiences.
 						</p>
 					</article>
 
@@ -263,7 +151,7 @@ npm run dev</code></pre>
 						<span class="footer-text">Built with love by Manu Arora</span>
 						<div class="footer-links">
 							<a
-								href="https://x.com"
+								href="https://x.com/mannupaaji"
 								class="footer-link"
 								aria-label="X / Twitter"
 							>
@@ -278,7 +166,7 @@ npm run dev</code></pre>
 								</svg>
 							</a>
 							<a
-								href="https://linkedin.com"
+								href="https://linkedin.com/in/manuarora28"
 								class="footer-link"
 								aria-label="LinkedIn"
 							>
@@ -293,7 +181,7 @@ npm run dev</code></pre>
 								</svg>
 							</a>
 							<a
-								href="https://github.com"
+								href="https://github.com/manuarora700"
 								class="footer-link"
 								aria-label="GitHub"
 							>

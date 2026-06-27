@@ -1,0 +1,8 @@
+frames: 1 chosen area: 1651680 url: https://minimal-portfolio-website-template.vercel.app/blog
+fonts: [
+  'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
+  'Inter, "Inter Fallback"'
+]
+nodes: 17 imgs: 2
+css bytes: 84438 linked css: 1 scripts: 8
+hover states captured: 8

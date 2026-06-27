@@ -25,17 +25,15 @@
 		}
 
 		.signup-card {
-			background: white;
-			border: 1px solid var(--color-gray-200);
-			border-radius: var(--radius-2xl);
+			background: transparent;
+			border: none;
+			border-radius: 0;
 			padding: 2.5rem 2rem;
 			width: 100%;
-			max-width: 22rem;
+			max-width: 26rem;
 			position: relative;
 			z-index: 10;
-			box-shadow:
-				0 4px 32px rgba(0, 0, 0, 0.05),
-				0 1px 8px rgba(0, 0, 0, 0.04);
+			box-shadow: none;
 		}
 
 		.signup-logo {
@@ -143,21 +141,20 @@
 			padding: 0.625rem 1.5rem;
 			font-size: 0.875rem;
 			color: var(--color-gray-700);
-			background: white;
-			border: 1px solid var(--color-gray-200);
-			border-radius: var(--radius-2xl);
+			background: var(--color-gray-100);
+			border: none;
+			border-radius: 0.75rem;
 			font-family: var(--font-sans);
 			cursor: pointer;
 			transition:
 				background var(--transition-fast),
 				box-shadow var(--transition-fast);
 			margin-bottom: 0.5rem;
-			box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+			box-shadow: none;
 		}
 
 		.social-btn:hover {
-			background: var(--color-gray-50);
-			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+			background: var(--color-gray-200);
 		}
 
 		.social-icon {

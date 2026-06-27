@@ -77,7 +77,10 @@
 							<img src="assets/avatar.webp" alt="John MacTavish">
 						</div>
 						<h1 class="hero-name">John MacTavish</h1>
-						<span class="hero-role">Design Engineer</span>
+						<div class="hero-roles">
+							<span class="hero-role">Design Engineer</span
+							><span class="hero-role">Full Stack Engineer</span>
+						</div>
 						<p class="hero-bio">
 							They call me Soap. What the hell kind of a name is Soap? I'm a
 							software engineer though with an eye for design.
@@ -103,7 +106,7 @@
 										features
 									</div>
 									<div class="badges">
-										<span class="badge">
+										<span class="badge badge-icononly">
 											<span class="badge-icon" style="background:#06b6d4;">
 												<svg
 													width="10"
@@ -118,7 +121,7 @@
 											</span>
 											React
 										</span>
-										<span class="badge">
+										<span class="badge badge-icononly">
 											<span
 												class="badge-icon"
 												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
@@ -126,7 +129,7 @@
 											>
 											Next.js
 										</span>
-										<span class="badge">
+										<span class="badge badge-icononly">
 											<span class="badge-icon" style="background:#0ea5e9;">
 												<svg
 													width="10"
@@ -139,7 +142,7 @@
 													/>
 												</svg>
 											</span>
-											Tailwind
+											Tailwind CSS
 										</span>
 									</div>
 								</div>
@@ -163,7 +166,7 @@
 										responses to user actions
 									</div>
 									<div class="badges">
-										<span class="badge">
+										<span class="badge badge-icononly">
 											<span class="badge-icon" style="background:#42b883;">
 												<svg
 													width="10"
@@ -178,7 +181,15 @@
 											</span>
 											Vue
 										</span>
-										<span class="badge">
+										<span class="badge badge-icononly">
+											<span
+												class="badge-icon"
+												style="background:#00DC82;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>N</span
+											>
+											Nuxt.js
+										</span>
+										<span class="badge badge-icononly">
 											<span class="badge-icon" style="background:#0ea5e9;">
 												<svg
 													width="10"
@@ -191,15 +202,7 @@
 													/>
 												</svg>
 											</span>
-											Tailwind
-										</span>
-										<span class="badge">
-											<span
-												class="badge-icon"
-												style="background:#000;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
-												>N</span
-											>
-											Next.js
+											Tailwind CSS
 										</span>
 									</div>
 								</div>
@@ -220,37 +223,23 @@
 										services
 									</div>
 									<div class="badges">
-										<span class="badge">
-											<span class="badge-icon" style="background:#06b6d4;">
-												<svg
-													width="10"
-													height="10"
-													viewBox="0 0 24 24"
-													fill="white"
-												>
-													<path
-														d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
-													/>
-												</svg>
-											</span>
-											React
+										<span class="badge badge-icononly">
+											<span
+												class="badge-icon"
+												style="background:#E44D26;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>5</span
+											>
+											HTML5
 										</span>
-										<span class="badge">
-											<span class="badge-icon" style="background:#42b883;">
-												<svg
-													width="10"
-													height="10"
-													viewBox="0 0 24 24"
-													fill="white"
-												>
-													<path
-														d="M24 1.61h-9.94L12 5.16 9.94 1.61H0l12 20.78zM2.17 3.88l7.03 12.19-7.03-12.19zm19.66 0l-7.03 12.19 7.03-12.19z"
-													/>
-												</svg>
-											</span>
-											Vue
+										<span class="badge badge-icononly">
+											<span
+												class="badge-icon"
+												style="background:#1572B6;color:white;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;"
+												>3</span
+											>
+											CSS3
 										</span>
-										<span class="badge">
+										<span class="badge badge-icononly">
 											<span class="badge-icon" style="background:#0ea5e9;">
 												<svg
 													width="10"
@@ -263,7 +252,7 @@
 													/>
 												</svg>
 											</span>
-											Tailwind
+											Tailwind CSS
 										</span>
 									</div>
 								</div>
@@ -276,36 +265,292 @@
 						<h2 class="section-title">Sharing knowledge as I learn</h2>
 						<div class="blog-list">
 							<a href="blog-advanced-css.html" class="blog-item">
-								<span class="blog-item-title"
-									>Advanced CSS Techniques for Modern Web Development</span
+								<div class="blog-item-top">
+									<span class="blog-item-title"
+										>Advanced CSS Techniques for Modern Web Development</span
+									>
+									<span class="blog-item-date">Thursday, Feb 15, 2024</span>
+								</div>
+								<span class="blog-item-excerpt"
+									>Explore advanced CSS techniques including CSS Grid, Flexbox,
+									Custom Properties, and modern layout patterns that will take
+									your web development skills ...</span
 								>
-								<span class="blog-item-date">Thursday, Feb 15, 2024</span>
 							</a>
 							<a href="blog-intro-nextjs.html" class="blog-item">
-								<span class="blog-item-title">Introduction to Next.js</span>
-								<span class="blog-item-date">Friday, Sep 15, 2023</span>
+								<div class="blog-item-top">
+									<span class="blog-item-title">Introduction to Next.js</span>
+									<span class="blog-item-date">Friday, Sep 15, 2023</span>
+								</div>
+								<span class="blog-item-excerpt"
+									>Next.js is a powerful React framework that enables you to
+									build fast, SEO-friendly web applications with server-side
+									rendering and static site generat...</span
+								>
 							</a>
 							<a href="blog-react-hooks.html" class="blog-item">
-								<span class="blog-item-title">Mastering React Hooks</span>
-								<span class="blog-item-date">Monday, Jan 15, 2024</span>
+								<div class="blog-item-top">
+									<span class="blog-item-title">Mastering React Hooks</span>
+									<span class="blog-item-date">Monday, Jan 15, 2024</span>
+								</div>
+								<span class="blog-item-excerpt"
+									>Learn how to effectively use React Hooks to manage state and
+									side effects in your functional components. A comprehensive
+									guide to useState, useEffect,...</span
+								>
 							</a>
 						</div>
 					</section>
 
-					<!-- Mini Contact Row -->
-					<div class="contact-row">
-						<a href="mailto:tyler@durden.com" class="contact-row-link"
-							>Looking to work together? Send Enquiry →</a
+					<!-- Experience Section -->
+					<section class="section-divider">
+						<h2 class="section-title">Worked at reputed firms</h2>
+						<div class="experience-list">
+							<div class="experience-item">
+								<div class="experience-head">
+									<span class="exp-company">Google</span>
+									<span class="exp-date">Jun 2020 – Present</span>
+								</div>
+								<div class="exp-role">Senior Frontend Engineer</div>
+								<div class="exp-tags">
+									<span class="exp-tag">React</span>
+									<span class="exp-tag">TypeScript</span>
+									<span class="exp-tag">Redux</span>
+									<span class="exp-tag">GraphQL</span>
+									<span class="exp-tag">Jest</span>
+									<span class="exp-tag">Cypress</span>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-head">
+									<span class="exp-company">Microsoft</span>
+									<span class="exp-date">Aug 2018 – May 2020</span>
+								</div>
+								<div class="exp-role">Software Engineer</div>
+								<div class="exp-tags">
+									<span class="exp-tag">React</span>
+									<span class="exp-tag">JavaScript</span>
+									<span class="exp-tag">Azure</span>
+									<span class="exp-tag">WebRTC</span>
+									<span class="exp-tag">Webpack</span>
+									<span class="exp-tag">SASS</span>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-head">
+									<span class="exp-company">Airbnb</span>
+									<span class="exp-date">Jan 2017 – Jul 2018</span>
+								</div>
+								<div class="exp-role">Frontend Developer</div>
+								<div class="exp-tags">
+									<span class="exp-tag">React</span>
+									<span class="exp-tag">Redux</span>
+									<span class="exp-tag">Node.js</span>
+									<span class="exp-tag">Express</span>
+									<span class="exp-tag">MongoDB</span>
+									<span class="exp-tag">Styled Components</span>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-head">
+									<span class="exp-company">Shopify</span>
+									<span class="exp-date">Mar 2019 – Dec 2019</span>
+								</div>
+								<div class="exp-role">Freelance Web Developer</div>
+								<div class="exp-tags">
+									<span class="exp-tag">JavaScript</span>
+									<span class="exp-tag">HTML5</span>
+									<span class="exp-tag">CSS3</span>
+									<span class="exp-tag">SCSS</span>
+									<span class="exp-tag">Shopify API</span>
+								</div>
+							</div>
+							<div class="experience-item">
+								<div class="experience-head">
+									<span class="exp-company">Adobe</span>
+									<span class="exp-date">Sep 2016 – Nov 2016</span>
+								</div>
+								<div class="exp-role">Freelance Frontend Consultant</div>
+								<div class="exp-tags">
+									<span class="exp-tag">HTML5</span>
+									<span class="exp-tag">JavaScript</span>
+									<span class="exp-tag">CSS3</span>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Testimonials Section -->
+					<section class="section-inner">
+						<h2 class="section-title">People love my work</h2>
+						<div class="testimonials">
+							<div class="marquee-track">
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu is so great with his work, our production was shut down
+										within the first day itself. Highly recommended.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Elon Musk"
+										>
+										<span class="testimonial-name">Elon Musk</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Working with Manu was a game-changer for our startup. His
+										technical expertise and problem-solving skills are
+										unmatched.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Mark Zuckerberg"
+										>
+										<span class="testimonial-name">Mark Zuckerberg</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu delivered our project ahead of schedule and exceeded
+										all expectations. His attention to detail is remarkable.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Sundar Pichai"
+										>
+										<span class="testimonial-name">Sundar Pichai</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										The quality of Manu's code is exceptional. He built a
+										scalable solution that has been critical to our business
+										growth.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Jeff Bezos"
+										>
+										<span class="testimonial-name">Jeff Bezos</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu's innovative approach to our complex requirements saved
+										us months of development time. Truly a 10x engineer.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Satya Nadella"
+										>
+										<span class="testimonial-name">Satya Nadella</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu is so great with his work, our production was shut down
+										within the first day itself. Highly recommended.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Elon Musk"
+										>
+										<span class="testimonial-name">Elon Musk</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Working with Manu was a game-changer for our startup. His
+										technical expertise and problem-solving skills are
+										unmatched.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Mark Zuckerberg"
+										>
+										<span class="testimonial-name">Mark Zuckerberg</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu delivered our project ahead of schedule and exceeded
+										all expectations. His attention to detail is remarkable.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Sundar Pichai"
+										>
+										<span class="testimonial-name">Sundar Pichai</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										The quality of Manu's code is exceptional. He built a
+										scalable solution that has been critical to our business
+										growth.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Jeff Bezos"
+										>
+										<span class="testimonial-name">Jeff Bezos</span>
+									</div>
+								</div>
+								<div class="testimonial-card">
+									<p class="testimonial-quote">
+										Manu's innovative approach to our complex requirements saved
+										us months of development time. Truly a 10x engineer.
+									</p>
+									<div class="testimonial-author">
+										<img
+											class="testimonial-avatar"
+											src="assets/avatar.webp"
+											alt="Satya Nadella"
+										>
+										<span class="testimonial-name">Satya Nadella</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</section>
+
+					<!-- Contact CTA -->
+					<section class="contact-cta">
+						<h2>Get in touch</h2>
+						<p>
+							I'm currently looking for new opportunities. Whether you have a
+							question or want to say hi, hit that button.
+						</p>
+						<a href="mailto:tyler@durden.com" class="contact-cta-btn"
+							>Send Enquiry</a
 						>
-						<span></span>
-					</div>
+					</section>
 
 					<!-- Footer -->
 					<footer class="footer">
 						<span class="footer-text">Built with love by Manu Arora</span>
 						<div class="footer-links">
 							<a
-								href="https://x.com"
+								href="https://x.com/mannupaaji"
 								class="footer-link"
 								aria-label="X / Twitter"
 							>
@@ -320,7 +565,7 @@
 								</svg>
 							</a>
 							<a
-								href="https://linkedin.com"
+								href="https://linkedin.com/in/manuarora28"
 								class="footer-link"
 								aria-label="LinkedIn"
 							>
@@ -335,7 +580,7 @@
 								</svg>
 							</a>
 							<a
-								href="https://github.com"
+								href="https://github.com/manuarora700"
 								class="footer-link"
 								aria-label="GitHub"
 							>
