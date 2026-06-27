@@ -3,6 +3,7 @@ const DATA = {
 		{
 			logo: "atomic.png",
 			company: "Atomic Finance",
+			href: "https://atomic.finance",
 			role: "Bitcoin Protocol Engineer",
 			start: "May 2021",
 			end: "Oct 2022",
@@ -10,6 +11,7 @@ const DATA = {
 		{
 			logo: "shopify.svg",
 			company: "Shopify",
+			href: "https://shopify.com",
 			role: "Software Engineer",
 			start: "January 2021",
 			end: "April 2021",
@@ -17,6 +19,7 @@ const DATA = {
 		{
 			logo: "nvidia.png",
 			company: "Nvidia",
+			href: "https://nvidia.com",
 			role: "Software Engineer",
 			start: "January 2020",
 			end: "April 2020",
@@ -24,6 +27,7 @@ const DATA = {
 		{
 			logo: "splunk.svg",
 			company: "Splunk",
+			href: "https://splunk.com",
 			role: "Software Engineer",
 			start: "January 2019",
 			end: "April 2019",
@@ -31,6 +35,7 @@ const DATA = {
 		{
 			logo: "lime.svg",
 			company: "Lime",
+			href: "https://li.me",
 			role: "Software Engineer",
 			start: "January 2018",
 			end: "April 2018",
@@ -38,6 +43,7 @@ const DATA = {
 		{
 			logo: "mitremedia.png",
 			company: "Mitre Media",
+			href: "https://mitremedia.com",
 			role: "Software Engineer",
 			start: "May 2017",
 			end: "August 2017",
@@ -47,6 +53,7 @@ const DATA = {
 		{
 			logo: "buildspace.jpg",
 			company: "Buildspace",
+			href: "https://buildspace.so/",
 			role: "s3, s4, sf1, s5",
 			start: "2023",
 			end: "2024",
@@ -54,6 +61,7 @@ const DATA = {
 		{
 			logo: "waterloo.png",
 			company: "University of Waterloo",
+			href: "https://uwaterloo.ca/",
 			role: "Bachelor's Degree of Computer Science (BCS)",
 			start: "2016",
 			end: "2021",
@@ -61,6 +69,7 @@ const DATA = {
 		{
 			logo: "laurier.png",
 			company: "Wilfrid Laurier University",
+			href: "https://wlu.ca/",
 			role: "Bachelor's Degree of Business Administration (BBA)",
 			start: "2016",
 			end: "2021",
@@ -68,6 +77,7 @@ const DATA = {
 		{
 			logo: "ib.png",
 			company: "International Baccalaureate",
+			href: "https://ibo.org/",
 			role: "IB Diploma",
 			start: "2012",
 			end: "2016",

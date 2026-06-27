@@ -10,21 +10,26 @@
 		<link rel="stylesheet" href="./styles.css">
 	</head>
 	<body>
+		<div class="flickering-grid-wrapper">
+			<div class="flickering-grid-mask">
+				<canvas id="flickering-grid"></canvas>
+			</div>
+		</div>
 		<main>
 			<article class="post-page">
 				<a class="back-link blur-fade" href="./blog.html"
 					><svg
 						viewBox="0 0 24 24"
-						width="14"
-						height="14"
+						width="12"
+						height="12"
 						fill="none"
 						stroke="currentColor"
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
+						aria-hidden="true"
 					>
-						<line x1="19" y1="12" x2="5" y2="12" />
-						<polyline points="12 19 5 12 12 5" />
+						<path d="m15 18-6-6 6-6" />
 					</svg>
 					Back to Blog</a
 				>
@@ -226,13 +231,41 @@
 				</div>
 				<div class="next-nav blur-fade">
 					<a class="prev-card" href="./blog-nextjs-performance-tips.html"
-						><div class="lbl">Previous</div>
+						><div class="lbl">
+							<svg
+								viewBox="0 0 24 24"
+								width="12"
+								height="12"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								<path d="m15 18-6-6 6-6" />
+							</svg>Previous
+						</div>
 						<div class="ttl">
 							10 Next.js Performance Tips for Production Apps
 						</div></a
 					>
 					<a class="next-card" href="./blog-remote-work-productivity.html"
-						><div class="lbl">Next</div>
+						><div class="lbl">
+							Next<svg
+								viewBox="0 0 24 24"
+								width="12"
+								height="12"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								aria-hidden="true"
+							>
+								<path d="m9 18 6-6-6-6" />
+							</svg>
+						</div>
 						<div class="ttl">
 							Mastering Remote Work: Productivity Tips from a Digital Nomad
 						</div></a
@@ -243,5 +276,6 @@
 		<div id="dock-mount"></div>
 		<script src="./dock.js"></script>
 		<script src="./script.js"></script>
+		<script src="./flickering-grid.js"></script>
 	</body>
 </html>
