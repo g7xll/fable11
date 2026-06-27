@@ -79,19 +79,23 @@
 		const navToggle = document.querySelector("[data-nav-toggle]");
 		const navMenu = document.querySelector("[data-nav-menu]");
 		if (navToggle && navMenu) {
+			const iconMenu =
+				'<path d="M4 6l16 0"></path><path d="M4 12l16 0"></path><path d="M4 18l16 0"></path>';
+			const iconClose =
+				'<path d="M18 6l-12 12"></path><path d="M6 6l12 12"></path>';
+			const svg = navToggle.querySelector("svg");
+			const setOpen = (next) => {
+				navMenu.setAttribute("data-open", next ? "true" : "false");
+				navToggle.setAttribute("aria-expanded", next ? "true" : "false");
+				document.body.style.overflow = next ? "hidden" : "";
+				if (svg) svg.innerHTML = next ? iconClose : iconMenu;
+			};
 			navToggle.addEventListener("click", () => {
-				const open = navMenu.getAttribute("data-open") === "true";
-				navMenu.setAttribute("data-open", open ? "false" : "true");
-				navToggle.setAttribute("aria-expanded", open ? "false" : "true");
-				document.body.style.overflow = open ? "" : "hidden";
+				setOpen(navMenu.getAttribute("data-open") !== "true");
 			});
-			navMenu.querySelectorAll("a").forEach((a) =>
-				a.addEventListener("click", () => {
-					navMenu.setAttribute("data-open", "false");
-					navToggle.setAttribute("aria-expanded", "false");
-					document.body.style.overflow = "";
-				}),
-			);
+			navMenu
+				.querySelectorAll("a")
+				.forEach((a) => a.addEventListener("click", () => setOpen(false)));
 		}
 
 		/* ---------- Testimonial carousels (dot nav + autoplay) ---------- */
