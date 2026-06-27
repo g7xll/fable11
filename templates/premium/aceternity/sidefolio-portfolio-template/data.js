@@ -72,10 +72,10 @@ window.ARTICLES = [
 	},
 	{
 		slug: "dark-mode-with-nextjs",
-		title: "Creating a Dark Mode Toggle with Nextjs and Tailwind CSS",
+		title: "Creating a Dark Mode Toggle with Next.js and Tailwind CSS",
 		image: "assets/images/p-1607799632518.jpg",
 		excerpt:
-			"Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum. One more lorem so it looks good.",
+			"As a web developer, you may be wondering how to create a dark mode toggle for your web application. In this tutorial, we will explore how to implement a dark mode toggle with Next.js and Tailwind CSS.",
 		tags: ["tailwindcss", "css", "frontend"],
 		date: "August 18, 2023",
 		href: "blog/dark-mode-with-nextjs.html",

@@ -438,6 +438,20 @@ img {
 	margin-top: 1rem;
 	max-width: 48rem;
 }
+.prose .prose-h {
+	color: var(--primary);
+	font-size: 1.125rem;
+	font-weight: 700;
+	margin: 2rem 0 0.5rem;
+}
+.prose code.inline {
+	font-family: ui-monospace, "SF Mono", Menlo, monospace;
+	font-size: 0.8125rem;
+	background: var(--neutral-100);
+	color: var(--primary);
+	padding: 0.1rem 0.35rem;
+	border-radius: 0.25rem;
+}
 
 /* ============================================================
    Project detail
