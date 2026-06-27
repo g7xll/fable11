@@ -21,6 +21,12 @@
 	--border: #e4e4e4;
 	--input: #e4e4e4;
 	--ring: #d4d4d4;
+	--code-bg: #ffffff;
+	--code-fg: #24292e;
+	--code-kw: #d73a49;
+	--code-str: #032f62;
+	--code-fn: #6f42c1;
+	--code-cm: #6a737d;
 
 	--radius: 0.375rem;
 	--radius-sm: calc(var(--radius) - 4px);
@@ -34,7 +40,7 @@
 	--font-mono:
 		ui-monospace, "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
 
-	--container: 1024px;
+	--container: 880px;
 }
 
 .dark {
@@ -57,4 +63,10 @@
 	--border: #262626;
 	--input: #262626;
 	--ring: #262626;
+	--code-bg: #24292e;
+	--code-fg: #e1e4e8;
+	--code-kw: #f97583;
+	--code-str: #9ecbff;
+	--code-fn: #b392f0;
+	--code-cm: #959da5;
 }

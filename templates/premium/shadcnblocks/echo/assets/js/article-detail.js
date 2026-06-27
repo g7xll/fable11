@@ -133,23 +133,33 @@ window.ARTICLE_DETAIL = {
 						code: "button.<span class='fn'>addEventListener</span>(<span class='str'>'click'</span>, () <span class='kw'>=></span> {",
 					},
 					{ code: "  count++;" },
-					{ code: "  counter.textContent = count;" },
+					{
+						code: "  counter.textContent = <span class='str'>`Clicked ${count} times`</span>;",
+					},
 					{ code: "});" },
 				],
 			},
-			{ t: "h3", v: "Simplicity Is a Superpower" },
 			{
 				t: "p",
-				v: "There's freedom in knowing that the code you write today will still run a decade from now. No deprecated APIs, no breaking changes, no migration guides. Just the platform, doing what it was designed to do.",
+				v: "No setup, no imports — just open your browser and it works.",
+			},
+			{ t: "h3", v: "Why it's still matters" },
+			{
+				t: "ul",
+				v: [
+					"<strong>Speed:</strong> Nothing loads faster than code without dependencies.",
+					"<strong>Control:</strong> You know exactly what's happening under the hood.",
+					"<strong>Learning:</strong> Every line teaches you something about the browser.",
+					"<strong>Freedom:</strong> No need to wait for library updates or deal with breaking changes.",
+				],
 			},
 			{
 				t: "p",
-				v: "Frameworks are wonderful tools — I use them every day. But every so often, I like to return to the basics. To remember that beneath all the layers, it's still just the browser and me.",
+				v: "Frameworks are amazing, but they often blur the line between how and why. Vanilla JavaScript keeps that line visible. It's simple, lightweight, and endlessly capable.",
 			},
-			{ t: "quote", v: "Sometimes the best tool is no tool at all." },
 			{
 				t: "p",
-				v: "So the next time you reach for a library, ask yourself: do I really need it? Or can I just write a few lines of JavaScript instead?",
+				v: "Sometimes, I think the best way to level up as a developer is to go back to the basics — and write a few hundred lines of pure JavaScript, just for the joy of it.",
 			},
 		],
 		related: ["scaling-side-project", "thinking-in-components", null],
@@ -192,20 +202,150 @@ window.ARTICLE_DETAIL = {
 			},
 			{
 				t: "p",
-				v: "This button doesn't care where it lives. It works in a modal, a form, or a navbar — anywhere. That's the magic of composition.",
+				v: "This button doesn't care where it lives. It works in a modal, a form, or a navigation bar. That's the power of encapsulation.",
 			},
-			{ t: "h3", v: "Systems, Not Screens" },
+			{ t: "h3", v: "The Mental Shift" },
 			{
 				t: "p",
-				v: "When you think in components, you stop designing screens and start designing systems. A button isn't a one-off — it's a reusable primitive. A card becomes a pattern. Consistency emerges naturally because everything shares the same building blocks.",
+				v: "Thinking in components requires a different mindset:",
 			},
 			{
-				t: "quote",
-				v: "Good components make the right thing easy and the wrong thing hard.",
+				t: "ul",
+				v: [
+					"<strong>Break down the UI.</strong> Every interface is a tree of smaller pieces.",
+					"<strong>Identify patterns.</strong> If you're building something twice, it should probably be a component.",
+					"<strong>Define boundaries.</strong> Each component should have a single responsibility.",
+					"<strong>Design for reuse.</strong> Build components that work in multiple contexts.",
+				],
+			},
+			{ t: "h3", v: "Composition Over Configuration" },
+			{
+				t: "p",
+				v: "The best components are composable. Instead of cramming every option into props, let components work together:",
+			},
+			{
+				t: "code",
+				v: [
+					{ cm: "// Instead of one massive Card component with 20 props..." },
+					{
+						code: "&lt;Card title=<span class='str'>\"Hello\"</span> subtitle=<span class='str'>\"World\"</span> image=<span class='str'>\"/photo.jpg\"</span> footer=<span class='str'>\"Read more\"</span> /&gt;",
+					},
+					{ cm: "// ...compose smaller, focused components" },
+					{ code: "&lt;Card&gt;" },
+					{
+						code: "  &lt;CardImage src=<span class='str'>\"/photo.jpg\"</span> /&gt;",
+					},
+					{ code: "  &lt;CardContent&gt;" },
+					{ code: "    &lt;CardTitle&gt;Hello&lt;/CardTitle&gt;" },
+					{ code: "    &lt;CardSubtitle&gt;World&lt;/CardSubtitle&gt;" },
+					{ code: "  &lt;/CardContent&gt;" },
+					{
+						code: "  &lt;CardFooter&gt;Read more&lt;/CardFooter&gt;",
+					},
+					{ code: "&lt;/Card&gt;" },
+				],
 			},
 			{
 				t: "p",
-				v: "Once you get it, you'll never build the same way again. You'll see interfaces as compositions — small, focused pieces working together to create something greater than the sum of their parts.",
+				v: "The second approach is more flexible. Need a card without an image? Just don't include <code>CardImage</code>. Want a custom footer? Replace <code>CardFooter</code> with anything you want.",
+			},
+			{ t: "h3", v: "State Lives Where It's Needed" },
+			{
+				t: "p",
+				v: "One of the hardest parts of component thinking is deciding where state belongs. Here's a simple rule:",
+			},
+			{
+				t: "ul",
+				v: [
+					"<strong>Local state:</strong> Only this component needs it (e.g., whether a dropdown is open)",
+					"<strong>Lifted state:</strong> Multiple siblings need it (lift to the parent)",
+					"<strong>Global state:</strong> Many unrelated components need it (use context or a store)",
+				],
+			},
+			{
+				t: "code",
+				v: [
+					{ cm: "// Local state — only the dropdown cares" },
+					{
+						code: "<span class='kw'>function</span> <span class='fn'>Dropdown</span>() {",
+					},
+					{
+						code: "  <span class='kw'>const</span> [isOpen, setIsOpen] = <span class='fn'>useState</span>(<span class='kw'>false</span>);",
+					},
+					{ cm: "  // ..." },
+					{ code: "}" },
+					{ code: "" },
+					{ cm: "// Lifted state — form needs to know all input values" },
+					{
+						code: "<span class='kw'>function</span> <span class='fn'>Form</span>() {",
+					},
+					{
+						code: "  <span class='kw'>const</span> [values, setValues] = <span class='fn'>useState</span>({});",
+					},
+					{ code: "  <span class='kw'>return</span> (" },
+					{ code: "    &lt;&gt;" },
+					{
+						code: "      &lt;Input value={values.name} onChange={...} /&gt;",
+					},
+					{
+						code: "      &lt;Input value={values.email} onChange={...} /&gt;",
+					},
+					{ code: "    &lt;/&gt;" },
+					{ code: "  );" },
+					{ code: "}" },
+				],
+			},
+			{ t: "h3", v: "Components as Documentation" },
+			{
+				t: "p",
+				v: "Well-designed components are self-documenting. When you read a component tree, you should understand the UI structure:",
+			},
+			{
+				t: "code",
+				v: [
+					{ code: "&lt;Page&gt;" },
+					{ code: "  &lt;Header&gt;" },
+					{ code: "    &lt;Logo /&gt;" },
+					{ code: "    &lt;Navigation /&gt;" },
+					{ code: "    &lt;UserMenu /&gt;" },
+					{ code: "  &lt;/Header&gt;" },
+					{ code: "  &lt;Main&gt;" },
+					{ code: "    &lt;Sidebar /&gt;" },
+					{ code: "    &lt;Content /&gt;" },
+					{ code: "  &lt;/Main&gt;" },
+					{ code: "  &lt;Footer /&gt;" },
+					{ code: "&lt;/Page&gt;" },
+				],
+			},
+			{
+				t: "p",
+				v: "No comments needed. The structure tells the story.",
+			},
+			{ t: "h3", v: "The Debugging Advantage" },
+			{
+				t: "p",
+				v: "When something breaks in a component-based system, you know exactly where to look. The bug is either:",
+			},
+			{
+				t: "ul",
+				v: [
+					"Inside the component (check its logic)",
+					"In the props being passed (check the parent)",
+					"In the state management (check where state lives)",
+				],
+			},
+			{
+				t: "p",
+				v: "Compare this to debugging a 2,000-line file where everything is connected. Components give you isolation, and isolation gives you clarity.",
+			},
+			{ t: "h3", v: "Start Small" },
+			{
+				t: "p",
+				v: "You don't need to refactor your entire codebase overnight. Start with one component. Extract it, give it clear props, and see how it feels. Then do another. And another.",
+			},
+			{
+				t: "p",
+				v: "Before long, you'll stop seeing pages — you'll see systems of reusable, composable pieces. And that's when building interfaces becomes genuinely fun.",
 			},
 		],
 		related: ["scaling-side-project", "vanilla-javascript", null],
