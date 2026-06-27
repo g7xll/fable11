@@ -75,8 +75,8 @@
 					<div class="blog-banner">
 						<div>
 							<div class="blog-breadcrumb">
-								<a href="blog.html">Blog</a>
-								/ React Hooks
+								NEW · Next.js 10 — Image Optimization, Internationalization,
+								Analytics, and more. Read →
 							</div>
 							<div class="blog-banner-title">
 								The React Framework for Production
@@ -85,259 +85,135 @@
 								Next.js gives you the best developer experience with all the
 								features you need for production: hybrid static &amp; server
 								rendering, TypeScript support, smart bundling, route
-								pre-fetching, and more.
+								pre-fetching, and more. No config needed.
+							</div>
+							<div class="mt-4">
+								<a href="#" class="blog-banner-btn">Start Learning</a>
+								<a href="#" class="blog-banner-btn" style="margin-left: 8px;"
+									>Documentation</a
+								>
 							</div>
 						</div>
-						<a href="#" class="blog-banner-btn">Get started for free →</a>
 					</div>
 
 					<!-- Blog Post -->
 					<article class="blog-post">
 						<h1>Mastering React Hooks</h1>
-						<div class="blog-post-meta">
-							Monday, January 15, 2024 · 10 min read
-						</div>
-
 						<p>
-							React Hooks revolutionized how we write React components by
+							React Hooks have transformed how we write React components by
 							allowing us to use state and other React features in functional
-							components. Since their introduction in React 16.8, hooks have
-							become an essential part of modern React development. This guide
-							covers the most important hooks and how to use them effectively.
+							components. Let's dive deep into the world of hooks and learn how
+							to use them effectively.
 						</p>
-
-						<h2>useState</h2>
+						<h2>Understanding React Hooks</h2>
 						<p>
-							The <code>useState</code> hook is the most fundamental hook. It
-							lets you add state to functional components. It returns an array
-							with the current state value and a function to update it.
+							React Hooks are functions that let you "hook into" React state and
+							lifecycle features from function components. They were introduced
+							in React 16.8 to allow you to use state and other React features
+							without writing a class.
 						</p>
-						<pre><code>import { useState } from 'react';
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    &lt;div&gt;
-      &lt;p&gt;Count: {count}&lt;/p&gt;
-      &lt;button onClick={() =&gt; setCount(c =&gt; c + 1)}&gt;
-        Increment
-      &lt;/button&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
+						<h2>Core Hooks</h2>
+						<h3>1. useState</h3>
 						<p>
-							When updating state based on the previous value, always use the
-							functional update form (<code>setCount(c =&gt; c + 1)</code>) to
-							avoid stale closure bugs. State updates from
-							<code>useState</code>
-							are asynchronous and batched in React 18.
+							The useState hook is the most basic hook that lets you add state
+							to functional components:
 						</p>
-
-						<h2>useEffect</h2>
+						<pre
+						><code class="language-jsx">const [count, setCount] = useState(0);
+</code></pre>
+						<h3>2. useEffect</h3>
 						<p>
-							The <code>useEffect</code> hook lets you perform side effects in
-							functional components. It runs after every render by default, but
-							you can control when it runs using the dependency array.
+							useEffect lets you perform side effects in function components:
 						</p>
-						<pre><code>import { useState, useEffect } from 'react';
-
-function UserProfile({ userId }) {
-  const [user, setUser] = useState(null);
-
-  useEffect(() =&gt; {
-    let cancelled = false;
-
-    async function fetchUser() {
-      const data = await api.getUser(userId);
-      if (!cancelled) setUser(data);
-    }
-
-    fetchUser();
-
-    return () =&gt; {
-      cancelled = true; // cleanup
-    };
-  }, [userId]); // re-run when userId changes
-
-  if (!user) return &lt;p&gt;Loading...&lt;/p&gt;;
-  return &lt;p&gt;{user.name}&lt;/p&gt;;
-}</code></pre>
+						<pre><code class="language-jsx">useEffect(() =&gt; {
+  document.title = `Count: ${count}`;
+}, [count]);
+</code></pre>
+						<h3>3. useContext</h3>
 						<p>
-							Always clean up subscriptions, timers, and async operations in the
-							cleanup function to avoid memory leaks and state updates on
-							unmounted components.
+							useContext provides a way to pass data through the component tree
+							without having to pass props manually:
 						</p>
-
-						<h2>useCallback</h2>
-						<p>
-							The <code>useCallback</code> hook returns a memoized callback
-							function. It's useful when passing callbacks to optimized child
-							components that rely on reference equality to avoid unnecessary
-							renders.
-						</p>
-						<pre><code>import { useState, useCallback } from 'react';
-
-function SearchBar({ onSearch }) {
-  const [query, setQuery] = useState('');
-
-  const handleSubmit = useCallback((e) =&gt; {
-    e.preventDefault();
-    onSearch(query);
-  }, [query, onSearch]);
-
-  return (
-    &lt;form onSubmit={handleSubmit}&gt;
-      &lt;input
-        value={query}
-        onChange={e =&gt; setQuery(e.target.value)}
-      /&gt;
-      &lt;button type="submit"&gt;Search&lt;/button&gt;
-    &lt;/form&gt;
-  );
-}</code></pre>
-						<p>
-							Don't over-use <code>useCallback</code>. Only memoize functions
-							when the child component is wrapped in <code>React.memo</code> or
-							when the function is a dependency in another hook's dependency
-							array.
-						</p>
-
-						<h2>useMemo</h2>
-						<p>
-							The <code>useMemo</code> hook memoizes the result of an expensive
-							computation. It recomputes the value only when its dependencies
-							change, preventing unnecessary recalculations on every render.
-						</p>
-						<pre><code>import { useMemo } from 'react';
-
-function FilteredList({ items, filter }) {
-  const filteredItems = useMemo(() =&gt; {
-    return items.filter(item =&gt;
-      item.name.toLowerCase().includes(filter.toLowerCase())
-    );
-  }, [items, filter]);
-
-  return (
-    &lt;ul&gt;
-      {filteredItems.map(item =&gt; (
-        &lt;li key={item.id}&gt;{item.name}&lt;/li&gt;
-      ))}
-    &lt;/ul&gt;
-  );
-}</code></pre>
-						<p>
-							Like <code>useCallback</code>, only use <code>useMemo</code> when
-							the computation is genuinely expensive. Premature optimization
-							with memoization can actually hurt performance due to the overhead
-							of the memoization itself.
-						</p>
-
+						<pre><code class="language-jsx">const value = useContext(MyContext);
+</code></pre>
 						<h2>Custom Hooks</h2>
 						<p>
-							Custom hooks let you extract component logic into reusable
-							functions. A custom hook is a JavaScript function whose name
-							starts with "use" and that may call other hooks.
+							Custom hooks allow you to extract component logic into reusable
+							functions:
 						</p>
-						<pre><code>function useLocalStorage(key, initialValue) {
-  const [storedValue, setStoredValue] = useState(() =&gt; {
-    try {
-      const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
-    } catch {
-      return initialValue;
-    }
+						<pre><code class="language-jsx">function useWindowSize() {
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
   });
 
-  const setValue = useCallback((value) =&gt; {
-    try {
-      const valueToStore = value instanceof Function
-        ? value(storedValue)
-        : value;
-      setStoredValue(valueToStore);
-      window.localStorage.setItem(key, JSON.stringify(valueToStore));
-    } catch (error) {
-      console.error(error);
-    }
-  }, [key, storedValue]);
+  useEffect(() =&gt; {
+    const handleResize = () =&gt; {
+      setSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
 
-  return [storedValue, setValue];
+    window.addEventListener('resize', handleResize);
+    return () =&gt; window.removeEventListener('resize', handleResize);
+  }, []);
+
+  return size;
 }
+</code></pre>
+						<h2>Best Practices</h2>
+						<ol>
+							<li>Only call hooks at the top level</li>
+							<li>Only call hooks from React function components</li>
+							<li>Use multiple useEffect hooks to separate concerns</li>
+							<li>Clean up side effects in useEffect</li>
+							<li>Use the dependency array correctly</li>
+						</ol>
+						<h2>Common Use Cases</h2>
+						<h3>Form Handling</h3>
+						<pre><code class="language-jsx">function useForm(initialValues) {
+  const [values, setValues] = useState(initialValues);
 
-// Usage
-function ThemeToggle() {
-  const [theme, setTheme] = useLocalStorage('theme', 'light');
-  return (
-    &lt;button onClick={() =&gt; setTheme(t =&gt; t === 'light' ? 'dark' : 'light')}&gt;
-      Current theme: {theme}
-    &lt;/button&gt;
-  );
-}</code></pre>
+  const handleChange = (e) =&gt; {
+    const { name, value } = e.target;
+    setValues(prev =&gt; ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
-						<h2>Advanced Hook Patterns</h2>
-						<h3>useReducer for Complex State</h3>
-						<p>
-							When state logic becomes complex, <code>useReducer</code> is often
-							cleaner than multiple <code>useState</code> calls. It follows the
-							Redux pattern of dispatching actions to update state.
-						</p>
-						<pre><code>import { useReducer } from 'react';
-
-function reducer(state, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return { count: state.count + 1 };
-    case 'DECREMENT':
-      return { count: state.count - 1 };
-    case 'RESET':
-      return { count: 0 };
-    default:
-      throw new Error('Unknown action: ' + action.type);
-  }
+  return [values, handleChange];
 }
+</code></pre>
+						<h3>Data Fetching</h3>
+						<pre><code class="language-jsx">function useFetch(url) {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-function Counter() {
-  const [state, dispatch] = useReducer(reducer, { count: 0 });
-  return (
-    &lt;div&gt;
-      &lt;p&gt;{state.count}&lt;/p&gt;
-      &lt;button onClick={() =&gt; dispatch({ type: 'INCREMENT' })}&gt;+&lt;/button&gt;
-      &lt;button onClick={() =&gt; dispatch({ type: 'DECREMENT' })}&gt;-&lt;/button&gt;
-      &lt;button onClick={() =&gt; dispatch({ type: 'RESET' })}&gt;Reset&lt;/button&gt;
-    &lt;/div&gt;
-  );
-}</code></pre>
+  useEffect(() =&gt; {
+    fetch(url)
+      .then(res =&gt; res.json())
+      .then(data =&gt; {
+        setData(data);
+        setLoading(false);
+      })
+      .catch(error =&gt; {
+        setError(error);
+        setLoading(false);
+      });
+  }, [url]);
 
-						<h3>useContext for Shared State</h3>
-						<p>
-							Combine <code>useContext</code> with <code>useReducer</code> to
-							build a lightweight state management solution without external
-							libraries. Create a context, wrap your app with the provider, and
-							consume it in any component.
-						</p>
-						<pre><code>const ThemeContext = createContext(null);
-
-function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState('light');
-  return (
-    &lt;ThemeContext.Provider value={{ theme, setTheme }}&gt;
-      {children}
-    &lt;/ThemeContext.Provider&gt;
-  );
+  return { data, loading, error };
 }
-
-function useTheme() {
-  const ctx = useContext(ThemeContext);
-  if (!ctx) throw new Error('useTheme must be used inside ThemeProvider');
-  return ctx;
-}</code></pre>
-
+</code></pre>
+						<h2>Conclusion</h2>
 						<p>
-							Hooks have fundamentally changed React development for the better.
-							They make code more readable, reusable, and testable. The key is
-							knowing which hook to use for each situation and understanding the
-							rules — always call hooks at the top level, and always call them
-							from React function components or custom hooks.
+							React Hooks have made it easier to write and maintain React
+							applications. By understanding and implementing these patterns,
+							you can create more maintainable and reusable code in your React
+							applications.
 						</p>
 					</article>
 
@@ -346,7 +222,7 @@ function useTheme() {
 						<span class="footer-text">Built with love by Manu Arora</span>
 						<div class="footer-links">
 							<a
-								href="https://x.com"
+								href="https://x.com/mannupaaji"
 								class="footer-link"
 								aria-label="X / Twitter"
 							>
@@ -361,7 +237,7 @@ function useTheme() {
 								</svg>
 							</a>
 							<a
-								href="https://linkedin.com"
+								href="https://linkedin.com/in/manuarora28"
 								class="footer-link"
 								aria-label="LinkedIn"
 							>
@@ -376,7 +252,7 @@ function useTheme() {
 								</svg>
 							</a>
 							<a
-								href="https://github.com"
+								href="https://github.com/manuarora700"
 								class="footer-link"
 								aria-label="GitHub"
 							>
