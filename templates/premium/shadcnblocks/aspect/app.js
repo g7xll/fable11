@@ -34,8 +34,6 @@
 	document.addEventListener("click", function (e) {
 		var c = e.target.closest('[aria-label="Close banner"]');
 		if (c) {
-			var banner = c.closest('div[class*="bg-"]') || c.parentElement;
-			// climb to a top-level banner wrapper
 			var node = c;
 			for (var i = 0; i < 6 && node.parentElement; i++) {
 				node = node.parentElement;
@@ -45,71 +43,116 @@
 				)
 					break;
 			}
-			(node || banner).style.display = "none";
+			(node || c.parentElement).style.display = "none";
 		}
 	});
 
 	/* ---------- Accordion (radix-style single) ---------- */
-	document
-		.querySelectorAll("button[aria-controls][aria-expanded]")
-		.forEach(function (btn) {
-			if (btn.closest("nav") || /product/i.test(btn.textContent)) return; // nav dropdown handled separately
-			var region = document.getElementById(btn.getAttribute("aria-controls"));
-			if (!region || btn.dataset.bound) return;
-			btn.dataset.bound = "1";
-			btn.addEventListener("click", function () {
-				var open = btn.getAttribute("aria-expanded") === "true";
-				// determine accordion group (siblings sharing same parent accordion root)
-				var rootEl = btn.closest('[data-orientation="vertical"]')
-					? btn.closest('div[data-orientation="vertical"]').parentElement
-					: document;
-				// close siblings (single-type)
-				var groupRoot = findGroupRoot(btn);
-				if (groupRoot) {
-					groupRoot
-						.querySelectorAll('button[aria-controls][aria-expanded="true"]')
-						.forEach(function (other) {
-							if (other !== btn) closeItem(other);
-						});
-				}
-				open ? closeItem(btn) : openItem(btn);
+	(function () {
+		// Collect all accordion region elements and set initial state
+		// Regions with data-state="closed" start hidden (height 0)
+		document
+			.querySelectorAll("[role='region'][data-state='closed']")
+			.forEach(function (region) {
+				// Manage height via JS so we can animate open/close smoothly
+				region.style.height = "0";
+				region.style.overflow = "hidden";
 			});
-		});
-	function findGroupRoot(btn) {
-		var n = btn;
-		for (var i = 0; i < 8 && n.parentElement; i++) {
-			n = n.parentElement;
-			if (n.querySelectorAll("button[aria-controls][aria-expanded]").length > 1)
-				return n;
+
+		document
+			.querySelectorAll("button[aria-controls][aria-expanded]")
+			.forEach(function (btn) {
+				if (btn.closest("nav") || /product/i.test(btn.textContent)) return;
+				var region = document.getElementById(btn.getAttribute("aria-controls"));
+				if (!region || btn.dataset.bound) return;
+				btn.dataset.bound = "1";
+				btn.addEventListener("click", function () {
+					var open = btn.getAttribute("aria-expanded") === "true";
+					var groupRoot = findGroupRoot(btn);
+					if (groupRoot) {
+						groupRoot
+							.querySelectorAll('button[aria-controls][aria-expanded="true"]')
+							.forEach(function (other) {
+								if (other !== btn) closeItem(other);
+							});
+					}
+					open ? closeItem(btn) : openItem(btn);
+				});
+			});
+
+		function findGroupRoot(btn) {
+			var n = btn;
+			for (var i = 0; i < 8 && n.parentElement; i++) {
+				n = n.parentElement;
+				if (
+					n.querySelectorAll("button[aria-controls][aria-expanded]").length > 1
+				)
+					return n;
+			}
+			return null;
 		}
-		return null;
-	}
-	function setState(el, s) {
-		if (el) el.setAttribute("data-state", s);
-	}
-	function openItem(btn) {
-		btn.setAttribute("aria-expanded", "true");
-		setState(btn, "open");
-		var region = document.getElementById(btn.getAttribute("aria-controls"));
-		setState(region, "open");
-		if (region) {
-			region.hidden = false;
-			region.style.height = "auto";
+
+		function setState(el, s) {
+			if (el) el.setAttribute("data-state", s);
 		}
-		setState(btn.closest("h3"), "open");
-		var item = btn.closest('div[data-orientation="vertical"]');
-		setState(item, "open");
-	}
-	function closeItem(btn) {
-		btn.setAttribute("aria-expanded", "false");
-		setState(btn, "closed");
-		var region = document.getElementById(btn.getAttribute("aria-controls"));
-		setState(region, "closed");
-		if (region) region.hidden = true;
-		setState(btn.closest("h3"), "closed");
-		var item = btn.closest('div[data-orientation="vertical"]');
-		setState(item, "closed");
-	}
+
+		function openItem(btn) {
+			btn.setAttribute("aria-expanded", "true");
+			setState(btn, "open");
+			var region = document.getElementById(btn.getAttribute("aria-controls"));
+			if (region) {
+				// Measure natural height
+				region.style.height = "auto";
+				var h = region.scrollHeight;
+				region.style.height = "0";
+				region.style.overflow = "hidden";
+				// Set Radix CSS variable so keyframe animation has a valid endpoint
+				region.style.setProperty("--radix-accordion-content-height", h + "px");
+				region.style.setProperty(
+					"--radix-collapsible-content-height",
+					h + "px",
+				);
+				// Apply JS transition as fallback
+				region.style.transition = "height 0.2s ease-out";
+				// Trigger reflow so height:0 is committed before animating
+				void region.offsetWidth;
+				setState(region, "open");
+				region.style.height = h + "px";
+				// After transition ends, switch to auto so content can reflow
+				setTimeout(function () {
+					region.style.height = "auto";
+					region.style.overflow = "";
+					region.style.transition = "";
+				}, 220);
+			}
+			setState(btn.closest("h3"), "open");
+			var item = btn.closest('div[data-orientation="vertical"]');
+			setState(item, "open");
+		}
+
+		function closeItem(btn) {
+			btn.setAttribute("aria-expanded", "false");
+			setState(btn, "closed");
+			var region = document.getElementById(btn.getAttribute("aria-controls"));
+			if (region) {
+				var h = region.scrollHeight;
+				region.style.setProperty("--radix-accordion-content-height", h + "px");
+				region.style.setProperty(
+					"--radix-collapsible-content-height",
+					h + "px",
+				);
+				region.style.height = h + "px";
+				region.style.overflow = "hidden";
+				region.style.transition = "height 0.2s ease-out";
+				void region.offsetWidth;
+				setState(region, "closed");
+				region.style.height = "0";
+			}
+			setState(btn.closest("h3"), "closed");
+			var item = btn.closest('div[data-orientation="vertical"]');
+			setState(item, "closed");
+		}
+	})();
 
 	/* ---------- Pricing billing toggle (monthly / annual) ---------- */
 	document
@@ -151,8 +194,7 @@
 		if (!btn) return;
 		var open = false,
 			hideTimer = null;
-		// ensure the dropdown is positioned under the trigger with a real width
-		var holder = menu.parentElement; // absolute top-full container
+		var holder = menu.parentElement;
 		if (holder) {
 			holder.style.left = "";
 			holder.style.right = "";
@@ -165,7 +207,6 @@
 			btn.setAttribute("data-state", v ? "open" : "closed");
 			btn.setAttribute("aria-expanded", v);
 			menu.style.display = v ? "block" : "none";
-			// align under the Product trigger
 			if (v && holder) {
 				var br = btn.getBoundingClientRect(),
 					hr = holder.parentElement.getBoundingClientRect();
@@ -212,22 +253,89 @@
 	});
 
 	/* ---------- Mobile menu (hamburger) ---------- */
-	document
-		.querySelectorAll('[data-mobile-trigger], button[aria-label*="menu" i]')
-		.forEach(function (btn) {
-			btn.addEventListener("click", function () {
-				var panel = document.querySelector("[data-mobile-menu]");
-				if (panel) {
-					var open = panel.getAttribute("data-state") === "open";
-					panel.setAttribute("data-state", open ? "closed" : "open");
-					panel.style.display = open ? "none" : "";
-				}
-			});
+	(function () {
+		var header = document.querySelector("header");
+		if (!header) return;
+
+		// Find the hamburger button: has "Open main menu" in its sr-only text
+		var trigger = null;
+		header.querySelectorAll("button").forEach(function (b) {
+			if (trigger) return;
+			var sr = b.querySelector(".sr-only");
+			if (sr && /main menu/i.test(sr.textContent)) trigger = b;
+		});
+		// Also match by data-mobile-trigger if present
+		if (!trigger) trigger = header.querySelector("[data-mobile-trigger]");
+
+		// Find the mobile nav panel: the element that slides in from top
+		// It has -translate-y-full and opacity-0 when closed
+		var panel =
+			header.querySelector("[data-mobile-menu]") ||
+			header.querySelector(".-translate-y-full.opacity-0");
+
+		if (!trigger || !panel) return;
+
+		var isOpen = false;
+
+		trigger.addEventListener("click", function (e) {
+			e.stopPropagation();
+			isOpen = !isOpen;
+			if (isOpen) {
+				panel.classList.remove(
+					"pointer-events-none",
+					"-translate-y-full",
+					"opacity-0",
+				);
+				trigger.setAttribute("aria-expanded", "true");
+			} else {
+				panel.classList.add(
+					"pointer-events-none",
+					"-translate-y-full",
+					"opacity-0",
+				);
+				trigger.setAttribute("aria-expanded", "false");
+			}
 		});
 
+		// Close on outside click
+		document.addEventListener("click", function (e) {
+			if (isOpen && !header.contains(e.target)) {
+				isOpen = false;
+				panel.classList.add(
+					"pointer-events-none",
+					"-translate-y-full",
+					"opacity-0",
+				);
+				trigger.setAttribute("aria-expanded", "false");
+			}
+		});
+
+		// Mobile sub-menu: Product accordion inside mobile nav
+		panel
+			.querySelectorAll('button[aria-label*="Product" i]')
+			.forEach(function (btn) {
+				btn.addEventListener("click", function () {
+					var sub = btn.nextElementSibling;
+					if (!sub) return;
+					var expanded = btn.getAttribute("aria-expanded") === "true";
+					btn.setAttribute("aria-expanded", String(!expanded));
+					var chevron = btn.querySelector(".lucide-chevron-right");
+					if (expanded) {
+						sub.style.maxHeight = "0";
+						sub.style.opacity = "0";
+						if (chevron) chevron.style.transform = "";
+					} else {
+						sub.style.maxHeight = sub.scrollHeight + "px";
+						sub.style.opacity = "1";
+						if (chevron) chevron.style.transform = "rotate(90deg)";
+					}
+				});
+			});
+	})();
+
 	/* ---------- Scroll reveal (subtle, self-healing) ----------
-     Reveal-on-enter, but never leave content invisible: a load fallback
-     forces everything visible so the resting page is always faithful. */
+	   Reveal-on-enter, but never leave content invisible: a load fallback
+	   forces everything visible so the resting page is always faithful. */
 	if ("IntersectionObserver" in window) {
 		var revealEls = [];
 		document.querySelectorAll("[data-reveal]").forEach(function (el) {
