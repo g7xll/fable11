@@ -109,23 +109,14 @@
 				</div>
 
 				<div class="nav-actions">
-					<a href="#" class="btn btn-ghost">Login</a>
-					<a href="#" class="btn btn-primary">Signup</a>
+					<a href="login.html" class="btn btn-ghost">Login</a>
+					<a href="signup.html" class="btn btn-blackgrad">Signup</a>
 				</div>
 			</nav>
 		</div>
 
 		<!-- HERO -->
 		<section class="hero" id="home">
-			<div class="hero-badge">
-				<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-					<path
-						d="M6 1L7.5 4.5L11 5.5L8.5 8L9 11.5L6 10L3 11.5L3.5 8L1 5.5L4.5 4.5L6 1Z"
-					/>
-				</svg>
-				New: AI-powered scheduling
-			</div>
-
 			<h1 class="hero-title">
 				Effortless Call <span class="highlight">Scheduling</span><br>
 				That Makes your Life<br>
@@ -139,7 +130,7 @@
 			</p>
 
 			<div class="hero-cta">
-				<a href="#" class="btn btn-primary btn-lg">Get started</a>
+				<a href="signup.html" class="btn btn-blackgrad btn-lg">Get started</a>
 			</div>
 
 			<!-- Phone Mockup -->
@@ -207,41 +198,6 @@
 									</div>
 								</div>
 							</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Browser bar below -->
-				<div style="display:flex; justify-content:center;">
-					<div class="browser-bar">
-						<div class="browser-dots">
-							<div class="browser-dot" style="background:#ef4444"></div>
-							<div class="browser-dot" style="background:#f59e0b"></div>
-							<div class="browser-dot" style="background:#10b981"></div>
-						</div>
-						<div class="browser-url">
-							<svg
-								width="12"
-								height="12"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								stroke-width="2"
-								style="margin-right:4px;flex-shrink:0"
-							>
-								<circle cx="12" cy="12" r="10"></circle>
-								<line x1="2" y1="12" x2="22" y2="12"></line>
-								<path
-									d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-								></path>
-							</svg>
-							schedule-ma... • Preview • 8765
-						</div>
-						<div class="browser-actions">
-							<span class="browser-btn browser-btn-outline"
-								>← Schedule Ma...</span
-							>
-							<span class="browser-btn browser-btn-filled">↗ AI Access</span>
 						</div>
 					</div>
 				</div>
@@ -380,183 +336,246 @@
 			</div>
 
 			<div class="bento-grid">
+				<!-- Card 1: World map -->
 				<div class="bento-card reveal">
-					<div class="bento-icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<path
-								d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-							></path>
-							<path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-							<line x1="12" y1="19" x2="12" y2="23"></line>
-							<line x1="8" y1="23" x2="16" y2="23"></line>
-						</svg>
-					</div>
-					<h3>Record Calls</h3>
-					<p>
-						Automatically record all your calls with crystal-clear audio. Never
-						miss an important detail again.
-					</p>
-				</div>
-
-				<div class="bento-card reveal" style="animation-delay:0.05s">
-					<div class="bento-icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<circle cx="12" cy="12" r="10"></circle>
-							<path d="M12 8v4l3 3"></path>
-						</svg>
-					</div>
-					<h3>Smart Scheduling</h3>
-					<p>
-						One-click scheduling that syncs with all your calendars. Let
-						attendees pick from your available slots.
-					</p>
-				</div>
-
-				<div class="bento-card wide reveal" style="animation-delay:0.1s">
-					<div style="display:flex; gap:2rem; align-items:center">
-						<div style="flex:1">
-							<div class="bento-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
+					<div class="bento-visual">
+						<div class="worldmap">
+							<span class="map-pin" style="top:18%;left:14%">
+								<img
+									src="assets/images/kishore_gunnam.jpg"
+									alt="Kishore"
+									onerror="this.style.background='#9ca3af'"
 								>
-									<path
-										d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
-									></path>
-								</svg>
-							</div>
-							<h3>AI Meeting Summaries</h3>
-							<p>
-								Get instant AI-generated summaries, action items, and insights
-								delivered after every call. Stay focused, not frantic.
-							</p>
-						</div>
-						<div style="flex:1">
-							<div class="ai-visualization" style="margin:0">
-								<div class="ai-message">
-									<div class="ai-avatar bot">AI</div>
-									<div class="ai-bubble">
-										Here's your meeting summary from today's call...
-									</div>
-								</div>
-								<div class="ai-message right" style="animation-delay:0.3s">
-									<div class="ai-avatar user">U</div>
-									<div class="ai-bubble primary">
-										What were the action items?
-									</div>
-								</div>
-								<div class="ai-message" style="animation-delay:0.6s">
-									<div class="ai-avatar bot">AI</div>
-									<div class="ai-bubble">
-										1. Follow up with design team 2. Schedule next review by
-										Friday
-									</div>
-								</div>
-							</div>
+								<span class="map-label">Kishore</span>
+							</span>
+							<span class="map-pin" style="top:32%;left:34%">
+								<img
+									src="assets/images/manu_arora.jpg"
+									alt="Manu"
+									onerror="this.style.background='#9ca3af'"
+								>
+								<span class="map-label">Manu</span>
+							</span>
+							<span class="map-pin" style="top:36%;left:50%">
+								<img
+									src="assets/images/person3.png"
+									alt="John"
+									onerror="this.style.background='#9ca3af'"
+								>
+								<span class="map-label">John</span>
+							</span>
+							<span class="map-pin" style="top:26%;left:62%">
+								<span class="map-dot"></span>
+								<span class="map-label">James</span>
+							</span>
+							<span class="map-pin" style="top:48%;left:24%">
+								<span class="map-dot"></span>
+								<span class="map-label">Emily</span>
+							</span>
 						</div>
 					</div>
+					<h3>Connect with people all over the world</h3>
+					<p>
+						Our servers are available all over the world except Asia, Australia,
+						Europe, North America, South America and Africa.
+					</p>
 				</div>
 
+				<!-- Card 2: Analytics -->
+				<div class="bento-card reveal" style="animation-delay:0.05s">
+					<div class="bento-visual">
+						<div class="mini-window">
+							<div class="mini-window-dots">
+								<span style="background:#ef4444"></span>
+								<span style="background:#f59e0b"></span>
+								<span style="background:#10b981"></span>
+							</div>
+							<div class="bar-chart">
+								<span style="height:38%"></span>
+								<span style="height:62%"></span>
+								<span style="height:45%"></span>
+								<span style="height:78%"></span>
+								<span style="height:55%"></span>
+								<span style="height:100%" class="bar-active"></span>
+							</div>
+							<span class="cursor-pill" style="top:30%;left:14%">Manu</span>
+							<span class="cursor-pill" style="top:14%;right:6%">Kishore</span>
+							<span class="share-pill">Share</span>
+						</div>
+					</div>
+					<h3>Superb Analytics</h3>
+					<p>
+						With our realtime dashboards, get a view of who's using your links
+						and sending it to other people.
+					</p>
+				</div>
+
+				<!-- Card 3: Ecosystem radar -->
+				<div class="bento-card reveal" style="animation-delay:0.1s">
+					<div class="bento-visual">
+						<div class="radar">
+							<span class="radar-ring r1"></span>
+							<span class="radar-ring r2"></span>
+							<span class="radar-ring r3"></span>
+							<span class="radar-center"></span>
+							<span class="radar-chip" style="top:4%;left:46%">z</span>
+							<span class="radar-chip" style="top:22%;left:24%">m</span>
+							<span class="radar-chip" style="top:22%;left:68%">s</span>
+							<span class="radar-chip" style="top:60%;left:10%">t</span>
+							<span class="radar-chip" style="top:60%;left:82%">g</span>
+							<span class="radar-chip" style="top:78%;left:34%">in</span>
+							<span class="radar-chip" style="top:78%;left:58%">d</span>
+						</div>
+					</div>
+					<h3>Fancy ecosystem</h3>
+					<p>
+						Connects with every other automation tool out there, zapier, meta
+						you name it.
+					</p>
+				</div>
+
+				<!-- Card 4: Messaging app -->
 				<div class="bento-card reveal" style="animation-delay:0.15s">
-					<div class="bento-icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-							<line x1="16" y1="2" x2="16" y2="6"></line>
-							<line x1="8" y1="2" x2="8" y2="6"></line>
-							<line x1="3" y1="10" x2="21" y2="10"></line>
-						</svg>
+					<div class="bento-visual">
+						<div class="mini-window">
+							<div class="mini-window-dots">
+								<span style="background:#ef4444"></span>
+								<span style="background:#f59e0b"></span>
+								<span style="background:#10b981"></span>
+							</div>
+							<div class="chat-split">
+								<div class="chat-contact">
+									<span class="chat-avatar">
+										<img
+											src="assets/images/kishore_gunnam.jpg"
+											alt="Kishore"
+											onerror="this.style.background='#9ca3af'"
+										>
+										<span class="chat-online"></span>
+									</span>
+									<div>
+										<div class="chat-role">DESIGNER ENGINEER</div>
+										<div class="chat-name">Kishore Gunnam</div>
+									</div>
+								</div>
+								<div class="chat-empty">
+									<span class="chat-diamond"></span>
+									<span>shape.ai</span>
+									<small>Select a conversation to start messaging</small>
+								</div>
+							</div>
+						</div>
 					</div>
-					<h3>Calendar Sync</h3>
-					<p>
-						Seamlessly connects with Google Calendar, Outlook, and Apple
-						Calendar for a unified scheduling experience.
-					</p>
-				</div>
-
-				<div class="bento-card reveal" style="animation-delay:0.2s">
-					<div class="bento-icon">
-						<svg
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
-							<line x1="12" y1="18" x2="12.01" y2="18"></line>
-						</svg>
-					</div>
-					<h3>Multi-Platform</h3>
-					<p>
-						Available on iOS, Android, and the web. Your schedule travels with
-						you wherever you go.
-					</p>
+					<h3>Easy to use</h3>
+					<p>We spend 90% of our budget on UX.</p>
 				</div>
 			</div>
 		</section>
 
 		<!-- AI INTEGRATION -->
 		<section class="ai-section">
-			<div class="ai-inner">
-				<div class="reveal">
-					<div class="section-tag">Powered by AI</div>
-					<h2 class="section-title">
-						In built <span class="highlight">AI Integration</span>
-					</h2>
-					<p class="section-desc" style="text-align:left">
-						With AI booming each passing day, we've made sure that we integrate
-						AI the best way we can, that is embedding it at meaningful places in
-						your workflow.
+			<div class="section-header reveal" style="max-width:760px">
+				<h2 class="section-title">
+					In built <span class="highlight">AI Integration</span>
+				</h2>
+				<p class="section-desc">
+					With AI booming each passing day, we've made sure that we integrate AI
+					the best way we can, that is embedding it at meaningless places.
+				</p>
+			</div>
+
+			<div class="ai-cards">
+				<!-- Card A: chat -->
+				<div class="bento-card reveal">
+					<div class="bento-visual">
+						<div class="ai-chat-mock">
+							<span class="ai-chat-pill">Hello, Nice</span>
+							<div class="ai-chat-bubble">
+								Welcome to LiveChat I was made with Pick a topic from the list
+								or type down a question!
+							</div>
+							<span class="ai-chat-welcome">Welcome</span>
+							<div class="ai-chat-input">
+								<span>Write a message</span>
+								<svg
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									stroke-width="2"
+								>
+									<line x1="22" y1="2" x2="11" y2="13"></line>
+									<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+								</svg>
+							</div>
+						</div>
+					</div>
+					<h3>Chat with your calls</h3>
+					<p>
+						It makes no sense but we have it here. Use it the way you want it.
 					</p>
 				</div>
 
-				<div class="ai-card reveal" style="animation-delay:0.1s">
-					<div
-						style="font-size:0.75rem;font-weight:600;color:var(--color-text-muted);margin-bottom:1rem;"
-					>
-						AI Assistant
-					</div>
-					<div class="ai-visualization">
-						<div class="ai-message">
-							<div class="ai-avatar user">U</div>
-							<div class="ai-bubble">
-								Schedule a call with the design team for Thursday
-							</div>
-						</div>
-						<div class="ai-message" style="animation-delay:0.2s">
-							<div class="ai-avatar bot">AI</div>
-							<div class="ai-bubble">
-								I found 3 available slots on Thursday for the design team...
-							</div>
-						</div>
-						<div class="ai-message right" style="animation-delay:0.4s">
-							<div class="ai-avatar user">U</div>
-							<div class="ai-bubble primary">Book the 2 PM slot</div>
-						</div>
-						<div class="ai-message" style="animation-delay:0.6s">
-							<div class="ai-avatar bot">AI</div>
-							<div class="ai-bubble">
-								Done! Meeting scheduled for Thursday 2 PM. Invites sent to all
-								participants.
+				<!-- Card B: payments -->
+				<div class="bento-card reveal" style="animation-delay:0.05s">
+					<div class="bento-visual">
+						<div class="pay-mock">
+							<div class="pay-amount">$12,000</div>
+							<div class="pay-label">Total Balance</div>
+							<div class="credit-card">
+								<span class="cc-chip"></span>
+								<span class="cc-dots"><i></i><i></i></span>
+								<div class="cc-name">Connected to iPhone</div>
+								<div class="cc-meta">Apple Pay • Connected</div>
 							</div>
 						</div>
 					</div>
+					<h3>Easy payments</h3>
+					<p>
+						We accept all kinds of cards. We make sure you get money whichever
+						way possible.
+					</p>
+				</div>
+
+				<!-- Card C: invite -->
+				<div class="bento-card reveal" style="animation-delay:0.1s">
+					<div class="bento-visual">
+						<div class="invite-mock">
+							<div class="invite-top">
+								<span class="invite-add">+ Invite</span>
+								<div class="invite-avatars">
+									<img
+										src="assets/images/kishore_gunnam.jpg"
+										alt=""
+										onerror="this.style.background='#9ca3af'"
+									>
+									<img
+										src="assets/images/manu_arora.jpg"
+										alt=""
+										onerror="this.style.background='#9ca3af'"
+									>
+									<img
+										src="assets/images/person3.png"
+										alt=""
+										onerror="this.style.background='#9ca3af'"
+									>
+									<span class="invite-more">+2</span>
+								</div>
+							</div>
+							<div class="invite-task">
+								<span class="invite-tag">High</span>
+								<div class="invite-task-title">Research</div>
+								<div class="invite-task-desc">
+									User research helps you to create an optimal product for
+									users.
+								</div>
+							</div>
+						</div>
+					</div>
+					<h3>Invite team members</h3>
+					<p>
+						With our state of the art support of team members, invite your team
+						into the software.
+					</p>
 				</div>
 			</div>
 		</section>
@@ -578,226 +597,88 @@
 				<!-- Hobby -->
 				<div class="pricing-card reveal">
 					<div class="pricing-name">Hobby</div>
-					<div class="pricing-price">$0<span>/month</span></div>
-					<div class="pricing-desc">
-						Perfect for individuals getting started with scheduling.
-					</div>
-					<div class="pricing-divider"></div>
+					<div class="pricing-price">$99<span>/month</span></div>
+					<a href="signup.html" class="pricing-cta btn-blackgrad"
+						>Get Started</a
+					>
 					<div class="pricing-features">
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							5 scheduled calls/month
+							<span class="pricing-check"></span>Access to basic analytics
+							reports
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Basic calendar sync
+							<span class="pricing-check"></span>Up to 10,000 data points per
+							month
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Email reminders
+							<span class="pricing-check"></span>Email support
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Community support
+							<span class="pricing-check"></span>Community forum access
+						</div>
+						<div class="pricing-feature">
+							<span class="pricing-check"></span>Cancel anytime
 						</div>
 					</div>
-					<a href="#" class="pricing-cta pricing-cta-outline">Get Started</a>
 				</div>
 
-				<!-- Good (highlighted) -->
+				<!-- Promise (highlighted) -->
 				<div
-					class="pricing-card highlighted reveal"
+					class="pricing-card pricing-promise reveal"
 					style="animation-delay:0.05s"
 				>
-					<div class="pricing-badge">Most Popular</div>
-					<div class="pricing-name">Good</div>
-					<div class="pricing-price">$29<span>/month</span></div>
-					<div class="pricing-desc">
-						For professionals who need more scheduling power.
-					</div>
-					<div class="pricing-divider"></div>
+					<div class="pricing-name">Promise</div>
+					<div class="pricing-price">$299<span>/month</span></div>
+					<a href="signup.html" class="pricing-cta btn-blackgrad"
+						>Get Started</a
+					>
 					<div class="pricing-features">
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Unlimited calls
+							<span class="pricing-check"></span>Access to basic analytics
+							reports
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							All calendar integrations
+							<span class="pricing-check"></span>Up to 10,000 data points per
+							month
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							AI meeting summaries
+							<span class="pricing-check"></span>Email support
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Call recordings
+							<span class="pricing-check"></span>Community forum access
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Priority support
+							<span class="pricing-check"></span>Cancel anytime
 						</div>
 					</div>
-					<a href="#" class="pricing-cta pricing-cta-filled">Get Started</a>
 				</div>
 
-				<!-- Enterprise -->
+				<!-- Pro -->
 				<div class="pricing-card reveal" style="animation-delay:0.1s">
-					<div class="pricing-name">Enterprise</div>
-					<div class="pricing-price">$99<span>/month</span></div>
-					<div class="pricing-desc">
-						Built for teams and organizations that scale.
-					</div>
-					<div class="pricing-divider"></div>
+					<div class="pricing-name">Pro</div>
+					<div class="pricing-price">$199<span>/month</span></div>
+					<a href="signup.html" class="pricing-cta btn-blackgrad"
+						>Get Started</a
+					>
 					<div class="pricing-features">
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Everything in Good
+							<span class="pricing-check"></span>Access to basic analytics
+							reports
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Team management
+							<span class="pricing-check"></span>Up to 10,000 data points per
+							month
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Advanced analytics
+							<span class="pricing-check"></span>Email support
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Custom integrations
+							<span class="pricing-check"></span>Community forum access
 						</div>
 						<div class="pricing-feature">
-							<div class="pricing-feature-icon">
-								<svg
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2.5"
-								>
-									<polyline points="20 6 9 17 4 12"></polyline>
-								</svg>
-							</div>
-							Dedicated success manager
+							<span class="pricing-check"></span>Cancel anytime
 						</div>
 					</div>
-					<a href="#" class="pricing-cta pricing-cta-outline">Contact Sales</a>
 				</div>
 			</div>
 		</section>
@@ -1098,121 +979,63 @@
 
 		<!-- FAQ -->
 		<section class="faq-section">
-			<div class="section-header reveal">
-				<div class="section-tag">FAQ</div>
+			<div class="section-header reveal" style="max-width:760px">
 				<h2 class="section-title">
-					Frequently Asked <span class="highlight">Questions</span>
+					Frequently <span class="highlight">Asked</span> Questions
 				</h2>
+				<p class="section-desc">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+					porttitor massa vel ultrices commodo. Suspendisse varius risus
+					scelerisque, accumsan felis vel, sodales erat. Donec tristi
+				</p>
 			</div>
 
 			<div class="faq-list">
-				<div class="faq-item open">
+				<div class="faq-item">
 					<div class="faq-question" onclick="toggleFaq(this)">
-						What is Shape.AI and how does it work?
-						<svg
-							class="faq-chevron"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
+						What is the purpose of this website?
+						<span class="faq-plus"></span>
 					</div>
 					<div class="faq-answer">
 						<div class="faq-answer-inner">
-							Shape.AI is a smart call scheduling platform that lets you book,
-							manage, and automate calls with a single click. Connect your
-							calendar, share your link, and let AI handle the rest — from
-							scheduling to summaries.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+							porttitor massa vel ultrices commodo.
 						</div>
 					</div>
 				</div>
-
 				<div class="faq-item">
 					<div class="faq-question" onclick="toggleFaq(this)">
-						Which calendar apps does Shape.AI integrate with?
-						<svg
-							class="faq-chevron"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
+						What is the purpose of this website?
+						<span class="faq-plus"></span>
 					</div>
 					<div class="faq-answer">
 						<div class="faq-answer-inner">
-							Shape.AI integrates with Google Calendar, Microsoft Outlook, Apple
-							Calendar, and any CalDAV-compatible calendar. All your events stay
-							in sync automatically across platforms.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+							porttitor massa vel ultrices commodo.
 						</div>
 					</div>
 				</div>
-
 				<div class="faq-item">
 					<div class="faq-question" onclick="toggleFaq(this)">
-						Can I record and transcribe my calls?
-						<svg
-							class="faq-chevron"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
+						What is the purpose of this website?
+						<span class="faq-plus"></span>
 					</div>
 					<div class="faq-answer">
 						<div class="faq-answer-inner">
-							Yes! Shape.AI records all your calls with crystal-clear audio and
-							generates AI-powered transcripts and meeting summaries
-							automatically. Available on the Good and Enterprise plans.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+							porttitor massa vel ultrices commodo.
 						</div>
 					</div>
 				</div>
-
 				<div class="faq-item">
 					<div class="faq-question" onclick="toggleFaq(this)">
-						Is there a free trial available?
-						<svg
-							class="faq-chevron"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
+						What is the purpose of this website?
+						<span class="faq-plus"></span>
 					</div>
 					<div class="faq-answer">
 						<div class="faq-answer-inner">
-							Absolutely! Our Hobby plan is completely free forever with 5
-							scheduled calls per month. You can upgrade to a paid plan anytime
-							to unlock unlimited calls and AI features.
-						</div>
-					</div>
-				</div>
-
-				<div class="faq-item">
-					<div class="faq-question" onclick="toggleFaq(this)">
-						How secure is my data on Shape.AI?
-						<svg
-							class="faq-chevron"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-						>
-							<polyline points="6 9 12 15 18 9"></polyline>
-						</svg>
-					</div>
-					<div class="faq-answer">
-						<div class="faq-answer-inner">
-							Your data security is our top priority. All call recordings and
-							data are encrypted end-to-end using AES-256 encryption. We are SOC
-							2 Type II compliant and GDPR-ready.
+							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+							porttitor massa vel ultrices commodo.
 						</div>
 					</div>
 				</div>
@@ -1222,91 +1045,52 @@
 		<!-- CTA BANNER -->
 		<section class="cta-section">
 			<div class="cta-icons">
-				<div class="cta-icon-float" style="top:15%; left:8%">
-					<svg
-						width="22"
-						height="22"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
-						<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-						<line x1="16" y1="2" x2="16" y2="6"></line>
-						<line x1="8" y1="2" x2="8" y2="6"></line>
-						<line x1="3" y1="10" x2="21" y2="10"></line>
-					</svg>
-				</div>
-				<div class="cta-icon-float" style="top:60%; left:5%">
-					<svg
-						width="22"
-						height="22"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
+				<div class="cta-icon-float" style="top:8%; left:11%">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
 						<path
-							d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"
-						></path>
-						<path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-					</svg>
-				</div>
-				<div class="cta-icon-float" style="top:20%; right:8%">
-					<svg
-						width="22"
-						height="22"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
-						<path
-							d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+							d="M12 2a4 4 0 0 0-4 4v3H7a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V6a4 4 0 0 0-4-4zm-2 7V6a2 2 0 1 1 4 0v3h-4z"
 						></path>
 					</svg>
 				</div>
-				<div class="cta-icon-float" style="top:65%; right:6%">
-					<svg
-						width="22"
-						height="22"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
-						<circle cx="12" cy="12" r="10"></circle>
-						<polyline points="12 6 12 12 16 14"></polyline>
-					</svg>
-				</div>
-				<div class="cta-icon-float" style="top:40%; left:14%">
-					<svg
-						width="22"
-						height="22"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="currentColor"
-						stroke-width="2"
-					>
+				<div class="cta-icon-float" style="top:8%; right:11%">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
 						<path
-							d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.9"
+							d="M12 2a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"
+						></path>
+						<path d="M5 11a7 7 0 0 0 14 0h-2a5 5 0 0 1-10 0H5z"></path>
+						<rect x="11" y="18" width="2" height="3"></rect>
+						<path
+							d="M19 3l.6 1.4L21 5l-1.4.6L19 7l-.6-1.4L17 5l1.4-.6L19 3z"
 						></path>
 					</svg>
 				</div>
-				<div class="cta-icon-float" style="top:40%; right:14%">
+				<div class="cta-icon-float" style="top:42%; left:24%">
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+						<path
+							d="M12 2l1.8 5.2L19 9l-5.2 1.8L12 16l-1.8-5.2L5 9l5.2-1.8L12 2z"
+						></path>
+						<path d="M19 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7.7-2z"></path>
+					</svg>
+				</div>
+				<div
+					class="cta-icon-float"
+					style="top:42%; left:50%; transform:translateX(-50%)"
+				>
+					<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+						<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+					</svg>
+				</div>
+				<div class="cta-icon-float" style="top:42%; right:24%">
 					<svg
 						width="22"
 						height="22"
 						viewBox="0 0 24 24"
 						fill="none"
 						stroke="currentColor"
-						stroke-width="2"
+						stroke-width="2.2"
 					>
-						<circle cx="12" cy="12" r="10"></circle>
-						<line x1="2" y1="12" x2="22" y2="12"></line>
-						<path
-							d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"
-						></path>
+						<rect x="3" y="5" width="18" height="14" rx="2"></rect>
+						<polyline points="3 7 12 13 21 7"></polyline>
 					</svg>
 				</div>
 			</div>
@@ -1316,8 +1100,7 @@
 					Effortless Call <span class="highlight">Scheduling</span><br>
 					That Makes your Life Easier
 				</h2>
-				<p class="cta-subtitle">Start for free. No credit card required.</p>
-				<a href="#" class="btn btn-primary btn-lg">Get started</a>
+				<a href="signup.html" class="btn btn-blackgrad btn-lg">Get started</a>
 			</div>
 		</section>
 
@@ -1349,15 +1132,16 @@
 					<div>
 						<div class="footer-col-title">Pages</div>
 						<div class="footer-links">
-							<a href="#home" class="footer-link">Home</a>
-							<a href="#product" class="footer-link">Product</a>
+							<a href="#" class="footer-link">All Products</a>
+							<a href="#" class="footer-link">Studio</a>
+							<a href="#" class="footer-link">Clients</a>
 							<a href="#pricing" class="footer-link">Pricing</a>
 							<a href="blog.html" class="footer-link">Blog</a>
 						</div>
 					</div>
 
 					<div>
-						<div class="footer-col-title">Social</div>
+						<div class="footer-col-title">Socials</div>
 						<div class="footer-links">
 							<a href="#" class="footer-link">Facebook</a>
 							<a href="#" class="footer-link">Instagram</a>
@@ -1377,9 +1161,7 @@
 				</div>
 
 				<div class="footer-bottom">
-					<div class="footer-copyright">
-						© 2024 shape.ai. All rights reserved.
-					</div>
+					<div class="footer-copyright">© shape.ai</div>
 					<div class="footer-socials">
 						<a href="#" class="footer-social" aria-label="GitHub">
 							<svg
