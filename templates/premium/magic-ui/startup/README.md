@@ -6,7 +6,7 @@ A pixel-faithful, self-contained clone of the Magic UI "Startup" landing-page te
 
 ## Pages
 
-- `index.html` — the full marketing landing page (announcement bar, sticky header, hero, logo marquee, pricing, CTA, footer).
+- `index.html` — the full marketing landing page (sticky header, hero with shimmer banner pill, logo marquee, pricing, CTA, footer).
 - `signin.html` — "Welcome back" auth card.
 - `signup.html` — "Welcome to Magic UI" auth card.
 
