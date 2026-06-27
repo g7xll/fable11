@@ -13,32 +13,50 @@
 	};
 })();
 
-// ----- Animated gradient canvas banner -----
+// ----- Animated flickering-grid canvas banner -----
+// Replicates the Magic UI FlickeringGrid component:
+//   squareSize=4, gridGap=6, color="#6B7280", maxOpacity=0.2, flickerChance=0.05
 function initGradientCanvas(canvas) {
 	if (!canvas) return;
 	const ctx = canvas.getContext("2d");
+	const SQUARE = 4;
+	const GAP = 6;
+	const STEP = SQUARE + GAP;
+	const MAX_OPACITY = 0.2;
+	const FLICKER_CHANCE = 0.05;
+	let cols, rows, opacities;
+
 	function resize() {
 		canvas.width = canvas.offsetWidth * devicePixelRatio;
 		canvas.height = canvas.offsetHeight * devicePixelRatio;
+		ctx.scale(devicePixelRatio, devicePixelRatio);
+		const w = canvas.offsetWidth;
+		const h = canvas.offsetHeight;
+		cols = Math.ceil(w / STEP) + 1;
+		rows = Math.ceil(h / STEP) + 1;
+		opacities = new Float32Array(cols * rows).map(
+			() => Math.random() * MAX_OPACITY,
+		);
 	}
 	resize();
 	window.addEventListener("resize", resize);
-	let t = 0;
+
 	function draw() {
-		t += 0.004;
-		const w = canvas.width,
-			h = canvas.height;
+		const w = canvas.offsetWidth;
+		const h = canvas.offsetHeight;
 		ctx.clearRect(0, 0, w, h);
-		const dark = document.documentElement.classList.contains("dark");
-		const stops = dark
-			? ["#1d4ed8", "#7c3aed", "#0ea5e9", "#db2777"]
-			: ["#60a5fa", "#a78bfa", "#38bdf8", "#f472b6"];
-		const cx = (Math.sin(t) * 0.5 + 0.5) * w;
-		const g = ctx.createLinearGradient(cx, 0, w - cx, h);
-		stops.forEach((c, i) => g.addColorStop(i / (stops.length - 1), c));
-		ctx.globalAlpha = dark ? 0.4 : 0.28;
-		ctx.fillStyle = g;
-		ctx.fillRect(0, 0, w, h);
+		for (let r = 0; r < rows; r++) {
+			for (let c = 0; c < cols; c++) {
+				const idx = r * cols + c;
+				if (Math.random() < FLICKER_CHANCE) {
+					opacities[idx] = Math.random() * MAX_OPACITY;
+				}
+				ctx.globalAlpha = opacities[idx];
+				ctx.fillStyle = "#6B7280";
+				ctx.fillRect(c * STEP, r * STEP, SQUARE, SQUARE);
+			}
+		}
+		ctx.globalAlpha = 1;
 		requestAnimationFrame(draw);
 	}
 	draw();
