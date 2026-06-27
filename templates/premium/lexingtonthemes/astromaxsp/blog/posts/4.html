@@ -73,6 +73,7 @@
 				<div class="container section-border-b">
 					<div class="post-header bg-grid">
 						<div class="post-tags">
+							<span class="btn btn-light btn-md">branding</span>
 							<span class="btn btn-light btn-md">design</span>
 						</div>
 						<h1
@@ -93,7 +94,7 @@
 							>
 							<span>By <a href="../../team/alex-chen.html">Alex Chen</a></span>
 							<span>•</span>
-							<time>October 15, 2025</time>
+							<time>August 05, 2025</time>
 						</div>
 						<p class="post-description">
 							Structure your palette so new pages feel cohesive without endless
@@ -111,43 +112,124 @@
 					<div class="prose-container">
 						<div class="prose">
 							<p>
-								A color system isn't a list of hex values—it's a decision
-								framework that lets any team member make correct color choices
-								without constant consultation.
+								A good palette scales: one accent, a set of neutrals, and
+								semantic colors for states. Name tokens by function, not hue—<code
+									>accent/primary</code
+								>, <code>surface/raised</code>, <code>text/muted</code>.
 							</p>
-							<h2>Palette architecture</h2>
+							<h2>Build the core</h2>
 							<ul>
 								<li>
-									Define a <strong>base</strong> (neutrals), an
-									<strong>accent</strong>
-									(brand color), and a
-									<strong>semantic</strong>
-									tier (success, warning, error).
+									Choose one main accent and a calm secondary; avoid competing
+									loud colors.
 								</li>
 								<li>
-									Create 10-step scales (50–950) for each palette so you have
-									options for text, borders, and backgrounds.
-								</li>
-								<li>
-									Document usage rules: what each color is for, not just what it
-									looks like.
+									Define neutrals from background to foreground (e.g., surface,
+									panel, border, text).
 								</li>
 							</ul>
-							<h2>Light and dark mode</h2>
-							<p>
-								Define colors as semantic tokens (--color-text-primary,
-								--color-surface) that map to different palette values depending
-								on the current theme. Never hardcode a hex in a component.
-							</p>
-							<h2>Common pitfalls</h2>
+							<h2>Semantics over shades</h2>
 							<ul>
-								<li>Too many accent colors diluting hierarchy.</li>
-								<li>Insufficient contrast ratios for text on backgrounds.</li>
 								<li>
-									Using color as the only way to convey meaning (inaccessible).
+									Map states (<code>success</code>, <code>warning</code>,
+									<code>danger</code>, <code>info</code>) with accessible
+									contrast.
+								</li>
+								<li>
+									Keep hover/active states lighter or darker by a consistent
+									step.
+								</li>
+							</ul>
+							<h2>Guardrails</h2>
+							<ul>
+								<li>Limit accent usage to links, CTAs, and highlights.</li>
+								<li>
+									Test dark-on-light and light-on-dark combinations early to
+									prevent rework.
 								</li>
 							</ul>
 						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<div class="related-header bg-grid">
+						<h2>Related posts</h2>
+						<a href="../index.html" class="btn btn-light btn-md"
+							>View all posts</a
+						>
+					</div>
+					<div
+						class="card-grid-3"
+						style="border-top:1px solid var(--border-subtle)"
+					>
+						<article class="article-card">
+							<a
+								href="1.html"
+								class="card-link"
+								title="Read more: Mastering composition in web design"
+							></a>
+							<img
+								src="../../assets/img/1.CBAYcnJ0_Z177i3O.webp"
+								alt="Mastering composition in web design"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">Mastering composition in web design</h3>
+								<p class="card-desc">
+									Explore how composition principles can transform your web
+									designs into captivating, user-friendly interfaces at
+									AstroMax.
+								</p>
+							</div>
+						</article>
+						<article class="article-card">
+							<a
+								href="2.html"
+								class="card-link"
+								title="Read more: Responsive grids that stay consistent"
+							></a>
+							<img
+								src="../../assets/img/2.R0PXjBx0_1i6GBY.webp"
+								alt="Responsive grids that stay consistent"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">
+									Responsive grids that stay consistent
+								</h3>
+								<p class="card-desc">
+									Build grids that adapt to any screen without breaking rhythm
+									or readability.
+								</p>
+							</div>
+						</article>
+						<article class="article-card">
+							<a
+								href="4.html"
+								class="card-link"
+								title="Read more: Color systems that stay on brand"
+							></a>
+							<img
+								src="../../assets/img/4.CC1oR_Rj_Z2k5rqC.webp"
+								alt="Color systems that stay on brand"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">Color systems that stay on brand</h3>
+								<p class="card-desc">
+									Structure your palette so new pages feel cohesive without
+									endless approvals.
+								</p>
+							</div>
+						</article>
 					</div>
 				</div>
 			</section>
@@ -240,7 +322,7 @@
 					title: "Responsive grids that stay consistent",
 					description:
 						"Build grids that adapt to any screen without breaking rhythm or readability.",
-					pubDate: "2025-11-15T00:00:00.000Z",
+					pubDate: "2025-10-15T00:00:00.000Z",
 					slug: "blog/posts/2.html",
 					category: "Blog",
 				},
@@ -248,7 +330,7 @@
 					title: "Microcopy that actually guides action",
 					description:
 						"Write UI copy that reduces hesitation and nudges users toward confident clicks.",
-					pubDate: "2025-11-01T00:00:00.000Z",
+					pubDate: "2025-09-20T00:00:00.000Z",
 					slug: "blog/posts/3.html",
 					category: "Blog",
 				},
@@ -256,7 +338,7 @@
 					title: "Color systems that stay on brand",
 					description:
 						"Structure your palette so new pages feel cohesive without endless approvals.",
-					pubDate: "2025-10-15T00:00:00.000Z",
+					pubDate: "2025-08-05T00:00:00.000Z",
 					slug: "blog/posts/4.html",
 					category: "Blog",
 				},
@@ -264,7 +346,7 @@
 					title: "Motion that respects the user",
 					description:
 						"Use animation to clarify flow, not to decorate\u2014and keep motion accessible.",
-					pubDate: "2025-10-01T00:00:00.000Z",
+					pubDate: "2025-06-28T00:00:00.000Z",
 					slug: "blog/posts/5.html",
 					category: "Blog",
 				},
@@ -272,7 +354,7 @@
 					title: "Accessibility quick wins before launch",
 					description:
 						"Ship fast while covering the essentials: focus, contrast, and keyboard flow.",
-					pubDate: "2025-09-15T00:00:00.000Z",
+					pubDate: "2025-05-12T00:00:00.000Z",
 					slug: "blog/posts/6.html",
 					category: "Blog",
 				},

@@ -73,7 +73,8 @@
 				<div class="container section-border-b">
 					<div class="post-header bg-grid">
 						<div class="post-tags">
-							<span class="btn btn-light btn-md">animation</span>
+							<span class="btn btn-light btn-md">motion</span>
+							<span class="btn btn-light btn-md">accessibility</span>
 						</div>
 						<h1
 							class="hero-h1"
@@ -93,7 +94,7 @@
 							>
 							<span>By <a href="../../team/david-lee.html">David Lee</a></span>
 							<span>•</span>
-							<time>October 01, 2025</time>
+							<time>June 28, 2025</time>
 						</div>
 						<p class="post-description">
 							Use animation to clarify flow, not to decorate—and keep motion
@@ -111,42 +112,102 @@
 					<div class="prose-container">
 						<div class="prose">
 							<p>
-								Motion in UI can orient users, communicate state changes, and
-								add delight—but only when it serves a purpose. Decorative
-								animation that slows interaction is a liability.
+								Animation should explain what changed and where to look. If a
+								user can’t answer those two questions, the motion is noise.
 							</p>
-							<h2>Purposeful motion principles</h2>
+							<h2>Start with intent</h2>
 							<ul>
 								<li>
-									<strong>Communicate change:</strong>
-									Transitions should show what changed and where it went.
+									Use entry/exit motion to show hierarchy (primary first,
+									secondary staggered).
 								</li>
 								<li>
-									<strong>Reinforce hierarchy:</strong>
-									More important elements should animate more prominently.
-								</li>
-								<li>
-									<strong>Maintain orientation:</strong>
-									Users should always know where they came from and where
-									they're going.
+									Keep durations short: 150–250ms for small UI, 300–450ms for
+									overlays.
 								</li>
 							</ul>
-							<h2>Accessibility first</h2>
-							<p>
-								Always respect <code>prefers-reduced-motion</code>. Provide a
-								static fallback for every animation. Avoid flashing content that
-								could trigger photosensitive conditions.
-							</p>
-							<h2>Timing guidelines</h2>
+							<h2>Accessibility matters</h2>
 							<ul>
-								<li>Micro-interactions: 100–200ms</li>
-								<li>Page transitions: 200–400ms</li>
 								<li>
-									Complex reveals: 400–600ms, but only when content warrants the
-									delay
+									Respect reduced-motion preferences; swap transitions for fades
+									or instant states.
 								</li>
+								<li>
+									Avoid parallax or large translations that can induce motion
+									sickness.
+								</li>
+							</ul>
+							<h2>Helpful defaults</h2>
+							<ul>
+								<li>
+									Easing: use <code>ease-out</code> for entrances,
+									<code>ease-in</code>
+									for exits, and
+									<code>ease-in-out</code>
+									for subtle loops.
+								</li>
+								<li>Limit bounces and overshoots; clarity beats flair.</li>
 							</ul>
 						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<div class="related-header bg-grid">
+						<h2>Related posts</h2>
+						<a href="../index.html" class="btn btn-light btn-md"
+							>View all posts</a
+						>
+					</div>
+					<div
+						class="card-grid-3"
+						style="border-top:1px solid var(--border-subtle)"
+					>
+						<article class="article-card">
+							<a
+								href="5.html"
+								class="card-link"
+								title="Read more: Motion that respects the user"
+							></a>
+							<img
+								src="../../assets/img/5.CK6AtmNa_ZJfdsx.webp"
+								alt="Motion that respects the user"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">Motion that respects the user</h3>
+								<p class="card-desc">
+									Use animation to clarify flow, not to decorate—and keep motion
+									accessible.
+								</p>
+							</div>
+						</article>
+						<article class="article-card">
+							<a
+								href="6.html"
+								class="card-link"
+								title="Read more: Accessibility quick wins before launch"
+							></a>
+							<img
+								src="../../assets/img/6.BH-5ZZwo_Z1Lzsez.webp"
+								alt="Accessibility quick wins before launch"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">
+									Accessibility quick wins before launch
+								</h3>
+								<p class="card-desc">
+									Ship fast while covering the essentials: focus, contrast, and
+									keyboard flow.
+								</p>
+							</div>
+						</article>
 					</div>
 				</div>
 			</section>
@@ -239,7 +300,7 @@
 					title: "Responsive grids that stay consistent",
 					description:
 						"Build grids that adapt to any screen without breaking rhythm or readability.",
-					pubDate: "2025-11-15T00:00:00.000Z",
+					pubDate: "2025-10-15T00:00:00.000Z",
 					slug: "blog/posts/2.html",
 					category: "Blog",
 				},
@@ -247,7 +308,7 @@
 					title: "Microcopy that actually guides action",
 					description:
 						"Write UI copy that reduces hesitation and nudges users toward confident clicks.",
-					pubDate: "2025-11-01T00:00:00.000Z",
+					pubDate: "2025-09-20T00:00:00.000Z",
 					slug: "blog/posts/3.html",
 					category: "Blog",
 				},
@@ -255,7 +316,7 @@
 					title: "Color systems that stay on brand",
 					description:
 						"Structure your palette so new pages feel cohesive without endless approvals.",
-					pubDate: "2025-10-15T00:00:00.000Z",
+					pubDate: "2025-08-05T00:00:00.000Z",
 					slug: "blog/posts/4.html",
 					category: "Blog",
 				},
@@ -263,7 +324,7 @@
 					title: "Motion that respects the user",
 					description:
 						"Use animation to clarify flow, not to decorate\u2014and keep motion accessible.",
-					pubDate: "2025-10-01T00:00:00.000Z",
+					pubDate: "2025-06-28T00:00:00.000Z",
 					slug: "blog/posts/5.html",
 					category: "Blog",
 				},
@@ -271,7 +332,7 @@
 					title: "Accessibility quick wins before launch",
 					description:
 						"Ship fast while covering the essentials: focus, contrast, and keyboard flow.",
-					pubDate: "2025-09-15T00:00:00.000Z",
+					pubDate: "2025-05-12T00:00:00.000Z",
 					slug: "blog/posts/6.html",
 					category: "Blog",
 				},
