@@ -8,6 +8,14 @@
 			name="description"
 			content="Create your Agenforce account and start your journey today."
 		>
+		<script>
+		(function () {
+			try {
+				var t = localStorage.getItem("theme");
+				if (t === "dark") document.documentElement.classList.add("dark");
+			} catch (e) {}
+		})();
+		</script>
 		<link rel="stylesheet" href="assets/css/styles.css">
 	</head>
 	<body>
@@ -86,7 +94,7 @@
 								type="text"
 								id="name"
 								name="name"
-								placeholder="Your full name"
+								placeholder="John Doe"
 								autocomplete="name"
 							>
 						</div>

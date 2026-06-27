@@ -8,6 +8,14 @@
 			name="description"
 			content="Sign in to your Agenforce account to continue."
 		>
+		<script>
+		(function () {
+			try {
+				var t = localStorage.getItem("theme");
+				if (t === "dark") document.documentElement.classList.add("dark");
+			} catch (e) {}
+		})();
+		</script>
 		<link rel="stylesheet" href="assets/css/styles.css">
 	</head>
 	<body>
