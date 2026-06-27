@@ -643,7 +643,12 @@ main {
 .post-meta {
 	color: var(--muted-foreground);
 	font-size: 0.85rem;
-	margin: 0.4rem 0 2rem;
+	margin: 0.4rem 0 1rem;
+}
+.post-sep {
+	border: none;
+	border-top: 1px solid var(--border);
+	margin: 1rem 0 2rem;
 }
 .prose {
 	color: var(--muted-foreground);
@@ -730,24 +735,32 @@ main {
 }
 .next-nav {
 	display: flex;
-	justify-content: flex-end;
+	gap: 1rem;
 	margin-top: 3rem;
 }
-.next-card {
+.next-card,
+.prev-card {
 	border: 1px solid var(--border);
 	border-radius: var(--radius);
 	padding: 0.85rem 1.1rem;
 	max-width: 20rem;
 	transition: background 0.2s;
 }
-.next-card:hover {
+.next-card {
+	margin-left: auto;
+	text-align: right;
+}
+.next-card:hover,
+.prev-card:hover {
 	background: var(--accent);
 }
-.next-card .lbl {
+.next-card .lbl,
+.prev-card .lbl {
 	font-size: 0.7rem;
 	color: var(--muted-foreground);
 }
-.next-card .ttl {
+.next-card .ttl,
+.prev-card .ttl {
 	font-weight: 600;
 	font-size: 0.9rem;
 	margin-top: 0.2rem;
