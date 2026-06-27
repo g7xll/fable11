@@ -242,6 +242,32 @@
 	});
 	window.addEventListener("resize", closeAll);
 
+	/* ---- Headless UI data-attribute shim: data-hover / data-active / data-focus ---- */
+	// Tailwind v4 data-hover:* / data-active:* utilities generate CSS that checks
+	// for [data-hover] / [data-active] attributes on the element.  In the original
+	// Next.js + Headless UI app those attributes are set by Headless UI on
+	// pointer-enter/leave and press.  Here we replicate that in vanilla JS so that
+	// nav-item icon fills, background tints, and button press states all work.
+	document.querySelectorAll('[class*="data-hover:"]').forEach(function (el) {
+		el.addEventListener("mouseenter", function () {
+			el.setAttribute("data-hover", "");
+		});
+		el.addEventListener("mouseleave", function () {
+			el.removeAttribute("data-hover");
+		});
+	});
+	document.querySelectorAll('[class*="data-active:"]').forEach(function (el) {
+		el.addEventListener("mousedown", function () {
+			el.setAttribute("data-active", "");
+		});
+		el.addEventListener("mouseup", function () {
+			el.removeAttribute("data-active");
+		});
+		el.addEventListener("mouseleave", function () {
+			el.removeAttribute("data-active");
+		});
+	});
+
 	// rel path: index/auth at root -> "", detail pages -> "../"
 	const rel = document.querySelector('link[href*="assets/css/catalyst.css"]');
 	const relPath = rel
