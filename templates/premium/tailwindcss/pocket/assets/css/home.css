@@ -605,27 +605,73 @@
 	color: var(--gray-700);
 }
 
+/* background illustration spin */
+.spin-slow {
+	animation: spin 4s linear infinite;
+}
+
 /* ---------- CTA ---------- */
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
 .cta {
 	background: var(--gray-900);
 	color: #fff;
 	text-align: center;
+	position: relative;
+	overflow: hidden;
+}
+.cta__bg-wrap {
+	position: absolute;
+	top: 50%;
+	left: 5rem;
+	transform: translateY(-50%);
+	pointer-events: none;
+	z-index: 0;
+}
+@media (min-width: 640px) {
+	.cta__bg-wrap {
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+.cta__bg-arc {
+	animation: spin 6s linear infinite;
+}
+.cta .container {
+	position: relative;
+	z-index: 1;
 }
 .cta h2 {
 	font-size: 1.875rem;
 	font-weight: 500;
 	letter-spacing: -0.02em;
 }
+@media (min-width: 640px) {
+	.cta h2 {
+		font-size: 2.5rem;
+	}
+}
 .cta p {
 	margin: 1rem auto 0;
 	max-width: 36rem;
 	font-size: 1.125rem;
-	color: var(--gray-400);
+	color: var(--gray-300);
 }
 .cta__btn {
 	margin-top: 2.5rem;
 	display: flex;
 	justify-content: center;
+}
+/* CTA uses sm:py-28 (7rem), not the default sm:py-32 (8rem) */
+@media (min-width: 640px) {
+	.cta.section {
+		padding-top: 7rem;
+		padding-bottom: 7rem;
+	}
 }
 
 /* ---------- REVIEWS ---------- */
