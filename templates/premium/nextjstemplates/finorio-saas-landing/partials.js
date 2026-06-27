@@ -131,7 +131,7 @@
           <span class="plan-name">${p.name}</span>
           ${p.popular ? '<span class="pop-pill">Most Popular</span>' : ""}
         </div>
-        <div class="plan-price"><span data-monthly="${p.monthly}/month" data-annual="${p.annual}/month">${p.annual}/month</span></div>
+        <div class="plan-price"><span class="price-amount" data-monthly="${p.monthly}" data-annual="${p.annual}">${p.annual}</span><span class="price-period">/month</span></div>
         <p class="plan-desc">${p.desc}</p>
         <a href="register.html" class="btn ${p.featured ? "btn-dark" : "btn-light"} btn-block">Get Started</a>
         <ul class="plan-feats">

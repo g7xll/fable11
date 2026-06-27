@@ -336,11 +336,19 @@ h2 {
 	margin-top: 4px;
 }
 
-/* ===== Feature cards (2x2) ===== */
+/* ===== Feature cards (2x2, asymmetric 5/7 columns) ===== */
 .feature-grid {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: repeat(12, 1fr);
 	gap: 24px;
+	margin-top: 48px;
+}
+.feature-grid > .feature-card {
+	grid-column: span 7;
+}
+.feature-grid > .feature-card:first-child,
+.feature-grid > .feature-card:last-child {
+	grid-column: span 5;
 }
 .feature-card {
 	background: #fff;
@@ -646,7 +654,7 @@ h2 {
 	letter-spacing: -0.02em;
 	margin-top: 18px;
 }
-.plan-price span {
+.plan-price .price-period {
 	font-size: 15px;
 	font-weight: 400;
 	color: var(--text-tertiary);
@@ -1206,24 +1214,28 @@ h2 {
 }
 
 /* ===== Security band (features page) ===== */
-.security {
-	background: linear-gradient(150deg, #efe9fc, #e5dcfb);
-	border-radius: 28px;
-	padding: 64px;
+.security-head {
 	text-align: center;
+	max-width: 680px;
 	margin: 0 auto;
 }
-.security h2 {
+.security-head h2 {
 	font-size: clamp(26px, 3.4vw, 40px);
 	font-weight: 600;
 	letter-spacing: -0.02em;
-	max-width: 620px;
-	margin: 0 auto;
 }
-.security p {
+.security-head p {
 	color: var(--text-secondary);
 	margin: 16px auto 0;
-	max-width: 560px;
+}
+.security-img {
+	margin: 40px auto 0;
+	max-width: 602px;
+}
+.security-img img {
+	width: 100%;
+	height: auto;
+	border-radius: 12px;
 }
 
 /* ===== Small feature grid (features page) ===== */
@@ -1270,31 +1282,6 @@ h2 {
 	margin-top: 10px;
 }
 
-/* ===== Preview cards (features hero) ===== */
-.preview-grid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 24px;
-	margin-top: 48px;
-}
-.preview-card {
-	background: #fff;
-	border: 1px solid var(--border-soft);
-	border-radius: var(--radius-card);
-	padding: 28px;
-}
-.preview-card h3 {
-	font-size: 20px;
-	font-weight: 600;
-}
-.preview-card p {
-	color: var(--text-secondary);
-	margin-top: 8px;
-}
-.preview-card .feature-visual {
-	min-height: 200px;
-}
-
 /* ===== Scroll reveal ===== */
 .reveal {
 	opacity: 0;
@@ -1312,9 +1299,16 @@ h2 {
 @media (max-width: 900px) {
 	.hero-grid,
 	.exp-row,
-	.feature-grid,
 	.contact-grid {
 		grid-template-columns: 1fr;
+	}
+	.feature-grid {
+		grid-template-columns: 1fr;
+	}
+	.feature-grid > .feature-card,
+	.feature-grid > .feature-card:first-child,
+	.feature-grid > .feature-card:last-child {
+		grid-column: span 1;
 	}
 	.exp-row.reverse .exp-text,
 	.exp-row.reverse .exp-media {
@@ -1322,8 +1316,7 @@ h2 {
 	}
 	.plan-grid,
 	.testi-grid,
-	.mini-grid,
-	.preview-grid {
+	.mini-grid {
 		grid-template-columns: 1fr;
 	}
 	.stats-nums {
@@ -1378,8 +1371,8 @@ h2 {
 	.footer-top {
 		grid-template-columns: 1fr 1fr;
 	}
-	.security {
-		padding: 40px 24px;
+	.security-head {
+		padding: 0 16px;
 	}
 }
 @media (max-width: 560px) {
