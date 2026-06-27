@@ -120,7 +120,7 @@
 			white-space: nowrap;
 		}
 		.nav-cv:hover {
-			opacity: 0.85;
+			opacity: 0.8;
 		}
 		.hamburger {
 			display: none;
@@ -247,6 +247,15 @@
 				background 0.15s,
 				color 0.15s;
 			border-left: 2px solid transparent;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.work-tab img {
+			width: 20px;
+			height: 20px;
+			flex-shrink: 0;
+			object-fit: contain;
 		}
 		.work-tab:hover {
 			background: var(--bg-card);
@@ -332,26 +341,33 @@
 			border-radius: 16px;
 			overflow: hidden;
 			cursor: pointer;
-			transition:
-				border-color 0.2s,
-				transform 0.2s;
+			transition: border-color 0.2s;
 			text-decoration: none;
 			display: block;
 		}
 		.project-card:hover {
 			border-color: var(--border-subtle);
-			transform: translateY(-2px);
 		}
 		.project-card:hover .card-img-overlay {
 			opacity: 0;
 		}
+		.project-card:hover .card-img-wrap img {
+			filter: blur(0);
+			transform: scale(1.05);
+		}
 		.card-img-wrap {
 			position: relative;
+			overflow: hidden;
 		}
 		.card-img-wrap img {
 			width: 100%;
 			height: 176px;
 			object-fit: cover;
+			filter: blur(4px);
+			transform: scale(1);
+			transition:
+				filter 0.3s ease,
+				transform 0.3s ease;
 		}
 		.card-img-overlay {
 			position: absolute;
@@ -372,6 +388,41 @@
 			font-size: 13px;
 			margin-top: 8px;
 			line-height: 1.6;
+		}
+		.card-stack {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			margin-top: 16px;
+		}
+		.card-stack svg {
+			color: #6b7280;
+			width: 20px;
+			height: 20px;
+			margin-right: 16px;
+		}
+		.card-source {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 8px;
+			margin-top: 12px;
+			padding: 0 2px;
+		}
+		.card-source svg {
+			width: 12px;
+			height: 12px;
+			color: #71717a;
+			transition: color 0.2s;
+		}
+		.card-source span {
+			color: #71717a;
+			font-size: 12px;
+			transition: color 0.2s;
+		}
+		.project-card:hover .card-source svg,
+		.project-card:hover .card-source span {
+			color: var(--accent-cyan);
 		}
 
 		/* CONTRIBUTIONS */
@@ -472,36 +523,79 @@
 			color: var(--text-primary);
 			font-weight: 700;
 		}
+		.blogs-uses-grid {
+			display: grid;
+			grid-template-columns: 2fr 1fr;
+			gap: 40px;
+			margin-top: 0;
+		}
 		.blog-list {
-			margin-top: 32px;
 			display: flex;
 			flex-direction: column;
-			gap: 0;
+			gap: 64px;
+			max-width: 768px;
 		}
 		.blog-entry {
 			display: flex;
 			flex-direction: column;
 			gap: 4px;
-			padding: 24px 0;
-			border-bottom: 1px solid var(--border-subtle);
 			text-decoration: none;
 			transition: color 0.15s;
 		}
-		.blog-entry:first-child {
-			border-top: 1px solid var(--border-subtle);
-		}
 		.blog-date {
-			color: var(--text-muted);
+			color: var(--text-subtle);
 			font-size: 13px;
+			display: block;
+			border-left: 1px solid var(--border-subtle);
+			padding-left: 16px;
 		}
 		.blog-title {
-			color: var(--text-primary);
-			font-weight: 600;
+			color: var(--text-secondary);
+			font-weight: 700;
 			font-size: 18px;
+			margin-top: 16px;
 			transition: color 0.15s;
 		}
 		.blog-entry:hover .blog-title {
 			color: var(--accent-cyan);
+		}
+		.blog-excerpt {
+			color: var(--text-secondary);
+			font-size: 14px;
+			margin-top: 16px;
+			line-height: 1.8;
+			font-weight: 400;
+		}
+		.blog-readmore {
+			color: var(--accent-cyan);
+			font-size: 14px;
+			margin-top: 24px;
+			display: block;
+		}
+		.uses-col h2 {
+			font-weight: 700;
+			color: var(--text-primary);
+			font-size: 20px;
+			margin-bottom: 8px;
+		}
+		.uses-item {
+			margin: 32px 0;
+		}
+		.uses-item h4 {
+			font-size: 16px;
+			font-weight: 700;
+			color: #f4f4f5;
+		}
+		.uses-item p {
+			font-size: 14px;
+			color: var(--text-muted);
+			line-height: 1.8;
+			margin-top: 4px;
+		}
+		@media (max-width: 768px) {
+			.blogs-uses-grid {
+				grid-template-columns: 1fr;
+			}
 		}
 
 		/* FOOTER */
@@ -716,16 +810,20 @@
 				<div class="work-exp-inner">
 					<div class="work-tabs">
 						<button class="work-tab active" onclick="showWork('apple', this)">
-							Apple
+							<img src="assets/images/logos/apple.png" alt="Apple">
+							<span>Apple</span>
 						</button>
 						<button class="work-tab" onclick="showWork('google', this)">
-							Google
+							<img src="assets/images/logos/google.png" alt="Google">
+							<span>Google</span>
 						</button>
 						<button class="work-tab" onclick="showWork('microsoft', this)">
-							Microsoft
+							<img src="assets/images/logos/microsoft.png" alt="Microsoft">
+							<span>Microsoft</span>
 						</button>
 						<button class="work-tab" onclick="showWork('netflix', this)">
-							Netflix
+							<img src="assets/images/logos/netflix.png" alt="Netflix">
+							<span>Netflix</span>
 						</button>
 					</div>
 					<div style="flex:1;">
@@ -801,7 +899,7 @@
 		<!-- PROJECTS -->
 		<section>
 			<div class="projects-section">
-				<h2>What I've been building</h2>
+				<h2>I've been building a lot of things</h2>
 				<p class="subtitle">
 					I've been building a lot of things. Here are some of them.
 				</p>
@@ -822,6 +920,103 @@
 								A web app that allows users to practice for front-end and UI
 								interviews.
 							</div>
+							<div class="card-stack">
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+									<path d="M15 12v-3"></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M15 17.5c.32 .32 .754 .5 1.207 .5h.543c.69 0 1.25 -.56 1.25 -1.25v-.25a1.5 1.5 0 0 0 -1.5 -1.5a1.5 1.5 0 0 1 -1.5 -1.5v-.25c0 -.69 .56 -1.25 1.25 -1.25h.543c.453 0 .887 .18 1.207 .5"
+									></path>
+									<path d="M9 12h4"></path>
+									<path d="M11 12v6"></path>
+									<path
+										d="M21 19v-14a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"
+									></path>
+									<path
+										d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"
+									></path>
+									<path
+										d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"
+									></path>
+									<path
+										d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"
+									></path>
+									<path
+										d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"
+									></path>
+									<path
+										d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
+									></path>
+									<path
+										d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+									></path>
+								</svg>
+							</div>
+							<div class="card-source">
+								<svg
+									stroke="currentColor"
+									fill="currentColor"
+									stroke-width="0"
+									viewBox="0 0 16 16"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"
+									></path>
+									<path
+										d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"
+									></path>
+								</svg>
+								<span>View Source</span>
+							</div>
 						</div>
 					</a>
 					<a
@@ -839,6 +1034,103 @@
 							<div class="card-desc">
 								A web design and development agency that gets the job done.
 								Somehow.
+							</div>
+							<div class="card-stack">
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+									<path d="M15 12v-3"></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M15 17.5c.32 .32 .754 .5 1.207 .5h.543c.69 0 1.25 -.56 1.25 -1.25v-.25a1.5 1.5 0 0 0 -1.5 -1.5a1.5 1.5 0 0 1 -1.5 -1.5v-.25c0 -.69 .56 -1.25 1.25 -1.25h.543c.453 0 .887 .18 1.207 .5"
+									></path>
+									<path d="M9 12h4"></path>
+									<path d="M11 12v6"></path>
+									<path
+										d="M21 19v-14a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"
+									></path>
+									<path
+										d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"
+									></path>
+									<path
+										d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"
+									></path>
+									<path
+										d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"
+									></path>
+									<path
+										d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"
+									></path>
+									<path
+										d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
+									></path>
+									<path
+										d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+									></path>
+								</svg>
+							</div>
+							<div class="card-source">
+								<svg
+									stroke="currentColor"
+									fill="currentColor"
+									stroke-width="0"
+									viewBox="0 0 16 16"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"
+									></path>
+									<path
+										d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"
+									></path>
+								</svg>
+								<span>View Source</span>
 							</div>
 						</div>
 					</a>
@@ -861,6 +1153,103 @@
 								Buy premium tailwind components and templates for your next
 								project.
 							</div>
+							<div class="card-stack">
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+									<path d="M15 12v-3"></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M15 17.5c.32 .32 .754 .5 1.207 .5h.543c.69 0 1.25 -.56 1.25 -1.25v-.25a1.5 1.5 0 0 0 -1.5 -1.5a1.5 1.5 0 0 1 -1.5 -1.5v-.25c0 -.69 .56 -1.25 1.25 -1.25h.543c.453 0 .887 .18 1.207 .5"
+									></path>
+									<path d="M9 12h4"></path>
+									<path d="M11 12v6"></path>
+									<path
+										d="M21 19v-14a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"
+									></path>
+									<path
+										d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"
+									></path>
+									<path
+										d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"
+									></path>
+									<path
+										d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"
+									></path>
+									<path
+										d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"
+									></path>
+									<path
+										d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
+									></path>
+									<path
+										d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+									></path>
+								</svg>
+							</div>
+							<div class="card-source">
+								<svg
+									stroke="currentColor"
+									fill="currentColor"
+									stroke-width="0"
+									viewBox="0 0 16 16"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"
+									></path>
+									<path
+										d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"
+									></path>
+								</svg>
+								<span>View Source</span>
+							</div>
 						</div>
 					</a>
 					<a
@@ -881,6 +1270,103 @@
 							<div class="card-desc">
 								Copy and paste beautiful box shadows that stand out for your
 								next project.
+							</div>
+							<div class="card-stack">
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+									<path d="M15 12v-3"></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M15 17.5c.32 .32 .754 .5 1.207 .5h.543c.69 0 1.25 -.56 1.25 -1.25v-.25a1.5 1.5 0 0 0 -1.5 -1.5a1.5 1.5 0 0 1 -1.5 -1.5v-.25c0 -.69 .56 -1.25 1.25 -1.25h.543c.453 0 .887 .18 1.207 .5"
+									></path>
+									<path d="M9 12h4"></path>
+									<path d="M11 12v6"></path>
+									<path
+										d="M21 19v-14a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"
+									></path>
+									<path
+										d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"
+									></path>
+									<path
+										d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"
+									></path>
+									<path
+										d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"
+									></path>
+									<path
+										d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"
+									></path>
+									<path
+										d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
+									></path>
+									<path
+										d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+									></path>
+								</svg>
+							</div>
+							<div class="card-source">
+								<svg
+									stroke="currentColor"
+									fill="currentColor"
+									stroke-width="0"
+									viewBox="0 0 16 16"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"
+									></path>
+									<path
+										d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"
+									></path>
+								</svg>
+								<span>View Source</span>
 							</div>
 						</div>
 					</a>
@@ -903,6 +1389,103 @@
 								Your one-stop shop for web app needs tailored to your
 								requirements.
 							</div>
+							<div class="card-stack">
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M9 15v-6l7.745 10.65a9 9 0 1 1 2.255 -1.993"></path>
+									<path d="M15 12v-3"></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M11.667 6c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 2 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968zm-4 6.5c-2.49 0 -4.044 1.222 -4.667 3.667c.933 -1.223 2.023 -1.68 3.267 -1.375c.71 .174 1.217 .68 1.778 1.24c.916 .912 1.975 1.968 4.288 1.968c2.49 0 4.044 -1.222 4.667 -3.667c-.933 1.223 -2.023 1.68 -3.267 1.375c-.71 -.174 -1.217 -.68 -1.778 -1.24c-.916 -.912 -1.975 -1.968 -4.288 -1.968z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M15 17.5c.32 .32 .754 .5 1.207 .5h.543c.69 0 1.25 -.56 1.25 -1.25v-.25a1.5 1.5 0 0 0 -1.5 -1.5a1.5 1.5 0 0 1 -1.5 -1.5v-.25c0 -.69 .56 -1.25 1.25 -1.25h.543c.453 0 .887 .18 1.207 .5"
+									></path>
+									<path d="M9 12h4"></path>
+									<path d="M11 12v6"></path>
+									<path
+										d="M21 19v-14a2 2 0 0 0 -2 -2h-14a2 2 0 0 0 -2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2 -2z"
+									></path>
+								</svg>
+								<svg
+									stroke="currentColor"
+									fill="none"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path
+										d="M6.306 8.711c-2.602 .723 -4.306 1.926 -4.306 3.289c0 2.21 4.477 4 10 4c.773 0 1.526 -.035 2.248 -.102"
+									></path>
+									<path
+										d="M17.692 15.289c2.603 -.722 4.308 -1.926 4.308 -3.289c0 -2.21 -4.477 -4 -10 -4c-.773 0 -1.526 .035 -2.25 .102"
+									></path>
+									<path
+										d="M6.305 15.287c-.676 2.615 -.485 4.693 .695 5.373c1.913 1.105 5.703 -1.877 8.464 -6.66c.387 -.67 .733 -1.339 1.036 -2"
+									></path>
+									<path
+										d="M17.694 8.716c.677 -2.616 .487 -4.696 -.694 -5.376c-1.913 -1.105 -5.703 1.877 -8.464 6.66c-.387 .67 -.733 1.34 -1.037 2"
+									></path>
+									<path
+										d="M12 5.424c-1.925 -1.892 -3.82 -2.766 -5 -2.084c-1.913 1.104 -1.226 5.877 1.536 10.66c.386 .67 .793 1.304 1.212 1.896"
+									></path>
+									<path
+										d="M12 18.574c1.926 1.893 3.821 2.768 5 2.086c1.913 -1.104 1.226 -5.877 -1.536 -10.66c-.375 -.65 -.78 -1.283 -1.212 -1.897"
+									></path>
+									<path
+										d="M11.5 12.866a1 1 0 1 0 1 -1.732a1 1 0 0 0 -1 1.732z"
+									></path>
+								</svg>
+							</div>
+							<div class="card-source">
+								<svg
+									stroke="currentColor"
+									fill="currentColor"
+									stroke-width="0"
+									viewBox="0 0 16 16"
+									xmlns="http://www.w3.org/2000/svg"
+								>
+									<path
+										d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"
+									></path>
+									<path
+										d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"
+									></path>
+								</svg>
+								<span>View Source</span>
+							</div>
 						</div>
 					</a>
 				</div>
@@ -912,7 +1495,7 @@
 		<!-- CONTRIBUTIONS -->
 		<section>
 			<div class="contrib-section">
-				<h2>Open Source Contributions</h2>
+				<h2>Latest contributions to open source</h2>
 				<p class="subtitle">
 					I love contributing to open source. Here are some of my contributions.
 				</p>
@@ -1313,16 +1896,62 @@
 		<!-- BLOGS -->
 		<section>
 			<div class="blogs-section">
-				<h2>Latest blogs</h2>
-				<div class="blog-list">
-					<a href="blogs.html" class="blog-entry">
-						<div class="blog-date">November 28, 2022</div>
-						<h3 class="blog-title">What is a website template</h3>
-					</a>
-					<a href="blogs.html" class="blog-entry">
-						<div class="blog-date">September 2, 2022</div>
-						<h3 class="blog-title">What is a blog anyway</h3>
-					</a>
+				<div class="blogs-uses-grid">
+					<div class="blog-list">
+						<a href="blog-what-is-a-website-template.html" class="blog-entry">
+							<small class="blog-date">November 28, 2022</small>
+							<h2 class="blog-title">What is a website template</h2>
+							<p class="blog-excerpt">
+								A website template is a pre-designed website that can be
+								customized to suit your needs. In this post, we’ll take a look
+								at what a website template is and why it can be a great creative
+								outlet for writers
+							</p>
+							<span class="blog-readmore">Read More</span>
+						</a>
+						<a href="blog-what-is-a-blog-anyway.html" class="blog-entry">
+							<small class="blog-date">September 2, 2022</small>
+							<h2 class="blog-title">What is a blog anyway</h2>
+							<p class="blog-excerpt">
+								A blog is a website that is updated regularly with new content.
+								It is a great way to share your thoughts and ideas with the
+								world. In this blog post, we will discuss what a blog is and how
+								to create one.
+							</p>
+							<span class="blog-readmore">Read More</span>
+						</a>
+					</div>
+					<div class="uses-col">
+						<h2>Uses</h2>
+						<div class="uses-item">
+							<h4>16 Inch M2 MacBook Pro</h4>
+							<p>
+								My main machine for development that I've been using for over 6
+								months now. Such a beast of a machine. I love it.
+							</p>
+						</div>
+						<div class="uses-item">
+							<h4>iPad Pro 12.9</h4>
+							<p>
+								Overrated in my opinion. I use it for reading books and watching
+								movies. I don't use it for development.
+							</p>
+						</div>
+						<div class="uses-item">
+							<h4>Keychron K2</h4>
+							<p>
+								My main keyboard for development. I love the clicky keys and the
+								compact size. I use it with a Logitech MX Master 3 mouse.
+							</p>
+						</div>
+						<div class="uses-item">
+							<h4>Logitech MX Master 3</h4>
+							<p>
+								My main mouse for development. I love the scroll wheel and the
+								thumb buttons. I use it with a Keychron K2 keyboard.
+							</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

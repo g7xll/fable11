@@ -180,26 +180,27 @@
 			margin-top: 64px;
 			display: flex;
 			flex-direction: column;
+			gap: 48px;
 		}
 		.blog-entry {
-			display: flex;
-			gap: 32px;
-			padding: 40px 0;
-			border-bottom: 1px solid var(--border-subtle);
-		}
-		.blog-entry:first-child {
-			border-top: 1px solid var(--border-subtle);
-		}
-		.blog-date-col {
-			min-width: 140px;
-			padding-top: 4px;
+			display: block;
 		}
 		.blog-date {
+			display: flex;
+			align-items: center;
 			color: var(--text-subtle);
 			font-size: 13px;
 		}
+		.blog-accent-bar {
+			display: inline-block;
+			width: 2px;
+			height: 16px;
+			border-radius: 9999px;
+			background: var(--text-secondary);
+			margin-right: 12px;
+		}
 		.blog-content {
-			flex: 1;
+			margin-top: 12px;
 		}
 		.blog-title {
 			font-weight: 700;
@@ -330,13 +331,6 @@
 			.hamburger {
 				display: block;
 			}
-			.blog-entry {
-				flex-direction: column;
-				gap: 8px;
-			}
-			.blog-date-col {
-				min-width: unset;
-			}
 		}
 		</style>
 	</head>
@@ -387,18 +381,22 @@
 		<!-- BLOGS PAGE -->
 		<section class="blogs-page">
 			<h1>
-				All of my long-form thoughts on programming, leadership, product design,
-				and more, collected in chronological order.
+				All of my
+				<span style="color: var(--accent-cyan);">Technical Knowledge</span>
+				in one place
 			</h1>
 			<p class="sub-heading">
-				I'm obsessed with writing bad code. I'm also obsessed with writing...
+				I'm obsessed with writing bad code. I'm also obsessed with writing.
+				Here, I write about my experiences with code and the things I've learned
+				along the way.
 			</p>
 
 			<div class="blog-list">
-				<div class="blog-entry">
-					<div class="blog-date-col">
-						<span class="blog-date">November 28, 2022</span>
-					</div>
+				<a href="blog-what-is-a-website-template.html" class="blog-entry">
+					<span class="blog-date">
+						<span class="blog-accent-bar"></span>
+						November 28, 2022
+					</span>
 					<div class="blog-content">
 						<h2 class="blog-title">What is a website template</h2>
 						<p class="blog-summary">
@@ -407,7 +405,7 @@
 							what a website template is and why it can be a great creative
 							outlet for writers
 						</p>
-						<a href="#" class="blog-read-more">
+						<span class="blog-read-more">
 							Read More
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -424,14 +422,15 @@
 									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
 								/>
 							</svg>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 
-				<div class="blog-entry">
-					<div class="blog-date-col">
-						<span class="blog-date">September 2, 2022</span>
-					</div>
+				<a href="blog-what-is-a-blog-anyway.html" class="blog-entry">
+					<span class="blog-date">
+						<span class="blog-accent-bar"></span>
+						September 2, 2022
+					</span>
 					<div class="blog-content">
 						<h2 class="blog-title">What is a blog anyway</h2>
 						<p class="blog-summary">
@@ -440,7 +439,7 @@
 							this blog post, we will discuss what a blog is and how to create
 							one.
 						</p>
-						<a href="#" class="blog-read-more">
+						<span class="blog-read-more">
 							Read More
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -457,9 +456,9 @@
 									d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
 								/>
 							</svg>
-						</a>
+						</span>
 					</div>
-				</div>
+				</a>
 			</div>
 		</section>
 
