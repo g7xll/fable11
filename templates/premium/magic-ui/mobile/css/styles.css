@@ -120,14 +120,39 @@ button {
 	position: sticky;
 	top: 0;
 	z-index: 50;
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(8px);
+	width: 100%;
+}
+.header-inner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	max-width: var(--maxw);
-	margin: 0 auto;
-	padding: 18px 24px;
-	background: rgba(255, 255, 255, 0.7);
-	backdrop-filter: blur(8px);
+	padding: 8px 24px;
+}
+.header-hr {
+	border: none;
+	border-top: 1px solid var(--gray-200);
+	margin: 0;
+}
+.header-desktop {
+	display: none;
+}
+@media (min-width: 1024px) {
+	.header-desktop {
+		display: flex;
+	}
+}
+.header-mobile-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--ink);
+}
+@media (min-width: 1024px) {
+	.header-mobile-btn {
+		display: none;
+	}
 }
 .brand {
 	display: flex;
@@ -184,43 +209,34 @@ button {
 	width: 160px;
 }
 
-/* ---------- hero phone marquee ---------- */
-.phone-marquee {
+/* ---------- hero phones (5-device parallax row) ---------- */
+.hero-phones-wrap {
 	margin-top: 60px;
 	overflow: hidden;
-	position: relative;
 }
-.phone-marquee::before,
-.phone-marquee::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	width: 12%;
-	z-index: 2;
-	pointer-events: none;
-}
-.phone-marquee::before {
-	left: 0;
-	background: linear-gradient(90deg, #fff, transparent);
-}
-.phone-marquee::after {
-	right: 0;
-	background: linear-gradient(270deg, #fff, transparent);
-}
-.phone-row {
+.hero-phones {
 	display: flex;
-	gap: 24px;
-	width: max-content;
-	will-change: transform;
+	align-items: center;
+	justify-content: center;
+	gap: 16px;
 }
-.phone-row img {
-	width: 230px;
-	height: auto;
-	flex: none;
+@media (min-width: 640px) {
+	.hero-phones {
+		gap: 32px;
+	}
 }
-.phone-row + .phone-row {
-	margin-top: 24px;
+.hero-phones img {
+	width: 160px;
+	height: 333px;
+	flex-shrink: 0;
+	object-fit: cover;
+	object-position: top;
+}
+@media (min-width: 640px) {
+	.hero-phones img {
+		width: 256px;
+		height: 500px;
+	}
 }
 
 /* ---------- sticky feature rows ---------- */
@@ -232,8 +248,13 @@ button {
 	min-height: 90vh;
 	padding: 40px 0;
 }
-.feature-row.reverse .feat-text {
+/* default: phone left, text right */
+.feature-row .feat-text {
 	order: 2;
+}
+/* reverse: text left, phone right (DOM order wins) */
+.feature-row.reverse .feat-text {
+	order: 0;
 }
 .feat-text h2 {
 	font-size: clamp(40px, 5vw, 60px);
@@ -260,78 +281,134 @@ button {
 
 /* generic phone group rows (experience) */
 .phone-strip {
-	display: flex;
-	gap: 24px;
-	justify-content: center;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+	margin-top: 56px;
 }
 .phone-strip img {
-	width: 220px;
+	width: 100%;
 	height: auto;
 }
 
 /* ---------- benefits bento ---------- */
-.bento {
+.bento-grid {
 	display: grid;
-	grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr;
 	gap: 16px;
 	margin-top: 56px;
+	max-width: 768px;
+	margin-left: auto;
+	margin-right: auto;
 }
-.bento .cell {
+@media (min-width: 768px) {
+	.bento-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+	.bento-cell-wide {
+		grid-column: 1 / -1;
+	}
+}
+.bento-cell {
 	background: var(--gray-50);
 	border-radius: 24px;
-	padding: 28px;
+	padding: 24px 24px 0;
 	overflow: hidden;
-	position: relative;
 }
-.bento .cell h3 {
-	font-size: 22px;
+.bento-cell h3 {
+	font-size: 20px;
 	font-weight: 700;
+	margin-bottom: 8px;
 }
-.bento .cell p {
-	margin-top: 10px;
+.bento-cell p {
+	font-size: 14px;
 	color: var(--muted-2);
-	font-size: 16px;
 	line-height: 1.5;
-	max-width: 560px;
+	margin-bottom: 16px;
 }
-.bento .cell img {
-	margin: 24px auto 0;
-	width: 280px;
+.bento-cell img {
+	width: 100%;
+	height: 256px;
+	object-fit: cover;
+	object-position: top;
+	border-radius: 12px;
+	display: block;
 }
-.bento .cell.tall {
-	grid-row: span 2;
-}
-.bento-2 {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 16px;
-	margin-top: 16px;
+@media (min-width: 640px) {
+	.bento-cell img {
+		height: 384px;
+	}
 }
 
-/* ---------- benefits carousel ---------- */
-.carousel {
-	margin-top: 56px;
-	overflow: hidden;
-	position: relative;
+/* ---------- benefits carousel (scroll-snap) ---------- */
+.carousel-section {
+	background: var(--gray-50);
 }
-.carousel-track {
+.carousel-section .container {
+	padding-bottom: 0;
+}
+.carousel-scroll {
 	display: flex;
-	gap: 28px;
-	transition: transform 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	gap: 16px;
+	margin-top: 56px;
+	scrollbar-width: none;
+	-webkit-overflow-scrolling: touch;
 }
-.carousel-slide {
-	flex: 0 0 calc((100% - 56px) / 3);
-	text-align: left;
+.carousel-scroll::-webkit-scrollbar {
+	display: none;
 }
-.carousel-slide img {
+.carousel-spacer {
+	flex-shrink: 0;
+	width: 16px;
+	display: none;
+}
+@media (min-width: 768px) {
+	.carousel-spacer {
+		display: block;
+	}
+}
+.carousel-scroll-slide {
+	flex-shrink: 0;
+	width: calc(90% - 1rem);
+	scroll-snap-align: start;
+}
+@media (min-width: 768px) {
+	.carousel-scroll-slide {
+		width: calc(33.333% - 11px);
+	}
+}
+.carousel-img-wrap {
+	height: 500px;
+	position: relative;
+	border-radius: 12px;
+	overflow: hidden;
+}
+.carousel-scroll-img {
+	position: absolute;
+	inset: 0;
 	width: 100%;
-	max-width: 300px;
-	margin: 0 auto;
+	height: 100%;
+	object-fit: cover;
+	object-position: 0px 10px;
+	transition: object-position 0.3s;
 }
-.carousel-slide p {
-	margin-top: 22px;
-	font-size: 19px;
+.carousel-scroll-img:hover {
+	object-position: top;
+}
+.carousel-gradient {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 33.333%;
+	background: linear-gradient(to top, var(--gray-50), transparent);
+	pointer-events: none;
+}
+.carousel-caption {
+	margin-top: 16px;
+	font-size: clamp(16px, 2vw, 20px);
 	font-weight: 500;
 	line-height: 1.35;
 }
@@ -340,6 +417,7 @@ button {
 	gap: 12px;
 	justify-content: flex-end;
 	margin-top: 32px;
+	padding-right: 128px;
 }
 .carousel-nav button {
 	width: 42px;
@@ -354,10 +432,6 @@ button {
 }
 .carousel-nav button:hover {
 	background: var(--gray-100);
-}
-.carousel-nav button:disabled {
-	opacity: 0.35;
-	cursor: default;
 }
 .carousel-nav svg {
 	width: 18px;
@@ -409,41 +483,31 @@ button {
 	opacity: 0.7;
 }
 
-/* ---------- testimonials vertical marquee ---------- */
+/* ---------- testimonials masonry columns (matches reference) ---------- */
 .testi-cols {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	columns: 1;
 	gap: 16px;
 	margin-top: 56px;
-	height: 640px;
-	overflow: hidden;
-	position: relative;
-	-webkit-mask-image: linear-gradient(
-		transparent,
-		#000 12%,
-		#000 88%,
-		transparent
-	);
-	mask-image: linear-gradient(transparent, #000 12%, #000 88%, transparent);
+	padding: 40px 0;
 }
-.testi-col {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
+@media (min-width: 640px) {
+	.testi-cols {
+		columns: 2;
+	}
 }
-.testi-col .marquee-inner {
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	animation: marquee-vertical var(--duration, 40s) linear infinite;
+@media (min-width: 1024px) {
+	.testi-cols {
+		columns: 3;
+	}
 }
-.testi-col.reverse .marquee-inner {
-	animation-direction: reverse;
-}
-.testi-cols:hover .marquee-inner {
-	animation-play-state: paused;
+@media (min-width: 1280px) {
+	.testi-cols {
+		columns: 4;
+	}
 }
 .testi-card {
+	break-inside: avoid;
+	margin-bottom: 16px;
 	background: var(--gray-50);
 	border: 1px solid var(--gray-100);
 	border-radius: 16px;
@@ -475,12 +539,13 @@ button {
 	line-height: 1.5;
 }
 
-@keyframes marquee-vertical {
+/* ---------- horizontal marquee (CTA tweets) ---------- */
+@keyframes marquee {
 	0% {
-		transform: translateY(0);
+		transform: translateX(0);
 	}
 	100% {
-		transform: translateY(calc(-100% - 16px));
+		transform: translateX(calc(-100% - 16px));
 	}
 }
 
@@ -593,38 +658,79 @@ button {
 	text-align: center;
 	overflow: hidden;
 }
-.cta-tweets {
+
+/* CTA tweets — rotating horizontal marquee */
+.cta-tweets-wrap {
 	position: absolute;
 	inset: 0;
+	overflow: hidden;
 	pointer-events: none;
-}
-.cta-tweet {
-	position: absolute;
-	background: #fff;
-	border: 1px solid var(--gray-200);
-	border-radius: 12px;
-	padding: 10px 12px;
-	width: 180px;
-	font-size: 11px;
-	color: var(--muted);
-	opacity: 0.55;
-	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
-}
-.cta-tweet .h {
 	display: flex;
 	align-items: center;
-	gap: 6px;
-	margin-bottom: 4px;
+	justify-content: center;
 }
-.cta-tweet .h img {
-	width: 18px;
-	height: 18px;
-	border-radius: 999px;
+.cta-tweets-rotate {
+	transform: rotate(35deg);
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 140%;
 }
-.cta-tweet .h b {
-	font-size: 11px;
+.cta-marquee-row {
+	display: flex;
+	gap: 16px;
+	overflow: hidden;
+}
+.cta-marquee-track {
+	display: flex;
+	gap: 16px;
+	flex-shrink: 0;
+	animation: marquee 20s linear infinite;
+}
+.cta-marquee-row.cta-marquee-reverse .cta-marquee-track {
+	animation-direction: reverse;
+}
+.cta-tweets-wrap:hover .cta-marquee-track {
+	animation-play-state: paused;
+}
+.cta-tweet-card {
+	width: 256px;
+	flex-shrink: 0;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.1);
+	border-radius: 24px;
+	padding: 16px;
+	cursor: pointer;
+	text-align: left;
+}
+.cta-tweet-card:hover {
+	background: rgba(0, 0, 0, 0.02);
+}
+.cta-tweet-header {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin-bottom: 8px;
+}
+.cta-tweet-header img {
+	border-radius: 50%;
+}
+.cta-tweet-name {
+	font-size: 14px;
+	font-weight: 500;
+	display: block;
+}
+.cta-tweet-handle {
+	font-size: 12px;
+	color: var(--muted);
+}
+.cta-tweet-text {
+	font-size: 14px;
 	color: var(--ink);
+	line-height: 1.4;
+	font-style: normal;
 }
+
 .cta-logo {
 	position: relative;
 	z-index: 2;
@@ -663,12 +769,21 @@ button {
 /* ---------- footer ---------- */
 .footer {
 	border-top: 1px solid var(--gray-100);
-	padding: 28px 0;
+	padding: 20px 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	border-radius: 8px;
+}
+.footer-top {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	flex-wrap: wrap;
-	gap: 16px;
+}
+.footer-bottom {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .footer .brand {
 	font-size: 18px;
@@ -694,13 +809,8 @@ button {
 }
 
 /* ---------- reveal ---------- */
-.reveal {
-	opacity: 0;
-	transform: translateY(28px);
-	transition:
-		opacity 0.8s ease,
-		transform 0.8s ease;
-}
+/* Initial hide/show is JS-driven (inline styles); no CSS opacity:0 so
+   server-render and Playwright fullPage captures stay visible. */
 .reveal.in {
 	opacity: 1;
 	transform: none;
@@ -708,12 +818,14 @@ button {
 
 /* ---------- responsive ---------- */
 @media (max-width: 900px) {
-	.feature-row,
-	.feature-row.reverse .feat-text {
+	.feature-row {
 		grid-template-columns: 1fr;
-		order: initial;
 		min-height: auto;
 		text-align: center;
+	}
+	.feature-row .feat-text,
+	.feature-row.reverse .feat-text {
+		order: initial;
 	}
 	.feat-text p {
 		margin-left: auto;
@@ -722,32 +834,15 @@ button {
 	.feat-phone img {
 		position: static;
 	}
-	.bento,
-	.bento-2,
 	.pricing-grid {
 		grid-template-columns: 1fr;
-	}
-	.bento .cell.tall {
-		grid-row: auto;
 	}
 	.feat-grid {
 		grid-template-columns: 1fr 1fr;
 	}
-	.carousel-slide {
-		flex: 0 0 calc((100% - 28px) / 2);
-	}
-	.testi-cols {
-		grid-template-columns: repeat(2, 1fr);
-	}
 }
 @media (max-width: 560px) {
 	.feat-grid {
-		grid-template-columns: 1fr;
-	}
-	.carousel-slide {
-		flex: 0 0 100%;
-	}
-	.testi-cols {
 		grid-template-columns: 1fr;
 	}
 	.header .brand span,

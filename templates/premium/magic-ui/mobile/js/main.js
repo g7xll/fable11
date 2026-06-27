@@ -1,63 +1,62 @@
 // ===== Magic UI "Mobile" (Cal AI) clone — behavior =====
 
-// ---- Hero phone marquee (two rows, scroll-linked horizontal drift) ----
-const devices = [1, 2, 3, 4, 5, 6, 7, 8];
-function fillRow(el, order) {
-	const list = order.concat(order); // duplicate for continuity
-	el.innerHTML = list
-		.map((n) => `<img src="./assets/Device-${n}.png" alt="" loading="lazy" />`)
-		.join("");
-}
-const rowA = document.getElementById("row-a");
-const rowB = document.getElementById("row-b");
-fillRow(rowA, devices);
-fillRow(rowB, [...devices].reverse());
+// ---- Hero phones (5 devices, scroll-linked vertical parallax) ----
+const heroPhones = document.querySelectorAll(".hero-phones img");
+const baseOffsets = [100, 50, 0, 50, 100];
+heroPhones.forEach((img, i) => {
+	img.style.transform = `translateY(${baseOffsets[i]}px)`;
+});
 
+// ---- Experience phones (scroll-linked vertical parallax) ----
+const expPhoneData = [
+	{ el: document.getElementById("exp-phone-1"), base: 150 },
+	{ el: document.getElementById("exp-phone-2"), base: 200 },
+	{ el: document.getElementById("exp-phone-3"), base: 250 },
+];
+expPhoneData.forEach(({ el, base }) => {
+	if (el) el.style.transform = `translateY(${base}px)`;
+});
+
+// ---- Combined scroll handler ----
 let ticking = false;
 function onScroll() {
 	if (ticking) return;
 	ticking = true;
 	requestAnimationFrame(() => {
 		const y = window.scrollY;
-		rowA.style.transform = `translateX(${-y * 0.25}px)`;
-		rowB.style.transform = `translateX(${-300 + y * 0.25}px)`;
+
+		// Hero phones parallax
+		heroPhones.forEach((img, i) => {
+			const factor = baseOffsets[i] / 100;
+			img.style.transform = `translateY(${baseOffsets[i] - y * factor * 0.1}px)`;
+		});
+
+		// Experience phones parallax
+		expPhoneData.forEach(({ el, base }) => {
+			if (!el) return;
+			const factor = base / 250;
+			el.style.transform = `translateY(${Math.max(0, base - y * factor * 0.3)}px)`;
+		});
+
 		ticking = false;
 	});
 }
 window.addEventListener("scroll", onScroll, { passive: true });
 onScroll();
 
-// ---- Benefits carousel (embla-style) ----
-const track = document.getElementById("carousel-track");
-const slides = track.children.length;
+// ---- Benefits carousel (scroll-snap, scrollBy navigation) ----
+const scrollEl = document.getElementById("carousel-scroll");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
-let index = 0;
-function visiblePerView() {
-	const w = window.innerWidth;
-	if (w <= 560) return 1;
-	if (w <= 900) return 2;
-	return 3;
+
+if (scrollEl && prevBtn && nextBtn) {
+	prevBtn.addEventListener("click", () => {
+		scrollEl.scrollBy({ left: -scrollEl.clientWidth / 3, behavior: "smooth" });
+	});
+	nextBtn.addEventListener("click", () => {
+		scrollEl.scrollBy({ left: scrollEl.clientWidth / 3, behavior: "smooth" });
+	});
 }
-function updateCarousel() {
-	const per = visiblePerView();
-	const maxIndex = Math.max(0, slides - per);
-	index = Math.min(index, maxIndex);
-	const slideW = track.children[0].getBoundingClientRect().width + 28;
-	track.style.transform = `translateX(${-index * slideW}px)`;
-	prevBtn.disabled = index <= 0;
-	nextBtn.disabled = index >= maxIndex;
-}
-prevBtn.addEventListener("click", () => {
-	index--;
-	updateCarousel();
-});
-nextBtn.addEventListener("click", () => {
-	index++;
-	updateCarousel();
-});
-window.addEventListener("resize", updateCarousel);
-updateCarousel();
 
 // ---- Testimonials vertical marquee (4 columns, alternating) ----
 const testimonials = [
@@ -187,21 +186,13 @@ const testimonials = [
 		"The AI-driven project timeline suggestions have kept our team ahead of deadlines.",
 	],
 ];
-function card(t, i) {
-	const img = `./assets/avatars/p${(i % 9) + 1}.jpg`;
-	return `<div class="testi-card"><div class="top"><img src="${img}" alt="" loading="lazy"/><div><div class="name">${t[0]}</div><div class="role">${t[1]}</div></div></div><div class="quote">${t[2]}</div></div>`;
-}
-const cols = document.getElementById("testi-cols");
-const NCOL = 4;
-const durations = [40, 50, 36, 46];
-for (let c = 0; c < NCOL; c++) {
-	const col = document.createElement("div");
-	col.className = "testi-col" + (c % 2 ? " reverse" : "");
-	const items = testimonials.filter((_, i) => i % NCOL === c);
-	const html = items.map((t, i) => card(t, c * 6 + i)).join("");
-	col.innerHTML = `<div class="marquee-inner" style="--duration:${durations[c]}s">${html}${html}</div>`;
-	cols.appendChild(col);
-}
+// Masonry columns layout (CSS handles columns, just render all cards)
+document.getElementById("testi-cols").innerHTML = testimonials
+	.map((t, i) => {
+		const img = `./assets/avatars/p${(i % 9) + 1}.jpg`;
+		return `<div class="testi-card"><div class="top"><img src="${img}" alt="" loading="lazy"/><div><div class="name">${t[0]}</div><div class="role">${t[1]}</div></div></div><div class="quote">${t[2]}</div></div>`;
+	})
+	.join("");
 
 // ---- FAQ accordion (height-animated) ----
 const faqs = [
@@ -255,71 +246,29 @@ faqList.querySelectorAll(".faq-item").forEach((item) => {
 	});
 });
 
-// ---- CTA floating tweets ----
-const tweets = [
-	[
-		"John",
-		"@john",
-		"I'm at a loss for words. This is amazing. I love it.",
-		"john",
-	],
-	[
-		"Jenny",
-		"@jenny",
-		"I'm at a loss for words. This is amazing. I love it.",
-		"jenny",
-	],
-	[
-		"Jack",
-		"@jack",
-		"I've never seen anything like this before. It's amazing. I love it.",
-		"jack",
-	],
-	[
-		"James",
-		"@james",
-		"I'm at a loss for words. This is amazing. I love it.",
-		"james",
-	],
-	[
-		"Jill",
-		"@jill",
-		"I don't know what to say. I'm speechless. This is amazing.",
-		"jill",
-	],
-	[
-		"Jane",
-		"@jane",
-		"I'm at a loss for words. This is amazing. I love it.",
-		"jane",
-	],
-];
-const positions = [
-	{ top: "18%", left: "8%", rot: -14 },
-	{ top: "55%", left: "5%", rot: 10 },
-	{ top: "26%", left: "26%", rot: -8 },
-	{ top: "18%", right: "26%", rot: 9 },
-	{ top: "58%", right: "20%", rot: -10 },
-	{ top: "30%", right: "6%", rot: 13 },
-];
-document.getElementById("cta-tweets").innerHTML = tweets
-	.map((t, i) => {
-		const p = positions[i];
-		const pos = `top:${p.top};${p.left ? "left:" + p.left : "right:" + p.right};transform:rotate(${p.rot}deg)`;
-		return `<div class="cta-tweet" style="${pos}"><div class="h"><img src="./assets/avatars/${t[3]}.svg" alt=""/><b>${t[0]}</b> <span>${t[1]}</span></div>${t[2]}</div>`;
-	})
-	.join("");
+// ---- Entrance animation on scroll ----
+// Sections are always visible (no opacity:0 hidden initial state).
+// When a section scrolls into view for the first time after the user
+// has begun scrolling, we play a subtle slide-up transition.
+let userScrolled = false;
+window.addEventListener(
+	"scroll",
+	() => {
+		userScrolled = true;
+	},
+	{ once: true, passive: true },
+);
 
-// ---- Reveal on scroll ----
 const io = new IntersectionObserver(
 	(entries) => {
 		entries.forEach((e) => {
-			if (e.isIntersecting) {
+			if (!e.isIntersecting) return;
+			if (userScrolled) {
 				e.target.classList.add("in");
-				io.unobserve(e.target);
 			}
+			io.unobserve(e.target);
 		});
 	},
-	{ threshold: 0.12 },
+	{ threshold: 0.08 },
 );
 document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
