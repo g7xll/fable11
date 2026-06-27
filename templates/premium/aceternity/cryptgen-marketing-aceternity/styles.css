@@ -323,7 +323,7 @@ button {
 }
 
 .hero h1 {
-	font-size: clamp(2.5rem, 8vw, 4.5rem);
+	font-size: clamp(2rem, 6.5vw, 4.5rem);
 	font-weight: 700;
 	line-height: 1.1;
 	color: var(--color-text);
@@ -394,14 +394,14 @@ button {
 }
 
 .logo-strip img {
-	height: 2rem;
+	height: 2.25rem;
 	width: auto;
-	filter: brightness(0) invert(1) opacity(0.4);
+	opacity: 0.9;
 	transition: opacity 0.2s;
 }
 
 .logo-strip img:hover {
-	filter: brightness(0) invert(1) opacity(0.7);
+	opacity: 1;
 }
 
 /* ===== PRODUCT SECTION ===== */
@@ -737,23 +737,38 @@ button {
 	background: var(--color-bg);
 }
 
+.testimonials-inner {
+	max-width: 80rem;
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 3rem;
+}
+
+@media (min-width: 1024px) {
+	.testimonials-inner {
+		grid-template-columns: 1fr 1.6fr;
+		gap: 2.5rem;
+		align-items: start;
+	}
+}
+
 .testimonials-header {
-	text-align: center;
-	margin-bottom: 3rem;
+	text-align: left;
 }
 
 .testimonials-header h2 {
-	font-size: clamp(1.75rem, 4vw, 2.25rem);
+	font-size: clamp(2.25rem, 5vw, 3.25rem);
 	font-weight: 700;
 	color: var(--color-text);
 	margin-bottom: 1rem;
+	line-height: 1.05;
 }
 
 .testimonials-header p {
 	font-size: 0.875rem;
 	color: var(--color-text-muted);
-	max-width: 32rem;
-	margin: 0 auto;
+	max-width: 24rem;
 	line-height: 1.6;
 }
 
@@ -761,13 +776,24 @@ button {
 	display: grid;
 	grid-template-columns: 1fr;
 	gap: 1.5rem;
-	max-width: 72rem;
-	margin: 0 auto;
 }
 
 @media (min-width: 768px) {
 	.testimonials-grid {
-		grid-template-columns: repeat(3, 1fr);
+		grid-template-columns: repeat(2, 1fr);
+		align-items: start;
+	}
+}
+
+.testimonials-col {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+	.testimonials-col-offset {
+		margin-top: 3.5rem;
 	}
 }
 
@@ -775,7 +801,8 @@ button {
 	background: var(--color-neutral-900);
 	border: 1px solid var(--color-border-card);
 	border-radius: var(--radius-2xl);
-	padding: 1.5rem;
+	padding: 1.75rem;
+	min-height: 18rem;
 	transition: border-color 0.2s;
 }
 
@@ -819,6 +846,32 @@ button {
 .pricing {
 	padding: 6rem 1.5rem;
 	background: var(--color-bg);
+	position: relative;
+	overflow: hidden;
+}
+
+.pricing::before {
+	content: "";
+	position: absolute;
+	top: 18%;
+	left: 50%;
+	transform: translateX(-50%);
+	width: min(46rem, 90%);
+	height: 38rem;
+	background: radial-gradient(
+		ellipse at center,
+		rgba(120, 120, 130, 0.16) 0%,
+		rgba(80, 80, 90, 0.06) 38%,
+		transparent 70%
+	);
+	pointer-events: none;
+	z-index: 0;
+}
+
+.pricing-header,
+.pricing-grid {
+	position: relative;
+	z-index: 1;
 }
 
 .pricing-header {
