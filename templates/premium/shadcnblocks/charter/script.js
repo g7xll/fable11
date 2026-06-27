@@ -55,6 +55,31 @@
 		}
 	});
 
+	// ----- Code security accordion -----
+	document.addEventListener("click", function (e) {
+		var trig = e.target.closest(".code-acc__trigger");
+		if (!trig) return;
+		var item = trig.closest(".code-acc__item");
+		var body = item.querySelector(".code-acc__body");
+		var isOpen = item.classList.contains("code-acc__item--open");
+		// Close all
+		document.querySelectorAll(".code-acc__item").forEach(function (el) {
+			el.classList.remove("code-acc__item--open");
+			el.querySelector(".code-acc__trigger").setAttribute(
+				"aria-expanded",
+				"false",
+			);
+			el.querySelector(".code-acc__body").classList.add(
+				"code-acc__body--closed",
+			);
+		});
+		if (!isOpen) {
+			item.classList.add("code-acc__item--open");
+			trig.setAttribute("aria-expanded", "true");
+			body.classList.remove("code-acc__body--closed");
+		}
+	});
+
 	// ----- scroll reveal -----
 	var io = new IntersectionObserver(
 		function (entries) {
