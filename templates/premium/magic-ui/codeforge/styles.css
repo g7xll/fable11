@@ -337,42 +337,49 @@ h1.hero-title {
 .logos {
 	padding: 80px 0;
 }
-.logos-head {
-	text-align: center;
-	font-size: 14px;
-	color: var(--muted-foreground);
-	margin-bottom: 36px;
-}
-.logos-head b {
-	color: var(--primary);
-	font-weight: 600;
-}
 .logo-grid {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	max-width: 900px;
+	grid-template-columns: 220px repeat(4, 1fr);
+	max-width: 1000px;
 	margin: 0 auto;
 	border: 1px solid var(--border);
 	border-radius: 12px;
 	overflow: hidden;
+}
+.logo-label-cell {
+	grid-row: 1 / 3;
+	display: flex;
+	align-items: center;
+	padding: 28px 32px;
+	font-size: 14px;
+	color: var(--muted-foreground);
+	border-right: 1px solid var(--border);
+	line-height: 1.5;
+}
+.logo-label-cell b {
+	color: var(--primary);
+	font-weight: 600;
 }
 .logo-cell {
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	gap: 8px;
-	padding: 28px;
+	padding: 28px 20px;
 	font-weight: 600;
-	font-size: 17px;
+	font-size: 15px;
 	color: var(--foreground);
 	border-right: 1px solid var(--border);
 	border-bottom: 1px solid var(--border);
 }
-.logo-cell:nth-child(4n) {
+.logo-cell:nth-child(5n) {
 	border-right: none;
 }
-.logo-cell:nth-child(n + 5) {
+.logo-cell:nth-child(n + 7) {
 	border-bottom: none;
+}
+.logo-cell svg {
+	flex-shrink: 0;
 }
 
 /* ---------- Section heads ---------- */
@@ -685,6 +692,168 @@ h1.hero-title {
 /* World map */
 .worldmap {
 	width: 100%;
+}
+
+/* Network canvas */
+.network-visual {
+	width: 100%;
+	background: var(--secondary);
+	overflow: hidden;
+}
+.network-visual canvas {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+/* Pixel separator */
+.pixel-sep {
+	width: 100%;
+	height: 120px;
+	background: #0a0a0a;
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='2' height='2' fill='%23ffffff08'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%23ffffff04'/%3E%3C/svg%3E");
+	position: relative;
+	overflow: hidden;
+}
+.pixel-sep::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		to right,
+		rgba(0, 0, 0, 0.6) 0%,
+		transparent 20%,
+		transparent 80%,
+		rgba(0, 0, 0, 0.6) 100%
+	);
+}
+[data-theme="dark"] .pixel-sep {
+	background-color: #000;
+}
+
+/* MCP bento card (Connect Tools section) */
+.mcp-bento {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	min-height: 420px;
+}
+.mcp-bento-top {
+	flex: 1;
+	padding: 32px;
+	background: var(--secondary);
+	border-bottom: 1px solid var(--border);
+}
+.mcp-search-bar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	font-size: 13px;
+	color: var(--muted-foreground);
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 8px 12px;
+	margin-bottom: 12px;
+}
+.mcp-server-list {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+.mcp-server-item {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--foreground);
+}
+.mcp-icon {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+.mcp-name {
+	flex: 1;
+}
+.mcp-installed {
+	font-size: 11px;
+	font-weight: 500;
+	color: var(--primary);
+	background: rgba(0, 165, 239, 0.1);
+	border: 1px solid rgba(0, 165, 239, 0.2);
+	border-radius: 999px;
+	padding: 2px 8px;
+}
+.mcp-bento-bottom {
+	padding: 20px 32px;
+}
+.mcp-agent-panel {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.mcp-agent-label {
+	font-size: 13px;
+	color: var(--muted-foreground);
+}
+.mcp-agent-toolbar {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+.mcp-tool-btn {
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	border: 1px solid var(--border);
+	background: var(--card);
+	color: var(--muted-foreground);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	transition: all 0.15s;
+}
+.mcp-tool-btn:hover {
+	background: var(--secondary);
+	color: var(--foreground);
+}
+.mcp-sources-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	font-size: 12px;
+	color: var(--muted-foreground);
+	background: var(--card);
+	border: 1px solid var(--border);
+	border-radius: 8px;
+	padding: 6px 10px;
+}
+.mcp-send-btn {
+	width: 32px;
+	height: 32px;
+	border-radius: 8px;
+	background: var(--primary);
+	color: #fff;
+	border: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	margin-left: auto;
+	transition: all 0.15s;
+}
+.mcp-send-btn:hover {
+	filter: brightness(1.1);
 }
 
 /* Setup steps */
@@ -1109,9 +1278,24 @@ h1.hero-title {
 	.price-grid,
 	.price-free,
 	.faq-row,
-	.footer-grid,
-	.logo-grid {
+	.footer-grid {
 		grid-template-columns: 1fr;
+	}
+	.logo-grid {
+		grid-template-columns: 1fr 1fr;
+	}
+	.logo-label-cell {
+		grid-row: auto;
+		grid-column: 1 / 3;
+		border-right: none;
+		border-bottom: 1px solid var(--border);
+	}
+	.logo-cell:nth-child(5n),
+	.logo-cell:nth-child(odd) {
+		border-right: 1px solid var(--border);
+	}
+	.logo-cell:nth-child(even) {
+		border-right: none;
 	}
 	.feat-left,
 	.feat-right,
@@ -1128,9 +1312,6 @@ h1.hero-title {
 	.faq-left {
 		border-bottom: 1px solid var(--border);
 	}
-	.logo-cell {
-		border-right: none;
-	}
 	.velocity-track {
 		font-size: 44px;
 	}
@@ -1139,5 +1320,8 @@ h1.hero-title {
 	}
 	.footer-grid {
 		grid-template-columns: 1fr 1fr;
+	}
+	.mcp-bento {
+		min-height: 320px;
 	}
 }
