@@ -74,6 +74,7 @@
 					<div class="post-header bg-grid">
 						<div class="post-tags">
 							<span class="btn btn-light btn-md">design</span>
+							<span class="btn btn-light btn-md">layout</span>
 						</div>
 						<h1
 							class="hero-h1"
@@ -93,7 +94,7 @@
 							>
 							<span>By <a href="../../team/alex-chen.html">Alex Chen</a></span>
 							<span>•</span>
-							<time>November 15, 2025</time>
+							<time>October 15, 2025</time>
 						</div>
 						<p class="post-description">
 							Build grids that adapt to any screen without breaking rhythm or
@@ -111,49 +112,131 @@
 					<div class="prose-container">
 						<div class="prose">
 							<p>
-								A responsive grid isn't just about making things smaller on
-								mobile—it's about maintaining visual rhythm, hierarchy, and
-								readability across every breakpoint.
+								A responsive grid should feel invisible—content flows without
+								forcing users to notice the layout. Start with a base column
+								count (12 is common) and scale down with predictable
+								breakpoints.
 							</p>
-							<h2>Grid foundations</h2>
+							<h2>Grid fundamentals</h2>
 							<ul>
 								<li>
-									Start with a 12-column grid at desktop, collapsing to 4
-									columns on mobile.
+									Keep column gutters consistent; swap to larger gutters on wide
+									screens to avoid crowded text.
 								</li>
 								<li>
-									Use consistent gutters (gap values) that scale proportionally
-									with the viewport.
+									Set max-content widths so lines don’t stretch endlessly on
+									desktops.
 								</li>
 								<li>
-									Define breakpoints around your content, not arbitrary device
-									sizes.
+									Use fractional columns (e.g., 3/12, 6/12) so components snap
+									cleanly when stacking.
 								</li>
 							</ul>
-							<h2>Common grid mistakes</h2>
+							<h2>Breakpoints that matter</h2>
 							<ul>
-								<li>Mixing fixed and fluid columns without a clear system.</li>
-								<li>Gutters that are too tight on mobile, cramping content.</li>
 								<li>
-									Forgetting to account for container padding at small sizes.
+									Mobile: collapse to a single column; protect headline
+									hierarchy and CTA spacing.
+								</li>
+								<li>
+									Tablet: two columns for cards and split layouts; reduce hero
+									text size slightly.
+								</li>
+								<li>
+									Desktop: three or four columns max—too many columns dilute
+									focus.
 								</li>
 							</ul>
-							<h2>Practical tips</h2>
-							<ol>
+							<h2>Quick checks</h2>
+							<ul>
+								<li>Do cards align on the same baseline after wrapping?</li>
+								<li>Are CTAs still prominent when the layout stacks?</li>
 								<li>
-									Test at 320px, 768px, and 1440px as your three primary
-									checkpoints.
+									Are images using consistent ratios to prevent layout jumps?
 								</li>
-								<li>
-									Use CSS Grid with named areas for complex layouts that need to
-									reorder on mobile.
-								</li>
-								<li>
-									Keep type-to-column width ratios consistent—aim for 55–75
-									characters per line.
-								</li>
-							</ol>
+							</ul>
 						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<div class="container">
+					<div class="related-header bg-grid">
+						<h2>Related posts</h2>
+						<a href="../index.html" class="btn btn-light btn-md"
+							>View all posts</a
+						>
+					</div>
+					<div
+						class="card-grid-3"
+						style="border-top:1px solid var(--border-subtle)"
+					>
+						<article class="article-card">
+							<a
+								href="1.html"
+								class="card-link"
+								title="Read more: Mastering composition in web design"
+							></a>
+							<img
+								src="../../assets/img/1.CBAYcnJ0_Z177i3O.webp"
+								alt="Mastering composition in web design"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">Mastering composition in web design</h3>
+								<p class="card-desc">
+									Explore how composition principles can transform your web
+									designs into captivating, user-friendly interfaces at
+									AstroMax.
+								</p>
+							</div>
+						</article>
+						<article class="article-card">
+							<a
+								href="2.html"
+								class="card-link"
+								title="Read more: Responsive grids that stay consistent"
+							></a>
+							<img
+								src="../../assets/img/2.R0PXjBx0_1i6GBY.webp"
+								alt="Responsive grids that stay consistent"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">
+									Responsive grids that stay consistent
+								</h3>
+								<p class="card-desc">
+									Build grids that adapt to any screen without breaking rhythm
+									or readability.
+								</p>
+							</div>
+						</article>
+						<article class="article-card">
+							<a
+								href="4.html"
+								class="card-link"
+								title="Read more: Color systems that stay on brand"
+							></a>
+							<img
+								src="../../assets/img/4.CC1oR_Rj_Z2k5rqC.webp"
+								alt="Color systems that stay on brand"
+								loading="eager"
+								width="800"
+								height="700"
+							>
+							<div class="card-body">
+								<h3 class="card-title">Color systems that stay on brand</h3>
+								<p class="card-desc">
+									Structure your palette so new pages feel cohesive without
+									endless approvals.
+								</p>
+							</div>
+						</article>
 					</div>
 				</div>
 			</section>
@@ -246,7 +329,7 @@
 					title: "Responsive grids that stay consistent",
 					description:
 						"Build grids that adapt to any screen without breaking rhythm or readability.",
-					pubDate: "2025-11-15T00:00:00.000Z",
+					pubDate: "2025-10-15T00:00:00.000Z",
 					slug: "blog/posts/2.html",
 					category: "Blog",
 				},
@@ -254,7 +337,7 @@
 					title: "Microcopy that actually guides action",
 					description:
 						"Write UI copy that reduces hesitation and nudges users toward confident clicks.",
-					pubDate: "2025-11-01T00:00:00.000Z",
+					pubDate: "2025-09-20T00:00:00.000Z",
 					slug: "blog/posts/3.html",
 					category: "Blog",
 				},
@@ -262,7 +345,7 @@
 					title: "Color systems that stay on brand",
 					description:
 						"Structure your palette so new pages feel cohesive without endless approvals.",
-					pubDate: "2025-10-15T00:00:00.000Z",
+					pubDate: "2025-08-05T00:00:00.000Z",
 					slug: "blog/posts/4.html",
 					category: "Blog",
 				},
@@ -270,7 +353,7 @@
 					title: "Motion that respects the user",
 					description:
 						"Use animation to clarify flow, not to decorate\u2014and keep motion accessible.",
-					pubDate: "2025-10-01T00:00:00.000Z",
+					pubDate: "2025-06-28T00:00:00.000Z",
 					slug: "blog/posts/5.html",
 					category: "Blog",
 				},
@@ -278,7 +361,7 @@
 					title: "Accessibility quick wins before launch",
 					description:
 						"Ship fast while covering the essentials: focus, contrast, and keyboard flow.",
-					pubDate: "2025-09-15T00:00:00.000Z",
+					pubDate: "2025-05-12T00:00:00.000Z",
 					slug: "blog/posts/6.html",
 					category: "Blog",
 				},
