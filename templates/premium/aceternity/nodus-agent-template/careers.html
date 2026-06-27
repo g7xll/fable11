@@ -17,6 +17,63 @@
 			>
 			<link rel="stylesheet" href="tokens.css">
 			<link rel="stylesheet" href="styles.css">
+			<style>
+			.careers-eyebrow {
+				text-transform: uppercase;
+				letter-spacing: 0.08em;
+				font-family: var(--font-mono);
+			}
+			.hero-roles {
+				display: flex;
+				flex-direction: column;
+			}
+			.hero-roles .role-preview {
+				padding: 18px 0;
+				border-top: 1px solid var(--line);
+			}
+			.hero-roles .role-preview:first-child {
+				border-top: none;
+			}
+			.hero-roles .rp-head {
+				display: flex;
+				flex-wrap: wrap;
+				align-items: center;
+				gap: 10px;
+			}
+			.hero-roles .rp-title {
+				color: var(--brand);
+				font-weight: 500;
+				font-size: 1rem;
+			}
+			.hero-roles .rp-dot {
+				width: 4px;
+				height: 4px;
+				border-radius: 50%;
+				background: var(--muted);
+			}
+			.hero-roles .rp-meta {
+				font-size: 0.85rem;
+				color: var(--muted);
+			}
+			.hero-roles .rp-desc {
+				margin-top: 8px;
+				font-size: 0.9rem;
+				color: var(--muted);
+			}
+			.collage--six {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			@media (max-width: 900px) {
+				.collage--six {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+			@media (max-width: 520px) {
+				.collage--six {
+					grid-template-columns: 1fr;
+				}
+			}
+			</style>
 			<script>
 			(function () {
 				try {
@@ -140,7 +197,10 @@
 					<a class="btn btn-primary" href="#roles" style="margin-top:22px"
 						>View Roles</a
 					>
-					<p class="eyebrow--brand" style="text-align:left;margin-top:34px">
+					<p
+						class="eyebrow--brand careers-eyebrow"
+						style="text-align:left;margin-top:34px"
+					>
 						Our Investors
 					</p>
 					<div class="invest-row">
@@ -149,12 +209,49 @@
 						<img src="assets/logos/softbank.png" alt="SoftBank">
 					</div>
 				</div>
-				<div class="media">
-					<img
-						src="assets/unsplash/u2.jpg"
-						alt="Notus team collaborating"
-						loading="lazy"
-					>
+				<div class="hero-roles">
+					<a class="role-preview" href="#roles">
+						<div class="rp-head">
+							<span class="rp-title">Software Engineering Intern</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">San Francisco, CA / Remote</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">58 days ago</span>
+						</div>
+						<p class="rp-desc">
+							Join our engineering team as an intern and work on cutting-edge AI
+							workflow automation tools. You'll contribute to real product
+							features while learning from industry experts.
+						</p>
+					</a>
+					<a class="role-preview" href="#roles">
+						<div class="rp-head">
+							<span class="rp-title">Product Design Intern</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">San Francisco, CA / Remote</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">58 days ago</span>
+						</div>
+						<p class="rp-desc">
+							Help design the future of AI-driven workflow tools. You'll work
+							closely with our design team to create intuitive user experiences
+							for complex automation systems.
+						</p>
+					</a>
+					<a class="role-preview" href="#roles">
+						<div class="rp-head">
+							<span class="rp-title">Senior Frontend Engineer</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">San Francisco, CA / Remote</span>
+							<span class="rp-dot"></span>
+							<span class="rp-meta">63 days ago</span>
+						</div>
+						<p class="rp-desc">
+							Lead the development of our visual workflow builder and agent
+							management interfaces. You'll architect scalable frontend
+							solutions that make complex AI systems accessible to all users.
+						</p>
+					</a>
 				</div>
 			</section>
 			<section class="section">
@@ -167,11 +264,13 @@
 				</div>
 			</section>
 			<section class="section pad" style="padding-block:40px">
-				<div class="collage">
+				<div class="collage collage--six">
 					<img src="assets/unsplash/u1.jpg" alt="" loading="lazy">
+					<img src="assets/unsplash/u2.jpg" alt="" loading="lazy">
 					<img src="assets/unsplash/u4.jpg" alt="" loading="lazy">
 					<img src="assets/unsplash/u5.jpg" alt="" loading="lazy">
-					<img src="assets/unsplash/u2.jpg" alt="" loading="lazy">
+					<img src="assets/unsplash/testimonial.jpg" alt="" loading="lazy">
+					<img src="assets/unsplash/u1.jpg" alt="" loading="lazy">
 				</div>
 			</section>
 			<section class="section pad" id="roles" style="padding-block:64px">

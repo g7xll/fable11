@@ -958,6 +958,44 @@ html.dark .toggle button.active {
 .compare .x {
 	color: var(--gray-400);
 }
+.compare thead th {
+	vertical-align: bottom;
+	padding-top: 40px;
+	padding-bottom: 26px;
+}
+.compare .cmp-cycle {
+	text-align: left;
+}
+.compare .cmp-cycle-label {
+	margin-bottom: 10px;
+	font-size: 0.85rem;
+	font-weight: 400;
+	color: var(--muted);
+}
+.compare .cmp-cycle .toggle {
+	display: inline-flex;
+	margin: 0;
+}
+.compare .cmp-plan {
+	text-align: left;
+}
+.compare .cmp-plan-name {
+	font-size: 1.125rem;
+	font-weight: 500;
+	color: var(--text);
+}
+.compare .cmp-plan-price {
+	margin-top: 4px;
+	font-size: 0.85rem;
+	font-weight: 400;
+	color: var(--muted);
+}
+.compare .cmp-plan-price span {
+	margin-left: 1px;
+}
+.compare .cmp-plan .btn {
+	margin-top: 16px;
+}
 
 /* ==========================================================================
    Security band
@@ -1188,7 +1226,7 @@ html.dark .toggle button.active {
 	grid-template-columns: 1fr 1fr;
 	gap: clamp(30px, 6vw, 80px);
 	padding: clamp(40px, 6vw, 80px) clamp(20px, 5vw, 80px);
-	align-items: center;
+	align-items: stretch;
 }
 .auth-form .mark {
 	color: var(--primary);
@@ -1285,39 +1323,58 @@ html.dark .toggle button.active {
 /* testimonial gradient card (auth/contact) */
 .glow-card {
 	position: relative;
+	height: 100%;
 	border-radius: var(--radius-2xl);
 	overflow: hidden;
 	min-height: 420px;
 	display: flex;
-	align-items: flex-end;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-end;
 	padding: 26px;
 	background:
 		radial-gradient(
-			120% 80% at 70% 90%,
-			rgba(241, 116, 99, 0.55),
+			120% 120% at 8% 0%,
+			rgba(150, 211, 162, 0.45),
 			transparent 60%
 		),
-		linear-gradient(160deg, #1c1c1c, #0a0a0a 70%);
-	border: 1px solid #222;
+		radial-gradient(
+			130% 110% at 18% 105%,
+			rgba(150, 211, 162, 0.6),
+			transparent 58%
+		),
+		radial-gradient(
+			140% 120% at 102% 92%,
+			rgba(245, 168, 122, 0.72),
+			transparent 60%
+		),
+		#1a1614;
+	border: 1px solid #2a2a2a;
 }
 .glow-card .tags {
-	position: absolute;
-	top: 22px;
-	left: 22px;
+	position: static;
+	z-index: 40;
 	display: flex;
 	gap: 8px;
+	margin-bottom: 10px;
 }
 .glow-card .tags span {
 	font-size: 0.72rem;
-	color: #e5e5e5;
-	background: rgba(255, 255, 255, 0.08);
-	border: 1px solid rgba(255, 255, 255, 0.14);
-	padding: 4px 10px;
-	border-radius: 999px;
-	backdrop-filter: blur(6px);
+	color: #fff;
+	background: rgba(0, 0, 0, 0.5);
+	padding: 4px 9px;
+	border-radius: 6px;
+	backdrop-filter: blur(4px);
 }
 .glow-card .quote {
-	color: #f2f2f2;
+	position: relative;
+	z-index: 40;
+	max-width: 24rem;
+	color: #fff;
+	background: rgba(0, 0, 0, 0.5);
+	border-radius: 12px;
+	padding: 16px;
+	backdrop-filter: blur(6px);
 }
 .glow-card .quote p {
 	font-size: 0.98rem;
@@ -1326,7 +1383,7 @@ html.dark .toggle button.active {
 .glow-card .quote .name {
 	margin-top: 16px;
 	font-size: 0.8rem;
-	color: #cfcfcf;
+	color: rgba(255, 255, 255, 0.5);
 }
 .glow-card .quote .name b {
 	color: #fff;
@@ -1711,7 +1768,7 @@ html.dark .invest-row img {
    404 (legal routes mirror the original's not-found state)
    ========================================================================== */
 .notfound {
-	min-height: 60vh;
+	min-height: calc(100vh - var(--nav-h));
 	display: flex;
 	align-items: center;
 	justify-content: center;

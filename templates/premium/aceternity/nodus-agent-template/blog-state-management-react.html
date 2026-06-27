@@ -17,6 +17,20 @@
 			>
 			<link rel="stylesheet" href="tokens.css">
 			<link rel="stylesheet" href="styles.css">
+			<style>
+			/* inline code: backtick monospace, no pill background (matches source) */
+			.prose :not(pre) > code {
+				background: none;
+				border: none;
+				padding: 0;
+				font-weight: 700;
+				color: var(--text);
+			}
+			.prose :not(pre) > code::before,
+			.prose :not(pre) > code::after {
+				content: "`";
+			}
+			</style>
 			<script>
 			(function () {
 				try {
@@ -129,19 +143,14 @@
 		</header>
 		<main class="shell">
 			<article class="article">
-				<div class="meta">
-					<img src="assets/avatars/manu.png" alt="Manu Arora">
-					Manu Arora <span>·</span> Friday, Mar 15, 2024
-				</div>
-				<h1>State Management in React: A Complete Guide</h1>
-				<div class="cover" style="margin-top:28px">
+				<div class="cover">
 					<img
-						src="assets/blog/ace.webp"
+						src="assets/blog/nextjs.webp"
 						alt="State Management in React: A Complete Guide"
 					>
 				</div>
+				<h1>State Management in React: A Complete Guide</h1>
 				<div class="prose">
-					State Management in React: A Complete Guide
 					<p>
 						State management is a crucial aspect of React applications. Let's
 						explore different approaches to managing state, from simple local
@@ -402,9 +411,6 @@ const userAtom = atomWithQuery((get) =&gt; ({
 						to maintain a clean and maintainable codebase.
 					</p>
 				</div>
-				<p style="margin-top:48px">
-					<a class="btn btn-ghost" href="blog.html">← Back to all blogs</a>
-				</p>
 			</article>
 		</main>
 		<footer class="site-footer">
