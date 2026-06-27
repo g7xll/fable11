@@ -21,15 +21,17 @@
 :root {
 	--white: #ffffff;
 	--indigo-50: #eef2ff;
-	--indigo-500-10: rgba(99, 102, 241, 0.1);
+	--indigo-500-10: rgba(98, 95, 255, 0.1);
 	--slate-200: #e2e8f0;
-	--slate-500: #64748b;
-	--slate-900: #0f172a;
-	--blue-300: #93c5fd;
-	--blue-500: #3b82f6;
-	--blue-600: #2563eb;
-	--blue-700: #1d4ed8;
-	--blue-900: #1e3a8a;
+	--slate-400: #90a1b9;
+	--slate-500: #62748e;
+	--slate-900: #0f172b;
+	--blue-300: #90c5ff;
+	--blue-500: #3080ff;
+	--blue-600: #155dfc;
+	--blue-900: #1c398e;
+	--sky-300: #77d4ff;
+	--indigo-300: #a4b3ff;
 
 	--tracking-tighter: -0.05em;
 	--tracking-tight: -0.025em;
@@ -240,10 +242,13 @@ ol {
 	transition: background-color 0.15s var(--ease);
 }
 .btn-blue:hover {
-	background: var(--blue-700);
+	background: var(--blue-500);
+}
+.btn-blue:active {
+	color: rgba(255, 255, 255, 0.7);
 }
 .btn-blue:focus-visible {
-	outline: 2px solid var(--blue-600);
+	outline: 2px solid var(--blue-500);
 	outline-offset: 2px;
 }
 
@@ -277,9 +282,18 @@ ol {
 }
 @media (min-width: 640px) {
 	.hero-bg-img {
-		left: auto;
-		right: 0;
-		transform: translate(55%, -10%);
+		left: 50%;
+		transform: translate(-98%, -6%);
+	}
+}
+@media (min-width: 1024px) {
+	.hero-bg-img {
+		transform: translate(-106%, -6%);
+	}
+}
+@media (min-width: 1280px) {
+	.hero-bg-img {
+		transform: translate(-122%, -6%);
 	}
 }
 .fade-top {
@@ -322,7 +336,7 @@ ol {
 }
 @media (min-width: 640px) {
 	.hero h1 {
-		font-size: 4.5rem;
+		font-size: 5rem;
 	}
 }
 .hero-lead {
@@ -344,7 +358,7 @@ ol {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 2rem;
-	border-top: 1px solid rgba(15, 23, 42, 0.06);
+	border-top: 1px solid rgba(21, 93, 252, 0.1);
 	padding-top: 2rem;
 }
 @media (min-width: 640px) {
@@ -355,7 +369,7 @@ ol {
 .hero-stat dt {
 	font-family: var(--font-mono);
 	font-size: 0.875rem;
-	color: var(--slate-500);
+	color: var(--blue-600);
 }
 .hero-stat dd {
 	margin-top: 0.25rem;
@@ -386,7 +400,7 @@ ol {
 }
 .sec-head h2 {
 	font-family: var(--font-display);
-	font-size: 2.25rem;
+	font-size: 2.5rem;
 	font-weight: 500;
 	letter-spacing: var(--tracking-tighter);
 	color: var(--blue-600);
@@ -474,31 +488,59 @@ ol {
 		padding-left: 2rem;
 	}
 }
-.daytab-date {
+/* daytab-diamond SVG */
+.daytab-diamond {
+	display: none;
+	position: absolute;
+	top: 0.5625rem;
+	left: -0.5px;
+	height: 0.375rem;
+	width: 0.375rem;
+	overflow: visible;
+	fill: transparent;
+	stroke: var(--slate-400, #90a1b9);
+	stroke-width: 2;
+}
+@media (min-width: 1024px) {
+	.daytab-diamond {
+		display: block;
+	}
+	.daytab[aria-selected="true"] .daytab-diamond {
+		fill: var(--blue-600);
+		stroke: var(--blue-600);
+	}
+}
+
+/* daytab-label: mono small text (label first) */
+.daytab-label {
 	font-family: var(--font-mono);
 	font-size: 0.875rem;
 	color: var(--slate-500);
 	transition: color 0.15s var(--ease);
 }
-.daytab[aria-selected="true"] .daytab-date {
+.daytab[aria-selected="true"] .daytab-label {
 	color: var(--blue-600);
 }
-.daytab-title {
-	margin-top: 0.375rem;
-	font-family: var(--font-display);
-	font-size: 1.125rem;
-	font-weight: 600;
-	letter-spacing: var(--tracking-tight);
-	color: var(--blue-900);
-}
-.daytab button {
+.daytab-label button {
 	outline: none;
 	text-align: left;
 }
-.daytab button::before {
-	content: "";
+/* The span inside the button covers the entire .daytab (which is position:relative),
+   making the full tab area (label + date) clickable */
+.daytab-label button span {
 	position: absolute;
 	inset: 0;
+}
+
+/* daytab-date: large bold date (second) */
+.daytab-date {
+	display: block;
+	margin-top: 0.375rem;
+	font-family: var(--font-display);
+	font-size: 1.5rem;
+	font-weight: 600;
+	letter-spacing: var(--tracking-tight);
+	color: var(--blue-900);
 }
 
 .speaker-panel {
@@ -540,8 +582,17 @@ ol {
 	bottom: 1.5rem;
 	left: 0;
 	border-radius: var(--radius-4xl);
-	border: 1px solid var(--blue-300);
+	border: 1px solid;
 	transition: transform 0.3s var(--ease);
+}
+.frame-blue {
+	border-color: var(--blue-300);
+}
+.frame-indigo {
+	border-color: var(--indigo-300);
+}
+.frame-sky {
+	border-color: var(--sky-300);
 }
 @media (min-width: 1280px) {
 	.speaker-frame {
@@ -622,7 +673,22 @@ ol {
 @media (min-width: 640px) {
 	.schedule-bg-img {
 		left: 50%;
-		transform: translateX(-20%);
+		transform: translate(-20%, -15%);
+	}
+}
+@media (min-width: 768px) {
+	.schedule-bg-img {
+		transform: translate(0, -15%);
+	}
+}
+@media (min-width: 1024px) {
+	.schedule-bg-img {
+		transform: translate(5%, 4%);
+	}
+}
+@media (min-width: 1280px) {
+	.schedule-bg-img {
+		transform: translate(27%, -8%);
 	}
 }
 .schedule-wrap > .container {
@@ -667,6 +733,16 @@ ol {
 .day-list {
 	margin-top: 2.5rem;
 	text-align: center;
+}
+.schedule-days-desktop .day-list {
+	margin-top: 2.5rem;
+	background: rgba(255, 255, 255, 0.6);
+	padding: 3.5rem 2.5rem;
+	box-shadow:
+		0 20px 25px -5px rgba(28, 57, 142, 0.05),
+		0 8px 10px -6px rgba(28, 57, 142, 0.05);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
 }
 .day-list li + li {
 	margin-top: 0;
@@ -780,7 +856,7 @@ ol {
 	max-width: 42rem;
 	text-align: center;
 	font-family: var(--font-display);
-	font-size: 2.25rem;
+	font-size: 2.5rem;
 	font-weight: 500;
 	letter-spacing: var(--tracking-tighter);
 	color: var(--blue-900);
@@ -865,7 +941,7 @@ ol {
 }
 .newsletter-left h2 {
 	font-family: var(--font-display);
-	font-size: 2.25rem;
+	font-size: 2.5rem;
 	font-weight: 500;
 	letter-spacing: var(--tracking-tighter);
 	color: var(--blue-900);
@@ -925,7 +1001,10 @@ ol {
 	white-space: nowrap;
 }
 .newsletter-bar button:hover {
-	background: var(--blue-700);
+	background: var(--blue-500);
+}
+.newsletter-bar button:active {
+	color: rgba(255, 255, 255, 0.7);
 }
 
 /* ---------- Footer ---------- */
