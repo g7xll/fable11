@@ -209,16 +209,7 @@
 
 	/* ---------- Countdown timer (home music CTA) ---------- */
 	(function countdown() {
-		let nums = document.querySelectorAll("[data-cd]");
-		if (!nums.length) {
-			const candidates = Array.from(
-				document.querySelectorAll("span,p,div,h3,h4"),
-			).filter((e) => {
-				if (e.children.length) return false;
-				return /^\d{1,2}$/.test((e.textContent || "").trim());
-			});
-			if (candidates.length >= 4) nums = candidates.slice(0, 4);
-		}
+		const nums = document.querySelectorAll("[data-cd]");
 		if (!nums || nums.length < 4) return;
 		const target =
 			Date.now() + (3 * 24 * 3600 + 12 * 3600 + 47 * 60 + 30) * 1000;
