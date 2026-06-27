@@ -196,3 +196,9 @@
 .rfm-child {
 	transform: var(--transform);
 }
+
+/* Mobile nav menu open state (data-nav-menu toggled by app.js) */
+[data-nav-menu][data-open="true"] {
+	max-height: 80vh;
+	opacity: 1;
+}
