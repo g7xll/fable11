@@ -204,38 +204,33 @@ select {
 	background: var(--cyan-600);
 }
 
-/* App-store style black badge */
-.appstore {
+/* App Store badge — proper horizontal SVG badge */
+.appbadge {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	background: var(--gray-900);
-	color: #fff;
-	border-radius: 0.625rem;
-	padding: 0.625rem 1rem;
+	justify-content: center;
+	border-radius: 0.5rem;
+	padding: 0.5rem 0.75rem;
 	transition: background-color 0.15s var(--ease);
 }
-.appstore:hover {
-	background: var(--gray-800);
-}
-.appstore svg {
-	height: 1.75rem;
+.appbadge__svg {
+	height: 2.5rem;
 	width: auto;
-	flex: none;
+	display: block;
 }
-.appstore__txt {
-	display: flex;
-	flex-direction: column;
-	line-height: 1.05;
-	text-align: left;
+.appbadge--dark {
+	background: #1f2937; /* gray-800 */
+	color: #fff;
 }
-.appstore__txt small {
-	font-size: 0.625rem;
-	font-weight: 400;
+.appbadge--dark:hover {
+	background: var(--gray-900);
 }
-.appstore__txt strong {
-	font-size: 1.05rem;
-	font-weight: 600;
+.appbadge--light {
+	background: #fff;
+	color: var(--gray-900);
+}
+.appbadge--light:hover {
+	background: #f9fafb; /* gray-50 */
 }
 
 .watch {
@@ -447,7 +442,7 @@ select {
 }
 @media (min-width: 768px) {
 	.footer__cols {
-		grid-template-columns: 1fr auto auto;
+		grid-template-columns: 1fr auto;
 		align-items: start;
 	}
 }
@@ -456,19 +451,55 @@ select {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
-	border: 1px solid var(--gray-200);
+	padding: 1rem;
 	border-radius: 1rem;
-	padding: 1.5rem;
-	background: #fff;
+	transition: background-color 0.15s var(--ease);
 }
-.qr-card img {
-	height: 4rem;
-	width: 4rem;
+.qr-card:hover {
+	background: var(--gray-100);
 }
-.qr-card p {
+.qr-card__frame {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 6rem;
+	height: 6rem;
+	flex: none;
+}
+.qr-card__bracket {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	stroke: var(--gray-300);
+	transition: stroke 0.15s var(--ease);
+}
+.qr-card:hover .qr-card__bracket {
+	stroke: var(--cyan-500);
+}
+.qr-card__frame img {
+	width: 5rem;
+	height: 5rem;
+}
+.qr-card__text {
+	max-width: 12rem;
+}
+.qr-card__title {
+	font-size: 0.875rem;
+	font-weight: 600;
+	color: var(--gray-900);
+}
+.qr-card__title a {
+	color: inherit;
+}
+.qr-card__title a:hover {
+	color: inherit;
+}
+.qr-card__desc {
+	margin-top: 0.25rem;
 	font-size: 0.875rem;
 	color: var(--gray-700);
-	max-width: 11rem;
 }
 
 .newsletter h3 {
@@ -491,7 +522,7 @@ select {
 	min-width: 0;
 	border: 1px solid var(--gray-300);
 	border-radius: 0.5rem;
-	padding: 0.625rem 3rem 0.625rem 1rem;
+	padding: 0.625rem 1rem;
 	font-size: 0.875rem;
 	color: var(--gray-900);
 	background: #fff;
@@ -503,27 +534,37 @@ select {
 	outline: 2px solid var(--cyan-500);
 	border-color: var(--cyan-500);
 }
-.newsletter__form button {
-	position: absolute;
-	right: 0.25rem;
-	top: 50%;
-	transform: translateY(-50%);
-	height: calc(100% - 0.5rem);
-	width: 2.25rem;
-	border-radius: 0.375rem;
+.newsletter__btn {
+	flex: none;
+	margin-left: 1rem;
+	border-radius: 0.5rem;
 	background: var(--cyan-500);
 	color: #fff;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
+	padding: 0.625rem 0.875rem;
+	font-size: 0.875rem;
+	font-weight: 500;
+	white-space: nowrap;
 	transition: background-color 0.15s var(--ease);
 }
-.newsletter__form button:hover {
+.newsletter__btn:hover {
 	background: var(--cyan-600);
 }
-.newsletter__form button svg {
-	height: 1rem;
-	width: 1rem;
+.newsletter__btn-lg {
+	display: none;
+}
+.newsletter__btn-sm {
+	display: inline;
+}
+@media (min-width: 1024px) {
+	.newsletter__btn-lg {
+		display: inline;
+	}
+	.newsletter__btn-sm {
+		display: none;
+	}
 }
 
 .footer__bottom {
@@ -531,23 +572,21 @@ select {
 	padding: 2rem 0;
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
+	gap: 2rem;
 	align-items: center;
 	justify-content: space-between;
 }
 @media (min-width: 768px) {
 	.footer__bottom {
 		flex-direction: row;
+		gap: 1.5rem;
 	}
+}
+.footer__bottom .newsletter {
+	flex: 1;
+	max-width: 28rem;
 }
 .footer__copy {
 	font-size: 0.875rem;
 	color: var(--gray-500);
-}
-.footer__badges {
-	display: flex;
-	gap: 0.75rem;
-}
-.footer__badges .appstore svg {
-	height: 1.25rem;
 }

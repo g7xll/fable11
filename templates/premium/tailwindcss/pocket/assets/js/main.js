@@ -24,6 +24,7 @@
 	document.querySelectorAll("[data-bgillus]").forEach(function (el) {
 		el.innerHTML = bg;
 		el.setAttribute("stroke-width", "1");
+		el.classList.add("spin-slow");
 	});
 
 	/* ---------- news logos ---------- */
