@@ -141,7 +141,8 @@ h3 {
 	display: inline-flex;
 	align-items: center;
 	gap: 10px;
-	border: 1px solid var(--slate-200);
+	border: none;
+	box-shadow: 0 0 0 1px rgba(21, 93, 252, 0.2);
 	border-radius: 999px;
 	padding: 6px 16px 6px 14px;
 	font-size: 14px;
@@ -218,26 +219,27 @@ h3 {
 	overflow: hidden;
 	background: var(--white);
 }
-/* Full-width slate-50 band across the top of the hero */
+/* Full-width slate-100 band across the top of the hero */
 .hero-topband {
 	position: absolute;
 	top: 0;
 	left: 0;
 	right: 0;
 	height: 196px;
-	background: var(--slate-50);
+	background: var(--slate-100);
 	z-index: 1;
 }
-/* Blue blade behind the book on the far left, with faint grid texture */
+/* Blue blade behind the book on the far left, with faint grid texture.
+   Width = container-left-margin(112) + container-padding(24) + left-column(432) = 568px */
 .hero-blade {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 170px;
+	width: 568px;
 	bottom: -1px;
 	background: var(--blue-600);
 	border-bottom-right-radius: 90px;
-	z-index: 0;
+	z-index: 2;
 	overflow: hidden;
 }
 .hero-blade::before {
@@ -508,12 +510,19 @@ h3 {
 	margin-bottom: 24px;
 }
 .section-head h2 {
-	font-size: 36px;
+	font-size: 32px;
 	font-weight: 700;
 	color: var(--slate-900);
 	line-height: 1.12;
 	margin-bottom: 20px;
 	letter-spacing: -0.02em;
+}
+/* Pricing h2 is significantly larger per reference (64px/800) */
+#pricing .section-head h2 {
+	font-size: 64px;
+	font-weight: 800;
+	line-height: 1;
+	letter-spacing: -0.025em;
 }
 .section-head p {
 	font-size: 18px;
@@ -868,8 +877,8 @@ h3 {
 /* ---------- Pricing ---------- */
 .pricing-panel {
 	background: var(--slate-50);
-	border-radius: 24px;
-	padding: 48px;
+	border-radius: 80px;
+	padding: 64px;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 24px;
@@ -878,8 +887,8 @@ h3 {
 	margin-inline: auto;
 }
 .plan {
-	padding: 36px 32px;
-	border-radius: 18px;
+	padding: 48px 40px;
+	border-radius: 48px;
 }
 .plan-essential {
 	background: transparent;
@@ -980,14 +989,14 @@ h3 {
 	margin: 0 auto 56px;
 }
 .testi-head h2 {
-	font-size: 36px;
+	font-size: 32px;
 	font-weight: 700;
 	margin-bottom: 18px;
 	letter-spacing: -0.02em;
 }
 .testi-head p {
 	font-size: 18px;
-	color: var(--slate-500);
+	color: var(--slate-600);
 	line-height: 1.6;
 	margin: 0;
 }
@@ -1044,17 +1053,24 @@ h3 {
 	justify-content: center;
 	margin-top: 16px;
 }
-.testi-more a {
-	color: var(--blue-600);
+.testi-more a,
+.testi-more button {
+	color: var(--slate-900);
 	font-weight: 600;
 	font-size: 15px;
 	display: inline-flex;
 	gap: 6px;
 	align-items: center;
-	transition: gap 0.2s var(--ease-out);
+	transition: color 0.2s var(--ease-out);
+	background: none;
+	border: none;
+	cursor: pointer;
+	padding: 0;
+	font-family: inherit;
 }
-.testi-more a:hover {
-	gap: 12px;
+.testi-more a:hover,
+.testi-more button:hover {
+	color: var(--blue-600);
 }
 
 /* ---------- Author ---------- */
@@ -1083,19 +1099,19 @@ h3 {
 .author-card {
 	position: relative;
 	z-index: 1;
-	max-width: 760px;
+	max-width: 976px;
 	margin: 0 auto;
 	background: var(--slate-50);
-	border-radius: 28px 28px 28px 28px;
-	padding: 56px 56px 64px;
-	margin-top: 60px;
+	border-radius: 80px;
+	padding: 128px 80px 80px;
+	margin-top: 80px;
 }
 .author-photo {
 	position: absolute;
-	top: -56px;
-	right: 56px;
-	width: 152px;
-	height: 152px;
+	top: -72px;
+	right: 80px;
+	width: 220px;
+	height: 220px;
 	border-radius: 999px;
 	object-fit: cover;
 	box-shadow: 0 20px 40px -16px rgba(15, 23, 43, 0.35);
@@ -1104,12 +1120,12 @@ h3 {
 	margin-bottom: 24px;
 }
 .author-card h2 {
-	font-size: 34px;
+	font-size: 52px;
 	font-weight: 700;
 	line-height: 1.12;
 	letter-spacing: -0.02em;
 	margin-bottom: 24px;
-	max-width: 560px;
+	max-width: 680px;
 }
 .author-card h2 .name {
 	color: var(--blue-600);
@@ -1119,7 +1135,7 @@ h3 {
 	color: var(--slate-600);
 	line-height: 1.7;
 	margin: 0 0 28px;
-	max-width: 600px;
+	max-width: 720px;
 }
 .author-x {
 	display: inline-flex;
@@ -1327,6 +1343,10 @@ h3 {
 	.pricing-panel {
 		grid-template-columns: 1fr;
 		padding: 24px;
+		border-radius: 24px;
+	}
+	.plan {
+		border-radius: 24px;
 	}
 	.plan-complete {
 		transform: none;
@@ -1335,17 +1355,19 @@ h3 {
 		columns: 1;
 	}
 	.author-card {
-		padding: 40px 28px 48px;
-		margin-top: 90px;
+		padding: 48px 28px 48px;
+		margin-top: 110px;
+		border-radius: 40px;
 	}
 	.author-photo {
-		top: -72px;
+		top: -80px;
 		right: 28px;
-		width: 120px;
-		height: 120px;
+		width: 140px;
+		height: 140px;
 	}
 	.author-card h2 {
-		font-size: 26px;
+		font-size: 28px;
+		max-width: none;
 	}
 	.pullquote blockquote {
 		font-size: 24px;

@@ -793,8 +793,8 @@
 					<h2>Some kind words from early customers&hellip;</h2>
 					<p>
 						I worked with a small group of early access customers to make sure
-						all of the content in the book was exactly what they needed. Hears
-						what they had to say about the finished product.
+						all of the content in the book was exactly what they needed.
+						Here&rsquo;s what they had to say about the finished product.
 					</p>
 				</div>
 				<div class="testi-columns reveal">
@@ -887,7 +887,12 @@
 					</div>
 				</div>
 				<div class="testi-more">
-					<a href="#">Read more testimonials <span>&rarr;</span></a>
+					<button
+						type="button"
+						onclick="this.closest('.testimonials').querySelector('.testi-columns').classList.toggle('expanded'); this.textContent = this.textContent.includes('Read') ? 'Show fewer testimonials' : 'Read more testimonials';"
+					>
+						Read more testimonials
+					</button>
 				</div>
 			</div>
 		</section>
@@ -907,7 +912,7 @@
 						Author</span
 					>
 					<h2>
-						<span class="name">Mira Lindehoff &ndash;</span>
+						<span class="name">Mira Lindehoff &ndash;</span><br>
 						Hey there, I&rsquo;m the author behind &lsquo;Everything Starts as a
 						Square&rsquo;.
 					</h2>
