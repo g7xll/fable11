@@ -1193,8 +1193,7 @@
 							<p>
 								Sit commodi iste iure molestias qui amet voluptatem sed quaerat.
 								Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque
-								velit tenetur quaerat exercitationem. Consequatur et cum atque
-								mollitia qui quia necessitatibus.
+								velit tenetur.
 							</p>
 							<h3 id="installing-dependencies">Installing dependencies</h3>
 							<p>
@@ -1252,8 +1251,9 @@
 											This is what a disclaimer message looks like. You might
 											want to include inline <code>code</code> in it. Or maybe
 											you&rsquo;ll want to include a <a href="#">link</a> in it.
-											I don&rsquo;t think this should be a heading, but maybe it
-											is.
+											I don&rsquo;t think we should get too carried away with
+											other scenarios like lists or tables &mdash; that would be
+											silly.
 										</p>
 									</div>
 								</div>
@@ -1265,47 +1265,99 @@
 								velit tenetur quaerat exercitationem. Consequatur et cum atque
 								mollitia qui quia necessitatibus.
 							</p>
+							<pre
+								class="prism-code language-javascript flex overflow-x-auto pb-6"
+							><code class="px-4"><div class="token-line"><span class="token comment">// cache-advance.config.js</span></div><div class="token-line"><span class="token keyword module">export</span><span class="token plain"> </span><span class="token keyword module">default</span><span class="token plain"> </span><span class="token punctuation">{</span></div><div class="token-line"><span class="token plain">  </span><span class="token literal-property property">strategy</span><span class="token operator">:</span><span class="token plain"> </span><span class="token string">'predictive'</span><span class="token punctuation">,</span></div><div class="token-line"><span class="token plain">  </span><span class="token literal-property property">engine</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation">{</span></div><div class="token-line"><span class="token plain">    </span><span class="token literal-property property">cpus</span><span class="token operator">:</span><span class="token plain"> </span><span class="token number">12</span><span class="token punctuation">,</span></div><div class="token-line"><span class="token plain">    </span><span class="token literal-property property">backups</span><span class="token operator">:</span><span class="token plain"> </span><span class="token punctuation">[</span><span class="token string">'./storage/cache.wtf'</span><span class="token punctuation">]</span><span class="token punctuation">,</span></div><div class="token-line"><span class="token plain">  </span><span class="token punctuation">}</span><span class="token punctuation">,</span></div><div class="token-line"><span class="token plain"></span><span class="token punctuation">}</span></div></code></pre>
+							<p>
+								Possimus saepe veritatis sint nobis et quam eos. Architecto
+								consequatur odit perferendis fuga eveniet possimus rerum cumque.
+								Ea deleniti voluptatum deserunt voluptatibus ut non iste.
+								Provident nam asperiores vel laboriosam omnis ducimus enim
+								nesciunt quaerat. Minus tempora cupiditate est quod.
+							</p>
 							<div
-								class="my-8 flex rounded-3xl p-6 bg-amber-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10"
+								class="my-8 flex rounded-3xl p-6 bg-sky-50 dark:bg-slate-800/60 dark:ring-1 dark:ring-slate-300/10"
 							>
 								<svg
 									aria-hidden="true"
 									viewBox="0 0 32 32"
 									fill="none"
-									class="h-8 w-8 flex-none"
+									class="h-8 w-8 flex-none [--icon-foreground:var(--color-slate-900)] [--icon-background:var(--color-white)]"
 								>
-									<circle cx="20" cy="20" r="12" fill="#FDE68A"></circle>
-									<path
-										d="M3 16c0 7.18 5.82 13 13 13s13-5.82 13-13S23.18 3 16 3 3 8.82 3 16Z"
-										fill="#FEF3C7"
-										fill-opacity="0.5"
-										stroke="#92400E"
-										stroke-width="2"
-									></path>
-									<path
-										d="M16 11v6"
-										stroke="#92400E"
-										stroke-width="2"
-										stroke-linecap="round"
-									></path>
-									<path
-										d="M16 22a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"
-										fill="#92400E"
-									></path>
+									<defs>
+										<radialGradient
+											cx="0"
+											cy="0"
+											r="1"
+											gradientUnits="userSpaceOnUse"
+											id="callout-info-gradient"
+											gradientTransform="matrix(0 21 -21 0 20 11)"
+										>
+											<stop stop-color="#0EA5E9"></stop>
+											<stop stop-color="#22D3EE" offset=".527"></stop>
+											<stop stop-color="#818CF8" offset="1"></stop>
+										</radialGradient>
+										<radialGradient
+											cx="0"
+											cy="0"
+											r="1"
+											gradientUnits="userSpaceOnUse"
+											id="callout-info-gradient-dark"
+											gradientTransform="matrix(0 24.5001 -19.2498 0 16 5.5)"
+										>
+											<stop stop-color="#0EA5E9"></stop>
+											<stop stop-color="#22D3EE" offset=".527"></stop>
+											<stop stop-color="#818CF8" offset="1"></stop>
+										</radialGradient>
+									</defs>
+									<g class="dark:hidden">
+										<circle
+											cx="20"
+											cy="20"
+											r="12"
+											fill="url(#callout-info-gradient)"
+										></circle>
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M20 24.995c0-1.855 1.094-3.501 2.427-4.792C24.61 18.087 26 15.07 26 12.231 26 7.133 21.523 3 16 3S6 7.133 6 12.23c0 2.84 1.389 5.857 3.573 7.973C10.906 21.494 12 23.14 12 24.995V27a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-2.005Z"
+											class="fill-(--icon-background)"
+											fill-opacity="0.5"
+										></path>
+										<path
+											d="M25 12.23c0 2.536-1.254 5.303-3.269 7.255l1.391 1.436c2.354-2.28 3.878-5.547 3.878-8.69h-2ZM16 4c5.047 0 9 3.759 9 8.23h2C27 6.508 21.998 2 16 2v2Zm-9 8.23C7 7.76 10.953 4 16 4V2C10.002 2 5 6.507 5 12.23h2Zm3.269 7.255C8.254 17.533 7 14.766 7 12.23H5c0 3.143 1.523 6.41 3.877 8.69l1.392-1.436ZM13 27v-2.005h-2V27h2Zm1 1a1 1 0 0 1-1-1h-2a3 3 0 0 0 3 3v-2Zm4 0h-4v2h4v-2Zm1-1a1 1 0 0 1-1 1v2a3 3 0 0 0 3-3h-2Zm0-2.005V27h2v-2.005h-2ZM8.877 20.921C10.132 22.136 11 23.538 11 24.995h2c0-2.253-1.32-4.143-2.731-5.51L8.877 20.92Zm12.854-1.436C20.32 20.852 19 22.742 19 24.995h2c0-1.457.869-2.859 2.122-4.074l-1.391-1.436Z"
+											class="fill-(--icon-foreground)"
+										></path>
+										<path
+											d="M20 26a1 1 0 1 0 0-2v2Zm-8-2a1 1 0 1 0 0 2v-2Zm2 0h-2v2h2v-2Zm1 1V13.5h-2V25h2Zm-5-11.5v1h2v-1h-2Zm3.5 4.5h5v-2h-5v2Zm8.5-3.5v-1h-2v1h2ZM20 24h-2v2h2v-2Zm-2 0h-4v2h4v-2Zm-1-10.5V25h2V13.5h-2Zm2.5-2.5a2.5 2.5 0 0 0-2.5 2.5h2a.5.5 0 0 1 .5-.5v-2Zm2.5 2.5a2.5 2.5 0 0 0-2.5-2.5v2a.5.5 0 0 1 .5.5h2ZM18.5 18a3.5 3.5 0 0 0 3.5-3.5h-2a1.5 1.5 0 0 1-1.5 1.5v2ZM10 14.5a3.5 3.5 0 0 0 3.5 3.5v-2a1.5 1.5 0 0 1-1.5-1.5h-2Zm2.5-3.5a2.5 2.5 0 0 0-2.5 2.5h2a.5.5 0 0 1 .5-.5v-2Zm2.5 2.5a2.5 2.5 0 0 0-2.5-2.5v2a.5.5 0 0 1 .5.5h2Z"
+											class="fill-(--icon-foreground)"
+										></path>
+									</g>
+									<g class="hidden dark:inline">
+										<path
+											fill-rule="evenodd"
+											clip-rule="evenodd"
+											d="M16 2C10.002 2 5 6.507 5 12.23c0 3.144 1.523 6.411 3.877 8.691.75.727 1.363 1.52 1.734 2.353.185.415.574.726 1.028.726H12a1 1 0 0 0 1-1v-4.5a.5.5 0 0 0-.5-.5A3.5 3.5 0 0 1 9 14.5V14a3 3 0 1 1 6 0v9a1 1 0 1 0 2 0v-9a3 3 0 1 1 6 0v.5a3.5 3.5 0 0 1-3.5 3.5.5.5 0 0 0-.5.5V23a1 1 0 0 0 1 1h.36c.455 0 .844-.311 1.03-.726.37-.833.982-1.626 1.732-2.353 2.354-2.28 3.878-5.547 3.878-8.69C27 6.507 21.998 2 16 2Zm5 25a1 1 0 0 0-1-1h-8a1 1 0 0 0-1 1 3 3 0 0 0 3 3h4a3 3 0 0 0 3-3Zm-8-13v1.5a.5.5 0 0 1-.5.5 1.5 1.5 0 0 1-1.5-1.5V14a1 1 0 1 1 2 0Zm6.5 2a.5.5 0 0 1-.5-.5V14a1 1 0 1 1 2 0v.5a1.5 1.5 0 0 1-1.5 1.5Z"
+											fill="url(#callout-info-gradient-dark)"
+										></path>
+									</g>
 								</svg>
 								<div class="ml-4 flex-auto">
 									<p
-										class="not-prose font-display text-xl text-amber-900 dark:text-amber-500"
+										class="not-prose font-display text-xl text-sky-900 dark:text-sky-400"
 									>
-										Oh no! Something bad happened!
+										You should know!
 									</p>
-									<div class="prose mt-2.5 text-amber-800 dark:text-slate-300">
+									<div
+										class="prose mt-2.5 text-sky-800 [--tw-prose-background:var(--color-sky-50)] prose-a:text-sky-900 prose-code:text-sky-900 dark:text-slate-300 dark:prose-code:text-slate-300"
+									>
 										<p>
 											This is what a disclaimer message looks like. You might
 											want to include inline <code>code</code> in it. Or maybe
 											you&rsquo;ll want to include a <a href="#">link</a> in it.
-											I don&rsquo;t think this should be a heading, but maybe it
-											is.
+											I don&rsquo;t think we should get too carried away with
+											other scenarios like lists or tables &mdash; that would be
+											silly.
 										</p>
 									</div>
 								</div>
@@ -1313,53 +1365,112 @@
 							<hr>
 							<h2 id="basic-usage">Basic usage</h2>
 							<p>
-								Sit commodi iste iure molestias qui amet voluptatem sed quaerat.
-								Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque
-								velit tenetur quaerat exercitationem. Consequatur et cum atque
-								mollitia qui quia necessitatibus.
+								Praesentium laudantium magni. Consequatur reiciendis aliquid
+								nihil iusto ut in et. Quisquam ut et aliquid occaecati. Culpa
+								veniam aut et voluptates amet perspiciatis. Qui exercitationem
+								in qui. Vel qui dignissimos sit quae distinctio.
 							</p>
 							<h3 id="your-first-cache">Your first cache</h3>
 							<p>
-								Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad
-								eaque quas quia distinctio. Molestiae aperiam qui quis deleniti
-								soluta quia qui. Dolores nostrum blanditiis libero optio id.
-								Mollitia ad et asperiores quas saepe alias.
+								Minima vel non iste debitis. Consequatur repudiandae et quod
+								accusamus sit molestias consequatur aperiam. Et sequi ipsa eum
+								voluptatibus ipsam. Et quisquam ut.
+							</p>
+							<p>
+								Qui quae esse aspernatur fugit possimus. Quam sed molestiae
+								temporibus. Eum perferendis dignissimos provident ea et. Et
+								repudiandae quasi accusamus consequatur dolore nobis. Quia
+								reiciendis necessitatibus a blanditiis iste quia. Ut quis et
+								amet praesentium sapiente.
+							</p>
+							<p>
+								Atque eos laudantium. Optio odit aspernatur consequuntur
+								corporis soluta quidem sunt aut doloribus. Laudantium assumenda
+								commodi.
 							</p>
 							<h3 id="clearing-the-cache">Clearing the cache</h3>
 							<p>
-								Sit commodi iste iure molestias qui amet voluptatem sed quaerat.
-								Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque
-								velit tenetur quaerat exercitationem. Consequatur et cum atque
-								mollitia qui quia necessitatibus.
+								Vel aut velit sit dolor aut suscipit at veritatis voluptas.
+								Laudantium tempore praesentium. Qui ut voluptatem.
+							</p>
+							<p>
+								Ea est autem fugiat velit esse a alias earum. Dolore non amet
+								soluta eos libero est. Consequatur qui aliquam qui odit eligendi
+								ut impedit illo dignissimos.
+							</p>
+							<p>
+								Ut dolore qui aut nam. Natus temporibus nisi voluptatum labore
+								est ex error vel officia. Vero repellendus ut. Suscipit
+								voluptate et placeat. Eius quo corporis ab et consequatur
+								quisquam. Nihil officia facere dolorem occaecati alias deleniti
+								deleniti in.
 							</p>
 							<h3 id="adding-middleware">Adding middleware</h3>
 							<p>
-								Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad
-								eaque quas quia distinctio. Molestiae aperiam qui quis deleniti
-								soluta quia qui. Dolores nostrum blanditiis libero optio id.
-								Mollitia ad et asperiores quas saepe alias.
+								Officia nobis tempora maiores id iusto magni reprehenderit
+								velit. Quae dolores inventore molestiae perspiciatis aut. Quis
+								sequi officia quasi rem officiis officiis. Nesciunt ut
+								cupiditate. Sunt aliquid explicabo enim ipsa eum recusandae.
+								Vitae sunt eligendi et non beatae minima aut.
+							</p>
+							<p>
+								Harum perferendis aut qui quibusdam tempore laboriosam
+								voluptatum qui sed. Amet error amet totam exercitationem aut
+								corporis accusantium dolorum. Perspiciatis aut animi et. Sed
+								unde error ut aut rerum.
+							</p>
+							<p>
+								Ut quo libero aperiam mollitia est repudiandae quaerat corrupti
+								explicabo. Voluptas accusantium sed et doloribus voluptatem
+								fugiat a mollitia. Numquam est magnam dolorem asperiores fugiat.
+								Soluta et fuga amet alias temporibus quasi velit. Laudantium
+								voluptatum perspiciatis doloribus quasi facere. Eveniet deleniti
+								veniam et quia veritatis minus veniam perspiciatis.
 							</p>
 							<hr>
 							<h2 id="getting-help">Getting help</h2>
 							<p>
-								Sit commodi iste iure molestias qui amet voluptatem sed quaerat.
-								Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque
-								velit tenetur quaerat exercitationem. Consequatur et cum atque
-								mollitia qui quia necessitatibus.
+								Consequuntur et aut quisquam et qui consequatur eligendi.
+								Necessitatibus dolorem sit. Excepturi cumque quibusdam soluta
+								ullam rerum voluptatibus. Porro illo sequi consequatur nisi
+								numquam nisi autem. Ut necessitatibus aut. Veniam ipsa
+								voluptatem sed.
 							</p>
 							<h3 id="submit-an-issue">Submit an issue</h3>
 							<p>
-								Sit commodi iste iure molestias qui amet voluptatem sed quaerat.
-								Nostrum aut pariatur. Sint ipsa praesentium dolor error cumque
-								velit tenetur quaerat exercitationem. Consequatur et cum atque
-								mollitia qui quia necessitatibus.
+								Inventore et aut minus ut voluptatem nihil commodi doloribus
+								consequatur. Facilis perferendis nihil sit aut aspernatur iure
+								ut dolores et. Aspernatur odit dignissimos. Aut qui est sint
+								sint.
+							</p>
+							<p>
+								Facere aliquam qui. Dolorem officia ipsam adipisci qui
+								molestiae. Error voluptatem reprehenderit ex.
+							</p>
+							<p>
+								Consequatur enim quia maiores aperiam et ipsum dicta. Quam ut
+								sit facere sit quae. Eligendi veritatis aut ut veritatis iste ut
+								adipisci illo.
 							</p>
 							<h3 id="join-the-community">Join the community</h3>
 							<p>
-								Voluptas beatae omnis omnis voluptas. Cum architecto ab sit ad
-								eaque quas quia distinctio. Molestiae aperiam qui quis deleniti
-								soluta quia qui. Dolores nostrum blanditiis libero optio id.
-								Mollitia ad et asperiores quas saepe alias.
+								Praesentium facilis iste aliquid quo quia a excepturi. Fuga
+								reprehenderit illo sequi voluptatem voluptatem omnis. Id quia
+								consequatur rerum consectetur eligendi et omnis. Voluptates
+								iusto labore possimus provident praesentium id vel harum
+								quisquam. Voluptatem provident corrupti.
+							</p>
+							<p>
+								Eum et ut. Qui facilis est ipsa. Non facere quia sequi commodi
+								autem. Dicta autem sit sequi omnis impedit. Eligendi amet
+								dolorum magnam repudiandae in a.
+							</p>
+							<p>
+								Molestiae iusto ut exercitationem dolorem unde iusto tempora
+								atque nihil. Voluptatem velit facere laboriosam nobis ea.
+								Consequatur rerum velit ipsum ipsam. Et qui saepe consequatur
+								minima laborum tempore voluptatum et. Quia eveniet eaque sequi
+								consequatur nihil eos.
 							</p>
 						</div>
 					</article>
