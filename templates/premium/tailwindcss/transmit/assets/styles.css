@@ -26,21 +26,21 @@
 	--slate-50: #f8fafc;
 	--slate-100: #f1f5f9;
 	--slate-200: #e2e8f0;
-	--slate-300: #cbd5e1;
-	--slate-400: #94a3b8;
-	--slate-500: #64748b;
-	--slate-700: #334155;
-	--slate-900: #0f172a;
-	--pink-300: #f9a8d4;
-	--pink-500: #ec4899;
-	--pink-700: #be185d;
-	--pink-900: #831843;
-	--violet-300: #c4b5fd;
-	--indigo-300: #a5b4fc;
-	--blue-300: #93c5fd;
-	--cyan-200: #a5f3fc;
-	--violet-200: #ddd6fe;
-	--indigo-200: #c7d2fe;
+	--slate-300: #cad5e2;
+	--slate-400: #90a1b9;
+	--slate-500: #62748e;
+	--slate-700: #314158;
+	--slate-900: #0f172b;
+	--pink-300: #fda5d5;
+	--pink-500: #f6339a;
+	--pink-700: #c4005c;
+	--pink-900: #861043;
+	--violet-300: #c4b4ff;
+	--indigo-300: #a4b3ff;
+	--blue-300: #90c5ff;
+	--cyan-200: #a2f4fd;
+	--violet-200: #ddd6ff;
+	--indigo-200: #c7d2ff;
 	--sans:
 		"Satoshi", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
 		"Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
@@ -559,6 +559,7 @@ button {
 	gap: 12px;
 	overflow: hidden;
 	padding: 4px;
+	margin-bottom: env(safe-area-inset-bottom);
 }
 .player-title {
 	display: block;
@@ -710,6 +711,15 @@ button {
 	fill: var(--slate-700);
 	stroke: var(--slate-700);
 }
+/* Mobile-only mute button — left side of controls row */
+.player-mute-mobile {
+	display: flex;
+	align-items: center;
+}
+/* Desktop mute button in .player-right — hidden on mobile */
+.player-mute-desktop {
+	display: none;
+}
 
 /* ===== Responsive ===== */
 @media (max-width: 1023px) {
@@ -752,8 +762,13 @@ button {
 		display: flex;
 	}
 	.player-mobile-play,
-	.player-mobile-mute {
+	.player-mobile-mute,
+	.player-mute-mobile {
 		display: none;
+	}
+	.player-mute-desktop {
+		display: flex;
+		align-items: center;
 	}
 	.player-title {
 		text-align: left;
