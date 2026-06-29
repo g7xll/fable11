@@ -1,9 +1,0 @@
-frames: 1 chosen area: 8454240 url: http://localhost:8899/blog-react-hooks.html
-fonts: [
-  'Inter, -apple-system, "system-ui", "Segoe UI", sans-serif',
-  '"Fira Code", "Cascadia Code", "Courier New", monospace',
-  'monospace'
-]
-nodes: 20 imgs: 1
-css bytes: 15123 linked css: 2 scripts: 0
-hover states captured: 10

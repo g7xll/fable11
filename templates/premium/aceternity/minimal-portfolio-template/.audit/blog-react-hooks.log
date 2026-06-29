@@ -1,9 +1,0 @@
-frames: 1 chosen area: 4661280 url: https://minimal-portfolio-website-template.vercel.app/blog/mastering-react-hooks
-fonts: [
-  'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-  'Inter, "Inter Fallback"',
-  'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace'
-]
-nodes: 16 imgs: 3
-css bytes: 84438 linked css: 1 scripts: 11
-hover states captured: 8

@@ -1,7 +1,0 @@
-{
-  "styles": [
-    "http://localhost:8899/tokens.css",
-    "http://localhost:8899/styles.css"
-  ],
-  "scripts": []
-}

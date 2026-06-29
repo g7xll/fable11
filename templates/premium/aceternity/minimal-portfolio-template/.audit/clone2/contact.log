@@ -1,5 +1,0 @@
-frames: 1 chosen area: 1296000 url: http://localhost:8899/contact.html
-fonts: [ 'Inter, -apple-system, "system-ui", "Segoe UI", sans-serif' ]
-nodes: 20 imgs: 1
-css bytes: 19746 linked css: 2 scripts: 0
-hover states captured: 10

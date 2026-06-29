@@ -1,8 +1,0 @@
-frames: 1 chosen area: 2265120 url: https://minimal-portfolio-website-template.vercel.app/blog/introduction-to-nextjs
-fonts: [
-  'ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"',
-  'Inter, "Inter Fallback"'
-]
-nodes: 16 imgs: 3
-css bytes: 84438 linked css: 1 scripts: 12
-hover states captured: 8
