@@ -63,6 +63,23 @@ document.addEventListener("DOMContentLoaded", () => {
 		});
 	}
 
+	// --- Scroll reveal (replaces Framer Motion initial states) ---
+	const revealEls = document.querySelectorAll('[style*="opacity: 0"]');
+	const observer = new IntersectionObserver(
+		(entries) => {
+			entries.forEach((e) => {
+				if (e.isIntersecting) {
+					e.target.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+					e.target.style.opacity = "1";
+					e.target.style.transform = "none";
+					observer.unobserve(e.target);
+				}
+			});
+		},
+		{ rootMargin: "0px 0px -40px 0px" },
+	);
+	revealEls.forEach((el) => observer.observe(el));
+
 	// --- Swiper Testimonial Carousel ---
 	const swiperContainer = document.querySelector(".swiper");
 	if (swiperContainer) {
