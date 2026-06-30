@@ -1,38 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-	// --- Theme Toggle Logic ---
-	const themeToggle = document.getElementById("theme-toggle");
-	const darkIcon = document.getElementById("theme-toggle-dark-icon");
-	const lightIcon = document.getElementById("theme-toggle-light-icon");
-
-	function updateThemeIcons() {
-		const isDark =
-			document.documentElement.getAttribute("data-theme") === "dark";
-		if (isDark) {
-			darkIcon.classList.add("hidden");
-			lightIcon.classList.remove("hidden");
-		} else {
-			lightIcon.classList.add("hidden");
-			darkIcon.classList.remove("hidden");
-		}
-	}
-
-	updateThemeIcons();
-
-	if (themeToggle) {
-		themeToggle.addEventListener("click", () => {
-			const isDark =
-				document.documentElement.getAttribute("data-theme") === "dark";
-			if (isDark) {
-				document.documentElement.removeAttribute("data-theme");
-				localStorage.setItem("theme", "light");
-			} else {
-				document.documentElement.setAttribute("data-theme", "dark");
-				localStorage.setItem("theme", "dark");
-			}
-			updateThemeIcons();
-		});
-	}
-
 	// --- Sidebar Toggle Logic (Desktop) ---
 	const desktopSidebarToggle = document.getElementById(
 		"desktop-sidebar-toggle",
@@ -195,20 +161,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				chart.updateSeries([{ data: data }]);
 			});
 		});
-
-		// Theme change listener for chart
-		const themeObserver = new MutationObserver(() => {
-			const dark =
-				document.documentElement.getAttribute("data-theme") === "dark";
-			chart.updateOptions({
-				grid: { borderColor: dark ? "#334155" : "#e5e7eb" },
-				tooltip: { theme: dark ? "dark" : "light" },
-			});
-		});
-		themeObserver.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ["data-theme"],
-		});
 	}
 
 	// --- Device Distribution ApexChart (Dashboard Only) ---
@@ -239,19 +191,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
 		const chart = new ApexCharts(deviceChartEl, options);
 		chart.render();
-
-		// Theme change listener for donut chart
-		const themeObserver = new MutationObserver(() => {
-			const dark =
-				document.documentElement.getAttribute("data-theme") === "dark";
-			chart.updateOptions({
-				legend: { labels: { colors: dark ? "#f8fafc" : "#1e293b" } },
-				tooltip: { theme: dark ? "dark" : "light" },
-			});
-		});
-		themeObserver.observe(document.documentElement, {
-			attributes: true,
-			attributeFilter: ["data-theme"],
-		});
 	}
 });
