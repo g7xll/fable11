@@ -661,6 +661,9 @@
 		top: calc(var(--spacing) * 2.5);
 	}
 	.top-4 {
+	}
+	.top-6 {
+		top: 1.5rem;
 		top: calc(var(--spacing) * 4);
 	}
 	.-right-1 {
@@ -2341,6 +2344,21 @@
 		}
 		.lg\:grid-cols-3 {
 			grid-template-columns: repeat(3, minmax(0px, 1fr));
+		}
+		.lg\:grid-cols-\[280px_1fr\] {
+			grid-template-columns: 280px 1fr;
+		}
+		.lg\:grid-cols-\[1fr_360px\] {
+			grid-template-columns: 1fr 360px;
+		}
+		.lg\:grid-cols-\[1fr_400px\] {
+			grid-template-columns: 1fr 400px;
+		}
+		.lg\:sticky {
+			position: sticky;
+		}
+		.lg\:top-24 {
+			top: 6rem;
 		}
 		.lg\:grid-cols-4 {
 			grid-template-columns: repeat(4, minmax(0px, 1fr));

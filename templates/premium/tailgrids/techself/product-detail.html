@@ -499,8 +499,21 @@
 						>
 							Select Color:
 						</h4>
-						<div class="detail-colors-container flex gap-3">
-							<!-- Rendered by JS -->
+						<div class="flex items-center gap-3">
+							<div class="flex gap-2" id="color-options">
+								<button
+									data-color="#ffffff"
+									class="color-swatch w-8 h-8 rounded-full border-2 border-gray-300 dark:border-slate-600 cursor-pointer hover:scale-110 transition-transform ring-offset-2 hover:ring-2 hover:ring-violet-500"
+									style="background-color: #ffffff;"
+									title="White"
+								></button>
+								<button
+									data-color="#000000"
+									class="color-swatch w-8 h-8 rounded-full border-2 border-gray-300 dark:border-slate-600 cursor-pointer hover:scale-110 transition-transform ring-offset-2 hover:ring-2 hover:ring-violet-500"
+									style="background-color: #000000;"
+									title="Black"
+								></button>
+							</div>
 						</div>
 					</div>
 
@@ -720,6 +733,116 @@
 					</div>
 				</div>
 			</div>
+			<!-- Recommended Products -->
+			<section class="py-12 lg:py-20">
+				<div class="max-w-7xl mx-auto px-4 lg:px-6">
+					<h2 class="text-2xl font-semibold text-gray-900 dark:text-white mb-8">
+						You May Also Like
+					</h2>
+					<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+						<!-- Product 1 -->
+						<div
+							class="group relative rounded-2xl border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+						>
+							<div
+								class="relative overflow-hidden bg-gray-50 dark:bg-slate-700 aspect-square"
+							>
+								<img
+									src="./images/products/image-2.png"
+									class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+									alt="DJI Mini 3 Pro"
+								>
+								<span
+									class="absolute top-3 left-3 bg-violet-600 text-white text-xs font-semibold px-2 py-1 rounded-full"
+									>New</span
+								>
+							</div>
+							<div class="p-4">
+								<h3
+									class="text-gray-900 dark:text-white font-semibold text-sm mb-2"
+								>
+									DJI Mini 3 Pro Drone
+								</h3>
+								<div class="flex items-center gap-2">
+									<span class="text-violet-600 font-bold">$799.00</span>
+								</div>
+							</div>
+						</div>
+						<!-- Product 2 -->
+						<div
+							class="group relative rounded-2xl border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+						>
+							<div
+								class="relative overflow-hidden bg-gray-50 dark:bg-slate-700 aspect-square"
+							>
+								<img
+									src="./images/products/image-3.png"
+									class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+									alt="Razer DeathAdder Mouse"
+								>
+							</div>
+							<div class="p-4">
+								<h3
+									class="text-gray-900 dark:text-white font-semibold text-sm mb-2"
+								>
+									Razer DeathAdder Mouse
+								</h3>
+								<div class="flex items-center gap-2">
+									<span class="text-violet-600 font-bold">$59.99</span>
+								</div>
+							</div>
+						</div>
+						<!-- Product 3 -->
+						<div
+							class="group relative rounded-2xl border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+						>
+							<div
+								class="relative overflow-hidden bg-gray-50 dark:bg-slate-700 aspect-square"
+							>
+								<img
+									src="./images/products/image-4.png"
+									class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+									alt="ASUS ROG Laptop"
+								>
+							</div>
+							<div class="p-4">
+								<h3
+									class="text-gray-900 dark:text-white font-semibold text-sm mb-2"
+								>
+									ASUS ROG Zephyrus 14
+								</h3>
+								<div class="flex items-center gap-2">
+									<span class="text-violet-600 font-bold">$1,299.00</span>
+								</div>
+							</div>
+						</div>
+						<!-- Product 4 -->
+						<div
+							class="group relative rounded-2xl border border-gray-100 dark:border-slate-700 bg-white dark:bg-slate-800 overflow-hidden hover:shadow-lg transition-shadow duration-300"
+						>
+							<div
+								class="relative overflow-hidden bg-gray-50 dark:bg-slate-700 aspect-square"
+							>
+								<img
+									src="./images/products/image-5.png"
+									class="w-full h-full object-contain p-4 group-hover:scale-110 transition-transform duration-300"
+									alt="Apple Watch"
+								>
+							</div>
+							<div class="p-4">
+								<h3
+									class="text-gray-900 dark:text-white font-semibold text-sm mb-2"
+								>
+									Apple Watch Series 9
+								</h3>
+								<div class="flex items-center gap-2">
+									<span class="text-violet-600 font-bold">$429.00</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 		</main>
 
 		<footer

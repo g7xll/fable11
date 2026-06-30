@@ -892,3 +892,30 @@ window.addToWishlist = (id) => {
 		alert("Removed from wishlist!");
 	}
 };
+
+// FAQ accordion
+document.querySelectorAll(".faq-btn").forEach((btn) => {
+	btn.addEventListener("click", () => {
+		const targetId = btn.getAttribute("data-target");
+		const content = document.getElementById(targetId);
+		const plusIcon = btn.querySelector(".faq-icon-plus");
+		const minusIcon = btn.querySelector(".faq-icon-minus");
+		const isOpen = !content.classList.contains("hidden");
+		// Close all
+		document
+			.querySelectorAll(".faq-content")
+			.forEach((c) => c.classList.add("hidden"));
+		document
+			.querySelectorAll(".faq-icon-plus")
+			.forEach((i) => i.classList.remove("hidden"));
+		document
+			.querySelectorAll(".faq-icon-minus")
+			.forEach((i) => i.classList.add("hidden"));
+		// Toggle clicked
+		if (!isOpen) {
+			content.classList.remove("hidden");
+			plusIcon.classList.add("hidden");
+			minusIcon.classList.remove("hidden");
+		}
+	});
+});
