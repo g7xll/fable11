@@ -1290,8 +1290,13 @@ button {
 	max-width: 320px;
 }
 
+.benefit-tags {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 24px;
+}
+
 .benefit-tag {
-	position: absolute;
 	display: inline-flex;
 	align-items: center;
 	gap: 6px;
@@ -1304,15 +1309,11 @@ button {
 }
 
 .benefit-tag.tag-1 {
-	top: 130px;
-	left: 20px;
 	background: #fb923c;
 	color: #fff;
 }
 
 .benefit-tag.tag-2 {
-	top: 165px;
-	left: 130px;
 	background: #fff;
 	color: #1d2939;
 }

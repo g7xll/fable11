@@ -106,6 +106,10 @@
 	});
 
 	// ---- Scroll reveal ----
+	// Elements above/near the fold reveal via IntersectionObserver as the user
+	// scrolls. A load-time fallback also force-reveals everything shortly after
+	// load so content is never permanently stuck invisible for tools (or users)
+	// that render the full page without scrolling (e.g. full-page screenshots).
 	var reveals = document.querySelectorAll(".reveal");
 	if ("IntersectionObserver" in window && reveals.length) {
 		var io = new IntersectionObserver(
@@ -124,6 +128,12 @@
 		reveals.forEach(function (r) {
 			io.observe(r);
 		});
+		setTimeout(function () {
+			reveals.forEach(function (r) {
+				if (!r.classList.contains("in")) r.classList.add("in");
+			});
+			io.disconnect();
+		}, 900);
 	} else {
 		reveals.forEach(function (r) {
 			r.classList.add("in");
