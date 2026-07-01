@@ -120,6 +120,14 @@
 		els.forEach(function (el) {
 			io.observe(el);
 		});
+		// Safety net: full-page captures (and users who never scroll) must
+		// still end up with fully visible content, so force-reveal anything
+		// still hidden a short while after load.
+		window.setTimeout(function () {
+			els.forEach(function (el) {
+				el.classList.add("in-view");
+			});
+		}, 1200);
 	}
 
 	/* ---------- Pricing monthly/annually toggle ---------- */
@@ -155,8 +163,25 @@
 		});
 	}
 
-	/* ---------- Testimonial carousel ---------- */
+	/* ---------- Testimonial carousel (real Swiper, matches source) ---------- */
+	function initSwiperTestimonial() {
+		var el = document.querySelector(".mySwiper");
+		if (!el || typeof window.Swiper === "undefined") return false;
+		new window.Swiper(el, {
+			slidesPerView: 1,
+			spaceBetween: 24,
+			loop: true,
+			navigation: {
+				nextEl: '[aria-label="Testimonial next arrow"]',
+				prevEl: '[aria-label="Testimonial prev arrow"]',
+			},
+		});
+		return true;
+	}
+
+	/* ---------- Testimonial carousel (fallback, no Swiper available) ---------- */
 	function initTestimonialCarousel() {
+		if (initSwiperTestimonial()) return;
 		var track = document.querySelector(".testimonial-track");
 		if (!track) return;
 		var slides = track.querySelectorAll(".testimonial-slide");
@@ -196,6 +221,56 @@
 		render();
 	}
 
+	/* ---------- Stat counters (count up when scrolled into view) ---------- */
+	function initCounters() {
+		var counters = document.querySelectorAll(".counter[data-count]");
+		if (!counters.length) return;
+		function animate(el) {
+			var target = parseInt(el.getAttribute("data-count"), 10) || 0;
+			var duration = 1500;
+			var start = null;
+			function step(ts) {
+				if (!start) start = ts;
+				var progress = Math.min((ts - start) / duration, 1);
+				el.textContent = Math.floor(progress * target);
+				if (progress < 1) {
+					requestAnimationFrame(step);
+				} else {
+					el.textContent = target;
+				}
+			}
+			requestAnimationFrame(step);
+		}
+		if (!("IntersectionObserver" in window)) {
+			counters.forEach(animate);
+			return;
+		}
+		var done = new Set();
+		var io = new IntersectionObserver(
+			function (entries) {
+				entries.forEach(function (entry) {
+					if (entry.isIntersecting) {
+						done.add(entry.target);
+						animate(entry.target);
+						io.unobserve(entry.target);
+					}
+				});
+			},
+			{ threshold: 0.3 },
+		);
+		counters.forEach(function (el) {
+			io.observe(el);
+		});
+		// Safety net for full-page captures / non-scrolling visits.
+		window.setTimeout(function () {
+			counters.forEach(function (el) {
+				if (!done.has(el)) {
+					el.textContent = el.getAttribute("data-count");
+				}
+			});
+		}, 1800);
+	}
+
 	document.addEventListener("DOMContentLoaded", function () {
 		initThemeToggle();
 		initMobileNav();
@@ -206,5 +281,6 @@
 		initPricingToggle();
 		initPortfolioFilter();
 		initTestimonialCarousel();
+		initCounters();
 	});
 })();
