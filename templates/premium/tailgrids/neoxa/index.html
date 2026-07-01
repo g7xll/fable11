@@ -790,18 +790,6 @@
 		</style>
 		<link rel="stylesheet" href="./assets/tokens.css">
 		<link rel="stylesheet" href="./assets/styles.css">
-		<script>
-		(function () {
-			const theme =
-				localStorage.getItem("theme") ||
-				(window.matchMedia("(prefers-color-scheme: dark)").matches
-					? "dark"
-					: "light");
-			if (theme === "dark") {
-				document.documentElement.setAttribute("data-theme", "dark");
-			}
-		})();
-		</script>
 	</head>
 	<body>
 		<div id="root">
@@ -1109,33 +1097,6 @@
 							<div class="flex items-center space-x-4">
 								<div class="relative">
 									<button
-										id="theme-toggle"
-										class="relative bg-white size-12 inline-flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer mr-2"
-									>
-										<svg
-											id="theme-toggle-light-icon"
-											class="hidden w-5 h-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-										>
-											<path
-												d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464-4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12 10.606a1 1 0 010 1.414l-.707.707a1 1 0 01-1.414 0l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.41 8.49a1 1 0 00-1.41 0l-.707.707a1 1 0 001.41 1.415l.707-.707zm-4.46-3.95a1 1 0 100-2H3a1 1 0 100 2H2.05z"
-												fill-rule="evenodd"
-												clip-rule="evenodd"
-											></path>
-										</svg>
-										<svg
-											id="theme-toggle-dark-icon"
-											class="w-5 h-5"
-											fill="currentColor"
-											viewBox="0 0 20 20"
-										>
-											<path
-												d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-											></path>
-										</svg>
-									</button>
-									<button
 										class="relative bg-white size-12 inline-flex items-center justify-center text-gray-600 hover:bg-gray-100 rounded-lg transition-colors cursor-pointer"
 									>
 										<span class="relative"
@@ -1197,21 +1158,6 @@
 											></path>
 										</svg>
 									</button>
-									<div
-										id="profile-dropdown-menu"
-										class="hidden absolute right-0 top-16 w-48 bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-gray-200 dark:border-slate-700 py-2 z-50"
-									>
-										<a
-											href="./settings.html"
-											class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700"
-											>Account Settings</a
-										>
-										<a
-											href="./signin.html"
-											class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700"
-											>Sign Out</a
-										>
-									</div>
 								</div>
 							</div>
 						</div>

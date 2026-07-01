@@ -2,7 +2,7 @@
 
 [![Watch Demo](./poster.jpg)](./demo.mp4)
 
-Neoxa is a premium, pixel-faithful clone of a modern SaaS dashboard template, reconstructed as a static multi-page site using semantic Vanilla HTML5, custom CSS utility tokens, and interactive JavaScript. Designed with a clean, card-based minimalist dashboard layout, it includes fully-realized views for analytics, user management tables, invoice drawers, order summaries, a support ticket board, user settings, and multi-step authorization flows. Key animations, theme preference persistence (system default and manual dark mode toggles), and interactive charts are implemented client-side with native JavaScript and ApexCharts. Generated with Claude Fable 5.
+Neoxa is a premium, pixel-faithful clone of a modern SaaS dashboard template, reconstructed as a static multi-page site using semantic Vanilla HTML5, custom CSS utility tokens, and interactive JavaScript. Designed with a clean, card-based minimalist dashboard layout, it includes fully-realized views for analytics, user management tables, invoice drawers, order summaries, a support ticket board, user settings, and multi-step authorization flows. Key animations and interactive charts are implemented client-side with native JavaScript and ApexCharts.
 
 ## Run
 
@@ -26,10 +26,9 @@ Once the server is running, open `http://localhost:8080` in your web browser to 
   - **Order Tracking (`orders.html`)**: Itemized list, status badges, and transaction details.
   - **Invoices (`invoices.html`)**: Invoice billing list and interactive detail drawer.
   - **Support Tickets (`support.html`)**: High/Medium/Low priority cards organized by agent assignment and status.
-  - **Settings (`settings.html`)**: Forms for user profile edit, notifications toggle, security rules, and light/dark theme preference.
+  - **Settings (`settings.html`)**: Forms for user profile edit, notifications toggle, and security rules.
   - **Authentication flows**: Sign In (`signin.html`), Sign Up (`signup.html`), Reset Password (`resetpassword.html`), and Two-Step Verification (`twostepverification.html`).
 - **Interactive Visualization**: Area charts representing Monthly/Annually/Lifetime revenue metrics and donut charts showing device distributions, powered by ApexCharts.
-- **Theme Persistence**: Light and dark mode support toggles fluidly with local storage persistence to prevent visual flashes on load.
 - **Responsive Layout**: Sidebar drawer slides out on mobile screens and collapses dynamically on desktop screen sizes.
 
 The complete build specification is documented in [prompt.md](./prompt.md), and [demo.mp4](./demo.mp4) showcases the interactive state transitions.
