@@ -246,7 +246,8 @@ button {
 	border: none;
 }
 
-.nav a.active {
+.nav a.active,
+.nav-dropdown-trigger.active {
 	color: var(--color-text-heading);
 	background: var(--color-surface-2);
 }
