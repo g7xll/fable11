@@ -1,4 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
+	// --- Scroll entrance animations ---
+	const animatedEls = document.querySelectorAll('[style*="opacity: 0"]');
+	if (animatedEls.length > 0) {
+		const revealObserver = new IntersectionObserver(
+			(entries) => {
+				entries.forEach((entry) => {
+					if (entry.isIntersecting) {
+						const el = entry.target;
+						el.style.transition = "opacity 0.6s ease, transform 0.6s ease";
+						el.style.opacity = "1";
+						el.style.transform = "none";
+						revealObserver.unobserve(el);
+					}
+				});
+			},
+			{ threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+		);
+		animatedEls.forEach((el) => revealObserver.observe(el));
+	}
+
 	// --- Theme Toggle logic ---
 	const themeToggle = document.getElementById("theme-toggle");
 	const darkIcon = document.getElementById("theme-toggle-dark-icon");
