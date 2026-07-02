@@ -4,142 +4,395 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Integrations - FinProX</title>
+  <link rel="icon" href="assets/images/favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
+  <style>
+    .integrations-full-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .integrations-full-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (min-width: 1024px) {
+      .integrations-full-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    .integration-card-full {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      background: var(--color-white);
+      transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+    }
+    .integration-card-full:hover {
+      border-color: rgba(228,136,0,0.35);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transform: translateY(-2px);
+    }
+    .integration-card-full .integration-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius-xl);
+      background: var(--color-body);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+    .integration-card-full .integration-icon img {
+      width: 2rem;
+      height: 2rem;
+      object-fit: contain;
+    }
+    .integration-card-full h3 {
+      font-size: 0.9375rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+      color: var(--color-dark);
+    }
+    .integration-card-full .integration-category {
+      font-size: 0.75rem;
+      color: rgba(26,26,26,0.5);
+      margin-bottom: 0.625rem;
+    }
+    .integration-card-full p {
+      font-size: 0.8125rem;
+      color: rgba(26,26,26,0.65);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .integration-card-request {
+      background: var(--color-lighter);
+      border-style: dashed;
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+    }
+    .integration-card-request .request-icon {
+      width: 3rem;
+      height: 3rem;
+      border-radius: var(--radius-xl);
+      background: var(--color-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .filter-tab {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1.25rem;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--color-border);
+      background: var(--color-white);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(26,26,26,0.7);
+      cursor: pointer;
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: var(--color-dark);
+      color: var(--color-white);
+      border-color: var(--color-dark);
+    }
+    .cta-section {
+      background: var(--color-dark);
+      padding-block: 5rem;
+    }
+    .cta-content {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cta-content h2 {
+      color: var(--color-white);
+      margin-bottom: 1rem;
+    }
+    .cta-content p {
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 2rem;
+    }
+  </style>
 </head>
 <body>
   <div id="site-header"></div>
+
   <main>
-    <section>
-      <div class="main-container section" style="padding-top: 9rem; text-align: center; border-bottom: 1px solid var(--color-border);">
-        <div class="container">
-          <span class="section-label">Integrations</span>
-          <h1 class="has-em" style="font-size: var(--h2); margin-bottom: 1rem;">Connect All Your Financial Tools <em>in One Place</em></h1>
-          <p style="font-size: 1.0625rem; color: rgba(26,26,26,0.7); max-width: 600px; margin: 0 auto;">Seamlessly integrate your banks, payment gateways, and accounting tools to create a single source of financial truth.</p>
-        </div>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1 class="has-em">All <em>Integrations</em></h1>
+        <p>Connect FinProX with your favorite tools.</p>
+        <nav class="breadcrumb" style="margin-top:1.5rem;">
+          <a href="index.html">Home</a>
+          <span class="breadcrumb-sep">→</span>
+          <span>Integrations</span>
+        </nav>
       </div>
     </section>
 
-    <!-- Integrations Grid -->
-    <section>
-      <div class="main-container section">
+    <!-- Integrations Grid Section -->
+    <section class="section">
+      <div class="main-container">
         <div class="container">
-          <!-- Filter tags -->
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem;">
-            <button class="tab-btn active" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">All</button>
-            <button class="tab-btn" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">Accounting</button>
-            <button class="tab-btn" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">Development</button>
-            <button class="tab-btn" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">Communication</button>
-            <button class="tab-btn" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">Productivity</button>
-            <button class="tab-btn" style="border-radius: var(--radius-full); padding: 0.4rem 1rem; font-size: 0.875rem;">Entertainment</button>
+          <div style="text-align:center;margin-bottom:3rem;">
+            <span class="section-label">Integrations</span>
+            <h2 class="has-em" style="margin-top:1rem;">Connects With Your <em>Favorite Tools</em></h2>
           </div>
 
+          <!-- Filter Tabs -->
+          <div class="filter-tabs" style="justify-content:center;">
+            <a href="#" class="filter-tab active">All</a>
+            <a href="#" class="filter-tab">Communication</a>
+            <a href="#" class="filter-tab">Productivity</a>
+            <a href="#" class="filter-tab">Finance</a>
+            <a href="#" class="filter-tab">Analytics</a>
+          </div>
+
+          <!-- Grid -->
           <div class="integrations-full-grid">
+
+            <!-- 1. Slack -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/slack.svg" alt="Slack">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/slack.svg" alt="Slack">
+              </div>
               <h3>Slack</h3>
-              <p>Sync your financial data with Slack for instant team notifications on transactions and alerts.</p>
+              <div class="integration-category">Team Communication</div>
+              <p>Connect Slack for instant financial alerts and spend notifications delivered directly to your channels.</p>
             </div>
+
+            <!-- 2. Google Drive -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/g-drive.svg" alt="Google Drive">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/g-drive.svg" alt="Google Drive">
+              </div>
               <h3>Google Drive</h3>
-              <p>Sync your financial data with Google Drive for streamlined document management and reporting.</p>
+              <div class="integration-category">Cloud Storage</div>
+              <p>Sync financial reports automatically and keep your team's documents up to date in Drive.</p>
             </div>
+
+            <!-- 3. GitHub -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/github.svg" alt="GitHub">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/github.svg" alt="GitHub">
+              </div>
               <h3>GitHub</h3>
-              <p>Track development costs and project expenses alongside your engineering workflows.</p>
+              <div class="integration-category">Code Repository</div>
+              <p>Track development costs alongside financials and link engineering spend to specific repositories.</p>
             </div>
+
+            <!-- 4. Google Meet -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/meet.svg" alt="Google Meet">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/meet.svg" alt="Google Meet">
+              </div>
               <h3>Google Meet</h3>
-              <p>Schedule financial reviews and investor meetings directly from the FinProX platform.</p>
+              <div class="integration-category">Video Conferencing</div>
+              <p>Schedule financial review meetings directly from the FinProX app without switching tabs.</p>
             </div>
+
+            <!-- 5. Notion -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/notion.svg" alt="Notion">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/notion.svg" alt="Notion">
+              </div>
               <h3>Notion</h3>
-              <p>Keep your financial notes, reports, and documents in sync with your Notion workspace.</p>
+              <div class="integration-category">Productivity</div>
+              <p>Keep financial notes and data in sync with your Notion workspace for seamless documentation.</p>
             </div>
+
+            <!-- 6. SoundCloud -->
             <div class="integration-card-full">
-              <img src="assets/images/integrations/sound_cloud.svg" alt="SoundCloud">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/sound_cloud.svg" alt="SoundCloud">
+              </div>
               <h3>SoundCloud</h3>
-              <p>Manage subscription revenue and royalty tracking for media and content businesses.</p>
+              <div class="integration-category">Media Platform</div>
+              <p>Manage subscription and streaming revenue tracking from your SoundCloud creator account.</p>
             </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
-              <h3>QuickBooks</h3>
-              <p>Coming soon — Sync your financial data with QuickBooks for streamlined accounting.</p>
-            </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
-              <h3>Xero</h3>
-              <p>Coming soon — Connect with Xero for automated reconciliation and reporting.</p>
-            </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
+
+            <!-- 7. Stripe -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/stripe.svg" alt="Stripe">
+              </div>
               <h3>Stripe</h3>
-              <p>Coming soon — Track payment revenue and subscription metrics in real time.</p>
+              <div class="integration-category">Payments</div>
+              <p>Sync payment data in real-time and automatically reconcile Stripe transactions with your books.</p>
             </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
-              <h3>Salesforce</h3>
-              <p>Coming soon — Connect your CRM and financial data for a complete business view.</p>
+
+            <!-- 8. PayPal -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/paypal.svg" alt="PayPal">
+              </div>
+              <h3>PayPal</h3>
+              <div class="integration-category">Payments</div>
+              <p>Import PayPal transactions automatically and map them to the right categories in FinProX.</p>
             </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
+
+            <!-- 9. HubSpot -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/hubspot.svg" alt="HubSpot">
+              </div>
               <h3>HubSpot</h3>
-              <p>Coming soon — Align your marketing spend with financial performance metrics.</p>
+              <div class="integration-category">CRM</div>
+              <p>Connect sales pipeline data to financial reporting and track revenue from deal close to invoice.</p>
             </div>
-            <div class="integration-card-full" style="opacity: 0.6;">
-              <div style="width: 3rem; height: 3rem; background: var(--color-lighter); border-radius: var(--radius-lg); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">+</div>
+
+            <!-- 10. Mailchimp -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/mailchimp.svg" alt="Mailchimp">
+              </div>
+              <h3>Mailchimp</h3>
+              <div class="integration-category">Email Marketing</div>
+              <p>Track marketing spend and ROI by linking Mailchimp campaign costs to revenue outcomes.</p>
+            </div>
+
+            <!-- 11. Jira -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/jira.svg" alt="Jira">
+              </div>
               <h3>Jira</h3>
-              <p>Coming soon — Link project management costs to your financial dashboard.</p>
+              <div class="integration-category">Project Management</div>
+              <p>Link project costs to budgets in FinProX and monitor engineering spend by sprint or epic.</p>
             </div>
+
+            <!-- 12. Trello -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/trello.svg" alt="Trello">
+              </div>
+              <h3>Trello</h3>
+              <div class="integration-category">Task Management</div>
+              <p>Monitor team productivity costs and attach budget information directly to Trello cards and boards.</p>
+            </div>
+
+            <!-- 13. Figma -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/figma.svg" alt="Figma">
+              </div>
+              <h3>Figma</h3>
+              <div class="integration-category">Design</div>
+              <p>Track design tool subscriptions and seat costs automatically within your software budget.</p>
+            </div>
+
+            <!-- 14. Zoom -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/zoom.svg" alt="Zoom">
+              </div>
+              <h3>Zoom</h3>
+              <div class="integration-category">Video Calls</div>
+              <p>Manage video conferencing costs and automatically categorize Zoom invoices in your budget.</p>
+            </div>
+
+            <!-- 15. Intercom -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/intercom.svg" alt="Intercom">
+              </div>
+              <h3>Intercom</h3>
+              <div class="integration-category">Customer Support</div>
+              <p>Connect support costs to financials and measure the true ROI of your customer success spend.</p>
+            </div>
+
+            <!-- 16. Asana -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/asana.svg" alt="Asana">
+              </div>
+              <h3>Asana</h3>
+              <div class="integration-category">Project Management</div>
+              <p>Track project budget vs actuals in real-time and surface spend alerts directly inside Asana.</p>
+            </div>
+
+            <!-- 17. Dropbox -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/dropbox.svg" alt="Dropbox">
+              </div>
+              <h3>Dropbox</h3>
+              <div class="integration-category">Cloud Storage</div>
+              <p>Auto-backup financial documents and invoices to Dropbox for secure, organized record keeping.</p>
+            </div>
+
+            <!-- 18. Linear -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/linear.svg" alt="Linear">
+              </div>
+              <h3>Linear</h3>
+              <div class="integration-category">Issue Tracking</div>
+              <p>Monitor engineering costs by cycle and team, linking Linear issues to budget line items.</p>
+            </div>
+
+            <!-- 19. Shopify (Coming Soon) -->
+            <div class="integration-card-full">
+              <div class="integration-icon">
+                <img src="assets/images/integrations/shopify.svg" alt="Shopify">
+              </div>
+              <div style="position:absolute;top:1rem;right:1rem;">
+                <span class="badge badge-primary" style="font-size:0.6875rem;padding:0.1875rem 0.625rem;">Coming Soon</span>
+              </div>
+              <h3>Shopify</h3>
+              <div class="integration-category">E-commerce</div>
+              <p>Sync e-commerce revenue streams and order data directly into your FinProX financial reports.</p>
+            </div>
+
+            <!-- 20. Request Integration -->
+            <div class="integration-card-full integration-card-request">
+              <div class="request-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:rgba(26,26,26,0.4);"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              </div>
+              <h3 style="margin-bottom:0.375rem;">Request Integration</h3>
+              <p style="margin-bottom:1rem;">Don't see your tool here? Let us know what you need and we'll build it.</p>
+              <a href="mailto:integrations@finprox.com" class="btn btn-outline-primary" style="font-size:0.8125rem;padding:0.5rem 1rem;">Submit Request</a>
+            </div>
+
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section>
-      <div class="main-container section" style="background: var(--color-light);">
-        <div class="container">
-          <div style="display: grid; gap: 3rem; align-items: start;" class="seamless-grid">
-            <div>
-              <span class="section-label">FAQ</span>
-              <h2 class="has-em section-title">Your questions, <em>answered</em></h2>
-              <p class="section-desc">Get quick answers to the most common questions about our integrations.</p>
-              <a href="contact.html" class="btn btn-primary" style="margin-top: 2rem;">Contact Us</a>
-            </div>
-            <div class="accordion-list">
-              <div class="accordion-item">
-                <div class="accordion-header">What is the purpose of this platform? <span class="accordion-icon">+</span></div>
-                <div class="accordion-body">Our platform is designed to provide users with comprehensive tools and resources to enhance their productivity and collaboration.</div>
-              </div>
-              <div class="accordion-item">
-                <div class="accordion-header">How can I create an account? <span class="accordion-icon">+</span></div>
-                <div class="accordion-body">You can create an account by clicking on the "Sign Up" button at the top right corner of our homepage and filling out the registration form.</div>
-              </div>
-              <div class="accordion-item">
-                <div class="accordion-header">Is there a free trial available? <span class="accordion-icon">+</span></div>
-                <div class="accordion-body">Yes, we offer a 14-day free trial for new users. You can sign up for the trial without providing any payment information.</div>
-              </div>
-              <div class="accordion-item">
-                <div class="accordion-header">How do I reset my password? <span class="accordion-icon">+</span></div>
-                <div class="accordion-body">To reset your password, click on the "Forgot Password" link on the login page and follow the instructions sent to your registered email address.</div>
-              </div>
-              <div class="accordion-item">
-                <div class="accordion-header">Where can I find support? <span class="accordion-icon">+</span></div>
-                <div class="accordion-body">You can reach out to our support team via the "Contact Us" page or by emailing <a href="mailto:support@finprox.com" style="color: var(--color-primary);">support@finprox.com</a>.</div>
-              </div>
-            </div>
-          </div>
+    <!-- CTA Banner -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-content">
+          <h2 class="has-em">Ready to <em>connect</em> your tools?</h2>
+          <p>Start for free and integrate FinProX with the tools your team already uses — no engineering required.</p>
+          <a href="signup.html" class="btn btn-primary btn-lg">Get Started Free</a>
         </div>
       </div>
     </section>
   </main>
+
   <div id="site-footer"></div>
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
