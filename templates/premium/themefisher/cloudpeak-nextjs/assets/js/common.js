@@ -153,6 +153,24 @@
   }
 
   /* ---------------------------------------------------------- */
+  /* Tabs (elements page)                                         */
+  /* ---------------------------------------------------------- */
+
+  function initTabs() {
+    document.querySelectorAll("[data-tabs]").forEach(function (wrap) {
+      wrap.querySelectorAll(".elements-tab-btn").forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          wrap.querySelectorAll(".elements-tab-btn").forEach(function (b) { b.classList.remove("active"); });
+          wrap.querySelectorAll(".elements-tab-panel").forEach(function (p) { p.classList.remove("active"); });
+          btn.classList.add("active");
+          var target = wrap.querySelector("#" + btn.dataset.tab);
+          if (target) target.classList.add("active");
+        });
+      });
+    });
+  }
+
+  /* ---------------------------------------------------------- */
   /* AOS-equivalent scroll reveal                                 */
   /* ---------------------------------------------------------- */
 
@@ -227,6 +245,7 @@
     initMegaMenu();
     initAccordion();
     initPricingSwitch();
+    initTabs();
     initScrollReveal();
     initMarquee();
     initStickyHeader();
