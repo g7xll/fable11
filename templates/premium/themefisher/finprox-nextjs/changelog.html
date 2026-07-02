@@ -9,201 +9,225 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Instrument+Serif:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
-  <style>
-    .changelog-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.2rem 0.75rem;
-      border-radius: var(--radius-full);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-    .changelog-badge.new {
-      background: rgba(34, 197, 94, 0.12);
-      color: #16a34a;
-    }
-    .changelog-badge.improved {
-      background: rgba(59, 130, 246, 0.12);
-      color: #1d4ed8;
-    }
-    .changelog-badge.fixed {
-      background: rgba(239, 68, 68, 0.12);
-      color: #dc2626;
-    }
-  </style>
 </head>
 <body>
   <header id="site-header" class="header"></header>
-
   <main>
-    <!-- Page Hero -->
-    <div class="main-container">
-      <div class="page-hero">
-        <nav class="breadcrumb">
-          <a href="index.html">Home</a>
-          <span>/</span>
-          <span>Changelog</span>
-        </nav>
-        <h1 class="has-em">Product Updates &amp;<br><em>Changelog</em></h1>
-        <p>Stay up to date with all the latest features, improvements, and fixes in our Finance SaaS platform. We continuously improve our tools to help you manage your finances smarter.</p>
-      </div>
-    </div>
 
-    <!-- Changelog Entries -->
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+      <div class="main-container">
+        <div class="container">
+          <nav class="breadcrumb">
+            <a href="index.html">Home</a>
+            <span>/</span>
+            <span>Changelog</span>
+          </nav>
+          <div class="page-hero-badge"><span class="section-badge">Changelog</span></div>
+          <h1 class="has-em">Product Updates &amp; <em>Changelog</em></h1>
+          <p>Stay up to date with the latest improvements, new features, and fixes in every FinProx release.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHANGELOG ENTRIES -->
     <section class="section">
       <div class="main-container">
-        <div class="container" style="max-width:900px;">
-          <div class="changelog-list">
+        <div class="container">
+          <div class="changelog-layout">
 
-            <!-- v2.4.0 -->
-            <div class="changelog-entry">
-              <div class="changelog-version">
-                <h3>v2.4.0</h3>
-                <div class="changelog-date">June 2026</div>
-              </div>
-              <div class="changelog-body">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                  <span class="changelog-badge new">New</span>
-                  <span style="font-size:0.875rem;color:rgba(26,26,26,0.5);">June 2026</span>
-                </div>
-                <h4>Advanced Analytics &amp; Multi-Currency</h4>
+            <!-- Sticky sidebar TOC -->
+            <aside class="changelog-sidebar">
+              <div class="changelog-toc">
+                <h4>Versions</h4>
                 <ul>
-                  <li>Advanced cash flow forecasting with AI insights</li>
-                  <li>Multi-currency support for global financial operations</li>
-                  <li>Improved mobile experience across all dashboards</li>
+                  <li><a href="#v4-5-0">v4.5.0 — Jan 2026</a></li>
+                  <li><a href="#v3-5-0">v3.5.0 — Sep 2025</a></li>
+                  <li><a href="#v2-3-0">v2.3.0 — May 2025</a></li>
+                  <li><a href="#v1-0-0">v1.0.0 — May 2024</a></li>
+                  <li><a href="#v0-9-0">v0.9.0 — Mar 2024</a></li>
+                  <li><a href="#v0-8-0">v0.8.0 — Jan 2024</a></li>
+                  <li><a href="#v0-7-0">v0.7.0 — Nov 2023</a></li>
                 </ul>
               </div>
-            </div>
+            </aside>
 
-            <div class="divider"></div>
+            <!-- Main entries -->
+            <div class="changelog-entries">
 
-            <!-- v2.3.0 -->
-            <div class="changelog-entry">
-              <div class="changelog-version">
-                <h3>v2.3.0</h3>
-                <div class="changelog-date">May 2026</div>
-              </div>
-              <div class="changelog-body">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                  <span class="changelog-badge improved">Improved</span>
-                  <span style="font-size:0.875rem;color:rgba(26,26,26,0.5);">May 2026</span>
+              <div class="changelog-entry" id="v4-5-0" data-aos="fade-up">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 4.5.0</div>
+                  <div class="changelog-date">- 10 Jan, 2026</div>
                 </div>
-                <h4>Performance &amp; Integration Improvements</h4>
-                <ul>
-                  <li>Performance improvements across the entire platform</li>
-                  <li>Better integration with Stripe for payment reconciliation</li>
-                  <li>Enhanced reporting dashboard with new visualization types</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- v2.2.0 -->
-            <div class="changelog-entry">
-              <div class="changelog-version">
-                <h3>v2.2.0</h3>
-                <div class="changelog-date">April 2026</div>
-              </div>
-              <div class="changelog-body">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                  <span class="changelog-badge fixed">Fixed</span>
-                  <span style="font-size:0.875rem;color:rgba(26,26,26,0.5);">April 2026</span>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                    <span class="changelog-badge badge-improved">Improved</span>
+                    <span class="changelog-badge badge-fixed">Fixed</span>
+                  </div>
+                  <h3>Enhanced Financial Reporting</h3>
+                  <ul>
+                    <li>Added new customizable financial reports</li>
+                    <li>Improved data visualization options</li>
+                    <li>Fixed minor bugs in report generation</li>
+                    <li>Optimized performance for large datasets</li>
+                  </ul>
                 </div>
-                <h4>Bug Fixes &amp; Navigation</h4>
-                <ul>
-                  <li>Bug fixes for CSV export on large datasets</li>
-                  <li>Navigation improvements for sidebar and breadcrumbs</li>
-                  <li>Security patches and dependency updates</li>
-                </ul>
               </div>
-            </div>
 
-            <div class="divider"></div>
-
-            <!-- v2.0.0 -->
-            <div class="changelog-entry">
-              <div class="changelog-version">
-                <h3>v2.0.0</h3>
-                <div class="changelog-date">March 2026</div>
-              </div>
-              <div class="changelog-body">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                  <span class="changelog-badge new">New</span>
-                  <span style="font-size:0.875rem;color:rgba(26,26,26,0.5);">March 2026</span>
+              <div class="changelog-entry" id="v3-5-0" data-aos="fade-up" data-aos-delay="50">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 3.5.0</div>
+                  <div class="changelog-date">- 15 Sep, 2025</div>
                 </div>
-                <h4>Major Platform Redesign</h4>
-                <ul>
-                  <li>Complete UI redesign with a cleaner, more intuitive interface</li>
-                  <li>New dashboard with customizable widgets and layout</li>
-                  <li>API v2 launch with improved rate limits and new endpoints</li>
-                </ul>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                    <span class="changelog-badge badge-improved">Improved</span>
+                    <span class="changelog-badge badge-fixed">Fixed</span>
+                  </div>
+                  <h3>Enhanced Financial Reporting</h3>
+                  <ul>
+                    <li>Added new customizable financial reports</li>
+                    <li>Improved data visualization options</li>
+                    <li>Fixed minor bugs in report generation</li>
+                    <li>Optimized performance for large datasets</li>
+                  </ul>
+                </div>
               </div>
-            </div>
 
-          </div>
+              <div class="changelog-entry" id="v2-3-0" data-aos="fade-up" data-aos-delay="100">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 2.3.0</div>
+                  <div class="changelog-date">- 15 May, 2025</div>
+                </div>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                    <span class="changelog-badge badge-improved">Improved</span>
+                    <span class="changelog-badge badge-fixed">Fixed</span>
+                  </div>
+                  <h3>Enhanced Financial Reporting</h3>
+                  <ul>
+                    <li>Added new customizable financial reports</li>
+                    <li>Improved data visualization options</li>
+                    <li>Fixed minor bugs in report generation</li>
+                    <li>Optimized performance for large datasets</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="changelog-entry" id="v1-0-0" data-aos="fade-up" data-aos-delay="150">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 1.0.0</div>
+                  <div class="changelog-date">- 15 May, 2024</div>
+                </div>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                  </div>
+                  <h3>Initialization Release</h3>
+                  <ul>
+                    <li>Added new customizable financial reports</li>
+                    <li>Improved data visualization options</li>
+                    <li>Fixed minor bugs in report generation</li>
+                    <li>Optimized performance for large datasets</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="changelog-entry" id="v0-9-0" data-aos="fade-up" data-aos-delay="200">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 0.9.0</div>
+                  <div class="changelog-date">- 01 Mar, 2024</div>
+                </div>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-improved">Improved</span>
+                    <span class="changelog-badge badge-fixed">Fixed</span>
+                  </div>
+                  <h3>Beta Improvements</h3>
+                  <ul>
+                    <li>Improved beta stability</li>
+                    <li>Added sample reports</li>
+                    <li>Fixed placeholder bugs</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="changelog-entry" id="v0-8-0" data-aos="fade-up" data-aos-delay="250">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 0.8.0</div>
+                  <div class="changelog-date">- 15 Jan, 2024</div>
+                </div>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                  </div>
+                  <h3>Beta Improvements</h3>
+                  <ul>
+                    <li>Added placeholder features</li>
+                    <li>Initial test data</li>
+                    <li>Minor layout tweaks</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="changelog-entry" id="v0-7-0" data-aos="fade-up" data-aos-delay="300">
+                <div class="changelog-version-meta">
+                  <div class="changelog-version">Version: 0.7.0</div>
+                  <div class="changelog-date">- 20 Nov, 2023</div>
+                </div>
+                <div class="changelog-content">
+                  <div class="changelog-badges">
+                    <span class="changelog-badge badge-new">New</span>
+                  </div>
+                  <h3>Prototype Release</h3>
+                  <ul>
+                    <li>Prototype features added</li>
+                    <li>Basic UI scaffolding</li>
+                    <li>Added dummy content for testing</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div><!-- /changelog-entries -->
+          </div><!-- /changelog-layout -->
         </div>
       </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="section" style="background:var(--color-lighter);border-top:1px solid var(--color-border);">
+    <!-- FAQ SECTION -->
+    <section class="section bg-light">
       <div class="main-container">
         <div class="container">
-          <div style="display:grid;gap:3rem;align-items:flex-start;" class="faq-layout">
-            <div>
-              <span class="section-label">FAQ</span>
-              <h2 class="has-em section-title">Your questions,<br><em>answered</em></h2>
-              <p class="section-desc" style="margin-bottom:1.5rem;">Get quick answers to the most common questions about our platform and services.</p>
-              <a href="contact.html" class="btn btn-outline-primary">Contact Us</a>
+          <div class="faq-layout">
+            <div class="faq-head" data-aos="fade-up">
+              <span class="section-badge">FAQ</span>
+              <h2 class="has-em">Your questions, <em>answered</em></h2>
+              <p>Get quick answers to the most common questions about our platform and services.</p>
             </div>
-            <div class="accordion-list">
-              <div class="accordion-item open">
-                <div class="accordion-header">
-                  What is the purpose of this platform?
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body" style="display:block;">
-                  Our platform is designed to provide users with comprehensive tools and resources to enhance their productivity and collaboration.
-                </div>
+            <div class="faq-body">
+              <div class="accordion" data-aos="fade-up" data-aos-delay="50">
+                <div class="accordion-header"><span>What is the purpose of this platform?</span><span class="accordion-icon">+</span></div>
+                <div class="accordion-content"><p>Our platform is designed to provide users with comprehensive tools and resources to enhance their productivity and collaboration.</p></div>
               </div>
-              <div class="accordion-item">
-                <div class="accordion-header">
-                  How can I create an account?
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  You can create an account by clicking on the "Sign Up" button at the top right corner of our homepage and filling out the registration form.
-                </div>
+              <div class="accordion" data-aos="fade-up" data-aos-delay="100">
+                <div class="accordion-header"><span>How can I create an account?</span><span class="accordion-icon">+</span></div>
+                <div class="accordion-content"><p>You can create an account by clicking the Sign Up button at the top of the page and filling out the registration form with your details.</p></div>
               </div>
-              <div class="accordion-item">
-                <div class="accordion-header">
-                  Is there a free trial available?
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  Yes, we offer a 14-day free trial for new users. You can sign up for the trial without providing any payment information.
-                </div>
+              <div class="accordion" data-aos="fade-up" data-aos-delay="150">
+                <div class="accordion-header"><span>Is there a free trial available?</span><span class="accordion-icon">+</span></div>
+                <div class="accordion-content"><p>Yes, we offer a 14-day free trial on all plans. No credit card required. You can explore all features before deciding on a plan.</p></div>
               </div>
-              <div class="accordion-item">
-                <div class="accordion-header">
-                  How do I reset my password?
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  To reset your password, click on the "Forgot Password" link on the login page and follow the instructions sent to your registered email address.
-                </div>
+              <div class="accordion" data-aos="fade-up" data-aos-delay="200">
+                <div class="accordion-header"><span>How do I reset my password?</span><span class="accordion-icon">+</span></div>
+                <div class="accordion-content"><p>Click the "Forgot Password" link on the sign-in page. Enter your email address and we'll send you a password reset link within a few minutes.</p></div>
               </div>
-              <div class="accordion-item">
-                <div class="accordion-header">
-                  Where can I find support if I encounter issues?
-                  <span class="accordion-icon">+</span>
-                </div>
-                <div class="accordion-body">
-                  You can reach out to our support team via the "Contact Us" page or by emailing <a href="mailto:finprox@gmail.com" style="color:var(--color-primary);">finprox@gmail.com</a>.
-                </div>
+              <div class="accordion" data-aos="fade-up" data-aos-delay="250">
+                <div class="accordion-header"><span>Where can I find support if I encounter issues?</span><span class="accordion-icon">+</span></div>
+                <div class="accordion-content"><p>You can reach our support team via the Contact page, by emailing support@finprox.com, or by using the in-app chat widget available 24/7.</p></div>
               </div>
             </div>
           </div>
@@ -211,33 +235,27 @@
       </div>
     </section>
 
-    <!-- CTA Banner -->
-    <section class="section" style="padding-bottom:0;">
+    <!-- CTA BANNER -->
+    <section class="cta-banner section">
       <div class="main-container">
         <div class="container">
-          <div class="cta-banner" style="background:var(--color-dark);border-radius:var(--radius-3xl);padding:4rem 2.5rem;text-align:center;position:relative;overflow:hidden;">
-            <div class="cta-content">
-              <span class="badge badge-primary" style="margin-bottom:1.25rem;">14-day free trial</span>
-              <h2 class="has-em" style="color:var(--color-white);margin-bottom:1rem;">Ready to Experience Smarter<br><em style="color:var(--color-primary);">Financial Management?</em></h2>
-              <p style="color:rgba(255,255,255,0.7);font-size:1.0625rem;max-width:520px;margin-inline:auto;margin-bottom:2rem;">Join thousands of businesses using FinancePro to streamline their financial operations and drive growth.</p>
-              <div style="display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;">
-                <a href="signup.html" class="btn btn-primary" style="background:var(--color-primary);border-color:var(--color-primary);">Start Free Trial</a>
-                <a href="signup.html" class="btn btn-ghost" style="color:var(--color-white);border-color:rgba(255,255,255,0.25);">Start Free Trial</a>
+          <div class="cta-banner-inner" style="background-image: url('assets/images/call-to-action.png');">
+            <div class="cta-banner-content" data-aos="fade-up">
+              <h2 class="has-em">Ready to Experience Smarter <em>Financial Management?</em></h2>
+              <p>Join thousands of businesses that trust FinProx to keep their finances clear, connected, and under control.</p>
+              <div class="cta-banner-actions">
+                <a href="signup.html" class="btn btn-primary">Get Started Free</a>
+                <a href="contact.html" class="btn btn-outline-secondary">Talk to Sales</a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+
   </main>
-
   <footer id="site-footer" class="footer"></footer>
   <script src="assets/js/components.js"></script>
   <script src="assets/js/main.js"></script>
-  <style>
-    @media (min-width: 1024px) {
-      .faq-layout { grid-template-columns: 5fr 7fr; }
-    }
-  </style>
 </body>
 </html>
