@@ -1764,3 +1764,126 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-color-scheme: dark) {
   /* Dark mode handled by JS toggle */
 }
+
+/* ===== CATEGORY FILTER BUTTONS ===== */
+.cat-filter-btn {
+  border-radius: 999px;
+  border: 1px solid var(--gray-3);
+  padding: 0.625rem 1.125rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  color: var(--dark);
+  background-color: var(--gray);
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 1, 1);
+  font-size: 0.9375rem;
+}
+
+.cat-filter-btn:hover,
+.cat-filter-btn.active {
+  border-color: var(--dark);
+  background-color: var(--dark);
+  color: #fff;
+}
+
+[data-theme="dark"] .cat-filter-btn {
+  border-color: var(--border-color, #2d3038);
+  background-color: #1e2025;
+  color: var(--text-heading, #fff);
+}
+
+[data-theme="dark"] .cat-filter-btn:hover,
+[data-theme="dark"] .cat-filter-btn.active {
+  border-color: var(--primary);
+  background-color: var(--primary);
+  color: #fff;
+}
+
+
+/* ===== FOOTER NAV & SOCIAL ===== */
+.footer-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.footer-nav li a {
+  font-size: 0.875rem;
+  color: var(--dark-4);
+  transition: color 0.2s;
+}
+
+.footer-nav li a:hover {
+  color: var(--dark);
+}
+
+.footer-dot {
+  width: 4px;
+  height: 4px;
+  background: var(--dark-5);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.footer-follow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-follow-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--dark);
+  white-space: nowrap;
+}
+
+.footer-socials-row {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.footer-social-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--dark-4);
+  transition: all 0.2s;
+}
+
+.footer-social-icon:hover {
+  background: var(--gray-2);
+  color: var(--dark);
+}
+
+.footer-social-icon svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* ===== HEADER SEARCH & SOCIAL ICONS ===== */
+.nav-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gray);
+  color: var(--dark-4);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.nav-search-btn:hover {
+  background: var(--gray-2);
+  color: var(--dark);
+}
