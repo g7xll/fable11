@@ -314,9 +314,12 @@ label[for="nav-toggle"] {
   color: var(--text-color);
 }
 
+#show-button, #hide-button { width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
 #hide-button { display: none; }
 #nav-toggle:checked ~ label #show-button { display: none; }
 #nav-toggle:checked ~ label #hide-button { display: block; }
+
+.arrow-icon { width: 1rem; height: 1rem; flex-shrink: 0; }
 
 @media (min-width: 64rem) {
   label[for="nav-toggle"] { display: none; }
