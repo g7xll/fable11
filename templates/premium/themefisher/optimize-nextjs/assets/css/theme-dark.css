@@ -9,12 +9,13 @@
   --color-border: #1c2e26;
   --color-text-dark: #f3f7f4;
   --color-text: #a9baB0;
-  --color-white: #10201a;
-  --color-black: #f3f7f4;
-  /* --color-text-light is intentionally left at its source (light) value in both
-     modes: it's used for text sitting on the permanently-dark --color-primary
-     surfaces (CTA bands, dropdown skirt, dark cards), which stay dark in both
-     themes, so that text must stay light in both themes too. */
+  /* --color-white / --color-black / --color-text-light are intentionally left at
+     their source values in both themes: the compiled Tailwind build maps utilities
+     like .text-white/.bg-white straight to var(--color-white), and those utilities
+     are used site-wide for text sitting on the permanently-dark --color-primary
+     surfaces (CTA bands, pricing cards, dropdown skirt) as well as for genuinely
+     white card surfaces — remapping --color-white to a dark value breaks contrast
+     on both. */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,14 +25,19 @@
     --color-border: #1c2e26;
     --color-text-dark: #f3f7f4;
     --color-text: #a9baB0;
-    --color-white: #10201a;
-    --color-black: #f3f7f4;
   }
 }
 
-/* Cards/panels that were hardcoded against --color-white as a literal "card surface"
-   already pick up the override above. A couple of surfaces used pure white intentionally
-   (e.g. dropdown menu skirts) — keep good contrast in dark mode explicitly. */
+/* True-white card surfaces (feature/pricing/testimonial cards, dropdown menus) get a
+   dedicated dark surface color in dark mode via .card-surface, applied by builders to
+   elements whose light-mode background is bg-white acting as a "card", as opposed to
+   text-white/bg-white usages that must stay literal white/near-white for contrast on
+   dark-primary sections. */
+:root.dark .card-surface {
+  background-color: #10201a !important;
+  border-color: #1c2e26;
+}
+
 :root.dark .navbar-brand img,
 :root.dark img[src$=".svg"] {
   filter: none;
