@@ -1035,3 +1035,84 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 
 @media (max-width: 1024px) { .main-container { width: 100%; } }
 @media (max-width: 640px) { .section { padding-block: 3rem; } .hero-title { font-size: 2.25rem; } .section-title { font-size: 1.75rem; } }
+
+/* ==================== INTEGRATION FILTER PAGE ==================== */
+.integration-filter {
+  display: flex; gap: 0.5rem; flex-wrap: wrap; justify-content: center; margin-bottom: 3rem;
+}
+.integration-filter-btn {
+  padding: 0.5rem 1.25rem; border: 1px solid var(--color-border);
+  border-radius: var(--radius-full); background: transparent;
+  font-size: 0.875rem; font-weight: 500; cursor: pointer; color: var(--color-text);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.integration-filter-btn:hover,
+.integration-filter-btn.active {
+  background: var(--color-primary); border-color: var(--color-primary); color: var(--color-white);
+}
+
+/* Full-card integrations grid (integrations page) */
+.integrations-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.integration-card-icon { width: 3.5rem; height: 3.5rem; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.integration-card-icon img { width: 100%; height: 100%; object-fit: contain; }
+.integration-card-name { font-size: 1.0625rem; font-weight: 600; margin-bottom: 0.5rem; }
+.integration-card-desc { font-size: 0.875rem; color: rgba(26,26,26,0.65); line-height: 1.6; margin-bottom: 1.25rem; flex: 1; }
+.integration-card-link {
+  display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem;
+  font-weight: 500; color: var(--color-primary); text-decoration: none;
+  transition: gap var(--transition);
+}
+.integration-card-link:hover { gap: 0.65rem; }
+
+/* ==================== FAQ LAYOUT ==================== */
+.faq-layout { display: grid; gap: 3rem; }
+@media (min-width: 1024px) { .faq-layout { grid-template-columns: 1fr 2fr; } }
+.faq-head { }
+.faq-head .section-badge { margin-bottom: 1rem; }
+.faq-head h2 { margin-bottom: 1rem; }
+.faq-body { display: flex; flex-direction: column; gap: 0; }
+
+/* ==================== CTA BANNER ==================== */
+.cta-banner-inner {
+  border-radius: var(--radius-2xl); overflow: hidden;
+  background-size: cover; background-position: center; background-repeat: no-repeat;
+  padding: 5rem 3rem; text-align: center; position: relative;
+}
+.cta-banner-inner::before {
+  content: ''; position: absolute; inset: 0; background: rgba(18,18,18,0.78);
+}
+.cta-banner-content { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+.cta-banner-content h2 { color: var(--color-white); margin-bottom: 1rem; }
+.cta-banner-content p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 1.0625rem; }
+.cta-banner-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ==================== CHANGELOG PAGE ==================== */
+.changelog-layout { display: grid; gap: 3rem; }
+@media (min-width: 1024px) { .changelog-layout { grid-template-columns: 220px 1fr; } }
+
+.changelog-sidebar { }
+.changelog-toc { position: sticky; top: 5rem; background: var(--color-lighter); border-radius: var(--radius-xl); padding: 1.5rem; }
+.changelog-toc h4 { font-size: 0.9375rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 1rem; color: rgba(26,26,26,0.55); }
+.changelog-toc ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 0.25rem; }
+.changelog-toc a { display: block; padding: 0.35rem 0.75rem; border-radius: var(--radius-lg); font-size: 0.875rem; color: rgba(26,26,26,0.65); text-decoration: none; transition: background var(--transition), color var(--transition); }
+.changelog-toc a:hover { background: var(--color-white); color: var(--color-primary); }
+
+.changelog-entries { display: flex; flex-direction: column; gap: 3rem; }
+.changelog-entry { border-bottom: 1px solid var(--color-border); padding-bottom: 3rem; }
+.changelog-entry:last-child { border-bottom: none; }
+.changelog-version-meta { display: flex; gap: 1rem; align-items: baseline; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.changelog-version { font-weight: 700; font-size: 1rem; color: var(--color-primary); }
+.changelog-date { font-size: 0.875rem; color: rgba(26,26,26,0.5); }
+.changelog-content h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; }
+.changelog-content ul { padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; }
+.changelog-content li { list-style: disc; font-size: 0.9375rem; color: rgba(26,26,26,0.8); }
+.changelog-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.changelog-badge { display: inline-flex; align-items: center; padding: 0.2rem 0.75rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+.badge-new { background: rgba(34,197,94,0.12); color: #16a34a; }
+.badge-improved { background: rgba(228,136,0,0.12); color: var(--color-primary); }
+.badge-fixed { background: rgba(59,130,246,0.12); color: #2563eb; }
+.badge-deprecated { background: rgba(239,68,68,0.1); color: #dc2626; }
