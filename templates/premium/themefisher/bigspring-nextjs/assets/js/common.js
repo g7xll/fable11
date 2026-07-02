@@ -35,11 +35,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Swiper carousels (testimonials / logo strips) ---------- */
+  /* ---------- Swiper carousels (testimonials / logo strips / feature stories) ----------
+     The source ships three distinct carousel shapes on Home/Product pages, all sharing
+     the same .swiper markup: (1) a brand-logo strip (many small ~40px-tall logo slides),
+     (2) a single big alternating feature-story block (one tall ~535px image+copy slide
+     at a time), and (3) a 2-up testimonial card strip. Since the compiled markup doesn't
+     tag which is which, infer it at runtime from slide count + the tallest image found
+     in the first slide, rather than hardcoding per-page config. */
   if (window.Swiper) {
     document.querySelectorAll('.js-swiper').forEach(function (el) {
-      var slidesPerView = parseInt(el.getAttribute('data-slides-desktop') || '2', 10);
-      var slidesPerViewMobile = parseInt(el.getAttribute('data-slides-mobile') || '1', 10);
+      var slides = el.querySelectorAll('.swiper-slide');
+      var firstSlide = slides[0];
+      var tallestImg = 0;
+      if (firstSlide) {
+        firstSlide.querySelectorAll('img').forEach(function (img) {
+          var h = parseInt(img.getAttribute('height') || '0', 10);
+          if (h > tallestImg) tallestImg = h;
+        });
+      }
+      var desktopPerView = parseInt(el.getAttribute('data-slides-desktop') || '', 10);
+      var mobilePerView = parseInt(el.getAttribute('data-slides-mobile') || '', 10);
+      if (!desktopPerView) {
+        if (tallestImg >= 200) {
+          desktopPerView = 1; mobilePerView = 1; /* feature-story block */
+        } else if (slides.length >= 6) {
+          desktopPerView = 5; mobilePerView = 2; /* logo strip */
+        } else {
+          desktopPerView = 2; mobilePerView = 1; /* testimonial cards */
+        }
+      }
       new Swiper(el, {
         loop: true,
         autoplay: { delay: 3500, disableOnInteraction: false },
@@ -48,8 +72,8 @@ document.addEventListener('DOMContentLoaded', function () {
           clickable: true
         },
         breakpoints: {
-          0: { slidesPerView: slidesPerViewMobile, spaceBetween: 20 },
-          992: { slidesPerView: slidesPerView, spaceBetween: 30 }
+          0: { slidesPerView: mobilePerView, spaceBetween: 20 },
+          992: { slidesPerView: desktopPerView, spaceBetween: 30 }
         }
       });
     });
