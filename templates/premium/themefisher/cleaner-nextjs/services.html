@@ -22,12 +22,14 @@
 <style>
   /* ---- services.html page-specific styles ---- */
   .services-grid .card-body p { margin-bottom: 1.25rem; }
-  .service-icons { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2.5rem; margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); }
-  .service-icons .service-icon-item { flex: 1 1 200px; text-align: center; }
-  .service-icons .icon-badge { display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--radius-md, 12px); background: color-mix(in srgb, var(--color-secondary) 70%, transparent); color: var(--color-text); margin-bottom: 1.25rem; }
-  .service-icons .icon-badge svg { width: 30px; height: 30px; }
+  .service-icons { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 2.5rem; margin-top: clamp(2.5rem, 2rem + 2vw, 4rem); text-align: left; }
+  .service-icons .service-icon-item { flex: 1 1 200px; text-align: left; padding-inline-end: 1.5rem; border-right: 1px solid var(--border-color); }
+  .service-icons .service-icon-item:last-child { border-right: none; }
+  .service-icons .icon-badge { display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: var(--radius-md, 12px); background: color-mix(in srgb, var(--color-secondary) 70%, transparent); color: var(--color-text); margin-bottom: 1.25rem; }
+  .service-icons .icon-badge svg { width: 26px; height: 26px; }
   .service-icons p.service-title { font-size: var(--text-lg); font-weight: 500; margin-bottom: 0.75rem; }
-  .service-icons .card-link { justify-content: center; }
+  .service-icons .card-link { justify-content: flex-start; }
+  @media (max-width: 767px) { .service-icons .service-icon-item { border-right: none; text-align: center; } .service-icons .card-link { justify-content: center; } }
   .benefits-grid { display: grid; gap: 1.75rem; grid-template-columns: repeat(4, 1fr); }
   @media (max-width: 991px) { .benefits-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 640px) { .benefits-grid { grid-template-columns: 1fr; } }
@@ -86,18 +88,27 @@
 <main id="main">
 
   <!-- Page header -->
-  <section class="page-header">
+  <section class="page-header" style="text-align:left;">
     <div class="container">
       <div class="breadcrumb">
         <a href="index.html">Home</a>
         <span>/</span>
         <span>Services</span>
       </div>
-      <p class="eyebrow" data-aos="fade-up-sm">Highest Level Of Service</p>
-      <h1 data-aos="fade-up-sm" data-aos-delay="50">We provide our best cleaning <span class="text-accent-underline">services</span></h1>
-      <p class="lead" style="max-width:640px;margin-inline:auto;" data-aos="fade-up-sm" data-aos-delay="100">
-        Our company provides a wide range of cleaning services, from home cleaning to office cleaning. We use only advanced technologies to keep your room looking the best. Our team of experts who have been in the profession for years focuses on helping you achieve optimal clean surface.
-      </p>
+      <div class="page-header-grid" style="display:flex;flex-wrap:wrap;gap:2.5rem;align-items:flex-start;margin-top:1.5rem;">
+        <div style="flex:1 1 420px;">
+          <p class="eyebrow" style="display:block;" data-aos="fade-up-sm">Highest Level Of Service</p>
+          <h1 data-aos="fade-up-sm" data-aos-delay="50">We provide our best cleaning <span class="text-accent-underline">services</span></h1>
+        </div>
+        <div style="flex:1 1 360px;">
+          <p class="lead" data-aos="fade-up-sm" data-aos-delay="100">
+            Our company provides a wide range of cleaning services, from home cleaning to office cleaning. We use only advanced technologies to keep your room looking the best.
+          </p>
+          <p class="lead" data-aos="fade-up-sm" data-aos-delay="150">
+            Our team of experts who have been in the profession for years focuses on helping you achieve optimal clean surface.
+          </p>
+        </div>
+      </div>
 
       <div class="service-icons">
         <div class="service-icon-item" data-aos="fade-up-sm" data-aos-delay="100">
