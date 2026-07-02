@@ -45,24 +45,18 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // FAQ accordions
-  document.querySelectorAll('.accordion').forEach(function (acc) {
-    acc.querySelectorAll('.accordion-item').forEach(function (item) {
-      var btn = item.querySelector('.accordion-trigger');
-      var panel = item.querySelector('.accordion-panel');
-      if (!btn || !panel) return;
-      btn.addEventListener('click', function () {
-        var isOpen = item.classList.contains('is-open');
-        acc.querySelectorAll('.accordion-item.is-open').forEach(function (openItem) {
-          if (openItem !== item) {
-            openItem.classList.remove('is-open');
-            var p = openItem.querySelector('.accordion-panel');
-            if (p) p.style.maxHeight = null;
-          }
-        });
-        item.classList.toggle('is-open', !isOpen);
-        panel.style.maxHeight = !isOpen ? panel.scrollHeight + 'px' : null;
-      });
+  // FAQ accordions — markup/classes copied verbatim from the source (.accordion item,
+  // .accordion-header trigger, .accordion-content panel). vendor-main.css already
+  // defines the open-state CSS keyed off an "active" class
+  // (.accordion.active .accordion-content{max-height:100vh;opacity:1}, plus the
+  // plus/minus icon cross-fade) — this just toggles that class. Multiple FAQ items can
+  // be open at once, matching the source (no accordion "group" wrapper to enforce
+  // single-open).
+  document.querySelectorAll('.accordion').forEach(function (item) {
+    var btn = item.querySelector('.accordion-header');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+      item.classList.toggle('active');
     });
   });
 
