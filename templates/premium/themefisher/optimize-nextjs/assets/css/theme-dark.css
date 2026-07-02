@@ -9,9 +9,12 @@
   --color-border: #1c2e26;
   --color-text-dark: #f3f7f4;
   --color-text: #a9baB0;
-  --color-text-light: #08130f;
   --color-white: #10201a;
   --color-black: #f3f7f4;
+  /* --color-text-light is intentionally left at its source (light) value in both
+     modes: it's used for text sitting on the permanently-dark --color-primary
+     surfaces (CTA bands, dropdown skirt, dark cards), which stay dark in both
+     themes, so that text must stay light in both themes too. */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -21,7 +24,6 @@
     --color-border: #1c2e26;
     --color-text-dark: #f3f7f4;
     --color-text: #a9baB0;
-    --color-text-light: #08130f;
     --color-white: #10201a;
     --color-black: #f3f7f4;
   }
@@ -33,10 +35,6 @@
 :root.dark .navbar-brand img,
 :root.dark img[src$=".svg"] {
   filter: none;
-}
-
-:root.dark .header:not(.header-solid) .nav-link {
-  color: var(--color-text-light);
 }
 
 /* Theme toggle button */
