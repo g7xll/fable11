@@ -1,5 +1,7 @@
 # Andromeda Light — Themefisher SaaS Landing Page Clone
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful, self-contained HTML/CSS/JS clone of the [Andromeda Light Next.js template](https://themefisher.com/demo?theme=andromeda-light-nextjs) by Themefisher. No build step required — open any `.html` file directly in a browser.
 
 ## Features

@@ -1,5 +1,7 @@
 # NextBlog — Next.js Blog Template Clone
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful HTML/CSS/JS clone of the [NextBlog premium template](https://nextblog.demo.nextjstemplates.com) by NextJS Templates. Full-featured blog platform with business and personal blog layouts, author pages, archive, search, and authentication — reproduced as a zero-dependency static site.
 
 ## Pages

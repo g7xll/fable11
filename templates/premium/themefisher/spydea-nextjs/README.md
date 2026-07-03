@@ -1,5 +1,7 @@
 # Spydea — SaaS Document Management Landing Page Clone
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful HTML/CSS/JS clone of the [Spydea Next.js template](https://themefisher.com/demo?theme=spydea-nextjs) by Themefisher. No build step required — open `index.html` directly in a browser.
 
 ## Features

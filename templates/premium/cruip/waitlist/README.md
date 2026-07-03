@@ -1,5 +1,7 @@
 # Cruip Waitlist — Coming Soon Landing Page Template
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful clone of Cruip's **Waitlist** template: a single-page coming-soon / waitlist landing page with a lavender-indigo light theme, a deep-navy dark theme, animated background blobs, and an email capture form. Built as self-contained HTML + CSS + vanilla JS with no build step required.
 
 ## Features

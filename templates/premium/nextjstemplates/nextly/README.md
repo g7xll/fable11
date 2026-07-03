@@ -1,5 +1,7 @@
 # Nextly Landing Page Template Clone — Free Startup SaaS Site (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful, self-contained reproduction of "Nextly" — the popular free Next.js + TailwindCSS landing page and marketing website template for startups and indie projects by Web3Templates. Built as a single, fully responsive scrolling page in plain HTML, CSS, and vanilla JavaScript with no framework or build step: a navbar with a persisted dark/light mode toggle, a hero with a line-art illustration, a "Trusted by" logo cloud of inline-SVG brand marks, two alternating benefit sections, a decorative video-promo card, a testimonials grid, an independently-toggling FAQ accordion, a CTA banner, a full footer, a mobile hamburger menu, and a floating "Contact form" widget with its own animated panel. Generated with Claude Fable 5.
 
 ## Run
