@@ -1,5 +1,7 @@
 # Seoptic — SEO Analytics SaaS Template (Themefisher)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful same-to-same HTML/CSS/JS clone of the **Seoptic** premium Next.js template by Themefisher — a modern SEO analytics SaaS landing page built for keyword tracking, backlink monitoring, and competitor analysis tools.
 
 ![Seoptic Template Preview](poster.jpg)

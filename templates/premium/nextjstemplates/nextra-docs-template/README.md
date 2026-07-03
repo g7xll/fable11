@@ -1,5 +1,7 @@
 # Nextra Docs Template Clone — Docs Site Theme Study (Vanilla HTML/CSS/JS)
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A pixel-faithful, self-contained reproduction of the official Nextra "Docs Template" starter theme — the classic Nextra docs chrome with a sticky blurred navbar, a tree-style left sidebar with a collapsible folder, a centered MDX-style prose content column, a right "On This Page" TOC rail, and a footer with a System/Light/Dark theme switcher. Built as five static pages (Introduction, About, Another Page, Advanced, and the nested Advanced/Satori page) in plain HTML, CSS, and vanilla JavaScript with no framework or build step, including working interactions: an animated sidebar folder toggle, a client-side search modal, a persisted dark-mode switcher, and independent click-counter components on the "Another Page" example. Generated with Claude Fable 5.
 
 ## Run

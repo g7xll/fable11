@@ -1,5 +1,7 @@
 # Cruip Docs
 
+[![Watch Demo](./poster.jpg)](./demo.mp4)
+
 A clean, professional documentation template with a three-column layout: sticky header, collapsible left sidebar navigation, main article content area, and a right-side "On this page" scrollspy TOC.
 
 ## Pages
