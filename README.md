@@ -1,7 +1,3 @@
-# claude-directory — AI-generated UI experiments built with Claude
-
-**An open-source gallery of web UI experiments generated with [Claude](https://claude.com/) (Fable 5)** — landing pages, hero sections, GLSL shaders, design systems, animations, portfolios, and 3D/WebGL scenes. Every project is self-contained, ships its prompt, and includes a recorded demo. Browse the live directory at **[pulkitxm.com/claude-directory](https://pulkitxm.com/claude-directory)**.
-
 Built mostly with **React, TypeScript, Vite, Tailwind CSS, Three.js, Framer Motion, and GSAP** (plus plenty of framework-free HTML/CSS/JS) — a reference collection of copy-pasteable, AI-generated front-end components and templates for anyone exploring what Claude can build on the web.
 
 **Categories:** [Hero sections](./hero-sections/) · [Landing pages](./landing-pages/) · [Shaders](./shaders/) · [UI design systems](./ui-design/) · [Components & UI](./components-ui/) · [Portfolios](./portfolios/) · [Animations & loaders](./animations-loaders/) · [3D & games](./3d-games/) · [Templates](./templates/)
